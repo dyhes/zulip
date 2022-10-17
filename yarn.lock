@@ -4224,6 +4224,11 @@ email-addresses@^5.0.0:
   resolved "https://registry.yarnpkg.com/emoji-datasource-google/-/emoji-datasource-google-3.0.0.tgz#d6f77b56385338e10667d2b150dbe9f9b5a4e921"
   integrity sha512-Ms+IO6V40EKcfBjxs76iLYQexo6Tgl8MbTxM7Z4Qm5n/Hwkr/DNNYui40aU3YaVd8oRNLaMXN1/rS++/VHViPQ==
 
+emoji-datasource-google@^14.0.0:
+  version "14.0.0"
+  resolved "https://registry.yarnpkg.com/emoji-datasource-google/-/emoji-datasource-google-14.0.0.tgz#9c80e305100afb6fc78e535ff49ac2825a335a19"
+  integrity sha512-/hXr4zEfcgKNfV3FR3DmTDhP3u2p1RYqEmW2eSQfkPYZbcKjfdwxZsRjBnnxxjj3sG/d/rtF6Ob7hwzN+LITHA==
+
 emoji-datasource-twitter@^14.0.0:
   version "14.0.0"
   resolved "https://registry.yarnpkg.com/emoji-datasource-twitter/-/emoji-datasource-twitter-14.0.0.tgz#18c58183cb0b845823a19f3fea7f87bdd4a340cb"
