@@ -92,8 +92,10 @@ def do_yarn_install(
             shutil.rmtree(os.path.join(cached_node_modules, ".cache"))
     if os.environ.get("CUSTOM_CA_CERTIFICATES"):
         run([YARN_BIN, "config", "set", "cafile", os.environ["CUSTOM_CA_CERTIFICATES"]])
+    run([YARN_BIN, "config", "set", "registry ", "https://registry.npmmirror.com"])
+    run([YARN_BIN,"config","get","registry"])
     run(
-        [YARN_BIN, "install", "--non-interactive", *yarn_args], cwd=target_path
+        [YARN_BIN, "install", "--non-interactive", "--frozen-lockfile", *yarn_args], cwd=target_path
     )
     with open(success_stamp, "w"):
         pass
