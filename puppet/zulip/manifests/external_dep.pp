@@ -31,7 +31,7 @@ define zulip::external_dep(
 
   file { $dir:
     ensure  => present,
-    require => Aloha::Sha256_Tarball_To[$title],
+    require => Zulip::Sha256_Tarball_To[$title],
   }
 
   tidy { "/srv/zulip-${title}-*":

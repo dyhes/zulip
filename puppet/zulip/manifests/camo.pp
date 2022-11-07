@@ -45,7 +45,7 @@ class zulip::camo (String $listen_address = '0.0.0.0') {
     require => [
       Package['camo'],
       Package[supervisor],
-      Aloha::External_Dep['go-camo'],
+      Zulip::External_Dep['go-camo'],
       File['/usr/local/bin/secret-env-wrapper'],
     ],
     owner   => 'root',

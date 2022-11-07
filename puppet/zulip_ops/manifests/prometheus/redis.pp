@@ -17,7 +17,7 @@ class zulip_ops::prometheus::redis {
     require => [
       User[zulip],
       Package[supervisor],
-      Aloha::External_Dep['redis_exporter'],
+      Zulip::External_Dep['redis_exporter'],
     ],
     owner   => 'root',
     group   => 'root',

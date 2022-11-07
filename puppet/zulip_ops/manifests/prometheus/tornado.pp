@@ -26,7 +26,7 @@ class zulip_ops::prometheus::tornado {
     require => [
       User[zulip],
       Package[supervisor],
-      Aloha::External_Dep['process_exporter'],
+      Zulip::External_Dep['process_exporter'],
       File[$conf],
     ],
     owner   => 'root',
