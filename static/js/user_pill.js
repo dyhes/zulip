@@ -8,7 +8,7 @@ import * as user_status from "./user_status";
 // or adding users to a stream/group.
 
 export function create_item_from_email(email, current_items) {
-    // For normal Zulip use, we need to validate the email for our realm.
+    // For normal Aloha use, we need to validate the email for our realm.
     const user = people.get_by_email(email);
 
     if (!user) {

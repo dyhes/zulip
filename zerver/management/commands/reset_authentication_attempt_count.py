@@ -3,11 +3,11 @@ from typing import Any
 
 from django.core.management.base import CommandError
 
-from zerver.lib.management import ZulipBaseCommand
+from zerver.lib.management import AlohaBaseCommand
 from zproject.backends import RateLimitedAuthenticationByUsername
 
 
-class Command(ZulipBaseCommand):
+class Command(AlohaBaseCommand):
     help = """Reset the rate limit for authentication attempts for username."""
 
     def add_arguments(self, parser: ArgumentParser) -> None:

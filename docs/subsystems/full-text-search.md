@@ -1,18 +1,18 @@
 # Full-text search
 
-Zulip supports full-text search, which can be combined arbitrarily
-with Zulip's full suite of narrowing operators. By default, it only
+Aloha supports full-text search, which can be combined arbitrarily
+with Aloha's full suite of narrowing operators. By default, it only
 supports English text, but there is an experimental
 [PGroonga](https://pgroonga.github.io/) integration that provides
 full-text search for all languages.
 
-The user interface and feature set for Zulip's full-text search is
-documented in the "Search operators" documentation section in the Zulip
+The user interface and feature set for Aloha's full-text search is
+documented in the "Search operators" documentation section in the Aloha
 app's gear menu.
 
 ## The default full-text search implementation
 
-Zulip uses [PostgreSQL's built-in full-text search
+Aloha uses [PostgreSQL's built-in full-text search
 feature](https://www.postgresql.org/docs/current/textsearch.html),
 with a custom set of English stop words to improve the quality of the
 search results.
@@ -27,12 +27,12 @@ application server instead.
 
 ## Multi-language full-text search
 
-Zulip also supports using [PGroonga](https://pgroonga.github.io/) for
+Aloha also supports using [PGroonga](https://pgroonga.github.io/) for
 full-text search. While PostgreSQL's built-in full-text search feature
-supports only one language at a time (in Zulip's case, English), the
+supports only one language at a time (in Aloha's case, English), the
 PGroonga full-text search engine supports all languages
 simultaneously, including Japanese and Chinese. Once we have tested
-this new backend sufficiently, we expect to switch Zulip deployments
+this new backend sufficiently, we expect to switch Aloha deployments
 to always use PGroonga.
 
 ### Enabling PGroonga
@@ -66,7 +66,7 @@ All steps in this section should be run as the `root` user; on most installs, th
    Note that the migration may take a long time, and users will be
    unable to send new messages until the migration finishes.
 
-1. Once the migrations are complete, restart Zulip:
+1. Once the migrations are complete, restart Aloha:
 
    ```bash
    su zulip -c '/home/zulip/deployments/current/scripts/restart-server'
@@ -90,7 +90,7 @@ All steps in this section should be run as the `root` user; on most installs, th
    USING_PGROONGA = False
    ```
 
-1. Restart Zulip:
+1. Restart Aloha:
 
    ```bash
    su zulip -c '/home/zulip/deployments/current/scripts/restart-server'

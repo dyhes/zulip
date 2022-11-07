@@ -1,12 +1,12 @@
 # Connect through a proxy
 
-Some corporate and university networks may require you to connect to Zulip
+Some corporate and university networks may require you to connect to Aloha
 via a proxy.
 
 ## Web
 
-Zulip uses your browser's default proxy settings. To set a custom proxy just
-for Zulip, check your browser's instructions for setting a custom proxy for
+Aloha uses your browser's default proxy settings. To set a custom proxy just
+for Aloha, check your browser's instructions for setting a custom proxy for
 a single website.
 
 ## Desktop
@@ -21,7 +21,7 @@ a single website.
 
 3. Click **Use system proxy settings**.
 
-4. Restart the Zulip desktop app.
+4. Restart the Aloha desktop app.
 
 {tab|custom-proxy-settings}
 

@@ -1,9 +1,9 @@
 # Version history
 
-This page the release history for the Zulip server. See also the
-[Zulip release lifecycle](../overview/release-lifecycle.md).
+This page the release history for the Aloha server. See also the
+[Aloha release lifecycle](../overview/release-lifecycle.md).
 
-## Zulip 6.x series
+## Aloha 6.x series
 
 ### 6.0 -- unreleased
 
@@ -35,8 +35,8 @@ log][commit-log] for an up-to-date list of raw changes.
   skip the login page by default, support switching themes and
   languages, and add many other UI improvements.
 - Incoming webhook integrations now support filtering which classes of events
-  are sent into Zulip; this can be invaluable when the third-party service
-  doesn't support configuring which events to send to Zulip.
+  are sent into Aloha; this can be invaluable when the third-party service
+  doesn't support configuring which events to send to Aloha.
 - Added support for Ubuntu 22.04.
 - Removed support for Debian 10 and PostgreSQL 10 due to their
   approaching end-of-life upstream.
@@ -57,18 +57,18 @@ log][commit-log] for an up-to-date list of raw changes.
   profile.
 - Redesigned several organization settings pages to have more
   consistent design.
-- Redesigned the footer for self-hosted Zulip servers. The footer now has just a
+- Redesigned the footer for self-hosted Aloha servers. The footer now has just a
   few key links, rather than being almost identical to the footer for the
   zulip.com website.
-- Redesigned the 500 error pages for self-hosted Zulip servers to be
-  clearer and link to the Zulip server troubleshooting guide.
+- Redesigned the 500 error pages for self-hosted Aloha servers to be
+  clearer and link to the Aloha server troubleshooting guide.
 - Redesigned the interface for configuring message editing and
   deletion permissions to be easier to understand.
 - Improved Recent Topics. The timestamp links now go to the latest
   message in the topic, arrow key navigation was improved, and many
   other bug fixes or subtle improvements.
 - Added support for emoji added in unicode versions since 2017, which
-  had previously been unavailable in Zulip. Users using the deprecated
+  had previously been unavailable in Aloha. Users using the deprecated
   "Google blobs" emoji set are automatically migrated to the modern
   "Google" emoji set. The "Google blobs" emoji set remains available
   for users who prefer it, with any new emoji that were added to the
@@ -80,14 +80,14 @@ log][commit-log] for an up-to-date list of raw changes.
 - Added new summary statistics on the organization analytics
   page. Fixed several bugs with the display of analytics graphs.
 - Added support for administrators sending a final email to a user as
-  part of deactivating their Zulip account.
+  part of deactivating their Aloha account.
 - Added API endpoint to get a single stream by ID.
 - Added beta support for user groups to have subgroups, and for some
   permissions settings to be managed using user groups. Over the
-  coming releases, we plan to migrate all Zulip permissions settings
+  coming releases, we plan to migrate all Aloha permissions settings
   to be based on this more flexible groups-based system. We currently
   expect this migration to be fully backwards-compatible.
-- Zulip's automated emails use the `X-Auto-Response-Suppress` header
+- Aloha's automated emails use the `X-Auto-Response-Suppress` header
   to reduce auto-responder replies.
 - Changed various icons to be more intuitive. The bell-based icon for
   muted topics has been replaced by a more standard muted speaker icon.
@@ -127,7 +127,7 @@ log][commit-log] for an up-to-date list of raw changes.
 - Improve the language in message notification emails explaining
   why the notification was sent.
 - Increased timeout for processing slow requests from 20s to 60s.
-- Removed limits that prevented replying to Zulip email notifications multiple
+- Removed limits that prevented replying to Aloha email notifications multiple
   times or, several days after receiving them.
 - Fixed numerous bugs and performance issues with the Rocket.Chat data
   import tool.
@@ -137,7 +137,7 @@ log][commit-log] for an up-to-date list of raw changes.
   several seconds have passed.
 - Fixed a bug where public streams imported from other chat systems
   could incorrectly be configured as public streams without shared
-  history, a configuration not otherwise possible in Zulip.
+  history, a configuration not otherwise possible in Aloha.
 - Fixed several subtle bugs involving editing custom profile field
   configuration.
 - Fixed several bugs involving compose box keyboard shortcuts.
@@ -171,13 +171,13 @@ log][commit-log] for an up-to-date list of raw changes.
   this release, so this migration can be run in the background for
   installations hoping to avoid extended downtime.
 
-## Zulip 5.x series
+## Aloha 5.x series
 
 ### 5.6 -- 2022-08-24
 
 - CVE-2022-36048: Change the Markdown renderer to only rewrite known
   local links as relative links, rather than rewriting all local
-  links. This fix also protects against a vulnerability in the Zulip
+  links. This fix also protects against a vulnerability in the Aloha
   mobile app (CVE-2022-35962).
 - Added hardening against timing attacks to an internal authentication check.
 - Improved documentation for hosting multiple organizations on a server.
@@ -187,7 +187,7 @@ log][commit-log] for an up-to-date list of raw changes.
 ### 5.5 -- 2022-07-21
 
 - CVE-2022-31168: Fix authorization check for changing bot roles. Due
-  to an incorrect authorization check in Zulip Server 5.4 and all prior
+  to an incorrect authorization check in Aloha Server 5.4 and all prior
   releases, a member of an organization could craft an API call that
   would grant organization administrator privileges to one of their bots.
 - Added new options to the `restore-backup` tool to simplify restoring
@@ -206,9 +206,9 @@ log][commit-log] for an up-to-date list of raw changes.
   ranges.
 - Documented an explicit list of supported CPU architectures.
 - Switched `html2text` to run as a subprocess, rather than a Python
-  module, as its GPL license is not compatible with Zulip’s.
+  module, as its GPL license is not compatible with Aloha’s.
 - Replaced `markdown-include` python module with a reimplementation,
-  as its GPL license is not compatible with Zulip’s.
+  as its GPL license is not compatible with Aloha’s.
 - Relicensed as GPL the `tools/check-thirdparty` developer tool which
   verifies third-party licenses, due to a GPL dependency by way of
   `python-debian`.
@@ -220,10 +220,10 @@ log][commit-log] for an up-to-date list of raw changes.
 
 - CVE-2022-31017: Fixed message edit event exposure in
   protected-history streams.
-  Zulip allows a stream to be configured as [private with protected
+  Aloha allows a stream to be configured as [private with protected
   history](https://zulip.com/help/stream-permissions#stream-privacy-settings),
   which means that new subscribers should only see messages sent after
-  they join. However, due to a logic bug in Zulip Server 2.1.0 through
+  they join. However, due to a logic bug in Aloha Server 2.1.0 through
   5.2, when a message was edited, the server would incorrectly send an
   API event that included both the edited and old content of the
   message to all of the stream’s current subscribers, regardless of
@@ -253,7 +253,7 @@ log][commit-log] for an up-to-date list of raw changes.
 - Fixed the nginx configuration to include the default system-level
   nginx modules.
 - Only attempt to fix the `certbot` SSL renewal configuration if HTTPS
-  is enabled; this addresses a regression in Zulip Server 5.2, where
+  is enabled; this addresses a regression in Aloha Server 5.2, where
   the upgrade would fail if an improperly configured certificate
   existed, but was both expired and not in use.
 - Improved proxy and database backup documentation.
@@ -263,7 +263,7 @@ log][commit-log] for an up-to-date list of raw changes.
 - Fixed a performance regression in the UI, introduced in 5.0, when
   opening the compose box.
 - Fixed a bug which could intermittently cause URL previews to fail,
-  if Zulip was being run in Docker or in low-memory environments.
+  if Aloha was being run in Docker or in low-memory environments.
 - Fixed an issue which would cause PostgreSQL 10 and PostgreSQL 11 to
   attempt to write each WAL log to S3, even if S3 WAL
   backups/replication were not configured.
@@ -278,7 +278,7 @@ log][commit-log] for an up-to-date list of raw changes.
   explicitly set to empty.
 - Fixed incomplete tracebacks when timeouts happen during Markdown
   rendering.
-- Fixed some older versions of Zulip Server not being considered when
+- Fixed some older versions of Aloha Server not being considered when
   comparing for the likely original version of `settings.py`.
 - Stopped using the `database_password` if it is set but
   `database_user` is not.
@@ -290,7 +290,7 @@ log][commit-log] for an up-to-date list of raw changes.
   `zerver/actions/`. This non-functional change was backported to
   ensure it remains easy to backport other changes.
 - Updated documentation to reflect that current mobile apps are only
-  guaranteed to be compatible with Zulip Server 3.0 and later; they
+  guaranteed to be compatible with Aloha Server 3.0 and later; they
   may also work with earlier versions, with a degraded experience.
 
 ### 5.1 -- 2022-04-01
@@ -298,7 +298,7 @@ log][commit-log] for an up-to-date list of raw changes.
 - Fixed upgrade bug where preexisting animated emoji would still
   always animate in statuses.
 - Improved check that prevents servers from accidentally downgrading,
-  to not block upgrading servers that originally installed Zulip
+  to not block upgrading servers that originally installed Aloha
   Server prior to mid-2017.
 - Fixed email address de-duplication in Slack imports.
 - Prevented an extraneous scrollbar when a notification banner was
@@ -334,7 +334,7 @@ log][commit-log] for an up-to-date list of raw changes.
   inserting global times into your message.
 - Redesigned "Stream settings" to be much more usable, with separate
   tabs for personal settings, global settings, and membership, and
-  more consistent style with the rest of Zulip's settings.
+  more consistent style with the rest of Aloha's settings.
 - Stream creation was redesigned with a much cleaner interface,
   especially for selecting initial subscribers.
 - Redesigned "Full user profile" widget to show the user's stream and
@@ -362,7 +362,7 @@ log][commit-log] for an up-to-date list of raw changes.
   user database.
 - Added support for installation on ARM platforms (including Mac M1).
 - Removed support for Ubuntu 18.04, which no longer receives upstream
-  security support for key Zulip dependencies.
+  security support for key Aloha dependencies.
 
 #### Upgrade notes for 5.0
 
@@ -376,14 +376,14 @@ log][commit-log] for an up-to-date list of raw changes.
 
 #### Full feature changelog
 
-- Timestamps in Zulip messages are now permanent links to the message
+- Timestamps in Aloha messages are now permanent links to the message
   in its thread.
 - Added support for invitation links with configurable expiry,
   including links that never expire. Deactivating a user now disables
   all invitations that the user had sent.
 - Added support for expanding the compose box to be full-screen.
 - Added support for filtering events in webhooks.
-- Added support for overriding Zulip's defaults for new users in your
+- Added support for overriding Aloha's defaults for new users in your
   organization.
 - Added support for referring to a user group with a silent mention.
 - Added new personal privacy setting controlling whether typing
@@ -425,7 +425,7 @@ log][commit-log] for an up-to-date list of raw changes.
   and many more.
 - Improved various interaction and performance details in Recent Topics.
 - Improved styling for poll and todo list widgets.
-- Zulip now supports configuring the database name and username when
+- Aloha now supports configuring the database name and username when
   using a remote Postgres server. Previously, these were hardcoded to "zulip".
 - Migrated many tooltips to prettier tooltips powered by TippyJS.
 - Autocomplete is now available when editing topics.
@@ -464,14 +464,14 @@ log][commit-log] for an up-to-date list of raw changes.
 - Fixed exceptions in races involving messages being deleted while
   processing a request to add emoji reactions, mark messages as read,
   or sending notifications.
-- Fixed most remaining 500 errors seen in Zulip Cloud (these were
+- Fixed most remaining 500 errors seen in Aloha Cloud (these were
   already quite rare, so this process involved debugging several rare
   races, timeouts, and error handling bugs.).
 - Fixed subtle bugs involving composing messages to deactivated users.
 - Fixed subtle bugs with reloading the page while viewing settings
   with "Recent topics" as the default view.
 - Fixed bug where pending email notifications could be lost when restarting
-  the Zulip server.
+  the Aloha server.
 - Fixed "require topics" setting not being enforced for API clients.
 - Fixed several subtle Markdown rendering bugs.
 - Fixed several bugs with message edit history and stream/topic moves.
@@ -500,7 +500,7 @@ log][commit-log] for an up-to-date list of raw changes.
 - Added `RealmAuditLog` logging for most administrative actions that
   were previously not tracked.
 - Added automated testing of the upgrade process from previous releases,
-  to reduce the likelihood of problems upgrading Zulip.
+  to reduce the likelihood of problems upgrading Aloha.
 - Attempting to "upgrade" to an older version now gives a clear error
   message.
 - Optimized critical parts of the message sending code path for large
@@ -509,11 +509,11 @@ log][commit-log] for an up-to-date list of raw changes.
 - Certain unprintable Unicode characters are no longer permitted in
   topic names.
 - Added IP-based rate limiting for unauthenticated requests.
-- Added documentation for Zulip's rate-limiting rules.
+- Added documentation for Aloha's rate-limiting rules.
 - Merged the API endpoints for a user's personal settings into the
   /settings endpoint with a cleaner interface.
 - The server API now supports marking messages as unread, allowing
-  this upcoming mobile app feature to work with Zulip 5.0.
+  this upcoming mobile app feature to work with Aloha 5.0.
 - Added to the API most page-load parameters used by the web app
   application that were missing from the `/register` API.
 - Simplified the infrastructure for rendering API documentation so
@@ -521,16 +521,16 @@ log][commit-log] for an up-to-date list of raw changes.
   OpenAPI specification file.
 - Corrected many minor issues with the API documentation.
 - Major improvements to both the infrastructure and content for
-  Zulip's ReadTheDocs documentation for contributors and sysadmins.
+  Aloha's ReadTheDocs documentation for contributors and sysadmins.
 - Major improvements to the mypy type-checking, discovered via
   using the django-stubs project to get Django stubs.
 - Renamed main branch from `master` to `main`.
 
-## Zulip 4.x series
+## Aloha 4.x series
 
 ### 4.11 -- 2022-03-15
 
-- CVE-2022-24751: Zulip Server 4.0 and above were susceptible to a
+- CVE-2022-24751: Aloha Server 4.0 and above were susceptible to a
   race condition during user deactivation, where a simultaneous access
   by the user being deactivated may, in rare cases, allow continued
   access by the deactivated user. This access could theoretically
@@ -577,7 +577,7 @@ log][commit-log] for an up-to-date list of raw changes.
 - Fixed a bug in the tool that corrects database corruption caused by
   updating the operating system hosting PostgreSQL, which previously
   omitted some indexes from its verification. If you updated the
-  operating system of your Zulip instance from Ubuntu 18.04 to 20.04,
+  operating system of your Aloha instance from Ubuntu 18.04 to 20.04,
   or from Debian 9 to 10, you should run the tool,
   even if you did so previously; full details and instructions are
   available in the previous blog post.
@@ -598,15 +598,15 @@ log][commit-log] for an up-to-date list of raw changes.
 
 ### 4.8 -- 2021-12-01
 
-- CVE-2021-43791: Zulip could fail to enforce expiration dates
+- CVE-2021-43791: Aloha could fail to enforce expiration dates
   on confirmation keys, allowing users to potentially use expired
   invitations, self-registrations, or realm creation links.
-- Began installing Smokescreen to harden Zulip against SSRF attacks by
-  default. Zulip has offered Smokescreen as an option since Zulip
+- Began installing Smokescreen to harden Aloha against SSRF attacks by
+  default. Aloha has offered Smokescreen as an option since Aloha
   4.0. Existing installs which configured an outgoing proxy which is
   not on `localhost:4750` will continue to use that; all other
   installations will begin having a Smokescreen installation listening
-  on 127.0.0.1, which Zulip will proxy traffic through. The version of
+  on 127.0.0.1, which Aloha will proxy traffic through. The version of
   Smokescreen was also upgraded.
 - Replaced the camo image proxy with go-camo, a maintained
   reimplementation that also protects against SSRF attacks. This
@@ -615,10 +615,10 @@ log][commit-log] for an up-to-date list of raw changes.
 - Began using camo for images displayed in URL previews. This improves
   privacy and also resolves an issue where an image link to a third
   party server with an expired or otherwise invalid SSL certificate
-  would trigger a confusing pop-up window for Zulip Desktop users.
+  would trigger a confusing pop-up window for Aloha Desktop users.
 - Fixed a bug which could cause Tornado to shut down improperly
   (causing an immediate full-page reload for their clients) when
-  restarting a heavily loaded Zulip server.
+  restarting a heavily loaded Aloha server.
 - Updated Python dependencies.
 - Truncated large “remove” mobile notification events so that marking
   hundreds of private messages or other notifiable messages as read at
@@ -632,7 +632,7 @@ log][commit-log] for an up-to-date list of raw changes.
   - Added support for non-ASCII Unicode folder names on Windows.
 - Add support for V3 Pagerduty webhook.
 - Updated documentation for Apache SSO, which now requires additional
-  configuration now that Zulip uses a C extension (the `re2` module).
+  configuration now that Aloha uses a C extension (the `re2` module).
 - Fixed a bug where an empty name in a SAML response would raise an
   error.
 - Ensured that `deliver_scheduled_emails` and
@@ -657,7 +657,7 @@ log][commit-log] for an up-to-date list of raw changes.
 - Fixed installation on Debian 10 Buster. Upstream infrastructure had
   broken the Python `virtualenv` tool on this platform, which we've
   worked around for this release.
-- Zulip releases are now distributed from https://download.zulip.com/server/,
+- Aloha releases are now distributed from https://download.zulip.com/server/,
   replacing the old `www.zulip.org` server.
 - Added support for LDAP synchronization of the `is_realm_owner` and
   `is_moderator` flags.
@@ -669,12 +669,12 @@ log][commit-log] for an up-to-date list of raw changes.
   to allow sysadmins to manually reset authentication rate limits.
 - Fixed a bug that caused the `upgrade-postgresql` tool to
   incorrectly remove `supervisord` configuration for `process-fts-updates`.
-- Fixed a rare migration bug when upgrading from Zulip versions 2.1 and older.
+- Fixed a rare migration bug when upgrading from Aloha versions 2.1 and older.
 - Fixed a subtle bug where the left sidebar would show both old and
   new names for some topics that had been renamed.
 - Fixed incoming email gateway support for configurations
   with the `http_only` setting enabled.
-- Fixed issues where Zulip's outgoing webhook, with the
+- Fixed issues where Aloha's outgoing webhook, with the
   Slack-compatible interface, had a different format from Slack's
   documented interface.
 - The installation and upgrade documentations now show the latest
@@ -700,7 +700,7 @@ log][commit-log] for an up-to-date list of raw changes.
   read into widgets (e.g. polls).
 - Fixed a bug where emoji and avatar image requests were sent through
   Camo; doing so does not add any security benefit, and broke custom
-  emoji that had been imported from Slack in Zulip 1.8.1 or earlier.
+  emoji that had been imported from Slack in Aloha 1.8.1 or earlier.
 - Changed to log just a warning, instead of an exception, in the case
   that the `embed_links` worker cannot fetch previews for all links in
   a message within the 30-second timeout. Each preview request within
@@ -713,7 +713,7 @@ log][commit-log] for an up-to-date list of raw changes.
   restarted, the process.
 - Modified upgrade scripts to better handle failure, and suggest next
   steps and point to logs.
-- Zulip now hides the “show password” eye icon that IE and Edge
+- Aloha now hides the “show password” eye icon that IE and Edge
   browsers place in password inputs; this duplicated the
   already-present JavaScript-based functionality.
 - Fixed “OR” glitch on login page if SAML authentication is enabled
@@ -762,7 +762,7 @@ log][commit-log] for an up-to-date list of raw changes.
 
 - Code blocks now have a copy-to-clipboard button and can be
   integrated with external code playgrounds, making it convenient to
-  work with code while discussing it in Zulip.
+  work with code while discussing it in Aloha.
 - Added a new organization [Moderator role][roles-and-permissions].
   Many permissions settings for sensitive features now support only
   allowing moderators and above to use the feature.
@@ -772,15 +772,15 @@ log][commit-log] for an up-to-date list of raw changes.
   composing messages, and is now the default view. The previous
   default view, "All messages", is still available, and the default
   view can now be configured via "Display settings".
-- Completed API documentation for Zulip's real-time events system. It
-  is now possible to write a decent Zulip client with minimal
-  interaction with the Zulip server development team.
+- Completed API documentation for Aloha's real-time events system. It
+  is now possible to write a decent Aloha client with minimal
+  interaction with the Aloha server development team.
 - Added new organization settings: wildcard mention policy.
 - Integrated [Smokescreen][smokescreen], an outgoing proxy designed to
   help protect against SSRF attacks; outgoing HTTP requests that can
   be triggered by end users are routed through this service.
   We recommend that self-hosted installations configure it.
-- This release contains more than 30 independent changes to the [Zulip
+- This release contains more than 30 independent changes to the [Aloha
   API](https://zulip.com/api/changelog), largely to support new
   features or make the API (and thus its documentation) clearer and
   easier for clients to implement. Other new API features support
@@ -801,7 +801,7 @@ log][commit-log] for an up-to-date list of raw changes.
   for multiple Tornado processes. Since Tornado only listens on
   localhost, this change should have no visible effect unless another
   service is using port 9800.
-- Zulip's top-level puppet classes have been renamed, largely from
+- Aloha's top-level puppet classes have been renamed, largely from
   `zulip::foo` to `zulip::profile::foo`. Configuration referencing
   these `/etc/zulip/zulip.conf` will be automatically updated during
   the upgrade process, but if you have a complex deployment or you
@@ -809,7 +809,7 @@ log][commit-log] for an up-to-date list of raw changes.
   configuration][docker-zulip-manual] option for
   [docker-zulip][docker-zulip]), you'll want to manually update the
   `puppet_classes` variable.
-- Zulip's supervisord configuration now lives in `/etc/supervisor/conf.d/zulip/`
+- Aloha's supervisord configuration now lives in `/etc/supervisor/conf.d/zulip/`
 - Consider enabling [Smokescreen][smokescreen]
 - Private streams can no longer be default streams (i.e. the ones new
   users are automatically added to).
@@ -819,17 +819,17 @@ log][commit-log] for an up-to-date list of raw changes.
   inline documentation in your
   `/etc/zulip/settings.py`][update-settings-docs]. Notably, we rewrote the
   template to be better organized and more readable in this release.
-- The web app will now display a warning in the UI if the Zulip server
+- The web app will now display a warning in the UI if the Aloha server
   has not been upgraded in more than 18 months.
   template to be better organized and more readable.
-- The next time users log in to Zulip with their password after
+- The next time users log in to Aloha with their password after
   upgrading to this release, they will be logged out of all active
   browser sessions (i.e. the web and desktop apps). This is a side
   effect of improved security settings (increasing the minimum entropy
   used when salting passwords from 71 bits to 128 bits).
-- We've removed the partial Thumbor integration from Zulip. The
+- We've removed the partial Thumbor integration from Aloha. The
   Thumbor project appears to be dead upstream, and we no longer feel
-  comfortable including it in Zulip from a security perspective. We
+  comfortable including it in Aloha from a security perspective. We
   hope to introduce a fully supported thumbnailing integration in our next
   major release.
 
@@ -841,7 +841,7 @@ log][commit-log] for an up-to-date list of raw changes.
 
 - Added new [release lifecycle documentation](release-lifecycle.md).
 - Added support for subscribing another stream's membership to a stream.
-- Added RealmAuditLog for most settings state changes in Zulip; this
+- Added RealmAuditLog for most settings state changes in Aloha; this
   data will facilitate future features showing a log of activity by
   a given user or changes to an organization's settings.
 - Added support for using Sentry for processing backend exceptions.
@@ -859,7 +859,7 @@ log][commit-log] for an up-to-date list of raw changes.
 - Added API endpoint to fetch presence details by user ID.
 - Added new LDAP configuration options for servers hosting multiple organizations.
 - Added new `@**|user_id**` mention syntax intended for use in bots.
-- Added preliminary support for Zulip on Debian 11; this
+- Added preliminary support for Aloha on Debian 11; this
   release is expected to support Debian 11 without any further changes.
 - Added several useful new management commands, including
   `change_realm_subdomain` and `delete_user`.
@@ -878,18 +878,18 @@ log][commit-log] for an up-to-date list of raw changes.
 - Redesigned the left sidebar menu icons (now `\vdots`, not a chevron).
 - The Zoom integration is now stable (no longer beta).
 - Favicon unread counts are more attractive and support large numbers.
-- Zulip now displays the total number of starred messages in the left
+- Aloha now displays the total number of starred messages in the left
   sidebar by default; over 20% of users had enabled this setting manually.
 - Presence circles for users are now shown in mention typeahead.
 - Email notifications for new messages are now referred to as a
   "Message notification email", not a "Missed message email".
-- Zulip now sets List-Unsubscribe headers in outgoing emails with
+- Aloha now sets List-Unsubscribe headers in outgoing emails with
   unsubscribe links.
 - Password forms now have a "Show password" widget.
 - Fixed performance issues when creating hundreds of new users in
   quick succession (E.g. at the start of a conference or event).
 - Fixed performance issues in organizations with thousands of online users.
-- Fixed numerous rare exceptions when running Zulip at scale.
+- Fixed numerous rare exceptions when running Aloha at scale.
 - Fixed several subtle installer bugs.
 - Fixed various UI and accessibility issues in the registration and new
   user invitation flows.
@@ -911,7 +911,7 @@ log][commit-log] for an up-to-date list of raw changes.
 - Typeahead now always ranks exact string matches first.
 - Tooltips have been migrated from Bootstrap to TippyJS, and added
   in many places that previously just had `title` attributes.
-- Zulip now consistently uses the Source Code Pro font for code
+- Aloha now consistently uses the Source Code Pro font for code
   blocks, rather than varying by operating system.
 - Redesigned "Alert words" settings UI.
 - Linkifiers can now be edited in their settings page.
@@ -922,7 +922,7 @@ log][commit-log] for an up-to-date list of raw changes.
 - Switched to `orjson` for JSON serialization, resulting in better
   performance and more standards-compliant validation.
 - Outgoing webhooks now enforce a 10 second timeout.
-- Image previews in a Zulip message are now unconditionally proxied by
+- Image previews in a Aloha message are now unconditionally proxied by
   Camo to improve privacy, rather than only when the URL was not HTTPS.
 - Replaced the old CasperJS frontend test suite with Puppeteer.
 - Split the previous `api_super_user` permission into
@@ -942,13 +942,13 @@ log][commit-log] for an up-to-date list of raw changes.
   removing the last forked dependencies from the codebase.
 - Upgraded Django to 3.1 (as well as essentially every other dependency).
 - Updated web app codebase to use many modern ES6 patterns.
-- Upgraded Zulip's core font to Source Sans 3, which supports more languages.
+- Upgraded Aloha's core font to Source Sans 3, which supports more languages.
 - Relabeled :smile: and :stuck_out_tongue: emoji to use better codepoints.
-- Reduced the size of Zulip's main JavaScript bundle by removing `moment.js`.
-- Server logs now display the version number for Zulip clients.
+- Reduced the size of Aloha's main JavaScript bundle by removing `moment.js`.
+- Server logs now display the version number for Aloha clients.
 - Simplified logic for responsive UI with different browser sizes.
 - Fixed several subtle bugs in the compose and message-edit UIs.
-- Reduced the steady-state load for an idle Zulip server.
+- Reduced the steady-state load for an idle Aloha server.
 - Removed HipChat import tool, because HipChat has been long EOL.
 - Reformatted the Python codebase with Black, and the frontend
   codebase with Prettier.
@@ -956,7 +956,7 @@ log][commit-log] for an up-to-date list of raw changes.
 
 [zulip-conf-settings]: ../production/deployment.md#system-and-deployment-configuration
 
-## Zulip 3.x series
+## Aloha 3.x series
 
 ### 3.4 -- 2021-04-14
 
@@ -984,9 +984,9 @@ log][commit-log] for an up-to-date list of raw changes.
 
 - Guest users should not be allowed to post to streams marked “Only
   organization full members can post.” This flaw has existed since
-  the feature was added in Zulip Server 3.0.
+  the feature was added in Aloha Server 3.0.
 - Permit outgoing mail from postfix; this resolves a bug introduced in
-  Zulip Server 3.2 which prevented Zulip from sending outgoing mail if
+  Aloha Server 3.2 which prevented Aloha from sending outgoing mail if
   the local mail server (used mostly for incoming mail) was also used
   for outgoing email (`MAIL_HOST='localhost'`).
 - Ensure that the `upgrade-postgres` tool upgrades the cluster’s data
@@ -1004,7 +1004,7 @@ log][commit-log] for an up-to-date list of raw changes.
   pure-Python implementation; this should eliminate memcached
   connection problems affecting some installations.
 - Removed unnecessary `django-cookies-samesite` dependency, which had
-  its latest release removed from PyPI (breaking installation of Zulip
+  its latest release removed from PyPI (breaking installation of Aloha
   3.1).
 - Limited which local email addresses Postfix accepts when the
   incoming email integration is enabled; this prevents the enumeration
@@ -1051,19 +1051,19 @@ log][commit-log] for an up-to-date list of raw changes.
   default views.
 - Added a new "recent topics" widget, which lets one browse recent
   and ongoing conversations at a glance. We expect this widget to
-  replace "All messages" as the default view in Zulip in the
+  replace "All messages" as the default view in Aloha in the
   next major release.
 - Redesigned "Notification settings" to have an intuitive table
   format and display any individual streams with non-default settings.
 - Added support for moving topics between streams. This was by far
-  Zulip's most-requested feature.
+  Aloha's most-requested feature.
 - Added automatic theme detection using prefers-color-scheme.
 - Added support for GitLab and Sign in with Apple authentication.
 - Added an organization setting controlling who can use private messages.
 - Added support for default stream groups, which allow organizations
   to offer options of sets of streams when new users sign up.
-  Currently can only be managed via the Zulip API.
-- The Zulip server now sets badge counts for the iOS mobile app.
+  Currently can only be managed via the Aloha API.
+- The Aloha server now sets badge counts for the iOS mobile app.
 - Quote-and-reply now generates a handy link to the quoted message.
 - Upgraded Django from 1.11.x to the latest LTS series, 2.2.x.
 - Added integrations for ErrBit, Grafana, Thinkst Canary, and Alertmanager.
@@ -1074,10 +1074,10 @@ log][commit-log] for an up-to-date list of raw changes.
   global/default policy and policies for specific streams.
 - Added a new incoming webhook API that accepts messages in the format
   used by Slack's incoming webhooks API.
-- Introduced the Zulip API feature level, a concept that will greatly
+- Introduced the Aloha API feature level, a concept that will greatly
   simplify the implementation of mobile, terminal, and desktop clients
-  that need to talk to a wide range of supported Zulip server
-  versions, as well as the [Zulip API
+  that need to talk to a wide range of supported Aloha server
+  versions, as well as the [Aloha API
   changelog](https://zulip.com/api/changelog).
 - Our primary official domain is now zulip.com, not zulipchat.com.
 
@@ -1100,12 +1100,12 @@ log][commit-log] for an up-to-date list of raw changes.
       .values('realm_id', 'email_lower').annotate(Count('id')).filter(id__count__gte=2)
   ```
   If the command returns any accounts, you need to address the
-  duplicate accounts before upgrading. Zulip Cloud only had two
+  duplicate accounts before upgrading. Aloha Cloud only had two
   accounts affected by this bug, so we expect the vast majority of
   installations will have none.
-- This release switches Zulip to install PostgreSQL 12 from the upstream
+- This release switches Aloha to install PostgreSQL 12 from the upstream
   PostgreSQL repository by default, rather than using the default
-  PostgreSQL version included with the operating system. Existing Zulip
+  PostgreSQL version included with the operating system. Existing Aloha
   installations will continue to work with PostgreSQL 10; this detail is
   configured in `/etc/zulip/zulip.conf`. We have no concrete plans to
   start requiring PostgreSQL 12, though we do expect it to improve
@@ -1133,7 +1133,7 @@ log][commit-log] for an up-to-date list of raw changes.
 - Added new options to control whether the incoming email integration
   prefers converting the plain text or HTML content of an email.
 - Added server support for creating an account from mobile/terminal apps.
-- The Zulip desktop apps now do social authentication (Google, GitHub,
+- The Aloha desktop apps now do social authentication (Google, GitHub,
   etc.) via an external browser.
 - Added support for BigBlueButton as video chat provider.
 - Added support for setting an organization-wide default language for
@@ -1143,7 +1143,7 @@ log][commit-log] for an up-to-date list of raw changes.
 - Added data export/import support for organization logo and icon.
 - Added documentation for several more API endpoints.
 - Added new email address visibility option hiding real email
-  addresses from organization administrators in the Zulip UI.
+  addresses from organization administrators in the Aloha UI.
 - Added new "Mention time" Markdown feature to communicate about times
   in a time-zone-aware fashion.
 - Added new "Spoiler" Markdown feature to hide text until interaction.
@@ -1156,7 +1156,7 @@ log][commit-log] for an up-to-date list of raw changes.
   with other users.
 - Added support for IdP-initiated SSO in the SAML authentication backend.
 - Added new "messages sent over time" graph on /stats.
-- Added support for restricting SAML authentication to only some Zulip
+- Added support for restricting SAML authentication to only some Aloha
   organizations.
 - Added `List-Id` header to outgoing emails for simpler client filtering.
 - Changed how avatar URLs are sent to clients to dramatically improve
@@ -1165,8 +1165,8 @@ log][commit-log] for an up-to-date list of raw changes.
   simpler interface.
 - Normal users can now see invitations they sent via organization settings.
 - Rewrote the Zoom video call integration.
-- Polished numerous subtle elements of Zulip's visual design.
-- Dramatically improved the scalability of Zulip's server-to-client
+- Polished numerous subtle elements of Aloha's visual design.
+- Dramatically improved the scalability of Aloha's server-to-client
   push system, improving throughput by a factor of ~4.
 - Improved handling of GitHub accounts with several email addresses.
 - Improved "Manage streams" UI to clearly identify personal settings
@@ -1175,7 +1175,7 @@ log][commit-log] for an up-to-date list of raw changes.
 - Improved "Muted topics" UI to show when a topic was muted.
 - Improved the UI for "Drafts" and "Message edit history" widgets.
 - Improved left sidebar popovers to clearly identify administrative actions.
-- Rewrote substantial parts of the Zulip installer to be more robust.
+- Rewrote substantial parts of the Aloha installer to be more robust.
 - Replaced the chevron menu indicators in sidebars with vertical ellipses.
 - Removed the right sidebar "Group PMs" widget. It's functionality is
   available in the left sidebar "Private messages" widget.
@@ -1183,12 +1183,12 @@ log][commit-log] for an up-to-date list of raw changes.
   it being discontinued.
 - Removed a limitation on editing topics of messages more than a week old.
 - The Gitter data import tool now supports importing multiple Gitter
-  rooms into a single Zulip organization.
+  rooms into a single Aloha organization.
 - Missed-message emails and various onboarding content are now tagged
   for translation.
 - Redesigned the notice about large numbers of unread messages to be
   a banner (no longer a modal) and to use a better trigger.
-- Cleaned up dozens of irregularities in how the Zulip API formats
+- Cleaned up dozens of irregularities in how the Aloha API formats
   data when returning it to clients.
 - Extended stream-level settings for who can post to a stream.
 - Extended GET /messages API to support a more intuitive way to
@@ -1197,11 +1197,11 @@ log][commit-log] for an up-to-date list of raw changes.
 - Improved UI for picking which streams to invite new users to.
 - Improved UI for reviewing one's muted topics.
 - Improved UI for message edit history.
-- Fixed many minor issues with Zulip's Markdown processors.
+- Fixed many minor issues with Aloha's Markdown processors.
 - Fixed many subtle issues with the message editing UI.
 - Fixed several subtle issues with the default nginx configuration.
 - Fixed minor issues with various keyboard shortcuts.
-- Fixed UI bugs with Zulip's image lightbox.
+- Fixed UI bugs with Aloha's image lightbox.
 - Specifying `latex` or `text` as the language for a code block now
   does LaTeX syntax highlighting (`math` remains the recommended code
   block language to render LaTeX syntax into display math).
@@ -1227,12 +1227,12 @@ log][commit-log] for an up-to-date list of raw changes.
   with extensive validation to ensure its accuracy as we modify the API.
 - Removed New User Bot and Feedback Bot. Messages they had sent are
   migrated to have been sent by Notification Bot.
-- Removed the "pointer" message ID from Zulip, a legacy concept dating
-  to 2012 that predated tracking unread messages in Zulip and has
+- Removed the "pointer" message ID from Aloha, a legacy concept dating
+  to 2012 that predated tracking unread messages in Aloha and has
   largely resulted in unexpected behavior for the last few years.
 - Reduced visual size of emoji in message bodies for a cleaner look.
 - Replaced file upload frontend with one supporting chunked upload.
-  We expect this to enable uploading much larger files using Zulip in
+  We expect this to enable uploading much larger files using Aloha in
   future releases.
 - Improved error messages when trying to invite a user with an
   existing, deactivated, account.
@@ -1251,7 +1251,7 @@ log][commit-log] for an up-to-date list of raw changes.
   linter rules to use its Python syntax-aware parser.
 - Added tooling to automatically generate all screenshots in
   integration docs.
-- Restructured the backend for Zulip's system administrator level
+- Restructured the backend for Aloha's system administrator level
   settings system to be more maintainable.
 - This release largely completes the SCSS refactoring of the codebase.
 - Replaced our CasperJS frontend integration test system with Puppeteer.
@@ -1261,7 +1261,7 @@ log][commit-log] for an up-to-date list of raw changes.
   system was always a hack, was only ever used for one endpoint, and
   did not provide a measurable latency benefit over HTTP/2.
 
-## Zulip 2.1.x series
+## Aloha 2.1.x series
 
 ### 2.1.8 -- 2021-08-11
 
@@ -1271,7 +1271,7 @@ log][commit-log] for an up-to-date list of raw changes.
 ### 2.1.7 -- 2020-06-25
 
 - CVE-2020-15070: Fix privilege escalation vulnerability with custom
-  profile fields and direct write access to Zulip's PostgreSQL database.
+  profile fields and direct write access to Aloha's PostgreSQL database.
 - Changed default memcached authentication username to zulip@localhost,
   fixing authentication problems when servers change their hostname.
 
@@ -1294,7 +1294,7 @@ log][commit-log] for an up-to-date list of raw changes.
   `0198_preregistrationuser_invited_as` migration.
 - Fixed missing quoting of certain attributes in HTML templates.
 - Allow /etc/zulip to be a symlink (for [docker-zulip][docker-zulip]).
-- Disabled access from insecure Zulip Desktop releases below version 5.2.0.
+- Disabled access from insecure Aloha Desktop releases below version 5.2.0.
 - Adjusted Slack import documentation to help administrators avoid OOM
   kills when doing Slack import on low-RAM systems.
 - Fixed a race condition fetching users' personal API keys.
@@ -1302,7 +1302,7 @@ log][commit-log] for an up-to-date list of raw changes.
 
 #### Upgrade notes for 2.1.5
 
-Administrators of servers originally installed with Zulip 1.9 or older
+Administrators of servers originally installed with Aloha 1.9 or older
 should audit for unexpected [organization
 administrators][audit-org-admin] following this upgrade, as it is
 possible CVE-2020-14215 caused a user to incorrectly join as an
@@ -1316,8 +1316,8 @@ details.
 - Fixed a regression in 2.1.3 that impacted creating the very first
   organization via our data import tools.
 - Remove the old `tsearch_extras` PostgreSQL extension, which was causing
-  an exception restoring backups on fresh Zulip servers that had been
-  generated on systems that had been upgraded from older Zulip releases.
+  an exception restoring backups on fresh Aloha servers that had been
+  generated on systems that had been upgraded from older Aloha releases.
 - Removed fetching GitHub contributor data from static asset build
   process. This makes `upgrade-zulip-from-git` much more reliable.
 - Updated translation data from Transifex.
@@ -1328,7 +1328,7 @@ details.
 - CVE-2020-9444: Prevent reverse tabnapping attacks.
 - CVE-2020-9445: Remove unused and insecure modal_link feature.
 - CVE-2020-10935: Fix XSS vulnerability in local link rewriting.
-- Blocked access from Zulip Desktop versions below 5.0.0. This
+- Blocked access from Aloha Desktop versions below 5.0.0. This
   behavior can be adjusted by editing `DESKTOP_*_VERSION`
   in `/home/zulip/deployments/current/version.py`.
 - Restructured server initialization to simplify initialization of
@@ -1365,7 +1365,7 @@ details.
   semi-persistent Redis to the fully persistent database.
 - Added authentication for Redis and memcached even in configurations
   where these are running on localhost, for add hardening against
-  attacks from malicious processes running on the Zulip server.
+  attacks from malicious processes running on the Aloha server.
 - Improved logging for misconfigurations of LDAP authentication.
 - Improved error handling for invalid LDAP configurations.
 - Improved error tracebacks for invalid memcached keys.
@@ -1393,11 +1393,11 @@ details.
 - Added support for Debian 10. Removed support for EOL Ubuntu 14.04.
 - Added support for SAML authentication.
 - Removed our dependency on `tsearch_extras`, making it possible to
-  run a production Zulip server against any PostgreSQL database
+  run a production Aloha server against any PostgreSQL database
   (including those where one cannot install extensions, like Amazon RDS).
-- Significantly improved the email->Zulip gateway, and added [nice
+- Significantly improved the email->Aloha gateway, and added [nice
   setup documentation](../production/email-gateway.md). It now
-  should be possible to subscribe a Zulip stream to an email list and
+  should be possible to subscribe a Aloha stream to an email list and
   have a good experience.
 - Added an option for hiding access to user email addresses from
   other users. While counterproductive for most corporate
@@ -1417,9 +1417,9 @@ details.
   readable style inspired by GitHub's email notifications.
 - We merged significant preparatory work for supporting RHEL/CentOS in
   production. We're now interested in beta testers for this feature.
-- Reorganized Zulip's documentation for sysadmins, and added [new
+- Reorganized Aloha's documentation for sysadmins, and added [new
   documentation](../production/upgrade-or-modify.md#modifying-zulip)
-  on maintaining a fork of Zulip.
+  on maintaining a fork of Aloha.
 - Added new `streams:public` search operator that searches the public
   history of all streams in the organization (even before you joined).
 - Added support for sending email and mobile push notifications for
@@ -1428,7 +1428,7 @@ details.
 
 #### Upgrade notes for 2.1.0
 
-- The defaults for Zulip's now beta inline URL preview setting have changed.
+- The defaults for Aloha's now beta inline URL preview setting have changed.
   Previously, the server-level `INLINE_URL_EMBED_PREVIEW` setting was
   disabled, and organization-level setting was enabled. Now, the
   server-level setting is enabled by default, and the organization-level
@@ -1449,38 +1449,38 @@ details.
     replaced with `SOCIAL_AUTH_GOOGLE_KEY`.
   - In `/etc/zulip/settings.py`, `GoogleMobileOauth2Backend` should
     be replaced with called `GoogleAuthBackend`.
-- Installations using Zulip's LDAP integration without
+- Installations using Aloha's LDAP integration without
   `LDAP_APPEND_DOMAIN` will need to configure two new settings telling
-  Zulip how to look up a user in LDAP given their email address:
+  Aloha how to look up a user in LDAP given their email address:
   `AUTH_LDAP_REVERSE_EMAIL_SEARCH` and `AUTH_LDAP_USERNAME_ATTR`. See
   the [LDAP configuration
   instructions](../production/authentication-methods.md#ldap-including-active-directory)
   for details. You can use the usual `manage.py query_ldap` method to
   verify whether your configuration is working correctly.
-- The Zulip web and desktop apps have been converted to directly count
+- The Aloha web and desktop apps have been converted to directly count
   all unread messages, replacing an old system that just counted the
   (recent) messages fully fetched by the web app. This one-time
   transition may cause some users to notice old messages that were
   sent months or years ago "just became unread". What actually
-  happened is the user never read these messages, and the Zulip web app
+  happened is the user never read these messages, and the Aloha web app
   was not displaying that. Generally, the fix is for users to simply
   mark those messages as read as usual.
-- Previous versions of Zulip's installer would generate the secrets
+- Previous versions of Aloha's installer would generate the secrets
   `local_database_password` and `initial_password_salt`. These
-  secrets don't do anything, as they only modify behavior of a Zulip
+  secrets don't do anything, as they only modify behavior of a Aloha
   development environment. We recommend deleting those lines from
   `/etc/zulip/zulip-secrets.conf` when you upgrade to avoid confusion.
 - This release has a particularly expensive database migration,
   changing the `UserMessage.id` field from an `int` to a `bigint` to
-  support more than 2 billion message deliveries on a Zulip server.
+  support more than 2 billion message deliveries on a Aloha server.
   It runs in 2 phases: A first migration that doesn't require the
   server to be down (which took about 4 hours to process the 250M rows
   on chat.zulip.org, and a second migration that does require downtime
   (which took about 60 seconds for chat.zulip.org). You can check the
   number of rows for your server with `UserMessage.objects.count()`.
 
-  We expect that most Zulip servers can happily just use the normal
-  upgrade process with a few minutes of downtime. Zulip servers with
+  We expect that most Aloha servers can happily just use the normal
+  upgrade process with a few minutes of downtime. Aloha servers with
   over 1M messages may want to first upgrade to [this
   commit](https://github.com/zulip/zulip/commit/b008515d63841e1c0a16ad868d3d67be3bfc20ca)
   using `upgrade-zulip-from-git`, following the instructions to avoid
@@ -1499,7 +1499,7 @@ details.
 - Added more expansive moderation settings for who can create streams,
   edit user groups, or invite other users to join streams.
 - Added new Bitbucket Server, Buildbot, Harbor, Gitea and Redmine integrations.
-- Added proper open graph tags for linking to a Zulip organization.
+- Added proper open graph tags for linking to a Aloha organization.
 - Added organization setting to disable users uploading new avatars
   (for use with LDAP synchronization).
 - Added support for completely disabling the file upload feature.
@@ -1528,7 +1528,7 @@ details.
 - Redesigned the in-app "keyboard shortcuts" popover to be more usable.
 - Redesigned the interactions on several settings pages.
 - Significantly improved the visual spacing around bulleted lists,
-  blockquotes, and code blocks in Zulip's message feed.
+  blockquotes, and code blocks in Aloha's message feed.
 - Extended buttons to visit links in topics to all URLs, not just
   URLs added by a linkifier.
 - Extended several integrations to cover more events and fix bugs, and
@@ -1560,7 +1560,7 @@ details.
   code blocks.
 - Replaced title attributes with nice tooltips in the message feed and
   buddy list.
-- Fixed incorrect caching settings for the Zulip API, which could result
+- Fixed incorrect caching settings for the Aloha API, which could result
   in browsers appearing to display old content or remark messages unread.
 - Fixed a bug that prevented sending mobile push notifications when the
   user was recently online via the mobile app.
@@ -1603,23 +1603,23 @@ details.
 - Fixed several issues with click handlers incorrectly closing compose.
 - Fixed buggy behavior of /me messages not ending with a paragraph.
 - Fixed several major UI issues with the mobile web app.
-- Fixed HTML styling when copy-pasting content out of Zulip's night theme.
+- Fixed HTML styling when copy-pasting content out of Aloha's night theme.
 - Fixed obscure traceback with Virtualenv 16.0.0 unexpectedly installed.
 - Added a new visual tool for testing webhook integrations.
 - Rewrote the Google authentication backend to use python-social-auth,
-  removing Zulip's original 2013-era SSO authentication backend.
+  removing Aloha's original 2013-era SSO authentication backend.
 - The `/server_settings` API now advertises supported authentication
   methods alongside details on how to render login/registration buttons.
 - Rewrote HTML/CSS markup for various core components to be more
   easily modified.
 - Removed the legacy static asset pipeline; everything now uses webpack.
-- Renamed the system bot Zulip realm to "zulipinternal" (was "zulip").
+- Renamed the system bot Aloha realm to "zulipinternal" (was "zulip").
 - Switched our scrollbars to use simplebar, fixing many subtle
   scrollbar-related bugs in the process.
 - Enabled webpack code splitting and deduplication.
 - Started migrating our frontend codebase to TypeScript.
 
-## Zulip 2.0.x series
+## Aloha 2.0.x series
 
 ### 2.0.8 -- 2019-12-12
 
@@ -1659,9 +1659,9 @@ details.
 
 - Added documentation for upgrading the underlying OS version.
 - Made uwsgi buffer size configurable (relevant for sites putting
-  Zulip behind a proxy that adds many HTTP headers).
+  Aloha behind a proxy that adds many HTTP headers).
 - Fixed loss of LaTeX syntax inside quote-and-reply.
-- Fixed virtualenv-related bug when upgrading Zulip when the system
+- Fixed virtualenv-related bug when upgrading Aloha when the system
   virtualenv package is 16.0.0 or newer (no supported platform has
   such a version by default, but one can install it manually).
 - Fixed `manage.py query_ldap` test tool (broken in 2.0.2).
@@ -1705,19 +1705,19 @@ details.
   provider. We now support Jitsi, Google Hangouts, and Zoom.
 - Added support for branding the top-left corner of the logged in app
   with an organization's logo.
-- Zulip's "Guest users" feature is no longer experimental.
+- Aloha's "Guest users" feature is no longer experimental.
 - The HipChat/Stride data import tool is no longer experimental.
   Our HipChat and Slack import tools are now well-tested with millions
   of messages, 10,000s of users, and 100,000s of uploaded files.
 - Added a built-in tool for backups and restoration.
-- Deprecated support for Ubuntu 14.04. Zulip 2.0.x will continue to
-  support Ubuntu 14.04, but Zulip 2.1.0 will remove support for
+- Deprecated support for Ubuntu 14.04. Aloha 2.0.x will continue to
+  support Ubuntu 14.04, but Aloha 2.1.0 will remove support for
   installing on Ubuntu 14.04.
 
 #### Upgrade notes for 2.0.0
 
 - This release adds support for submitting basic usage statistics to
-  help the Zulip core team. This feature can be enabled only if a server
+  help the Aloha core team. This feature can be enabled only if a server
   is using the [Mobile Push Notification Service][mpns-statistics-docs],
   and is enabled by default in that case. To disable it, set
   `SUBMIT_USAGE_STATISTICS = False` in `/etc/zulip/settings.py`.
@@ -1751,7 +1751,7 @@ details.
 - Added a tool for migrating from S3 to the local file uploads backend.
 - Added protocol for communicating version incompatibility to mobile apps.
 - Added support for copying avatar and other profile data when
-  creating a second account on a Zulip server with a given email address.
+  creating a second account on a Aloha server with a given email address.
 - Added /digest endpoint for viewing the current digest email on the web.
 - Added alert for when a user sends a message when scrolled too far up.
 - Added internationalization for outgoing emails.
@@ -1777,7 +1777,7 @@ details.
 - Expanded production documentation for more unusual deployment options.
 - Expanded set of characters allowed in custom linkifiers.
 - Optimized development provisioning; now takes 2s in the no-op case.
-- Zulip's Help Center now has nicely generated open graph tags.
+- Aloha's Help Center now has nicely generated open graph tags.
 - Fixed missing API authentication headers for mobile file access.
 - Fixed various select and copy-paste issues.
 - Fixed various back button bugs in settings UI.
@@ -1786,18 +1786,18 @@ details.
 - Fixed several performance issues for organizations with 1000s of streams.
 - Fixed various error handling bugs sending push notifications.
 - Fixed handling of diacritics in user-mention typeahead.
-- Fixed several bugs with importing data into Zulip's S3 backend.
+- Fixed several bugs with importing data into Aloha's S3 backend.
 - Fixed display of full recipients list in "private messages" hover.
 - Fixed bugs involving muting and renamed streams.
 - Fixed soft-deactivation performance issues with many thousands of users.
-- Countless behind-the-scenes improvements to Zulip's codebase,
+- Countless behind-the-scenes improvements to Aloha's codebase,
   tooling, automated tests, error handling, and APIs.
 
-## Zulip 1.9.x series
+## Aloha 1.9.x series
 
 ### 1.9.2 -- 2019-01-29
 
-This release migrates Zulip off a deprecated Google+ API (necessary
+This release migrates Aloha off a deprecated Google+ API (necessary
 for Google authentication to continue working past March 7), and
 contains a few bug fixes for the installer and Slack import. It has
 minimal changes for existing servers not using Google authentication.
@@ -1813,7 +1813,7 @@ minimal changes for existing servers not using Google authentication.
 ### 1.9.1 -- 2018-11-30
 
 This release is primarily intended to improve the experience for new
-Zulip installations; it has minimal changes for existing servers.
+Aloha installations; it has minimal changes for existing servers.
 
 - Added support for getting multi-domain certificates with setup-certbot.
 - Improved various installer error messages and sections of the
@@ -1829,17 +1829,17 @@ Zulip installations; it has minimal changes for existing servers.
 
 - Support for Ubuntu 18.04 and Debian 9 (our first non-Ubuntu
   platform!). We expect to deprecate support for installing a new
-  Zulip server on Ubuntu 14.04 in the coming months, in preparation
+  Aloha server on Ubuntu 14.04 in the coming months, in preparation
   for Ubuntu 14.04’s end-of-life in April 2019.
 - New data import tools for HipChat and Gitter. The Slack importer
   is now out of beta.
-- Zulip Python process startup time is about 30% faster; this effort
+- Aloha Python process startup time is about 30% faster; this effort
   resulted in upstream contributions to fix significant performance
   bugs in django-bitfield, libthumbor, and pika.
 - You can now configure custom (organization-specific) fields for user
-  profiles; Zulip can now serve as your organization’s employee
+  profiles; Aloha can now serve as your organization’s employee
   directory.
-- Zulip now supports using Google Hangouts instead of Jitsi as the
+- Aloha now supports using Google Hangouts instead of Jitsi as the
   video chat provider.
 - Users can now configure email and mobile push notifications for
   all messages in a stream (useful for low-traffic
@@ -1848,14 +1848,14 @@ Zulip installations; it has minimal changes for existing servers.
   control whether private stream subscribers can access history
   from before they joined, and allow configuring streams to only
   allow administrators to post.
-- Zulip now has experimental support for guest users (intended
+- Aloha now has experimental support for guest users (intended
   for use cases like contractors who the organization only wants
   to have access to a few streams).
 - New native integrations for Ansible Tower, Appveyor, Clubhouse,
-  Netlify, and Zabbix; Zulip now has over 100 native integrations (in
+  Netlify, and Zabbix; Aloha now has over 100 native integrations (in
   addition to hundreds more available via Zapier and IFTTT).
 - New translations for Ukrainian, Portuguese, Indonesian, Dutch, and
-  Finnish. Zulip now has complete or nearly-complete translations
+  Finnish. Aloha now has complete or nearly-complete translations
   for German, Spanish, French, Portuguese, Russian, Ukrainian,
   Czech, Finnish, and Turkish. Partial translations for Chinese,
   Dutch, Korean, Polish, Japanese, and Indonesian cover the majority
@@ -1863,7 +1863,7 @@ Zulip installations; it has minimal changes for existing servers.
 
 #### Upgrade notes for 1.9.0
 
-- Zulip 1.9 contains a significant database migration that can take
+- Aloha 1.9 contains a significant database migration that can take
   several minutes to run. The upgrade process automatically minimizes
   disruption by running this migration first, before beginning the
   user-facing downtime. However, if you'd like to watch the downtime
@@ -1879,7 +1879,7 @@ Zulip installations; it has minimal changes for existing servers.
   works even when you're inside compose).
 - Renamed the hotkey for starring a message to Ctrl+S.
 - Added the new `SOCIAL_AUTH_SUBDOMAIN` setting, which all servers using
-  both GitHub authentication and hosting multiple Zulip organizations
+  both GitHub authentication and hosting multiple Aloha organizations
   should set (see [the docs for details](../production/multiple-organizations.md#authentication)).
 - Added automatic thumbnailing of images, powered by thumbor. The new
   THUMBOR_URL setting controls this feature; it is disabled by default
@@ -1893,7 +1893,7 @@ Zulip installations; it has minimal changes for existing servers.
 - Added a fast database index supporting the "Private messages" narrow.
 - Added a notification setting for whether to send "new login" emails.
 - Dramatically expanded our API documentation to cover many more endpoints.
-- Optimized the performance of loading Zulip in an organization with
+- Optimized the performance of loading Aloha in an organization with
   thousands of users and hundreds of bot users.
 - Optimized production release tarballs to save about 40MB of size.
 - Dropped support for the EmojiOne and Apple emoji sets, and added
@@ -1908,7 +1908,7 @@ Zulip installations; it has minimal changes for existing servers.
   narrowing to the first unread message.
 - Fixed confusing intermediate states of group PMs online indicators.
 - Fixed several subtle unread count corner case bugs.
-- Fixed several installer issues to make it easier to Dockerize Zulip.
+- Fixed several installer issues to make it easier to Dockerize Aloha.
 - Fixed several subtle issues with both the LDAP/Active Directory
   integration and its documentation, making it much easier to set up.
 - Fixed several minor bugs and otherwise optimized search typeahead.
@@ -1916,7 +1916,7 @@ Zulip installations; it has minimal changes for existing servers.
   misconfigured IPv6.
 - Fixed most of the caveats on the Slack data import tool.
 - Fixed memcached cache size issues for organizations over 10,000 users.
-- Zulip's data export system has full support for all features, and
+- Aloha's data export system has full support for all features, and
   tests to ensure that it stays that way.
 - Rewrote user documentation for dozens of integrations.
 - Rewrote the GitHub authentication backend (and more generally our
@@ -1929,8 +1929,8 @@ Zulip installations; it has minimal changes for existing servers.
 - Made major improvements to the Help Center.
 - Improved system for configuring the S3 file uploads backend.
 - Improved emoji typeahead sorting.
-- Improved Zulip's layout for windows with a width around 1024px.
-- Improved Zulip's generic error handling behavior for webhooks.
+- Improved Aloha's layout for windows with a width around 1024px.
+- Improved Aloha's generic error handling behavior for webhooks.
 - Improved keyboard navigation of settings and popovers.
 - Renamed "realm filters" to "linkifiers", at least in the UI.
 - Converted several layered-checkbox settings to clearer dropdowns.
@@ -1940,15 +1940,15 @@ Zulip installations; it has minimal changes for existing servers.
   user accounts on a server.
 - Emails and several other onboarding strings are now tagged for
   translation.
-- Optimized the performance of importing Zulip by about 30%. This
-  significantly decreases the load spike when restarting a Zulip server.
+- Optimized the performance of importing Aloha by about 30%. This
+  significantly decreases the load spike when restarting a Aloha server.
 - Optimized the performance of development provisioning; a no-op
   provision now completes in about 3.5s.
 - Migrated our static asset pipeline to webpack.
 - Our steady work on codebase quality and our automated test suite
   continues. Backend test coverage is now an incredible 98%.
 
-## Zulip 1.8.x series
+## Aloha 1.8.x series
 
 ### 1.8.1 -- 2018-05-07
 
@@ -1970,7 +1970,7 @@ Zulip installations; it has minimal changes for existing servers.
 #### Highlights
 
 - Dramatically simplified the server installation process; it's now possible
-  to install Zulip without first setting up outgoing email.
+  to install Aloha without first setting up outgoing email.
 - Added experimental support for importing an organization's history
   from Slack.
 - Added a new "night mode" theme for dark environments.
@@ -1984,7 +1984,7 @@ Zulip installations; it has minimal changes for existing servers.
   already in 1.7.1 and 1.7.2.
 - The security model for private streams has changed. Now
   organization administrators can remove users, edit descriptions, and
-  rename private streams they are not subscribed to. See Zulip's
+  rename private streams they are not subscribed to. See Aloha's
   security model documentation for details.
 - On Ubuntu 16.04, the local uploads backend now does the same security
   checks that the S3 backend did before serving files to users.
@@ -1999,7 +1999,7 @@ Zulip installations; it has minimal changes for existing servers.
 **Visual and UI:**
 
 - Added a user setting to translate emoticons/smileys to emoji.
-- Added a user setting to choose the emoji set used in Zulip: Google,
+- Added a user setting to choose the emoji set used in Aloha: Google,
   Twitter, Apple, or Emoji One.
 - Expanded setting for displaying emoji as text to cover all display
   settings (previously only affected reactions).
@@ -2033,7 +2033,7 @@ Zulip installations; it has minimal changes for existing servers.
 - Redesigned the API for emoji reactions to support the full range of
   how emoji reactions are used.
 - Fixed most of the known (mostly obscure) bugs in how messages are
-  formatted in Zulip.
+  formatted in Aloha.
 - Fixed "more topics" to correctly display all historical topics for
   public streams, even though from before a user subscribed.
 - Added a menu item to mark all messages as read.
@@ -2057,19 +2057,19 @@ Zulip installations; it has minimal changes for existing servers.
   message being condensed ([More] appearing on every message).
 - Improved typeahead's handling of editing an already-completed mention.
 - Improved syntax for inline LaTeX to be more convenient.
-- Improved syntax for permanent links to streams in Zulip.
+- Improved syntax for permanent links to streams in Aloha.
 - Improved behavior of copy-pasting a large number of messages.
 - Improved handling of browser undo in compose.
 - Improved saved drafts system to garbage-collect old drafts and sort
   by last modification, not creation.
-- Removed the legacy "Zulip labs" autoscroll_forever setting. It was
+- Removed the legacy "Aloha labs" autoscroll_forever setting. It was
   enabled mostly by accident.
 - Removed some long-deprecated Markdown syntax for mentions.
 - Added support for clicking on a mention to see a user's profile.
-- Links to logged-in content in Zulip now take the user to the
+- Links to logged-in content in Aloha now take the user to the
   appropriate upload or view after a user logs in.
 - Renamed "Home" to "All messages", to avoid users clicking on it too
-  early in using Zulip.
+  early in using Aloha.
 - Added a user setting to control whether the organization's name is
   included in email subject lines.
 - Fixed uploading user avatars encoded using the CMYK mode.
@@ -2140,7 +2140,7 @@ Zulip installations; it has minimal changes for existing servers.
 - Added certbot support to the installer for getting certificates.
 - Added support for hosting multiple domains, not all as subdomains of
   the same base domain.
-- Added a new nagios check for the Zulip analytics state.
+- Added a new nagios check for the Aloha analytics state.
 - Fixed buggy APNs logic that could cause extra exception emails.
 - Fixed a missing dependency for the localhost_sso auth backend.
 - Fixed subtle bugs in garbage-collection of old node_modules versions.
@@ -2149,7 +2149,7 @@ Zulip installations; it has minimal changes for existing servers.
 - Improved Tornado retry logic for connecting to RabbitMQ.
 - Added a server setting to control whether digest emails are sent.
 
-**For Zulip developers:**
+**For Aloha developers:**
 
 - Migrated the codebase to use the nice Python 3 typing syntax.
 - Added a new /team/ page explaining the team, with a nice
@@ -2161,12 +2161,12 @@ Zulip installations; it has minimal changes for existing servers.
 
 This major release has no special upgrade notes.
 
-## Zulip 1.7.x series
+## Aloha 1.7.x series
 
 ### 1.7.2 -- 2018-04-12
 
 This is a security release, with a handful of cherry-picked changes
-since 1.7.1. All Zulip server admins are encouraged to upgrade
+since 1.7.1. All Aloha server admins are encouraged to upgrade
 promptly.
 
 - CVE-2018-9986: Fix XSS issues with frontend Markdown processor.
@@ -2182,7 +2182,7 @@ reporting CVE-2018-9986 and CVE-2018-9990.
 ### 1.7.1 -- 2017-11-21
 
 This is a security release, with a handful of cherry-picked changes
-since 1.7.0. All Zulip server admins are encouraged to upgrade
+since 1.7.0. All Aloha server admins are encouraged to upgrade
 promptly.
 
 This release includes fixes for the upgrade process, so server admins
@@ -2196,7 +2196,7 @@ running a version from before 1.7 should upgrade directly to 1.7.1.
   and several other languages have smaller updates.
 - The installer now sets LC_ALL to a known locale, working around an
   issue where some dependencies fail to install in some locales.
-- We fixed a bug in the script that runs after upgrading Zulip (so
+- We fixed a bug in the script that runs after upgrading Aloha (so
   the fix applies when upgrading to this version), where the
   garbage-collection of old deployments sometimes wouldn't preserve
   the immediate last deployment.
@@ -2207,12 +2207,12 @@ running a version from before 1.7 should upgrade directly to 1.7.1.
 
 **Web**
 
-- We’ve completely redesigned our onboarding process to explain Zulip,
+- We’ve completely redesigned our onboarding process to explain Aloha,
   and especially topics, to new users.
 - We’ve built a beautiful new emoji picker with categories, a
   showcase, and much better data. Note the clean, underscore-free
   display!
-- The emails sent by Zulip are more consistent, readable, and visually
+- The emails sent by Aloha are more consistent, readable, and visually
   interesting.
 - Chinese (Simplified) and Japanese join Spanish, German, and Czech in
   having the user interface fully translated, in addition to partial
@@ -2224,13 +2224,13 @@ running a version from before 1.7 should upgrade directly to 1.7.1.
 
 **Mobile and Desktop support**
 
-- Zulip Server 1.7 adds several new APIs that are critical for mobile
+- Aloha Server 1.7 adds several new APIs that are critical for mobile
   app performance and that let the app track unread messages. If
   you’re using the mobile apps at all (iOS or Android), you will
-  definitely want to upgrade to Zulip 1.7.
+  definitely want to upgrade to Aloha 1.7.
 - The iOS and Android apps can receive push notifications
   (configurable, naturally) for events like PMs and @-mentions. While
-  Zulip Server 1.6 has basic support for these, 1.7 brings a new,
+  Aloha Server 1.6 has basic support for these, 1.7 brings a new,
   clearer format to notifications, and gives each user more options
   for finer-grained control.
 - The new Electron desktop app is out of beta and replaces our legacy
@@ -2238,13 +2238,13 @@ running a version from before 1.7 should upgrade directly to 1.7.1.
 
 **Backend and scaling**
 
-- Zulip now runs exclusively on Python 3. This is the culmination of
+- Aloha now runs exclusively on Python 3. This is the culmination of
   an 18-month migration effort. We are very excited about this!
 - We’ve added an automatic "soft deactivation" process, which
   dramatically improves performance for organizations with a large
   number of inactive users, without any impact on those users’
   experience if they later come back.
-- Zulip's performance at scale has improved significantly. Performance
+- Aloha's performance at scale has improved significantly. Performance
   now scales primarily with number of active users (not total
   users). As an example, chat.zulip.org serves 400 monthly active
   users and about 3500 total users, on one VM with just 8GB of RAM and
@@ -2252,7 +2252,7 @@ running a version from before 1.7 should upgrade directly to 1.7.1.
 
 #### Upgrade notes for 1.7.0
 
-- Zulip 1.7 contains some significant database migrations that can
+- Aloha 1.7 contains some significant database migrations that can
   take several minutes to run. The upgrade process automatically
   minimizes disruption by running these first, before beginning the
   user-facing downtime. However, if you'd like to watch the downtime
@@ -2261,11 +2261,11 @@ running a version from before 1.7 should upgrade directly to 1.7.1.
   as well as the usual trick of doing an apt upgrade first.
 
 - We've removed support for an uncommon legacy deployment model where
-  a Zulip server served multiple organizations on the same domain.
+  a Aloha server served multiple organizations on the same domain.
   Installs with multiple organizations now require each organization
   to have its own subdomain.
 
-  This change should have no effect for the vast majority of Zulip
+  This change should have no effect for the vast majority of Aloha
   servers that only have one organization. If you manage a server
   that hosts multiple organizations, you'll want to read [our guide on
   multiple organizations](../production/multiple-organizations.md).
@@ -2278,10 +2278,10 @@ running a version from before 1.7 should upgrade directly to 1.7.1.
 
 #### Full feature changelog
 
-- Simplified the process for installing a new Zulip server, as well as
+- Simplified the process for installing a new Aloha server, as well as
   fixing the most common road bumps and confusing error messages.
 - Added a new "incoming webhook" bot type, limited to only sending
-  messages into Zulip, for better security.
+  messages into Aloha, for better security.
 - Added experimental support for outgoing webhooks.
 - Added support for changing the notifications stream.
 - Added 'u' hotkey to show a user's profile.
@@ -2291,7 +2291,7 @@ running a version from before 1.7 should upgrade directly to 1.7.1.
 - Added a confirmation dialogue when inviting many users to a new stream.
 - Added new notification setting to always get push notifications on a stream.
 - Added new "getting started" guides to the user documentation.
-- Added support for installing a Zulip server from a Git checkout.
+- Added support for installing a Aloha server from a Git checkout.
 - Added support for mentioning a user when editing a message.
 - Added Opsgenie, Google Code-In, Google Search, and xkcd integrations.
 - Added support for organization administrators deleting private streams.
@@ -2320,7 +2320,7 @@ running a version from before 1.7 should upgrade directly to 1.7.1.
 - Significantly improved sort ordering for the emoji picker.
 - Fixed most accessibility errors detected by major accessibility
   checker tools.
-- Extracted Zulip's Python API and bots ecosystem into its own
+- Extracted Aloha's Python API and bots ecosystem into its own
   repository, zulip/python-zulip-api.
 - Enter hotkey now opens compose in empty narrows.
 - Significantly improved performance of "starred messages" and
@@ -2328,14 +2328,14 @@ running a version from before 1.7 should upgrade directly to 1.7.1.
 - Upgraded to Django 1.11.x.
 - Upgraded to a more modern version of the SourceSansPro font.
 - Redesigned several settings subpages to be visually cleaner.
-- Redesigned Zulip's error pages to feature cute illustrations.
+- Redesigned Aloha's error pages to feature cute illustrations.
 - Dramatically improved the user typeahead algorithm to suggest
   relevant users even in large organizations with 1000s of accounts.
 - Fixed log rotation structural issues which wasted a lot of disk.
 - Updated notification settings to not require a "save changes" button.
 - Rewrote the documentation for almost all of our integrations to be
   much clearer and more consistent through use of Markdown and macros.
-- Restructured Zulip's management commands to use a common system for
+- Restructured Aloha's management commands to use a common system for
   accessing realms and users.
 - Made starting editing a message you just sent not require a round trip.
 - Dramatically increased test coverage of the frontend codebase.
@@ -2365,8 +2365,8 @@ running a version from before 1.7 should upgrade directly to 1.7.1.
 - Fixed a subtle bug involving timestamps of locally echoed messages.
 - Fixed the behavior of key combinations like Ctrl+Enter in the compose box.
 - Worked around Google Compute Engine's default boto configuration,
-  which broke Zulip (and any other app using boto).
-- Zulip now will gracefully handle the PostgreSQL server being restarted.
+  which broke Aloha (and any other app using boto).
+- Aloha now will gracefully handle the PostgreSQL server being restarted.
 - Optimized marking an entire topic as read.
 - Switched from npm to yarn for downloading JS packages.
 - Switched the function of the 'q' and 'w' search hotkeys.
@@ -2384,7 +2384,7 @@ running a version from before 1.7 should upgrade directly to 1.7.1.
 - Removed several obsolete settings.
 - Partially completed migration to webpack as our static asset bundler.
 
-## Zulip 1.6.x and older
+## Aloha 1.6.x and older
 
 ### 1.6.0 -- 2017-06-06
 
@@ -2394,7 +2394,7 @@ running a version from before 1.7 should upgrade directly to 1.7.1.
   registration, integrations, etc.
 - New visual designs for numerous UI elements, including the emoji
   picker, user profile popovers, sidebars, compose, and many more.
-- A complete redesign of the Zulip settings interfaces to look a lot
+- A complete redesign of the Aloha settings interfaces to look a lot
   nicer and be easier to navigate.
 - Organization admins can now configure the login and registration
   pages to show visitors a nice organization profile with custom text
@@ -2409,7 +2409,7 @@ running a version from before 1.7 should upgrade directly to 1.7.1.
 - The server can now run on a machine with as little as 2GB of RAM.
 - The new [Electron desktop app][electron-app] and new
   [React Native mobile app for iOS][ios-app] are now the recommended
-  Zulip apps.
+  Aloha apps.
 - Mobile web now works much better, especially on iOS.
 - Support for sending mobile push notifications via
   [a new forwarding service][mobile-push]
@@ -2442,7 +2442,7 @@ running a version from before 1.7 should upgrade directly to 1.7.1.
 - Added new endpoint for fetching presence data, useful in employee directories.
 - Added typeahead for language for syntax highlighting in code blocks.
 - Added support for basic Markdown in stream descriptions.
-- Added email notifications on new Zulip logins.
+- Added email notifications on new Aloha logins.
 - Added security hardening before serving uploaded files.
 - Added new PRIVACY_POLICY setting to provide a Markdown privacy policy.
 - Added an icon to distinguish bot users as message senders.
@@ -2484,7 +2484,7 @@ running a version from before 1.7 should upgrade directly to 1.7.1.
 - Fixed various left sidebar ordering and live-updated bugs.
 - Fixed numerous bugs with the message editing widget.
 - Fixed missing logging / rate limiting on browser endpoints.
-- Fixed regressions in Zulip's browser state preservation on reload logic.
+- Fixed regressions in Aloha's browser state preservation on reload logic.
 - Fixed support for Unicode characters in the email mirror system.
 - Fixed load spikes when email mirror is receiving a lot of traffic.
 - Fixed the ugly grey flicker when scrolling fast on Macs.
@@ -2499,7 +2499,7 @@ running a version from before 1.7 should upgrade directly to 1.7.1.
 - Most API payloads now refer to users primarily by user ID, with
   email available for backwards-compatibility. In the future, we may
   remove email support.
-- Cleaned up Zulip's supervisord configuration. A side effect is the
+- Cleaned up Aloha's supervisord configuration. A side effect is the
   names of the log files have changed for all the queue workers.
 - Refactored various endpoints to use a single code path for security
   hardening.
@@ -2547,9 +2547,9 @@ running a version from before 1.7 should upgrade directly to 1.7.1.
 - Added support for setting a stream description on creation.
 - Added support for copying subscribers from existing streams on creation.
 - Added several new search/filtering UI elements.
-- Added UI for deactivating your own Zulip account.
+- Added UI for deactivating your own Aloha account.
 - Added support for viewing the raw Markdown content of a message.
-- Added support for deploying Zulip with subdomains for each realm.
+- Added support for deploying Aloha with subdomains for each realm.
   This entailed numerous changes to ensure a consistent experience.
 - Added support for (optionally) using PGRoonga to support full-text
   search in all languages (not just English).
@@ -2558,10 +2558,10 @@ running a version from before 1.7 should upgrade directly to 1.7.1.
   Labs, Stripe and Zapier integrations.
 - Added a webhook integration for GitHub, replacing the deprecated
   github-services hook.
-- Normalized the message formatting for all the Zulip Git integrations.
+- Normalized the message formatting for all the Aloha Git integrations.
 - Added support for VMware Fusion Vagrant provider for faster OSX
   development.
-- Added a shields.io style badge for joining a Zulip server.
+- Added a shields.io style badge for joining a Aloha server.
 - Added admin setting for which email domains can join a realm.
 - Added admin setting for controlling who can create streams.
 - Added admin setting to limit stream creation to older users.
@@ -2569,10 +2569,10 @@ running a version from before 1.7 should upgrade directly to 1.7.1.
 - Added a new hotkey for muting/unmuting topics.
 - Added support for testing websockets to the Nagios plugins.
 - Added a configuration option to disable websockets.
-- Added support for removing one's own Zulip account.
+- Added support for removing one's own Aloha account.
 - Added support for realm admins which auth backends are supported.
 - Added new organization type concept. This will be used to control
-  whether Zulip is optimized around protecting user privacy
+  whether Aloha is optimized around protecting user privacy
   vs. administrative control.
 - Added #**streamName** syntax for linking to a stream.
 - Added support for viewing Markdown source of messages.
@@ -2583,23 +2583,23 @@ running a version from before 1.7 should upgrade directly to 1.7.1.
 - Added italics and strikethrough support in Markdown implementation.
 - Added errors for common installations mistakes (e.g. too little RAM).
 - Added a new /authors page showing the contributors to the current
-  Zulip version.
+  Aloha version.
 - Added illustrations to the 404 and 500 pages.
 - Upgraded all Python dependencies to modern versions, including
-  Django 1.10 (all of Zulip's patches have been merged into mainline).
+  Django 1.10 (all of Aloha's patches have been merged into mainline).
 - Increased backend test coverage of Python codebase to 90%.
 - Increased mypy static type coverage of Python code to 100%.
 - Added several new linters (eslint, pep8) and cleaned the codebase.
-- Optimized the speed of the Zulip upgrade process, especially with Git.
+- Optimized the speed of the Aloha upgrade process, especially with Git.
 - Have peer_add events send user_id, not email.
-- Fixed problems with RabbitMQ when installing Zulip.
+- Fixed problems with RabbitMQ when installing Aloha.
 - Fixed JavaScript not being gzip-compressed properly.
 - Fixed a major performance bug in the Tornado service.
 - Fixed a frontend performance bug creating streams in very large realms.
 - Fixed numerous bugs where strings were not properly tagged for translation.
 - Fixed several real-time sync bugs, and removed several AJAX calls.
-  Zulip should be more performant than ever before.
-- Fixed Zulip Tornado service not working with http_proxy set in environment.
+  Aloha should be more performant than ever before.
+- Fixed Aloha Tornado service not working with http_proxy set in environment.
 - Fixed text overflow in stream subscriptions.
 - Fixed CSS issues with message topic editing.
 - Fixed several transactionality bugs (e.g. in Huddle creation).
@@ -2608,7 +2608,7 @@ running a version from before 1.7 should upgrade directly to 1.7.1.
 - Fixed various mismatches between frontend and backend Markdown
   implementations.
 - Fixed various popover-related UI bugs.
-- Fixed duplicate notifications with multiple open Zulip tabs.
+- Fixed duplicate notifications with multiple open Aloha tabs.
 - Fixed support for emailing the server administrator about backend exceptions.
 - Cleaned up the "edit message" form.
 - Eliminated most of the legacy API endpoints.
@@ -2634,11 +2634,11 @@ running a version from before 1.7 should upgrade directly to 1.7.1.
 
 ### 1.4.2 - 2016-09-27
 
-- Upgraded Django to version 1.8.15 (with the Zulip patches applied),
+- Upgraded Django to version 1.8.15 (with the Aloha patches applied),
   fixing a CSRF vulnerability in Django (see
   https://www.djangoproject.com/weblog/2016/sep/26/security-releases/),
   and a number of other Django bugs from past Django stable releases
-  that largely affects parts of Django that are not used by Zulip.
+  that largely affects parts of Django that are not used by Aloha.
 - Fixed buggy logrotate configuration.
 
 ### 1.4.1 - 2016-09-03
@@ -2649,12 +2649,12 @@ running a version from before 1.7 should upgrade directly to 1.7.1.
 
 ### 1.4.0 - 2016-08-25
 
-- Migrated Zulip's python dependencies to be installed via a virtualenv,
-  instead of the via apt. This is a major change to how Zulip
+- Migrated Aloha's python dependencies to be installed via a virtualenv,
+  instead of the via apt. This is a major change to how Aloha
   is installed that we expect will simplify upgrades in the future.
 - Fixed unnecessary loading of zxcvbn password strength checker. This
   saves a huge fraction of the uncached network transfer for loading
-  Zulip.
+  Aloha.
 - Added support for using Ubuntu 16.04 in production.
 - Added a powerful and complete realm import/export tool.
 - Added nice UI for selecting a default language to display settings.
@@ -2675,14 +2675,14 @@ running a version from before 1.7 should upgrade directly to 1.7.1.
 - Added GitHub authentication (and integrated python-social-auth, so it's
   easy to add additional social authentication methods).
 - Added TERMS_OF_SERVICE setting using Markdown formatting to configure
-  the terms of service for a Zulip server.
+  the terms of service for a Aloha server.
 - Added numerous hooks to Puppet modules to enable more configurations.
 - Moved several useful Puppet components into the main Puppet
   manifests (setting a Redis password, etc.).
 - Added automatic configuration of PostgreSQL/memcached settings based
   on the server's available RAM.
-- Added scripts/upgrade-zulip-from-git for upgrading Zulip from a Git repo.
-- Added preliminary support for Python 3. All of Zulip's test suites now
+- Added scripts/upgrade-zulip-from-git for upgrading Aloha from a Git repo.
+- Added preliminary support for Python 3. All of Aloha's test suites now
   pass using Python 3.4.
 - Added support for `Name <email@example.com>` format when inviting users.
 - Added numerous special-purpose settings options.
@@ -2723,7 +2723,7 @@ running a version from before 1.7 should upgrade directly to 1.7.1.
 - Fixed old deployment directories leaking indefinitely.
 - Fixed need to manually add localhost in ALLOWED_HOSTS.
 - Fixed display positioning for the color picker on subscriptions page.
-- Fixed escaping of Zulip extensions to Markdown.
+- Fixed escaping of Aloha extensions to Markdown.
 - Fixed requiring a reload to see newly uploaded avatars.
 - Fixed @all warning firing even for `@all`.
 - Restyled password reset form to look nice.
@@ -2747,12 +2747,12 @@ running a version from before 1.7 should upgrade directly to 1.7.1.
 - Removed old prototype data export tool.
 - Disabled insecure RC4 cipher in nginx configuration.
 - Enabled shared SSL session cache in nginx configuration.
-- Updated header for Zulip static assets to reflect Zulip being
+- Updated header for Aloha static assets to reflect Aloha being
   open source.
 
 ### 1.3.13 - 2016-06-21
 
-- Added nearly complete internationalization of the Zulip UI.
+- Added nearly complete internationalization of the Aloha UI.
 - Added warning when using @all/@everyone.
 - Added button offering to subscribe at bottom of narrows to streams
   the user is not subscribed to.
@@ -2761,27 +2761,27 @@ running a version from before 1.7 should upgrade directly to 1.7.1.
 - Added menu option to mark all messages in a stream or topic as read.
 - Added new Attachment model to keep track of uploaded files.
 - Added caching of virtualenvs in development.
-- Added mypy static type annotations to about 85% of the Zulip Python codebase.
+- Added mypy static type annotations to about 85% of the Aloha Python codebase.
 - Added automated test of backend templates to test for regressions.
-- Added lots of detailed documentation on the Zulip development environment.
+- Added lots of detailed documentation on the Aloha development environment.
 - Added setting allowing only administrators to create new streams.
-- Added button to exit the Zulip tutorial early.
+- Added button to exit the Aloha tutorial early.
 - Added web UI for configuring default streams.
 - Added new OPEN_REALM_CREATION setting (default off), providing a UI
-  for creating additional realms on a Zulip server.
+  for creating additional realms on a Aloha server.
 - Fixed email_gateway_password secret not working properly.
 - Fixed missing helper scripts for RabbitMQ Nagios plugins.
 - Fixed skipping forward to latest messages ("More messages below" button).
-- Fixed netcat issue causing Zulip installation to hang on Scaleway machines.
+- Fixed netcat issue causing Aloha installation to hang on Scaleway machines.
 - Fixed rendering of /me status messages after message editing.
 - Fixed case sensitivity of right sidebar fading when compose is open.
 - Fixed error messages when composing to invalid PM recipients.
-- Fixed LDAP auth backend not working with Zulip mobile apps.
+- Fixed LDAP auth backend not working with Aloha mobile apps.
 - Fixed erroneous WWW-Authenticate headers with expired sessions.
-- Changed "coworkers" to "users" in the Zulip UI.
+- Changed "coworkers" to "users" in the Aloha UI.
 - Changed add_default_stream REST API to correctly use PUT rather than PATCH.
-- Updated the Zulip emoji set (the Android emoji) to a modern version.
-- Made numerous small improvements to the Zulip development experience.
+- Updated the Aloha emoji set (the Android emoji) to a modern version.
+- Made numerous small improvements to the Aloha development experience.
 - Migrated backend templates to the faster Jinja2 templating system.
 - Migrated development environment setup scripts to tools/setup/.
 - Expanded test coverage for several areas of the product.
@@ -2798,22 +2798,22 @@ running a version from before 1.7 should upgrade directly to 1.7.1.
 
 ### 1.3.11 - 2016-05-02
 
-- Moved email digest support into the default Zulip production configuration.
+- Moved email digest support into the default Aloha production configuration.
 - Added options for configuring PostgreSQL, RabbitMQ, Redis, and memcached
   in settings.py.
 - Added documentation on using Hubot to integrate with useful services
-  not yet integrated with Zulip directly (e.g. Google Hangouts).
-- Added new management command to test sending email from Zulip.
+  not yet integrated with Aloha directly (e.g. Google Hangouts).
+- Added new management command to test sending email from Aloha.
 - Added Codeship, Pingdom, Taiga, TeamCity, and Yo integrations.
 - Added Nagios plugins to the main distribution.
 - Added ability for realm administrators to manage custom emoji.
 - Added guide to writing new integrations.
 - Enabled camo image proxy to fix mixed-content warnings for http images.
-- Refactored the Zulip Puppet modules to be more modular.
+- Refactored the Aloha Puppet modules to be more modular.
 - Refactored the Tornado event system, fixing old memory leaks.
 - Removed many old-style /json API endpoints
 - Implemented running queue processors multithreaded in development,
-  decreasing RAM requirements for a Zulip development environment from
+  decreasing RAM requirements for a Aloha development environment from
   ~1GB to ~300MB.
 - Fixed rerendering the complete buddy list whenever a user came back from
   idle, which was a significant performance issue in larger realms.
@@ -2829,7 +2829,7 @@ running a version from before 1.7 should upgrade directly to 1.7.1.
 
 - Added new integration for Travis CI.
 - Added settings option to control maximum file upload size.
-- Added support for running Zulip development environment in Docker.
+- Added support for running Aloha development environment in Docker.
 - Added easy configuration support for a remote PostgreSQL database.
 - Added extensive documentation on scalability, backups, and security.
 - Recent private message threads are now displayed expanded similar to
@@ -2856,14 +2856,14 @@ running a version from before 1.7 should upgrade directly to 1.7.1.
 
 - Added options to the Python API for working with untrusted server certificates.
 - Added a lot of documentation on the development environment and testing.
-- Added partial support for translating the Zulip UI.
+- Added partial support for translating the Aloha UI.
 - Migrated installing Node dependencies to use npm.
 - Fixed LDAP integration breaking autocomplete of @-mentions.
 - Fixed admin panel reactivation/deactivation of bots.
 - Fixed inaccurate documentation for downloading the desktop apps.
 - Fixed various minor bugs in production installation process.
 - Fixed security issue where recent history on private streams might
-  be visible to new users (to the Zulip team) who were invited with that
+  be visible to new users (to the Aloha team) who were invited with that
   private stream as one of their initial streams
   (https://github.com/zulip/zulip/issues/230).
 - Major preliminary progress towards supporting Python 3.

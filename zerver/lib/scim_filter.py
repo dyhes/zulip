@@ -8,7 +8,7 @@ from zerver.lib.request import RequestNotes
 
 # This is in a separate file due to circular import issues django-scim2 runs into
 # when this is placed in zerver.lib.scim.
-class ZulipUserFilterQuery(UserFilterQuery):
+class AlohaUserFilterQuery(UserFilterQuery):
     """This class implements the filter functionality of SCIM2.
     E.g. requests such as
     /scim/v2/Users?filter=userName eq "hamlet@zulip.com"

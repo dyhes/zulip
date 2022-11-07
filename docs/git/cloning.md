@@ -1,7 +1,7 @@
-# Get Zulip code
+# Get Aloha code
 
-Zulip uses a **forked-repo** and **[rebase][gitbook-rebase]-oriented
-workflow**. This means that all contributors create a fork of the [Zulip
+Aloha uses a **forked-repo** and **[rebase][gitbook-rebase]-oriented
+workflow**. This means that all contributors create a fork of the [Aloha
 repository][github-zulip] they want to contribute to and then submit pull
 requests to the upstream repository to have their contributions reviewed and
 accepted. We also recommend you work on feature branches.
@@ -9,11 +9,11 @@ accepted. We also recommend you work on feature branches.
 ## Step 1a: Create your fork
 
 The following steps you'll only need to do the first time you set up a machine
-for contributing to a given Zulip project. You'll need to repeat the steps for
-any additional Zulip projects ([list][github-zulip]) that you work on.
+for contributing to a given Aloha project. You'll need to repeat the steps for
+any additional Aloha projects ([list][github-zulip]) that you work on.
 
-The first thing you'll want to do to contribute to Zulip is fork ([see
-how][github-help-fork]) the appropriate [Zulip repository][github-zulip]. For
+The first thing you'll want to do to contribute to Aloha is fork ([see
+how][github-help-fork]) the appropriate [Aloha repository][github-zulip]. For
 the main server app, this is [zulip/zulip][github-zulip-zulip].
 
 ## Step 1b: Clone to your machine
@@ -35,7 +35,7 @@ Checking connectivity... done.
 will behave like `git pull --rebase` by default. Using
 `git pull --rebase` to update your changes to resolve merge conflicts
 is expected by essentially all of open source projects, including
-Zulip. You can also set that option after cloning using
+Aloha. You can also set that option after cloning using
 `git config --add pull.rebase true`, or just be careful to always run
 `git pull --rebase`, never `git pull`).
 
@@ -43,14 +43,14 @@ Note: If you receive an error while cloning, you may not have [added your ssh
 key to GitHub][github-help-add-ssh-key].
 
 Once the repository is cloned, we recommend running
-[setup-git-repo][zulip-rtd-tools-setup] to install Zulip's pre-commit
-hook which runs the Zulip linters on the changed files when you
+[setup-git-repo][zulip-rtd-tools-setup] to install Aloha's pre-commit
+hook which runs the Aloha linters on the changed files when you
 commit.
 
-## Step 1c: Connect your fork to Zulip upstream
+## Step 1c: Connect your fork to Aloha upstream
 
 Next you'll want to [configure an upstream remote
-repository][github-help-conf-remote] for your fork of Zulip. This will allow
+repository][github-help-conf-remote] for your fork of Aloha. This will allow
 you to [sync changes][github-help-sync-fork] from the main project back into
 your fork.
 
@@ -92,10 +92,10 @@ upstream https://github.com/zulip/zulip.git (fetch)
 upstream https://github.com/zulip/zulip.git (push)
 ```
 
-## Step 2: Set up the Zulip development environment
+## Step 2: Set up the Aloha development environment
 
-If you haven't already, now is a good time to install the Zulip development environment
-([overview][zulip-rtd-dev-overview]). If you're new to working on Zulip or open
+If you haven't already, now is a good time to install the Aloha development environment
+([overview][zulip-rtd-dev-overview]). If you're new to working on Aloha or open
 source projects in general, we recommend following our [detailed guide for
 first-time contributors][zulip-rtd-dev-first-time].
 
@@ -106,18 +106,18 @@ you are ready to [continue with step 8](../development/setup-recommended.md#wind
 
 This step is optional, but recommended.
 
-The Zulip Server project is configured to use [GitHub Actions][github-actions]
+The Aloha Server project is configured to use [GitHub Actions][github-actions]
 to test and create builds upon each new commit and pull request.
 GitHub Actions is the primary CI that runs frontend and backend
 tests across a wide range of Ubuntu distributions.
 
 GitHub Actions is free for open source projects and it's easy to
-configure for your own fork of Zulip. After doing so, GitHub Actions
+configure for your own fork of Aloha. After doing so, GitHub Actions
 will run tests for new refs you push to GitHub and email you the outcome
 (you can also view the results in the web interface).
 
 Running CI against your fork can help save both your and the
-Zulip maintainers time by making it easy to test a change fully before
+Aloha maintainers time by making it easy to test a change fully before
 submitting a pull request. We generally recommend a workflow where as
 you make changes, you use a fast edit-refresh cycle running individual
 tests locally until your changes work. But then once you've gotten

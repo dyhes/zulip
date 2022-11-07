@@ -1,10 +1,10 @@
 from django.utils.timezone import timedelta as timezone_timedelta
 
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zilencer.management.commands.populate_db import choose_date_sent
 
 
-class TestChoosePubDate(ZulipTestCase):
+class TestChoosePubDate(AlohaTestCase):
     def test_choose_date_sent_large_tot_messages(self) -> None:
         """
         Test for a bug that was present, where specifying a large amount of messages to generate
@@ -24,7 +24,7 @@ class TestChoosePubDate(ZulipTestCase):
             )
 
 
-class TestUserTimeZones(ZulipTestCase):
+class TestUserTimeZones(AlohaTestCase):
     def test_timezones_assigned_to_users(self) -> None:
         othello = self.example_user("othello")
         self.assertEqual(othello.timezone, "US/Pacific")

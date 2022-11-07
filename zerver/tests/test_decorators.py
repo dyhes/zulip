@@ -56,7 +56,7 @@ from zerver.lib.request import (
     has_request_variables,
 )
 from zerver.lib.response import json_response, json_success
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import HostRequestMock, dummy_handler
 from zerver.lib.types import Validator
 from zerver.lib.user_agent import parse_user_agent
@@ -89,13 +89,13 @@ from zerver.middleware import LogRequests, parse_client
 from zerver.models import Realm, UserProfile, get_realm, get_user
 
 if settings.ZILENCER_ENABLED:
-    from zilencer.models import RemoteZulipServer
+    from zilencer.models import RemoteAlohaServer
 
 if TYPE_CHECKING:
     from django.test.client import _MonkeyPatchedWSGIResponse as TestHttpResponse
 
 
-class DecoratorTestCase(ZulipTestCase):
+class DecoratorTestCase(AlohaTestCase):
     def test_parse_client(self) -> None:
         req = HostRequestMock()
         self.assertEqual(parse_client(req), ("Unspecified", None))
@@ -103,20 +103,20 @@ class DecoratorTestCase(ZulipTestCase):
         req = HostRequestMock()
         req.META[
             "HTTP_USER_AGENT"
-        ] = "ZulipElectron/4.0.3 Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Zulip/4.0.3 Chrome/66.0.3359.181 Electron/3.1.10 Safari/537.36"
-        self.assertEqual(parse_client(req), ("ZulipElectron", "4.0.3"))
+        ] = "AlohaElectron/4.0.3 Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Aloha/4.0.3 Chrome/66.0.3359.181 Electron/3.1.10 Safari/537.36"
+        self.assertEqual(parse_client(req), ("AlohaElectron", "4.0.3"))
 
         req = HostRequestMock()
-        req.META["HTTP_USER_AGENT"] = "ZulipDesktop/0.4.4 (Mac)"
-        self.assertEqual(parse_client(req), ("ZulipDesktop", "0.4.4"))
+        req.META["HTTP_USER_AGENT"] = "AlohaDesktop/0.4.4 (Mac)"
+        self.assertEqual(parse_client(req), ("AlohaDesktop", "0.4.4"))
 
         req = HostRequestMock()
-        req.META["HTTP_USER_AGENT"] = "ZulipMobile/26.22.145 (Android 10)"
-        self.assertEqual(parse_client(req), ("ZulipMobile", "26.22.145"))
+        req.META["HTTP_USER_AGENT"] = "AlohaMobile/26.22.145 (Android 10)"
+        self.assertEqual(parse_client(req), ("AlohaMobile", "26.22.145"))
 
         req = HostRequestMock()
-        req.META["HTTP_USER_AGENT"] = "ZulipMobile/26.22.145 (iOS 13.3.1)"
-        self.assertEqual(parse_client(req), ("ZulipMobile", "26.22.145"))
+        req.META["HTTP_USER_AGENT"] = "AlohaMobile/26.22.145 (iOS 13.3.1)"
+        self.assertEqual(parse_client(req), ("AlohaMobile", "26.22.145"))
 
         # TODO: This should ideally be Firefox.
         req = HostRequestMock()
@@ -141,12 +141,12 @@ class DecoratorTestCase(ZulipTestCase):
 
         post_req_with_client = HostRequestMock()
         post_req_with_client.POST["client"] = "test_client_1"
-        post_req_with_client.META["HTTP_USER_AGENT"] = "ZulipMobile/26.22.145 (iOS 13.3.1)"
+        post_req_with_client.META["HTTP_USER_AGENT"] = "AlohaMobile/26.22.145 (iOS 13.3.1)"
         self.assertEqual(parse_client(post_req_with_client), ("test_client_1", None))
 
         get_req_with_client = HostRequestMock()
         get_req_with_client.GET["client"] = "test_client_2"
-        get_req_with_client.META["HTTP_USER_AGENT"] = "ZulipMobile/26.22.145 (iOS 13.3.1)"
+        get_req_with_client.META["HTTP_USER_AGENT"] = "AlohaMobile/26.22.145 (iOS 13.3.1)"
         self.assertEqual(parse_client(get_req_with_client), ("test_client_2", None))
 
     def test_unparsable_user_agent(self) -> None:
@@ -454,7 +454,7 @@ class DecoratorTestCase(ZulipTestCase):
             my_webhook(request)
 
 
-class SkipRateLimitingTest(ZulipTestCase):
+class SkipRateLimitingTest(AlohaTestCase):
     def test_authenticated_rest_api_view(self) -> None:
         @authenticated_rest_api_view(skip_rate_limiting=False)
         def my_rate_limited_view(request: HttpRequest, user_profile: UserProfile) -> HttpResponse:
@@ -535,7 +535,7 @@ class SkipRateLimitingTest(ZulipTestCase):
         self.assertTrue(rate_limit_mock.called)
 
 
-class DecoratorLoggingTestCase(ZulipTestCase):
+class DecoratorLoggingTestCase(AlohaTestCase):
     def test_authenticated_rest_api_view_logging(self) -> None:
         @authenticated_rest_api_view(webhook_client_name="ClientName")
         def my_webhook_raises_exception(
@@ -628,7 +628,7 @@ class DecoratorLoggingTestCase(ZulipTestCase):
         )
 
 
-class RateLimitTestCase(ZulipTestCase):
+class RateLimitTestCase(AlohaTestCase):
     @staticmethod
     @public_json_view
     def ratelimited_json_view(
@@ -717,7 +717,7 @@ class RateLimitTestCase(ZulipTestCase):
     def test_rate_limiting_happens_if_remote_server(self) -> None:
         user = self.example_user("hamlet")
         server_uuid = str(uuid.uuid4())
-        server = RemoteZulipServer(
+        server = RemoteAlohaServer(
             uuid=server_uuid,
             api_key="magic_secret_api_key",
             hostname="demo.example.com",
@@ -739,7 +739,7 @@ class RateLimitTestCase(ZulipTestCase):
         self.assertTrue(rate_limit_mock.called)
 
 
-class ValidatorTestCase(ZulipTestCase):
+class ValidatorTestCase(AlohaTestCase):
     def test_check_string(self) -> None:
         x: Any = "hello"
         check_string("x", x)
@@ -1109,7 +1109,7 @@ class ValidatorTestCase(ZulipTestCase):
             to_wild_value("x", "invalidjson")
 
 
-class DeactivatedRealmTest(ZulipTestCase):
+class DeactivatedRealmTest(AlohaTestCase):
     def test_send_deactivated_realm(self) -> None:
         """
         rest_dispatch rejects requests in a deactivated realm, both /json and api
@@ -1194,7 +1194,7 @@ class DeactivatedRealmTest(ZulipTestCase):
         )
 
 
-class LoginRequiredTest(ZulipTestCase):
+class LoginRequiredTest(AlohaTestCase):
     def test_login_required(self) -> None:
         """
         Verifies the zulip_login_required decorator blocks deactivated users.
@@ -1228,7 +1228,7 @@ class LoginRequiredTest(ZulipTestCase):
         self.assertEqual(result.status_code, 302)
 
 
-class FetchAPIKeyTest(ZulipTestCase):
+class FetchAPIKeyTest(AlohaTestCase):
     def test_fetch_api_key_success(self) -> None:
         user = self.example_user("cordelia")
         self.login_user(user)
@@ -1258,7 +1258,7 @@ class FetchAPIKeyTest(ZulipTestCase):
         self.assert_json_error_contains(result, "Password is incorrect")
 
 
-class InactiveUserTest(ZulipTestCase):
+class InactiveUserTest(AlohaTestCase):
     def test_send_deactivated_user(self) -> None:
         """
         rest_dispatch rejects requests from deactivated users, both /json and api
@@ -1394,7 +1394,7 @@ class InactiveUserTest(ZulipTestCase):
         self.assert_json_error_contains(result, "Account is deactivated", status_code=401)
 
 
-class TestIncomingWebhookBot(ZulipTestCase):
+class TestIncomingWebhookBot(AlohaTestCase):
     def test_webhook_bot_permissions(self) -> None:
         webhook_bot = self.example_user("webhook_bot")
         othello = self.example_user("othello")
@@ -1413,7 +1413,7 @@ class TestIncomingWebhookBot(ZulipTestCase):
         )
 
 
-class TestValidateApiKey(ZulipTestCase):
+class TestValidateApiKey(AlohaTestCase):
     def setUp(self) -> None:
         super().setUp()
         zulip_realm = get_realm("zulip")
@@ -1523,7 +1523,7 @@ class TestValidateApiKey(ZulipTestCase):
             )
 
 
-class TestInternalNotifyView(ZulipTestCase):
+class TestInternalNotifyView(AlohaTestCase):
     BORING_RESULT = "boring"
 
     def internal_notify(self, is_tornado: bool, req: HttpRequest) -> HttpResponse:
@@ -1611,7 +1611,7 @@ class TestInternalNotifyView(ZulipTestCase):
         self.assertFalse(is_local_addr("42.43.44.45"))
 
 
-class TestHumanUsersOnlyDecorator(ZulipTestCase):
+class TestHumanUsersOnlyDecorator(AlohaTestCase):
     def test_human_only_endpoints(self) -> None:
         default_bot = self.example_user("default_bot")
 
@@ -1646,7 +1646,7 @@ class TestHumanUsersOnlyDecorator(ZulipTestCase):
             self.assert_json_error(result, "This endpoint does not accept bot requests.")
 
 
-class TestAuthenticatedRequirePostDecorator(ZulipTestCase):
+class TestAuthenticatedRequirePostDecorator(AlohaTestCase):
     def test_authenticated_html_post_view_with_get_request(self) -> None:
         self.login("hamlet")
         with self.assertLogs(level="WARNING") as mock_warning:
@@ -1682,7 +1682,7 @@ class TestAuthenticatedRequirePostDecorator(ZulipTestCase):
             )
 
 
-class TestAuthenticatedJsonPostViewDecorator(ZulipTestCase):
+class TestAuthenticatedJsonPostViewDecorator(AlohaTestCase):
     def test_authenticated_json_post_view_if_everything_is_correct(self) -> None:
         user = self.example_user("hamlet")
         self.login_user(user)
@@ -1780,7 +1780,7 @@ class TestAuthenticatedJsonPostViewDecorator(ZulipTestCase):
         return self.client_post("/json/subscriptions/exists", data)
 
 
-class TestAuthenticatedJsonViewDecorator(ZulipTestCase):
+class TestAuthenticatedJsonViewDecorator(AlohaTestCase):
     def test_authenticated_json_view_if_subdomain_is_invalid(self) -> None:
         user = self.example_user("hamlet")
         email = user.delivery_email
@@ -1821,7 +1821,7 @@ class TestAuthenticatedJsonViewDecorator(ZulipTestCase):
         return self.client_post(r"/accounts/webathena_kerberos_login/", data)
 
 
-class TestPublicJsonViewDecorator(ZulipTestCase):
+class TestPublicJsonViewDecorator(AlohaTestCase):
     def test_access_public_json_view_when_logged_in(self) -> None:
         hamlet = self.example_user("hamlet")
 
@@ -1836,7 +1836,7 @@ class TestPublicJsonViewDecorator(ZulipTestCase):
         self.assert_json_success(result)
 
 
-class TestZulipLoginRequiredDecorator(ZulipTestCase):
+class TestAlohaLoginRequiredDecorator(AlohaTestCase):
     def test_zulip_login_required_if_subdomain_is_invalid(self) -> None:
         self.login("hamlet")
 
@@ -1926,7 +1926,7 @@ class TestZulipLoginRequiredDecorator(ZulipTestCase):
             self.assertEqual(response.content.decode(), "Success")
 
 
-class TestRequireDecorators(ZulipTestCase):
+class TestRequireDecorators(AlohaTestCase):
     def test_require_server_admin_decorator(self) -> None:
         realm_owner = self.example_user("desdemona")
         self.login_user(realm_owner)
@@ -1957,7 +1957,7 @@ class TestRequireDecorators(ZulipTestCase):
         self.assert_json_error(result, "Not allowed for guest users")
 
 
-class ReturnSuccessOnHeadRequestDecorator(ZulipTestCase):
+class ReturnSuccessOnHeadRequestDecorator(AlohaTestCase):
     def test_returns_200_if_request_method_is_head(self) -> None:
         class HeadRequest(HostRequestMock):
             def __init__(self, *args: Any, **kwargs: Any) -> None:
@@ -1990,7 +1990,7 @@ class ReturnSuccessOnHeadRequestDecorator(ZulipTestCase):
         self.assertEqual(orjson.loads(response.content).get("msg"), "from_test_function")
 
 
-class RestAPITest(ZulipTestCase):
+class RestAPITest(AlohaTestCase):
     def test_method_not_allowed(self) -> None:
         self.login("hamlet")
         result = self.client_patch("/json/users")
@@ -2018,7 +2018,7 @@ class RestAPITest(ZulipTestCase):
         self.assertTrue(result["Location"].endswith("/login/?next=%2Fjson%2Fusers"))
 
 
-class TestUserAgentParsing(ZulipTestCase):
+class TestUserAgentParsing(AlohaTestCase):
     def test_user_agent_parsing(self) -> None:
         """Test for our user agent parsing logic, using a large data set."""
         user_agents_parsed: Dict[str, int] = defaultdict(int)
@@ -2037,7 +2037,7 @@ class TestUserAgentParsing(ZulipTestCase):
                 user_agents_parsed[ret["name"]] += int(count)
 
 
-class TestIgnoreUnhashableLRUCache(ZulipTestCase):
+class TestIgnoreUnhashableLRUCache(AlohaTestCase):
     def test_cache_hit(self) -> None:
         @ignore_unhashable_lru_cache()
         def f(arg: Any) -> Any:
@@ -2128,7 +2128,7 @@ class TestIgnoreUnhashableLRUCache(ZulipTestCase):
         self.assertEqual(info.currsize, 0)
 
 
-class TestRequestNotes(ZulipTestCase):
+class TestRequestNotes(AlohaTestCase):
     def test_request_notes_realm(self) -> None:
         """
         This test verifies that .realm gets set correctly on the request notes
@@ -2171,6 +2171,6 @@ class TestRequestNotes(ZulipTestCase):
             result = self.client_get("/", subdomain="invalid")
             self.assertEqual(result.status_code, 404)
             self.assert_in_response(
-                "There is no Zulip organization hosted at this subdomain.", result
+                "There is no Aloha organization hosted at this subdomain.", result
             )
             mock_home_real.assert_not_called()

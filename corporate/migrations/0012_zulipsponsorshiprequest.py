@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name="ZulipSponsorshipRequest",
+            name="AlohaSponsorshipRequest",
             fields=[
                 (
                     "id",

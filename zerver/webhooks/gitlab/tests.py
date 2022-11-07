@@ -122,16 +122,16 @@ class GitlabHookTests(WebhookTestCase):
         )
 
     def test_create_issue_with_two_assignees_event_message(self) -> None:
-        expected_subject = "Zulip GitLab Test / issue #2 Zulip Test Issue 2"
-        expected_message = "Adam Birds created [issue #2](https://gitlab.com/adambirds/zulip-gitlab-test/issues/2) (assigned to Adam Birds and Eeshan Garg):\n\n~~~ quote\nZulip Test Issue 2\n~~~"
+        expected_subject = "Aloha GitLab Test / issue #2 Aloha Test Issue 2"
+        expected_message = "Adam Birds created [issue #2](https://gitlab.com/adambirds/zulip-gitlab-test/issues/2) (assigned to Adam Birds and Eeshan Garg):\n\n~~~ quote\nAloha Test Issue 2\n~~~"
 
         self.check_webhook(
             "issue_hook__issue_created_with_two_assignees", expected_subject, expected_message
         )
 
     def test_create_issue_with_three_assignees_event_message(self) -> None:
-        expected_subject = "Zulip GitLab Test / issue #2 Zulip Test Issue 2"
-        expected_message = "Adam Birds created [issue #2](https://gitlab.com/adambirds/zulip-gitlab-test/issues/2) (assigned to Adam Birds, Eeshan Garg and Tim Abbott):\n\n~~~ quote\nZulip Test Issue 2\n~~~"
+        expected_subject = "Aloha GitLab Test / issue #2 Aloha Test Issue 2"
+        expected_message = "Adam Birds created [issue #2](https://gitlab.com/adambirds/zulip-gitlab-test/issues/2) (assigned to Adam Birds, Eeshan Garg and Tim Abbott):\n\n~~~ quote\nAloha Test Issue 2\n~~~"
 
         self.check_webhook(
             "issue_hook__issue_created_with_three_assignees", expected_subject, expected_message

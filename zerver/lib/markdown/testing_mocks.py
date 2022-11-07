@@ -168,7 +168,7 @@ MEDIA_TWEET = """{
 EMOJI_TWEET = """{
     "created_at": "Sat Sep 10 22:23:38 +0000 2011",
     "favorite_count": 1,
-    "full_text": "Zulip is 💯% open-source!",
+    "full_text": "Aloha is 💯% open-source!",
     "hashtags": [
         {
             "text": "tcdisrupt"

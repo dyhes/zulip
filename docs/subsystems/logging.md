@@ -1,7 +1,7 @@
 # Logging and error reporting
 
 Having a good system for logging error reporting is essential to
-making a large project like Zulip successful. Without reliable error
+making a large project like Aloha successful. Without reliable error
 reporting, one has to rely solely on bug reports from users in order
 to produce a working product.
 
@@ -25,7 +25,7 @@ infrastructure needed by our error reporting system:
   with extra details (like what user was involved in the error) in
   `zerver/logging_handlers.py`, and then send them to the
   administrator in `zerver/lib/error_notify.py` (which also supports
-  sending Zulips to a stream about production errors).
+  sending Alohas to a stream about production errors).
 - The ability to rate-limit certain errors to avoid sending hundreds
   of emails in an outage (see `_RateLimitFilter` in
   `zerver/lib/logging_util.py`)
@@ -35,11 +35,11 @@ infrastructure needed by our error reporting system:
 - Middleware for handling `JsonableError`, which is our standard
   system for API code to return a JSON-format HTTP error response.
 
-Since 500 errors in any Zulip server are usually a problem the server
+Since 500 errors in any Aloha server are usually a problem the server
 administrator should investigate and/or report upstream, we have this
 email reporting system configured to report errors by default.
 
-Zulip's optional [Sentry][sentry] integration will aggregate errors to
+Aloha's optional [Sentry][sentry] integration will aggregate errors to
 show which users and realms are affected, any logging which happened
 prior to the exception, local variables in each frame of the
 exception, and the full request headers which triggered it.
@@ -57,7 +57,7 @@ server log (as well as in the log for corresponding process, be it
 
 #### Backend logging format
 
-The main Zulip server log contains a line for each backend request.
+The main Aloha server log contains a line for each backend request.
 It also contains warnings, errors, and the full tracebacks for any
 Python exceptions. In production, it goes to
 `/var/log/zulip/server.log`; in development, it goes to the terminal
@@ -86,7 +86,7 @@ The format of this output is:
 
 - Timestamp
 - Log level
-- Logger name, abbreviated as "zr" for these Zulip request logs
+- Logger name, abbreviated as "zr" for these Aloha request logs
 - IP address
 - HTTP method
 - HTTP status code
@@ -112,7 +112,7 @@ numbers.
 
 #### Searching backend log files
 
-Zulip comes with a tool, `./scripts/log-search`, to quickly search
+Aloha comes with a tool, `./scripts/log-search`, to quickly search
 through the main `server.log` log file based on a number of different
 axes -- including client IP address, client user-id, request path,
 response code. It can also search the NGINX logs, which provide
@@ -170,7 +170,7 @@ new feature hard to miss.
 - Blueslip is implemented in `static/js/blueslip.js`.
 - In order to capture essentially any error occurring in the browser,
   Blueslip listens for the `error` event on `window`, and has methods
-  for being manually triggered by Zulip JavaScript code for warnings
+  for being manually triggered by Aloha JavaScript code for warnings
   and assertion failures.
 - Blueslip keeps a log of all the notices it has received during a
   browser session, and includes them in reports to the server, so that

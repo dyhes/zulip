@@ -4,11 +4,11 @@ from typing import Any
 from django.conf import settings
 from django.core.management.base import CommandError
 
-from zerver.lib.management import ZulipBaseCommand
+from zerver.lib.management import AlohaBaseCommand
 from zerver.models import Message, UserProfile
 
 
-class Command(ZulipBaseCommand):
+class Command(AlohaBaseCommand):
     help = """Script to permanently delete a realm. Recommended only for removing
 realms used for testing; consider using deactivate_realm instead."""
 

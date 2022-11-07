@@ -1,9 +1,9 @@
 from zerver.lib.onboarding import create_if_missing_realm_internal_bots
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.models import Realm, UserProfile
 
 
-class TestRealmInternalBotCreation(ZulipTestCase):
+class TestRealmInternalBotCreation(AlohaTestCase):
     def test_create_if_missing_realm_internal_bots(self) -> None:
         realm_internal_bots_dict = [
             {"var_name": "TEST_BOT", "email_template": "test-bot@%s", "name": "Test Bot"}

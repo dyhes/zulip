@@ -3,11 +3,11 @@ from typing import Any
 from django.core.management.base import CommandParser
 
 from zerver.actions.streams import bulk_remove_subscriptions
-from zerver.lib.management import ZulipBaseCommand
+from zerver.lib.management import AlohaBaseCommand
 from zerver.models import get_stream
 
 
-class Command(ZulipBaseCommand):
+class Command(AlohaBaseCommand):
     help = """Remove some or all users in a realm from a stream."""
 
     def add_arguments(self, parser: CommandParser) -> None:

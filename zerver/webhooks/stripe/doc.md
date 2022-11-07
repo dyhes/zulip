@@ -1,4 +1,4 @@
-Get Zulip notifications for Stripe events!
+Get Aloha notifications for Stripe events!
 
 1. {!create-stream.md!}
 
@@ -11,12 +11,12 @@ Get Zulip notifications for Stripe events!
    the event types you would like to be notified about, and click
    **Add endpoint**.
 
-1. [Optional] In Zulip, add a
+1. [Optional] In Aloha, add a
    [linkification filter](/help/add-a-custom-linkifier) with
    **Pattern** `(?P<id>cus_[0-9a-zA-Z]+)` and **URL format string**
    `https://dashboard.stripe.com/customers/%(id)s`.
 
-Zulip currently supports Stripe events for Charges, Customers, Discounts,
+Aloha currently supports Stripe events for Charges, Customers, Discounts,
 Sources, Subscriptions, Files, Invoices and Invoice items.
 
 {% if 'http:' in external_uri_scheme %}

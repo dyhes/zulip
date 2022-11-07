@@ -329,7 +329,7 @@ def parse_client(
         return "Unspecified", None
 
     client_name = user_agent["name"]
-    if client_name.startswith("Zulip"):
+    if client_name.startswith("Aloha"):
         return client_name, user_agent.get("version")
 
     # We could show browser versions in logs, and it'd probably be a
@@ -674,7 +674,7 @@ class FinalizeOpenGraphDescription(MiddlewareMixin):
         return response
 
 
-class ZulipCommonMiddleware(CommonMiddleware):
+class AlohaCommonMiddleware(CommonMiddleware):
     """
     Patched version of CommonMiddleware to disable the APPEND_SLASH
     redirect behavior inside Tornado.
@@ -742,7 +742,7 @@ def validate_scim_bearer_token(request: HttpRequest) -> Optional[SCIMClient]:
     return SCIMClient()
 
 
-class ZulipSCIMAuthCheckMiddleware(SCIMAuthCheckMiddleware):
+class AlohaSCIMAuthCheckMiddleware(SCIMAuthCheckMiddleware):
     """
     Overridden version of middleware implemented in django-scim2
     (https://github.com/15five/django-scim2/blob/master/src/django_scim/middleware.py)

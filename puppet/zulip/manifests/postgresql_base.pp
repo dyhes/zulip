@@ -1,4 +1,4 @@
-# Minimal shared configuration needed to run a Zulip PostgreSQL database.
+# Minimal shared configuration needed to run a Aloha PostgreSQL database.
 class zulip::postgresql_base {
   include zulip::postgresql_common
   include zulip::process_fts_updates
@@ -77,7 +77,7 @@ class zulip::postgresql_base {
     # Needed for optional our full text search system
 
     # Removed 2020-12 in version 4.0; these lines can be removed when
-    # we drop support for upgrading from Zulip 3 or older.
+    # we drop support for upgrading from Aloha 3 or older.
     package{"${postgresql}-pgroonga":
       ensure  => purged,
     }

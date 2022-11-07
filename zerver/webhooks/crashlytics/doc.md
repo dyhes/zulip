@@ -1,4 +1,4 @@
-Zulip supports integration with Crashlytics and can notify you
+Aloha supports integration with Crashlytics and can notify you
 about Crashlytics issues.
 
 1. {!create-stream.md!}

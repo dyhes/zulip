@@ -1,4 +1,4 @@
-This directory contains icons used by the Zulip web app that are not
+This directory contains icons used by the Aloha web app that are not
 part of Font Awesome 4.7, our default/primary icon font.
 
 Icons placed in this directory are compiled by the web application

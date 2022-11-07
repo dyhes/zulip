@@ -19,9 +19,9 @@ def get_recipient_from_user_profiles(
     if forwarded_mirror_message:
         # In our mirroring integrations with some third-party
         # protocols, bots subscribed to the third-party protocol
-        # forward to Zulip messages that they received in the
+        # forward to Aloha messages that they received in the
         # third-party service.  The permissions model for that
-        # forwarding is that users can only submit to Zulip private
+        # forwarding is that users can only submit to Aloha private
         # messages they personally received, and here we do the check
         # for whether forwarder_user_profile is among the private
         # message recipients of the message.
@@ -68,7 +68,7 @@ def validate_recipient_user_profiles(
             and not allow_deactivated
         ) or user_profile.realm.deactivated:
             raise ValidationError(
-                _("'{email}' is no longer using Zulip.").format(email=user_profile.email)
+                _("'{email}' is no longer using Aloha.").format(email=user_profile.email)
             )
         recipient_profiles_map[user_profile.id] = user_profile
         if not is_cross_realm_bot_email(user_profile.email):

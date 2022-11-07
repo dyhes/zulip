@@ -59,14 +59,14 @@ from zerver.models import (
     get_stream,
 )
 from zerver.tornado.handlers import AsyncDjangoHandler, allocate_handler_id
-from zilencer.models import RemoteZulipServer
+from zilencer.models import RemoteAlohaServer
 from zproject.backends import ExternalAuthDataDict, ExternalAuthResult
 
 if TYPE_CHECKING:
     from django.test.client import _MonkeyPatchedWSGIResponse as TestHttpResponse
 
     # Avoid an import cycle; we only need these for type annotations.
-    from zerver.lib.test_classes import MigrationsTestCase, ZulipTestCase
+    from zerver.lib.test_classes import MigrationsTestCase, AlohaTestCase
 
 
 class MockLDAP(fakeldap.MockLDAP):
@@ -294,7 +294,7 @@ dummy_handler = DummyHandler()
 
 class HostRequestMock(HttpRequest):
     """A mock request object where get_host() works.  Useful for testing
-    routes that use Zulip's subdomains feature"""
+    routes that use Aloha's subdomains feature"""
 
     # The base class HttpRequest declares GET and POST as immutable
     # QueryDict objects. The implementation of HostRequestMock
@@ -308,7 +308,7 @@ class HostRequestMock(HttpRequest):
         self,
         post_data: Mapping[str, Any] = {},
         user_profile: Union[UserProfile, None] = None,
-        remote_server: Optional[RemoteZulipServer] = None,
+        remote_server: Optional[RemoteAlohaServer] = None,
         host: str = settings.EXTERNAL_HOST,
         client_name: Optional[str] = None,
         meta_data: Optional[Dict[str, Any]] = None,
@@ -377,7 +377,7 @@ def instrument_url(f: UrlFuncT) -> UrlFuncT:
     else:
 
         def wrapper(
-            self: "ZulipTestCase", url: str, info: object = {}, **kwargs: Union[bool, str]
+            self: "AlohaTestCase", url: str, info: object = {}, **kwargs: Union[bool, str]
         ) -> HttpResponseBase:
             start = time.time()
             result = f(self, url, info, **kwargs)

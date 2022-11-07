@@ -93,20 +93,20 @@ def report(state: str, timestamp: Any = None, msg: Optional[str] = None) -> None
 def send_zulip(sender: zulip.Client, message: Dict[str, Any]) -> None:
     result = sender.send_message(message)
     if result["result"] != "success" and options.nagios:
-        report("CRITICAL", msg=f"Error sending Zulip, args were: {message}, {result}")
+        report("CRITICAL", msg=f"Error sending Aloha, args were: {message}, {result}")
 
 
 def get_zulips() -> List[Dict[str, Any]]:
     global queue_id, last_event_id
     res = zulip_recipient.get_events(queue_id=queue_id, last_event_id=last_event_id)
     if "error" in res.get("result", {}):
-        report("CRITICAL", msg="Error receiving Zulips, error was: {}".format(res["msg"]))
+        report("CRITICAL", msg="Error receiving Alohas, error was: {}".format(res["msg"]))
     for event in res["events"]:
         last_event_id = max(last_event_id, int(event["id"]))
     # If we get a heartbeat event, that means we've been hanging for
     # 40s, and we should bail.
     if "heartbeat" in (event["type"] for event in res["events"]):
-        report("CRITICAL", msg="Got heartbeat waiting for Zulip, which means get_events is hanging")
+        report("CRITICAL", msg="Got heartbeat waiting for Aloha, which means get_events is hanging")
     return [event["message"] for event in res["events"]]
 
 
@@ -127,7 +127,7 @@ zulip_sender = zulip.Client(
     api_key=sender.api_key,
     verbose=True,
     insecure=options.insecure,
-    client="ZulipMonitoring/0.1",
+    client="AlohaMonitoring/0.1",
     site=options.site,
 )
 
@@ -136,17 +136,17 @@ zulip_recipient = zulip.Client(
     api_key=recipient.api_key,
     verbose=True,
     insecure=options.insecure,
-    client="ZulipMonitoring/0.1",
+    client="AlohaMonitoring/0.1",
     site=options.site,
 )
 
 try:
     res = zulip_recipient.register(event_types=["message"])
     if "error" in res.get("result", {}):
-        report("CRITICAL", msg="Error subscribing to Zulips: {}".format(res["msg"]))
+        report("CRITICAL", msg="Error subscribing to Alohas: {}".format(res["msg"]))
     queue_id, last_event_id = (res["queue_id"], res["last_event_id"])
 except Exception:
-    report("CRITICAL", msg=f"Error subscribing to Zulips:\n{traceback.format_exc()}")
+    report("CRITICAL", msg=f"Error subscribing to Alohas:\n{traceback.format_exc()}")
 msg_to_send = str(random.getrandbits(64))
 time_start = time.time()
 

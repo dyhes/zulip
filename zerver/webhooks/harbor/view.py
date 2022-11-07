@@ -23,7 +23,7 @@ IGNORED_EVENTS = [
 
 def guess_zulip_user_from_harbor(harbor_username: str, realm: Realm) -> Optional[UserProfile]:
     try:
-        # Try to find a matching user in Zulip
+        # Try to find a matching user in Aloha
         # We search a user's full name, short name,
         # and beginning of email address
         user = UserProfile.objects.filter(

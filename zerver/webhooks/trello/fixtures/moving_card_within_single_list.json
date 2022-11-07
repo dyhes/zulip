@@ -1,7 +1,7 @@
 {
     "model":{
         "id":"597958d15c95392f2830e9f5",
-        "name":"Zulip",
+        "name":"Aloha",
         "desc":"",
         "descData":null,
         "closed":false,
@@ -52,13 +52,13 @@
             },
             "board":{
                 "shortLink":"l9NqJcCd",
-                "name":"Zulip",
+                "name":"Aloha",
                 "id":"597958d15c95392f2830e9f5"
             },
             "card":{
                 "shortLink":"R9VBNGce",
                 "idShort":1,
-                "name":"Work on Zulip!",
+                "name":"Work on Aloha!",
                 "id":"597958df4120dc412438c3c4",
                 "pos":196607
             },
@@ -83,7 +83,7 @@
                     "pos":196607,
                     "id":"597958df4120dc412438c3c4",
                     "shortLink":"R9VBNGce",
-                    "text":"Work on Zulip!"
+                    "text":"Work on Aloha!"
                 },
                 "memberCreator":{
                     "type":"member",

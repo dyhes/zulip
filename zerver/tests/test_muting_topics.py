@@ -5,7 +5,7 @@ from unittest import mock
 from django.utils.timezone import now as timezone_now
 
 from zerver.lib.stream_topic import StreamTopicTarget
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.user_topics import (
     add_topic_mute,
     get_topic_mutes,
@@ -15,7 +15,7 @@ from zerver.lib.user_topics import (
 from zerver.models import UserProfile, UserTopic, get_stream
 
 
-class MutedTopicsTests(ZulipTestCase):
+class MutedTopicsTests(AlohaTestCase):
     def test_get_deactivated_muted_topic(self) -> None:
         user = self.example_user("hamlet")
         self.login_user(user)

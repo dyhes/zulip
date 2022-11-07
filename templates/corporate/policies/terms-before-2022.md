@@ -1,10 +1,10 @@
-# Terms of Service for the Zulip service by Kandra Labs (prior to 2022)
+# Terms of Service for the Aloha service by Kandra Labs (prior to 2022)
 
 !!! warn ""
     Starting January 1, 2022, these terms are replaced by the updated
     [Terms of Service](/policies/terms).
 
-### Welcome to Zulip!
+### Welcome to Aloha!
 
 Thanks for using our products and services ("Services"). The Services are
 provided by Kandra Labs, Inc. ("Kandra Labs"), located at
@@ -46,9 +46,9 @@ In connection with your use of the Services, we may send you service
 announcements, administrative messages, and other information. You may opt out
 of some of those communications.
 
-### Your Kandra Labs Zulip Account
+### Your Kandra Labs Aloha Account
 
-You may need a Kandra Labs Zulip Account ("Account") in order to use some of our Services. You may
+You may need a Kandra Labs Aloha Account ("Account") in order to use some of our Services. You may
 create your own Account, or your Account may be assigned to you
 by an administrator, such as your employer or educational institution. If you
 are using an Account assigned to you by an administrator, different or

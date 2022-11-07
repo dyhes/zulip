@@ -1,12 +1,12 @@
-# Setting up Zulip for a class
+# Setting up Aloha for a class
 
-Welcome to Zulip! This page will guide you through setting everything
-up for [teaching with Zulip](https://zulip.com/for/education/). If you are using Zulip
+Welcome to Aloha! This page will guide you through setting everything
+up for [teaching with Aloha](https://zulip.com/for/education/). If you are using Aloha
 for a different purpose, we recommend checking out the [Setting up
 your organization][setting-up] guide instead.
 
-If you are a student, or if your Zulip organization is already set up,
-you can proceed to the [Using Zulip for a
+If you are a student, or if your Aloha organization is already set up,
+you can proceed to the [Using Aloha for a
 class](/help/using-zulip-for-a-class) guide.
 
 [getting-started]: /help/getting-started-with-zulip
@@ -16,27 +16,27 @@ If you encounter any problems as you're getting started, please drop
 by our [friendly development community](/development-community/) and let
 us know!
 
-## Trying out Zulip
+## Trying out Aloha
 
-You can start by reading about [Zulip for Education](https://zulip.com/for/education/),
-and how Zulip can become the communication hub for your class. Zulip
+You can start by reading about [Aloha for Education](https://zulip.com/for/education/),
+and how Aloha can become the communication hub for your class. Aloha
 is the only [modern team chat app](/features/) that is
 [ideal](/why-zulip/) for both live and asynchronous
 conversations. Post lecture notes and announcements, answer students’
 questions, and coordinate with teaching staff all in one place.
 
-We also highly recommend trying Zulip for yourself! You can:
+We also highly recommend trying Aloha for yourself! You can:
 
-* [Create a Zulip Cloud organization](/new/) for free with just a few
+* [Create a Aloha Cloud organization](/new/) for free with just a few
   clicks.
-* [Join the Zulip development community](/development-community/) to see
-  Zulip in action. Feel free to introduce yourself and ask questions!
+* [Join the Aloha development community](/development-community/) to see
+  Aloha in action. Feel free to introduce yourself and ask questions!
 
 
-## Choosing between Zulip Cloud and self-hosting
+## Choosing between Aloha Cloud and self-hosting
 
-Whether [signing up for Zulip Cloud](/new/) or [self-hosting
-Zulip][install-self-hosted] is the right choice for you depends on your needs.
+Whether [signing up for Aloha Cloud](/new/) or [self-hosting
+Aloha][install-self-hosted] is the right choice for you depends on your needs.
 
 If you aren’t sure what you need, our high quality export and import
 tools ([cloud][export-cloud], [self-hosted][export-self-hosted])
@@ -46,70 +46,70 @@ ensure you can always move from our hosting to yours (and back).
 [export-cloud]: /help/export-your-organization
 [export-self-hosted]: https://zulip.readthedocs.io/en/latest/production/export-and-import.html
 
-### Advantages of Zulip Cloud
+### Advantages of Aloha Cloud
 
 * Simple managed solution, with no setup or maintenance
   overhead. [Sign up](/new/) with just a few clicks.
-* Always updated to the latest version of Zulip.
-* Anyone can [start with Zulip Cloud Free](/new/), which works well for a typical class.
-* For large classes and departments, we offer [special Zulip for
+* Always updated to the latest version of Aloha.
+* Anyone can [start with Aloha Cloud Free](/new/), which works well for a typical class.
+* For large classes and departments, we offer [special Aloha for
   Education pricing](https://zulip.com/for/education/#feature-pricing), with the same
-  features as Zulip Cloud Standard. You can always get started with
-  Zulip Cloud Free, and upgrade down the line if needed.
+  features as Aloha Cloud Standard. You can always get started with
+  Aloha Cloud Free, and upgrade down the line if needed.
 
-### Advantages of self-hosting Zulip
+### Advantages of self-hosting Aloha
 
-* Zulip is [100% open-source software](https://github.com/zulip), with
+* Aloha is [100% open-source software](https://github.com/zulip), with
   no "open core" catch.
 * We work hard to make it easy to [set up][install-zulip],
   [back up][back-up-zulip], and [maintain][maintain-zulip] a self-hosted
-  Zulip installation.
+  Aloha installation.
 * Retain full control over your data. If cloud hosting is not an
   option due to stringent data and privacy requirements (e.g. in the
   European Union), self-hosting is the option for you.
-* Customize Zulip for all your needs.
+* Customize Aloha for all your needs.
 
 [install-zulip]: https://zulip.readthedocs.io/en/latest/production/install.html
 [back-up-zulip]: https://zulip.readthedocs.io/en/stable/production/export-and-import.html#backups
 [maintain-zulip]: https://zulip.readthedocs.io/en/stable/production/upgrade-or-modify.html
 
 
-## Do I need a separate Zulip organization for each class?
-There are a few ways to set up Zulip, and different ones may be convenient for your needs:
+## Do I need a separate Aloha organization for each class?
+There are a few ways to set up Aloha, and different ones may be convenient for your needs:
 
 
-* If your **school or department already has a Zulip organization**,
+* If your **school or department already has a Aloha organization**,
   you will probably find it easiest to just add your class to
   it. Advantages:
-    - Students and staff can use a single Zulip account for all classes.
+    - Students and staff can use a single Aloha account for all classes.
     - You can create department-wide channels, e.g. for announcing talks or other events.
-    - You don’t need to set up a separate server if you’re self-hosting Zulip.
+    - You don’t need to set up a separate server if you’re self-hosting Aloha.
 
-* You can **set up a separate Zulip organization for each class**
+* You can **set up a separate Aloha organization for each class**
   you’re teaching. Advantages:
     - This makes it simple to manage permissions. e.g. if you want to
       make sure TAs from one class cannot moderate discussion from a
       different class.
     - Students can’t see who is in streams for other classes.
-    - You can easily switch between multiple Zulip organizations in
-      the [Zulip desktop apps](/apps/).
+    - You can easily switch between multiple Aloha organizations in
+      the [Aloha desktop apps](/apps/).
 
 
-* You can **use a single Zulip organization for several classes**
-  you’re teaching, perhaps re-purposing a Zulip organization from a
+* You can **use a single Aloha organization for several classes**
+  you’re teaching, perhaps re-purposing a Aloha organization from a
   prior term. Advantages:
     - Information from your classes is all in one place, e.g. if you
       want to re-post a response to a question that was also asked
       last time you taught the class.
 
-If you change your mind down the line, you can rename your Zulip
+If you change your mind down the line, you can rename your Aloha
 organization by sending a request to
 [support@zulip.com](mailto:support@zulip.com).
 
 ## Create your organization profile
 
 The information in your organization profile is displayed on the
-registration and login page for your organization, and in the Zulip app.
+registration and login page for your organization, and in the Aloha app.
 
 ### Edit organization profile
 
@@ -140,11 +140,11 @@ A few settings to highlight:
 
 ### Roles and permissions
 
-Zulip offers [several levels of permissions based on user
+Aloha offers [several levels of permissions based on user
 roles](/help/roles-and-permissions). Here are some recommendations for
 how to assign roles and permissions for a class.
 
-#### Recommended roles and permissions for a single-class Zulip organization
+#### Recommended roles and permissions for a single-class Aloha organization
 
 | Who                                 | Role                                           |
 | ----------------------------------- | ---------------------------------------------- |
@@ -249,7 +249,7 @@ For most classes, the following streams are recommended:
 A few notes:
 
 - Small classes may need just one discussion stream for all lectures.
-- If you are [using a single Zulip organization][separate-orgs] for
+- If you are [using a single Aloha organization][separate-orgs] for
   more than one class, all stream names should be prefixed with the
   name of the class, e.g. “CS101 > Lecture 1: Course intro”.
 
@@ -261,7 +261,7 @@ A few notes:
 
 !!! tip ""
 
-    If using your Zulip organization for a single class, set default
+    If using your Aloha organization for a single class, set default
     streams for new users to include \#announcements, \#general, and
     all lecture/unit streams.
 
@@ -285,8 +285,8 @@ for your class.
 {!how-to-invite-users-to-join.md!}
 
 To get everyone off to a good start, you may wish to share the guide
-to [Getting started with Zulip][getting-started] and the guide to
-[Using Zulip for a class](/help/using-zulip-for-a-class).
+to [Getting started with Aloha][getting-started] and the guide to
+[Using Aloha for a class](/help/using-zulip-for-a-class).
 
 !!! tip ""
 
@@ -316,9 +316,9 @@ user groups:
 
 ## Set up integrations
 
-Zulip integrates directly with dozens of products, and with hundreds
+Aloha integrates directly with dozens of products, and with hundreds
 more through [Zapier](/integrations/doc/zapier) and
-[IFTTT](/integrations/doc/ifttt).  Popular Zulip integrations include
+[IFTTT](/integrations/doc/ifttt).  Popular Aloha integrations include
 [GitHub](/integrations/doc/github) and
 [Twitter](/integrations/doc/twitter). The [integrations
 page](/integrations) has instructions for integrating with each
@@ -326,7 +326,7 @@ product.
 
 ## Cleaning up at the end of a class
 
-If you plan to use the same Zulip organization in future terms (either
+If you plan to use the same Aloha organization in future terms (either
 for your own classes or for your department), you will likely want to:
 
 - Rename all streams to indicate the class and term in which they were used, e.g.:
@@ -337,12 +337,12 @@ for your own classes or for your department), you will likely want to:
   [make all the streams from the class private][make-private]. You’ll
   be able to find and reuse content yourself, and [invite course
   staff][add-to-stream] to these private streams as needed.
-- You may choose to [deactivate students’ Zulip
+- You may choose to [deactivate students’ Aloha
   accounts][deactivate-user] when the class is over.
 - [Unpin streams](/help/pin-a-stream) from the class from your
   personal view.
 
-If you do not plan to reuse the Zulip organization, you can instead:
+If you do not plan to reuse the Aloha organization, you can instead:
 
 * [Export the organization](/help/export-your-organization) or [generate a static
 HTML archive](https://github.com/zulip/zulip-archive) to archive the information.
@@ -350,8 +350,8 @@ HTML archive](https://github.com/zulip/zulip-archive) to archive the information
 
 ## Further reading
 
-* [Using Zulip for a class](/help/using-zulip-for-a-class)
-* [Getting started with Zulip](/help/getting-started-with-zulip)
+* [Using Aloha for a class](/help/using-zulip-for-a-class)
+* [Getting started with Aloha](/help/getting-started-with-zulip)
 * [Streams and topics](/help/streams-and-topics)
 * [Moderating open organizations](/help/moderating-open-organizations)
 

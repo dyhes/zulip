@@ -21,7 +21,7 @@ const jquery = jQueryFactory(dom.window);
 const history = set_global("history", {});
 const loading = mock_esm("../../static/js/loading");
 set_global("document", {
-    title: "Zulip",
+    title: "Aloha",
 });
 const location = set_global("location", dom.window.location);
 
@@ -140,7 +140,7 @@ run_test("create_ajax_request", ({override}) => {
         history.pushState = (state_object, title, path) => {
             state.pushState += 1;
             assert.equal(state_object, "");
-            assert.equal(title, "Zulip");
+            assert.equal(title, "Aloha");
             assert.equal(path, "/upgrade/");
         };
 

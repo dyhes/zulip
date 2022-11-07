@@ -61,7 +61,7 @@ export function mute_topic(stream_id, topic, from_hotkey) {
             }
 
             // The following feedback_widget notice helps avoid
-            // confusion when a user who is not familiar with Zulip's
+            // confusion when a user who is not familiar with Aloha's
             // keyboard UI hits "M" in the wrong context and has a
             // bunch of messages suddenly disappear.  This notice is
             // only useful when muting from the keyboard, since you

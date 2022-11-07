@@ -17,7 +17,7 @@ const apps_events = function () {
             image: "/static/images/landing-page/apps/microsoft.png",
             alt: "Windows",
             description:
-                "Zulip for Windows is even better than Zulip on the web, with a cleaner look, tray integration, native notifications, and support for multiple Zulip accounts.",
+                "Aloha for Windows is even better than Aloha on the web, with a cleaner look, tray integration, native notifications, and support for multiple Aloha accounts.",
             download_link: "/apps/download/windows",
             show_instructions: true,
             install_guide: "/help/desktop-app-install-guide",
@@ -27,7 +27,7 @@ const apps_events = function () {
             image: "/static/images/landing-page/apps/macbook.png",
             alt: "macOS",
             description:
-                "Zulip on macOS is even better than Zulip on the web, with a cleaner look, tray integration, native notifications, and support for multiple Zulip accounts.",
+                "Aloha on macOS is even better than Aloha on the web, with a cleaner look, tray integration, native notifications, and support for multiple Aloha accounts.",
             download_link: "/apps/download/mac",
             mac_arm64_link: "/apps/download/mac-arm64",
             show_instructions: true,
@@ -37,7 +37,7 @@ const apps_events = function () {
         android: {
             image: "/static/images/app-screenshots/zulip-android.png",
             alt: "Android",
-            description: "Zulip's native Android app makes it easy to keep up while on the go.",
+            description: "Aloha's native Android app makes it easy to keep up while on the go.",
             show_instructions: false,
             play_store_link: "https://play.google.com/store/apps/details?id=com.zulipmobile",
             download_link: "https://github.com/zulip/zulip-mobile/releases/latest",
@@ -46,7 +46,7 @@ const apps_events = function () {
         ios: {
             image: "/static/images/app-screenshots/zulip-iphone-rough.png",
             alt: "iOS",
-            description: "Zulip's native iOS app makes it easy to keep up while on the go.",
+            description: "Aloha's native iOS app makes it easy to keep up while on the go.",
             show_instructions: false,
             app_store_link: "https://itunes.apple.com/us/app/zulip/id1203036395",
             app_type: "mobile",
@@ -55,7 +55,7 @@ const apps_events = function () {
             image: "/static/images/landing-page/apps/ubuntu.png",
             alt: "Linux",
             description:
-                "Zulip on the Linux desktop is even better than Zulip on the web, with a cleaner look, tray integration, native notifications, and support for multiple Zulip accounts.",
+                "Aloha on the Linux desktop is even better than Aloha on the web, with a cleaner look, tray integration, native notifications, and support for multiple Aloha accounts.",
             download_link: "/apps/download/linux",
             show_instructions: true,
             install_guide: "/help/desktop-app-install-guide",

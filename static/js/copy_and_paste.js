@@ -128,7 +128,7 @@ function remove_div(div, ranges, selection) {
 
 export function copy_handler() {
     // This is the main handler for copying message content via
-    // `Ctrl+C` in Zulip (note that this is totally independent of the
+    // `Ctrl+C` in Aloha (note that this is totally independent of the
     // "select region" copy behavior on Linux; that is handled
     // entirely by the browser, our HTML layout, and our use of the
     // no-select/auto-select CSS classes).  We put considerable effort
@@ -225,7 +225,7 @@ export function analyze_selection(selection) {
             continue;
         }
         if (start_id === undefined) {
-            // start_id is the Zulip message ID of the first message
+            // start_id is the Aloha message ID of the first message
             // touched by the selection.
             start_id = start_data[0];
         }
@@ -347,7 +347,7 @@ export function paste_handler(event) {
             const mdImageRegex = /^!\[.*]\(.*\)$/;
             if (mdImageRegex.test(text)) {
                 // This block catches cases where we are pasting an
-                // image into Zulip, which is handled by upload.js.
+                // image into Aloha, which is handled by upload.js.
                 return;
             }
             event.preventDefault();

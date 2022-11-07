@@ -12,7 +12,7 @@
             "currency": "usd",
             "default_source": "src_1DdoduGh0CmXqmnwKJmq8lpv",
             "delinquent": false,
-            "description": "zulip (Zulip Dev)",
+            "description": "zulip (Aloha Dev)",
             "discount": null,
             "email": "hamlet@zulip.com",
             "invoice_prefix": "6E2831C",

@@ -9,7 +9,7 @@ from django.utils import translation
 
 from zerver.lib.email_notifications import enqueue_welcome_emails
 from zerver.lib.i18n import get_browser_language_code
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import HostRequestMock
 from zerver.management.commands import makemessages
 from zerver.models import get_realm_stream
@@ -18,7 +18,7 @@ if TYPE_CHECKING:
     from django.test.client import _MonkeyPatchedWSGIResponse as TestHttpResponse
 
 
-class EmailTranslationTestCase(ZulipTestCase):
+class EmailTranslationTestCase(AlohaTestCase):
     def test_email_translation(self) -> None:
         def check_translation(phrase: str, request_type: str, *args: Any, **kwargs: Any) -> None:
             if request_type == "post":
@@ -72,7 +72,7 @@ class EmailTranslationTestCase(ZulipTestCase):
         check_translation("Viele Grüße", "")
 
 
-class TranslationTestCase(ZulipTestCase):
+class TranslationTestCase(AlohaTestCase):
     """
     Translations strings should change with locale. URLs should be locale
     aware.
@@ -161,7 +161,7 @@ class TranslationTestCase(ZulipTestCase):
         self.assertIsNone(get_browser_language_code(req))
 
 
-class JsonTranslationTestCase(ZulipTestCase):
+class JsonTranslationTestCase(AlohaTestCase):
     def tearDown(self) -> None:
         translation.activate(settings.LANGUAGE_CODE)
         super().tearDown()
@@ -188,7 +188,7 @@ class JsonTranslationTestCase(ZulipTestCase):
         self.assert_json_error_contains(result, dummy_value, status_code=400)
 
 
-class FrontendRegexTestCase(ZulipTestCase):
+class FrontendRegexTestCase(AlohaTestCase):
     def test_regexes(self) -> None:
         command = makemessages.Command()
 

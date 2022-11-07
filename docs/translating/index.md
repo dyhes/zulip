@@ -1,4 +1,4 @@
-# Translating Zulip
+# Translating Aloha
 
 ```{toctree}
 ---

@@ -2,11 +2,11 @@ import sys
 from argparse import ArgumentParser
 from typing import Any
 
-from zerver.lib.management import ZulipBaseCommand
+from zerver.lib.management import AlohaBaseCommand
 from zerver.models import Realm
 
 
-class Command(ZulipBaseCommand):
+class Command(AlohaBaseCommand):
     help = """List realms in the server and it's configuration settings(optional).
 
 Usage examples:

@@ -254,7 +254,7 @@ def do_deactivate_realm(realm: Realm, *, acting_user: Optional[UserProfile]) -> 
     """
     Deactivate this realm. Do NOT deactivate the users -- we need to be able to
     tell the difference between users that were intentionally deactivated,
-    e.g. by a realm admin, and users who can't currently use Zulip because their
+    e.g. by a realm admin, and users who can't currently use Aloha because their
     realm has been deactivated.
     """
     if realm.deactivated:

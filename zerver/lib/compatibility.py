@@ -57,7 +57,7 @@ def pop_numerals(ver: str) -> Tuple[List[int], str]:
 
 def version_lt(ver1: str, ver2: str) -> Optional[bool]:
     """
-    Compare two Zulip-style version strings.
+    Compare two Aloha-style version strings.
 
     Versions are dot-separated sequences of decimal integers,
     followed by arbitrary trailing decoration.  Comparison is
@@ -108,16 +108,16 @@ def find_mobile_os(user_agent: str) -> Optional[str]:
 def is_outdated_desktop_app(user_agent_str: str) -> Tuple[bool, bool, bool]:
     # Returns (insecure, banned, auto_update_broken)
     user_agent = parse_user_agent(user_agent_str)
-    if user_agent["name"] == "ZulipDesktop":
+    if user_agent["name"] == "AlohaDesktop":
         # The deprecated QT/webkit based desktop app, last updated in ~2016.
         return (True, True, True)
 
-    if user_agent["name"] != "ZulipElectron":
+    if user_agent["name"] != "AlohaElectron":
         return (False, False, False)
 
     if version_lt(user_agent["version"], "4.0.0"):
         # Version 2.3.82 and older (aka <4.0.0) of the modern
-        # Electron-based Zulip desktop app with known security issues.
+        # Electron-based Aloha desktop app with known security issues.
         # won't auto-update; we may want a special notice to
         # distinguish those from modern releases.
         return (True, True, True)

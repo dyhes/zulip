@@ -11,7 +11,7 @@ from zerver.actions.custom_profile_fields import (
 )
 from zerver.lib.external_accounts import DEFAULT_EXTERNAL_ACCOUNTS
 from zerver.lib.markdown import markdown_convert
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import queries_captured
 from zerver.lib.types import ProfileDataElementUpdateDict, ProfileDataElementValue
 from zerver.models import (
@@ -22,7 +22,7 @@ from zerver.models import (
 )
 
 
-class CustomProfileFieldTestCase(ZulipTestCase):
+class CustomProfileFieldTestCase(AlohaTestCase):
     def setUp(self) -> None:
         super().setUp()
         self.realm = get_realm("zulip")

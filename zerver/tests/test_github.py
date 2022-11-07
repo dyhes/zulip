@@ -3,12 +3,12 @@ import responses
 
 from zerver.lib.cache import cache_delete
 from zerver.lib.github import InvalidPlatform, get_latest_github_release_download_link_for_platform
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 
 logger_string = "zerver.lib.github"
 
 
-class GitHubTestCase(ZulipTestCase):
+class GitHubTestCase(AlohaTestCase):
     @responses.activate
     def test_get_latest_github_release_download_link_for_platform(self) -> None:
         responses.add(
@@ -20,32 +20,32 @@ class GitHubTestCase(ZulipTestCase):
 
         responses.add(
             responses.HEAD,
-            "https://desktop-download.zulip.com/v5.4.3/Zulip-Web-Setup-5.4.3.exe",
+            "https://desktop-download.zulip.com/v5.4.3/Aloha-Web-Setup-5.4.3.exe",
             status=302,
         )
         self.assertEqual(
             get_latest_github_release_download_link_for_platform("windows"),
-            "https://desktop-download.zulip.com/v5.4.3/Zulip-Web-Setup-5.4.3.exe",
+            "https://desktop-download.zulip.com/v5.4.3/Aloha-Web-Setup-5.4.3.exe",
         )
 
         responses.add(
             responses.HEAD,
-            "https://desktop-download.zulip.com/v5.4.3/Zulip-5.4.3-x86_64.AppImage",
+            "https://desktop-download.zulip.com/v5.4.3/Aloha-5.4.3-x86_64.AppImage",
             status=302,
         )
         self.assertEqual(
             get_latest_github_release_download_link_for_platform("linux"),
-            "https://desktop-download.zulip.com/v5.4.3/Zulip-5.4.3-x86_64.AppImage",
+            "https://desktop-download.zulip.com/v5.4.3/Aloha-5.4.3-x86_64.AppImage",
         )
 
         responses.add(
             responses.HEAD,
-            "https://desktop-download.zulip.com/v5.4.3/Zulip-5.4.3-x64.dmg",
+            "https://desktop-download.zulip.com/v5.4.3/Aloha-5.4.3-x64.dmg",
             status=302,
         )
         self.assertEqual(
             get_latest_github_release_download_link_for_platform("mac"),
-            "https://desktop-download.zulip.com/v5.4.3/Zulip-5.4.3-x64.dmg",
+            "https://desktop-download.zulip.com/v5.4.3/Aloha-5.4.3-x64.dmg",
         )
 
         api_url = "https://api.github.com/repos/zulip/zulip-desktop/releases/latest"
@@ -67,7 +67,7 @@ class GitHubTestCase(ZulipTestCase):
             json={"tag_name": "5.4.4"},
             status=200,
         )
-        download_link = "https://desktop-download.zulip.com/v5.4.4/Zulip-5.4.4-x86_64.AppImage"
+        download_link = "https://desktop-download.zulip.com/v5.4.4/Aloha-5.4.4-x86_64.AppImage"
         responses.add(responses.HEAD, download_link, status=404)
         cache_delete("download_link:linux")
         with self.assertLogs(logger_string, level="ERROR") as error_log:

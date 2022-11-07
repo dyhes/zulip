@@ -1,6 +1,6 @@
 # Code spans and blocks
 
-Zulip supports the standard [Markdown syntax][markdown] for inline
+Aloha supports the standard [Markdown syntax][markdown] for inline
 code spans and code blocks:
 
 ~~~
@@ -20,7 +20,7 @@ def fib(n):
 ```
 ~~~
 
-Sending the above message in Zulip will render like this:
+Sending the above message in Aloha will render like this:
 
 ![Markdown code](/static/images/help/markdown-code.png)
 
@@ -33,7 +33,7 @@ copy the code to your clipboard.
 ## Language tagging
 
 Tagging a code block with a language enables syntax highlighting and
-(if configured) [code playgrounds](#code-playgrounds). Zulip supports syntax highlighting
+(if configured) [code playgrounds](#code-playgrounds). Aloha supports syntax highlighting
 for hundreds of languages.
 
 A code block can be tagged by typing the language name after the fence
@@ -72,7 +72,7 @@ blocks without any syntax highlighting (E.g. to paste an error message).
 Code playgrounds are interactive in-browser development environments, such as
 [replit](https://replit.com), that are designed to make it convenient to edit
 and debug code. Code playgrounds can be configured for any programming language.
-Zulip code blocks that are tagged with the language will have a button visible
+Aloha code blocks that are tagged with the language will have a button visible
 on hover that allows you to open the code block in the code playground site.
 
 ### Add a custom code playground

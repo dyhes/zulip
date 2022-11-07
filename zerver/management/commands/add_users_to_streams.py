@@ -3,11 +3,11 @@ from typing import Any
 from django.core.management.base import CommandParser
 
 from zerver.actions.streams import bulk_add_subscriptions
-from zerver.lib.management import ZulipBaseCommand
+from zerver.lib.management import AlohaBaseCommand
 from zerver.lib.streams import ensure_stream
 
 
-class Command(ZulipBaseCommand):
+class Command(AlohaBaseCommand):
     help = """Add some or all users in a realm to a set of streams."""
 
     def add_arguments(self, parser: CommandParser) -> None:

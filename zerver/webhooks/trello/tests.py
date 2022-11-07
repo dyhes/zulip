@@ -79,11 +79,11 @@ class TrelloHookTests(WebhookTestCase):
 
     def test_trello_webhook_when_check_item_is_checked(self) -> None:
         expected_message = "Eeshan Garg checked **Tomatoes** in **Checklist** ([Something something](https://trello.com/c/R2thJK3P))."
-        self.check_webhook("check_item_on_card_checklist", "Zulip", expected_message)
+        self.check_webhook("check_item_on_card_checklist", "Aloha", expected_message)
 
     def test_trello_webhook_when_check_item_is_unchecked(self) -> None:
         expected_message = "Eeshan Garg unchecked **Tomatoes** in **Checklist** ([Something something](https://trello.com/c/R2thJK3P))."
-        self.check_webhook("uncheck_item_on_card_checklist", "Zulip", expected_message)
+        self.check_webhook("uncheck_item_on_card_checklist", "Aloha", expected_message)
 
     def test_trello_webhook_when_member_was_removed_from_board(self) -> None:
         expected_message = (

@@ -7,7 +7,7 @@ import orjson
 from django.conf import settings
 
 from zerver.actions.user_settings import do_change_full_name
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.models import UserProfile, get_realm
 
 if TYPE_CHECKING:
@@ -18,7 +18,7 @@ class SCIMHeadersDict(TypedDict):
     HTTP_AUTHORIZATION: str
 
 
-class SCIMTestCase(ZulipTestCase):
+class SCIMTestCase(AlohaTestCase):
     def setUp(self) -> None:
         super().setUp()
         self.realm = get_realm("zulip")
@@ -94,7 +94,7 @@ class TestExceptionDetailsNotRevealedToClient(SCIMTestCase):
         are not revealed in the HttpResponse.
         """
         with mock.patch(
-            "zerver.lib.scim.ZulipSCIMUser.to_dict", side_effect=Exception("test exception")
+            "zerver.lib.scim.AlohaSCIMUser.to_dict", side_effect=Exception("test exception")
         ), self.assertLogs("django_scim.views", "ERROR") as mock_scim_logger, self.assertLogs(
             "django.request", "ERROR"
         ) as mock_request_logger:

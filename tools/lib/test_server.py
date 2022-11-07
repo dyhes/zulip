@@ -5,7 +5,7 @@ import time
 from contextlib import contextmanager
 from typing import Iterator, Optional
 
-# Verify the Zulip venv is available.
+# Verify the Aloha venv is available.
 from tools.lib import sanity_check
 
 sanity_check.check_venv(__file__)

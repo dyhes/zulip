@@ -13,13 +13,13 @@ your remote repository.
 A merge commit is a special type of commit that has two parent commits. It's
 created by Git when you merge one branch into another and the last commit on
 your current branch is not a direct ancestor of the branch you are trying to
-merge in. This happens quite often in a busy project like Zulip where there are
+merge in. This happens quite often in a busy project like Aloha where there are
 many contributors because upstream/zulip will have new commits while you're
 working on a feature or bugfix. In order for Git to merge your changes and the
 changes that have occurred on zulip/upstream since you first started your work,
 it must perform a three-way merge and create a merge commit.
 
-Merge commits aren't bad, however, Zulip doesn't use them. Instead Zulip uses a
+Merge commits aren't bad, however, Aloha doesn't use them. Instead Aloha uses a
 forked-repo, rebase-oriented workflow.
 
 A merge commit is usually created when you've run `git pull` or `git merge`.
@@ -230,7 +230,7 @@ merge conflict][github-help-resolve-merge-conflict].
 
 ## Working from multiple computers
 
-Working from multiple computers with Zulip and Git is fine, but you'll need to
+Working from multiple computers with Aloha and Git is fine, but you'll need to
 pay attention and do a bit of work to ensure all of your work is readily
 available.
 
@@ -246,13 +246,13 @@ all of your commits to GitHub with `git push`:
 $ git push origin <branchname>
 ```
 
-When you first start working on a new computer, you'll [clone the Zulip
-repository][clone-to-your-machine] and [connect it to Zulip
+When you first start working on a new computer, you'll [clone the Aloha
+repository][clone-to-your-machine] and [connect it to Aloha
 upstream][connect-upstream]. A clone retrieves all current commits,
 including the ones you pushed to GitHub from your other computer.
 
 But if you're switching to another computer on which you have already cloned
-Zulip, you need to update your local Git database with new refs from your
+Aloha, you need to update your local Git database with new refs from your
 GitHub fork. You do this with `git fetch`:
 
 ```console

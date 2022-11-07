@@ -1,10 +1,10 @@
 from django.template.loader import get_template
 
 from zerver.lib.exceptions import InvalidMarkdownIncludeStatement
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 
 
-class TemplateTestCase(ZulipTestCase):
+class TemplateTestCase(AlohaTestCase):
     def test_markdown_in_template(self) -> None:
         template = get_template("tests/test_markdown.html")
         context = {

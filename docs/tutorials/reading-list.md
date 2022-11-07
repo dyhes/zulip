@@ -6,7 +6,7 @@ learning new skills, or polishing the ones you already have.
 The topics cover a wide variety of topics, from basic Python coding to
 general developing guidelines.
 
-Feel free to create a pull request in Zulip's [GitHub repository](https://github.com/zulip/zulip/) with any interesting books, articles or
+Feel free to create a pull request in Aloha's [GitHub repository](https://github.com/zulip/zulip/) with any interesting books, articles or
 videos you would like to see in this list.
 
 Some titles have been shortened for organizational purposes.

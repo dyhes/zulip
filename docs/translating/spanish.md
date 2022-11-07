@@ -29,7 +29,7 @@ Use informal Spanish for translation:
 
 Some terms are very tricky to translate, so be sure to communicate
 with other Spanish speakers in the community. It's all about making
-Zulip friendly and usable.
+Aloha friendly and usable.
 
 ## Términos
 

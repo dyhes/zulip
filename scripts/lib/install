@@ -10,11 +10,11 @@ Usage:
 
 Options:
   --hostname=zulip.example.com
-      The user-accessible domain name for this Zulip server, i.e., what users will type
+      The user-accessible domain name for this Aloha server, i.e., what users will type
       in their web browser.  Required, unless --no-init-db is set and --certbot is not.
   --email=zulip-admin@example.com
       The email address of the person or team who should get support and error emails
-      from this Zulip server.  Required, unless --no-init-db is set and --certbot is
+      from this Aloha server.  Required, unless --no-init-db is set and --certbot is
       not.
 
   --certbot
@@ -38,7 +38,7 @@ Options:
       Set postgresql.missing_dictionaries, which alters the initial database.  Use with
       cloud managed databases like RDS.  Conflicts with --no-overwrite-settings.
   --no-init-db
-      Does not do any database initialization; use when you already have a Zulip
+      Does not do any database initialization; use when you already have a Aloha
       database.
 
   --no-overwrite-settings
@@ -137,7 +137,7 @@ read -r -a ADDITIONAL_PACKAGES <<<"${ADDITIONAL_PACKAGES:-}"
 # Comma-separated list of Puppet manifests to install.  The default is
 # zulip::profile::standalone for an all-in-one system or
 # zulip::profile::docker for Docker.  Use
-# e.g. zulip::profile::app_frontend for a Zulip frontend server.
+# e.g. zulip::profile::app_frontend for a Aloha frontend server.
 PUPPET_CLASSES="${PUPPET_CLASSES:-zulip::profile::standalone}"
 VIRTUALENV_NEEDED="${VIRTUALENV_NEEDED:-yes}"
 POSTGRESQL_VERSION="${POSTGRESQL_VERSION:-14}"
@@ -226,7 +226,7 @@ case "$os_id $os_version_id" in
 
 Unsupported OS release: $os_id $os_version_id
 
-Zulip in production is supported only on:
+Aloha in production is supported only on:
  - Debian 11
  - Ubuntu 20.04 LTS
  - Ubuntu 22.04 LTS
@@ -248,7 +248,7 @@ if [ "$os_id" = ubuntu ] && ! has_universe && ! { apt-get update && has_universe
     cat <<'EOF'
 
 You must enable the Ubuntu Universe repository before installing
-Zulip.  You can do this with:
+Aloha.  You can do this with:
 
     sudo add-apt-repository universe
     sudo apt update
@@ -277,7 +277,7 @@ The following PostgreSQL servers were found to already be installed:
 
     $INDENTED
 
-Zulip needs to install PostgreSQL $POSTGRESQL_VERSION, but does not wish
+Aloha needs to install PostgreSQL $POSTGRESQL_VERSION, but does not wish
 to uninstall existing databases in order to do so.  Remove all other
 PostgreSQL servers manually before running the installer:
 
@@ -299,7 +299,7 @@ mem_kb=$(head -n1 /proc/meminfo | awk '{print $2}')
 if [ "$mem_kb" -lt 1860000 ]; then
     set +x
     echo -e '\033[0;31m' >&2
-    echo "Insufficient RAM.  Zulip requires at least 2GB of RAM." >&2
+    echo "Insufficient RAM.  Aloha requires at least 2GB of RAM." >&2
     echo >&2
     echo -e '\033[0m' >&2
     exit 1
@@ -478,7 +478,7 @@ if has_class "zulip::nginx" && ! has_class "zulip::profile::docker"; then
             set +x
             cat <<EOF
 
-Verifying the Zulip nginx configuration failed!
+Verifying the Aloha nginx configuration failed!
 
 This is almost always a problem with your SSL certificates.  See:
   https://zulip.readthedocs.io/en/latest/production/ssl-certificates.html
@@ -511,7 +511,7 @@ if [ -n "$ZULIP_ADMINISTRATOR" ]; then
     (
         cd / # Make sure the current working directory is readable by zulip
         su zulip -c "git config --global user.email $ZULIP_ADMINISTRATOR"
-        su zulip -c "git config --global user.name 'Zulip Server ($EXTERNAL_HOST)'"
+        su zulip -c "git config --global user.name 'Aloha Server ($EXTERNAL_HOST)'"
     )
 fi
 

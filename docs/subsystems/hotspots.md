@@ -2,12 +2,12 @@
 
 Hotspots introduce users to important UI elements. They are an effective
 means of guiding users towards new features and providing context where
-Zulip's UI may not be self-evident.
+Aloha's UI may not be self-evident.
 
 ## Adding a new hotspot
 
 ... is easy! If you are working on a new feature or think highlighting a
-certain UI element would improve Zulip's user experience, we welcome you to
+certain UI element would improve Aloha's user experience, we welcome you to
 [open an issue](https://github.com/zulip/zulip/issues/new?title=hotspot%20request:)
 for discussion.
 

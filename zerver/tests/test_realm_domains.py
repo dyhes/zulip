@@ -8,11 +8,11 @@ from zerver.actions.realm_settings import do_set_realm_property
 from zerver.actions.users import do_change_user_role
 from zerver.lib.domains import validate_domain
 from zerver.lib.email_validation import email_allowed_for_realm
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.models import DomainNotAllowedForRealmError, RealmDomain, UserProfile, get_realm
 
 
-class RealmDomainTest(ZulipTestCase):
+class RealmDomainTest(AlohaTestCase):
     def setUp(self) -> None:
         realm = get_realm("zulip")
         do_set_realm_property(realm, "emails_restricted_to_domains", True, acting_user=None)

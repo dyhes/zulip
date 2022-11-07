@@ -112,7 +112,7 @@ export function is_stale_refresh_token(token_metadata, now) {
     // to a map containing the string and a timestamp. For now we'll
     // delete all tokens that only contain the url. Remove this
     // early return once you can no longer directly upgrade from
-    // Zulip 5.x to the current version.
+    // Aloha 5.x to the current version.
     if (!token_metadata.timestamp) {
         return true;
     }
@@ -162,7 +162,7 @@ export function initialize() {
     // to a map containing the string and a timestamp. For now we'll
     // delete all tokens that only contain the url. Remove the
     // `|| fragment` once you can no longer directly upgrade
-    // from Zulip 5.x to the current version.
+    // from Aloha 5.x to the current version.
     [, fragment] = /^#reload:(.*)/.exec(fragment.url || fragment);
     const keyvals = fragment.split("+");
     const vars = {};
@@ -238,7 +238,7 @@ function do_reload_app(send_after_reload, save_pointer, save_narrow, save_compos
 
     // Sometimes the window.location.reload that we attempt has no
     // immediate effect (likely by browsers trying to save power by
-    // skipping requested reloads), which can leave the Zulip app in a
+    // skipping requested reloads), which can leave the Aloha app in a
     // broken state and cause lots of confusing tracebacks.  So, we
     // set ourselves to try reloading a bit later, both periodically
     // and when the user focuses the window.
@@ -278,7 +278,7 @@ export function initiate({
     reload_state.set_state_to_pending();
 
     // We're now planning to execute a reload of the browser, usually
-    // to get an updated version of the Zulip web app code.  Because in
+    // to get an updated version of the Aloha web app code.  Because in
     // most cases all browsers will be receiving this notice at the
     // same or similar times, we need to randomize the time that we do
     // this in order to avoid a thundering herd overloading the server.

@@ -12,7 +12,7 @@
 # Tomáš Hozman, 2021-2022
 msgid ""
 msgstr ""
-"Project-Id-Version: Zulip\n"
+"Project-Id-Version: Aloha\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-10 15:54+0000\n"
 "PO-Revision-Date: 2015-12-06 00:18+0000\n"
@@ -69,58 +69,58 @@ msgstr "Neplatné parametry"
 #: corporate/lib/registration.py:29
 #, python-brace-format
 msgid ""
-"Your organization has no Zulip licenses remaining and can no longer accept "
+"Your organization has no Aloha licenses remaining and can no longer accept "
 "new users. Please [increase the number of licenses]({billing_page_link}) or "
 "[deactivate inactive users]({deactivate_user_help_page_link}) to allow new "
 "users to join."
-msgstr "Vaše organizace nemá již žádné zbývající Zulip licence a nemůže proto příjmat nové uživatele. Pokud chcete zapojit další uživatele, [navyšte počet vašich licencí]({billing_page_link}) nebo [deaktivujte neaktivní uživatele]({deactivate_user_help_page_link})."
+msgstr "Vaše organizace nemá již žádné zbývající Aloha licence a nemůže proto příjmat nové uživatele. Pokud chcete zapojit další uživatele, [navyšte počet vašich licencí]({billing_page_link}) nebo [deaktivujte neaktivní uživatele]({deactivate_user_help_page_link})."
 
 #: corporate/lib/registration.py:36
 #, python-brace-format
 msgid ""
-"Your organization has only one Zulip license remaining. You can [increase "
+"Your organization has only one Aloha license remaining. You can [increase "
 "the number of licenses]({billing_page_link}) or [deactivate inactive "
 "users]({deactivate_user_help_page_link}) to allow more than one user to "
 "join."
-msgstr "Vaší organizaci zbývá již jen poslední Zulip licence. Pokud chcete umožnit dalším uživatelům se zapojit, [navyšte počet vašich licencí]({billing_page_link}) nebo [deaktivujte neaktivní uživatele]({deactivate_user_help_page_link})."
+msgstr "Vaší organizaci zbývá již jen poslední Aloha licence. Pokud chcete umožnit dalším uživatelům se zapojit, [navyšte počet vašich licencí]({billing_page_link}) nebo [deaktivujte neaktivní uživatele]({deactivate_user_help_page_link})."
 
 #: corporate/lib/registration.py:41
 #, python-brace-format
 msgid ""
-"Your organization has only two Zulip licenses remaining. You can [increase "
+"Your organization has only two Aloha licenses remaining. You can [increase "
 "the number of licenses]({billing_page_link}) or [deactivate inactive "
 "users]({deactivate_user_help_page_link}) to allow more than two users to "
 "join."
-msgstr "Vaší organizaci zbývají již jen poslední dvě Zulip licence. Pokud chcete umožnit dalším uživatelům se zapojit, [navyšte počet vašich licencí]({billing_page_link}) nebo [deaktivujte neaktivní uživatele]({deactivate_user_help_page_link})."
+msgstr "Vaší organizaci zbývají již jen poslední dvě Aloha licence. Pokud chcete umožnit dalším uživatelům se zapojit, [navyšte počet vašich licencí]({billing_page_link}) nebo [deaktivujte neaktivní uživatele]({deactivate_user_help_page_link})."
 
 #: corporate/lib/registration.py:46
 #, python-brace-format
 msgid ""
-"Your organization has only three Zulip licenses remaining. You can [increase"
+"Your organization has only three Aloha licenses remaining. You can [increase"
 " the number of licenses]({billing_page_link}) or [deactivate inactive "
 "users]({deactivate_user_help_page_link}) to allow more than three users to "
 "join."
-msgstr "Vaší organizaci zbývá již jen poslední tři Zulip licence. Pokud chcete umožnit dalším uživatelům se zapojit, [navyšte počet vašich licencí]({billing_page_link}) nebo [deaktivujte neaktivní uživatele]({deactivate_user_help_page_link})."
+msgstr "Vaší organizaci zbývá již jen poslední tři Aloha licence. Pokud chcete umožnit dalším uživatelům se zapojit, [navyšte počet vašich licencí]({billing_page_link}) nebo [deaktivujte neaktivní uživatele]({deactivate_user_help_page_link})."
 
 #: corporate/lib/registration.py:57
 #, python-brace-format
 msgid ""
 "A new member ({email}) was unable to join your organization because all "
-"Zulip licenses are in use. Please [increase the number of "
+"Aloha licenses are in use. Please [increase the number of "
 "licenses]({billing_page_link}) or [deactivate inactive "
 "users]({deactivate_user_help_page_link}) to allow new members to join."
-msgstr "Nový uživatel ({email}) se nemohl zapojit do vaší organizace, protože všechny vaše Zulip licence jsou již využívány. Pokud chcete umožnit dalším uživatelům se zapojit,  [navyšte počet vašich licencí]({billing_page_link}) nebo [deaktivujte neaktivní uživatele]({deactivate_user_help_page_link})."
+msgstr "Nový uživatel ({email}) se nemohl zapojit do vaší organizace, protože všechny vaše Aloha licence jsou již využívány. Pokud chcete umožnit dalším uživatelům se zapojit,  [navyšte počet vašich licencí]({billing_page_link}) nebo [deaktivujte neaktivní uživatele]({deactivate_user_help_page_link})."
 
 #: corporate/lib/registration.py:113
-msgid "All Zulip licenses for this organization are currently in use."
-msgstr "Všechny Zulip licence pro tuto organizaci jsou v současnosti využívány."
+msgid "All Aloha licenses for this organization are currently in use."
+msgstr "Všechny Aloha licence pro tuto organizaci jsou v současnosti využívány."
 
 #: corporate/lib/registration.py:116
 #, python-brace-format
 msgid ""
-"Your organization does not have enough unused Zulip licenses to invite "
+"Your organization does not have enough unused Aloha licenses to invite "
 "{num_invites} users."
-msgstr "Vaše organizace nemá dostatečný počet volných Zulip licencí pro pozvání {num_invites} nových uživatelů."
+msgstr "Vaše organizace nemá dostatečný počet volných Aloha licencí pro pozvání {num_invites} nových uživatelů."
 
 #: corporate/lib/stripe.py:105
 msgid "You must invoice for at least {} users."
@@ -267,7 +267,7 @@ msgstr "Vnitřní chyba serveru"
 #: templates/500.html:23
 msgid ""
 "\n"
-"                        Your Zulip chat cannot be loaded because the server is experiencing technical difficulties.\n"
+"                        Your Aloha chat cannot be loaded because the server is experiencing technical difficulties.\n"
 "                        "
 msgstr ""
 
@@ -282,7 +282,7 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"                            In the meantime, you can <a href=\"mailto:%(support_email)s\">contact Zulip support</a>.\n"
+"                            In the meantime, you can <a href=\"mailto:%(support_email)s\">contact Aloha support</a>.\n"
 "                            "
 msgstr ""
 
@@ -300,7 +300,7 @@ msgstr ""
 msgid ""
 "\n"
 "                            If you administer this server, you may want to check out the\n"
-"                            <a href=\"%(troubleshooting_url)s\">Zulip server troubleshooting guide</a>.\n"
+"                            <a href=\"%(troubleshooting_url)s\">Aloha server troubleshooting guide</a>.\n"
 "                            "
 msgstr ""
 
@@ -308,7 +308,7 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"    Analytics for %(target_name)s | Zulip\n"
+"    Analytics for %(target_name)s | Aloha\n"
 "    "
 msgstr ""
 
@@ -318,8 +318,8 @@ msgstr "Analytikové jsou plně dostupní 24 hodin po vytvoření organizace."
 
 #: templates/analytics/stats.html:23
 #, python-format
-msgid "Zulip analytics for %(target_name)s"
-msgstr "Analytika Zulipu pro %(target_name)s"
+msgid "Aloha analytics for %(target_name)s"
+msgstr "Analytika Alohau pro %(target_name)s"
 
 #: templates/analytics/stats.html:25
 msgid "Organization summary"
@@ -453,10 +453,10 @@ msgstr "E-mail změněn!"
 #, python-format
 msgid ""
 "\n"
-"            This confirms that the email address for your Zulip account has changed\n"
+"            This confirms that the email address for your Aloha account has changed\n"
 "            from %(old_email_html_tag)s to %(new_email_html_tag)s\n"
 "            "
-msgstr "\n            Toto potvrzuje, že e-mailová adresa pro váš Zulip účet se změnila\n            z %(old_email_html_tag)s na %(new_email_html_tag)s\n            "
+msgstr "\n            Toto potvrzuje, že e-mailová adresa pro váš Aloha účet se změnila\n            z %(old_email_html_tag)s na %(new_email_html_tag)s\n            "
 
 #: templates/confirmation/confirm_preregistrationuser.html:5
 msgid "Confirming your email address"
@@ -533,8 +533,8 @@ msgid "All"
 msgstr "Vše"
 
 #: templates/corporate/development-community.html:23
-msgid "The Zulip development community"
-msgstr "Vývojářská komunita Zulipu"
+msgid "The Aloha development community"
+msgstr "Vývojářská komunita Alohau"
 
 #: templates/corporate/development-community.html:30
 #: templates/corporate/development-community.html:55
@@ -586,8 +586,8 @@ msgstr "Zobrazit ceny"
 #: templates/corporate/for/research.html:42
 #: templates/corporate/for/research.html:408
 #: templates/corporate/for/use-cases.html:29
-msgid "Self-host Zulip"
-msgstr "Vlastní hostování Zulipu"
+msgid "Self-host Aloha"
+msgstr "Vlastní hostování Alohau"
 
 #: templates/corporate/for/communities.html:37
 #: templates/corporate/for/communities.html:67
@@ -605,8 +605,8 @@ msgid "Education pricing"
 msgstr "Ceny za vzdělávání"
 
 #: templates/corporate/hello.html:62
-msgid "Streams in Zulip"
-msgstr "Kanály v Zulipu"
+msgid "Streams in Aloha"
+msgstr "Kanály v Alohau"
 
 #: templates/corporate/hello.html:66 templates/corporate/hello.html:81
 #: templates/corporate/hello.html:96
@@ -614,21 +614,21 @@ msgid "Streams in Slack"
 msgstr "Kanály na Slacku"
 
 #: templates/corporate/hello.html:77
-msgid "Topics in Zulip"
-msgstr "Témata v Zulipu"
+msgid "Topics in Aloha"
+msgstr "Témata v Alohau"
 
 #: templates/corporate/hello.html:92
-msgid "Stream topics in Zulip"
-msgstr "Témata kanálů v Zulipu"
+msgid "Stream topics in Aloha"
+msgstr "Témata kanálů v Alohau"
 
 #: templates/corporate/hello.html:104 templates/corporate/hello.html:105
 #: templates/corporate/hello.html:111 templates/corporate/hello.html:113
-msgid "The Tuesday night catering topic in Zulip"
-msgstr "Téma úterní noční stravování v Zulipu"
+msgid "The Tuesday night catering topic in Aloha"
+msgstr "Téma úterní noční stravování v Alohau"
 
 #: templates/corporate/hello.html:115
-msgid "The Tuesday night catering topic in Zulip - compose box"
-msgstr "Téma úterní noční stravování v Zulipu - box pro psaní zprávy"
+msgid "The Tuesday night catering topic in Aloha - compose box"
+msgstr "Téma úterní noční stravování v Alohau - box pro psaní zprávy"
 
 #: templates/corporate/hello.html:122 templates/corporate/hello.html:124
 msgid "The Tuesday night catering topic in Slack"
@@ -683,8 +683,8 @@ msgid "Features & pricing"
 msgstr "Vlastnosti a ceny"
 
 #: templates/corporate/self-hosting.html:31
-msgid "Zulip for business"
-msgstr "Zulip pro podnikání"
+msgid "Aloha for business"
+msgstr "Aloha pro podnikání"
 
 #: templates/corporate/support_request.html:7 templates/zerver/footer.html:94
 msgid "Contact support"
@@ -726,7 +726,7 @@ msgstr ""
 msgid ""
 "\n"
 "            You can find answers to frequently asked questions in the\n"
-"            <a href=\"/help/\">Zulip help center</a>.\n"
+"            <a href=\"/help/\">Aloha help center</a>.\n"
 "            "
 msgstr ""
 
@@ -787,9 +787,9 @@ msgstr "Ponechte prázdné pokud vaše organizace nemá internetovou stránku."
 #: templates/corporate/zulipchat_migration_tos.html:3
 msgid ""
 "\n"
-"        This team chat is now being hosted on Zulip Cloud. Please accept the <a href=\"https://zulip.com/policies/terms\">Zulip Terms of Service</a> to continue.\n"
+"        This team chat is now being hosted on Aloha Cloud. Please accept the <a href=\"https://zulip.com/policies/terms\">Aloha Terms of Service</a> to continue.\n"
 "        "
-msgstr "\n        Tento týmový rozhovor je nyní hostován na serveru Zulip. Pro pokarčování, prosím, přijměte <a href=\"https://zulip.com/policies/terms\">podmínky služby Zulip</a>.\n        "
+msgstr "\n        Tento týmový rozhovor je nyní hostován na serveru Aloha. Pro pokarčování, prosím, přijměte <a href=\"https://zulip.com/policies/terms\">podmínky služby Aloha</a>.\n        "
 
 #: templates/two_factor/_wizard_forms.html:26
 msgid "Or, alternatively, use one of your backup phones:"
@@ -834,8 +834,8 @@ msgid "Sign up"
 msgstr "Zaregistrovat se"
 
 #: templates/zerver/accounts_home.html:18
-msgid "Sign up for Zulip"
-msgstr "Zaregistrovat se do Zulipu"
+msgid "Sign up for Aloha"
+msgstr "Zaregistrovat se do Alohau"
 
 #: templates/zerver/accounts_home.html:37
 msgid "You need an invitation to join this organization."
@@ -882,8 +882,8 @@ msgid ""
 msgstr ""
 
 #: templates/zerver/app/index.html:110
-msgid "Unable to connect to Zulip."
-msgstr "Nelze se připojit k Zulipu."
+msgid "Unable to connect to Aloha."
+msgstr "Nelze se připojit k Alohau."
 
 #: templates/zerver/app/index.html:111
 msgid "Updates may be delayed."
@@ -926,8 +926,8 @@ msgstr ""
 #: templates/zerver/emails/followup_day2.txt:17
 #: templates/zerver/landing_nav.html:13 templates/zerver/portico-header.html:5
 #: templates/zerver/portico-header.html:9
-msgid "Zulip"
-msgstr "Zulip"
+msgid "Aloha"
+msgstr "Aloha"
 
 #: templates/zerver/close_window.html:5
 msgid "Video call ended"
@@ -955,8 +955,8 @@ msgid "Account not found"
 msgstr ""
 
 #: templates/zerver/confirm_continue_registration.html:14
-msgid "Zulip account not found."
-msgstr "Nebyl nalezen Zulip účet."
+msgid "Aloha account not found."
+msgstr "Nebyl nalezen Aloha účet."
 
 #: templates/zerver/confirm_continue_registration.html:18
 #, python-format
@@ -979,8 +979,8 @@ msgid "Create a new organization"
 msgstr "Vytvořit novou organizaci"
 
 #: templates/zerver/create_realm.html:16
-msgid "Create a new Zulip organization"
-msgstr "Vytvořit novou Zulip organizaci"
+msgid "Create a new Aloha organization"
+msgstr "Vytvořit novou Aloha organizaci"
 
 #: templates/zerver/create_realm.html:24 templates/zerver/reset.html:27
 msgid "Enter your email address"
@@ -1051,8 +1051,8 @@ msgstr ""
 
 #: templates/zerver/desktop_redirect.html:12
 msgid ""
-"Copy this login token and return to your Zulip app to finish logging in:"
-msgstr "Zkopírujte tento přihlašovací elektronický klíč a vraťte se do svého Zulipu pro dokončení přihlášení:"
+"Copy this login token and return to your Aloha app to finish logging in:"
+msgstr "Zkopírujte tento přihlašovací elektronický klíč a vraťte se do svého Alohau pro dokončení přihlášení:"
 
 #: templates/zerver/desktop_redirect.html:17
 msgid "Copy"
@@ -1105,10 +1105,10 @@ msgstr "Ahoj,"
 #: templates/zerver/emails/confirm_new_email.txt:4
 #, python-format
 msgid ""
-"We received a request to change the email address for the Zulip account on "
+"We received a request to change the email address for the Aloha account on "
 "%(realm_uri)s from %(old_email)s to %(new_email)s. To confirm this change, "
 "please click below:"
-msgstr "Obdrželi jsme požadavek na změnu vaší e-mailové adresy pro Zulip účet na %(realm_uri)s z %(old_email)s na %(new_email)s. Pro potvrzení této změny klepněte níže:"
+msgstr "Obdrželi jsme požadavek na změnu vaší e-mailové adresy pro Aloha účet na %(realm_uri)s z %(old_email)s na %(new_email)s. Pro potvrzení této změny klepněte níže:"
 
 #: templates/zerver/emails/confirm_new_email.source.html:11
 msgid "Confirm email change"
@@ -1134,13 +1134,13 @@ msgstr "Pokud jste nedali podnět k této změně, neprodleně se s námi spojte
 
 #: templates/zerver/emails/confirm_registration.source.html:10
 #: templates/zerver/emails/confirm_registration.txt:2
-msgid "You have requested a new Zulip organization. Awesome!"
-msgstr "Zažádali jste o novou organizaci na Zulipu! Výborně!"
+msgid "You have requested a new Aloha organization. Awesome!"
+msgstr "Zažádali jste o novou organizaci na Alohau! Výborně!"
 
 #: templates/zerver/emails/confirm_registration.source.html:12
 #: templates/zerver/emails/confirm_registration.txt:4
-msgid "You recently signed up for Zulip. Awesome!"
-msgstr "Nedávno jste se přihlásil/a k Zulipu. Skvělé!"
+msgid "You recently signed up for Aloha. Awesome!"
+msgstr "Nedávno jste se přihlásil/a k Alohau. Skvělé!"
 
 #: templates/zerver/emails/confirm_registration.source.html:17
 #: templates/zerver/emails/confirm_registration.txt:8
@@ -1170,12 +1170,12 @@ msgid ""
 msgstr "Spojte se s námi kdykoliv na %(support_email)s. Pokud si nevíte rady, máte nějaký podnět, nebo si jen chcete poklábosit!"
 
 #: templates/zerver/emails/confirm_registration.subject.txt:2
-msgid "Create your Zulip organization"
-msgstr "Vytvořte svou organizaci Zulip"
+msgid "Create your Aloha organization"
+msgstr "Vytvořte svou organizaci Aloha"
 
 #: templates/zerver/emails/confirm_registration.subject.txt:4
-msgid "Activate your Zulip account"
-msgstr "Zapněte váš Zulip účet"
+msgid "Activate your Aloha account"
+msgstr "Zapněte váš Aloha účet"
 
 #: templates/zerver/emails/confirm_registration.txt:14
 #: templates/zerver/emails/invitation.txt:8
@@ -1200,7 +1200,7 @@ msgstr "Zrušit odběr obchodních e-mailů"
 #, python-format
 msgid ""
 "\n"
-"Your Zulip account on <a href=\"%(realm_uri)s\">%(realm_uri)s</a> has been deactivated, and you will no longer be able to log in.\n"
+"Your Aloha account on <a href=\"%(realm_uri)s\">%(realm_uri)s</a> has been deactivated, and you will no longer be able to log in.\n"
 msgstr ""
 
 #: templates/zerver/emails/deactivate.source.html:15
@@ -1217,7 +1217,7 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"Your Zulip account on %(realm_uri)s has been deactivated, and you will no longer be able to log in.\n"
+"Your Aloha account on %(realm_uri)s has been deactivated, and you will no longer be able to log in.\n"
 msgstr ""
 
 #: templates/zerver/emails/digest.source.html:27
@@ -1225,8 +1225,8 @@ msgid "New streams"
 msgstr "Nové kanály"
 
 #: templates/zerver/emails/digest.source.html:34
-msgid "Click here to log in to Zulip and catch up."
-msgstr "Zde klepněte pro přihlášení k programu Zulip."
+msgid "Click here to log in to Aloha and catch up."
+msgstr "Zde klepněte pro přihlášení k programu Aloha."
 
 #: templates/zerver/emails/digest.source.html:40
 msgid "Unsubscribe from digest emails"
@@ -1234,13 +1234,13 @@ msgstr "Zrušit odběr shrnujících e-mailů"
 
 #: templates/zerver/emails/digest.subject.txt:1
 #, python-format
-msgid "Zulip digest for %(realm_name)s"
-msgstr "Shrnutí Zulipu pro %(realm_name)s"
+msgid "Aloha digest for %(realm_name)s"
+msgstr "Shrnutí Alohau pro %(realm_name)s"
 
 #: templates/zerver/emails/digest.txt:12
 #, python-format
-msgid "Click here to log in to Zulip and catch up: %(organization_uri)s."
-msgstr "Zde klepněte pro přihlášení k programu Zulip: %(organization_uri)s."
+msgid "Click here to log in to Aloha and catch up: %(organization_uri)s."
+msgstr "Zde klepněte pro přihlášení k programu Aloha: %(organization_uri)s."
 
 #: templates/zerver/emails/digest.txt:15
 #: templates/zerver/emails/followup_day2.txt:19
@@ -1264,54 +1264,54 @@ msgstr "Díky za váš požadavek!"
 #: templates/zerver/emails/find_team.source.html:10
 #, python-format
 msgid ""
-"Your email address %(email)s has accounts with the following Zulip "
+"Your email address %(email)s has accounts with the following Aloha "
 "organizations hosted by <a href=\"%(external_host)s\">%(external_host)s</a>:"
-msgstr "Vaše e-mailová adresa %(email)s má účty u následujících organizací Zulipu hostovaných <a href=\"%(external_host)s\">%(external_host)s</a>:"
+msgstr "Vaše e-mailová adresa %(email)s má účty u následujících organizací Alohau hostovaných <a href=\"%(external_host)s\">%(external_host)s</a>:"
 
 #: templates/zerver/emails/find_team.source.html:18
 #: templates/zerver/emails/find_team.txt:10
 msgid ""
-"If you have trouble logging in, please contact Zulip support by replying to "
+"If you have trouble logging in, please contact Aloha support by replying to "
 "this email."
-msgstr "Pokud se vám nedaří přihlásit, spojte se, prosím, s podporou Zulipu odpovědí na tento e-mail."
+msgstr "Pokud se vám nedaří přihlásit, spojte se, prosím, s podporou Alohau odpovědí na tento e-mail."
 
 #: templates/zerver/emails/find_team.source.html:20
 #: templates/zerver/emails/find_team.txt:13
-msgid "Thanks for using Zulip!"
-msgstr "Děkujeme, že používáte Zulip!"
+msgid "Thanks for using Aloha!"
+msgstr "Děkujeme, že používáte Aloha!"
 
 #: templates/zerver/emails/find_team.subject.txt:1
-msgid "Your Zulip accounts"
-msgstr "Vaše účty Zulip"
+msgid "Your Aloha accounts"
+msgstr "Vaše účty Aloha"
 
 #: templates/zerver/emails/find_team.txt:3
 #, python-format
 msgid ""
-"Your email address %(email)s has accounts with the following Zulip "
+"Your email address %(email)s has accounts with the following Aloha "
 "organizations hosted by %(external_host)s:"
-msgstr "Vaše e-mailová adresa %(email)s má účty u následujících organizací Zulipu hostovaných %(external_host)s:"
+msgstr "Vaše e-mailová adresa %(email)s má účty u následujících organizací Alohau hostovaných %(external_host)s:"
 
 #: templates/zerver/emails/followup_day1.source.html:8
 #: templates/zerver/emails/followup_day1.txt:1
-msgid "Welcome to Zulip!"
-msgstr "Vítejte v Zulipu!"
+msgid "Welcome to Aloha!"
+msgstr "Vítejte v Alohau!"
 
 #: templates/zerver/emails/followup_day1.source.html:13
 msgid ""
-"You've created a demo Zulip organization. Note that this organization will "
+"You've created a demo Aloha organization. Note that this organization will "
 "be automatically deleted in 30 days. Learn more about demo organizations <a "
 "href=\"https://zulip.com/help/demo-organizations\">here</a>!"
-msgstr "Vytvořili jste ukázkovou organizaci Zulip. Upozorňujeme, že tato organizace bude automaticky smazána za 30 dní. Zjistěte více o ukázkových organizacích <a href=\"https://zulip.com/help/demo-organizations\">zde</a>!"
+msgstr "Vytvořili jste ukázkovou organizaci Aloha. Upozorňujeme, že tato organizace bude automaticky smazána za 30 dní. Zjistěte více o ukázkových organizacích <a href=\"https://zulip.com/help/demo-organizations\">zde</a>!"
 
 #: templates/zerver/emails/followup_day1.source.html:15
 #, python-format
-msgid "You've created the new Zulip organization <b>%(realm_name)s</b>."
-msgstr "Vytvořili jste novou organizaci na Zulipu <b>%(realm_name)s</b>."
+msgid "You've created the new Aloha organization <b>%(realm_name)s</b>."
+msgstr "Vytvořili jste novou organizaci na Alohau <b>%(realm_name)s</b>."
 
 #: templates/zerver/emails/followup_day1.source.html:18
 #, python-format
-msgid "You've joined the Zulip organization <b>%(realm_name)s</b>."
-msgstr "Připojil/a jste se k organizaci na Zulipu <b>%(realm_name)s</b>."
+msgid "You've joined the Aloha organization <b>%(realm_name)s</b>."
+msgstr "Připojil/a jste se k organizaci na Alohau <b>%(realm_name)s</b>."
 
 #: templates/zerver/emails/followup_day1.source.html:23
 #: templates/zerver/emails/followup_day1.txt:15
@@ -1352,7 +1352,7 @@ msgstr "(budete je potřebovat pro přihlášení do <a href=\"%(apps_page_link)
 #, python-format
 msgid ""
 "Check out our <a href=\"%(getting_started_link)s\">guide for admins</a>, "
-"become a Zulip pro with a few <a "
+"become a Aloha pro with a few <a "
 "href=\"%(keyboard_shortcuts_link)s\">keyboard shortcuts</a>, or <a "
 "href=\"%(realm_uri)s\">dive right in</a>!"
 msgstr "Seznamte se s naším <a href=\"%(getting_started_link)s\">návodem pro správce</a> a staňte se přeborníkem <a href=\"%(keyboard_shortcuts_link)s\">v klávesových zkratkách</a>, nebo <a href=\"%(realm_uri)s\">se pusťte rovnou do práce</a>!       "
@@ -1360,10 +1360,10 @@ msgstr "Seznamte se s naším <a href=\"%(getting_started_link)s\">návodem pro 
 #: templates/zerver/emails/followup_day1.source.html:43
 #, python-format
 msgid ""
-"<a href=\"%(getting_started_link)s\">Learn more</a> about Zulip, become a "
+"<a href=\"%(getting_started_link)s\">Learn more</a> about Aloha, become a "
 "pro with a few <a href=\"%(keyboard_shortcuts_link)s\">keyboard "
 "shortcuts</a>, or <a href=\"%(realm_uri)s\">dive right in</a>!"
-msgstr "<a href=\"%(getting_started_link)s\">Zjistěte více</a> o Zulipu a staňte se přeborníkem <a href=\"%(keyboard_shortcuts_link)s\">v klávesových zkratkách</a>, nebo <a href=\"%(realm_uri)s\">se pusťte rovnou do práce</a>!       "
+msgstr "<a href=\"%(getting_started_link)s\">Zjistěte více</a> o Alohau a staňte se přeborníkem <a href=\"%(keyboard_shortcuts_link)s\">v klávesových zkratkách</a>, nebo <a href=\"%(realm_uri)s\">se pusťte rovnou do práce</a>!       "
 
 #: templates/zerver/emails/followup_day1.source.html:48
 #: templates/zerver/emails/followup_day1.txt:36
@@ -1374,44 +1374,44 @@ msgstr "Zdravíčko,"
 #: templates/zerver/emails/followup_day1.txt:37
 #: templates/zerver/emails/notify_change_in_email.source.html:14
 #: templates/zerver/emails/notify_change_in_email.txt:7
-msgid "Team Zulip"
-msgstr "Vývojáři Zulipu"
+msgid "Team Aloha"
+msgstr "Vývojáři Alohau"
 
 #: templates/zerver/emails/followup_day1.source.html:53
 msgid ""
 "PS: Follow us on <a href=\"https://twitter.com/zulip\">Twitter</a>, star us "
 "on <a href=\"https://github.com/zulip/zulip\">GitHub</a>, or chat with us "
-"live on the <a href=\"https://zulip.com/development-community/\">Zulip "
+"live on the <a href=\"https://zulip.com/development-community/\">Aloha "
 "community server</a>!"
-msgstr "PS: Sledujte nás na <a href=\"https://twitter.com/zulip\">Twitteru</a>, dejte nám hvězdičku na <a href=\"https://github.com/zulip/zulip\">GitHubu</a>, nebo s námi pokláboste živě na <a href=\"https://zulip.com/development-community/\">komunitním serveru Zulipu</a>!"
+msgstr "PS: Sledujte nás na <a href=\"https://twitter.com/zulip\">Twitteru</a>, dejte nám hvězdičku na <a href=\"https://github.com/zulip/zulip\">GitHubu</a>, nebo s námi pokláboste živě na <a href=\"https://zulip.com/development-community/\">komunitním serveru Alohau</a>!"
 
 #: templates/zerver/emails/followup_day1.subject.txt:2
 #, python-format
-msgid "%(realm_name)s on Zulip: Your new organization details"
-msgstr "%(realm_name)s na Zulipu: podrobnosti o vaší nové organizaci"
+msgid "%(realm_name)s on Aloha: Your new organization details"
+msgstr "%(realm_name)s na Alohau: podrobnosti o vaší nové organizaci"
 
 #: templates/zerver/emails/followup_day1.subject.txt:4
 #, python-format
-msgid "%(realm_name)s on Zulip: Your new account details"
-msgstr "%(realm_name)s na Zulipu: podrobnosti o vašem novém účtu"
+msgid "%(realm_name)s on Aloha: Your new account details"
+msgstr "%(realm_name)s na Alohau: podrobnosti o vašem novém účtu"
 
 #: templates/zerver/emails/followup_day1.txt:5
 msgid ""
-"You've created a demo Zulip organization. Note that this organization will "
+"You've created a demo Aloha organization. Note that this organization will "
 "be automatically deleted in 30 days. Learn more about demo organizations "
 "here: https://zulip.com/help/demo-organizations"
-msgstr "Vytvořili jste ukázkovou organizaci Zulip. Upozorňujeme, že tato organizace bude automaticky smazána za 30 dní. Zjistěte více o ukázkových organizacích zde: https://zulip.com/help/demo-organizations"
+msgstr "Vytvořili jste ukázkovou organizaci Aloha. Upozorňujeme, že tato organizace bude automaticky smazána za 30 dní. Zjistěte více o ukázkových organizacích zde: https://zulip.com/help/demo-organizations"
 
 #: templates/zerver/emails/followup_day1.txt:7
 #: templates/zerver/emails/followup_day1.txt:9
 #, python-format
-msgid "You've created the new Zulip organization %(realm_name)s."
-msgstr "Vytvořili jste novou organizaci na Zulipu %(realm_name)s."
+msgid "You've created the new Aloha organization %(realm_name)s."
+msgstr "Vytvořili jste novou organizaci na Alohau %(realm_name)s."
 
 #: templates/zerver/emails/followup_day1.txt:11
 #, python-format
-msgid "You've joined the Zulip organization %(realm_name)s."
-msgstr "Připojil/a jste se k organizaci na Zulipu %(realm_name)s."
+msgid "You've joined the Aloha organization %(realm_name)s."
+msgstr "Připojil/a jste se k organizaci na Alohau %(realm_name)s."
 
 #: templates/zerver/emails/followup_day1.txt:26
 #, python-format
@@ -1423,7 +1423,7 @@ msgstr "(budete je potřebovat pro přihlášení do mobilní a desktopové apli
 #: templates/zerver/emails/followup_day1.txt:30
 #, python-format
 msgid ""
-"Check out our guide (%(getting_started_link)s) for admins, become a Zulip "
+"Check out our guide (%(getting_started_link)s) for admins, become a Aloha "
 "pro with a few keyboard shortcuts (%(keyboard_shortcuts_link)s), or dive "
 "right in to %(realm_uri)s!"
 msgstr "Seznamte se s naším návodem (%(getting_started_link)s) pro správce, staňte se přeborníkem v klávesových zkratkách (%(keyboard_shortcuts_link)s), nebo jděte rovnou na věc na %(realm_uri)s!"
@@ -1431,17 +1431,17 @@ msgstr "Seznamte se s naším návodem (%(getting_started_link)s) pro správce, 
 #: templates/zerver/emails/followup_day1.txt:32
 #, python-format
 msgid ""
-"Learn more (%(getting_started_link)s) about Zulip, become a pro with a few "
+"Learn more (%(getting_started_link)s) about Aloha, become a pro with a few "
 "keyboard shortcuts (%(keyboard_shortcuts_link)s), or dive right in to "
 "%(realm_uri)s!"
-msgstr "Zjistěte více (%(getting_started_link)s) o Zulipu, staňte se přeborníkem v klávesových zkratkách (%(keyboard_shortcuts_link)s), nebo jděte rovnou na věc na %(realm_uri)s!"
+msgstr "Zjistěte více (%(getting_started_link)s) o Alohau, staňte se přeborníkem v klávesových zkratkách (%(keyboard_shortcuts_link)s), nebo jděte rovnou na věc na %(realm_uri)s!"
 
 #: templates/zerver/emails/followup_day1.txt:39
 msgid ""
 "PS: Check us out on Twitter (@zulip), star us on GitHub "
-"(https://github.com/zulip/zulip), or chat with us live on the Zulip "
+"(https://github.com/zulip/zulip), or chat with us live on the Aloha "
 "community server (https://zulip.com/development-community/)!"
-msgstr "PS: Sledujte nás na Twitteru (@zulip), dejte nám hvězdičku na GitHubu\n(https://github.com/zulip/zulip), nebo si s námi přijďte poklábosit živě na\nkomunitním serveru Zulipu (https://zulip.com/development-community/)!"
+msgstr "PS: Sledujte nás na Twitteru (@zulip), dejte nám hvězdičku na GitHubu\n(https://github.com/zulip/zulip), nebo si s námi přijďte poklábosit živě na\nkomunitním serveru Alohau (https://zulip.com/development-community/)!"
 
 #: templates/zerver/emails/followup_day2.source.html:8
 #: templates/zerver/emails/followup_day2.txt:1
@@ -1452,8 +1452,8 @@ msgstr "Ahoj,"
 #: templates/zerver/emails/followup_day2.txt:3
 msgid ""
 "I wanted to share one last thing with you: a few tips about topics, since "
-"mastering topics is a key part of being a Zulip power user."
-msgstr "Ještě jedna věc: pár tipů ohledně témat, protože znalost práce s tématy je klíčovou dovedností každého pokročilého uživatele Zulipu."
+"mastering topics is a key part of being a Aloha power user."
+msgstr "Ještě jedna věc: pár tipů ohledně témat, protože znalost práce s tématy je klíčovou dovedností každého pokročilého uživatele Alohau."
 
 #: templates/zerver/emails/followup_day2.source.html:12
 msgid "Examples of short topics"
@@ -1540,9 +1540,9 @@ msgstr "Ahoj,"
 #: templates/zerver/emails/invitation.source.html:12
 #, python-format
 msgid ""
-"%(referrer_name)s wants you to join them on Zulip &mdash; the team "
+"%(referrer_name)s wants you to join them on Aloha &mdash; the team "
 "communication tool designed for productivity."
-msgstr "%(referrer_name)s vás zve, abyste se k němu připojili na Zulipu &mdash; nástroji pro týmovou komunikaci vytvořeném pro zlepšení produktivity."
+msgstr "%(referrer_name)s vás zve, abyste se k němu připojili na Alohau &mdash; nástroji pro týmovou komunikaci vytvořeném pro zlepšení produktivity."
 
 #: templates/zerver/emails/invitation.source.html:15
 #: templates/zerver/emails/invitation_reminder.source.html:13
@@ -1557,9 +1557,9 @@ msgstr "%(referrer_full_name)s vás zve do %(referrer_realm_name)s"
 #: templates/zerver/emails/invitation.txt:3
 #, python-format
 msgid ""
-"%(referrer_full_name)s (%(referrer_email)s) wants you to join them on Zulip "
+"%(referrer_full_name)s (%(referrer_email)s) wants you to join them on Aloha "
 "-- the team communication tool designed for productivity."
-msgstr "%(referrer_full_name)s (%(referrer_email)s) vás zve, abyste se k němu připojili na Zulipu -- nástroji pro týmovou komunikaci vytvořeném pro zlepšení produktivity."
+msgstr "%(referrer_full_name)s (%(referrer_email)s) vás zve, abyste se k němu připojili na Alohau -- nástroji pro týmovou komunikaci vytvořeném pro zlepšení produktivity."
 
 #: templates/zerver/emails/invitation.txt:5
 #: templates/zerver/emails/invitation_reminder.txt:5
@@ -1575,8 +1575,8 @@ msgstr "Ještě jednou ahoj,"
 #, python-format
 msgid ""
 "This is a friendly reminder that %(referrer_name)s wants you to join them on"
-" Zulip &mdash; the team communication tool designed for productivity."
-msgstr "Toto je jen připomínka, že%(referrer_name)s vás zve, abyste se k němu připojili na Zulipu &mdash; nástroji pro týmovou komunikaci vytvořeném pro zlepšení produktivity."
+" Aloha &mdash; the team communication tool designed for productivity."
+msgstr "Toto je jen připomínka, že%(referrer_name)s vás zve, abyste se k němu připojili na Alohau &mdash; nástroji pro týmovou komunikaci vytvořeném pro zlepšení produktivity."
 
 #: templates/zerver/emails/invitation_reminder.source.html:18
 #: templates/zerver/emails/invitation_reminder.txt:8
@@ -1601,9 +1601,9 @@ msgstr "Upomínka: připojit se k %(referrer_name)s na %(referrer_realm_name)s"
 #, python-format
 msgid ""
 "This is a friendly reminder that %(referrer_name)s (%(referrer_email)s) "
-"wants you to join them on Zulip -- the team communication tool designed for "
+"wants you to join them on Aloha -- the team communication tool designed for "
 "productivity."
-msgstr "Tohle je jen připomínka, že %(referrer_name)s (%(referrer_email)s) vás zve, abyste se k němu připojili na Zulipu -- nástroji pro týmovou komunikaci vytvořeném pro zlepšení produktivity."
+msgstr "Tohle je jen připomínka, že %(referrer_name)s (%(referrer_email)s) vás zve, abyste se k němu připojili na Alohau -- nástroji pro týmovou komunikaci vytvořeném pro zlepšení produktivity."
 
 #: templates/zerver/emails/invitation_reminder.txt:10
 #, python-format
@@ -1659,21 +1659,21 @@ msgstr ""
 #, python-format
 msgid ""
 "Reply to this email directly, <a href=\"%(narrow_url)s\">view it in "
-"%(realm_name)s Zulip</a>, or <a href=\"%(notif_url)s\">manage email "
+"%(realm_name)s Aloha</a>, or <a href=\"%(notif_url)s\">manage email "
 "preferences</a>."
 msgstr ""
 
 #: templates/zerver/emails/missed_message.source.html:40
 #, python-format
 msgid ""
-"<a href=\"%(narrow_url)s\">View or reply in %(realm_name)s Zulip</a>, or <a "
+"<a href=\"%(narrow_url)s\">View or reply in %(realm_name)s Aloha</a>, or <a "
 "href=\"%(notif_url)s\">manage email preferences</a>."
 msgstr ""
 
 #: templates/zerver/emails/missed_message.source.html:42
 #, python-format
 msgid ""
-"<a href=\"%(narrow_url)s\">Reply in %(realm_name)s Zulip</a>, or <a "
+"<a href=\"%(narrow_url)s\">Reply in %(realm_name)s Aloha</a>, or <a "
 "href=\"%(notif_url)s\">manage email preferences</a>."
 msgstr ""
 
@@ -1681,9 +1681,9 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"    Do not reply to this email. This Zulip server is not configured to accept incoming emails (<a href=\"%(url)s\">help</a>).\n"
+"    Do not reply to this email. This Aloha server is not configured to accept incoming emails (<a href=\"%(url)s\">help</a>).\n"
 "    "
-msgstr "\n    Neodpovídejte na tento elektronický dopis. Tento server Zulipu není nastaven na přijímání příchozí elektronické pošty (<a href=\"%(url)s\">nápověda</a>).\n    "
+msgstr "\n    Neodpovídejte na tento elektronický dopis. Tento server Alohau není nastaven na přijímání příchozí elektronické pošty (<a href=\"%(url)s\">nápověda</a>).\n    "
 
 #: templates/zerver/emails/missed_message.subject.txt:2
 #, python-format
@@ -1717,25 +1717,25 @@ msgstr "\nTento elektronický dopis nezahrnuje obsah zprávy, protože jste zak�
 
 #: templates/zerver/emails/missed_message.txt:35
 #, python-format
-msgid "Reply to this email directly, or view it in %(realm_name)s Zulip:"
+msgid "Reply to this email directly, or view it in %(realm_name)s Aloha:"
 msgstr ""
 
 #: templates/zerver/emails/missed_message.txt:39
 #, python-format
-msgid "View or reply in %(realm_name)s Zulip:"
+msgid "View or reply in %(realm_name)s Aloha:"
 msgstr ""
 
 #: templates/zerver/emails/missed_message.txt:43
 #, python-format
-msgid "Reply in %(realm_name)s Zulip:"
+msgid "Reply in %(realm_name)s Aloha:"
 msgstr ""
 
 #: templates/zerver/emails/missed_message.txt:47
 msgid ""
 "\n"
-"Do not reply to this email. This Zulip server is not configured to accept\n"
+"Do not reply to this email. This Aloha server is not configured to accept\n"
 "incoming emails. Help:\n"
-msgstr "\nNeodpovídejte na tento elektronický dopis. Tento server Zulipu není nastaven na přijímání příchozí elektronické pošty. Nápověda:\n\n"
+msgstr "\nNeodpovídejte na tento elektronický dopis. Tento server Alohau není nastaven na přijímání příchozí elektronické pošty. Nápověda:\n\n"
 
 #: templates/zerver/emails/missed_message.txt:54
 msgid "Manage email preferences: "
@@ -1744,10 +1744,10 @@ msgstr "Spravovat nastavení elektronické pošty:"
 #: templates/zerver/emails/notify_change_in_email.source.html:10
 #, python-format
 msgid ""
-"The email associated with your Zulip account was recently changed to "
+"The email associated with your Aloha account was recently changed to "
 "%(new_email)s. If you did not request this change, please contact us "
 "immediately at %(support_email)s."
-msgstr "E-mailová adresa vašeho Zulip účtu byla nedávno změněna na %(new_email)s. Pokud jste tuto změnu nevyžádal/a, neprodleně nás kontaktujte na %(support_email)s."
+msgstr "E-mailová adresa vašeho Aloha účtu byla nedávno změněna na %(new_email)s. Pokud jste tuto změnu nevyžádal/a, neprodleně nás kontaktujte na %(support_email)s."
 
 #: templates/zerver/emails/notify_change_in_email.source.html:13
 #: templates/zerver/emails/notify_change_in_email.txt:6
@@ -1756,16 +1756,16 @@ msgstr "S pozdravem,"
 
 #: templates/zerver/emails/notify_change_in_email.subject.txt:1
 #, python-format
-msgid "Zulip email changed for %(realm_name)s"
-msgstr "Zulip e-mail změněn pro %(realm_name)s"
+msgid "Aloha email changed for %(realm_name)s"
+msgstr "Aloha e-mail změněn pro %(realm_name)s"
 
 #: templates/zerver/emails/notify_change_in_email.txt:3
 #, python-format
 msgid ""
-"The email associated with your Zulip account was recently changed to "
+"The email associated with your Aloha account was recently changed to "
 "%(new_email)s. If you did not request this change, please contact us "
 "immediately at <%(support_email)s>."
-msgstr "E-mailová adresa vašeho Zulip účtu byla nedávno změněna na %(new_email)s. Pokud jste tuto změnu nevyžádal/a, neprodleně nás kontaktujte na <%(support_email)s>."
+msgstr "E-mailová adresa vašeho Aloha účtu byla nedávno změněna na %(new_email)s. Pokud jste tuto změnu nevyžádal/a, neprodleně nás kontaktujte na <%(support_email)s>."
 
 #: templates/zerver/emails/notify_new_login.source.html:4
 #, python-format
@@ -1776,8 +1776,8 @@ msgstr "Organizace: %(organization_url)s Čas: %(login_time)s E-mail: %(user_ema
 
 #: templates/zerver/emails/notify_new_login.source.html:12
 #: templates/zerver/emails/notify_new_login.txt:1
-msgid "We noticed a recent login for the following Zulip account."
-msgstr "Zaznamenali jsme nedávné přihlášení pro následující Zulip účet."
+msgid "We noticed a recent login for the following Aloha account."
+msgstr "Zaznamenali jsme nedávné přihlášení pro následující Aloha účet."
 
 #: templates/zerver/emails/notify_new_login.source.html:16
 #, python-format
@@ -1823,8 +1823,8 @@ msgstr "Pokud vám toto přihlášení nic neříká, nebo máte pocit, že vá�
 
 #: templates/zerver/emails/notify_new_login.source.html:41
 #: templates/zerver/emails/notify_new_login.txt:21
-msgid "Zulip Security"
-msgstr "Zulip Security"
+msgid "Aloha Security"
+msgstr "Aloha Security"
 
 #: templates/zerver/emails/notify_new_login.source.html:46
 msgid "Unsubscribe from login notifications"
@@ -1851,9 +1851,9 @@ msgstr "\nPokud vám toto přihlášení nic neříká, nebo máte pocit, že v�
 #: templates/zerver/emails/password_reset.txt:1
 #, python-format
 msgid ""
-"Somebody (possibly you) requested a new password for the Zulip account "
+"Somebody (possibly you) requested a new password for the Aloha account "
 "%(email)s on %(realm_uri)s."
-msgstr "Někdo (nejspíše vy) si vyžádal nové heslo pro Zulip účet %(email)s na adrese %(realm_uri)s."
+msgstr "Někdo (nejspíše vy) si vyžádal nové heslo pro Aloha účet %(email)s na adrese %(realm_uri)s."
 
 #: templates/zerver/emails/password_reset.source.html:13
 msgid "Click the button below to reset your password."
@@ -1873,8 +1873,8 @@ msgstr "Dříve jste měl účet na %(organization_url)s, ale byl vypnut. Zkuste
 
 #: templates/zerver/emails/password_reset.source.html:21
 #: templates/zerver/emails/password_reset.txt:11
-msgid "You do not have an account in that Zulip organization."
-msgstr "V této Zulip organizaci nemáte účet."
+msgid "You do not have an account in that Aloha organization."
+msgstr "V této Aloha organizaci nemáte účet."
 
 #: templates/zerver/emails/password_reset.source.html:26
 #: templates/zerver/emails/password_reset.txt:16
@@ -1914,18 +1914,18 @@ msgstr "Dříve jste měli účet na %(realm_uri)s, ale byl vypnut.\nZkuste se s
 #, python-format
 msgid ""
 "\n"
-"    Your organization, %(organization_name_with_link)s, has been downgraded to the Zulip Cloud\n"
+"    Your organization, %(organization_name_with_link)s, has been downgraded to the Aloha Cloud\n"
 "    Free plan because of unpaid invoices. The unpaid invoices have been voided.\n"
 "    "
-msgstr "\n    Vaše organizace, %(organization_name_with_link)s, byl ponížen na server Zulip.\nPlán zdarma kvůli nezaplaceným fakturám. Nezaplacené faktury byly prohlášeny za neplatné.\n    "
+msgstr "\n    Vaše organizace, %(organization_name_with_link)s, byl ponížen na server Aloha.\nPlán zdarma kvůli nezaplaceným fakturám. Nezaplacené faktury byly prohlášeny za neplatné.\n    "
 
 #: templates/zerver/emails/realm_auto_downgraded.source.html:15
 #, python-format
 msgid ""
 "\n"
-"    To continue on the Zulip Cloud Standard plan, please upgrade again by going to %(upgrade_url)s.\n"
+"    To continue on the Aloha Cloud Standard plan, please upgrade again by going to %(upgrade_url)s.\n"
 "    "
-msgstr "\n    Chcete-li pokračovat v plánu Zulip Cloud Standard, povyšte znovu na adrese %(upgrade_url)s.\n    "
+msgstr "\n    Chcete-li pokračovat v plánu Aloha Cloud Standard, povyšte znovu na adrese %(upgrade_url)s.\n    "
 
 #: templates/zerver/emails/realm_auto_downgraded.source.html:22
 #, python-format
@@ -1946,8 +1946,8 @@ msgstr "Drazí bývalí správci %(realm_name)s,"
 #, python-format
 msgid ""
 "One of your administrators requested reactivation of the previously "
-"deactivated Zulip organization hosted at %(realm_uri)s."
-msgstr "Jeden z vašich správců požádal o opětovné zapnutí dříve vypnuté Zulip organizace provozované na %(realm_uri)s."
+"deactivated Aloha organization hosted at %(realm_uri)s."
+msgstr "Jeden z vašich správců požádal o opětovné zapnutí dříve vypnuté Aloha organizace provozované na %(realm_uri)s."
 
 #: templates/zerver/emails/realm_reactivation.source.html:13
 msgid "Click the button below to reactivate your organization."
@@ -1965,8 +1965,8 @@ msgid ""
 msgstr "Pokud se to stalo omylem, nemusíte nic dělat a tento odkaz za 24 hodin přestane fungovat."
 
 #: templates/zerver/emails/realm_reactivation.subject.txt:1
-msgid "Reactivate your Zulip organization"
-msgstr "Znovu zapnout vaši organizaci v Zulipu"
+msgid "Reactivate your Aloha organization"
+msgstr "Znovu zapnout vaši organizaci v Alohau"
 
 #: templates/zerver/emails/realm_reactivation.txt:7
 msgid "Click the link below to reactivate your organization."
@@ -1977,8 +1977,8 @@ msgid "Find your accounts"
 msgstr ""
 
 #: templates/zerver/find_account.html:12
-msgid "Find your Zulip accounts"
-msgstr "Najděte své účty Zulip"
+msgid "Find your Aloha accounts"
+msgstr "Najděte své účty Aloha"
 
 #: templates/zerver/find_account.html:45
 msgid "Email addresses"
@@ -1997,8 +1997,8 @@ msgid "Home"
 msgstr "Homepage"
 
 #: templates/zerver/footer.html:7
-msgid "Why Zulip"
-msgstr "Proč Zulip"
+msgid "Why Aloha"
+msgstr "Proč Aloha"
 
 #: templates/zerver/footer.html:8
 msgid "Features"
@@ -2125,16 +2125,16 @@ msgid "Setting up your organization"
 msgstr "Nastavení vaší organizace"
 
 #: templates/zerver/footer.html:111
-msgid "Installing a Zulip server"
-msgstr "Instalace serveru Zulip"
+msgid "Installing a Aloha server"
+msgstr "Instalace serveru Aloha"
 
 #: templates/zerver/footer.html:116
-msgid "Upgrading a Zulip server"
-msgstr "Povýšení serveru Zulip"
+msgid "Upgrading a Aloha server"
+msgstr "Povýšení serveru Aloha"
 
 #: templates/zerver/footer.html:121
-msgid "Modifying Zulip"
-msgstr "Úprava Zulipu"
+msgid "Modifying Aloha"
+msgstr "Úprava Alohau"
 
 #: templates/zerver/footer.html:127
 msgid "For contributors"
@@ -2177,8 +2177,8 @@ msgid "Website attributions"
 msgstr ""
 
 #: templates/zerver/footer.html:151
-msgid "Sponsor Zulip"
-msgstr "Sponzorujte Zulip"
+msgid "Sponsor Aloha"
+msgstr "Sponzorujte Aloha"
 
 #: templates/zerver/footer.html:167
 msgid "Policies"
@@ -2187,7 +2187,7 @@ msgstr ""
 #: templates/zerver/footer.html:175
 msgid ""
 "\n"
-"                Powered by <a href=\"https://zulip.com\" class=\"coloured-text\">Zulip</a>\n"
+"                Powered by <a href=\"https://zulip.com\" class=\"coloured-text\">Aloha</a>\n"
 "                "
 msgstr ""
 
@@ -2199,18 +2199,18 @@ msgstr "Požadována aktualizace"
 #: templates/zerver/insecure_desktop_app.html:17
 msgid ""
 "\n"
-"                        You are using old version of the Zulip desktop\n"
+"                        You are using old version of the Aloha desktop\n"
 "                        app that is no longer supported.\n"
 "                        "
-msgstr "\n                        Používáte starou verzi programu Zulip,\n                        která již nadále není podporována.\n                        "
+msgstr "\n                        Používáte starou verzi programu Aloha,\n                        která již nadále není podporována.\n                        "
 
 #: templates/zerver/insecure_desktop_app.html:25
 msgid ""
 "\n"
 "                        The auto-update feature in this old version of\n"
-"                        Zulip desktop app no longer works.\n"
+"                        Aloha desktop app no longer works.\n"
 "                        "
-msgstr "\n                        Funkce automatické aktualizace\n                        v této staré verzi Zulipu nadále nepracuje.\n                        "
+msgstr "\n                        Funkce automatické aktualizace\n                        v této staré verzi Alohau nadále nepracuje.\n                        "
 
 #: templates/zerver/insecure_desktop_app.html:34
 msgid "Download the latest release."
@@ -2261,8 +2261,8 @@ msgstr "Neplatný e-mail"
 
 #: templates/zerver/invalid_email.html:11
 #: templates/zerver/invalid_realm.html:16
-msgid "Hi there! Thank you for your interest in Zulip."
-msgstr "Ahoj! Díky za váš zájem o Zulip."
+msgid "Hi there! Thank you for your interest in Aloha."
+msgstr "Ahoj! Díky za váš zájem o Aloha."
 
 #: templates/zerver/invalid_email.html:15
 msgid ""
@@ -2306,8 +2306,8 @@ msgid "Organization does not exist"
 msgstr "Organizace neexistuje"
 
 #: templates/zerver/invalid_realm.html:18
-msgid "There is no Zulip organization hosted at this subdomain."
-msgstr "Na této subdoméně není hostována žádná organizace Zulipu."
+msgid "There is no Aloha organization hosted at this subdomain."
+msgstr "Na této subdoméně není hostována žádná organizace Alohau."
 
 #: templates/zerver/log_into_subdomain_token_invalid.html:4
 msgid "Invalid or expired login session"
@@ -2325,8 +2325,8 @@ msgid "Log in"
 msgstr "Přihlásit se"
 
 #: templates/zerver/login.html:18
-msgid "Log in to Zulip"
-msgstr "Přihlásit se do Zulipu"
+msgid "Log in to Aloha"
+msgstr "Přihlásit se do Alohau"
 
 #: templates/zerver/login.html:44
 msgid "View without an account"
@@ -2375,14 +2375,14 @@ msgstr "Tato organizace nyní nepřijímá nové členy."
 #: templates/zerver/no_spare_licenses.html:15
 msgid ""
 "\n"
-"    New members cannot join this organization because all Zulip licenses are currently in use. Please contact the person who\n"
+"    New members cannot join this organization because all Aloha licenses are currently in use. Please contact the person who\n"
 "    invited you and ask them to increase the number of licenses, then try again.\n"
 "    "
-msgstr "\n    Noví členové se nemohou připojit k této organizaci, protože všechny licence Zulip jsou v současnosti používány. Spojte se, prosím, s osobou, která\nvás pozvala, a požádejte ji, aby zvýšila počet licencí, pak to zkuste znovu.\n    "
+msgstr "\n    Noví členové se nemohou připojit k této organizaci, protože všechny licence Aloha jsou v současnosti používány. Spojte se, prosím, s osobou, která\nvás pozvala, a požádejte ji, aby zvýšila počet licencí, pak to zkuste znovu.\n    "
 
 #: templates/zerver/portico-header-dropdown.html:3
-msgid "Go to Zulip"
-msgstr "Jít na Zulip"
+msgid "Go to Aloha"
+msgstr "Jít na Aloha"
 
 #: templates/zerver/rate_limit_exceeded.html:4
 msgid "Rate limit exceeded"
@@ -2417,10 +2417,10 @@ msgstr "Tento server veřejnosti neumožňuje vytvářet nové organizace."
 #, python-format
 msgid ""
 "\n"
-"                    Zulip is open source, so you can <a href=\"%(production_install_url)s\">install your own Zulip server</a> or create a new organization on\n"
-"                    <a href=\"%(zulip_cloud_link)s\">Zulip Cloud</a>\n"
+"                    Aloha is open source, so you can <a href=\"%(production_install_url)s\">install your own Aloha server</a> or create a new organization on\n"
+"                    <a href=\"%(zulip_cloud_link)s\">Aloha Cloud</a>\n"
 "                    "
-msgstr "\n                    Zulip je program s otevřeným zdrojovým kódem, takže si můžete <a href=\"%(production_install_url)s\">nainstalovat vlastní Zulip server</a> nebo vytvořit novou organizaci na\n                    <a href=\"%(zulip_cloud_link)s\">serveru Zulip</a>\n                    "
+msgstr "\n                    Aloha je program s otevřeným zdrojovým kódem, takže si můžete <a href=\"%(production_install_url)s\">nainstalovat vlastní Aloha server</a> nebo vytvořit novou organizaci na\n                    <a href=\"%(zulip_cloud_link)s\">serveru Aloha</a>\n                    "
 
 #: templates/zerver/realm_reactivation.html:4
 msgid "Organization successfully reactivated"
@@ -2444,8 +2444,8 @@ msgid "Log in to your organization"
 msgstr "Přihlašte se do vaší organizace"
 
 #: templates/zerver/realm_redirect.html:22
-msgid "Enter your organization's Zulip URL:"
-msgstr "Zadejte URL vaší organizace na Zulipu:"
+msgid "Enter your organization's Aloha URL:"
+msgstr "Zadejte URL vaší organizace na Alohau:"
 
 #: templates/zerver/realm_redirect.html:25
 msgid "your-organization-url"
@@ -2460,8 +2460,8 @@ msgid "Find your organization."
 msgstr "Vyhledat vaši organizaci."
 
 #: templates/zerver/realm_redirect.html:47
-msgid "Need to get your group started on Zulip?"
-msgstr "Chcete začít na Zulipu?"
+msgid "Need to get your group started on Aloha?"
+msgstr "Chcete začít na Alohau?"
 
 #: templates/zerver/realm_redirect.html:47
 msgid "Create a new organization."
@@ -2516,8 +2516,8 @@ msgid "Your account"
 msgstr "Váš účet"
 
 #: templates/zerver/register.html:127
-msgid "Import settings from existing Zulip account"
-msgstr "Import nastavení z existujícího Zulip účtu"
+msgid "Import settings from existing Aloha account"
+msgstr "Import nastavení z existujícího Aloha účtu"
 
 #: templates/zerver/register.html:135
 msgid "Don&rsquo;t import settings"
@@ -2550,8 +2550,8 @@ msgid "What are you interested in?"
 msgstr "O co se zajímáte?"
 
 #: templates/zerver/register.html:263
-msgid "Subscribe me to Zulip's low-traffic newsletter (a few emails a year)."
-msgstr "Přihlašte se k odběru občasného zpravodaje Zulip (několik e-mailů ročně)."
+msgid "Subscribe me to Aloha's low-traffic newsletter (a few emails a year)."
+msgstr "Přihlašte se k odběru občasného zpravodaje Aloha (několik e-mailů ročně)."
 
 #: templates/zerver/reset.html:4 templates/zerver/reset.html:12
 msgid "Reset your password"
@@ -2624,10 +2624,10 @@ msgstr "\n            Váš účet u GitHub má také s ním spojené neověřen
 #: templates/zerver/social_auth_select_email.html:73
 msgid ""
 "\n"
-"            To use one of these to log in to Zulip, you must first\n"
+"            To use one of these to log in to Aloha, you must first\n"
 "            <a href=\"https://github.com/settings/emails\">verify it with GitHub.</a>\n"
 "            "
-msgstr "\n            Pro použití jednoho z těchto přihlášení do Zulipu je nejprve musíte\n            <a href=\"https://github.com/settings/emails\">ověřit pomocí GitHub.</a>\n            "
+msgstr "\n            Pro použití jednoho z těchto přihlášení do Alohau je nejprve musíte\n            <a href=\"https://github.com/settings/emails\">ověřit pomocí GitHub.</a>\n            "
 
 #: templates/zerver/unsubscribe_link_error.html:4
 msgid "Error unsubscribing email"
@@ -2660,9 +2660,9 @@ msgstr "Nastavení e-mailu aktualizováno"
 #, python-format
 msgid ""
 "\n"
-"                    You've successfully unsubscribed from Zulip %(subscription_type)s emails.\n"
+"                    You've successfully unsubscribed from Aloha %(subscription_type)s emails.\n"
 "                    "
-msgstr "\n                    Úspěšně jste odhlásil odběr Zulipu %(subscription_type)s emails.\n                    "
+msgstr "\n                    Úspěšně jste odhlásil odběr Alohau %(subscription_type)s emails.\n                    "
 
 #: templates/zerver/unsubscribe_success.html:25
 #, python-format
@@ -2670,10 +2670,10 @@ msgid ""
 "\n"
 "                    You can undo this change or review your\n"
 "                    preferences in your\n"
-"                    <a href=\"%(realm_uri)s/#settings/notifications\">Zulip notification\n"
+"                    <a href=\"%(realm_uri)s/#settings/notifications\">Aloha notification\n"
 "                    settings</a>.\n"
 "                    "
-msgstr "\n                    Tuto změnu můžete vrátit zpět nebo přezkoumat\n                    svá nastavení v\n                    <a href=\"%(realm_uri)s/#settings/notifications\">nastavení oznamování Zulipu</a>.\n                    "
+msgstr "\n                    Tuto změnu můžete vrátit zpět nebo přezkoumat\n                    svá nastavení v\n                    <a href=\"%(realm_uri)s/#settings/notifications\">nastavení oznamování Alohau</a>.\n                    "
 
 #: templates/zerver/unsupported_browser.html:4
 #: templates/zerver/unsupported_browser.html:15
@@ -2684,25 +2684,25 @@ msgstr "Nepodporovaný prohlížeč"
 #, python-format
 msgid ""
 "\n"
-"                        %(browser_name)s is not supported by Zulip.\n"
+"                        %(browser_name)s is not supported by Aloha.\n"
 "                        "
-msgstr "\n                        %(browser_name)s není podporován Zulipem.\n                        "
+msgstr "\n                        %(browser_name)s není podporován Alohaem.\n                        "
 
 #: templates/zerver/unsupported_browser.html:22
 msgid ""
 "\n"
-"                        Zulip supports modern browsers like Firefox,\n"
+"                        Aloha supports modern browsers like Firefox,\n"
 "                        Chrome, and Edge.\n"
 "                        "
-msgstr "\n                        Zulip podporuje nové prohlížeče jako Firefox,\n                        Chrome a Edge.\n                        "
+msgstr "\n                        Aloha podporuje nové prohlížeče jako Firefox,\n                        Chrome a Edge.\n                        "
 
 #: templates/zerver/unsupported_browser.html:28
 #, python-format
 msgid ""
 "\n"
-"                        You can also use the <a href=\"%(apps_page_link)s\">Zulip desktop app</a>.\n"
+"                        You can also use the <a href=\"%(apps_page_link)s\">Aloha desktop app</a>.\n"
 "                        "
-msgstr "\n                        Také můžete použít <a href=\"%(apps_page_link)s\">program pro plochu Zulip</a>.\n                        "
+msgstr "\n                        Také můžete použít <a href=\"%(apps_page_link)s\">program pro plochu Aloha</a>.\n                        "
 
 #: zerver/actions/create_realm.py:249
 msgid "Signups enabled"
@@ -2714,13 +2714,13 @@ msgstr "přihlášení"
 
 #: zerver/actions/create_user.py:100 zerver/actions/create_user.py:124
 #, python-brace-format
-msgid "{user} just signed up for Zulip. (total: {user_count})"
-msgstr "{user} se právě přihlásil k Zulipu. (celkem: {user_count})"
+msgid "{user} just signed up for Aloha. (total: {user_count})"
+msgstr "{user} se právě přihlásil k Alohau. (celkem: {user_count})"
 
 #: zerver/actions/create_user.py:237
 #, python-brace-format
-msgid "{user} accepted your invitation to join Zulip!"
-msgstr "{user} přijal vaše pozvání, aby se připojil k Zulipu!"
+msgid "{user} accepted your invitation to join Aloha!"
+msgstr "{user} přijal vaše pozvání, aby se připojil k Alohau!"
 
 #: zerver/actions/custom_profile_fields.py:129
 msgid "Invalid order mapping."
@@ -2783,9 +2783,9 @@ msgstr "Výchozí skupina kanálu '{}' již existuje"
 
 #: zerver/actions/invites.py:84
 msgid ""
-"To protect users, Zulip limits the number of invitations you can send in one"
+"To protect users, Aloha limits the number of invitations you can send in one"
 " day. Because you have reached the limit, no invitations were sent."
-msgstr "Kvůli ochraně uživatelů omezuje Zulip počet pozvánek, které můžete poslat za jeden den. Protože jste dosáhli meze, nebyly odeslány žádné pozvánky."
+msgstr "Kvůli ochraně uživatelů omezuje Aloha počet pozvánek, které můžete poslat za jeden den. Protože jste dosáhli meze, nebyly odeslány žádné pozvánky."
 
 #: zerver/actions/invites.py:157
 msgid ""
@@ -2803,9 +2803,9 @@ msgstr "Nepodařilo se nám pozvat nikoho."
 
 #: zerver/actions/invites.py:241
 msgid ""
-"Some of those addresses are already using Zulip, so we didn't send them an "
+"Some of those addresses are already using Aloha, so we didn't send them an "
 "invitation. We did send invitations to everyone else!"
-msgstr "Některé z těchto adres již Zulip používají, takže jsme jim pozvánku znovu neposílali. Odeslali jsme ji ale všem ostatním!"
+msgstr "Některé z těchto adres již Aloha používají, takže jsme jim pozvánku znovu neposílali. Odeslali jsme ji ale všem ostatním!"
 
 #: zerver/actions/message_edit.py:85
 msgid "Nothing to change"
@@ -3157,10 +3157,10 @@ msgstr "E-mailové adresy obsahující + nejsou pro tuto organizaci povoleny."
 
 #: zerver/forms.py:225
 msgid ""
-"New members cannot join this organization because all Zulip licenses are in "
+"New members cannot join this organization because all Aloha licenses are in "
 "use. Please contact the person who invited you and ask them to increase the "
 "number of licenses, then try again."
-msgstr "Noví členové se nemohou připojit k této organizaci, protože všechny licence Zulip jsou používány. Spojte se, prosím, s osobou, která\nvás pozvala, a požádejte ji, aby zvýšila počet licencí, pak to zkuste znovu.\n    "
+msgstr "Noví členové se nemohou připojit k této organizaci, protože všechny licence Aloha jsou používány. Spojte se, prosím, s osobou, která\nvás pozvala, a požádejte ji, aby zvýšila počet licencí, pak to zkuste znovu.\n    "
 
 #: zerver/forms.py:261
 msgid "New password"
@@ -3195,8 +3195,8 @@ msgid "Please enter at most 10 emails."
 msgstr "Zadejte prosím maximálně 10 e-mailů."
 
 #: zerver/forms.py:554
-msgid "We couldn't find that Zulip organization."
-msgstr "Tuhle organizaci se nám na Zulipu nepodařilo najít."
+msgid "We couldn't find that Aloha organization."
+msgstr "Tuhle organizaci se nám na Alohau nepodařilo najít."
 
 #: zerver/lib/addressee.py:22
 msgid "Invalid email '{}'"
@@ -3285,12 +3285,12 @@ msgid "Draft does not exist"
 msgstr "Návrh neexistuje"
 
 #: zerver/lib/email_notifications.py:130 zerver/lib/email_notifications.py:152
-msgid "Open Zulip to see the spoiler content"
-msgstr "Otevřít Zulip a nechat si vyzradit obsah"
+msgid "Open Aloha to see the spoiler content"
+msgstr "Otevřít Aloha a nechat si vyzradit obsah"
 
 #: zerver/lib/email_notifications.py:523
-msgid "Zulip notifications"
-msgstr "Oznámení Zulipu"
+msgid "Aloha notifications"
+msgstr "Oznámení Alohau"
 
 #: zerver/lib/email_validation.py:101
 msgid "Invalid address."
@@ -3617,8 +3617,8 @@ msgid "We also have a guide for [Setting up your organization]({help_url})."
 msgstr ""
 
 #: zerver/lib/onboarding.py:59
-msgid "Hello, and welcome to Zulip!"
-msgstr "Ahoj, vítejte v Zulipu!"
+msgid "Hello, and welcome to Aloha!"
+msgstr "Ahoj, vítejte v Alohau!"
 
 #: zerver/lib/onboarding.py:64
 #, python-brace-format
@@ -3634,7 +3634,7 @@ msgstr "Toto je soukromá zpráva od uvítacího robota."
 #: zerver/lib/onboarding.py:75
 #, python-brace-format
 msgid ""
-"If you are new to Zulip, check out our [Getting started "
+"If you are new to Aloha, check out our [Getting started "
 "guide]({getting_started_url})!"
 msgstr ""
 
@@ -3650,7 +3650,7 @@ msgstr "Zde je několik zpráv, co chápu:"
 
 #: zerver/lib/onboarding.py:120
 msgid ""
-"You can [download](/apps) the [mobile and desktop apps](/apps). Zulip also "
+"You can [download](/apps) the [mobile and desktop apps](/apps). Aloha also "
 "works great in a browser."
 msgstr ""
 
@@ -3666,13 +3666,13 @@ msgid ""
 "Go to [Display settings](#settings/display-settings) to [switch between the "
 "light and dark themes](/help/dark-theme), [pick your favorite emoji "
 "theme](/help/emoji-and-emoticons#change-your-emoji-set), [change your "
-"language](/help/change-your-language), and make other tweaks to your Zulip "
+"language](/help/change-your-language), and make other tweaks to your Aloha "
 "experience."
 msgstr ""
 
 #: zerver/lib/onboarding.py:141
 msgid ""
-"In Zulip, streams [determine who gets a message](/help/streams-and-topics). "
+"In Aloha, streams [determine who gets a message](/help/streams-and-topics). "
 "They are similar to channels in other chat apps."
 msgstr ""
 
@@ -3682,7 +3682,7 @@ msgstr ""
 
 #: zerver/lib/onboarding.py:152
 msgid ""
-"In Zulip, topics [tell you what a message is about](/help/streams-and-"
+"In Aloha, topics [tell you what a message is about](/help/streams-and-"
 "topics). They are light-weight subjects, very similar to the subject line of"
 " an email."
 msgstr ""
@@ -3696,7 +3696,7 @@ msgstr ""
 
 #: zerver/lib/onboarding.py:166
 msgid ""
-"Zulip's [keyboard shortcuts](#keyboard-shortcuts) let you navigate the app "
+"Aloha's [keyboard shortcuts](#keyboard-shortcuts) let you navigate the app "
 "quickly and efficiently."
 msgstr ""
 
@@ -3706,7 +3706,7 @@ msgstr ""
 
 #: zerver/lib/onboarding.py:177
 msgid ""
-"Zulip uses [Markdown](/help/format-your-message-using-markdown), an "
+"Aloha uses [Markdown](/help/format-your-message-using-markdown), an "
 "intuitive format for **bold**, *italics*, bulleted lists, and more. Click "
 "[here](#message-formatting) for a cheat sheet."
 msgstr ""
@@ -3830,8 +3830,8 @@ msgstr "Uživatel není oprávněn položit tento dotaz"
 
 #: zerver/lib/recipient_users.py:71
 #, python-brace-format
-msgid "'{email}' is no longer using Zulip."
-msgstr "'{email}' už Zulip nepoužívá."
+msgid "'{email}' is no longer using Aloha."
+msgstr "'{email}' už Aloha nepoužívá."
 
 #: zerver/lib/recipient_users.py:78
 msgid "You can't send private messages outside of your organization."
@@ -3865,8 +3865,8 @@ msgid "Argument \"{}\" is not valid JSON."
 msgstr "Argument \"{}\" není platný JSON."
 
 #: zerver/lib/send_email.py:68
-msgid "Zulip Account Security"
-msgstr "Bezpečnost účtu Zulip"
+msgid "Aloha Account Security"
+msgstr "Bezpečnost účtu Aloha"
 
 #: zerver/lib/streams.py:223
 msgid "Only organization administrators can send to this stream."
@@ -4214,8 +4214,8 @@ msgid "stream events"
 msgstr "Události kanálu"
 
 #: zerver/models.py:594
-msgid "Available on Zulip Cloud Standard. Upgrade to access."
-msgstr "Dostupné v serveru Zulip Standard. Pro přístup povyšte."
+msgid "Available on Aloha Cloud Standard. Upgrade to access."
+msgstr "Dostupné v serveru Aloha Standard. Pro přístup povyšte."
 
 #: zerver/models.py:1085
 msgid "Invalid characters in emoji name"
@@ -4314,8 +4314,8 @@ msgid "Custom emoji"
 msgstr "Vlastní obrázeček"
 
 #: zerver/models.py:3087
-msgid "Zulip extra emoji"
-msgstr "Další obrázeček Zulipu"
+msgid "Aloha extra emoji"
+msgstr "Další obrázeček Alohau"
 
 #: zerver/models.py:4445
 msgid "User with ID {} is deactivated"
@@ -4870,8 +4870,8 @@ msgid "Invalid email batching period: {} seconds"
 msgstr "Neplatné období pro dávkové zpracování e-mailů: {} sekund"
 
 #: zerver/views/user_settings.py:236
-msgid "Your Zulip password is managed in LDAP"
-msgstr "Vaše heslo pro Zulip je spravováno v LDAPu"
+msgid "Your Aloha password is managed in LDAP"
+msgstr "Vaše heslo pro Aloha je spravováno v LDAPu"
 
 #: zerver/views/user_settings.py:246
 msgid "Wrong password!"
@@ -5070,8 +5070,8 @@ msgid "Invalid subdomain for push notifications bouncer"
 msgstr "Neplatná subdoména pro \"bouncer push\" oznámení"
 
 #: zilencer/auth.py:99
-msgid "Must validate with valid Zulip server API key"
-msgstr "Musí se prokázat platným Zulip server API klíčem"
+msgid "Must validate with valid Aloha server API key"
+msgstr "Musí se prokázat platným Aloha server API klíčem"
 
 #. error
 #: zilencer/views.py:61 zilencer/views.py:63

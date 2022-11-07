@@ -23,10 +23,10 @@ from zerver.models import (
 )
 
 
-class ZulipSCIMUser(SCIMUser):
+class AlohaSCIMUser(SCIMUser):
     """With django-scim2, the core of a project's SCIM implementation is
     this user adapter class, which defines how to translate between the
-    concepts of users in the SCIM specification and the Zulip users.
+    concepts of users in the SCIM specification and the Aloha users.
     """
 
     id_field = "id"

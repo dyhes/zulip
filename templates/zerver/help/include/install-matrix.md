@@ -1,6 +1,6 @@
 ### Install the bridge software
 
-1. Clone the Zulip API repository, and install its dependencies.
+1. Clone the Aloha API repository, and install its dependencies.
 
     ```
     git clone https://github.com/zulip/python-zulip-api.git

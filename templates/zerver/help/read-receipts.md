@@ -4,7 +4,7 @@ Read receipts let you check who has read a message. You can see read receipts
 for any message, including both [stream messages](/help/streams-and-topics) and
 [private messages](/help/private-messages).
 
-With privacy in mind, Zulip lets you [control][configure-personal-read-recipts]
+With privacy in mind, Aloha lets you [control][configure-personal-read-recipts]
 whether your read receipts are shared, and administrators can
 [choose][configure-organization-read-recipts] whether to enable read receipts in
 their organization.
@@ -28,9 +28,9 @@ their organization.
 
 {end_tabs}
 
-## Configure whether Zulip lets others see when you've read messages
+## Configure whether Aloha lets others see when you've read messages
 
-Zulip supports the privacy option of never sharing whether or not you have read
+Aloha supports the privacy option of never sharing whether or not you have read
 a message. If this setting is turned off, your name will never appear in the
 list of read receipts.
 

@@ -97,7 +97,7 @@ def notify_new_user(user_profile: UserProfile) -> None:
     is_first_user = user_count == 1
     if not is_first_user:
         with override_language(user_profile.realm.default_language):
-            message = _("{user} just signed up for Zulip. (total: {user_count})").format(
+            message = _("{user} just signed up for Aloha. (total: {user_count})").format(
                 user=silent_mention_syntax_for_user(user_profile), user_count=user_count
             )
 
@@ -113,7 +113,7 @@ def notify_new_user(user_profile: UserProfile) -> None:
 
         send_message_to_signup_notification_stream(sender, user_profile.realm, message)
 
-    # We also send a notification to the Zulip administrative realm
+    # We also send a notification to the Aloha administrative realm
     admin_realm = get_realm(settings.SYSTEM_BOT_REALM)
     admin_realm_sender = get_system_bot(sender_email, admin_realm.id)
     try:
@@ -121,7 +121,7 @@ def notify_new_user(user_profile: UserProfile) -> None:
         signups_stream = get_signups_stream(admin_realm)
         # We intentionally use the same strings as above to avoid translation burden.
         with override_language(admin_realm.default_language):
-            message = _("{user} just signed up for Zulip. (total: {user_count})").format(
+            message = _("{user} just signed up for Aloha. (total: {user_count})").format(
                 user=f"{user_profile.full_name} <`{user_profile.email}`>", user_count=user_count
             )
         internal_send_stream_message(
@@ -180,7 +180,7 @@ def add_new_user_history(user_profile: UserProfile, streams: Iterable[Stream]) -
 # Does the processing for a new user account:
 # * Subscribes to default/invitation streams
 # * Fills in some recent historical messages
-# * Notifies other users in realm and Zulip about the signup
+# * Notifies other users in realm and Aloha about the signup
 # * Deactivates PreregistrationUser objects
 def process_new_human_user(
     user_profile: UserProfile,
@@ -234,7 +234,7 @@ def process_new_human_user(
             internal_send_private_message(
                 get_system_bot(settings.NOTIFICATION_BOT, prereg_user.referred_by.realm_id),
                 prereg_user.referred_by,
-                _("{user} accepted your invitation to join Zulip!").format(
+                _("{user} accepted your invitation to join Aloha!").format(
                     user=f"{user_profile.full_name} <`{user_profile.email}`>"
                 ),
             )

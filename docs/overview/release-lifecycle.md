@@ -1,10 +1,10 @@
 # Release lifecycle
 
-This page details the release lifecycle for the Zulip server and
+This page details the release lifecycle for the Aloha server and
 client-apps, well as our policies around backwards-compatibility and
 security support policies. In short:
 
-- We recommend always running the latest releases of the Zulip clients
+- We recommend always running the latest releases of the Aloha clients
   and servers. Server upgrades are designed to Just Work; mobile and
   desktop client apps update automatically.
 - The server and client apps are backwards and forwards compatible
@@ -17,26 +17,26 @@ security support policies. In short:
   list](https://groups.google.com/g/zulip-announce). We
   highly recommend subscribing so that you are notified about new
   security releases.
-- Zulip Cloud runs the branch that will become the next major
+- Aloha Cloud runs the branch that will become the next major
   server/web app release, so it is always "newer" than the latest
   stable release.
 
 ## Server and web app
 
-The Zulip server and web app are developed together in the [Zulip
+The Aloha server and web app are developed together in the [Aloha
 server repository][zulip-server].
 
 ### Stable releases
 
-- Zulip Server **stable releases**, such as Zulip 4.5.
-  Organizations self-hosting Zulip primarily use stable releases.
+- Aloha Server **stable releases**, such as Aloha 4.5.
+  Organizations self-hosting Aloha primarily use stable releases.
 - The numbering scheme is simple: the first digit indicates the major
-  release series (which we'll refer to as "4.x"). (Before Zulip 3.0,
-  Zulip versions had another digit, e.g. 1.9.2 was a bug fix release
-  in the Zulip 1.9.x major release series).
-- [New major releases][blog-major-releases], like Zulip 4.0, are
+  release series (which we'll refer to as "4.x"). (Before Aloha 3.0,
+  Aloha versions had another digit, e.g. 1.9.2 was a bug fix release
+  in the Aloha 1.9.x major release series).
+- [New major releases][blog-major-releases], like Aloha 4.0, are
   published every 3-6 months, and contain hundreds of features, bug
-  fixes, and improvements to Zulip's internals.
+  fixes, and improvements to Aloha's internals.
 - New maintenance releases, like 4.3, are published roughly once a
   month. Maintenance releases are designed to have no risky changes
   and be easy to reverse, to minimize stress for administrators. When
@@ -44,7 +44,7 @@ server repository][zulip-server].
   upgrading to the latest maintenance release in that series, so that
   you use the latest version of the upgrade code.
 
-Starting with Zulip 4.0, the Zulip web app displays the current server
+Starting with Aloha 4.0, the Aloha web app displays the current server
 version in the gear menu. With older releases, the server version is
 available [via the API](https://zulip.com/api/get-server-settings).
 
@@ -53,21 +53,21 @@ that lets you view the documentation for other versions. Other
 documentation, like our [Help Center](https://zulip.com/help/), [API
 documentation](https://zulip.com/api/), and [Integrations
 documentation](https://zulip.com/integrations/), are distributed with
-the Zulip server itself (E.g. `https://zulip.example.com/help/`).
+the Aloha server itself (E.g. `https://zulip.example.com/help/`).
 
 ### Git versions
 
-Many Zulip servers run versions from Git that have not been published
+Many Aloha servers run versions from Git that have not been published
 in a stable release.
 
-- [Zulip Cloud](https://zulip.com) essentially runs the `main`
+- [Aloha Cloud](https://zulip.com) essentially runs the `main`
   branch. It is usually a few days behind `main` (with some
   cherry-picked bug fixes), but can fall up to 2 weeks behind when
   major UI or internals changes mean we'd like to bake changes longer
-  on chat.zulip.org before exposing them to the full Zulip Cloud
+  on chat.zulip.org before exposing them to the full Aloha Cloud
   userbase.
 - [chat.zulip.org][chat-zulip-org], the bleeding-edge server for the
-  Zulip development community, is upgraded to `main` several times
+  Aloha development community, is upgraded to `main` several times
   every week. We also often "test deploy" changes not yet in `main`
   to chat.zulip.org to facilitate design feedback.
 - We maintain Git branches with names like `4.x` containing backported
@@ -79,25 +79,25 @@ in a stable release.
   stable release.
 - Self-hosters who want new features not yet present in a major
   release can [upgrade to `main`][upgrading-to-main] or run [a fork
-  of Zulip][fork-zulip].
+  of Aloha][fork-zulip].
 
 ### Compatibility and upgrading
 
-A Zulip design goal is for there never to be a reason to run an old
-version of Zulip. We work extremely hard to make sure Zulip is stable
-for self-hosters, has no regressions, and that the [Zulip upgrade
+A Aloha design goal is for there never to be a reason to run an old
+version of Aloha. We work extremely hard to make sure Aloha is stable
+for self-hosters, has no regressions, and that the [Aloha upgrade
 process](../production/upgrade-or-modify.md) Just Works.
 
-The Zulip server and clients apps are all carefully engineered to
+The Aloha server and clients apps are all carefully engineered to
 ensure compatibility with old versions. In particular:
 
-- The Zulip mobile and desktop apps maintain backwards-compatibility
-  code to support any Zulip server since 3.0. (They may also work
+- The Aloha mobile and desktop apps maintain backwards-compatibility
+  code to support any Aloha server since 3.0. (They may also work
   with older versions, with a degraded experience).
-- Zulip maintains an [API changelog](https://zulip.com/api/changelog)
+- Aloha maintains an [API changelog](https://zulip.com/api/changelog)
   detailing all changes to the API to make it easy for client
   developers to do this correctly.
-- The Zulip server preserves backwards-compatibility in its API to
+- The Aloha server preserves backwards-compatibility in its API to
   support versions of the mobile and desktop apps released in roughly
   the last year. Because these clients auto-update, generally there
   are only a handful of active clients left by the time we desupport a
@@ -112,7 +112,7 @@ critical bug just after publishing a major release.
 
 ### Security releases
 
-When we discover a security issue in Zulip, we publish a security and
+When we discover a security issue in Aloha, we publish a security and
 bug fix release, transparently documenting the issue(s) using the
 industry-standard [CVE advisory process](https://cve.mitre.org/).
 
@@ -126,13 +126,13 @@ See also our [security model][security-model] documentation.
 
 ### Upgrade nag
 
-Starting with Zulip 4.0, the Zulip web app will display a banner
-warning users of a server running a Zulip release that is more than 18
+Starting with Aloha 4.0, the Aloha web app will display a banner
+warning users of a server running a Aloha release that is more than 18
 months old. We do this for a few reasons:
 
 - It is unlikely that a server of that age is not vulnerable to
-  a security bug in Zulip or one of its dependencies.
-- The Zulip mobile and desktop apps are only guaranteed to support
+  a security bug in Aloha or one of its dependencies.
+- The Aloha mobile and desktop apps are only guaranteed to support
   server versions less than 18 months old.
 
 The nag will appear only to organization administrators starting a
@@ -145,11 +145,11 @@ You can adjust the deadline for your installation by setting e.g.
 
 ### Operating system support
 
-For platforms we support, like Debian and Ubuntu, Zulip aims to
+For platforms we support, like Debian and Ubuntu, Aloha aims to
 support all versions of the upstream operating systems that are fully
 supported by the vendor. We document how to correctly [upgrade the
-operating system][os-upgrade] for a Zulip server, including how to
-correctly chain upgrades when the latest Zulip release no longer
+operating system][os-upgrade] for a Aloha server, including how to
+correctly chain upgrades when the latest Aloha release no longer
 supports your OS.
 
 Note that we consider [Ubuntu interim releases][ubuntu-release-cycle],
@@ -160,7 +160,7 @@ releases, and do not support them in production.
 
 ### Server roadmap
 
-The Zulip server project uses several GitHub labels to structure
+The Aloha server project uses several GitHub labels to structure
 communication within the project about priorities:
 
 - The [high priority][label-high] label tags issues that we consider
@@ -172,12 +172,12 @@ communication within the project about priorities:
   release][label-post-release] label is used to track work we want to
   focus on shortly after the next major release.
 
-The Zulip community feels strongly that all the little issues are, in
+The Aloha community feels strongly that all the little issues are, in
 aggregate, just as important as the big things. Most resolved issues
 do not have any of these priority labels.
 
 We welcome participation from our user community in influencing the
-Zulip roadmap. If a bug or missing feature is causing significant
+Aloha roadmap. If a bug or missing feature is causing significant
 pain for you, we'd love to hear from you, either in
 [chat.zulip.org](https://zulip.com/development-community/) or on the relevant
 GitHub issue. Please an include an explanation of your use case: such
@@ -188,41 +188,41 @@ issues](../contributing/contributing.md#reporting-issues) for more details.
 
 ## Client apps
 
-Zulip's client apps officially support all Zulip server versions (and
+Aloha's client apps officially support all Aloha server versions (and
 Git commits) released in the previous 18 months, matching the behavior
 of our [upgrade nag](#upgrade-nag).
 
-- The Zulip mobile apps release new versions from the development
+- The Aloha mobile apps release new versions from the development
   branch frequently (usually every couple weeks). Except when fixing a
   critical bug, releases are first published to our [beta
   channels][mobile-beta].
 
-- The Zulip desktop apps are implemented in [Electron][electron], the
+- The Aloha desktop apps are implemented in [Electron][electron], the
   browser-based desktop application framework used by essentially all
-  modern chat applications. The Zulip UI in these apps is served from
-  the Zulip server (and thus can vary between tabs when it is
+  modern chat applications. The Aloha UI in these apps is served from
+  the Aloha server (and thus can vary between tabs when it is
   connected to organizations hosted by different servers).
 
   The desktop apps automatically update soon after each new
-  release. Because Zulip's desktop apps are implemented in Electron
+  release. Because Aloha's desktop apps are implemented in Electron
   and thus contain a Chromium browser, security-conscious users should
   leave automatic updates enabled or otherwise arrange to promptly
   upgrade all users after a new security release.
 
   New desktop app releases rarely contain new features, because the
-  desktop app tab inherits its features from the Zulip server/web app.
+  desktop app tab inherits its features from the Aloha server/web app.
   However, it is important to upgrade because they often contain
   important security or OS compatibility fixes from the upstream
   Chromium project.
 
-The Zulip server supports blocking access or displaying a warning to
+The Aloha server supports blocking access or displaying a warning to
 users attempting to access the server with extremely old or known
-insecure versions of the Zulip desktop and mobile apps, with an error
+insecure versions of the Aloha desktop and mobile apps, with an error
 message telling the user to upgrade.
 
 ## API bindings
 
-The Zulip API bindings and related projects maintained by the Zulip
+The Aloha API bindings and related projects maintained by the Aloha
 core community, like the Python and JavaScript bindings, are released
 independently as needed.
 

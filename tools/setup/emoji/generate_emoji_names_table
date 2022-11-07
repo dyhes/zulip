@@ -49,7 +49,7 @@ EMOJI_LISTING_TEMPLATE = """
         <style>
             {table_css}
         </style>
-        <title>Zulip emoji names</title>
+        <title>Aloha emoji names</title>
     </head>
     <body>
         <table>
@@ -58,7 +58,7 @@ EMOJI_LISTING_TEMPLATE = """
                     <th class="new-sorting-info">Category</th>
                     <th class="emoji-code">Emoji code</th>
                     <th class="emoji-images">Images</th>
-                    <th class="zulip-emoji-names">Zulip</th>
+                    <th class="zulip-emoji-names">Aloha</th>
                     <th class="iamcal-emoji-names">Iamcal (Slack)</th>
                     <th class="gemoji-emoji-names">Gemoji (unordered)</th>
                     <th class="unicode-name">Unicode</th>

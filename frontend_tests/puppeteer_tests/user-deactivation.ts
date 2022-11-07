@@ -100,14 +100,14 @@ async function test_deactivated_users_section(page: Page): Promise<void> {
 async function test_bot_deactivation_and_reactivation(page: Page): Promise<void> {
     await page.click("li[data-section='bot-list-admin']");
 
-    const default_bot_user_row = await user_row(page, "Zulip Default Bot");
+    const default_bot_user_row = await user_row(page, "Aloha Default Bot");
 
     await page.click(default_bot_user_row + " .deactivate");
     await common.wait_for_micromodal_to_open(page);
 
     assert.strictEqual(
         await common.get_text_from_selector(page, ".dialog_heading"),
-        "Deactivate Zulip Default Bot?",
+        "Deactivate Aloha Default Bot?",
         "Unexpected title for deactivate bot modal",
     );
     assert.strictEqual(
@@ -122,7 +122,7 @@ async function test_bot_deactivation_and_reactivation(page: Page): Promise<void>
     await page.waitForSelector(default_bot_user_row + " .fa-user-plus");
 
     await page.click(default_bot_user_row + " .reactivate");
-    await test_reactivation_confirmation_modal(page, "Zulip Default Bot");
+    await test_reactivation_confirmation_modal(page, "Aloha Default Bot");
     await page.waitForSelector(default_bot_user_row + ":not(.deactivated_user)", {visible: true});
     await page.waitForSelector(default_bot_user_row + " .fa-user-times");
 }

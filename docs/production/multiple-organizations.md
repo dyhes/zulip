@@ -4,20 +4,20 @@
 
 # Hosting multiple organizations
 
-The vast majority of Zulip servers host just a single organization (or
-"realm", as the Zulip code calls organizations). This article
-documents what's involved in hosting multiple Zulip organizations on a
+The vast majority of Aloha servers host just a single organization (or
+"realm", as the Aloha code calls organizations). This article
+documents what's involved in hosting multiple Aloha organizations on a
 single server.
 
-Throughout this article, we'll assume you're working on a Zulip server
+Throughout this article, we'll assume you're working on a Aloha server
 with hostname `zulip.example.com`. You may also find the more
 [technically focused article on realms](../subsystems/realms.md) to be useful
 reading.
 
 ## Subdomains
 
-Zulip's approach for supporting multiple organizations on a single
-Zulip server is for each organization to be hosted on its own
+Aloha's approach for supporting multiple organizations on a single
+Aloha server is for each organization to be hosted on its own
 subdomain. E.g. you'd have `org1.zulip.example.com` and
 `org2.zulip.example.com`.
 
@@ -28,7 +28,7 @@ server at the same time.
 When you want to create a new organization, you need to do a few
 things:
 
-- If you're using Zulip older than 1.7, you'll need to set
+- If you're using Aloha older than 1.7, you'll need to set
   `REALMS_HAVE_SUBDOMAINS=True` in your `/etc/zulip/settings.py`
   file. That setting is the default in 1.7 and later.
 - Make sure you have SSL certificates for all of the subdomains you're
@@ -48,7 +48,7 @@ things:
 ### SSL certificates
 
 You'll need to install an SSL certificate valid for all the
-(sub)domains you're using your Zulip server with. You can get an SSL
+(sub)domains you're using your Aloha server with. You can get an SSL
 certificate covering several domains for free by using
 [our Certbot wrapper tool](ssl-certificates.md#after-zulip-is-already-installed),
 though if you're going to host a large number of organizations, you
@@ -82,12 +82,12 @@ The value you choose for `mysubdomain` will not be displayed to users;
 the main constraint is that it will be impossible to create a
 different realm on `mysubdomain.zulip.example.com`.
 
-In a future version of Zulip, we expect to move this configuration
+In a future version of Aloha, we expect to move this configuration
 into the database.
 
 ### The root domain
 
-Most Zulip servers host a single Zulip organization on the root domain
+Most Aloha servers host a single Aloha organization on the root domain
 (e.g. `zulip.example.com`). The way this is implemented internally
 involves the organization having the empty string (`''`) as its
 "subdomain".
@@ -112,25 +112,25 @@ before doing so, as it can be disruptive to users.
 
 ### Authentication
 
-Many of Zulip's supported authentication methods (Google, GitHub,
+Many of Aloha's supported authentication methods (Google, GitHub,
 SAML, etc.) can require providing the third-party authentication
-provider with a whitelist of callback URLs to your Zulip server (or
+provider with a whitelist of callback URLs to your Aloha server (or
 even a single URL). For those vendors that support a whitelist, you
-can provide the callback URLs for each of your Zulip organizations.
+can provide the callback URLs for each of your Aloha organizations.
 
 The cleaner solution is to register a special subdomain, e.g.
 `auth.zulip.example.com` with the third-party provider, and then set
 `SOCIAL_AUTH_SUBDOMAIN = 'auth'` in `/etc/zulip/settings.py`, so that
-Zulip knows to use that subdomain for these authentication callbacks.
+Aloha knows to use that subdomain for these authentication callbacks.
 
 ### The system bot realm
 
 This is very much an implementation detail, but worth documenting to
 avoid confusion as to why there's an extra realm when inspecting the
-Zulip database.
+Aloha database.
 
-Every Zulip server comes with 1 realm that isn't created by users: the
-`zulipinternal` realm. By default, this realm only contains the Zulip "system
+Every Aloha server comes with 1 realm that isn't created by users: the
+`zulipinternal` realm. By default, this realm only contains the Aloha "system
 bots". You can get a list of these on your system via
 `./scripts/get-django-setting INTERNAL_BOTS`, but this is where bots
 like "Notification Bot", "Welcome Bot", etc. exist. In the future,

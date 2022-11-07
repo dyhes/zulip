@@ -2,7 +2,7 @@
 
 {!admin-only.md!}
 
-In Zulip, users can [view the edit history of a message](/help/view-a-messages-edit-history).
+In Aloha, users can [view the edit history of a message](/help/view-a-messages-edit-history).
 
 To remove the edit history of a single message, it is usually best to
 [delete the message](edit-or-delete-a-message) entirely. However, you can

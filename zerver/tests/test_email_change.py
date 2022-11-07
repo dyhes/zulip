@@ -15,7 +15,7 @@ from zerver.actions.create_user import do_reactivate_user
 from zerver.actions.realm_settings import do_deactivate_realm, do_set_realm_property
 from zerver.actions.user_settings import do_start_email_change_process
 from zerver.actions.users import do_deactivate_user
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.models import (
     EmailChangeStatus,
     Realm,
@@ -27,7 +27,7 @@ from zerver.models import (
 )
 
 
-class EmailChangeTestCase(ZulipTestCase):
+class EmailChangeTestCase(AlohaTestCase):
     def generate_email_change_link(self, new_email: str) -> str:
         data = {"email": new_email}
         url = "/json/settings"
@@ -109,7 +109,7 @@ class EmailChangeTestCase(ZulipTestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assert_in_success_response(
-            ["This confirms that the email address for your Zulip"], response
+            ["This confirms that the email address for your Aloha"], response
         )
         user_profile = get_user_by_delivery_email(new_email, new_realm)
         self.assertTrue(bool(user_profile))
@@ -175,10 +175,10 @@ class EmailChangeTestCase(ZulipTestCase):
         self.assertEqual(self.email_envelope_from(email_message), settings.NOREPLY_EMAIL_ADDRESS)
         self.assertRegex(
             self.email_display_from(email_message),
-            rf"^Zulip Account Security <{self.TOKENIZED_NOREPLY_REGEX}>\Z",
+            rf"^Aloha Account Security <{self.TOKENIZED_NOREPLY_REGEX}>\Z",
         )
 
-        self.assertEqual(email_message.extra_headers["List-Id"], "Zulip Dev <zulip.testserver>")
+        self.assertEqual(email_message.extra_headers["List-Id"], "Aloha Dev <zulip.testserver>")
 
         activation_url = [s for s in body.split("\n") if s][2]
         response = self.client_get(activation_url)
@@ -284,7 +284,7 @@ class EmailChangeTestCase(ZulipTestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assert_in_success_response(
-            ["This confirms that the email address for your Zulip"], response
+            ["This confirms that the email address for your Aloha"], response
         )
         user_profile = get_user_profile_by_id(user_profile.id)
         self.assertEqual(user_profile.delivery_email, new_email)

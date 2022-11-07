@@ -6,7 +6,7 @@ Moderation is a big part of making an open community work.
 
 ## Prevention
 
-Zulip has many features designed to simplify moderation by preventing
+Aloha has many features designed to simplify moderation by preventing
 problematic behavior:
 
 * [Disallow disposable email addresses](/help/restrict-account-creation#dont-allow-disposable-domains)
@@ -57,7 +57,7 @@ organization's policy choices.
 
 {!web-public-streams-intro.md!}
 
-## Zulip communities directory
+## Aloha communities directory
 
 {!communities-directory-intro.md!}
 

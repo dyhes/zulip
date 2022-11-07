@@ -81,7 +81,7 @@ def estimate_recent_invites(realms: Collection[Realm], *, days: int) -> int:
 def check_invite_limit(realm: Realm, num_invitees: int) -> None:
     """Discourage using invitation emails as a vector for carrying spam."""
     msg = _(
-        "To protect users, Zulip limits the number of invitations you can send in one day. Because you have reached the limit, no invitations were sent."
+        "To protect users, Aloha limits the number of invitations you can send in one day. Because you have reached the limit, no invitations were sent."
     )
     if not settings.OPEN_REALM_CREATION:
         return
@@ -238,7 +238,7 @@ def do_invite_users(
     if skipped:
         raise InvitationError(
             _(
-                "Some of those addresses are already using Zulip, "
+                "Some of those addresses are already using Aloha, "
                 "so we didn't send them an invitation. We did send "
                 "invitations to everyone else!"
             ),

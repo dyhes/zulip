@@ -33,7 +33,7 @@ zulip-export --user=<your email address> --api-key=<your API key> --stream=<stre
 Example: zulip-export --user=wdaher@zulip.com --api-key=a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5 --stream=social
 
 You can omit --user and --api-key arguments if you have a properly set up ~/.zuliprc
-This script requires the Zulip API bindings to be installed."""
+This script requires the Aloha API bindings to be installed."""
 sys.path.append(os.path.join(os.path.dirname(__file__), "../../api"))
 import zulip
 

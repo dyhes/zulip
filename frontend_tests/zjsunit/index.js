@@ -87,7 +87,7 @@ function short_tb(tb) {
     return lines.splice(0, i + 1).join("\n") + "\n(...)\n";
 }
 
-require("../../static/js/templates"); // register Zulip extensions
+require("../../static/js/templates"); // register Aloha extensions
 
 async function run_one_module(file) {
     zjquery.clear_initialize_function();

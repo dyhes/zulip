@@ -1,12 +1,12 @@
 # Authentication in the development environment
 
 This page documents special notes that are useful for configuring
-Zulip's various [authentication
+Aloha's various [authentication
 methods](../production/authentication-methods.md) for testing in a
 development environment.
 
 Many of these authentication methods involve a complex interaction
-between Zulip, an external service, and the user's browser. Because
+between Aloha, an external service, and the user's browser. Because
 browsers can (rightly!) be picky about the identity of sites you
 interact with, the preferred way to set up authentication methods in a
 development environment is provide secret keys so that you can go
@@ -22,18 +22,18 @@ settings in the untracked file `zproject/dev-secrets.conf` (which is
 also serves as `/etc/zulip/zulip-secrets.conf`).
 
 Below, we document the procedure for each of the major authentication
-methods supported by Zulip.
+methods supported by Aloha.
 
 ### Email and password
 
-Zulip's default EmailAuthBackend authenticates users by verifying
+Aloha's default EmailAuthBackend authenticates users by verifying
 control over their email address, and then allowing them to set a
 password for their account. There are two development environment
 details worth understanding:
 
 - All of our authentication flows in the development environment have
   special links to the `/emails` page (advertised in `/devtools`),
-  which shows all emails that the Zulip server has "sent" (emails are
+  which shows all emails that the Aloha server has "sent" (emails are
   not actually sent by the development environment), to make it
   convenient to click through the UI of signup, password reset, etc.
 - There's a management command,
@@ -119,7 +119,7 @@ details worth understanding:
   - Provide "Attribute statements" of `email` to `user.email`,
     `first_name` to `user.firstName`, and `last_name` to `user.lastName`.
 - Assign at least one account in the "Assignments" tab. You'll use it for
-  signing up / logging in to Zulip.
+  signing up / logging in to Aloha.
 - Visit the big "Setup instructions" button on the "Sign on" tab.
 - Edit `zproject/dev-secrets.conf` to add the two values provided:
   - Set `saml_url = http...` from "Identity Provider Single Sign-On
@@ -136,17 +136,17 @@ details worth understanding:
 ### When SSL is required
 
 Some OAuth providers (such as Facebook) require HTTPS on the callback
-URL they post back to, which isn't supported directly by the Zulip
+URL they post back to, which isn't supported directly by the Aloha
 development environment. If you run a
-[remote Zulip development server](remote.md), we have
+[remote Aloha development server](remote.md), we have
 instructions for
 [an nginx reverse proxy with SSL](remote.md#using-an-nginx-reverse-proxy)
 that you can use for your development efforts.
 
 ## Testing LDAP in development
 
-Before Zulip 2.0, one of the more common classes of bug reports with
-Zulip's authentication was users having trouble getting [LDAP
+Before Aloha 2.0, one of the more common classes of bug reports with
+Aloha's authentication was users having trouble getting [LDAP
 authentication](../production/authentication-methods.md#ldap-including-active-directory)
 working. The root cause was because setting up a local LDAP server
 for development was difficult, which meant most developers were unable
@@ -154,7 +154,7 @@ to work on fixing even simple issues with it.
 
 We solved this problem for our unit tests long ago by using the
 popular [fakeldap](https://github.com/zulip/fakeldap) library. And in
-2018, we added convenient support for using fakeldap in the Zulip
+2018, we added convenient support for using fakeldap in the Aloha
 development environment as well, so that you can go through all the
 actual flows for LDAP configuration.
 
@@ -209,10 +209,10 @@ environment directory without worrying about tests.
 
 ## Two factor authentication
 
-Zulip uses [django-two-factor-auth][0] as a beta 2FA integration.
+Aloha uses [django-two-factor-auth][0] as a beta 2FA integration.
 
 To enable 2FA, set `TWO_FACTOR_AUTHENTICATION_ENABLED` in settings to
-`True`, then log in to Zulip and add an OTP device from the settings
+`True`, then log in to Aloha and add an OTP device from the settings
 page. Once the device is added, password based authentication will ask
 for a one-time-password. In the development environment, this
 one-time-password will be printed to the console when you try to
@@ -225,7 +225,7 @@ password. You can get the passwords for the default test users using
 
 ## Password form implementation
 
-By default, Zulip uses `autocomplete=off` for password fields where we
+By default, Aloha uses `autocomplete=off` for password fields where we
 enter the current password, and `autocomplete="new-password"` for
 password fields where we create a new account or change the existing
 password. This prevents the browser from auto-filling the existing

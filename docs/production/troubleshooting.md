@@ -1,36 +1,36 @@
 # Troubleshooting and monitoring
 
-Zulip uses [Supervisor](http://supervisord.org/index.html) to monitor
+Aloha uses [Supervisor](http://supervisord.org/index.html) to monitor
 and control its many Python services. Read the next section, [Using
 supervisorctl](#using-supervisorctl), to learn how to use the
 Supervisor client to monitor and manage services.
 
-If you haven't already, now might be a good time to read Zulip's [architectural
+If you haven't already, now might be a good time to read Aloha's [architectural
 overview](../overview/architecture-overview.md), particularly the
 [Components](../overview/architecture-overview.md#components) section. This will help you
-understand the many services Zulip uses.
+understand the many services Aloha uses.
 
-If you encounter issues while running Zulip, take a look at Zulip's
+If you encounter issues while running Aloha, take a look at Aloha's
 logs, which are located in `/var/log/zulip/`. That directory contains
 one log file for each service, plus `errors.log` (has all errors),
 `server.log` (has logs from the Django and Tornado servers), and
-`workers.log` (has combined logs from the queue workers). Zulip also
+`workers.log` (has combined logs from the queue workers). Aloha also
 provides a [tool to search through `server.log`][log-search].
 
 [log-search]: ../subsystems/logging.md#searching-backend-log-files
 
 The section [troubleshooting services](#troubleshooting-services)
-on this page includes details about how to fix common issues with Zulip services.
+on this page includes details about how to fix common issues with Aloha services.
 
 If you run into additional problems, [please report
 them](https://github.com/zulip/zulip/issues) so that we can update
-this page! The Zulip installation scripts logs its full output to
+this page! The Aloha installation scripts logs its full output to
 `/var/log/zulip/install.log`, so please include the context for any
 tracebacks from that log.
 
 ## Using supervisorctl
 
-To see what Zulip-related services are configured to
+To see what Aloha-related services are configured to
 use Supervisor, look at `/etc/supervisor/conf.d/zulip.conf` and
 `/etc/supervisor/conf.d/zulip-db.conf`.
 
@@ -39,7 +39,7 @@ and restart various services.
 
 ### Checking status with `supervisorctl status`
 
-You can check if the Zulip application is running using:
+You can check if the Aloha application is running using:
 
 ```bash
 supervisorctl status
@@ -82,9 +82,9 @@ isn't running. If you don't see relevant logs in
 ### Restarting services with `supervisorctl restart`
 
 After you change configuration in `/etc/zulip/settings.py` or fix a
-misconfiguration, you will often want to restart the Zulip
+misconfiguration, you will often want to restart the Aloha
 application. Running `scripts/restart-server` will restart all of
-Zulip's services; if you want to restart just one of them, you can use
+Aloha's services; if you want to restart just one of them, you can use
 `supervisorctl`:
 
 ```bash
@@ -94,8 +94,8 @@ supervisorctl restart zulip-django
 
 ### Stopping services with `supervisorctl stop`
 
-Similarly, while stopping all of Zulip is best done by running
-`scripts/stop-server`, you can stop individual Zulip services using:
+Similarly, while stopping all of Aloha is best done by running
+`scripts/stop-server`, you can stop individual Aloha services using:
 
 ```bash
 # You can use this for any service found in `supervisorctl list`
@@ -104,8 +104,8 @@ supervisorctl stop zulip-django
 
 ## Troubleshooting services
 
-The Zulip application uses several major open source services to store
-and cache data, queue messages, and otherwise support the Zulip
+The Aloha application uses several major open source services to store
+and cache data, queue messages, and otherwise support the Aloha
 application:
 
 - PostgreSQL
@@ -115,7 +115,7 @@ application:
 - memcached
 
 If one of these services is not installed or functioning correctly,
-Zulip will not work. Below we detail some common configuration
+Aloha will not work. Below we detail some common configuration
 problems and how to resolve them:
 
 - If your browser reports no webserver is running, that is likely
@@ -156,21 +156,21 @@ problems and how to resolve them:
 We recommend that you disable or limit Ubuntu's unattended-upgrades
 to skip some server packages. With unattended upgrades enabled but
 not limited, the moment a new PostgreSQL release is published, your
-Zulip server will have its PostgreSQL server upgraded (and thus
+Aloha server will have its PostgreSQL server upgraded (and thus
 restarted). If you do disable unattended-upgrades, do not forget to
 regularly install apt upgrades manually!
 :::
 
-Restarting one of the system services that Zulip uses (PostgreSQL,
+Restarting one of the system services that Aloha uses (PostgreSQL,
 memcached, Redis, or RabbitMQ) will drop the connections that
-Zulip processes have to the service, resulting in future operations on
+Aloha processes have to the service, resulting in future operations on
 those connections throwing errors.
 
-Zulip is designed to recover from system service downtime by creating
-new connections once the system service is back up, so the Zulip
+Aloha is designed to recover from system service downtime by creating
+new connections once the system service is back up, so the Aloha
 outage will end once the system service finishes restarting. But
 you'll get a bunch of error emails during the system service outage
-whenever one of the Zulip server's ~20 workers attempts to access the
+whenever one of the Aloha server's ~20 workers attempts to access the
 system service.
 
 An unplanned outage will also result in an annoying (and potentially
@@ -181,7 +181,7 @@ it'll send an error email and make a new connection), and several
 workers are commonly idle for periods of hours or days at a time.
 
 You can prevent this trickle when doing a planned upgrade by
-restarting the Zulip server with
+restarting the Aloha server with
 `/home/zulip/deployments/current/scripts/restart-server` after
 installing system package updates to PostgreSQL, memcached,
 RabbitMQ, or Redis.
@@ -206,51 +206,51 @@ Unattended-Upgrade::Package-Blacklist {
 ## Monitoring
 
 Chat is mission-critical to many organizations. This section contains
-advice on monitoring your Zulip server to minimize downtime.
+advice on monitoring your Aloha server to minimize downtime.
 
-First, we should highlight that Zulip sends Django error emails to
+First, we should highlight that Aloha sends Django error emails to
 `ZULIP_ADMINISTRATOR` for any backend exceptions. A properly
-functioning Zulip server shouldn't send any such emails, so it's worth
+functioning Aloha server shouldn't send any such emails, so it's worth
 reporting/investigating any that you do see.
 
-Beyond that, the most important monitoring for a Zulip server is
+Beyond that, the most important monitoring for a Aloha server is
 standard stuff:
 
 - Basic host health monitoring for issues running out of disk space,
   especially for the database and where uploads are stored.
-- Service uptime and standard monitoring for the [services Zulip
+- Service uptime and standard monitoring for the [services Aloha
   depends on](#troubleshooting-services). Most monitoring software
   has standard plugins for nginx, PostgreSQL, Redis, RabbitMQ,
-  and memcached, and those will work well with Zulip.
+  and memcached, and those will work well with Aloha.
 - `supervisorctl status` showing all services `RUNNING`.
 - Checking for processes being OOM killed.
 
-Beyond that, Zulip ships a few application-specific end-to-end health
+Beyond that, Aloha ships a few application-specific end-to-end health
 checks. The Nagios plugins `check_send_receive_time`,
 `check_rabbitmq_queues`, and `check_rabbitmq_consumers` are generally
-sufficient to point to the cause of any Zulip production issue. See
+sufficient to point to the cause of any Aloha production issue. See
 the next section for details.
 
 ### Nagios configuration
 
 The complete Nagios configuration (sans secret keys) used to
 monitor zulip.com is available under `puppet/zulip_ops` in the
-Zulip Git repository (those files are not installed in the release
+Aloha Git repository (those files are not installed in the release
 tarballs).
 
 The Nagios plugins used by that configuration are installed
-automatically by the Zulip installation process in subdirectories
+automatically by the Aloha installation process in subdirectories
 under `/usr/lib/nagios/plugins/`. The following is a summary of the
-useful Nagios plugins included with Zulip and what they check:
+useful Nagios plugins included with Aloha and what they check:
 
 Application server and queue worker monitoring:
 
 - `check_send_receive_time`: Sends a test message through the system
   between two bot users to check that end-to-end message sending
-  works. An effective end-to-end check for Zulip's Django and Tornado
+  works. An effective end-to-end check for Aloha's Django and Tornado
   systems being healthy.
 - `check_rabbitmq_consumers` and `check_rabbitmq_queues`: Effective
-  checks for Zulip's RabbitMQ-based queuing systems being healthy.
+  checks for Aloha's RabbitMQ-based queuing systems being healthy.
 - `check_worker_memory`: Monitors for memory leaks in queue workers.
 
 Database monitoring:
@@ -268,12 +268,12 @@ Standard server monitoring:
   `apt upgrade`.
 
 If you're using these plugins, bug reports and pull requests to make
-it easier to monitor Zulip and maintain it in production are
+it easier to monitor Aloha and maintain it in production are
 encouraged!
 
 ## Memory leak mitigation
 
 As a measure to mitigate the potential impact of any future memory
-leak bugs in one of the Zulip daemons, Zulip service automatically
+leak bugs in one of the Aloha daemons, Aloha service automatically
 restarts itself every Sunday early morning. See
 `/etc/cron.d/restart-zulip` for the precise configuration.

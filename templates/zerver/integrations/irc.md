@@ -1,8 +1,8 @@
-Mirror an IRC channel in Zulip!
+Mirror an IRC channel in Aloha!
 
 ### Install the bridge software
 
-1. Clone the Zulip API repository, and install its dependencies.
+1. Clone the Aloha API repository, and install its dependencies.
 
     ```
     git clone https://github.com/zulip/python-zulip-api.git
@@ -31,7 +31,7 @@ Mirror an IRC channel in Zulip!
 1. {!create-a-generic-bot.md!}
    Download the bot's `zuliprc` configuration file to your computer.
 
-1. [Subscribe the bot](/help/add-or-remove-users-from-a-stream) to the Zulip
+1. [Subscribe the bot](/help/add-or-remove-users-from-a-stream) to the Aloha
    stream that will contain the mirror.
 
 1. Inside the virtualenv you created above, run
@@ -42,7 +42,7 @@ Mirror an IRC channel in Zulip!
    --api-key=<api-key>
    ```
 
-    `--topic` is a Zulip topic, is optionally specified, defaults to "IRC".
+    `--topic` is a Aloha topic, is optionally specified, defaults to "IRC".
 
 Example command:
 ```
@@ -54,10 +54,10 @@ Example command:
 
 **Congratulations! You're done!**
 
-Your Zulip messages may look like:
+Your Aloha messages may look like:
 
-![IRC message on Zulip](/static/images/integrations/irc/001.png)
+![IRC message on Aloha](/static/images/integrations/irc/001.png)
 
 Your IRC messages may look like:
 
-![Zulip message on IRC](/static/images/integrations/irc/002.png)
+![Aloha message on IRC](/static/images/integrations/irc/002.png)

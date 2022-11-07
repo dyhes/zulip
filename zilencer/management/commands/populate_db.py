@@ -314,10 +314,10 @@ class Command(BaseCommand):
             create_internal_realm()
             zulip_realm = do_create_realm(
                 string_id="zulip",
-                name="Zulip Dev",
+                name="Aloha Dev",
                 emails_restricted_to_domains=False,
                 email_address_visibility=Realm.EMAIL_ADDRESS_VISIBILITY_ADMINS,
-                description="The Zulip development environment default organization."
+                description="The Aloha development environment default organization."
                 "  It's great for testing!",
                 invite_required=False,
                 plan_type=Realm.PLAN_TYPE_SELF_HOSTED,
@@ -533,8 +533,8 @@ class Command(BaseCommand):
             # These bots are directly referenced from code and thus
             # are needed for the test suite.
             zulip_realm_bots = [
-                ("Zulip Error Bot", "error-bot@zulip.com"),
-                ("Zulip Default Bot", "default-bot@zulip.com"),
+                ("Aloha Error Bot", "error-bot@zulip.com"),
+                ("Aloha Default Bot", "default-bot@zulip.com"),
             ]
             for i in range(options["extra_bots"]):
                 zulip_realm_bots.append((f"Extra Bot {i}", f"extrabot{i}@zulip.com"))
@@ -545,7 +545,7 @@ class Command(BaseCommand):
 
             zoe = get_user_by_delivery_email("zoe@zulip.com", zulip_realm)
             zulip_webhook_bots = [
-                ("Zulip Webhook Bot", "webhook-bot@zulip.com"),
+                ("Aloha Webhook Bot", "webhook-bot@zulip.com"),
             ]
             # If a stream is not supplied in the webhook URL, the webhook
             # will (in some cases) send the notification as a PM to the
@@ -788,7 +788,7 @@ class Command(BaseCommand):
                 date = timezone_now()
                 client = get_client("website")
                 if user.full_name[0] <= "H":
-                    client = get_client("ZulipAndroid")
+                    client = get_client("AlohaAndroid")
                 UserPresence.objects.get_or_create(
                     user_profile=user,
                     realm_id=user.realm_id,
@@ -956,9 +956,9 @@ class Command(BaseCommand):
                 # Also, we don't want interacting with each other
                 # in dev setup.
                 internal_zulip_users_nosubs = [
-                    ("Zulip Commit Bot", "commit-bot@zulip.com"),
-                    ("Zulip Trac Bot", "trac-bot@zulip.com"),
-                    ("Zulip Nagios Bot", "nagios-bot@zulip.com"),
+                    ("Aloha Commit Bot", "commit-bot@zulip.com"),
+                    ("Aloha Trac Bot", "trac-bot@zulip.com"),
+                    ("Aloha Nagios Bot", "nagios-bot@zulip.com"),
                 ]
                 create_users(
                     zulip_realm,

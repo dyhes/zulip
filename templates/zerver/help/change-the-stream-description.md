@@ -6,7 +6,7 @@ Streams descriptions are displayed when viewing the stream in the
 web and desktop apps, and can be used to explain the purpose of a
 stream and link to usage guidelines, resources, or related streams.
 
-Stream descriptions support Zulip's standard [Markdown
+Stream descriptions support Aloha's standard [Markdown
 formatting][markdown-formatting], with the exception that image
 previews are disabled.
 

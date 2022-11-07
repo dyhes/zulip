@@ -1,4 +1,4 @@
-Receive Freshping notifications in Zulip!
+Receive Freshping notifications in Aloha!
 
 1. {!create-stream.md!}
 

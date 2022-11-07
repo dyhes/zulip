@@ -1,4 +1,4 @@
-See your Grafana dashboard alerts in Zulip!
+See your Grafana dashboard alerts in Aloha!
 
 1. {!create-stream.md!}
 
@@ -13,10 +13,10 @@ See your Grafana dashboard alerts in Zulip!
 1. Create an alert. Within your new alert rule, scroll down
    to the **Notifications** section. Click on the button next to **Send to**
    and select the webhook notification channel you just made. You can also
-   choose to write a message, which will be included in the Zulip notifications.
+   choose to write a message, which will be included in the Aloha notifications.
 
 1. Return to **Notification channels**. You may now click **Send Test** and
-   you will see a Grafana test alert notification in Zulip.
+   you will see a Grafana test alert notification in Aloha.
 
 {!congrats.md!}
 

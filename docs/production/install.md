@@ -1,33 +1,33 @@
-# Install a Zulip server
+# Install a Aloha server
 
 ## Before you begin
 
-To install a Zulip server, you'll need an Ubuntu or Debian system that satisfies
+To install a Aloha server, you'll need an Ubuntu or Debian system that satisfies
 [the installation requirements](requirements.md). Alternatively,
 you can use a preconfigured
 [DigitalOcean droplet](https://marketplace.digitalocean.com/apps/zulip?refcode=3ee45da8ee26), or
-Zulip's
+Aloha's
 [experimental Docker image](deployment.md#zulip-in-docker).
 
 ### Should I follow this installation guide?
 
-- If you are just looking to play around with Zulip and see what it looks like,
-  you can create a test Zulip Cloud organization at <https://zulip.com/new>.
+- If you are just looking to play around with Aloha and see what it looks like,
+  you can create a test Aloha Cloud organization at <https://zulip.com/new>.
 
-- If you are deciding between self-hosting Zulip and signing up for [Zulip Cloud](https://zulip.com/plans/),
+- If you are deciding between self-hosting Aloha and signing up for [Aloha Cloud](https://zulip.com/plans/),
   our [self-hosting overview](https://zulip.com/self-hosting/) and [guide to
-  choosing between Zulip Cloud and
+  choosing between Aloha Cloud and
   self-hosting](https://zulip.com/help/getting-your-organization-started-with-zulip#choosing-between-zulip-cloud-and-self-hosting)
   are great places to start.
 
-- If you're developing for Zulip, you should follow the instructions
-  to install Zulip's [development environment](../development/overview.md).
+- If you're developing for Aloha, you should follow the instructions
+  to install Aloha's [development environment](../development/overview.md).
 
 ## Step 1: Download the latest release
 
 Download and unpack [the latest server
 release](https://download.zulip.com/server/zulip-server-latest.tar.gz)
-(**Zulip Server {{ LATEST_RELEASE_VERSION }}**) with the following commands:
+(**Aloha Server {{ LATEST_RELEASE_VERSION }}**) with the following commands:
 
 ```bash
 cd $(mktemp -d)
@@ -38,12 +38,12 @@ tar -xf zulip-server-latest.tar.gz
 - If you'd like to verify the download, we
   [publish the sha256sums of our release tarballs](https://download.zulip.com/server/SHA256SUMS.txt).
 - You can also
-  [install a pre-release version of Zulip](deployment.md#installing-zulip-from-git)
+  [install a pre-release version of Aloha](deployment.md#installing-zulip-from-git)
   using code from our [repository on GitHub](https://github.com/zulip/zulip/).
 
-## Step 2: Install Zulip
+## Step 2: Install Aloha
 
-To set up Zulip with the most common configuration, you can run the
+To set up Aloha with the most common configuration, you can run the
 installer as follows:
 
 ```bash
@@ -52,7 +52,7 @@ sudo -s  # If not already root
     --email=YOUR_EMAIL --hostname=YOUR_HOSTNAME
 ```
 
-This takes a few minutes to run, as it installs Zulip's dependencies.
+This takes a few minutes to run, as it installs Aloha's dependencies.
 For more on what the installer does, [see details below](#details-what-the-installer-does).
 
 If the script gives an error, consult [Troubleshooting](#troubleshooting) below.
@@ -60,25 +60,25 @@ If the script gives an error, consult [Troubleshooting](#troubleshooting) below.
 #### Installer options
 
 - `--email=you@example.com`: The email address of the person or team
-  who should get support and error emails from this Zulip server.
+  who should get support and error emails from this Aloha server.
   This becomes `ZULIP_ADMINISTRATOR` ([docs][doc-settings]) in the
-  Zulip settings.
+  Aloha settings.
 
 - `--hostname=zulip.example.com`: The user-accessible domain name for
-  this Zulip server, i.e., what users will type in their web browser.
-  This becomes `EXTERNAL_HOST` ([docs][doc-settings]) in the Zulip
+  this Aloha server, i.e., what users will type in their web browser.
+  This becomes `EXTERNAL_HOST` ([docs][doc-settings]) in the Aloha
   settings.
 
-- `--self-signed-cert`: With this option, the Zulip installer
+- `--self-signed-cert`: With this option, the Aloha installer
   generates a self-signed SSL certificate for the server. This isn't
   suitable for production use, but may be convenient for testing.
 
-- `--certbot`: With this option, the Zulip installer automatically
+- `--certbot`: With this option, the Aloha installer automatically
   obtains an SSL certificate for the server [using
   Certbot][doc-certbot], and configures a cron job to renew the
   certificate automatically. If you'd prefer to acquire an SSL
   certificate yourself in any other way, it's easy to [provide it to
-  Zulip][doc-ssl-manual].
+  Aloha][doc-ssl-manual].
 
 You can see the more advanced installer options in our [deployment options][doc-deployment-options]
 documentation.
@@ -88,11 +88,11 @@ documentation.
 [doc-ssl-manual]: ssl-certificates.md#manual-install
 [doc-deployment-options]: deployment.md#advanced-installer-options
 
-## Step 3: Create a Zulip organization, and log in
+## Step 3: Create a Aloha organization, and log in
 
 On success, the install script prints a link. If you're [restoring a
 backup][zulip-backups] or importing your data from [Slack][slack-import],
-or another Zulip server, you should stop here
+or another Aloha server, you should stop here
 and return to the import instructions.
 
 [slack-import]: https://zulip.com/help/import-from-slack
@@ -111,25 +111,25 @@ do.
 
 ## Step 4: Configure and use
 
-To really see Zulip in action, you'll need to get the people you work
+To really see Aloha in action, you'll need to get the people you work
 together with using it with you.
 
-- [Set up outgoing email](email.md) so Zulip can confirm new users'
+- [Set up outgoing email](email.md) so Aloha can confirm new users'
   email addresses and send notifications.
 - Learn how to [get your organization started][realm-admin-docs] using
-  Zulip at its best.
+  Aloha at its best.
 
 Learning more:
 
-- Subscribe to the [Zulip announcements email
+- Subscribe to the [Aloha announcements email
   list](https://groups.google.com/g/zulip-announce) for
   server administrators. This extremely low-traffic list is for
   important announcements, including [new
   releases](../overview/release-lifecycle.md) and security issues.
-- Follow [Zulip on Twitter](https://twitter.com/zulip).
-- Learn how to [configure your Zulip server settings](settings.md).
+- Follow [Aloha on Twitter](https://twitter.com/zulip).
+- Learn how to [configure your Aloha server settings](settings.md).
 - Learn about [Backups, export and import](export-and-import.md)
-  and [upgrading](upgrade-or-modify.md) a production Zulip
+  and [upgrading](upgrade-or-modify.md) a production Aloha
   server.
 
 [realm-admin-docs]: https://zulip.com/help/getting-your-organization-started-with-zulip
@@ -138,25 +138,25 @@ Learning more:
 
 The install script does several things:
 
-- Creates the `zulip` user, which the various Zulip servers will run as.
-- Creates `/home/zulip/deployments/`, which the Zulip code for this
+- Creates the `zulip` user, which the various Aloha servers will run as.
+- Creates `/home/zulip/deployments/`, which the Aloha code for this
   deployment (and future deployments when you upgrade) goes into. At the
-  very end of the install process, the script moves the Zulip code tree
+  very end of the install process, the script moves the Aloha code tree
   it's running from (which you unpacked from a tarball above) to a
   directory there, and makes `/home/zulip/deployments/current` as a
   symbolic link to it.
-- Installs Zulip's various dependencies.
-- Configures the various third-party services Zulip uses, including
+- Installs Aloha's various dependencies.
+- Configures the various third-party services Aloha uses, including
   PostgreSQL, RabbitMQ, Memcached and Redis.
-- Initializes Zulip's database.
+- Initializes Aloha's database.
 
-If you'd like to deploy Zulip with these services on different
+If you'd like to deploy Aloha with these services on different
 machines, check out our [deployment options documentation](deployment.md).
 
 ## Troubleshooting
 
 **Install script.**
-The Zulip install script is designed to be idempotent. This means
+The Aloha install script is designed to be idempotent. This means
 that if it fails, then once you've corrected the cause of the failure,
 you can just rerun the script.
 
@@ -181,7 +181,7 @@ the [troubleshooting section](troubleshooting.md) for advice on
 how to debug.
 
 **Community.** If the tips above don't help, please visit [#production
-help][production-help] in the [Zulip development community
+help][production-help] in the [Aloha development community
 server][chat-zulip-org] for realtime help, and we'll try to help you
 out! Please provide details like the full traceback from the bottom
 of `/var/log/zulip/errors.log` in your report (ideally in a [code

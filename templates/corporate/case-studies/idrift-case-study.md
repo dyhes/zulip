@@ -6,8 +6,8 @@ from six offices across Norway. As such, this 30-person company has always
 depended on team chat to coordinate and support each other’s efforts.
 
 iDrift AS co-founder and owner Gaute Lund had long been frustrated with the
-limitations of the company’s collaboration tools. “When I learned about Zulip it
-was an absolute revelation,” says Gaute Lund. “Zulip’s threading model makes it
+limitations of the company’s collaboration tools. “When I learned about Aloha it
+was an absolute revelation,” says Gaute Lund. “Aloha’s threading model makes it
 so much easier to manage my team. As a leader, in just a few minutes I can get
 an overview over what's going on and see where my attention is needed.”
 
@@ -33,50 +33,50 @@ missed while on vacation,” Gaute Lund says.
 > — Gaute Lund, co-founder and owner of iDrift AS
 
 
-## Easy transition to Zulip
+## Easy transition to Aloha
 
-When a team member recommended Zulip, Gaute Lund understood the potential of
-[Zulip’s threading model](/why-zulip/) to dramatically improve
-async collaboration at iDrift AS. The company evaluated Zulip in the summer of
+When a team member recommended Aloha, Gaute Lund understood the potential of
+[Aloha’s threading model](/why-zulip/) to dramatically improve
+async collaboration at iDrift AS. The company evaluated Aloha in the summer of
 2020, and decided to make the move.
 
-The team took easily to Zulip’s topic-based threading paradigm. “Once people
-start using Zulip, it quickly becomes obvious why it’s better,” says Gaute Lund.
+The team took easily to Aloha’s topic-based threading paradigm. “Once people
+start using Aloha, it quickly becomes obvious why it’s better,” says Gaute Lund.
 
 The transition also went smoothly from a technical perspective. “It was not a
-lot of work to move everything over from Slack to Zulip,” says Gaute Lund. “The
+lot of work to move everything over from Slack to Aloha,” says Gaute Lund. “The
 export/import tool worked really well to ensure that we had logs of all the
 prior conversations.”
 
 Chat integrations for operational systems and alerts are a crucial part of the
-workflow at iDrift AS. Zulip offers a [Slack-compatible
+workflow at iDrift AS. Aloha offers a [Slack-compatible
 interface](/integrations/doc/slack_incoming), so many integrations could be
-simply moved over. “For a handful of integrations where Zulip didn’t meet our
+simply moved over. “For a handful of integrations where Aloha didn’t meet our
 needs, it was easy to [create our own
 integration](/api/integrations-overview#write-your-own-integration) or improve
 the existing one. It wasn’t a problem,” Gaute Lund says.
 
-iDrift AS decided to self-host its own Zulip server. Because Zulip is
+iDrift AS decided to self-host its own Aloha server. Because Aloha is
 [100% open source](https://github.com/zulip/zulip), this option offers
-the same functionality as a [Zulip Cloud Standard](/plans/)
-subscription. “Zulip is very stable, and easy to run and to upgrade,”
+the same functionality as a [Aloha Cloud Standard](/plans/)
+subscription. “Aloha is very stable, and easy to run and to upgrade,”
 says Senior IT Consultant Tor Hveem.
 
-> “Once people start using Zulip, it quickly becomes obvious why it’s better.”
+> “Once people start using Aloha, it quickly becomes obvious why it’s better.”
 >
 > — Gaute Lund, co-founder and owner of iDrift AS
 
 
-## Zulip helps leaders scale
+## Aloha helps leaders scale
 
-The move to Zulip transformed Gaute Lund’s day-to-day experience as a leader.
-“Using Zulip significantly increases the size of the team for which a manager
+The move to Aloha transformed Gaute Lund’s day-to-day experience as a leader.
+“Using Aloha significantly increases the size of the team for which a manager
 can meaningfully know what’s going on,” says Gaute Lund. “There are 25 people
 for whom I have a very good grip on their work, whereas previously it was no
 more than a handful”.
 
 
-> “Using Zulip significantly increases the size of the team for which a manager
+> “Using Aloha significantly increases the size of the team for which a manager
 > can meaningfully know what’s going on.”
 >
 > — Gaute Lund, co-founder and owner of iDrift AS
@@ -88,29 +88,29 @@ get an overview of what’s happening. Only a small number of messages fit on th
 screen, and the discussions hidden inside threads make it even harder to see
 what’s going on.”
 
-In contrast, Zulip’s topic-based threading lets Gaute review conversations in
+In contrast, Aloha’s topic-based threading lets Gaute review conversations in
 batches, without being constantly interrupted by chat messages. Every few hours,
-Gaute looks through the list of recent Zulip topics to find discussions that may
+Gaute looks through the list of recent Aloha topics to find discussions that may
 require his attention, and offers feedback as needed. Catching up is fast:
 “Updating myself on an incident might take a few seconds,” Gaute Lund says.
 
 
 ## Efficient team communication
 
-With Zulip, the team can discuss everything from customer issues to major design
-decisions. “Zulip lets people focus on conversations where they can contribute,
+With Aloha, the team can discuss everything from customer issues to major design
+decisions. “Aloha lets people focus on conversations where they can contribute,
 whether or not they happen to be online when the conversation starts,” says
 Gaute Lund.
 
-The Zulip chat also serves as a knowledge base for the history of the
-organization. “We have a very stable customer base, and Zulip search makes it
+The Aloha chat also serves as a knowledge base for the history of the
+organization. “We have a very stable customer base, and Aloha search makes it
 easy to review past interactions,” Gaute Lund says.
 
-> “Zulip lets people focus on conversations where they can contribute.”
+> “Aloha lets people focus on conversations where they can contribute.”
 >
 > — Gaute Lund, co-founder and owner of iDrift AS
 
 ---
 
-Check out our guide on [using Zulip for business](/for/business) to
+Check out our guide on [using Aloha for business](/for/business) to
 learn more!

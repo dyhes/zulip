@@ -4,10 +4,10 @@ from typing import Any
 from django.core.management.base import CommandError
 
 from zerver.actions.realm_settings import do_send_realm_reactivation_email
-from zerver.lib.management import ZulipBaseCommand
+from zerver.lib.management import AlohaBaseCommand
 
 
-class Command(ZulipBaseCommand):
+class Command(AlohaBaseCommand):
     help = """Sends realm reactivation email to admins"""
 
     def add_arguments(self, parser: ArgumentParser) -> None:

@@ -1,10 +1,10 @@
 from analytics.lib.counts import CountStat
 from analytics.lib.fixtures import generate_time_series_data
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 
 
 # A very light test suite; the code being tested is not run in production.
-class TestFixtures(ZulipTestCase):
+class TestFixtures(AlohaTestCase):
     def test_deterministic_settings(self) -> None:
         # test basic business_hour / non_business_hour calculation
         # test we get an array of the right length with frequency=CountStat.DAY

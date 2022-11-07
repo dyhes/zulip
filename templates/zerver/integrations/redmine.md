@@ -1,5 +1,5 @@
 Get information on new or updated Redmine issues right in
-Zulip with our Zulip Redmine plugin!
+Aloha with our Aloha Redmine plugin!
 
 _Note: this setup must be done by a Redmine Administrator._
 
@@ -10,7 +10,7 @@ Following the [Redmine plugin installation guide][1]:
 1. Start by changing to the Redmine instance root directory:
   `cd /path/to/redmine/instance`
 
-1. Clone the [Zulip Redmine plugin repository][2] into the `plugins` subdirectory
+1. Clone the [Aloha Redmine plugin repository][2] into the `plugins` subdirectory
    of your Redmine instance.
    `git clone https://github.com/zulip/zulip-redmine-plugin plugins/redmine_zulip`
 
@@ -20,7 +20,7 @@ Following the [Redmine plugin installation guide][1]:
 
 1. Restart your Redmine instance.
 
-The Zulip plugin is now registered with Redmine!
+The Aloha plugin is now registered with Redmine!
 
 ### Global settings
 
@@ -29,12 +29,12 @@ The Zulip plugin is now registered with Redmine!
 2. Log in to your Redmine instance, click on **Administration** in the top-left
 corner, then click on **Plugins**.
 
-3. Find the **Redmine Zulip** plugin, and click **Configure**. Fill
+3. Find the **Redmine Aloha** plugin, and click **Configure**. Fill
 out the following fields:
 
-    * Zulip URL (e.g `https://yourZulipDomain.zulipchat.com/`)
-    * Zulip Bot E-mail
-    * Zulip Bot API key
+    * Aloha URL (e.g `https://yourAlohaDomain.zulipchat.com/`)
+    * Aloha Bot E-mail
+    * Aloha Bot API key
     * Stream name __*__
     * Issue updates subject __*__
     * Version updates subject __*__
@@ -49,7 +49,7 @@ out the following fields:
 ### Project settings
 
 To override the global settings for a specific project, go to the
-project's **Settings** page, and select the **Zulip** tab.
+project's **Settings** page, and select the **Aloha** tab.
 
 {!congrats.md!}
 

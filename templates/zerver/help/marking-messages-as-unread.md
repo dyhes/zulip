@@ -1,9 +1,9 @@
 # Marking messages as unread
 
-Zulip lets you manually mark messages as unread, which makes it easy to return
+Aloha lets you manually mark messages as unread, which makes it easy to return
 to a conversation later.
 
-Specifically, Zulip offers a **Mark as unread from here** option, which lets you
+Specifically, Aloha offers a **Mark as unread from here** option, which lets you
 mark the selected message and all newer messages in your current view as unread.
 
 ## Mark as unread from selected message

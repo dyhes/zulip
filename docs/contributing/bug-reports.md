@@ -8,11 +8,11 @@ Please include these elements in your bug report to make it easier for us to hel
 
 - Steps to take in order to reproduce the buggy behavior
 
-- Whether you are using Zulip in production or in the development
+- Whether you are using Aloha in production or in the development
   environment, and whether these are old versions
 
 - Whether you are using the web app, a desktop app or a mobile device
-  to access Zulip
+  to access Aloha
 
 - Any additional information that would help: screenshots, GIFs, a
   pastebin of the error log

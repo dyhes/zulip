@@ -1,5 +1,5 @@
 This directory contains scripts that are used in building, managing,
-testing, and other forms of work in a Zulip development environment.
+testing, and other forms of work in a Aloha development environment.
 Note that tools that are also useful in production belong in
 `scripts/` or should be Django management commands.
 

@@ -16,7 +16,7 @@ ARG PGROONGA_VERSION=latest
 ARG POSTGRESQL_VERSION=14
 FROM groonga/pgroonga:$PGROONGA_VERSION-alpine-$POSTGRESQL_VERSION-slim
 
-# Install hunspell, Zulip stop words, and run Zulip database
+# Install hunspell, Aloha stop words, and run Aloha database
 # init.
 RUN apk add -U --no-cache hunspell-en
 RUN ln -sf /usr/share/hunspell/en_US.dic /usr/local/share/postgresql/tsearch_data/en_us.dict && ln -sf /usr/share/hunspell/en_US.aff /usr/local/share/postgresql/tsearch_data/en_us.affix

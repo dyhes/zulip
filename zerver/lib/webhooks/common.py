@@ -30,7 +30,7 @@ Contact {support_email} if you need help debugging!
 """
 
 INVALID_JSON_MESSAGE = """
-Hi there! It looks like you tried to set up the Zulip {webhook_name} integration,
+Hi there! It looks like you tried to set up the Aloha {webhook_name} integration,
 but didn't correctly configure the webhook to send data in the JSON format
 that this integration expects!
 """
@@ -85,7 +85,7 @@ def check_send_webhook_message(
     unquote_url_parameters: bool = False,
 ) -> None:
     if complete_event_type is not None:
-        # Here, we implement Zulip's generic support for filtering
+        # Here, we implement Aloha's generic support for filtering
         # events sent by the third-party service.
         #
         # If complete_event_type is passed to this function, we will check the event

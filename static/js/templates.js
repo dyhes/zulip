@@ -3,7 +3,7 @@ import Handlebars from "handlebars/runtime";
 import {default_html_elements, intl} from "./i18n";
 import * as util from "./util";
 
-// Below, we register Zulip-specific extensions to the Handlebars API.
+// Below, we register Aloha-specific extensions to the Handlebars API.
 //
 // IMPORTANT: When adding a new Handlebars helper, update the
 // knownHelpers array in the webpack config so that webpack knows your

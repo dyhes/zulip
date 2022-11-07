@@ -1,4 +1,4 @@
-Get Zulip notifications when you `hg push`!
+Get Aloha notifications when you `hg push`!
 
 {!create-stream.md!}
 
@@ -24,12 +24,12 @@ hook if it installs in a different location on this system:
 
 3.  Add the directory where the `zulip_changegroup.py` script was
 installed to the environment variable `PYTHONPATH`.  For example, if
-you installed the Zulip Python bindings at the system level, it'd be:
+you installed the Aloha Python bindings at the system level, it'd be:
 
         export PYTHONPATH=/usr/local/share/zulip/integrations/hg:$PYTHONPATH
 
 That’s all it takes for the basic setup! On the next `hg push`, you’ll
-get a Zulip update for the changeset.
+get a Aloha update for the changeset.
 
 ### More configuration options
 
@@ -42,7 +42,7 @@ The Mercurial integration also supports:
 
 If you’ve set up your repository to be [browsable via the web][1],
 add a `web_url` configuration option to the `zulip` section of your
-default `.hg/hgrc` to get changelog and revision links in your Zulip
+default `.hg/hgrc` to get changelog and revision links in your Aloha
 notifications:
 
     [zulip]
@@ -56,9 +56,9 @@ notifications:
 
 #### Branch whitelists and blacklists
 
-By default, this integration will send Zulip notifications for
+By default, this integration will send Aloha notifications for
 changegroup events for all branches. If you’d prefer to only receive
-Zulip notifications for specified branches, add a `branches`
+Aloha notifications for specified branches, add a `branches`
 configuration option to the `zulip` section of your default `.hg/hgrc`,
 containing a comma-separated list of the branches that should produce
 notifications:
@@ -81,7 +81,7 @@ comma-separated list of the branches that should be ignored:
     ignore_branches = "noisy,even-more-noisy"
 
 When team members push new changesets with `hg push`, you’ll get a
-Zulip notification.
+Aloha notification.
 
 {!congrats.md!}
 

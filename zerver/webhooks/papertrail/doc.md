@@ -1,4 +1,4 @@
-Get Zulip notifications for your Papertrail logs!
+Get Aloha notifications for your Papertrail logs!
 
 1. {!create-stream.md!}
 

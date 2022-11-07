@@ -39,7 +39,7 @@ from zerver.lib.bot_lib import StateHandler
 from zerver.lib.export import Record, do_export_realm, do_export_user, export_usermessages_batch
 from zerver.lib.import_realm import do_import_realm, get_incoming_message_ids
 from zerver.lib.streams import create_stream_if_needed
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import (
     create_s3_buckets,
     get_test_image_file,
@@ -133,7 +133,7 @@ def get_huddle_hashes(r: Realm) -> str:
     return huddle_hash
 
 
-class ExportFile(ZulipTestCase):
+class ExportFile(AlohaTestCase):
     """This class is a container for shared helper functions
     used for both the realm-level and user-level export tests."""
 

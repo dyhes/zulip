@@ -2,12 +2,12 @@ from unittest import mock
 
 from django.utils.timezone import now as timezone_now
 
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import queries_captured
 from zerver.models import Client, UserActivity, UserProfile, flush_per_request_caches
 
 
-class ActivityTest(ZulipTestCase):
+class ActivityTest(AlohaTestCase):
     @mock.patch("stripe.Customer.list", return_value=[])
     def test_activity(self, unused_mock: mock.Mock) -> None:
         self.login("hamlet")

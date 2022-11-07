@@ -9,7 +9,7 @@ const {run_test} = require("../zjsunit/test");
 // Important note on these tests:
 
 //
-// The way the Zulip hotkey tests work is as follows.  First, we set
+// The way the Aloha hotkey tests work is as follows.  First, we set
 // up various contexts by monkey-patching the various hotkeys exports
 // functions (like overlays.settings_open).  Within that context, to
 // test whether a given key (e.g. `x`) results in a specific function

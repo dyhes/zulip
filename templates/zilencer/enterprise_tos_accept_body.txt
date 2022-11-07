@@ -1,12 +1,12 @@
 {#
-Mail sent to us when a company accepts the ToS for Zulip Enterprise
+Mail sent to us when a company accepts the ToS for Aloha Enterprise
 edition.
 #}
 
 Hello,
 
-{{ name }} just accepted the Zulip Enterprise Terms of Service for {{ company }}.
+{{ name }} just accepted the Aloha Enterprise Terms of Service for {{ company }}.
 
 Cheers,
 
-Zulip Legal Bot
+Aloha Legal Bot

@@ -11,7 +11,7 @@ from django_stubs_ext import StrPromise
 from zerver.lib.storage import static_path
 
 """This module declares all of the (documented) integrations available
-in the Zulip server.  The Integration class is used as part of
+in the Aloha server.  The Integration class is used as part of
 generating the documentation on the /integrations page, while the
 WebhookIntegration class is also used to generate the URLs in
 `zproject/urls.py` for webhook integrations.
@@ -179,7 +179,7 @@ class BotIntegration(Integration):
 class WebhookIntegration(Integration):
     DEFAULT_FUNCTION_PATH = "zerver.webhooks.{name}.view.api_{name}_webhook"
     DEFAULT_URL = "api/v1/external/{name}"
-    DEFAULT_CLIENT_NAME = "Zulip{name}Webhook"
+    DEFAULT_CLIENT_NAME = "Aloha{name}Webhook"
     DEFAULT_DOC_PATH = "{name}/doc.{ext}"
 
     def __init__(
@@ -313,7 +313,7 @@ class EmbeddedBotIntegration(Integration):
     and valid such that these are capable of being deployed on the server.
     """
 
-    DEFAULT_CLIENT_NAME = "Zulip{name}EmbeddedBot"
+    DEFAULT_CLIENT_NAME = "Aloha{name}EmbeddedBot"
 
     def __init__(self, name: str, *args: Any, **kwargs: Any) -> None:
         assert kwargs.get("client_name") is None
@@ -801,7 +801,7 @@ DOC_SCREENSHOT_CONFIG: Dict[str, List[BaseScreenshotConfig]] = {
         ScreenshotConfig(
             "",
             extra_params={
-                "project": "Zulip Mobile",
+                "project": "Aloha Mobile",
                 "language": "en",
                 "resource": "file",
                 "reviewed": "100",

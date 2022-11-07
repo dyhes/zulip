@@ -1,6 +1,6 @@
 # Upgrading Django
 
-This article documents notes on the process for upgrading Zulip to
+This article documents notes on the process for upgrading Aloha to
 new major versions of Django. Here are the steps:
 
 - Carefully read the Django upstream changelog, and `git grep` to

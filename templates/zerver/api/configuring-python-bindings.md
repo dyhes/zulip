@@ -1,9 +1,9 @@
 # Configuring the Python bindings
 
-Zulip provides a set of tools that allows interacting with its API more
+Aloha provides a set of tools that allows interacting with its API more
 easily, called the [Python bindings](https://pypi.python.org/pypi/zulip/).
 One of the most notable use cases for these bindings are bots developed
-using Zulip's [bot framework](/api/writing-bots).
+using Aloha's [bot framework](/api/writing-bots).
 
 In order to use them, you need to configure them with your API key and other
 settings. There are two ways to achieve that:
@@ -19,7 +19,7 @@ A `.zuliprc` file is a plain text document that looks like this:
 [api]
 key=<API key from the web interface>
 email=<your email address>
-site=<your Zulip server's URI>
+site=<your Aloha server's URI>
 ...
 ```
 
@@ -41,7 +41,7 @@ can be found in the following table:
         <td>Yes</td>
         <td>
             <a href="/api/api-keys">API key</a>, which you can get through
-            Zulip's web interface.
+            Aloha's web interface.
         </td>
     </tr>
     <tr>
@@ -58,7 +58,7 @@ can be found in the following table:
         <td><code>ZULIP_SITE</code></td>
         <td>No</td>
         <td>
-            URL where your Zulip server is located.
+            URL where your Aloha server is located.
         </td>
     </tr>
     <tr>
@@ -96,7 +96,7 @@ can be found in the following table:
         <td><code>ZULIP_ALLOW_INSECURE</code></td>
         <td>No</td>
         <td>
-            Allows connecting to Zulip servers with an invalid SSL/TLS
+            Allows connecting to Aloha servers with an invalid SSL/TLS
             certificate. Please note that enabling this will make the HTTPS
             connection insecure. Defaults to <code>false</code>.
         </td>

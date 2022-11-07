@@ -1,4 +1,4 @@
-# These are tests for Zulip's database migrations.  System documented at:
+# These are tests for Aloha's database migrations.  System documented at:
 #   https://zulip.readthedocs.io/en/latest/subsystems/schema-migrations.html
 #
 # You can also read

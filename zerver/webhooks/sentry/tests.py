@@ -125,7 +125,7 @@ Traceback:
 ```quote
 **level:** error
 **timestamp:** 2020-06-17 14:42:54
-**filename:** /mnt/data/Documents/Stuff%20for%20Zulip/Repos/sentry/js/external.js
+**filename:** /mnt/data/Documents/Stuff%20for%20Aloha/Repos/sentry/js/external.js
 ```"""
         self.check_webhook("event_for_exception_js", expected_topic, expected_message)
 

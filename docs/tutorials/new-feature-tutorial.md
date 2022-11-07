@@ -6,18 +6,18 @@ as an example of the specific steps needed to add a new feature: adding
 a new option to the application that is dynamically synced through the
 data system in real-time to all browsers the user may have open.
 
-As you read this, you may find you need to learn about Zulip's
+As you read this, you may find you need to learn about Aloha's
 real-time push system; the
 [real-time push and events](../subsystems/events-system.md)
 documentation has a detailed explanation of how everything works. You
-may also find it beneficial to read Zulip's
+may also find it beneficial to read Aloha's
 [architectural overview](../overview/architecture-overview.md).
-Zulip is a web application built using the
+Aloha is a web application built using the
 [Django framework](https://www.djangoproject.com/), and some of the
 processes listed in this tutorial, such as database migrations and
 tests, use Django's tooling.
 
-Zulip's [directory structure](../overview/directory-structure.md)
+Aloha's [directory structure](../overview/directory-structure.md)
 will also be helpful to review when creating a new feature. Many
 aspects of the structure will be familiar to Django developers. Visit
 [Django's documentation](https://docs.djangoproject.com/en/3.2/#index-first-steps)
@@ -31,7 +31,7 @@ the additional complexity involved in sending messages.
 ### Files impacted
 
 This tutorial will walk through adding a new feature to a Realm (an
-organization in Zulip). The following files are involved in the process:
+organization in Aloha). The following files are involved in the process:
 
 **Backend**
 
@@ -39,7 +39,7 @@ organization in Zulip). The following files are involved in the process:
 - `zerver/views/realm.py`: The view function that implements the API endpoint
   for editing realm objects.
 - `zerver/actions/realm_settings.py`: Contains code for updating and interacting with the database.
-- `zerver/lib/events.py`: Ensures that the state Zulip sends to clients is always
+- `zerver/lib/events.py`: Ensures that the state Aloha sends to clients is always
   consistent and correct.
 
 **Frontend**
@@ -66,8 +66,8 @@ organization in Zulip). The following files are involved in the process:
 
 **Documentation**
 
-- `zerver/openapi/zulip.yaml`: OpenAPI definitions for the Zulip REST API.
-- `templates/zerver/api/changelog.md`: documentation listing all changes to the Zulip Server API.
+- `zerver/openapi/zulip.yaml`: OpenAPI definitions for the Aloha REST API.
+- `templates/zerver/api/changelog.md`: documentation listing all changes to the Aloha Server API.
 - `templates/zerver/help/...`: end user facing documentation (Help Center) for the application.
 
 ### Adding a field to the database
@@ -114,7 +114,7 @@ be unique to the feature you're implementing).
 
 **New views:** Add any new application views to `zproject/urls.py`, or
 update the appropriate existing view in `zerver/views/`. This
-includes both views that serve HTML (new pages on Zulip) as well as new
+includes both views that serve HTML (new pages on Aloha) as well as new
 API endpoints that serve JSON-formatted data.
 
 **Testing:** At the very least, add a test of your event data flowing
@@ -123,7 +123,7 @@ Realm setting, in `test_realm.py`).
 
 ### Frontend changes
 
-**JavaScript/TypeScript:** Zulip's JavaScript and TypeScript sources are
+**JavaScript/TypeScript:** Aloha's JavaScript and TypeScript sources are
 located in the directory `static/js/`. The exact files you may need to change
 depend on your feature. If you've added a new event that is sent to clients,
 be sure to add a handler for it in `static/js/server_events_dispatch.js`.
@@ -133,11 +133,11 @@ feature requires UI changes, you may need to add additional CSS to this
 file.
 
 **Templates:** The initial page structure is rendered via Jinja2
-templates located in `templates/zerver/app`. For JavaScript, Zulip uses
+templates located in `templates/zerver/app`. For JavaScript, Aloha uses
 Handlebars templates located in `static/templates`. Templates are
 precompiled as part of the build/deploy process.
 
-Zulip is fully internationalized, so when writing both HTML templates
+Aloha is fully internationalized, so when writing both HTML templates
 or JavaScript/TypeScript/Python code that generates user-facing strings, be sure to
 [tag those strings for translation](../translating/translating.md).
 
@@ -153,7 +153,7 @@ information on writing and running tests, see the
 
 After implementing the new feature, you should document it and update
 any existing documentation that might be relevant to the new feature.
-For detailed information on the kinds of documentation Zulip has, see
+For detailed information on the kinds of documentation Aloha has, see
 [Documentation](../documentation/overview.md).
 
 **Help center documentation:** You will likely need to at least update,
@@ -166,16 +166,16 @@ provides more detailed information about writing and editing feature
 documentation as well, which will mean updating `zerver/openapi/zulip.yaml`
 and modifying `templates/zerver/api/changelog.md` for a new feature
 level. [Documenting REST API endpoints](../documentation/api.md)
-explains Zulip's API documentation system and provides a step by step
+explains Aloha's API documentation system and provides a step by step
 guide to adding or updating documentation for an API endpoint.
 
 ## Example feature
 
-This example describes the process of adding a new setting to Zulip: a
+This example describes the process of adding a new setting to Aloha: a
 flag that allows an admin to require topics on stream messages (the default
 behavior is that topics can have no subject). This flag is an
-actual Zulip feature. You can review [the original commit](https://github.com/zulip/zulip/pull/5660/commits/aeeb81d3ff0e0cc201e891cec07e1d2cd0a2060d)
-in the Zulip repo. (This commit displays the work of setting up a checkbox
+actual Aloha feature. You can review [the original commit](https://github.com/zulip/zulip/pull/5660/commits/aeeb81d3ff0e0cc201e891cec07e1d2cd0a2060d)
+in the Aloha repo. (This commit displays the work of setting up a checkbox
 for the feature on the admin settings page, communicating and saving updates
 to the setting to the database, and updating the state of the application
 after the setting is updated. For the code that accomplishes the underlying
@@ -514,7 +514,7 @@ controls the feature it is supposed to control, however (e.g. for this
 example feature, whether sending a message without a topic fails with
 the setting enabled).
 
-Visit Zulip's [Django testing](../testing/testing-with-django.md)
+Visit Aloha's [Django testing](../testing/testing-with-django.md)
 documentation to learn more about the backend testing framework.
 
 ### Update the frontend
@@ -576,7 +576,7 @@ in. For example in this case of `mandatory_topics` it will lie in
 
 _If you're not sure in which section your feature belongs, it's
 better to discuss it in
-[the Zulip development community](https://zulip.com/development-community/)
+[the Aloha development community](https://zulip.com/development-community/)
 before implementing it._
 
 Note that some settings, like `realm_msg_edit_limit_setting`,
@@ -680,38 +680,38 @@ behavior of the setting you just created.
 
 ### Update documentation
 
-Nice job! You've added a new feature to Zulip that will improve user
+Nice job! You've added a new feature to Aloha that will improve user
 and contributor experiences with the app, which is why it's really
 important to make sure that your new feature is well documented.
 
 This example feature adds new functionality that requires messages to
 have topics if the setting is enabled. A recommended way to document
-this feature would be to update and/or augment Zulip's existing
+this feature would be to update and/or augment Aloha's existing
 [help center documentation](https://zulip.com/help/) to reflect your
 changes and additions.
 
 At the very least, this will involve modifying (or adding) a Markdown
 file documenting the feature to `templates/zerver/help/` in the main
-Zulip server repository, where the source for Zulip's end user
+Aloha server repository, where the source for Aloha's end user
 documentation is stored. Details about writing, editing and testing
 these Markdown files can be found in:
 [Writing help center articles](../documentation/helpcenter.md).
 
-Also, new features will often impact Zulip's REST API documentation,
+Also, new features will often impact Aloha's REST API documentation,
 which is found in `zerver/openapi/zulip.yaml`. You may have noticed
-this during the testing process as the Zulip test suite should fail if
+this during the testing process as the Aloha test suite should fail if
 there is a change to the API without a corresponding update to the
 documentation.
 
-The best way to understand writing and updating Zulip's API
-documentation is to read more about Zulip's
+The best way to understand writing and updating Aloha's API
+documentation is to read more about Aloha's
 [REST API documentation process](../documentation/api.md)
 and [OpenAPI configuration](../documentation/openapi.md).
 
 In particular, if there is an API change, **make sure** you document
 your new feature in `templates/zerver/api/changelog.md` and bump the
 `API_FEATURE_LEVEL` in `version.py`. The API feature level allows the
-developers of mobile clients and other tools using the Zulip API to
-programmatically determine whether the Zulip server they are
+developers of mobile clients and other tools using the Aloha API to
+programmatically determine whether the Aloha server they are
 interacting with supports a given feature; see the
-[Zulip release lifecycle](../overview/release-lifecycle.md).
+[Aloha release lifecycle](../overview/release-lifecycle.md).

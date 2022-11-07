@@ -48,7 +48,7 @@ settings.
   ways: the original content will still show up in
   [message edit history](view-a-messages-edit-history), and will be included
   in [exports](/help/export-your-organization). Deletion
-  permanently (and irretrievably) removes the message from Zulip.
+  permanently (and irretrievably) removes the message from Aloha.
 
 ## Configure message editing and deletion
 

@@ -45,7 +45,7 @@
       {
         "amount": 14400,
         "currency": "usd",
-        "description": "Zulip Plus - renewal",
+        "description": "Aloha Plus - renewal",
         "discount_amounts": [],
         "discountable": false,
         "discounts": [],
@@ -111,7 +111,7 @@
   "quote": null,
   "receipt_number": null,
   "starting_balance": -7200,
-  "statement_descriptor": "Zulip Plus",
+  "statement_descriptor": "Aloha Plus",
   "status": "open",
   "status_transitions": {
     "finalized_at": 1000000000,

@@ -2,13 +2,13 @@
 
 [Incoming webhook integrations](/api/incoming-webhooks-overview) are the
 fastest to write, but sometimes a third-party product just doesn't support
-them. Zulip supports several other types of integrations.
+them. Aloha supports several other types of integrations.
 
 1. **Python script integrations**
    (examples: SVN, Git), where we can get the service to call our integration
    (by shelling out or otherwise), passing in the required data.  Our preferred
    model for these is to ship these integrations in the
-   [Zulip Python API distribution](https://github.com/zulip/python-zulip-api/tree/main/zulip),
+   [Aloha Python API distribution](https://github.com/zulip/python-zulip-api/tree/main/zulip),
    within the `integrations` directory there.
 
 1. **Plugin integrations** (examples:
@@ -44,9 +44,9 @@ information and include that in `()`s after the version number. Some
 examples of ideal UAs are:
 
     ```
-    ZulipDesktop/0.7.0 (Ubuntu; 14.04)
-    ZulipJenkins/0.1.0 (Windows; 7.2)
-    ZulipMobile/0.5.4 (Android; 4.2; maguro)
+    AlohaDesktop/0.7.0 (Ubuntu; 14.04)
+    AlohaJenkins/0.1.0 (Windows; 7.2)
+    AlohaMobile/0.5.4 (Android; 4.2; maguro)
     ```
 
 * The [general advice](/api/incoming-webhooks-overview#general-advice) for

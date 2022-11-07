@@ -1,13 +1,13 @@
 # File upload backends
 
-Zulip in production supports a couple different backends for storing
-files uploaded by users of the Zulip server (messages, profile
+Aloha in production supports a couple different backends for storing
+files uploaded by users of the Aloha server (messages, profile
 pictures, organization icons, custom emoji, etc.).
 
 The default is the `LOCAL_UPLOADS_DIR` backend, which just stores
-files on disk in the specified directory on the Zulip server.
-Obviously, this backend doesn't work with multiple Zulip servers and
-doesn't scale, but it's great for getting a Zulip server up and
+files on disk in the specified directory on the Aloha server.
+Obviously, this backend doesn't work with multiple Aloha servers and
+doesn't scale, but it's great for getting a Aloha server up and
 running quickly. You can later migrate the uploads to S3 by
 [following the instructions here](#migrating-from-local-uploads-to-amazon-s3-backend).
 
@@ -17,18 +17,18 @@ provider supported by the `boto` library).
 
 ## S3 backend configuration
 
-Here, we document the process for configuring Zulip's S3 file upload
+Here, we document the process for configuring Aloha's S3 file upload
 backend. To enable this backend, you need to do the following:
 
 1. In the AWS management console, create a new IAM account (aka API
-   user) for your Zulip server, and two buckets in S3, one for uploaded
+   user) for your Aloha server, and two buckets in S3, one for uploaded
    files included in messages, and another for user avatars. You need
    two buckets because the "user avatars" bucket is generally configured
    as world-readable, whereas the "uploaded files" one is not.
 
 1. Set `s3_key` and `s3_secret_key` in /etc/zulip/zulip-secrets.conf
    to be the S3 access and secret keys for the IAM account.
-   Alternately, if your Zulip server runs on an EC2 instance, set the
+   Alternately, if your Aloha server runs on an EC2 instance, set the
    IAM role for the EC2 instance to the role.
 
 1. Set the `S3_AUTH_UPLOADS_BUCKET` and `S3_AVATAR_BUCKET` settings in
@@ -46,10 +46,10 @@ backend. To enable this backend, you need to do the following:
    setting to your default AWS region's code (e.g. `"eu-central-1"`).
 
 1. You will need to configure `nginx` to direct requests for uploaded
-   files to the Zulip server (which will then serve a redirect to the
+   files to the Aloha server (which will then serve a redirect to the
    appropriate place in S3), rather than serving them directly.
 
-   With Zulip 1.9.0 and newer, you can do this automatically with the
+   With Aloha 1.9.0 and newer, you can do this automatically with the
    following commands run as root:
 
    ```bash
@@ -59,17 +59,17 @@ backend. To enable this backend, you need to do the following:
 
    (The first line will update your `/etc/zulip/zulip.conf`).
 
-   With older Zulip, you need to edit
+   With older Aloha, you need to edit
    `/etc/nginx/sites-available/zulip-enterprise` to comment out the
    `nginx` configuration block for `/user_avatars` and the
    `include /etc/nginx/zulip-include/uploads.route` line and then
    reload the `nginx` service (`service nginx reload`).
 
-1. Finally, restart the Zulip server so that your settings changes
+1. Finally, restart the Aloha server so that your settings changes
    take effect
    (`/home/zulip/deployments/current/scripts/restart-server`).
 
-It's simplest to just do this configuration when setting up your Zulip
+It's simplest to just do this configuration when setting up your Aloha
 server for production usage. Note that if you had any existing
 uploading files, this process does not upload them to Amazon S3; see
 [migration instructions](#migrating-from-local-uploads-to-amazon-s3-backend)
@@ -80,7 +80,7 @@ below for those steps.
 ## S3 bucket policy
 
 The best way to do the S3 integration with Amazon is to create a new
-IAM user just for your Zulip server with limited permissions. For
+IAM user just for your Aloha server with limited permissions. For
 each of the two buckets, you'll want to
 [add an S3 bucket policy](https://awspolicygen.s3.amazonaws.com/policygen.html)
 entry that looks something like this:
@@ -132,7 +132,7 @@ need a block like this:
 ```
 
 The file-uploads bucket should not be world-readable. See the
-[documentation on the Zulip security model](security-model.md) for
+[documentation on the Aloha security model](security-model.md) for
 details on the security model for uploaded files.
 
 ## Migrating from local uploads to Amazon S3 backend

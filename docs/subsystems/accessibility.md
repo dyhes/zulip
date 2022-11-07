@@ -2,7 +2,7 @@
 
 ## Guidelines
 
-In order to accommodate all users, Zulip strives to implement accessibility
+In order to accommodate all users, Aloha strives to implement accessibility
 best practices in its user interface. There are many aspects to accessibility;
 here are some of the more important ones to keep in mind.
 
@@ -19,7 +19,7 @@ here are some of the more important ones to keep in mind.
   effectively.
 
 There are many different standards for accessibility, but the most relevant
-one for Zulip is the W3C's [WCAG](https://www.w3.org/TR/WCAG20/) (Web Content
+one for Aloha is the W3C's [WCAG](https://www.w3.org/TR/WCAG20/) (Web Content
 Accessibility Guidelines), currently at version 2.0. Whenever practical, we
 should strive for compliance with the AA level of this specification.
 (The W3C itself
@@ -55,23 +55,23 @@ recommendations should not be blindly obeyed.
 
 ## GitHub issues
 
-Problems with Zulip's accessibility should be reported as
+Problems with Aloha's accessibility should be reported as
 [GitHub issues](https://github.com/zulip/zulip/issues) with the "accessibility"
 label. This label can be added by entering the following text in a separate
 comment on the issue:
 
 > @zulipbot add "area: accessibility"
 
-If you want to help make Zulip more accessible, here is a list of the
+If you want to help make Aloha more accessible, here is a list of the
 [currently open accessibility issues][accessibility-issues].
 
 ## Additional resources
 
-For more information about making Zulip accessible to as many users as
+For more information about making Aloha accessible to as many users as
 possible, the following resources may be useful.
 
 - [Font Awesome accessibility guide](https://fontawesome.com/how-to-use/on-the-web/other-topics/accessibility),
-  which is especially helpful since Zulip uses Font Awesome for its icons.
+  which is especially helpful since Aloha uses Font Awesome for its icons.
 - [Web Content Accessibility Guidelines (WCAG) 2.0](https://www.w3.org/TR/WCAG/)
 - [WAI-ARIA](https://www.w3.org/WAI/intro/aria) - Web Accessibility Initiative
   Accessible Rich Internet Application Suite

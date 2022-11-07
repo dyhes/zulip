@@ -1,4 +1,4 @@
-Get Mention notifications within Zulip via Zapier!
+Get Mention notifications within Aloha via Zapier!
 
 1. {!create-stream.md!}
 

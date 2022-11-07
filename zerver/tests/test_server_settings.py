@@ -1,17 +1,17 @@
 import os
 from unittest import mock
 
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zproject import config
 
 
-class ConfigTest(ZulipTestCase):
+class ConfigTest(AlohaTestCase):
     def test_get_mandatory_secret_succeed(self) -> None:
         secret = config.get_mandatory_secret("shared_secret")
         self.assertGreater(len(secret), 0)
 
     def test_get_mandatory_secret_failed(self) -> None:
-        with self.assertRaisesRegex(config.ZulipSettingsError, "nonexistent"):
+        with self.assertRaisesRegex(config.AlohaSettingsError, "nonexistent"):
             config.get_mandatory_secret("nonexistent")
 
     def test_disable_mandatory_secret_check(self) -> None:

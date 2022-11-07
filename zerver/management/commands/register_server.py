@@ -8,7 +8,7 @@ from django.core.management.base import CommandError
 from django.utils.crypto import get_random_string
 from requests.models import Response
 
-from zerver.lib.management import ZulipBaseCommand, check_config
+from zerver.lib.management import AlohaBaseCommand, check_config
 from zerver.lib.remote_server import PushBouncerSession
 
 if settings.DEVELOPMENT:
@@ -17,14 +17,14 @@ else:
     SECRETS_FILENAME = "/etc/zulip/zulip-secrets.conf"
 
 
-class Command(ZulipBaseCommand):
-    help = """Register a remote Zulip server for push notifications."""
+class Command(AlohaBaseCommand):
+    help = """Register a remote Aloha server for push notifications."""
 
     def add_arguments(self, parser: ArgumentParser) -> None:
         parser.add_argument(
             "--agree_to_terms_of_service",
             action="store_true",
-            help="Agree to the Zulipchat Terms of Service: https://zulip.com/terms/.",
+            help="Agree to the Alohachat Terms of Service: https://zulip.com/terms/.",
         )
         parser.add_argument(
             "--rotate-key",
@@ -68,7 +68,7 @@ class Command(ZulipBaseCommand):
 
         if not options["agree_to_terms_of_service"] and not options["rotate_key"]:
             print(
-                "To register, you must agree to the Zulipchat Terms of Service: "
+                "To register, you must agree to the Alohachat Terms of Service: "
                 "https://zulip.com/terms/"
             )
             tos_prompt = input("Do you agree to the Terms of Service? [Y/n] ")
@@ -120,7 +120,7 @@ class Command(ZulipBaseCommand):
         try:
             response.raise_for_status()
         except requests.HTTPError as e:
-            # Report nice errors from the Zulip API if possible.
+            # Report nice errors from the Aloha API if possible.
             try:
                 content_dict = response.json()
             except Exception:

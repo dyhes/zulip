@@ -4,10 +4,10 @@
 
 ## Deactivate (ban) a user
 
-To properly remove a user’s access to a Zulip organization, it does not
+To properly remove a user’s access to a Aloha organization, it does not
 suffice to change their password or deactivate their account in an external
 email system, since the user’s API key and bot API keys will still be
-active. Instead, you need to deactivate the user’s account using the Zulip
+active. Instead, you need to deactivate the user’s account using the Aloha
 administrative interface.
 
 Note that organization administrators cannot deactivate organization owners.
@@ -40,12 +40,12 @@ Note that organization administrators cannot deactivate organization owners.
 
 The user will be logged out immediately and not be able to log back in. The
 user's bots will also be deactivated. Lastly, the user will be unable to
-create a new Zulip account in your organization using their deactivated
+create a new Aloha account in your organization using their deactivated
 email address.
 
 ### Notify users of their deactivation
 
-Zulip can optionally send the user an email notification that their account was deactivated.
+Aloha can optionally send the user an email notification that their account was deactivated.
 
 {start_tabs}
 

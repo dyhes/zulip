@@ -5,13 +5,13 @@ import orjson
 
 from zerver.actions.users import do_deactivate_user
 from zerver.lib.cache import cache_get, get_muting_users_cache_key
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.timestamp import datetime_to_timestamp
 from zerver.lib.user_mutes import get_mute_object, get_muting_users, get_user_mutes
 from zerver.models import RealmAuditLog, UserMessage, UserProfile
 
 
-class MutedUsersTests(ZulipTestCase):
+class MutedUsersTests(AlohaTestCase):
     # Hamlet does the muting/unmuting, and Cordelia gets muted/unmuted.
     def test_get_user_mutes(self) -> None:
         hamlet = self.example_user("hamlet")

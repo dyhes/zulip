@@ -1,8 +1,8 @@
-# Zulip's OpenAPI-based API documentation system is documented at
+# Aloha's OpenAPI-based API documentation system is documented at
 #   https://zulip.readthedocs.io/en/latest/documentation/api.html
 #
 # This file contains helper functions to interact with the OpenAPI
-# definitions and validate that Zulip's implementation matches what is
+# definitions and validate that Aloha's implementation matches what is
 # described in our documentation.
 
 import json
@@ -480,7 +480,7 @@ def validate_against_openapi_schema(
 
 def validate_schema(schema: Dict[str, Any]) -> None:
     """Check if opaque objects are present in the OpenAPI spec; this is an
-    important part of our policy for ensuring every detail of Zulip's
+    important part of our policy for ensuring every detail of Aloha's
     API responses is correct.
 
     This is done by checking for the presence of the

@@ -21,7 +21,7 @@ EXTERNAL_HOST_WITHOUT_PORT = deport(EXTERNAL_HOST)
 
 # These settings are intended for the server admin to set.  We document them in
 # prod_settings_template.py, and in the initial /etc/zulip/settings.py on a new
-# install of the Zulip server.
+# install of the Aloha server.
 
 # Extra HTTP "Host" values to allow (standard ones added in computed_settings.py)
 ALLOWED_HOSTS: List[str] = []
@@ -226,7 +226,7 @@ DEVELOPMENT_LOG_EMAILS = DEVELOPMENT
 #    for dev and test environments; or
 #  * don't make sense to change on a typical production server with
 #    one or a handful of realms, though they might on an installation
-#    like Zulip Cloud or to work around a problem on another server.
+#    like Aloha Cloud or to work around a problem on another server.
 
 NOTIFICATION_BOT = "notification-bot@zulip.com"
 EMAIL_GATEWAY_BOT = "emailgateway@zulip.com"
@@ -246,7 +246,7 @@ ERROR_BOT: Optional[str] = None
 NAGIOS_STAGING_SEND_BOT = "nagios-staging-send-bot@zulip.com" if PRODUCTION else None
 NAGIOS_STAGING_RECEIVE_BOT = "nagios-staging-receive-bot@zulip.com" if PRODUCTION else None
 # SYSTEM_BOT_REALM would be a constant always set to 'zulip',
-# except that it isn't that on Zulip Cloud.  We will likely do a
+# except that it isn't that on Aloha Cloud.  We will likely do a
 # migration and eliminate this parameter in the future.
 SYSTEM_BOT_REALM = "zulipinternal"
 
@@ -255,11 +255,11 @@ SYSTEM_BOT_REALM = "zulipinternal"
 # than a separate app.
 EXTRA_INSTALLED_APPS = ["analytics"]
 
-# Used to construct URLs to point to the Zulip server.  Since we
+# Used to construct URLs to point to the Aloha server.  Since we
 # only support HTTPS in production, this is just for development.
 EXTERNAL_URI_SCHEME = "https://"
 
-# Whether anyone can create a new organization on the Zulip server.
+# Whether anyone can create a new organization on the Aloha server.
 OPEN_REALM_CREATION = False
 
 # Whether it's possible to create web-public streams on this server.
@@ -312,8 +312,8 @@ POST_MIGRATION_CACHE_FLUSHING = False
 # server.
 APNS_CERT_FILE: Optional[str] = None
 APNS_SANDBOX = True
-APNS_TOPIC = "org.zulip.Zulip"
-ZULIP_IOS_APP_ID = "org.zulip.Zulip"
+APNS_TOPIC = "org.zulip.Aloha"
+ZULIP_IOS_APP_ID = "org.zulip.Aloha"
 
 # Limits related to the size of file uploads; last few in MB.
 DATA_UPLOAD_MAX_MEMORY_SIZE = 25 * 1024 * 1024
@@ -356,7 +356,7 @@ REALM_CREATION_LINK_VALIDITY_DAYS = 7
 
 # Version number for ToS.  Change this if you want to force every
 # user to click through to re-accept terms of service before using
-# Zulip again on the web.
+# Aloha again on the web.
 TERMS_OF_SERVICE_VERSION: Optional[str] = None
 # HTML template path (e.g. "corporate/zulipchat_migration_tos.html")
 # displayed to users when increasing TERMS_OF_SERVICE_VERSION when a
@@ -369,7 +369,7 @@ FIRST_TIME_TERMS_OF_SERVICE_TEMPLATE: Optional[str] = None
 # written.
 TERMS_OF_SERVICE_MESSAGE: Optional[str] = None
 
-# Hostname used for Zulip's statsd logging integration.
+# Hostname used for Aloha's statsd logging integration.
 STATSD_HOST = ""
 
 # Configuration for JWT auth.
@@ -379,7 +379,7 @@ JWT_AUTH_KEYS: Dict[str, JwtAuthKey] = {}
 # Django setting for what from address to use in error emails.
 SERVER_EMAIL = ZULIP_ADMINISTRATOR
 # Django setting for who receives error emails.
-ADMINS = (("Zulip Administrator", ZULIP_ADMINISTRATOR),)
+ADMINS = (("Aloha Administrator", ZULIP_ADMINISTRATOR),)
 
 # From address for welcome emails.
 WELCOME_EMAIL_SENDER: Optional[Dict[str, str]] = None
@@ -391,7 +391,7 @@ SEND_MISSED_MESSAGE_EMAILS_AS_USER = False
 # Whether to send periodic digests of activity.
 SEND_DIGEST_EMAILS = True
 
-# Used to change the Zulip logo in portico pages.
+# Used to change the Aloha logo in portico pages.
 CUSTOM_LOGO_URL: Optional[str] = None
 
 # Random salt used when deterministically generating passwords in

@@ -1,24 +1,24 @@
 # API changelog
 
-This page documents changes to the Zulip Server API over time. See
-also the [Zulip release lifecycle][release-lifecycle] for background
-on why this API changelog is important, and the [Zulip server
+This page documents changes to the Aloha Server API over time. See
+also the [Aloha release lifecycle][release-lifecycle] for background
+on why this API changelog is important, and the [Aloha server
 changelog][server-changelog].
 
 The API feature levels system used in this changelog is designed to
-make it possible to write API clients, such as the Zulip mobile and
-terminal apps, that work with a wide range of Zulip server
-versions. Every change to the Zulip API is recorded both here and in
+make it possible to write API clients, such as the Aloha mobile and
+terminal apps, that work with a wide range of Aloha server
+versions. Every change to the Aloha API is recorded both here and in
 **Changes** entries in the API documentation for the modified
 endpoint(s).
 
-When using an API endpoint whose behavior has changed, Zulip API
+When using an API endpoint whose behavior has changed, Aloha API
 clients should check the `zulip_feature_level` field, present in the
 [`GET /server_settings`](/api/get-server-settings) and [`POST
 /register`](/api/register-queue) responses, to determine the API
-format used by the Zulip server that they are interacting with.
+format used by the Aloha server that they are interacting with.
 
-## Changes in Zulip 6.0
+## Changes in Aloha 6.0
 
 **Feature level 152**
 
@@ -203,7 +203,7 @@ user's profile.
 * [`POST /register`](/api/register-queue),
   [`GET /events`](/api/get-events), `PATCH /realm`: Added realm setting
   `want_advertise_in_communities_directory` for organizations to give
-  permission to be advertised in the Zulip communities directory.
+  permission to be advertised in the Aloha communities directory.
 
 **Feature level 128**
 
@@ -246,11 +246,11 @@ user's profile.
 Feature levels 123-124 are reserved for future use in 5.x maintenance
 releases.
 
-## Changes in Zulip 5.0
+## Changes in Aloha 5.0
 
 **Feature level 122**
 
-No changes; feature level used for Zulip 5.0 release.
+No changes; feature level used for Aloha 5.0 release.
 
 **Feature level 121**
 
@@ -527,7 +527,7 @@ No changes; feature level used for Zulip 5.0 release.
   field to the `restart` event.
 * [`GET /server_settings`](/api/get-server-settings): Added
   `zulip_merge_base` to the responses which can be used to
-  make "About Zulip" widgets in clients.
+  make "About Aloha" widgets in clients.
 
 **Feature level 87**
 
@@ -677,11 +677,11 @@ No changes; feature level used for Zulip 5.0 release.
 Feature levels 66-69 are reserved for future use in 4.x maintenance
 releases.
 
-## Changes in Zulip 4.0
+## Changes in Aloha 4.0
 
 **Feature level 65**
 
-No changes; feature level used for Zulip 4.0 release.
+No changes; feature level used for Aloha 4.0 release.
 
 **Feature level 64**
 
@@ -943,7 +943,7 @@ user to be a stream administrator at this feature level.
 Feature levels 28 and 29 are reserved for future use in 3.x bug fix
 releases.
 
-## Changes in Zulip 3.1
+## Changes in Aloha 3.1
 
 **Feature level 27**
 
@@ -957,11 +957,11 @@ releases.
 * [`GET /messages`](/api/get-messages) : Removed `short_name` field from
   `display_recipient` array objects.
 
-## Changes in Zulip 3.0
+## Changes in Aloha 3.0
 
 **Feature level 25**
 
-No changes; feature level used for Zulip 3.0 release.
+No changes; feature level used for Aloha 3.0 release.
 
 **Feature level 24**
 
@@ -971,8 +971,8 @@ No changes; feature level used for Zulip 3.0 release.
 
 **Feature level 23**
 
-* `GET/PUT/POST /users/me/pointer`: Removed.  Zulip 3.0 removes the
-  `pointer` concept from Zulip; this legacy data structure was
+* `GET/PUT/POST /users/me/pointer`: Removed.  Aloha 3.0 removes the
+  `pointer` concept from Aloha; this legacy data structure was
   replaced by tracking unread messages and loading views centered on
   the first unread message.
 
@@ -987,7 +987,7 @@ No changes; feature level used for Zulip 3.0 release.
   relevant).
 * `GET /invites`: Now encodes the user ID of the person who created
    the invitation as `invited_by_user_id`, replacing the previous
-   `ref` field (which had that user's Zulip display email address).
+   `ref` field (which had that user's Aloha display email address).
 * [`POST /register`](/api/register-queue): The encoding of an
   unlimited `realm_message_retention_days` in the response was changed
   from `null` to `-1`.
@@ -1025,7 +1025,7 @@ No changes; feature level used for Zulip 3.0 release.
 **Feature level 16**
 
 * [`GET /users/me`](/api/get-own-user): Removed `pointer` from the response,
-  as the "pointer" concept is being removed in Zulip.
+  as the "pointer" concept is being removed in Aloha.
 * Changed the rendered HTML markup for mentioning a time to use the
   `<time>` HTML tag.  It is OK for clients to ignore the previous time
   mention markup, as the feature was not advertised before this change.
@@ -1082,7 +1082,7 @@ No changes; feature level used for Zulip 3.0 release.
 * [`POST users/me/subscriptions`](/api/subscribe), [`DELETE
   /users/me/subscriptions`](/api/unsubscribe): Other users to
   subscribe/unsubscribe, declared in the `principals` parameter, can
-  now be referenced by user_id, rather than Zulip display email
+  now be referenced by user_id, rather than Aloha display email
   address.
 * [`PATCH /messages/{message_id}`](/api/update-message): Added
   `send_notification_to_old_thread` and
@@ -1138,7 +1138,7 @@ No changes; feature level used for Zulip 3.0 release.
   `server_inline_url_embed_preview`, `server_avatar_changes_disabled` and
   `server_name_changes_disabled` fields are now available via
   `POST /register` to make them accessible to all the clients;
-  they were only internally available to Zulip's web app prior to this.
+  they were only internally available to Aloha's web app prior to this.
 
 **Feature level 3**:
 
@@ -1187,7 +1187,7 @@ No changes; feature level used for Zulip 3.0 release.
 * [`GET /user_uploads/{realm_id_str}/{filename}`](/api/get-file-temporary-url):
   New endpoint added for requesting a temporary URL for an uploaded
   file that does not require authentication to access (e.g. for passing
-  from a Zulip desktop, mobile, or terminal app to the user's default
+  from a Aloha desktop, mobile, or terminal app to the user's default
   browser).
 * [`POST /register`](/api/register-queue), [`GET /events`](/api/get-events),
   `PATCH /realm`: Nobody added as an option for the realm setting
@@ -1205,7 +1205,7 @@ No changes; feature level used for Zulip 3.0 release.
   `PATCH /realm`: None added as an option for the realm setting
   `video_chat_provider` to disable video call UI.
 
-## Changes in Zulip 2.1
+## Changes in Aloha 2.1
 
 * [`GET /messages`](/api/get-messages): Added support for
   [search/narrow options](/api/construct-narrow) that use stream/user
@@ -1248,7 +1248,7 @@ No changes; feature level used for Zulip 3.0 release.
   `is_muted` (with the opposite meaning).
 * Custom profile fields: Added `EXTERNAL_ACCOUNT` field type.
 
-## Changes in Zulip 2.0
+## Changes in Aloha 2.0
 
 * [`PATCH /users/me/subscriptions/muted_topics`](/api/mute-topic):
   Added support for using stream IDs to specify the stream in which to

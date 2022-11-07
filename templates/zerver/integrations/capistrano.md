@@ -1,17 +1,17 @@
-Get Zulip notifications for your Capistrano deploys!
+Get Aloha notifications for your Capistrano deploys!
 
 1.  {!create-an-incoming-webhook.md!}
 
 1.  {!download-python-bindings.md!}
 
-1.  You can now send Zulip messages by calling the `zulip-send`
+1.  You can now send Aloha messages by calling the `zulip-send`
     utility from your `deploy.rb` config file. Here's some example code for
-    sending a Zulip notification when a deployment has completed:
+    sending a Aloha notification when a deployment has completed:
 
         after 'deploy', 'notify:humbug'
 
         namespace :notify do
-          desc "Post a message to Zulip after deploy"
+          desc "Post a message to Aloha after deploy"
           task :humbug do
             run_locally "echo 'I just deployed to #{stage}! :tada:' | zulip-send \
             --user capistrano-bot@example.com --api-key a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5 \
@@ -20,7 +20,7 @@ Get Zulip notifications for your Capistrano deploys!
           end
         end
 
-    The `--user` and `--api-key` should be the email and API key of the Zulip
+    The `--user` and `--api-key` should be the email and API key of the Aloha
     bot created above. You can also put these values in a `~/.zuliprc` file on
     your Capistrano machine. See our [API docs](/api) for instructions on
     creating that file.

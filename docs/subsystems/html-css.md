@@ -1,17 +1,17 @@
 # HTML and CSS
 
-## Zulip CSS organization
+## Aloha CSS organization
 
-The Zulip application's CSS can be found in the `static/styles/`
-directory. Zulip uses [Bootstrap](https://getbootstrap.com/) as its
+The Aloha application's CSS can be found in the `static/styles/`
+directory. Aloha uses [Bootstrap](https://getbootstrap.com/) as its
 main third-party CSS library.
 
-Zulip uses PostCSS for its CSS files. There are two high-level sections
+Aloha uses PostCSS for its CSS files. There are two high-level sections
 of CSS: the "portico" (logged-out pages like /help/, /login/, etc.),
 and the app. The portico CSS lives under the `static/styles/portico`
 subdirectory.
 
-## Editing Zulip CSS
+## Editing Aloha CSS
 
 If you aren't experienced with doing web development and want to make
 CSS changes, we recommend reading the excellent [Chrome web inspector
@@ -22,7 +22,7 @@ to learn about all the great tools that you can use to modify and test
 changes to CSS interactively in-browser (without even having the
 reload the page!).
 
-Zulip's development environment has hot code reloading configured, so
+Aloha's development environment has hot code reloading configured, so
 changes made in source files will immediately take effect in open
 browser windows, either by live-updating the CSS or reloading the
 browser window (following backend changes).
@@ -50,7 +50,7 @@ where a particular class is used.
 
 ## Validating CSS
 
-When changing any part of the Zulip CSS, it's important to check that
+When changing any part of the Aloha CSS, it's important to check that
 the new CSS looks good at a wide range of screen widths, from very
 wide screen (e.g. 1920px) all the way down to narrow phone screens
 (e.g. 480px).
@@ -136,12 +136,12 @@ developers) should be tagged for [translation][trans].
 
 ### Tooltips
 
-Zulip uses [TippyJS](https://atomiks.github.io/tippyjs/) for its tooltips.
+Aloha uses [TippyJS](https://atomiks.github.io/tippyjs/) for its tooltips.
 
 ## Static asset pipeline
 
 This section documents additional information that may be useful when
-developing new features for Zulip that require front-end changes,
+developing new features for Aloha that require front-end changes,
 especially those that involve adding new files. For a more general
 overview, see the [new feature tutorial](../tutorials/new-feature-tutorial.md).
 
@@ -150,7 +150,7 @@ relevant background as well.
 
 ### Primary build process
 
-Zulip's frontend is primarily JavaScript in the `static/js` directory;
+Aloha's frontend is primarily JavaScript in the `static/js` directory;
 we are working on migrating these to TypeScript modules. Stylesheets
 are written in CSS extended by various PostCSS plugins; they are
 converted from plain CSS, and we have yet to take full advantage of
@@ -183,7 +183,7 @@ first add it to the appropriate place under `static/`.
   `PROVISION_VERSION` in `version.py` in the same commit. When adding modules
   to `package.json`, please pin specific versions of them (don't using carets
   `^`, tildes `~`, etc). We prefer fixed versions so that when the upstream
-  providers release new versions with incompatible APIs, it can't break Zulip.
+  providers release new versions with incompatible APIs, it can't break Aloha.
   We update those versions periodically to ensure we're running a recent
   version of third-party libraries.
 - Third-party files that we have patched should all go in
@@ -225,7 +225,7 @@ If you want to test minified files in development, look for the
 
 A few useful notes are:
 
-- Zulip installs static assets in production in
+- Aloha installs static assets in production in
   `/home/zulip/prod-static`. When a new version is deployed, before the
   server is restarted, files are copied into that directory.
 - We use the VFL (versioned file layout) strategy, where each file in

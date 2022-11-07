@@ -243,7 +243,7 @@ def resize_emoji(
 ### Common
 
 
-class ZulipUploadBackend:
+class AlohaUploadBackend:
     def get_public_upload_root_url(self) -> str:
         raise NotImplementedError()
 
@@ -418,7 +418,7 @@ def get_signed_upload_url(path: str, download: bool = False) -> str:
     )
 
 
-class S3UploadBackend(ZulipUploadBackend):
+class S3UploadBackend(AlohaUploadBackend):
     def __init__(self) -> None:
         self.session = Session(settings.S3_KEY, settings.S3_SECRET_KEY)
         self.avatar_bucket = get_bucket(settings.S3_AVATAR_BUCKET, self.session)
@@ -433,7 +433,7 @@ class S3UploadBackend(ZulipUploadBackend):
         #     f"https://{self.avatar_bucket.name}.{network_location}/{key}"
         #
         # However, we need this function to properly handle S3 style
-        # file upload backends that Zulip supports, which can have a
+        # file upload backends that Aloha supports, which can have a
         # different URL format. Configuring no signature and providing
         # no access key makes `generate_presigned_url` just return the
         # normal public URL for a key.
@@ -847,7 +847,7 @@ def get_local_file_path_id_from_token(token: str) -> Optional[str]:
     return path_id
 
 
-class LocalUploadBackend(ZulipUploadBackend):
+class LocalUploadBackend(AlohaUploadBackend):
     def get_public_upload_root_url(self) -> str:
         return "/user_avatars/"
 
@@ -1053,7 +1053,7 @@ class LocalUploadBackend(ZulipUploadBackend):
 
 # Common and wrappers
 if settings.LOCAL_UPLOADS_DIR is not None:
-    upload_backend: ZulipUploadBackend = LocalUploadBackend()
+    upload_backend: AlohaUploadBackend = LocalUploadBackend()
 else:
     upload_backend = S3UploadBackend()  # nocoverage
 

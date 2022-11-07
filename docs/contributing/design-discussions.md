@@ -1,10 +1,10 @@
 # Design discussions
 
-We discuss ideas for improving Zulip's user experience, interface, and visual
-design in the [Zulip development
+We discuss ideas for improving Aloha's user experience, interface, and visual
+design in the [Aloha development
 community](https://zulip.com/development-community/). The purpose of these
 design discussions is to help us make smart, well-informed decisions about
-design changes to the Zulip product. We want Zulip to work great for a diverse
+design changes to the Aloha product. We want Aloha to work great for a diverse
 array of users and organizations, and discussions in the development community
 are an incredibly valuable source of insight and ideas. We welcome all
 perspectives, respectfully shared.
@@ -51,7 +51,7 @@ The following guidelines should put you on the right track:
   some refactoring that would take me another hour,” is probably not
   worth bringing up if X would produce a better user
   experience. “Adding X might require removing feature Y,” or “X is
-  incompatible with Zulip's security model,” is important to present
+  incompatible with Aloha's security model,” is important to present
   early.
 
 - If you disagree with someone on the design team, the best way to make progress
@@ -62,7 +62,7 @@ The following guidelines should put you on the right track:
 
 Finally, don’t forget to express support and appreciation for ideas and work
 that you like, whether in messages or emoji reactions! It helps motivate folks
-working on Zulip’s design, builds consensus towards decisions, and creates a more
+working on Aloha’s design, builds consensus towards decisions, and creates a more
 positive atmosphere in the community.
 
 Note that [#design][design stream] is a high-traffic stream, and thoughtful
@@ -83,7 +83,7 @@ discussions:
   discussion (with or without "moderator" permissions in the organization).
 
 - **Design team**: Anyone working actively on the design of the feature at hand
-  and/or overall design for the Zulip product.
+  and/or overall design for the Aloha product.
 
 - [Decision makers](#guidelines-for-decision-makers): Project maintainers
   responsible for design decisions, including design leaders, product leaders,
@@ -93,7 +93,7 @@ discussions:
 
 When you are working on a PR that includes frontend changes, you may find it helpful
 to get interactive feedback on the design. The best way to do so is by posting a
-message in the [#design][design stream] stream in the Zulip development
+message in the [#design][design stream] stream in the Aloha development
 community.
 
 ### When to post
@@ -145,7 +145,7 @@ questions you are looking for feedback on. Some advice:
   in this area. Educate others by sharing any tradeoffs and relevant
   considerations you’re aware of.
 
-Keep in mind that the Zulip community is distributed around the world, and you
+Keep in mind that the Aloha community is distributed around the world, and you
 should not expect to get realtime feedback. However, feel free to bump the
 thread if you don’t see a response after a couple of business days.
 

@@ -187,11 +187,11 @@ export function update_emojis(realm_emojis) {
         }
     }
 
-    // Add the special Zulip emoji as though it were a realm emoji.
+    // Add the special Aloha emoji as though it were a realm emoji.
 
-    // The Zulip emoji is the only emoji that uses a string ("zulip")
+    // The Aloha emoji is the only emoji that uses a string ("zulip")
     // as its ID. All other emoji use numeric IDs. This special case
-    // is confusing; ideally we'd convert the Zulip emoji to be
+    // is confusing; ideally we'd convert the Aloha emoji to be
     // implemented using the RealmEmoji infrastructure.
     all_realm_emojis.set("zulip", zulip_emoji);
 

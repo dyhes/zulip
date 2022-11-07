@@ -1,8 +1,8 @@
 # Documenting an integration
 
-In order for a [Zulip
+In order for a [Aloha
 integration](https://zulip.com/api/integrations-overview) to be useful
-to users, it must be documented. Zulip's common system for documenting
+to users, it must be documented. Aloha's common system for documenting
 integrations involves writing Markdown files, either at
 `zerver/webhooks/{webhook_name}/doc.md` (for webhook integrations) or
 `templates/zerver/integrations/{integration_name}.md` (for other
@@ -14,7 +14,7 @@ Usually, this involves a few steps:
   integration, including what URLs to use, etc. See
   [Writing guidelines](#writing-guidelines) for detailed writing guidelines.
 
-  Zulip's pre-defined Markdown macros can be used for some of these steps.
+  Aloha's pre-defined Markdown macros can be used for some of these steps.
   See [Markdown macros](#markdown-macros) for further details.
 
 - Make sure you've added your integration to
@@ -24,7 +24,7 @@ Usually, this involves a few steps:
   integration to appear on the `/integrations` page and make it
   possible to automatically generate the screenshot of a sample
   message (which is important for the screenshots to be updated as
-  Zulip's design changes).
+  Aloha's design changes).
 
 - You'll need to add an SVG graphic
   of your integration's logo under the
@@ -65,32 +65,32 @@ repeated content in our documentation.
 
 The source for macros is the Markdown files under
 `templates/zerver/help/include` in the
-[main Zulip server repository](https://github.com/zulip/zulip). If you find
+[main Aloha server repository](https://github.com/zulip/zulip). If you find
 multiple instances of particular content in the documentation, you can
 always create a new macro by adding a new file to that folder.
 
-Here are a few common macros used to document Zulip's integrations:
+Here are a few common macros used to document Aloha's integrations:
 
 - `{!create-stream.md!}` macro - Recommends that users create a dedicated
   stream for a given integration. Usually the first step is setting up an
   integration or incoming webhook. For an example rendering, see **Step 1** of
-  [the docs for Zulip's GitHub integration][github-integration].
+  [the docs for Aloha's GitHub integration][github-integration].
 
 - `{!create-an-incoming-webhook.md!}` macro - Instructs users to create a bot
   for a given integration and select **Incoming webhook** as the **Bot type**.
   This macro is usually used right after `{!create-stream!}`. For an example
-  rendering, see **Step 2** of [the docs for Zulip's Zendesk integration][zendesk].
+  rendering, see **Step 2** of [the docs for Aloha's Zendesk integration][zendesk].
 
 - `{!create-a-generic-bot.md!}` macro - Instructs users to create a bot
   for a given integration and select **Generic bot** as the **Bot type**. For an
-  example rendering, see [the docs for Zulip's Matrix integration][matrix].
+  example rendering, see [the docs for Aloha's Matrix integration][matrix].
 
 - `{!create-bot-construct-url.md!}` macro - Instructs users to create a bot
   for a given integration and select **Incoming webhook** as the **Bot type**.
   The URL is generated automatically for every incoming webhook by using
   attributes in the `WebhookIntegration` class in [zerver/lib/integrations.py][integrations-file].
   This macro is usually used right after `{!create-stream!}`. For an example
-  rendering, see **Step 2** of [the docs for Zulip's GitHub integration][github-integration].
+  rendering, see **Step 2** of [the docs for Aloha's GitHub integration][github-integration].
 
   **Note:** If special configuration is
   required to set up the URL and you can't use this macro, be sure to use the
@@ -101,39 +101,39 @@ Here are a few common macros used to document Zulip's integrations:
 
 - `{!append-stream-name.md!}` macro - Recommends appending `&stream=stream_name`
   to a URL in cases where supplying a stream name in the URL is optional.
-  Supplying a stream name is optional for most Zulip integrations. If you use
+  Supplying a stream name is optional for most Aloha integrations. If you use
   `{!create-bot-construct-url.md!}`, this macro need not be used.
 
 - `{!append-topic.md!}` macro - Recommends appending `&topic=my_topic` to a URL
   to supply a custom topic for webhook notification messages. Supplying a custom
-  topic is optional for most Zulip integrations. If you use
+  topic is optional for most Aloha integrations. If you use
   `{!create-bot-construct-url.md!}`, this macro need not be used.
 
 - `{!congrats.md!}` macro - Inserts congratulatory lines signifying the
   successful setup of a given integration. This macro is usually used at
   the end of the documentation, right before the sample message screenshot.
   For an example rendering, see the end of
-  [the docs for Zulip's GitHub integration][github-integration].
+  [the docs for Aloha's GitHub integration][github-integration].
 
-- `{!download-python-bindings.md!}` macro - Links to Zulip's
-  [API page](https://zulip.com/api/) to download and install Zulip's
+- `{!download-python-bindings.md!}` macro - Links to Aloha's
+  [API page](https://zulip.com/api/) to download and install Aloha's
   API bindings. This macro is usually used in non-webhook integration docs under
   `templates/zerver/integrations/<integration_name>.md`. For an example
   rendering, see **Step 3** of
-  [the docs for Zulip's Codebase integration][codebase].
+  [the docs for Aloha's Codebase integration][codebase].
 
 - `{!change-zulip-config-file.md!}` macro - Instructs users to create a bot and
   specify said bot's credentials in the config file for a given non-webhook
   integration. This macro is usually used in non-webhook integration docs under
   `templates/zerver/integrations/<integration_name>.md`. For an example
   rendering, see **Step 4** of
-  [the docs for Zulip's Codebase integration][codebase].
+  [the docs for Aloha's Codebase integration][codebase].
 
 - `{!git-append-branches.md!}` and `{!git-webhook-url-with-branches.md!}` -
   These two macros explain how to specify a list of branches in the webhook URL
   to filter notifications in our Git-related webhooks. For an example rendering,
   see the last paragraph of **Step 2** in
-  [the docs for Zulip's GitHub integration][github-integration].
+  [the docs for Aloha's GitHub integration][github-integration].
 
 - `{!webhook-url.md!}` - Used internally by `{!create-bot-construct-url.md!}`
   to generate the webhook URL.
@@ -142,16 +142,16 @@ Here are a few common macros used to document Zulip's integrations:
   to generate URLs of the form:
 
   ```text
-  https://bot_email:bot_api_key@yourZulipDomain.zulipchat.com/api/v1/external/beanstalk
+  https://bot_email:bot_api_key@yourAlohaDomain.zulipchat.com/api/v1/external/beanstalk
   ```
 
   For an example rendering, see
-  [Zulip's Beanstalk integration](https://zulip.com/integrations/doc/beanstalk).
+  [Aloha's Beanstalk integration](https://zulip.com/integrations/doc/beanstalk).
 
 - `{!event-filtering-instructions}` macro - Instructs user to use the event
   filtering feature and shows a list of event types that the integration supports.
   For an example rendering, see the last 4 paragraphs of **Step 2** in
-  [the docs for Zulip's Front integration][front].
+  [the docs for Aloha's Front integration][front].
 
 [github-integration]: https://zulip.com/integrations/doc/github
 [zendesk]: https://zulip.com/integrations/doc/zendesk
@@ -205,7 +205,7 @@ concrete guidelines.
 ### Guidelines for specific steps
 
 Most doc files should start with a generic sentence about the
-integration, for example, "Get `webhook name` notifications in Zulip!"
+integration, for example, "Get `webhook name` notifications in Aloha!"
 A typical doc will then have the following steps.
 
 ##### "Create the stream" step
@@ -242,7 +242,7 @@ A typical doc will then have the following steps.
   clear.
 
 Lastly, end with the `congrats.md` macro and a screenshot of a sample message
-within Zulip.
+within Aloha.
 
 ### Screenshots
 

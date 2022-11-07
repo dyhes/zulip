@@ -57,7 +57,7 @@ def send_to_push_bouncer(
     )
     api_auth = requests.auth.HTTPBasicAuth(settings.ZULIP_ORG_ID, settings.ZULIP_ORG_KEY)
 
-    headers = {"User-agent": f"ZulipServer/{ZULIP_VERSION}"}
+    headers = {"User-agent": f"AlohaServer/{ZULIP_VERSION}"}
     headers.update(extra_headers)
 
     try:
@@ -86,7 +86,7 @@ def send_to_push_bouncer(
         result_dict = orjson.loads(res.content)
         msg = result_dict["msg"]
         if "code" in result_dict and result_dict["code"] == "INVALID_ZULIP_SERVER":
-            # Invalid Zulip server credentials should email this server's admins
+            # Invalid Aloha server credentials should email this server's admins
             raise PushNotificationBouncerException(
                 _("Push notifications bouncer error: {}").format(msg)
             )
@@ -97,7 +97,7 @@ def send_to_push_bouncer(
             raise JsonableError(msg)
     elif res.status_code != 200:
         # Anything else is unexpected and likely suggests a bug in
-        # this version of Zulip, so we throw an exception that will
+        # this version of Aloha, so we throw an exception that will
         # email the server admins.
         raise PushNotificationBouncerException(
             f"Push notification bouncer returned unexpected status code {res.status_code}"

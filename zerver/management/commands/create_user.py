@@ -5,15 +5,15 @@ from django.core.management.base import CommandError
 from django.db.utils import IntegrityError
 
 from zerver.actions.create_user import do_create_user
-from zerver.lib.management import ZulipBaseCommand
+from zerver.lib.management import AlohaBaseCommand
 
 
-class Command(ZulipBaseCommand):
-    help = """Create a new Zulip user via the command line.
+class Command(AlohaBaseCommand):
+    help = """Create a new Aloha user via the command line.
 
 Prompts the user for <email> and <full name> if not specified.
 
-We recommend the Zulip API (https://zulip.com/api/create-user) instead
+We recommend the Aloha API (https://zulip.com/api/create-user) instead
 of this tool for most use cases.
 
 If the server has Terms of Service configured, the user will be

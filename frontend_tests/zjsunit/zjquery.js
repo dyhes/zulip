@@ -120,7 +120,7 @@ function make_zjquery() {
         assert.equal(
             arg2,
             undefined,
-            "We only use one-argument variations of $(...) in Zulip code.",
+            "We only use one-argument variations of $(...) in Aloha code.",
         );
 
         const selector = arg;

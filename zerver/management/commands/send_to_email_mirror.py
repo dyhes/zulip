@@ -11,7 +11,7 @@ from django.core.management.base import CommandError, CommandParser
 
 from zerver.lib.email_mirror import mirror_email_message
 from zerver.lib.email_mirror_helpers import encode_email_address
-from zerver.lib.management import ZulipBaseCommand
+from zerver.lib.management import AlohaBaseCommand
 from zerver.models import Realm, get_realm, get_stream
 
 # This command loads an email from a specified file and sends it
@@ -28,7 +28,7 @@ from zerver.models import Realm, get_realm, get_stream
 # by the command in order for the email to be sent to the correct stream.
 
 
-class Command(ZulipBaseCommand):
+class Command(AlohaBaseCommand):
     help = """
 Send specified email from a fixture file to the email mirror
 Example:

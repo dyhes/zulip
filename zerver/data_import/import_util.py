@@ -124,7 +124,7 @@ def build_user_profile(
     dct = model_to_dict(obj)
 
     """
-    Even though short_name is no longer in the Zulip
+    Even though short_name is no longer in the Aloha
     UserProfile, it's helpful to have it in our import
     dictionaries for legacy reasons.
     """
@@ -501,7 +501,7 @@ def build_message(
     has_attachment: bool = True,
 ) -> ZerverFieldsT:
     zulip_message = Message(
-        rendered_content_version=1,  # this is Zulip specific
+        rendered_content_version=1,  # this is Aloha specific
         id=message_id,
         content=content,
         rendered_content=rendered_content,
@@ -765,7 +765,7 @@ def long_term_idle_helper(
     or have sent a message within the last 60 days as active.
     Everyone else is treated as long-term idle, which means they will
     have a slightly slower first page load when coming back to
-    Zulip.
+    Aloha.
     """
     sender_counts: Dict[ExternalId, int] = defaultdict(int)
     recent_senders: Set[ExternalId] = set()

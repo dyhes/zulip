@@ -17,7 +17,7 @@ from zerver.models import UserProfile
 
 MISCONFIGURED_PAYLOAD_ERROR_MESSAGE = """
 Hi there! Your bot {bot_name} just received a Freshstatus payload that is missing
-some data that Zulip requires. This usually indicates a configuration issue
+some data that Aloha requires. This usually indicates a configuration issue
 in your Freshstatus webhook settings. Please make sure that you provide all the required parameters
 when configuring the Freshstatus webhook. Contact {support_email} if you
 need further help!

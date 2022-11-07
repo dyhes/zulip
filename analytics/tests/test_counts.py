@@ -52,7 +52,7 @@ from zerver.actions.user_activity import update_user_activity_interval
 from zerver.actions.users import do_deactivate_user
 from zerver.lib.create_user import create_user
 from zerver.lib.exceptions import InvitationError
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.timestamp import TimeZoneNotUTCException, floor_to_day
 from zerver.lib.topic import DB_TOPIC_NAME
 from zerver.lib.utils import assert_is_not_none
@@ -74,7 +74,7 @@ from zerver.models import (
 )
 
 
-class AnalyticsTestCase(ZulipTestCase):
+class AnalyticsTestCase(AlohaTestCase):
     MINUTE = timedelta(seconds=60)
     HOUR = MINUTE * 60
     DAY = HOUR * 24

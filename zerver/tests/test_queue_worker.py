@@ -20,7 +20,7 @@ from zerver.lib.queue import MAX_REQUEST_RETRIES
 from zerver.lib.rate_limiter import RateLimiterLockingException
 from zerver.lib.remote_server import PushNotificationBouncerRetryLaterError
 from zerver.lib.send_email import EmailNotDeliveredException, FromAddress
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import mock_queue_publish
 from zerver.models import (
     NotificationTriggers,
@@ -78,7 +78,7 @@ def simulated_queue_client(client: FakeClient) -> Iterator[None]:
         yield
 
 
-class WorkerTest(ZulipTestCase):
+class WorkerTest(AlohaTestCase):
     def test_UserActivityWorker(self) -> None:
         fake_client = FakeClient()
 
@@ -578,7 +578,7 @@ class WorkerTest(ZulipTestCase):
         data = {
             "template_prefix": "zerver/emails/confirm_new_email",
             "to_emails": [self.example_email("hamlet")],
-            "from_name": "Zulip Account Security",
+            "from_name": "Aloha Account Security",
             "from_address": FromAddress.NOREPLY,
             "context": {},
         }

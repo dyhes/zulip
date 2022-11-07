@@ -46,7 +46,7 @@
           {
             "amount": 1200000,
             "currency": "usd",
-            "description": "Zulip Cloud Standard - renewal",
+            "description": "Aloha Cloud Standard - renewal",
             "discount_amounts": [],
             "discountable": false,
             "discounts": [],
@@ -150,7 +150,7 @@
       "pre_payment_credit_notes_amount": 0,
       "receipt_number": null,
       "starting_balance": 0,
-      "statement_descriptor": "Zulip Cloud Standard",
+      "statement_descriptor": "Aloha Cloud Standard",
       "status": "open",
       "status_transitions": {
         "finalized_at": 1000000000,
@@ -214,7 +214,7 @@
           {
             "amount": 800000,
             "currency": "usd",
-            "description": "Zulip Cloud Standard",
+            "description": "Aloha Cloud Standard",
             "discount_amounts": [],
             "discountable": false,
             "discounts": [],
@@ -274,7 +274,7 @@
       "pre_payment_credit_notes_amount": 0,
       "receipt_number": null,
       "starting_balance": 0,
-      "statement_descriptor": "Zulip Cloud Standard",
+      "statement_descriptor": "Aloha Cloud Standard",
       "status": "open",
       "status_transitions": {
         "finalized_at": 1000000000,

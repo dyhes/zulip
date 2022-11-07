@@ -8,7 +8,7 @@ from django.utils.timezone import now as timezone_now
 
 from analytics.models import RealmCount
 from zerver.lib.exceptions import JsonableError
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import (
     HostRequestMock,
     create_dummy_file,
@@ -20,7 +20,7 @@ from zerver.models import RealmAuditLog
 from zerver.views.realm_export import export_realm
 
 
-class RealmExportTest(ZulipTestCase):
+class RealmExportTest(AlohaTestCase):
     """
     API endpoint testing covers the full end-to-end flow
     from both the S3 and local uploads perspective.

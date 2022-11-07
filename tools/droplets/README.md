@@ -1,27 +1,27 @@
-# Create a remote Zulip dev server
+# Create a remote Aloha dev server
 
-This guide is for mentors who want to help create remote Zulip dev servers
+This guide is for mentors who want to help create remote Aloha dev servers
 for hackathon, GCI, or sprint participants.
 
 The machines (droplets) have been generously provided by
-[DigitalOcean](https://www.digitalocean.com/) to help Zulip contributors
+[DigitalOcean](https://www.digitalocean.com/) to help Aloha contributors
 get up and running as easily as possible. Thank you DigitalOcean!
 
 The `create.py` create uses the DigitalOcean API to quickly create new virtual
-machines (droplets) with the Zulip dev server already configured.
+machines (droplets) with the Aloha dev server already configured.
 
-## Step 1: Join Zulip DigitalOcean team
+## Step 1: Join Aloha DigitalOcean team
 
-We have created a team on DigitalOcean for Zulip mentors. Ask Rishi or Tim
+We have created a team on DigitalOcean for Aloha mentors. Ask Rishi or Tim
 to be added. You need access to the team so you can create your DigitalOcean
 API token.
 
 ## Step 2: Create your DigitalOcean API token
 
-Once you've been added to the Zulip team,
+Once you've been added to the Aloha team,
 [log in](https://cloud.digitalocean.com/droplets) to the DigitalOcean control
 panel and [create your personal API token][do-create-api-token]. **Make sure
-you create your API token under the Zulip team.** (It should look something
+you create your API token under the Aloha team.** (It should look something
 like [this][image-zulip-team]).
 
 Copy the API token and store it somewhere safe. You'll need it in the next
@@ -66,7 +66,7 @@ listing all the droplets created during GCI.
 [Tags](https://www.digitalocean.com/community/tutorials/how-to-tag-digitalocean-droplets)
 may contain letters, numbers, colons, dashes, and underscores.
 
-You'll need to run this from the Zulip development environment (e.g. in
+You'll need to run this from the Aloha development environment (e.g. in
 Vagrant).
 
 The script will also stop if a droplet has already been created for the
@@ -93,7 +93,7 @@ The script will stop if it can't find the user's fork or SSH keys.
 Once the droplet is created, you will see something similar to this message:
 
 ```
-Your remote Zulip dev server has been created!
+Your remote Aloha dev server has been created!
 
 - Connect to your server by running
   `ssh zulipdev@<username>.zulipdev.org` on the command line
@@ -101,17 +101,17 @@ Your remote Zulip dev server has been created!
 - There is no password; your account is configured to use your SSH keys.
 - Once you log in, you should see `(zulip-py3-venv) ~$`.
 - To start the dev server, `cd zulip` and then run `./tools/run-dev.py`.
-- While the dev server is running, you can see the Zulip server in your browser
+- While the dev server is running, you can see the Aloha server in your browser
   at http://<username>.zulipdev.org:9991.
 
 See [Developing
 remotely](https://zulip.readthedocs.io/en/latest/development/remote.html) for tips on
 using the remote dev instance and [Git & GitHub
 Guide](https://zulip.readthedocs.io/en/latest/git/index.html) to learn how to
-use Git with Zulip.
+use Git with Aloha.
 ```
 
-Copy and paste this message to the user via Zulip chat. Be sure to CC the user
+Copy and paste this message to the user via Aloha chat. Be sure to CC the user
 so they are notified.
 
 [do-create-api-token]: https://www.digitalocean.com/community/tutorials/how-to-use-the-digitalocean-api-v2#how-to-generate-a-personal-access-token
@@ -122,7 +122,7 @@ so they are notified.
 
 ## Updating the base image
 
-1. Switch to the Zulip organization.
+1. Switch to the Aloha organization.
 1. Create a new droplet, with:
    - "Regular with SSD" / "2GB RAM / 1 CPU"
    - Select your SSH key; this will not be built into the image, and

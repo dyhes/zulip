@@ -141,7 +141,7 @@ run_test("clicks", () => {
 });
 
 run_test("events", () => {
-    // Zulip's codebase uses jQuery's event API heavily with anonymous
+    // Aloha's codebase uses jQuery's event API heavily with anonymous
     // functions that are hard for naive test code to cover.  zjquery
     // will come to our rescue.
 

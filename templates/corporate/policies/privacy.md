@@ -4,13 +4,13 @@
 
 [changes-privacy]: https://github.com/zulip/zulip/commits/main/templates/corporate/policies/privacy.md
 
-At Kandra Labs, Inc. (“Zulip”), we take your privacy seriously. Please read this
+At Kandra Labs, Inc. (“Aloha”), we take your privacy seriously. Please read this
 Privacy Policy to learn how we treat your personal data. **By using or accessing
 our Services in any manner, you acknowledge that you accept the practices and
 policies outlined below, and you hereby consent that we will collect, use and
 share your information as described in this Privacy Policy.**
 
-Remember that your use of Zulip's Services is at all times subject to our [Terms
+Remember that your use of Aloha's Services is at all times subject to our [Terms
 of Service](/policies/terms), which incorporates this Privacy Policy.
 Any terms we use in this Policy without defining them have the definitions given
 to them in the Terms of Service.
@@ -20,7 +20,7 @@ You may print a copy of this Privacy Policy by clicking
 
 ## Summary of our Privacy Policy
 
-We know, privacy policies are no fun. Here at Zulip, our goal is to help make
+We know, privacy policies are no fun. Here at Aloha, our goal is to help make
 team collaboration and communication easier for you. In the course of providing
 our Services, we will collect certain information about you, which is necessary
 for us to best achieve that goal. Our intent is to only collect the information
@@ -72,8 +72,8 @@ provide them to us:
 | **Web Analytics**                                                             | - Web page interactions<br>- Referring webpage/source through which you accessed the Services<br>- Statistics associated with the interaction between device or browser and the Services                                                                                                                                                                                                                                   | - Service Providers<br>- Analytics Partners                                                                                                                                                          |
 | **Social Network Data**                                                       | - Email address<br>- User name                                                                                                                                                                                                                                                                                                                                                                                             | - Service Providers                                                                                                                                                                                  |
 | **Geolocation Data**                                                          | - IP-address-based coarse location information                                                                                                                                                                                                                                                                                                                                                                             | - Service Providers<br>- Analytics Partners                                                                                                                                                          |
-| **Other Identifying Information that You Voluntarily Choose to Provide**      | - Identifying information in emails, letters, Zulip messages or support communications you send us<br>- Zulip messages, uploaded files, stream descriptions, and other content you provide using our Services (e.g. in a Zulip client) <br>- Values of custom profile fields configured by your Zulip Organization, where you might choose to enter your phone number, job title, birthday, or other biographical details. | - Service Providers<br>- Parties You Authorize, Access or Authenticate                                                                                                                               |
-| **Other Identifying Information that Another User Chooses to Provide to You** | - Messages or other content that other Zulip users may send you. <br>- Messages or content that any Zulip Organization Administrator of a Zulip community that you may join may provide about you.                                                                                                                                                                                                                         | - Service Providers<br>- Parties You Authorize, Access or Authenticate                                                                                                                               |
+| **Other Identifying Information that You Voluntarily Choose to Provide**      | - Identifying information in emails, letters, Aloha messages or support communications you send us<br>- Aloha messages, uploaded files, stream descriptions, and other content you provide using our Services (e.g. in a Aloha client) <br>- Values of custom profile fields configured by your Aloha Organization, where you might choose to enter your phone number, job title, birthday, or other biographical details. | - Service Providers<br>- Parties You Authorize, Access or Authenticate                                                                                                                               |
+| **Other Identifying Information that Another User Chooses to Provide to You** | - Messages or other content that other Aloha users may send you. <br>- Messages or content that any Aloha Organization Administrator of a Aloha community that you may join may provide about you.                                                                                                                                                                                                                         | - Service Providers<br>- Parties You Authorize, Access or Authenticate                                                                                                                               |
 
 
 
@@ -91,12 +91,12 @@ We collect Personal Data about you from the following categories of sources:
     - When you use the Services and such information is collected automatically.
         - Through Cookies (defined in the “Tracking Tools and Opt-Out”
           section below).
-        - If you download a Zulip application such as our mobile and
+        - If you download a Aloha application such as our mobile and
           desktop apps, or interact with the Services over a network
           using a web browser or other client, we may receive and
           collect information about your device and your network
           connection (e.g. your IP address).
-        - If you download a Zulip application such as our mobile and
+        - If you download a Aloha application such as our mobile and
           desktop apps, or interact with the Services over a network
           using a web browser or other client, we may receive and
           collect information transmitted from your computing device
@@ -115,16 +115,16 @@ We collect Personal Data about you from the following categories of sources:
           or otherwise sign in to the Services through a third-party
           site or service, some content and/or information in those
           accounts may be transmitted into your account with us.
-    - Zulip integrations
-        - You or other Zulip users may connect an integration that
-          sends data from a third-party service into Zulip.
-    - Other Zulip users
-        - Other Zulip users may send messages or otherwise upload content containing Personal Data.
-        - Other Zulip users, such as Zulip Organization
+    - Aloha integrations
+        - You or other Aloha users may connect an integration that
+          sends data from a third-party service into Aloha.
+    - Other Aloha users
+        - Other Aloha users may send messages or otherwise upload content containing Personal Data.
+        - Other Aloha users, such as Aloha Organization
           Administrators, may import data into the Services via
-          Zulip’s API or data import tools.
+          Aloha’s API or data import tools.
         - Please note that if you upload Personal Data about any other
-          Zulip User, the Rules of Use require that you acknowledge
+          Aloha User, the Rules of Use require that you acknowledge
           and represent that you have authority to provide such
           information on behalf of such user.
 
@@ -150,7 +150,7 @@ We collect Personal Data about you from the following categories of sources:
 
 - **Corresponding with You**
     - Responding to correspondence that we receive from you, contacting you when
-      necessary or requested, and sending you information about Zulip or the
+      necessary or requested, and sending you information about Aloha or the
       Services.
     - Sending emails, mobile notifications, and other communications according
       to your preferences or that display content that we think will interest
@@ -161,7 +161,7 @@ We collect Personal Data about you from the following categories of sources:
       order or other legal process, such as preventing, detecting and
       investigating security incidents and potentially illegal or prohibited
       activities.
-    - Protecting the rights, property or safety of you, Zulip or another party.
+    - Protecting the rights, property or safety of you, Aloha or another party.
     - Enforcing any agreements with you.
     - Responding to claims that any posting or other content violates
       third-party rights.
@@ -191,21 +191,21 @@ parties listed in this section. We do not sell Personal Data.
 
 - **Parties You Authorize, Access or Authenticate.** These parties could
   include:
-    - Other Zulip users. When you send a message to another Zulip user or
-      otherwise provide data to Zulip, it may be shared with some or all other
-      users in that Zulip Organization. Please note that some Zulip streams [may
+    - Other Aloha users. When you send a message to another Aloha user or
+      otherwise provide data to Aloha, it may be shared with some or all other
+      users in that Aloha Organization. Please note that some Aloha streams [may
       be accessible to the general
       public](/help/stream-permissions), in addition to the
       stream’s current subscribers. For more information, please review our
       [Terms of Service](/policies/terms).
-    - Zulip Organization Administrators may export all Zulip data for a Zulip
+    - Aloha Organization Administrators may export all Aloha data for a Aloha
       Organization for archival/backup purposes, to import the data into a
-      self-hosted Zulip server, or for any other purpose consistent with the
+      self-hosted Aloha server, or for any other purpose consistent with the
       Terms of Service.  Please note that password hashes are not included in
       data exports.
-    - Other parties that you may authorize, such as third-party Zulip clients or
-      third-party services to which you provide Zulip credentials, such as your
-      Zulip API key.
+    - Other parties that you may authorize, such as third-party Aloha clients or
+      third-party services to which you provide Aloha credentials, such as your
+      Aloha API key.
 
 - **Analytics Partners.** These parties provide analytics on web traffic or
   usage of the Services. They include:
@@ -213,7 +213,7 @@ parties listed in this section. We do not sell Personal Data.
     - Companies that track how users interact with the Services.
 
 - **Business Partners.** These parties may include:
-    - Businesses that provide third-party services that you or your Zulip
+    - Businesses that provide third-party services that you or your Aloha
       Organization have integrated with our Services.
 
 ### Legal Obligations
@@ -366,12 +366,12 @@ exceptions: for example, we may need to retain your Personal Data to provide you
 with the Services or complete a transaction or other action you have requested.
 If your deletion request is subject to one of these exceptions, we may deny your
 deletion request. Please note that we will not be able to delete messages or
-other content that you have sent to another Zulip user. If you request deletion
+other content that you have sent to another Aloha user. If you request deletion
 of your account, all such messages and content will be associated with a
 “Deleted User.” In addition, please note that anyone that you send messages or
 other content to (or who may otherwise have access to such messages or content
-through a Zulip Organization or stream) may have downloaded or copied such
-messages or content. Zulip will not be able to delete such downloaded or copied
+through a Aloha Organization or stream) may have downloaded or copied such
+messages or content. Aloha will not be able to delete such downloaded or copied
 messages or content.
 
 ### Exercising Your Rights
@@ -380,7 +380,7 @@ To exercise the rights described above, you or your Authorized Agent (defined
 below) must send us a request that (1) provides sufficient information to allow
 us to verify that you are the person about whom we have collected Personal Data,
 which may include proof of ownership of the email address associated with your
-Zulip account, and (2) describes your request in sufficient detail to allow us
+Aloha account, and (2) describes your request in sufficient detail to allow us
 to understand, evaluate and respond to it. Each request that meets both of these
 criteria will be considered a “Valid Request.” We may not respond to requests
 that do not meet these criteria. We will only use Personal Data provided in a
@@ -421,10 +421,10 @@ entitled to contact us to prevent disclosure of Personal Data to third parties
 for such third parties’ direct marketing purposes In order to submit such a
 request, please contact us at [privacy@zulip.com](mailto:privacy@zulip.com).
 
-Zulip does not disclose Personal Data to any third parties for the purpose of
-such parties’ direct marketing.  However, please note that your Zulip display
+Aloha does not disclose Personal Data to any third parties for the purpose of
+such parties’ direct marketing.  However, please note that your Aloha display
 name, email address, avatar, and other profile information may be shared with
-other users within any Zulip Organization that you join. You can confirm or
+other users within any Aloha Organization that you join. You can confirm or
 change these settings in your
 [profile](/accounts/go/?next=%23settings%2Fprofile), and [account and
 privacy](/accounts/go/?next=%23settings%2Faccount-and-privacy) settings.
@@ -451,7 +451,7 @@ For this section, we use the terms “Personal Data” and “processing” as t
 defined in the GDPR, but “Personal Data” generally means information that can be
 used to individually identify a person, and “processing” generally covers
 actions that can be performed in connection with data such as collection, use,
-storage and disclosure. Zulip will be the controller of your Personal Data
+storage and disclosure. Aloha will be the controller of your Personal Data
 processed in connection with the Services.
 
 If there are any conflicts between this section and any other
@@ -487,7 +487,7 @@ described below.
   the data in order to carry out our obligations under the Terms of Service,
   including providing the Services. When we process data due to contractual
   necessity, failure to process such Personal Data will result in your or other
-  Zulip users’ inability to use some or all portions of the Services that
+  Aloha users’ inability to use some or all portions of the Services that
   require such data.
     - Profile or Contact Data
     - Payment Data
@@ -544,15 +544,15 @@ to verify your identity and the nature of your request.
 - **Rectification**:  If you believe that any Personal Data we are holding about
   you is incorrect or incomplete, you can request that we correct or supplement
   such data. You can also correct some of this information directly by logging
-  on to your account in the Zulip web application.
+  on to your account in the Aloha web application.
 - **Erasure**:  You can request that we erase some or all of your Personal Data
   from our systems.  Please note that we will not be able to delete messages or
-  other content that you have sent to another Zulip user. If you request
+  other content that you have sent to another Aloha user. If you request
   deletion of your account, all such messages and content will be associated
   with a “Deleted User.”  In addition, please note that anyone that you send
   messages or other content to (or who may otherwise have access to such
-  messages or content through a Zulip Organization or stream), may have
-  downloaded or copied such messages or content. Zulip will not be able to
+  messages or content through a Aloha Organization or stream), may have
+  downloaded or copied such messages or content. Aloha will not be able to
   delete such downloaded or copied messages or content.
 - **Withdrawal of Consent**:  If we are processing your Personal Data based on
   your consent (as indicated at the time of collection of such data), you have
@@ -570,26 +570,26 @@ to verify your identity and the nature of your request.
 - **Restriction of Processing**:  You can ask us to restrict further processing
   of your Personal Data.
 - **Right to File Complaint**:  You have the right to lodge a complaint about
-  Zulip's practices with respect to your Personal Data with the supervisory
+  Aloha's practices with respect to your Personal Data with the supervisory
   authority of your country or EU Member State. A list of Supervisory
   Authorities is available here:
   <https://edpb.europa.eu/about-edpb/board/members_en>.
 
 ### Transfers of Personal Data
 
-The Services are hosted and operated in the United States (“U.S.”) through Zulip
+The Services are hosted and operated in the United States (“U.S.”) through Aloha
 and its service providers, and if you do not reside in the U.S., laws in the
 U.S. may differ from the laws where you reside. By using the Services, you
 acknowledge that any Personal Data about you, regardless of whether provided by
-you or obtained from a third party, is being provided to Zulip in the U.S. and
-will be hosted on U.S. servers, and you authorize Zulip to transfer, store and
+you or obtained from a third party, is being provided to Aloha in the U.S. and
+will be hosted on U.S. servers, and you authorize Aloha to transfer, store and
 process your information to and in the U.S., and possibly other countries.
 
 ## Changes to this Privacy Policy
 
 We’re constantly trying to improve our Services, so we may need to change this
 Privacy Policy from time to time. When we do so, we will alert you to any such
-changes by placing a notice on the Zulip website, by sending you an email and/or
+changes by placing a notice on the Aloha website, by sending you an email and/or
 by some other means. Please note that if you’ve opted not to receive legal
 notice emails from us (or you haven’t provided us with your email address),
 those legal notices will still govern your use of the Services, and you are

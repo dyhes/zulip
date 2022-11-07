@@ -1,12 +1,12 @@
 # Typing indicators
 
-Zulip supports a feature called "typing indicators."
+Aloha supports a feature called "typing indicators."
 
 Typing indicators are status messages that tell you when
-another user is composing a message to you. Zulip's typing UI
+another user is composing a message to you. Aloha's typing UI
 is similar to what you see in other chat/text systems.
 
-This document describes how we have implemented the feature in Zulip,
+This document describes how we have implemented the feature in Aloha,
 and our main audience is developers who want to understand the
 system and possibly improve it. This document assumes that the
 client is our web app, but any client can play along with this
@@ -21,7 +21,7 @@ There are two major roles for users in this system:
 - The "receiving user" is waiting to receive a message (or possibly
   ready to shift their attention elsewhere).
 
-Any Zulip user can play either one of these roles, and sometimes
+Any Aloha user can play either one of these roles, and sometimes
 they can be playing both roles at once. Having said that, you
 can generally understand the system in terms of a single message
 being composed by the "writing user."
@@ -42,7 +42,7 @@ function that facilitates this is called `send_typing_notification_ajax`.
 
 If the "writing user" is composing a long message, we want to send
 repeated updates to the server, so that downstream clients know that the
-user is still typing. (Zulip messages tend to be longer than
+user is still typing. (Aloha messages tend to be longer than
 messages in other chat/text clients, so this detail is important.)
 
 We have a small state machine in `static/shared/js/typing_status.js` that
@@ -68,7 +68,7 @@ how long they pause to think, and how frequently they get interrupted.
 ## Server
 
 The server piece of typing notifications is currently pretty
-straightforward, since we take advantage of Zulip's
+straightforward, since we take advantage of Aloha's
 [events system](events-system.md).
 
 We deliberately designed the server piece to be stateless,

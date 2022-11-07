@@ -2,12 +2,12 @@ import orjson
 
 from zerver.actions.alert_words import do_add_alert_words, do_remove_alert_words
 from zerver.lib.alert_words import alert_words_in_realm, user_alert_words
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import most_recent_message, most_recent_usermessage
 from zerver.models import AlertWord, UserProfile
 
 
-class AlertWordTests(ZulipTestCase):
+class AlertWordTests(AlohaTestCase):
     interesting_alert_word_list = ["alert", "multi-word word", "☃"]
 
     def get_user(self) -> UserProfile:

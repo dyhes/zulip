@@ -45,7 +45,7 @@ class zulip_ops::profile::grafana {
     ensure  => file,
     require => [
       Package[supervisor],
-      Zulip::External_Dep['grafana'],
+      Aloha::External_Dep['grafana'],
       File[$data_dir],
       File['/var/log/grafana'],
     ],

@@ -20,7 +20,7 @@ from zerver.lib.message import (
     format_unread_message_details,
     get_raw_unread_data,
 )
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import get_subscription, queries_captured
 from zerver.lib.user_topics import add_topic_mute
 from zerver.models import (
@@ -49,7 +49,7 @@ def check_flags(flags: List[str], expected: Set[str]) -> None:
         raise AssertionError(f"expected flags (ignoring has_alert_word) to be {expected}")
 
 
-class FirstUnreadAnchorTests(ZulipTestCase):
+class FirstUnreadAnchorTests(AlohaTestCase):
     """
     HISTORICAL NOTE:
 
@@ -159,7 +159,7 @@ class FirstUnreadAnchorTests(ZulipTestCase):
         self.assert_length(messages, 1)
 
 
-class UnreadCountTests(ZulipTestCase):
+class UnreadCountTests(AlohaTestCase):
     def setUp(self) -> None:
         super().setUp()
         with mock.patch(
@@ -349,7 +349,7 @@ class UnreadCountTests(ZulipTestCase):
         self.assert_json_error(result, "No such topic 'abc'")
 
 
-class FixUnreadTests(ZulipTestCase):
+class FixUnreadTests(AlohaTestCase):
     def test_fix_unreads(self) -> None:
         user = self.example_user("hamlet")
         othello = self.example_user("othello")
@@ -472,7 +472,7 @@ class FixUnreadTests(ZulipTestCase):
         assert_read(um_unsubscribed_id)
 
 
-class PushNotificationMarkReadFlowsTest(ZulipTestCase):
+class PushNotificationMarkReadFlowsTest(AlohaTestCase):
     def get_mobile_push_notification_ids(self, user_profile: UserProfile) -> List[int]:
         return list(
             UserMessage.objects.filter(
@@ -568,7 +568,7 @@ class PushNotificationMarkReadFlowsTest(ZulipTestCase):
         mock_push_notifications.assert_called()
 
 
-class GetUnreadMsgsTest(ZulipTestCase):
+class GetUnreadMsgsTest(AlohaTestCase):
     def mute_stream(self, user_profile: UserProfile, stream: Stream) -> None:
         recipient = Recipient.objects.get(type_id=stream.id, type=Recipient.STREAM)
         subscription = Subscription.objects.get(
@@ -978,7 +978,7 @@ class GetUnreadMsgsTest(ZulipTestCase):
         self.assertEqual(result["mentions"], [])
 
 
-class MessageAccessTests(ZulipTestCase):
+class MessageAccessTests(AlohaTestCase):
     def test_update_invalid_flags(self) -> None:
         message = self.send_personal_message(
             self.example_user("cordelia"),
@@ -1407,7 +1407,7 @@ class MessageAccessTests(ZulipTestCase):
         self.assert_length(queries, 2)
 
 
-class PersonalMessagesFlagTest(ZulipTestCase):
+class PersonalMessagesFlagTest(AlohaTestCase):
     def test_is_private_flag_not_leaked(self) -> None:
         """
         Make sure `is_private` flag is not leaked to the API.
@@ -1421,7 +1421,7 @@ class PersonalMessagesFlagTest(ZulipTestCase):
             self.assertNotIn("is_private", msg["flags"])
 
 
-class MarkUnreadTest(ZulipTestCase):
+class MarkUnreadTest(AlohaTestCase):
     def mute_stream(self, stream_name: str, user: UserProfile) -> None:
         realm = get_realm("zulip")
         stream = get_stream(stream_name, realm)

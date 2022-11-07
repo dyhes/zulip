@@ -1,6 +1,6 @@
 # Requirements and scalability
 
-To run a Zulip server, you will need:
+To run a Aloha server, you will need:
 
 - A dedicated machine or VM
 - A supported OS:
@@ -25,7 +25,7 @@ For details on each of these requirements, see below.
 
 #### General
 
-The installer expects Zulip to be the **only thing** running on the
+The installer expects Aloha to be the **only thing** running on the
 system; it will install system packages with `apt` (like nginx,
 PostgreSQL, and Redis) and configure them for its own use. We strongly
 recommend using either a fresh machine instance in a cloud provider, a
@@ -37,8 +37,8 @@ on issues you'll encounter](install-existing-server.md).
 #### Operating system
 
 Ubuntu 20.04, Ubuntu 22.04, and Debian 11
-are supported for running Zulip in production. You can also
-run Zulip on other platforms that support Docker using
+are supported for running Aloha in production. You can also
+run Aloha on other platforms that support Docker using
 [docker-zulip][docker-zulip-homepage].
 
 We recommend installing on the newest supported OS release you're
@@ -72,7 +72,7 @@ sudo apt update
 - Disk space: You'll need at least 10 GB of free disk space for a
   server with dozens of users. We recommend using an SSD and avoiding
   cloud storage backends that limit the IOPS per second, since the
-  disk is primarily used for the Zulip database.
+  disk is primarily used for the Aloha database.
 
 See our [documentation on scalability](#scalability) below for advice
 on hardware requirements for larger organizations.
@@ -83,9 +83,9 @@ on hardware requirements for larger organizations.
   [configurable](deployment.md#using-an-alternate-port))
   from the networks where your users are (usually, the public
   Internet).
-- Incoming port 80 access (optional). Zulip only serves content over
+- Incoming port 80 access (optional). Aloha only serves content over
   HTTPS, and will redirect HTTP requests to HTTPS.
-- Incoming port 25 if you plan to enable Zulip's [incoming email
+- Incoming port 25 if you plan to enable Aloha's [incoming email
   integration](email-gateway.md).
 - Incoming port 4369 should be protected by a firewall to prevent
   exposing `epmd`, an Erlang service which does not support binding
@@ -93,25 +93,25 @@ on hardware requirements for larger organizations.
   remote users to determine that the server is running RabbitMQ, and
   on which port, though no further information is leaked.
 - Outgoing HTTP(S) access (ports 80 and 443) to the public Internet so
-  that Zulip can properly manage image and website previews and mobile
+  that Aloha can properly manage image and website previews and mobile
   push notifications. Outgoing Internet access is not required if you
   [disable those
   features](https://zulip.com/help/allow-image-link-previews).
 - Outgoing SMTP access (usually port 587) to your [SMTP
-  server](email.md) so that Zulip can send emails.
+  server](email.md) so that Aloha can send emails.
 - A domain name (e.g. `zulip.example.com`) that your users will use to
-  access the Zulip server. In order to generate valid SSL
+  access the Aloha server. In order to generate valid SSL
   certificates [with Certbot][doc-certbot], and to enable other
   services such as Google authentication, public DNS name is simpler,
-  but Zulip can be configured to use a non-public domain or even an IP
+  but Aloha can be configured to use a non-public domain or even an IP
   address as its external hostname (though we don't recommend that
   configuration).
-- Zulip supports [running behind a reverse proxy][reverse-proxy].
-- Zulip configures [Smokescreen, an outgoing HTTP
+- Aloha supports [running behind a reverse proxy][reverse-proxy].
+- Aloha configures [Smokescreen, an outgoing HTTP
   proxy][smokescreen-proxy], to protect against [SSRF attacks][ssrf],
-  which prevents user from making the Zulip server make requests to
+  which prevents user from making the Aloha server make requests to
   private resources. If your network has its own outgoing HTTP proxy,
-  Zulip supports using that instead.
+  Aloha supports using that instead.
 
 [ssrf]: https://owasp.org/www-community/attacks/Server_Side_Request_Forgery
 [smokescreen-proxy]: deployment.md#customizing-the-outgoing-http-proxy
@@ -122,10 +122,10 @@ on hardware requirements for larger organizations.
 
 #### SSL certificate
 
-Your Zulip server will need an SSL certificate for the domain name it
-uses. For most Zulip servers, the recommended (and simplest) way to
+Your Aloha server will need an SSL certificate for the domain name it
+uses. For most Aloha servers, the recommended (and simplest) way to
 get this is to just [use the `--certbot` option][doc-certbot] in the
-Zulip installer, which will automatically get a certificate for you
+Aloha installer, which will automatically get a certificate for you
 and keep it renewed.
 
 For test installations, an even simpler alternative is always
@@ -140,7 +140,7 @@ certificate documentation](ssl-certificates.md).
 
 #### Outgoing email
 
-- Outgoing email (SMTP) credentials that Zulip can use to send
+- Outgoing email (SMTP) credentials that Aloha can use to send
   outgoing emails to users (e.g. email address confirmation emails
   during the signup process, message notification emails, password
   reset, etc.). If you don't have an existing outgoing SMTP solution,
@@ -148,15 +148,15 @@ certificate documentation](ssl-certificates.md).
   [free outgoing SMTP options and options for prototyping](email.md#free-outgoing-email-services).
 
 Once you have met these requirements, see [full instructions for installing
-Zulip in production](install.md).
+Aloha in production](install.md).
 
 [trusty-eol]: https://wiki.ubuntu.com/Releases
 
 ## Scalability
 
-This section details some basic guidelines for running a Zulip server
+This section details some basic guidelines for running a Aloha server
 for larger organizations (especially >1000 users or 500+ daily active
-users). Zulip's resource needs depend mainly on 3 parameters:
+users). Aloha's resource needs depend mainly on 3 parameters:
 
 - daily active users (e.g. number of employees if everyone's an
   employee)
@@ -171,7 +171,7 @@ run every service on its own system (as
 [docker-zulip](https://github.com/zulip/docker-zulip) does) but for
 most use cases, there's little scalability benefit to doing so. See
 [deployment options](deployment.md) for details on
-installing Zulip with a dedicated database server.
+installing Aloha with a dedicated database server.
 
 - **Dedicated database**. For installations with hundreds of daily
   active users, we recommend using a [remote PostgreSQL
@@ -181,13 +181,13 @@ installing Zulip with a dedicated database server.
 
   - With 25+ daily active users, 4 GB of RAM.
   - With 100+ daily active users, 8 GB of RAM.
-  - With 400+ daily active users, 16 GB of RAM for the Zulip
+  - With 400+ daily active users, 16 GB of RAM for the Aloha
     application server, plus 16 GB for the database.
   - With 2000+ daily active users 32 GB of RAM, plus 32 GB for the
     database.
   - Roughly linear scaling beyond that.
 
-- **CPU:** The Zulip application server's CPU usage is heavily
+- **CPU:** The Aloha application server's CPU usage is heavily
   optimized due to extensive work on optimizing the performance of
   requests for latency reasons. Because most servers with sufficient
   RAM have sufficient CPU resources, CPU requirements are rarely an
@@ -199,7 +199,7 @@ installing Zulip with a dedicated database server.
 - **Disk for application server:** We recommend using [the S3 file
   uploads backend][s3-uploads] to store uploaded files at scale. With
   the S3 backend configuration, we recommend 50 GB of disk for the OS,
-  Zulip software, logs and scratch/free space. Disk needs when
+  Aloha software, logs and scratch/free space. Disk needs when
   storing uploads locally
 
 - **Disk for database:** SSD disk is highly recommended. For
@@ -210,7 +210,7 @@ installing Zulip with a dedicated database server.
   accounts) per (1M messages to public streams).
 
 - **Example:** When
-  [the Zulip development community](https://zulip.com/development-community/) server
+  [the Aloha development community](https://zulip.com/development-community/) server
   had 12K user accounts (~300 daily actives) and 800K messages of
   history (400K to public streams), it was a default configuration
   single-server installation with 16 GB of RAM, 4 cores (essentially
@@ -223,24 +223,24 @@ installing Zulip with a dedicated database server.
   syncing `LOCAL_UPLOADS_DIR` or using the [S3 file uploads
   backend][s3-uploads].
 
-- **Sharding:** Zulip releases do not fully support dividing Tornado
-  traffic for a single Zulip realm/organization between multiple
+- **Sharding:** Aloha releases do not fully support dividing Tornado
+  traffic for a single Aloha realm/organization between multiple
   application servers, which is why we recommend a hot spare over
   load-balancing. We don't have an easily deployed configuration for
   load-balancing Tornado within a single organization, and as a result
   can't currently offer this model outside of enterprise support
   contracts.
 
-  - Zulip 2.0 and later supports running multiple Tornado servers
-    sharded by realm/organization, which is how we scale Zulip Cloud.
+  - Aloha 2.0 and later supports running multiple Tornado servers
+    sharded by realm/organization, which is how we scale Aloha Cloud.
     [Contact us][contact-support] for help implementing the sharding policy.
 
 Scalability is an area of active development, so if you're unsure
-whether Zulip is a fit for your organization or need further advice
-[contact Zulip support][contact-support].
+whether Aloha is a fit for your organization or need further advice
+[contact Aloha support][contact-support].
 
 For readers interested in technical details around what features
-impact Zulip's scalability, this [performance and scalability design
+impact Aloha's scalability, this [performance and scalability design
 document](../subsystems/performance.md) may also be of interest.
 
 [s3-uploads]: upload-backends.md#s3-backend-configuration

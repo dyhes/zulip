@@ -2,7 +2,7 @@ from typing import Any, Dict, List, Mapping
 
 import orjson
 
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.user_status import UserInfoDict, get_user_status_dict, update_user_status
 from zerver.models import UserProfile, UserStatus, get_client
 
@@ -12,7 +12,7 @@ def user_status_info(user: UserProfile) -> UserInfoDict:
     return user_dict.get(str(user.id), {})
 
 
-class UserStatusTest(ZulipTestCase):
+class UserStatusTest(AlohaTestCase):
     def test_basics(self) -> None:
         hamlet = self.example_user("hamlet")
 

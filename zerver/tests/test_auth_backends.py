@@ -77,7 +77,7 @@ from zerver.lib.mobile_auth_otp import otp_decrypt_api_key
 from zerver.lib.rate_limiter import add_ratelimit_rule, remove_ratelimit_rule
 from zerver.lib.storage import static_path
 from zerver.lib.streams import ensure_stream
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import (
     HostRequestMock,
     create_s3_buckets,
@@ -132,16 +132,16 @@ from zproject.backends import (
     SAMLAuthBackend,
     SAMLDocument,
     SocialAuthMixin,
-    ZulipAuthMixin,
-    ZulipDummyBackend,
-    ZulipLDAPAuthBackend,
-    ZulipLDAPConfigurationError,
-    ZulipLDAPException,
-    ZulipLDAPExceptionNoMatchingLDAPUser,
-    ZulipLDAPExceptionOutsideDomain,
-    ZulipLDAPUser,
-    ZulipLDAPUserPopulator,
-    ZulipRemoteUserBackend,
+    AlohaAuthMixin,
+    AlohaDummyBackend,
+    AlohaLDAPAuthBackend,
+    AlohaLDAPConfigurationError,
+    AlohaLDAPException,
+    AlohaLDAPExceptionNoMatchingLDAPUser,
+    AlohaLDAPExceptionOutsideDomain,
+    AlohaLDAPUser,
+    AlohaLDAPUserPopulator,
+    AlohaRemoteUserBackend,
     apple_auth_enabled,
     check_password_strength,
     dev_auth_enabled,
@@ -167,7 +167,7 @@ APPLE_ID_TOKEN_GENERATION_KEY = get_from_file_if_exists(
 EXAMPLE_JWK = get_from_file_if_exists("zerver/tests/fixtures/example_jwk")
 
 
-class AuthBackendTest(ZulipTestCase):
+class AuthBackendTest(AlohaTestCase):
     def get_email(self) -> str:
         return self.example_email("hamlet")
 
@@ -226,13 +226,13 @@ class AuthBackendTest(ZulipTestCase):
         result = backend.authenticate(**good_kwargs)
         self.assertEqual(user_profile, result)
 
-        # ZulipDummyBackend isn't a real backend so the remainder
+        # AlohaDummyBackend isn't a real backend so the remainder
         # doesn't make sense for it
-        if isinstance(backend, ZulipDummyBackend):
+        if isinstance(backend, AlohaDummyBackend):
             return
 
         # Verify auth fails if the auth backend is disabled on server
-        with self.settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipDummyBackend",)):
+        with self.settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaDummyBackend",)):
             clear_supported_auth_backends_cache()
             result = backend.authenticate(**good_kwargs)
             if isinstance(backend, SocialAuthMixin):
@@ -271,7 +271,7 @@ class AuthBackendTest(ZulipTestCase):
         realm = get_realm("zulip")
         username = self.get_email()
         self.verify_backend(
-            ZulipDummyBackend(),
+            AlohaDummyBackend(),
             good_kwargs=dict(username=username, realm=realm, use_dummy_backend=True),
             bad_kwargs=dict(username=username, realm=realm, use_dummy_backend=False),
         )
@@ -404,11 +404,11 @@ class AuthBackendTest(ZulipTestCase):
         self.assert_in_response(realm.description, result)
         assert realm.name is not None
         self.assert_in_response(realm.name, result)
-        self.assert_in_response("Log in to Zulip", result)
+        self.assert_in_response("Log in to Aloha", result)
 
         data = dict(
             description=orjson.dumps("New realm description").decode(),
-            name=orjson.dumps("New Zulip").decode(),
+            name=orjson.dumps("New Aloha").decode(),
         )
         result = self.client_patch("/json/realm", data)
         self.assert_json_success(result)
@@ -416,13 +416,13 @@ class AuthBackendTest(ZulipTestCase):
         result = self.client_get("/login/", {"preview": "true"})
         self.assertEqual(result.status_code, 200)
         self.assert_in_response("New realm description", result)
-        self.assert_in_response("New Zulip", result)
+        self.assert_in_response("New Aloha", result)
 
         result = self.client_get("/login/")
         self.assertEqual(result.status_code, 302)
         self.assertEqual(result["Location"], "http://zulip.testserver")
 
-    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipDummyBackend",))
+    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaDummyBackend",))
     def test_no_backend_enabled(self) -> None:
         result = self.client_get("/login/")
         self.assert_in_success_response(["No authentication backends are enabled"], result)
@@ -441,7 +441,7 @@ class AuthBackendTest(ZulipTestCase):
         self.assert_not_in_success_response(["No authentication backends are enabled"], result)
 
     @override_settings(
-        AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",), LDAP_EMAIL_ATTR="mail"
+        AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",), LDAP_EMAIL_ATTR="mail"
     )
     def test_ldap_backend(self) -> None:
         self.init_default_ldap_database()
@@ -451,7 +451,7 @@ class AuthBackendTest(ZulipTestCase):
         self.setup_subdomain(user_profile)
 
         username = self.get_email()
-        backend = ZulipLDAPAuthBackend()
+        backend = AlohaLDAPAuthBackend()
 
         # Test LDAP auth fails when LDAP server rejects password
         self.assertIsNone(
@@ -486,30 +486,30 @@ class AuthBackendTest(ZulipTestCase):
             bad_kwargs=dict(dev_auth_username=self.get_email(), realm=get_realm("zephyr")),
         )
 
-    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipRemoteUserBackend",))
+    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaRemoteUserBackend",))
     def test_remote_user_backend(self) -> None:
         username = self.get_email()
         self.verify_backend(
-            ZulipRemoteUserBackend(),
+            AlohaRemoteUserBackend(),
             good_kwargs=dict(remote_user=username, realm=get_realm("zulip")),
             bad_kwargs=dict(remote_user=username, realm=get_realm("zephyr")),
         )
 
-    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipRemoteUserBackend",))
+    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaRemoteUserBackend",))
     def test_remote_user_backend_invalid_realm(self) -> None:
         username = self.get_email()
         self.verify_backend(
-            ZulipRemoteUserBackend(),
+            AlohaRemoteUserBackend(),
             good_kwargs=dict(remote_user=username, realm=get_realm("zulip")),
             bad_kwargs=dict(remote_user=username, realm=get_realm("zephyr")),
         )
 
-    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipRemoteUserBackend",))
+    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaRemoteUserBackend",))
     @override_settings(SSO_APPEND_DOMAIN="zulip.com")
     def test_remote_user_backend_sso_append_domain(self) -> None:
         username = Address(addr_spec=self.get_email()).username
         self.verify_backend(
-            ZulipRemoteUserBackend(),
+            AlohaRemoteUserBackend(),
             good_kwargs=dict(remote_user=username, realm=get_realm("zulip")),
             bad_kwargs=dict(remote_user=username, realm=get_realm("zephyr")),
         )
@@ -640,7 +640,7 @@ class AuthBackendTest(ZulipTestCase):
                 )
 
 
-class RateLimitAuthenticationTests(ZulipTestCase):
+class RateLimitAuthenticationTests(AlohaTestCase):
     @override_settings(RATE_LIMITING_AUTHENTICATE=True)
     def do_test_auth_rate_limiting(
         self,
@@ -728,7 +728,7 @@ class RateLimitAuthenticationTests(ZulipTestCase):
         )
 
     @override_settings(
-        AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",), LDAP_EMAIL_ATTR="mail"
+        AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",), LDAP_EMAIL_ATTR="mail"
     )
     def test_ldap_backend_user_based_rate_limiting(self) -> None:
         self.init_default_ldap_database()
@@ -738,7 +738,7 @@ class RateLimitAuthenticationTests(ZulipTestCase):
         def attempt_authentication(
             request: HttpRequest, username: str, password: str
         ) -> Optional[UserProfile]:
-            return ZulipLDAPAuthBackend().authenticate(
+            return AlohaLDAPAuthBackend().authenticate(
                 request=request,
                 username=username,
                 realm=get_realm("zulip"),
@@ -757,7 +757,7 @@ class RateLimitAuthenticationTests(ZulipTestCase):
     @override_settings(
         AUTHENTICATION_BACKENDS=(
             "zproject.backends.EmailAuthBackend",
-            "zproject.backends.ZulipLDAPAuthBackend",
+            "zproject.backends.AlohaLDAPAuthBackend",
         ),
         LDAP_EMAIL_ATTR="mail",
     )
@@ -800,7 +800,7 @@ class RateLimitAuthenticationTests(ZulipTestCase):
         )
 
 
-class CheckPasswordStrengthTest(ZulipTestCase):
+class CheckPasswordStrengthTest(AlohaTestCase):
     def test_check_password_strength(self) -> None:
         with self.settings(PASSWORD_MIN_LENGTH=0, PASSWORD_MIN_GUESSES=0):
             # Never allow empty password.
@@ -815,7 +815,7 @@ class CheckPasswordStrengthTest(ZulipTestCase):
             self.assertTrue(check_password_strength("f657gdGGk9"))
 
 
-class DesktopFlowTestingLib(ZulipTestCase):
+class DesktopFlowTestingLib(AlohaTestCase):
     def verify_desktop_flow_app_page(self, response: "TestHttpResponse") -> None:
         self.assertEqual(response.status_code, 200)
         self.assertIn(b"<h1>Finish desktop login</h1>", response.content)
@@ -853,7 +853,7 @@ class DesktopFlowTestingLib(ZulipTestCase):
         return AESGCM(key).decrypt(iv, ciphertext, b"").decode()
 
 
-class SocialAuthBase(DesktopFlowTestingLib, ZulipTestCase, ABC):
+class SocialAuthBase(DesktopFlowTestingLib, AlohaTestCase, ABC):
     """This is a base class for testing social-auth backends. These
     methods are often overridden by subclasses:
 
@@ -933,7 +933,7 @@ class SocialAuthBase(DesktopFlowTestingLib, ZulipTestCase, ABC):
             headers["HTTP_HOST"] = subdomain + ".testserver"
         if mobile_flow_otp is not None:
             params["mobile_flow_otp"] = mobile_flow_otp
-            headers["HTTP_USER_AGENT"] = "ZulipAndroid"
+            headers["HTTP_USER_AGENT"] = "AlohaAndroid"
         if desktop_flow_otp is not None:
             params["desktop_flow_otp"] = desktop_flow_otp
         if is_signup:
@@ -1210,7 +1210,7 @@ class SocialAuthBase(DesktopFlowTestingLib, ZulipTestCase, ABC):
     def test_user_cannot_log_into_nonexisting_realm(self) -> None:
         account_data_dict = self.get_account_data_dict(email=self.email, name=self.name)
         result = self.social_auth_test(account_data_dict, subdomain="nonexistent")
-        self.assert_in_response("There is no Zulip organization hosted at this subdomain.", result)
+        self.assert_in_response("There is no Aloha organization hosted at this subdomain.", result)
         self.assertEqual(result.status_code, 404)
 
     def test_user_cannot_log_into_wrong_subdomain(self) -> None:
@@ -1275,7 +1275,7 @@ class SocialAuthBase(DesktopFlowTestingLib, ZulipTestCase, ABC):
         hamlet_api_keys = get_all_api_keys(self.example_user("hamlet"))
         self.assertIn(otp_decrypt_api_key(encrypted_api_key, mobile_flow_otp), hamlet_api_keys)
         self.assert_length(mail.outbox, 1)
-        self.assertIn("Zulip on Android", mail.outbox[0].body)
+        self.assertIn("Aloha on Android", mail.outbox[0].body)
 
     def test_social_auth_desktop_success(self) -> None:
         desktop_flow_otp = "1234abcd" * 8
@@ -1297,7 +1297,7 @@ class SocialAuthBase(DesktopFlowTestingLib, ZulipTestCase, ABC):
             subdomain="zulip",
             expect_choose_email_screen=False,
             desktop_flow_otp=desktop_flow_otp,
-            user_agent="ZulipElectron/5.0.0",
+            user_agent="AlohaElectron/5.0.0",
         )
         self.verify_desktop_flow_app_page(result)
         result = self.social_auth_test(
@@ -1728,8 +1728,8 @@ class SocialAuthBase(DesktopFlowTestingLib, ZulipTestCase, ABC):
             AUTH_LDAP_USER_ATTR_MAP=ldap_user_attr_map,
             AUTHENTICATION_BACKENDS=(
                 backend_path,
-                "zproject.backends.ZulipLDAPUserPopulator",
-                "zproject.backends.ZulipDummyBackend",
+                "zproject.backends.AlohaLDAPUserPopulator",
+                "zproject.backends.AlohaDummyBackend",
             ),
         ), self.assertLogs(level="WARNING") as log_warn:
             result = self.social_auth_test(
@@ -1795,8 +1795,8 @@ class SocialAuthBase(DesktopFlowTestingLib, ZulipTestCase, ABC):
             AUTH_LDAP_USER_ATTR_MAP=ldap_user_attr_map,
             AUTHENTICATION_BACKENDS=(
                 backend_path,
-                "zproject.backends.ZulipLDAPAuthBackend",
-                "zproject.backends.ZulipDummyBackend",
+                "zproject.backends.AlohaLDAPAuthBackend",
+                "zproject.backends.AlohaDummyBackend",
             ),
         ), self.assertLogs("zulip.ldap", level="DEBUG") as log_debug, self.assertLogs(
             level="WARNING"
@@ -1825,7 +1825,7 @@ class SocialAuthBase(DesktopFlowTestingLib, ZulipTestCase, ABC):
         self.assertEqual(
             log_debug.output,
             [
-                f"DEBUG:zulip.ldap:ZulipLDAPAuthBackend: No LDAP user matching django_to_ldap_username result: {email}. Input username: {email}"
+                f"DEBUG:zulip.ldap:AlohaLDAPAuthBackend: No LDAP user matching django_to_ldap_username result: {email}. Input username: {email}"
             ],
         )
 
@@ -3170,7 +3170,7 @@ class AppleAuthBackendNativeFlowTest(AppleAuthMixin, SocialAuthBase):
     ) -> "TestHttpResponse":
         """In Apple's native authentication flow, the client app authenticates
         with Apple and receives the JWT id_token, before contacting
-        the Zulip server.  The app sends an appropriate request with
+        the Aloha server.  The app sends an appropriate request with
         it to /complete/apple/ to get logged in.  See the backend
         class for details.
 
@@ -3676,7 +3676,7 @@ class GitHubAuthBackendTest(SocialAuthBase):
         self.assertEqual(data["full_name"], self.name)
         self.assertEqual(data["subdomain"], "zulip")
 
-    @override_settings(SOCIAL_AUTH_GITHUB_ORG_NAME="Zulip")
+    @override_settings(SOCIAL_AUTH_GITHUB_ORG_NAME="Aloha")
     def test_social_auth_github_organization_not_member_failed(self) -> None:
         account_data_dict = self.get_account_data_dict(email=self.email, name=self.name)
         subdomain = "zulip"
@@ -3698,7 +3698,7 @@ class GitHubAuthBackendTest(SocialAuthBase):
             ],
         )
 
-    @override_settings(SOCIAL_AUTH_GITHUB_ORG_NAME="Zulip")
+    @override_settings(SOCIAL_AUTH_GITHUB_ORG_NAME="Aloha")
     def test_social_auth_github_organization_member_success(self) -> None:
         account_data_dict = self.get_account_data_dict(email=self.email, name=self.name)
         with mock.patch(
@@ -4158,7 +4158,7 @@ class GoogleAuthBackendTest(SocialAuthBase):
         hamlet_api_keys = get_all_api_keys(self.example_user("hamlet"))
         self.assertIn(otp_decrypt_api_key(encrypted_api_key, mobile_flow_otp), hamlet_api_keys)
         self.assert_length(mail.outbox, 1)
-        self.assertIn("Zulip on Android", mail.outbox[0].body)
+        self.assertIn("Aloha on Android", mail.outbox[0].body)
 
     def test_google_auth_enabled(self) -> None:
         with self.settings(AUTHENTICATION_BACKENDS=("zproject.backends.GoogleAuthBackend",)):
@@ -4342,7 +4342,7 @@ class GoogleAuthBackendTest(SocialAuthBase):
         # Without the invite link, we can't create an account due to invite_required
         result = self.get_log_into_subdomain(data)
         self.assertEqual(result.status_code, 200)
-        self.assert_in_success_response(["Sign up for Zulip"], result)
+        self.assert_in_success_response(["Sign up for Aloha"], result)
 
         # Now confirm an invitation link works
         referrer = self.example_user("hamlet")
@@ -4409,7 +4409,7 @@ class GoogleAuthBackendTest(SocialAuthBase):
         self.assert_json_error(result, "Invalid subdomain")
 
 
-class JSONFetchAPIKeyTest(ZulipTestCase):
+class JSONFetchAPIKeyTest(AlohaTestCase):
     def test_success(self) -> None:
         user = self.example_user("hamlet")
         self.login_user(user)
@@ -4445,7 +4445,7 @@ class JSONFetchAPIKeyTest(ZulipTestCase):
         self.assert_json_error(result, "Invalid subdomain", 400)
 
 
-class FetchAPIKeyTest(ZulipTestCase):
+class FetchAPIKeyTest(AlohaTestCase):
     def setUp(self) -> None:
         super().setUp()
         self.user_profile = self.example_user("hamlet")
@@ -4488,7 +4488,7 @@ class FetchAPIKeyTest(ZulipTestCase):
                 result, "Password authentication is disabled in this organization", 401
             )
 
-    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",))
+    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",))
     def test_ldap_auth_email_auth_disabled_success(self) -> None:
         self.init_default_ldap_database()
         with self.settings(LDAP_APPEND_DOMAIN="zulip.com"):
@@ -4499,7 +4499,7 @@ class FetchAPIKeyTest(ZulipTestCase):
         self.assert_json_success(result)
 
     @override_settings(
-        AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",),
+        AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",),
         LDAP_APPEND_DOMAIN="zulip.com",
         AUTH_LDAP_USER_ATTR_MAP={"full_name": "cn", "org_membership": "department"},
     )
@@ -4529,7 +4529,7 @@ class FetchAPIKeyTest(ZulipTestCase):
         self.assert_json_success(result)
 
     @override_settings(
-        AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",),
+        AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",),
         LDAP_APPEND_DOMAIN="zulip.com",
         AUTH_LDAP_USER_ATTR_MAP={"full_name": "cn", "org_membership": "department"},
         AUTH_LDAP_ADVANCED_REALM_ACCESS_CONTROL={
@@ -4649,7 +4649,7 @@ class FetchAPIKeyTest(ZulipTestCase):
             )
 
 
-class DevFetchAPIKeyTest(ZulipTestCase):
+class DevFetchAPIKeyTest(AlohaTestCase):
     def setUp(self) -> None:
         super().setUp()
         self.user_profile = self.example_user("hamlet")
@@ -4698,7 +4698,7 @@ class DevFetchAPIKeyTest(ZulipTestCase):
             self.assert_json_error_contains(result, "Invalid subdomain", 404)
 
 
-class DevGetEmailsTest(ZulipTestCase):
+class DevGetEmailsTest(AlohaTestCase):
     def test_success(self) -> None:
         result = self.client_get("/api/v1/dev_list_users")
         self.assert_json_success(result)
@@ -4715,7 +4715,7 @@ class DevGetEmailsTest(ZulipTestCase):
             self.assert_json_error_contains(result, "Endpoint not available in production.", 400)
 
 
-class ExternalMethodDictsTests(ZulipTestCase):
+class ExternalMethodDictsTests(AlohaTestCase):
     def get_configured_saml_backend_idp_names(self) -> Iterable[str]:
         return settings.SOCIAL_AUTH_SAML_ENABLED_IDPS.keys()
 
@@ -4725,14 +4725,14 @@ class ExternalMethodDictsTests(ZulipTestCase):
                 "zproject.backends.EmailAuthBackend",
                 "zproject.backends.GitHubAuthBackend",
                 "zproject.backends.GoogleAuthBackend",
-                "zproject.backends.ZulipRemoteUserBackend",
+                "zproject.backends.AlohaRemoteUserBackend",
                 "zproject.backends.SAMLAuthBackend",
                 "zproject.backends.AzureADAuthBackend",
             ),
         ):
             external_auth_methods = get_external_method_dicts()
             external_auth_backends: List[Type[ExternalAuthMethod]] = [
-                ZulipRemoteUserBackend,
+                AlohaRemoteUserBackend,
                 GitHubAuthBackend,
                 AzureADAuthBackend,
                 GoogleAuthBackend,
@@ -4819,7 +4819,7 @@ class ExternalMethodDictsTests(ZulipTestCase):
             )
 
 
-class FetchAuthBackends(ZulipTestCase):
+class FetchAuthBackends(AlohaTestCase):
     def test_get_server_settings(self) -> None:
         def check_result(
             result: "TestHttpResponse", extra_fields: Sequence[Tuple[str, Validator[object]]] = []
@@ -4874,7 +4874,7 @@ class FetchAuthBackends(ZulipTestCase):
         )
 
         result = self.client_get(
-            "/api/v1/server_settings", subdomain="", HTTP_USER_AGENT="ZulipInvalid"
+            "/api/v1/server_settings", subdomain="", HTTP_USER_AGENT="AlohaInvalid"
         )
         response_dict = self.assert_json_success(result)
         self.assertTrue(response_dict["is_incompatible"])
@@ -4906,7 +4906,7 @@ class FetchAuthBackends(ZulipTestCase):
             self.assert_json_error_contains(result, "Subdomain required", 400)
 
 
-class TestTwoFactor(ZulipTestCase):
+class TestTwoFactor(AlohaTestCase):
     def test_direct_dev_login_with_2fa(self) -> None:
         email = self.example_email("hamlet")
         user_profile = self.example_user("hamlet")
@@ -4947,7 +4947,7 @@ class TestTwoFactor(ZulipTestCase):
         self.init_default_ldap_database()
         ldap_user_attr_map = {"full_name": "cn"}
         with self.settings(
-            AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",),
+            AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",),
             TWO_FACTOR_CALL_GATEWAY="two_factor.gateways.fake.Fake",
             TWO_FACTOR_SMS_GATEWAY="two_factor.gateways.fake.Fake",
             TWO_FACTOR_AUTHENTICATION_ENABLED=True,
@@ -4983,7 +4983,7 @@ class TestTwoFactor(ZulipTestCase):
             self.assertEqual(result["Location"], "http://zulip.testserver")
 
 
-class TestDevAuthBackend(ZulipTestCase):
+class TestDevAuthBackend(AlohaTestCase):
     def test_login_success(self) -> None:
         user_profile = self.example_user("hamlet")
         email = user_profile.delivery_email
@@ -5044,7 +5044,7 @@ class TestDevAuthBackend(ZulipTestCase):
     def test_choose_realm(self) -> None:
         result = self.client_post("/devlogin/", subdomain="zulip")
         self.assertEqual(result.status_code, 200)
-        self.assert_in_success_response(["Click on a user to log in to Zulip Dev!"], result)
+        self.assert_in_success_response(["Click on a user to log in to Aloha Dev!"], result)
         self.assert_in_success_response(["iago@zulip.com", "hamlet@zulip.com"], result)
 
         result = self.client_post("/devlogin/", subdomain="")
@@ -5078,7 +5078,7 @@ class TestDevAuthBackend(ZulipTestCase):
                 result = self.client_get("http://zulip.testserver/devlogin/")
                 self.assert_in_success_response(["iago@zulip.com", "hamlet@zulip.com"], result)
                 self.assert_not_in_success_response(["starnine@mit.edu", "espuser@mit.edu"], result)
-                self.assert_in_success_response(["Click on a user to log in to Zulip Dev!"], result)
+                self.assert_in_success_response(["Click on a user to log in to Aloha Dev!"], result)
 
             with mock.patch(
                 "zerver.views.auth.get_realm_from_request", return_value=get_realm("zephyr")
@@ -5113,7 +5113,7 @@ class TestDevAuthBackend(ZulipTestCase):
         self.assert_in_success_response(["Configuration error", "DevAuthBackend"], response)
 
 
-class TestZulipRemoteUserBackend(DesktopFlowTestingLib, ZulipTestCase):
+class TestAlohaRemoteUserBackend(DesktopFlowTestingLib, AlohaTestCase):
     def test_start_remote_user_sso(self) -> None:
         result = self.client_get(
             "/accounts/login/start/sso/", {"param1": "value1", "params": "value2"}
@@ -5127,14 +5127,14 @@ class TestZulipRemoteUserBackend(DesktopFlowTestingLib, ZulipTestCase):
 
     def test_start_remote_user_sso_with_desktop_app(self) -> None:
         result = self.client_get(
-            "/accounts/login/start/sso/", {}, HTTP_USER_AGENT="ZulipElectron/5.0.0"
+            "/accounts/login/start/sso/", {}, HTTP_USER_AGENT="AlohaElectron/5.0.0"
         )
         self.verify_desktop_flow_app_page(result)
 
     def test_login_success(self) -> None:
         user_profile = self.example_user("hamlet")
         email = user_profile.delivery_email
-        with self.settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipRemoteUserBackend",)):
+        with self.settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaRemoteUserBackend",)):
             result = self.client_get("/accounts/login/sso/", REMOTE_USER=email)
             self.assertEqual(result.status_code, 302)
             self.assert_logged_in_user_id(user_profile.id)
@@ -5143,7 +5143,7 @@ class TestZulipRemoteUserBackend(DesktopFlowTestingLib, ZulipTestCase):
         username = "hamlet"
         user_profile = self.example_user("hamlet")
         with self.settings(
-            AUTHENTICATION_BACKENDS=("zproject.backends.ZulipRemoteUserBackend",),
+            AUTHENTICATION_BACKENDS=("zproject.backends.AlohaRemoteUserBackend",),
             SSO_APPEND_DOMAIN="zulip.com",
         ):
             result = self.client_get("/accounts/login/sso/", REMOTE_USER=username)
@@ -5153,7 +5153,7 @@ class TestZulipRemoteUserBackend(DesktopFlowTestingLib, ZulipTestCase):
     def test_login_case_insensitive(self) -> None:
         user_profile = self.example_user("hamlet")
         email_upper = user_profile.delivery_email.upper()
-        with self.settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipRemoteUserBackend",)):
+        with self.settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaRemoteUserBackend",)):
             result = self.client_get("/accounts/login/sso/", REMOTE_USER=email_upper)
             self.assertEqual(result.status_code, 302)
             self.assert_logged_in_user_id(user_profile.id)
@@ -5168,7 +5168,7 @@ class TestZulipRemoteUserBackend(DesktopFlowTestingLib, ZulipTestCase):
 
     def test_login_failure_due_to_nonexisting_user(self) -> None:
         email = "nonexisting@zulip.com"
-        with self.settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipRemoteUserBackend",)):
+        with self.settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaRemoteUserBackend",)):
             result = self.client_get("/accounts/login/sso/", REMOTE_USER=email)
             self.assertEqual(result.status_code, 200)
             self.assert_logged_in_user_id(None)
@@ -5176,12 +5176,12 @@ class TestZulipRemoteUserBackend(DesktopFlowTestingLib, ZulipTestCase):
 
     def test_login_failure_due_to_invalid_email(self) -> None:
         email = "hamlet"
-        with self.settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipRemoteUserBackend",)):
+        with self.settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaRemoteUserBackend",)):
             result = self.client_get("/accounts/login/sso/", REMOTE_USER=email)
             self.assert_json_error_contains(result, "Enter a valid email address.", 400)
 
     def test_login_failure_due_to_missing_field(self) -> None:
-        with self.settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipRemoteUserBackend",)):
+        with self.settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaRemoteUserBackend",)):
             result = self.client_get("/accounts/login/sso/")
             self.assert_in_success_response(
                 ["Configuration error", "The REMOTE_USER header is not set."], result
@@ -5189,7 +5189,7 @@ class TestZulipRemoteUserBackend(DesktopFlowTestingLib, ZulipTestCase):
 
     def test_login_failure_due_to_wrong_subdomain(self) -> None:
         email = self.example_email("hamlet")
-        with self.settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipRemoteUserBackend",)):
+        with self.settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaRemoteUserBackend",)):
             with mock.patch("zerver.views.auth.get_subdomain", return_value="acme"):
                 result = self.client_get(
                     "http://testserver:9080/accounts/login/sso/", REMOTE_USER=email
@@ -5200,7 +5200,7 @@ class TestZulipRemoteUserBackend(DesktopFlowTestingLib, ZulipTestCase):
 
     def test_login_failure_due_to_empty_subdomain(self) -> None:
         email = self.example_email("hamlet")
-        with self.settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipRemoteUserBackend",)):
+        with self.settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaRemoteUserBackend",)):
             with mock.patch("zerver.views.auth.get_subdomain", return_value=""):
                 result = self.client_get(
                     "http://testserver:9080/accounts/login/sso/", REMOTE_USER=email
@@ -5214,14 +5214,14 @@ class TestZulipRemoteUserBackend(DesktopFlowTestingLib, ZulipTestCase):
         email = user_profile.delivery_email
         with mock.patch("zerver.views.auth.get_subdomain", return_value="zulip"):
             with self.settings(
-                AUTHENTICATION_BACKENDS=("zproject.backends.ZulipRemoteUserBackend",)
+                AUTHENTICATION_BACKENDS=("zproject.backends.AlohaRemoteUserBackend",)
             ):
                 result = self.client_get("/accounts/login/sso/", REMOTE_USER=email)
                 self.assertEqual(result.status_code, 302)
                 self.assert_logged_in_user_id(user_profile.id)
 
     @override_settings(SEND_LOGIN_EMAILS=True)
-    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipRemoteUserBackend",))
+    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaRemoteUserBackend",))
     def test_login_mobile_flow_otp_success_email(self) -> None:
         user_profile = self.example_user("hamlet")
         email = user_profile.delivery_email
@@ -5234,7 +5234,7 @@ class TestZulipRemoteUserBackend(DesktopFlowTestingLib, ZulipTestCase):
             "/accounts/login/sso/",
             dict(mobile_flow_otp="1234"),
             REMOTE_USER=email,
-            HTTP_USER_AGENT="ZulipAndroid",
+            HTTP_USER_AGENT="AlohaAndroid",
         )
         self.assert_logged_in_user_id(None)
         self.assert_json_error_contains(result, "Invalid OTP", 400)
@@ -5243,7 +5243,7 @@ class TestZulipRemoteUserBackend(DesktopFlowTestingLib, ZulipTestCase):
             "/accounts/login/sso/",
             dict(mobile_flow_otp="invalido" * 8),
             REMOTE_USER=email,
-            HTTP_USER_AGENT="ZulipAndroid",
+            HTTP_USER_AGENT="AlohaAndroid",
         )
         self.assert_logged_in_user_id(None)
         self.assert_json_error_contains(result, "Invalid OTP", 400)
@@ -5252,7 +5252,7 @@ class TestZulipRemoteUserBackend(DesktopFlowTestingLib, ZulipTestCase):
             "/accounts/login/sso/",
             dict(mobile_flow_otp=mobile_flow_otp),
             REMOTE_USER=email,
-            HTTP_USER_AGENT="ZulipAndroid",
+            HTTP_USER_AGENT="AlohaAndroid",
         )
         self.assertEqual(result.status_code, 302)
         redirect_url = result["Location"]
@@ -5265,11 +5265,11 @@ class TestZulipRemoteUserBackend(DesktopFlowTestingLib, ZulipTestCase):
         hamlet_api_keys = get_all_api_keys(self.example_user("hamlet"))
         self.assertIn(otp_decrypt_api_key(encrypted_api_key, mobile_flow_otp), hamlet_api_keys)
         self.assert_length(mail.outbox, 1)
-        self.assertIn("Zulip on Android", mail.outbox[0].body)
+        self.assertIn("Aloha on Android", mail.outbox[0].body)
 
     @override_settings(SEND_LOGIN_EMAILS=True)
     @override_settings(SSO_APPEND_DOMAIN="zulip.com")
-    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipRemoteUserBackend",))
+    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaRemoteUserBackend",))
     def test_login_mobile_flow_otp_success_username(self) -> None:
         user_profile = self.example_user("hamlet")
         email = user_profile.delivery_email
@@ -5283,7 +5283,7 @@ class TestZulipRemoteUserBackend(DesktopFlowTestingLib, ZulipTestCase):
             "/accounts/login/sso/",
             dict(mobile_flow_otp="1234"),
             REMOTE_USER=remote_user,
-            HTTP_USER_AGENT="ZulipAndroid",
+            HTTP_USER_AGENT="AlohaAndroid",
         )
         self.assert_logged_in_user_id(None)
         self.assert_json_error_contains(result, "Invalid OTP", 400)
@@ -5292,7 +5292,7 @@ class TestZulipRemoteUserBackend(DesktopFlowTestingLib, ZulipTestCase):
             "/accounts/login/sso/",
             dict(mobile_flow_otp="invalido" * 8),
             REMOTE_USER=remote_user,
-            HTTP_USER_AGENT="ZulipAndroid",
+            HTTP_USER_AGENT="AlohaAndroid",
         )
         self.assert_logged_in_user_id(None)
         self.assert_json_error_contains(result, "Invalid OTP", 400)
@@ -5301,7 +5301,7 @@ class TestZulipRemoteUserBackend(DesktopFlowTestingLib, ZulipTestCase):
             "/accounts/login/sso/",
             dict(mobile_flow_otp=mobile_flow_otp),
             REMOTE_USER=remote_user,
-            HTTP_USER_AGENT="ZulipAndroid",
+            HTTP_USER_AGENT="AlohaAndroid",
         )
         self.assertEqual(result.status_code, 302)
         redirect_url = result["Location"]
@@ -5314,13 +5314,13 @@ class TestZulipRemoteUserBackend(DesktopFlowTestingLib, ZulipTestCase):
         hamlet_api_keys = get_all_api_keys(self.example_user("hamlet"))
         self.assertIn(otp_decrypt_api_key(encrypted_api_key, mobile_flow_otp), hamlet_api_keys)
         self.assert_length(mail.outbox, 1)
-        self.assertIn("Zulip on Android", mail.outbox[0].body)
+        self.assertIn("Aloha on Android", mail.outbox[0].body)
 
     @override_settings(SEND_LOGIN_EMAILS=True)
     @override_settings(
         AUTHENTICATION_BACKENDS=(
-            "zproject.backends.ZulipRemoteUserBackend",
-            "zproject.backends.ZulipDummyBackend",
+            "zproject.backends.AlohaRemoteUserBackend",
+            "zproject.backends.AlohaDummyBackend",
         )
     )
     def test_login_desktop_flow_otp_success_email(self) -> None:
@@ -5352,8 +5352,8 @@ class TestZulipRemoteUserBackend(DesktopFlowTestingLib, ZulipTestCase):
     @override_settings(SSO_APPEND_DOMAIN="zulip.com")
     @override_settings(
         AUTHENTICATION_BACKENDS=(
-            "zproject.backends.ZulipRemoteUserBackend",
-            "zproject.backends.ZulipDummyBackend",
+            "zproject.backends.AlohaRemoteUserBackend",
+            "zproject.backends.AlohaDummyBackend",
         )
     )
     def test_login_desktop_flow_otp_success_username(self) -> None:
@@ -5390,7 +5390,7 @@ class TestZulipRemoteUserBackend(DesktopFlowTestingLib, ZulipTestCase):
             user_profile = self.example_user("hamlet")
             email = user_profile.delivery_email
             with self.settings(
-                AUTHENTICATION_BACKENDS=("zproject.backends.ZulipRemoteUserBackend",)
+                AUTHENTICATION_BACKENDS=("zproject.backends.AlohaRemoteUserBackend",)
             ):
                 result = self.client_get("/accounts/login/sso/", {"next": next}, REMOTE_USER=email)
             return result
@@ -5405,9 +5405,9 @@ class TestZulipRemoteUserBackend(DesktopFlowTestingLib, ZulipTestCase):
         self.assertEqual("http://zulip.testserver", res["Location"])
 
 
-class TestJWTLogin(ZulipTestCase):
+class TestJWTLogin(AlohaTestCase):
     """
-    JWT uses ZulipDummyBackend.
+    JWT uses AlohaDummyBackend.
     """
 
     def test_login_success(self) -> None:
@@ -5519,17 +5519,17 @@ class TestJWTLogin(ZulipTestCase):
                 self.assert_logged_in_user_id(user_profile.id)
 
 
-class DjangoToLDAPUsernameTests(ZulipTestCase):
+class DjangoToLDAPUsernameTests(AlohaTestCase):
     def setUp(self) -> None:
         self.init_default_ldap_database()
-        self.backend = ZulipLDAPAuthBackend()
+        self.backend = AlohaLDAPAuthBackend()
 
     def test_django_to_ldap_username_with_append_domain(self) -> None:
         with self.settings(LDAP_APPEND_DOMAIN="zulip.com"):
             self.assertEqual(self.backend.django_to_ldap_username("hamlet"), "hamlet")
             self.assertEqual(self.backend.django_to_ldap_username("hamlet@zulip.com"), "hamlet")
             with self.assertRaisesRegex(
-                ZulipLDAPExceptionOutsideDomain,
+                AlohaLDAPExceptionOutsideDomain,
                 "Email hamlet@example.com does not match LDAP domain zulip.com.",
             ):
                 self.backend.django_to_ldap_username("hamlet@example.com")
@@ -5556,7 +5556,7 @@ class DjangoToLDAPUsernameTests(ZulipTestCase):
             self.backend.django_to_ldap_username("hamlet@zulip.com"), self.ldap_username("hamlet")
         )
         # If there are no matches through the email search, raise exception:
-        with self.assertRaises(ZulipLDAPExceptionNoMatchingLDAPUser):
+        with self.assertRaises(AlohaLDAPExceptionNoMatchingLDAPUser):
             self.backend.django_to_ldap_username("no_such_email@example.com")
 
         self.assertEqual(
@@ -5564,7 +5564,7 @@ class DjangoToLDAPUsernameTests(ZulipTestCase):
         )
 
         with self.assertLogs(level="WARNING") as m:
-            with self.assertRaises(ZulipLDAPExceptionNoMatchingLDAPUser):
+            with self.assertRaises(AlohaLDAPExceptionNoMatchingLDAPUser):
                 self.backend.django_to_ldap_username("shared_email@zulip.com")
         self.assertEqual(
             m.output,
@@ -5612,7 +5612,7 @@ class DjangoToLDAPUsernameTests(ZulipTestCase):
     @override_settings(
         AUTHENTICATION_BACKENDS=(
             "zproject.backends.EmailAuthBackend",
-            "zproject.backends.ZulipLDAPAuthBackend",
+            "zproject.backends.AlohaLDAPAuthBackend",
         )
     )
     def test_authenticate_to_ldap_via_email(self) -> None:
@@ -5658,7 +5658,7 @@ class DjangoToLDAPUsernameTests(ZulipTestCase):
             self.assertTrue(user_profile.is_active)
 
 
-class ZulipLDAPTestCase(ZulipTestCase):
+class AlohaLDAPTestCase(AlohaTestCase):
     def setUp(self) -> None:
         super().setUp()
 
@@ -5666,7 +5666,7 @@ class ZulipLDAPTestCase(ZulipTestCase):
 
         user_profile = self.example_user("hamlet")
         self.setup_subdomain(user_profile)
-        self.backend = ZulipLDAPAuthBackend()
+        self.backend = AlohaLDAPAuthBackend()
 
         # Internally `_realm` and `_prereg_user` attributes are automatically set
         # by the `authenticate()` method. But for testing the `get_or_build_user()`
@@ -5680,7 +5680,7 @@ class ZulipLDAPTestCase(ZulipTestCase):
         realm.save()
 
 
-class TestLDAP(ZulipLDAPTestCase):
+class TestLDAP(AlohaLDAPTestCase):
     def test_generate_dev_ldap_dir(self) -> None:
         ldap_dir = generate_dev_ldap_dir("A", 10)
         self.assert_length(ldap_dir, 10)
@@ -5708,7 +5708,7 @@ class TestLDAP(ZulipLDAPTestCase):
             self.assertTrue(regex.match(key))
             self.assertCountEqual(list(value.keys()), [*common_attrs, "uid", "email"])
 
-    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",))
+    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",))
     def test_dev_ldap_fail_login(self) -> None:
         # Tests that login with a substring of password fails. We had a bug in
         # dev LDAP environment that allowed login via password substrings.
@@ -5731,7 +5731,7 @@ class TestLDAP(ZulipLDAPTestCase):
 
             assert user_profile is None
 
-    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",))
+    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",))
     def test_login_success(self) -> None:
         with self.settings(LDAP_APPEND_DOMAIN="zulip.com"):
             user_profile = self.backend.authenticate(
@@ -5744,7 +5744,7 @@ class TestLDAP(ZulipLDAPTestCase):
             assert user_profile is not None
             self.assertEqual(user_profile.delivery_email, self.example_email("hamlet"))
 
-    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",))
+    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",))
     def test_login_success_with_username(self) -> None:
         with self.settings(LDAP_APPEND_DOMAIN="zulip.com"):
             user_profile = self.backend.authenticate(
@@ -5757,7 +5757,7 @@ class TestLDAP(ZulipLDAPTestCase):
             assert user_profile is not None
             self.assertEqual(user_profile, self.example_user("hamlet"))
 
-    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",))
+    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",))
     def test_login_success_with_email_attr(self) -> None:
         with self.settings(LDAP_EMAIL_ATTR="mail"):
             username = self.ldap_username("aaron")
@@ -5774,7 +5774,7 @@ class TestLDAP(ZulipLDAPTestCase):
     @override_settings(
         AUTHENTICATION_BACKENDS=(
             "zproject.backends.EmailAuthBackend",
-            "zproject.backends.ZulipLDAPAuthBackend",
+            "zproject.backends.AlohaLDAPAuthBackend",
         )
     )
     def test_email_and_ldap_backends_together(self) -> None:
@@ -5788,7 +5788,7 @@ class TestLDAP(ZulipLDAPTestCase):
             realm = get_realm("zulip")
             self.assertEqual(email_belongs_to_ldap(realm, self.example_email("aaron")), True)
             username = self.ldap_username("aaron")
-            user_profile = ZulipLDAPAuthBackend().authenticate(
+            user_profile = AlohaLDAPAuthBackend().authenticate(
                 request=mock.MagicMock(),
                 username=username,
                 password=self.ldap_password(username),
@@ -5810,7 +5810,7 @@ class TestLDAP(ZulipLDAPTestCase):
             )
             self.assertEqual(user_profile, othello)
 
-    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",))
+    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",))
     def test_login_failure_due_to_wrong_password(self) -> None:
         with self.settings(LDAP_APPEND_DOMAIN="zulip.com"):
             user = self.backend.authenticate(
@@ -5821,7 +5821,7 @@ class TestLDAP(ZulipLDAPTestCase):
             )
             self.assertIs(user, None)
 
-    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",))
+    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",))
     def test_login_failure_due_to_nonexistent_user(self) -> None:
         with self.settings(LDAP_APPEND_DOMAIN="zulip.com"), self.assertLogs(
             "zulip.ldap", level="DEBUG"
@@ -5835,12 +5835,12 @@ class TestLDAP(ZulipLDAPTestCase):
             self.assertEqual(
                 log_debug.output,
                 [
-                    "DEBUG:zulip.ldap:ZulipLDAPAuthBackend: No LDAP user matching django_to_ldap_username result: nonexistent. Input username: nonexistent@zulip.com"
+                    "DEBUG:zulip.ldap:AlohaLDAPAuthBackend: No LDAP user matching django_to_ldap_username result: nonexistent. Input username: nonexistent@zulip.com"
                 ],
             )
             self.assertIs(user, None)
 
-    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",))
+    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",))
     def test_ldap_permissions(self) -> None:
         backend = self.backend
         self.assertFalse(backend.has_perm(None, None))
@@ -5848,7 +5848,7 @@ class TestLDAP(ZulipLDAPTestCase):
         self.assertTrue(backend.get_all_permissions(None, None) == set())
         self.assertTrue(backend.get_group_permissions(None, None) == set())
 
-    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",))
+    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",))
     def test_user_email_from_ldapuser_with_append_domain(self) -> None:
         backend = self.backend
         with self.settings(LDAP_APPEND_DOMAIN="zulip.com"):
@@ -5857,7 +5857,7 @@ class TestLDAP(ZulipLDAPTestCase):
             )
             self.assertEqual(username, '"hamlet@test"@zulip.com')
 
-    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",))
+    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",))
     def test_get_or_build_user_when_user_exists(self) -> None:
         class _LDAPUser:
             attrs = {"fn": ["Full Name"], "sn": ["Short Name"]}
@@ -5868,7 +5868,7 @@ class TestLDAP(ZulipLDAPTestCase):
         self.assertFalse(created)
         self.assertEqual(user_profile.delivery_email, email)
 
-    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",))
+    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",))
     def test_get_or_build_user_when_user_does_not_exist(self) -> None:
         class _LDAPUser:
             attrs = {"fn": ["Full Name"]}
@@ -5883,7 +5883,7 @@ class TestLDAP(ZulipLDAPTestCase):
             self.assertEqual(user_profile.delivery_email, email)
             self.assertEqual(user_profile.full_name, "Full Name")
 
-    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",))
+    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",))
     def test_get_or_build_user_when_user_has_invalid_name(self) -> None:
         class _LDAPUser:
             attrs = {"fn": ["<invalid name>"]}
@@ -5896,7 +5896,7 @@ class TestLDAP(ZulipLDAPTestCase):
             with self.assertRaisesRegex(Exception, "Invalid characters in name!"):
                 backend.get_or_build_user(email, _LDAPUser())
 
-    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",))
+    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",))
     def test_get_or_build_user_when_realm_is_deactivated(self) -> None:
         class _LDAPUser:
             attrs = {"fn": ["Full Name"]}
@@ -5910,7 +5910,7 @@ class TestLDAP(ZulipLDAPTestCase):
             with self.assertRaisesRegex(Exception, "Realm has been deactivated"):
                 backend.get_or_build_user(email, _LDAPUser())
 
-    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",))
+    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",))
     def test_get_or_build_user_when_ldap_has_no_email_attr(self) -> None:
         class _LDAPUser:
             attrs = {"fn": ["Full Name"], "sn": ["Short Name"]}
@@ -5924,7 +5924,7 @@ class TestLDAP(ZulipLDAPTestCase):
             ):
                 backend.get_or_build_user(email, _LDAPUser())
 
-    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",))
+    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",))
     def test_get_or_build_user_email(self) -> None:
         class _LDAPUser:
             attrs = {"fn": ["Test User"]}
@@ -5938,23 +5938,23 @@ class TestLDAP(ZulipLDAPTestCase):
             realm.save()
 
             email = "spam@mailnator.com"
-            with self.assertRaisesRegex(ZulipLDAPException, "Email validation failed."):
+            with self.assertRaisesRegex(AlohaLDAPException, "Email validation failed."):
                 self.backend.get_or_build_user(email, _LDAPUser())
 
             realm.emails_restricted_to_domains = True
             realm.save(update_fields=["emails_restricted_to_domains"])
 
             email = "spam+spam@mailnator.com"
-            with self.assertRaisesRegex(ZulipLDAPException, "Email validation failed."):
+            with self.assertRaisesRegex(AlohaLDAPException, "Email validation failed."):
                 self.backend.get_or_build_user(email, _LDAPUser())
 
             email = "spam@acme.com"
             with self.assertRaisesRegex(
-                ZulipLDAPException, "This email domain isn't allowed in this organization."
+                AlohaLDAPException, "This email domain isn't allowed in this organization."
             ):
                 self.backend.get_or_build_user(email, _LDAPUser())
 
-    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",))
+    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",))
     def test_get_or_build_user_when_ldap_has_no_full_name_mapping(self) -> None:
         class _LDAPUser:
             attrs = {"fn": ["Full Name"], "sn": ["Short Name"]}
@@ -5965,7 +5965,7 @@ class TestLDAP(ZulipLDAPTestCase):
             with self.assertRaisesRegex(Exception, "Missing required mapping for user's full name"):
                 backend.get_or_build_user(email, _LDAPUser())
 
-    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",))
+    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",))
     def test_login_failure_when_domain_does_not_match(self) -> None:
         with self.settings(LDAP_APPEND_DOMAIN="acme.com"), self.assertLogs(
             "zulip.ldap", "DEBUG"
@@ -5980,11 +5980,11 @@ class TestLDAP(ZulipLDAPTestCase):
         self.assertEqual(
             debug_log.output,
             [
-                "DEBUG:zulip.ldap:ZulipLDAPAuthBackend: Email hamlet@zulip.com does not match LDAP domain acme.com."
+                "DEBUG:zulip.ldap:AlohaLDAPAuthBackend: Email hamlet@zulip.com does not match LDAP domain acme.com."
             ],
         )
 
-    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",))
+    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",))
     def test_login_success_with_different_subdomain(self) -> None:
         ldap_user_attr_map = {"full_name": "cn"}
 
@@ -6000,7 +6000,7 @@ class TestLDAP(ZulipLDAPTestCase):
             )
             self.assertEqual(user_profile.delivery_email, self.example_email("hamlet"))
 
-    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",))
+    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",))
     def test_login_success_with_valid_subdomain(self) -> None:
         with self.settings(LDAP_APPEND_DOMAIN="zulip.com"):
             user_profile = self.backend.authenticate(
@@ -6012,7 +6012,7 @@ class TestLDAP(ZulipLDAPTestCase):
             assert user_profile is not None
             self.assertEqual(user_profile.delivery_email, self.example_email("hamlet"))
 
-    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",))
+    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",))
     def test_login_failure_due_to_deactivated_user(self) -> None:
         user_profile = self.example_user("hamlet")
         do_deactivate_user(user_profile, acting_user=None)
@@ -6025,7 +6025,7 @@ class TestLDAP(ZulipLDAPTestCase):
             )
             self.assertIs(user_profile, None)
 
-    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",))
+    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",))
     @override_settings(
         AUTH_LDAP_USER_ATTR_MAP={
             "full_name": "cn",
@@ -6058,7 +6058,7 @@ class TestLDAP(ZulipLDAPTestCase):
                 tim = f.read()
             self.assert_streaming_content(response, resize_avatar(tim, DEFAULT_AVATAR_SIZE))
 
-    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",))
+    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",))
     def test_login_success_when_user_does_not_exist_with_split_full_name_mapping(self) -> None:
         with self.settings(
             LDAP_APPEND_DOMAIN="zulip.com",
@@ -6076,9 +6076,9 @@ class TestLDAP(ZulipLDAPTestCase):
             self.assertEqual(user_profile.realm.string_id, "zulip")
 
 
-class TestZulipLDAPUserPopulator(ZulipLDAPTestCase):
+class TestAlohaLDAPUserPopulator(AlohaLDAPTestCase):
     def test_authenticate(self) -> None:
-        backend = ZulipLDAPUserPopulator()
+        backend = AlohaLDAPUserPopulator()
         result = backend.authenticate(
             username=self.example_email("hamlet"),
             password=self.ldap_password("hamlet"),
@@ -6116,7 +6116,7 @@ class TestZulipLDAPUserPopulator(ZulipLDAPTestCase):
 
     @override_settings(LDAP_EMAIL_ATTR="mail")
     def test_populate_user_returns_none(self) -> None:
-        with mock.patch.object(ZulipLDAPUser, "populate_user", return_value=None):
+        with mock.patch.object(AlohaLDAPUser, "populate_user", return_value=None):
             with self.assertRaises(PopulateUserLDAPError):
                 sync_user_from_ldap(self.example_user("hamlet"), mock.Mock())
 
@@ -6161,7 +6161,7 @@ class TestZulipLDAPUserPopulator(ZulipLDAPTestCase):
     def test_too_short_name(self) -> None:
         self.change_ldap_user_attr("hamlet", "cn", "a")
 
-        with self.assertRaises(ZulipLDAPException), self.assertLogs(
+        with self.assertRaises(AlohaLDAPException), self.assertLogs(
             "django_auth_ldap", "WARNING"
         ) as warn_log:
             self.perform_ldap_sync(self.example_user("hamlet"))
@@ -6230,7 +6230,7 @@ class TestZulipLDAPUserPopulator(ZulipLDAPTestCase):
             ],
         )
 
-    @mock.patch("zproject.backends.ZulipLDAPAuthBackendBase.sync_full_name_from_ldap")
+    @mock.patch("zproject.backends.AlohaLDAPAuthBackendBase.sync_full_name_from_ldap")
     def test_dont_sync_disabled_ldap_user(self, fake_sync: mock.MagicMock) -> None:
         self.change_ldap_user_attr("hamlet", "userAccountControl", "2")
 
@@ -6411,7 +6411,7 @@ class TestZulipLDAPUserPopulator(ZulipLDAPTestCase):
             }
         ):
             with self.assertRaisesRegex(
-                ZulipLDAPException, "Custom profile field with name non_existent not found"
+                AlohaLDAPException, "Custom profile field with name non_existent not found"
             ), self.assertLogs("django_auth_ldap", "WARNING") as warn_log:
                 self.perform_ldap_sync(self.example_user("hamlet"))
             self.assertEqual(
@@ -6431,7 +6431,7 @@ class TestZulipLDAPUserPopulator(ZulipLDAPTestCase):
             }
         ):
             with self.assertRaisesRegex(
-                ZulipLDAPException, "Invalid data for birthday field"
+                AlohaLDAPException, "Invalid data for birthday field"
             ), self.assertLogs("django_auth_ldap", "WARNING") as warn_log:
                 self.perform_ldap_sync(self.example_user("hamlet"))
             self.assertEqual(
@@ -6517,20 +6517,20 @@ class TestZulipLDAPUserPopulator(ZulipLDAPTestCase):
         )
 
 
-class TestQueryLDAP(ZulipLDAPTestCase):
+class TestQueryLDAP(AlohaLDAPTestCase):
     @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.EmailAuthBackend",))
     def test_ldap_not_configured(self) -> None:
         values = query_ldap(self.example_email("hamlet"))
         self.assertEqual(values, ["LDAP backend not configured on this server."])
 
-    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",))
+    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",))
     def test_user_not_present(self) -> None:
         # othello doesn't have an entry in our test directory
         values = query_ldap(self.example_email("othello"))
         self.assert_length(values, 1)
         self.assertIn("No such user found", values[0])
 
-    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",))
+    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",))
     def test_normal_query(self) -> None:
         with self.settings(
             AUTH_LDAP_USER_ATTR_MAP={
@@ -6547,7 +6547,7 @@ class TestQueryLDAP(ZulipLDAPTestCase):
         self.assertIn("custom_profile_field__birthday: 1900-09-08", values)
         self.assertIn("custom_profile_field__phone_number: LDAP field not present", values)
 
-    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",))
+    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",))
     def test_query_email_attr(self) -> None:
         with self.settings(AUTH_LDAP_USER_ATTR_MAP={"full_name": "cn"}, LDAP_EMAIL_ATTR="mail"):
             # This will look up the user by email in our test dictionary,
@@ -6558,24 +6558,24 @@ class TestQueryLDAP(ZulipLDAPTestCase):
         self.assertIn("email: hamlet@zulip.com", values)
 
 
-class TestZulipAuthMixin(ZulipTestCase):
+class TestAlohaAuthMixin(AlohaTestCase):
     def test_get_user(self) -> None:
-        backend = ZulipAuthMixin()
+        backend = AlohaAuthMixin()
         result = backend.get_user(11111)
         self.assertIs(result, None)
 
 
-class TestPasswordAuthEnabled(ZulipTestCase):
+class TestPasswordAuthEnabled(AlohaTestCase):
     def test_password_auth_enabled_for_ldap(self) -> None:
-        with self.settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",)):
+        with self.settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",)):
             realm = Realm.objects.get(string_id="zulip")
             self.assertTrue(password_auth_enabled(realm))
 
 
-class TestRequireEmailFormatUsernames(ZulipTestCase):
+class TestRequireEmailFormatUsernames(AlohaTestCase):
     def test_require_email_format_usernames_for_ldap_with_append_domain(self) -> None:
         with self.settings(
-            AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",),
+            AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",),
             LDAP_APPEND_DOMAIN="zulip.com",
         ):
             realm = Realm.objects.get(string_id="zulip")
@@ -6583,7 +6583,7 @@ class TestRequireEmailFormatUsernames(ZulipTestCase):
 
     def test_require_email_format_usernames_for_ldap_with_email_attr(self) -> None:
         with self.settings(
-            AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",),
+            AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",),
             LDAP_EMAIL_ATTR="email",
         ):
             realm = Realm.objects.get(string_id="zulip")
@@ -6598,7 +6598,7 @@ class TestRequireEmailFormatUsernames(ZulipTestCase):
         with self.settings(
             AUTHENTICATION_BACKENDS=(
                 "zproject.backends.EmailAuthBackend",
-                "zproject.backends.ZulipLDAPAuthBackend",
+                "zproject.backends.AlohaLDAPAuthBackend",
             ),
             LDAP_EMAIL_ATTR="email",
         ):
@@ -6609,7 +6609,7 @@ class TestRequireEmailFormatUsernames(ZulipTestCase):
         with self.settings(
             AUTHENTICATION_BACKENDS=(
                 "zproject.backends.EmailAuthBackend",
-                "zproject.backends.ZulipLDAPAuthBackend",
+                "zproject.backends.AlohaLDAPAuthBackend",
             ),
             LDAP_APPEND_DOMAIN="zulip.com",
         ):
@@ -6617,7 +6617,7 @@ class TestRequireEmailFormatUsernames(ZulipTestCase):
             self.assertFalse(require_email_format_usernames(realm))
 
 
-class TestMaybeSendToRegistration(ZulipTestCase):
+class TestMaybeSendToRegistration(AlohaTestCase):
     def test_sso_only_when_preregistration_user_does_not_exist(self) -> None:
         request = HostRequestMock(host=Realm.host_for_subdomain("zulip"))
 
@@ -6674,7 +6674,7 @@ class TestMaybeSendToRegistration(ZulipTestCase):
             self.assertEqual(PreregistrationUser.objects.all().count(), 1)
 
 
-class TestAdminSetBackends(ZulipTestCase):
+class TestAdminSetBackends(AlohaTestCase):
     def test_change_enabled_backends(self) -> None:
         # Log in as admin
         self.login("iago")
@@ -6726,7 +6726,7 @@ class TestAdminSetBackends(ZulipTestCase):
         self.assertFalse(password_auth_enabled(realm))
 
 
-class EmailValidatorTestCase(ZulipTestCase):
+class EmailValidatorTestCase(AlohaTestCase):
     def test_valid_email(self) -> None:
         validate_login_email(self.example_email("hamlet"))
 
@@ -6765,8 +6765,8 @@ class EmailValidatorTestCase(ZulipTestCase):
         self.assertEqual(errors, {})
 
 
-class LDAPBackendTest(ZulipTestCase):
-    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",))
+class LDAPBackendTest(AlohaTestCase):
+    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",))
     def test_non_existing_realm(self) -> None:
         self.init_default_ldap_database()
         user = self.example_user("hamlet")
@@ -6775,10 +6775,10 @@ class LDAPBackendTest(ZulipTestCase):
             username=user.delivery_email,
             password=initial_password(user.delivery_email),
         )
-        error_type = ZulipLDAPAuthBackend.REALM_IS_NONE_ERROR
-        error = ZulipLDAPConfigurationError("Realm is None", error_type)
+        error_type = AlohaLDAPAuthBackend.REALM_IS_NONE_ERROR
+        error = AlohaLDAPConfigurationError("Realm is None", error_type)
         with mock.patch(
-            "zproject.backends.ZulipLDAPAuthBackend.get_or_build_user", side_effect=error
+            "zproject.backends.AlohaLDAPAuthBackend.get_or_build_user", side_effect=error
         ), mock.patch("django_auth_ldap.backend._LDAPUser._authenticate_user_dn"), self.assertLogs(
             "django_auth_ldap", "WARNING"
         ) as warn_log:

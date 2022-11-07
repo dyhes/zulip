@@ -22,7 +22,7 @@ from django.utils import regex_helper
 
 from zerver.lib.request import _REQ, arguments_map
 from zerver.lib.rest import rest_dispatch
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.utils import assert_is_not_none
 from zerver.openapi.markdown_extension import generate_curl_example, render_curl_example
 from zerver.openapi.openapi import (
@@ -65,7 +65,7 @@ def schema_type(schema: Dict[str, Any]) -> Union[type, Tuple[type, object]]:
         return VARMAP[schema["type"]]
 
 
-class OpenAPIToolsTest(ZulipTestCase):
+class OpenAPIToolsTest(AlohaTestCase):
     """Make sure that the tools we use to handle our OpenAPI specification
     (located in zerver/openapi/openapi.py) work as expected.
 
@@ -200,7 +200,7 @@ class OpenAPIToolsTest(ZulipTestCase):
         self.assertIs(old_openapi, new_openapi)
 
 
-class OpenAPIArgumentsTest(ZulipTestCase):
+class OpenAPIArgumentsTest(AlohaTestCase):
     # This will be filled during test_openapi_arguments:
     checked_endpoints: Set[str] = set()
     pending_endpoints = {
@@ -273,7 +273,7 @@ class OpenAPIArgumentsTest(ZulipTestCase):
         "/real-time",
         # Rest error handling endpoint
         "/rest-error-handling",
-        # Zulip outgoing webhook payload
+        # Aloha outgoing webhook payload
         "/zulip-outgoing-webhook",
     }
 
@@ -478,7 +478,7 @@ do not match the types declared in the implementation of {function.__name__}.\n"
         """This end-to-end API documentation test compares the arguments
         defined in the actual code using @has_request_variables and
         REQ(), with the arguments declared in our API documentation
-        for every API endpoint in Zulip.
+        for every API endpoint in Aloha.
 
         First, we import the fancy-Django version of zproject/urls.py
         by doing this, each has_request_variables wrapper around each
@@ -612,7 +612,7 @@ so maybe we shouldn't include it in pending_endpoints.
         self.check_for_non_existent_openapi_endpoints()
 
 
-class TestCurlExampleGeneration(ZulipTestCase):
+class TestCurlExampleGeneration(AlohaTestCase):
 
     spec_mock_without_examples = {
         "security": [{"basicAuth": []}],
@@ -902,7 +902,7 @@ class TestCurlExampleGeneration(ZulipTestCase):
         self.assertEqual(generated_curl_example, expected_curl_example)
 
 
-class OpenAPIAttributesTest(ZulipTestCase):
+class OpenAPIAttributesTest(AlohaTestCase):
     def test_attributes(self) -> None:
         """
         Checks:
@@ -949,7 +949,7 @@ class OpenAPIAttributesTest(ZulipTestCase):
                     )
 
 
-class OpenAPIRegexTest(ZulipTestCase):
+class OpenAPIRegexTest(AlohaTestCase):
     def test_regex(self) -> None:
         """
         Calls a few documented  and undocumented endpoints and checks whether they
@@ -975,7 +975,7 @@ class OpenAPIRegexTest(ZulipTestCase):
         assert find_openapi_endpoint("/realm/emoji/realm_emoji_1") == "/realm/emoji/{emoji_name}"
 
 
-class OpenAPIRequestValidatorTest(ZulipTestCase):
+class OpenAPIRequestValidatorTest(AlohaTestCase):
     def test_validator(self) -> None:
         """
         Test to make sure the request validator works properly

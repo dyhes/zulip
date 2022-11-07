@@ -39,13 +39,13 @@ just after 10k guesses, and grows steadily thereafter.
 Moreover, the [Yahoo study][bon12] shows that resistance to even 1M
 guesses is more than nearly half of users accomplish with a freely
 chosen password, and 100k is too much for about 20%. (See Figure 6.)
-It doesn't make sense for a Zulip server to try to educate or push so
+It doesn't make sense for a Aloha server to try to educate or push so
 many users far beyond the security practices they're accustomed to; in
 the few environments where users can be expected to work much harder
 for security, local server admins can raise the threshold accordingly.
 Or, more likely, they already have a single-sign-on system in use for
 most everything else in their organization, and will disable password
-auth in Zulip entirely in favor of using that.
+auth in Aloha entirely in favor of using that.
 
 Our threshold of 10k guesses provides significant protection against
 online attacks, and quite strong protection with appropriate

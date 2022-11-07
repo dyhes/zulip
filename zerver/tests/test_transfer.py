@@ -6,7 +6,7 @@ from moto.s3 import mock_s3
 
 from zerver.actions.realm_emoji import check_add_realm_emoji
 from zerver.lib.avatar_hash import user_avatar_path
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import (
     avatar_disk_path,
     create_s3_buckets,
@@ -23,7 +23,7 @@ from zerver.lib.upload import resize_emoji, upload_message_file
 from zerver.models import Attachment, RealmEmoji
 
 
-class TransferUploadsToS3Test(ZulipTestCase):
+class TransferUploadsToS3Test(AlohaTestCase):
     @patch("zerver.lib.transfer.transfer_avatars_to_s3")
     @patch("zerver.lib.transfer.transfer_message_files_to_s3")
     @patch("zerver.lib.transfer.transfer_emoji_to_s3")

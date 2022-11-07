@@ -3,7 +3,7 @@ from typing import Any, Dict, List, Optional, Tuple
 
 # stubs
 ZerverFieldsT = Dict[str, Any]
-SlackToZulipUserIDT = Dict[str, int]
+SlackToAlohaUserIDT = Dict[str, int]
 AddedChannelsT = Dict[str, Tuple[str, int]]
 
 # Slack link can be in the format <http://www.foo.com|www.foo.com> and <http://foo.com/>
@@ -31,9 +31,9 @@ SLACK_USERMENTION_REGEX = r"""
                                ([a-zA-Z0-9]+)?   # If vertical line is present, this is short name
                            (>)                   # ends with '>'
                            """
-# Slack doesn't have mid-word message-formatting like Zulip.
+# Slack doesn't have mid-word message-formatting like Aloha.
 # Hence, ~stri~ke doesn't format the word in Slack, but ~~stri~~ke
-# formats the word in Zulip
+# formats the word in Aloha
 SLACK_STRIKETHROUGH_REGEX = r"""
                              (^|[ -(]|[+-/]|\*|\_|[:-?]|\{|\[|\||\^)     # Start after specified characters
                              (\~)                                  # followed by an asterisk
@@ -71,7 +71,7 @@ def convert_to_zulip_markdown(
     text: str,
     users: List[ZerverFieldsT],
     added_channels: AddedChannelsT,
-    slack_user_id_to_zulip_user_id: SlackToZulipUserIDT,
+    slack_user_id_to_zulip_user_id: SlackToAlohaUserIDT,
 ) -> Tuple[str, List[int], bool]:
     mentioned_users_id = []
     text = convert_markdown_syntax(text, SLACK_BOLD_REGEX, "**")
@@ -119,7 +119,7 @@ def convert_to_zulip_markdown(
 
 
 def get_user_mentions(
-    token: str, users: List[ZerverFieldsT], slack_user_id_to_zulip_user_id: SlackToZulipUserIDT
+    token: str, users: List[ZerverFieldsT], slack_user_id_to_zulip_user_id: SlackToAlohaUserIDT
 ) -> Tuple[str, Optional[int]]:
     slack_usermention_match = re.search(SLACK_USERMENTION_REGEX, token, re.VERBOSE)
     assert slack_usermention_match is not None
@@ -141,9 +141,9 @@ def get_user_mentions(
 def convert_markdown_syntax(text: str, regex: str, zulip_keyword: str) -> str:
     """
     Returns:
-    1. For strikethrough formatting: This maps Slack's '~strike~' to Zulip's '~~strike~~'
-    2. For bold formatting: This maps Slack's '*bold*' to Zulip's '**bold**'
-    3. For italic formatting: This maps Slack's '_italic_' to Zulip's '*italic*'
+    1. For strikethrough formatting: This maps Slack's '~strike~' to Aloha's '~~strike~~'
+    2. For bold formatting: This maps Slack's '*bold*' to Aloha's '**bold**'
+    3. For italic formatting: This maps Slack's '_italic_' to Aloha's '*italic*'
     """
     for match in re.finditer(regex, text, re.VERBOSE):
         converted_token = (

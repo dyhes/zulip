@@ -13,10 +13,10 @@ from zerver.lib.send_email import (
     logger,
     send_email,
 )
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 
 
-class TestBuildEmail(ZulipTestCase):
+class TestBuildEmail(AlohaTestCase):
     def test_limited_from_length(self) -> None:
         hamlet = self.example_user("hamlet")
         # This is exactly the max length
@@ -69,7 +69,7 @@ class TestBuildEmail(ZulipTestCase):
         self.assertEqual(mail.to[0], hamlet.delivery_email)
 
 
-class TestSendEmail(ZulipTestCase):
+class TestSendEmail(AlohaTestCase):
     def test_initialize_connection(self) -> None:
         # Test the new connection case
         with mock.patch.object(EmailBackend, "open", return_value=True):

@@ -1,8 +1,8 @@
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.models import UserProfile
 
 
-class ZcommandTest(ZulipTestCase):
+class ZcommandTest(AlohaTestCase):
     def test_invalid_zcommand(self) -> None:
         self.login("hamlet")
 

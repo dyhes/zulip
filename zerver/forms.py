@@ -55,7 +55,7 @@ if settings.BILLING_ENABLED:
 MIT_VALIDATION_ERROR = (
     "That user does not exist at MIT or is a "
     + '<a href="https://ist.mit.edu/email-lists">mailing list</a>. '
-    + "If you want to sign up an alias for Zulip, "
+    + "If you want to sign up an alias for Aloha, "
     + '<a href="mailto:support@zulip.com">contact us</a>.'
 )
 
@@ -67,7 +67,7 @@ PASSWORD_TOO_WEAK_ERROR = gettext_lazy("The password is too weak.")
 
 
 def email_is_not_mit_mailing_list(email: str) -> None:
-    """Prevent MIT mailing lists from signing up for Zulip"""
+    """Prevent MIT mailing lists from signing up for Aloha"""
     address = Address(addr_spec=email)
     if address.domain == "mit.edu":
         # Check whether the user exists and can get mail.
@@ -222,7 +222,7 @@ class HomepageForm(forms.Form):
             except LicenseLimitError:
                 raise ValidationError(
                     _(
-                        "New members cannot join this organization because all Zulip licenses are in use. Please contact the person who "
+                        "New members cannot join this organization because all Aloha licenses are in use. Please contact the person who "
                         "invited you and ask them to increase the number of licenses, then try again."
                     )
                 )
@@ -295,7 +295,7 @@ def generate_password_reset_url(
     return f"{user_profile.realm.uri}{endpoint}"
 
 
-class ZulipPasswordResetForm(PasswordResetForm):
+class AlohaPasswordResetForm(PasswordResetForm):
     def save(
         self,
         domain_override: Optional[str] = None,
@@ -334,7 +334,7 @@ class ZulipPasswordResetForm(PasswordResetForm):
         if email_belongs_to_ldap(realm, email):
             # TODO: Ideally, we'd provide a user-facing error here
             # about the fact that they aren't allowed to have a
-            # password in the Zulip server and should change it in LDAP.
+            # password in the Aloha server and should change it in LDAP.
             logging.info("Password reset not allowed for user in LDAP domain")
             return
         if realm.deactivated:
@@ -498,7 +498,7 @@ class OurAuthenticationForm(AuthenticationForm):
         return self.cleaned_data
 
     def add_prefix(self, field_name: str) -> str:
-        """Disable prefix, since Zulip doesn't use this Django forms feature
+        """Disable prefix, since Aloha doesn't use this Django forms feature
         (and django-two-factor does use it), and we'd like both to be
         happy with this form.
         """
@@ -551,5 +551,5 @@ class RealmRedirectForm(forms.Form):
         try:
             get_realm(subdomain)
         except Realm.DoesNotExist:
-            raise ValidationError(_("We couldn't find that Zulip organization."))
+            raise ValidationError(_("We couldn't find that Aloha organization."))
         return subdomain

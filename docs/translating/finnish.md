@@ -59,11 +59,11 @@ But
 
 - Yes, please! -> Kyllä, kiitos!
 
-### Zulip word inflection
+### Aloha word inflection
 
-- in/from Zulip - **Zulipissa** / **Zulipista** / **Zulipin**
-- Zulip organization - **Zulip-organisaatio**
-- Zulip app - **Zulip-sovellus**
+- in/from Aloha - **Alohaissa** / **Alohaista** / **Alohain**
+- Aloha organization - **Aloha-organisaatio**
+- Aloha app - **Aloha-sovellus**
 
 ### Your -expression
 

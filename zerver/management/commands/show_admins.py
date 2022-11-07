@@ -3,10 +3,10 @@ from typing import Any
 
 from django.core.management.base import CommandError
 
-from zerver.lib.management import ZulipBaseCommand
+from zerver.lib.management import AlohaBaseCommand
 
 
-class Command(ZulipBaseCommand):
+class Command(AlohaBaseCommand):
     help = """Show the owners and administrators in an organization."""
 
     def add_arguments(self, parser: ArgumentParser) -> None:

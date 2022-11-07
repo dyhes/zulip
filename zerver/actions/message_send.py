@@ -701,7 +701,7 @@ def filter_presence_idle_user_ids(user_ids: Set[int]) -> List[int]:
     # (and push notifications with with
     # user_profile.enable_online_push_notifications=False).
     #
-    # We exclude any presence data from ZulipMobile for the purpose of
+    # We exclude any presence data from AlohaMobile for the purpose of
     # triggering these notifications; the mobile app can more
     # effectively do its own client-side filtering of notification
     # sounds/etc. for the case that the user is actively doing a PM
@@ -720,7 +720,7 @@ def filter_presence_idle_user_ids(user_ids: Set[int]) -> List[int]:
             status=UserPresence.ACTIVE,
             timestamp__gte=recent,
         )
-        .exclude(client__name="ZulipMobile")
+        .exclude(client__name="AlohaMobile")
         .distinct("user_profile_id")
         .values("user_profile_id")
     )
@@ -831,7 +831,7 @@ def do_send_messages(
             do_widget_post_save_actions(send_request)
 
     # This next loop is responsible for notifying other parts of the
-    # Zulip system about the messages we just committed to the database:
+    # Aloha system about the messages we just committed to the database:
     # * Notifying clients via send_event
     # * Triggering outgoing webhooks via the service event queue.
     # * Updating the `first_message_id` field for streams without any message history.

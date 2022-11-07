@@ -28,7 +28,7 @@ See also [fixing commits][fix-commit]
 - log
   - `git log`
 - pull
-  - `git pull --rebase`: **Use this**. Zulip uses a [rebase oriented workflow][git-overview].
+  - `git pull --rebase`: **Use this**. Aloha uses a [rebase oriented workflow][git-overview].
   - `git pull` (with no options): Will either create a merge commit
     (which you don't want) or do the same thing as `git pull --rebase`,
     depending on [whether you've configured Git properly][git-config-clone]

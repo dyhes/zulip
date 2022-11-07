@@ -4,7 +4,7 @@ While our [node test suite](testing-with-node.md) is the
 preferred way to test most frontend code because they are easy to
 write and maintain, some code is best tested in a real browser, either
 because of navigation (E.g. login) or because we want to verify the
-interaction between Zulip logic and browser behavior (E.g. copy/paste,
+interaction between Aloha logic and browser behavior (E.g. copy/paste,
 keyboard shortcuts, etc.).
 
 ## Running tests
@@ -27,8 +27,8 @@ of various useful helper functions defined in
 
 The Puppeteer tests use a real Chromium browser (powered by
 [puppeteer](https://github.com/puppeteer/puppeteer)), connected to a
-real Zulip development server. These are black-box tests: Steps in a
-Puppeteer test are largely things one might do as a user of the Zulip
+real Aloha development server. These are black-box tests: Steps in a
+Puppeteer test are largely things one might do as a user of the Aloha
 web app, like "Type this key", "Wait until this HTML element
 appears/disappears", or "Click on this HTML element".
 
@@ -66,9 +66,9 @@ The following questions are useful when debugging Puppeteer test
 failures you might see in [continuous
 integration](continuous-integration.md):
 
-- Does the flow being tested work properly in the Zulip browser UI?
+- Does the flow being tested work properly in the Aloha browser UI?
   Test failures can reflect real bugs, and often it's easier and more
-  interactive to debug an issue in the normal Zulip development
+  interactive to debug an issue in the normal Aloha development
   environment than in the Puppeteer test suite.
 - Does the change being tested adjust the HTML structure in a way that
   affects any of the selectors used in the tests? If so, the test may
@@ -99,7 +99,7 @@ These tools/features are often useful when debugging:
 
 - You can use `console.log` statements both in Puppeteer tests and the
   code being tested to print-debug.
-- Zulip's Puppeteer tests are configured to generate screenshots of
+- Aloha's Puppeteer tests are configured to generate screenshots of
   the state of the test browser when an assert statement fails; these
   are stored under `var/puppeteer/*.png` and are extremely helpful for
   debugging test failures.
@@ -112,7 +112,7 @@ These tools/features are often useful when debugging:
   failures.
 - TODO: Document any other techniques/ideas that were helpful when porting
   the Casper suite.
-- The Zulip server powering these tests is just `run-dev.py` with some
+- The Aloha server powering these tests is just `run-dev.py` with some
   extra [Django settings](../subsystems/settings.md) from
   `zproject/test_extra_settings.py` to configure an isolated database
   so that the tests will not interfere/interact with a normal

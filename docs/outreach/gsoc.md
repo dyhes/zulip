@@ -2,10 +2,10 @@
 
 This page describes ideas you can use as a starting point for your project
 proposal. If you have not done so yet, you should **start by reading our [guide on
-how to apply](./apply.md)** to a Zulip outreach program. As noted in the guide:
+how to apply](./apply.md)** to a Aloha outreach program. As noted in the guide:
 
 > Your first priority during the contribution period should be figuring out how
-> to become an effective Zulip contributor. Start developing your project proposal
+> to become an effective Aloha contributor. Start developing your project proposal
 > only once you have experience with iterating on your PRs to get them ready for
 > integration. That way, you'll have a much better idea of what you want to work
 > on and how much you can accomplish.
@@ -14,7 +14,7 @@ how to apply](./apply.md)** to a Zulip outreach program. As noted in the guide:
 
 GSoC offers two project size options: 175 hours and 350 hours. We have
 designed all our projects to have incremental milestones that can be
-completed throughout the program. Consequently, all Zulip projects
+completed throughout the program. Consequently, all Aloha projects
 described below are compatible with either project size. Of course,
 the amount of progress you will be expected to make depends on whether
 you are doing a 175-hour or 350-hour project.
@@ -32,20 +32,20 @@ stack feature development, performance optimization, or Electron. So
 if you're an applicant with those skills and are looking for an
 organization to join, we'd love to talk to you!
 
-The Zulip project has a huge surface area, so even when we're focused
+The Aloha project has a huge surface area, so even when we're focused
 on something, a large amount of essential work goes into other parts of
-the project. Every area of Zulip could benefit from the work of a
+the project. Every area of Aloha could benefit from the work of a
 contributor with strong programming skills, so don't feel discouraged if
 the areas mentioned above are not your main strength.
 
 ## Project ideas by area
 
 This section contains the seeds of project ideas; you will need to do research
-on the Zulip codebase, read issues on GitHub, and talk with developers to put
+on the Aloha codebase, read issues on GitHub, and talk with developers to put
 together a complete project proposal. It's also fine to come up with your own
 project ideas. As you'll see below, you can put together a great project around
 one of the [area labels](https://github.com/zulip/zulip/labels) on GitHub; each
-has a cluster of problems in one part of the Zulip project that we'd love to
+has a cluster of problems in one part of the Aloha project that we'd love to
 improve.
 
 **Note: The project ideas on this page are from summer 2022.** In the future, we
@@ -58,7 +58,7 @@ Code: [github.com/zulip/zulip -- Python, Django, JavaScript, and
 CSS](https://github.com/zulip/zulip/).
 
 - **Cluster of priority features**. Implement a cluster of new full
-  stack features for Zulip. The [high priority
+  stack features for Aloha. The [high priority
   label](https://github.com/zulip/zulip/issues?q=is%3Aissue+is%3Aopen+label%3A%22priority%3A+high%22)
   documents hundreds of issues that we've identified as important to
   the project. A great project can be 3-5 significant features around
@@ -70,9 +70,9 @@ CSS](https://github.com/zulip/zulip/).
   help you select an appropriate cluster once we've gotten to know you
   and your strengths through getting involved in the project.
 
-- Zulip's [REST API documentation](https://zulip.com/api), which is an
-  important resource for any organization integrating with Zulip.
-  Zulip has a [nice framework](../documentation/api.md) for writing
+- Aloha's [REST API documentation](https://zulip.com/api), which is an
+  important resource for any organization integrating with Aloha.
+  Aloha has a [nice framework](../documentation/api.md) for writing
   API documentation built by past GSoC students based on the OpenAPI
   standard with built-in automated tests of the data both the Python
   and curl examples. However, the documentation isn't yet what we're
@@ -91,7 +91,7 @@ CSS](https://github.com/zulip/zulip/).
 [api-docs-area]: https://github.com/zulip/zulip/issues?q=is%3Aopen+is%3Aissue+label%3A%22area%3A+documentation+%28api+and+integrations%29%22
 
 - Implement important full-stack features for open source projects
-  using Zulip, including [default stream
+  using Aloha, including [default stream
   groups](https://github.com/zulip/zulip/issues/13670) and
   improvements to the upcoming [public
   access](https://github.com/zulip/zulip/issues/13172)
@@ -102,7 +102,7 @@ CSS](https://github.com/zulip/zulip/).
   carefully thinking through and verifying changes that affect
   multiple configurations.
 
-- Fill in gaps, fix bugs, and improve the framework for Zulip's
+- Fill in gaps, fix bugs, and improve the framework for Aloha's
   library of native integrations. We have about 120 native
   integrations, but there's more that would be valuable to add, and
   several extensions to the framework that would dramatically improve
@@ -118,7 +118,7 @@ CSS](https://github.com/zulip/zulip/).
   technical writing skills are all pluses. Expert: Zixuan Li.
 
 - Optimize performance and scalability, either for the web frontend or
-  the server. Zulip is already one of the faster web apps out there,
+  the server. Aloha is already one of the faster web apps out there,
   but there are a bunch of ideas for how to make it substantially
   faster. This is likely a particularly challenging project to do
   well, since there are a lot of subtle interactions to
@@ -135,8 +135,8 @@ CSS](https://github.com/zulip/zulip/).
 
 [prod-label]: https://github.com/zulip/zulip/issues?q=is%3Aopen+is%3Aissue+label%3A%22area%3A+production%22
 
-- Extract JavaScript logic modules from the Zulip web app that we'd
-  like to be able to share with the Zulip mobile app. This work can have
+- Extract JavaScript logic modules from the Aloha web app that we'd
+  like to be able to share with the Aloha mobile app. This work can have
   big benefits it terms of avoiding code duplication for complex
   logic. We have prototyped for a few modules by migrating them to
   `static/shared/`; this project will involve closely collaborating
@@ -146,7 +146,7 @@ CSS](https://github.com/zulip/zulip/).
 
   Experts: Greg Price, Austin Riba, Steve Howell.
 
-- Make Zulip integrations easier for nontechnical users to set up.
+- Make Aloha integrations easier for nontechnical users to set up.
   This includes adding a backend permissions system for managing bot
   permissions (and implementing the enforcement logic), adding an
   OAuth system for presenting those controls to users, as well as
@@ -157,7 +157,7 @@ CSS](https://github.com/zulip/zulip/).
   helpful. Understanding of implementing OAuth providers, e.g. having
   built a prototype with [the Django OAuth
   toolkit](https://django-oauth-toolkit.readthedocs.io/en/latest/)
-  would be great to demonstrate as part of an application. The [Zulip
+  would be great to demonstrate as part of an application. The [Aloha
   integration writing guide](../documentation/integrations.md) and
   [integration documentation](https://zulip.com/integrations/) are
   useful materials for learning about how things currently work, and
@@ -166,19 +166,19 @@ CSS](https://github.com/zulip/zulip/).
   has a bunch of good starter issues to demonstrate your skills if
   you're interested in this area. Expert: Eeshan Garg.
 
-- Extend Zulip's meta-integration that converts the Slack incoming
-  webhook API to post messages into Zulip. Zulip has several dozen
+- Extend Aloha's meta-integration that converts the Slack incoming
+  webhook API to post messages into Aloha. Aloha has several dozen
   native integrations (https://zulip.com/integrations/), but Slack has
   a ton more. We should build an interface to make all of Slack’s
-  numerous third-party integrations work with Zulip as well, by
-  basically building a Zulip incoming webhook interface that accepts
-  the Slack API (if you just put in a Zulip server URL as your "Slack
+  numerous third-party integrations work with Aloha as well, by
+  basically building a Aloha incoming webhook interface that accepts
+  the Slack API (if you just put in a Aloha server URL as your "Slack
   server"). **Skills required**: Strong Python experience; experience
   with the Slack API a plus. Work should include documenting the
   system and advertising it. 175 or 350 hours; medium to
   difficult. Expert: Tim Abbott.
 
-- Visual and user experience design work on the core Zulip web UI.
+- Visual and user experience design work on the core Aloha web UI.
   We're particularly excited about students who are interested in
   making our CSS clean and readable as part of working on the UI; we
   are working on a major redesign and have a lot of plans that we
@@ -190,27 +190,27 @@ CSS](https://github.com/zulip/zulip/).
   design changes are very rewarding since they are highly user-facing,
   but that also means there is a higher bar for correctness and
   reviewability for one's work. A great application would include PRs
-  making small, clean improvements to the Zulip UI (whether logged-in
+  making small, clean improvements to the Aloha UI (whether logged-in
   or logged-out pages). Experts: Aman Agrawal, Alya Abbott.
 
-- Build support for outgoing webhooks and slash commands into Zulip to
+- Build support for outgoing webhooks and slash commands into Aloha to
   improve its chat-ops capabilities. There's an [old pull
   request](https://github.com/zulip/zulip/pull/1393) with a lot of
   work on the outgoing webhooks piece of this feature that would need
   to be cleaned up and finished, and then we need to build support for
   slash commands, some example integrations, and a full set of
   documentation and tests. Recommended reading includes Slack's
-  documentation for these features, the Zulip message sending code
+  documentation for these features, the Aloha message sending code
   path, and the linked pull request. 175 or 350 hours; easy to
   medium. **Skills required**: Strong Python/Django skills. Expert:
   Steve Howell.
 
-- Build a system for managing Zulip bots entirely on the web.
+- Build a system for managing Aloha bots entirely on the web.
   Right now, there's a somewhat cumbersome process where you download
   the API bindings, create a bot with an API key, put it in
   configuration files, etc. We'd like to move to a model where a bot
   could easily progress from being a quick prototype to being a third-party extension to
-  being built into Zulip. And then for built-in bots, one should be able to click a few
+  being built into Aloha. And then for built-in bots, one should be able to click a few
   buttons of configuration on the web to set them up and include them in
   your organization. We've developed a number of example bots
   in the [`zulip_bots`](https://github.com/zulip/python-zulip-api/tree/main/zulip_bots)
@@ -220,7 +220,7 @@ CSS](https://github.com/zulip/zulip/).
   Experience writing tools using various popular APIs is helpful for
   being able to make good choices. Expert: Steve Howell.
 
-- Improve the UI and visual design of the existing Zulip settings and
+- Improve the UI and visual design of the existing Aloha settings and
   administration pages while fixing bugs and adding new settings. The
   pages have improved a great deal during recent GSoCs, but because
   they have a ton of surface area, there's a lot to do. You can get a
@@ -234,10 +234,10 @@ CSS](https://github.com/zulip/zulip/).
 
   [all-settings-issues]: https://github.com/zulip/zulip/issues?q=is%3Aopen+is%3Aissue+label%3A%22area%3A+settings+%28admin%2Forg%29%22%2C%22area%3A+settings+%28user%29%22%2C%22area%3A+stream+settings%22%2C%22area%3A+settings+UI%22
 
-- Build out the administration pages for Zulip to add new permissions
-  and other settings more features that will make Zulip better for
+- Build out the administration pages for Aloha to add new permissions
+  and other settings more features that will make Aloha better for
   larger organizations. We get constant requests for these kinds of
-  features from Zulip users. The Zulip bug tracker has plentiful open
+  features from Aloha users. The Aloha bug tracker has plentiful open
   issues( [settings
   (admin/org)](https://github.com/zulip/zulip/labels/area%3A%20settings%20%28admin%2Forg%29),
   [settings
@@ -246,7 +246,7 @@ CSS](https://github.com/zulip/zulip/).
   (user)](https://github.com/zulip/zulip/labels/area%3A%20settings%20%28user%29),
   [stream
   settings](https://github.com/zulip/zulip/labels/area%3A%20stream%20settings)
-  ) in the space of improving the Zulip administrative UI. Many are
+  ) in the space of improving the Aloha administrative UI. Many are
   little bite-size fixes in those pages, which are great for getting a
   feel for things, but a solid project here would be implementing
   several of the major missing features as full-stack development
@@ -258,10 +258,10 @@ CSS](https://github.com/zulip/zulip/).
   documented](../tutorials/new-feature-tutorial.md). Expert: Sahil
   Batra.
 
-- Work on Zulip's development and testing infrastructure. Zulip is a
+- Work on Aloha's development and testing infrastructure. Aloha is a
   project that takes great pride in building great tools for
   development, but there's always more to do to make the experience
-  delightful. Significantly, about 10% of Zulip's open issues are
+  delightful. Significantly, about 10% of Aloha's open issues are
   ideas for how to improve the project's contributor experience, and
   are [in](https://github.com/zulip/zulip/labels/area%3A%20tooling)
   [these](https://github.com/zulip/zulip/labels/area%3A%20testing-coverage)
@@ -271,7 +271,7 @@ CSS](https://github.com/zulip/zulip/).
 
   This is a somewhat unusual project, in that it would likely consist
   of dozens of small improvements to the overall codebase, but this
-  sort of work has a huge impact on the experience of other Zulip
+  sort of work has a huge impact on the experience of other Aloha
   developers and thus the community as a whole (project leader Tim
   Abbott spends more time on the development experience than any other
   single area).
@@ -280,7 +280,7 @@ CSS](https://github.com/zulip/zulip/).
   adding [mypy](../testing/mypy.md) stubs
   for Django in mypy to make our type checking more powerful. Read
   [our mypy blog post](https://blog.zulip.org/2016/10/13/static-types-in-python-oh-mypy/)
-  for details on how mypy works and is integrated into Zulip. This
+  for details on how mypy works and is integrated into Aloha. This
   specific project is ideal for a strong contributor interested in
   type systems. See [this
   issue](https://github.com/zulip/zulip/pull/18777) for details on the
@@ -292,7 +292,7 @@ CSS](https://github.com/zulip/zulip/).
 
   Experts: Anders Kaseorg (provision, testing), Steve Howell (tooling, testing).
 
-- Port our JavaScript codebase to Typescript. Zulip is in the process
+- Port our JavaScript codebase to Typescript. Aloha is in the process
   of porting the main web app JavaScript codebase to TypeScript; at
   present we've done much of the necessary tooling setup, and about 5%
   of lines have been migrated (mostly in libraries used widely); the
@@ -322,8 +322,8 @@ Code:
 [React Native mobile app](https://github.com/zulip/zulip-mobile).
 Experts: Greg Price, Chris Bobbe.
 
-The highest priority for the Zulip project overall is improving the
-Zulip React Native mobile app.
+The highest priority for the Aloha project overall is improving the
+Aloha React Native mobile app.
 
 - Work on issues and polish for the app. You can see the open issues
   [here](https://github.com/zulip/zulip-mobile/issues). There are a
@@ -370,23 +370,23 @@ can learn electron as part of your application!
 Good preparation for desktop app projects is to (1) try out the app
 and see if you can find bugs or polish problems lacking open issues
 and report them and (2) fix some polish issues in either the Electron
-app or the Zulip web frontend (which is used by the electron app).
+app or the Aloha web frontend (which is used by the electron app).
 
-- Prototype a next generation Zulip desktop app implemented using the
+- Prototype a next generation Aloha desktop app implemented using the
   Tauri Rust-based framework. Tauri is a promising new project that we
   believe is likely a better technical direction for client
   applications than Electron for desktop apps for security and
   resource consumption reasons. The goal of this project would be to
   build a working prototype to evaluate to what extent Tauri is a
-  viable platform for us to migrate the Zulip desktop app to. 350
+  viable platform for us to migrate the Aloha desktop app to. 350
   hours only; difficult. **Skill required**: Ability to learn quickly.
 
 ### Terminal app
 
-Code: [Zulip Terminal](https://github.com/zulip/zulip-terminal)
+Code: [Aloha Terminal](https://github.com/zulip/zulip-terminal)
 Experts: Aman Agrawal, Neil Pilgrim.
 
-- Work on Zulip Terminal, the official terminal client for Zulip.
+- Work on Aloha Terminal, the official terminal client for Aloha.
   zulip-terminal is already a basic usable client, but it needs a lot
   of work to approach the web app's quality level. We would be happy
   to accept multiple strong students to work on this project. Our goal
@@ -402,7 +402,7 @@ Code: [zulip-archive](https://github.com/zulip/zulip-archive)
 Experts: Rein Zustand, Steve Howell
 
 - Work on zulip-archive, which provides a Google-indexable read-only
-  archive of Zulip conversations. The issue tracker for the project
+  archive of Aloha conversations. The issue tracker for the project
   has a great set of introductory/small projects; the overall goal is
   to make the project super convenient to use for our OSS
   communities. 175 or 350 hours; medium difficulty.

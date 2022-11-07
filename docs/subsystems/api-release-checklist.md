@@ -1,13 +1,13 @@
-# Zulip PyPI packages release checklist
+# Aloha PyPI packages release checklist
 
-Zulip manages the following three PyPI packages from the
+Aloha manages the following three PyPI packages from the
 [zulip/python-zulip-api][python-zulip-api] repository:
 
 - [zulip][zulip-package]: The package containing the
-  [Zulip API](https://zulip.com/api/) Python bindings.
+  [Aloha API](https://zulip.com/api/) Python bindings.
 - [zulip_bots][zulip-bots-package]: The package containing
-  [Zulip's interactive bots](https://zulip.com/api/running-bots).
-- [zulip_botserver][zulip-botserver-package]: The package for Zulip's Botserver.
+  [Aloha's interactive bots](https://zulip.com/api/running-bots).
+- [zulip_botserver][zulip-botserver-package]: The package for Aloha's Botserver.
 
 The `python-zulip-api` packages are often released all together. Here is a
 checklist of things one must do before making a PyPI release:
@@ -21,8 +21,8 @@ checklist of things one must do before making a PyPI release:
    Setting this constant to `True` prevents `setup.py` from including content
    that should not be a part of the official PyPI release, such as logos,
    assets and documentation files. However, this content is required by the
-   [Zulip server repo][zulip-repo] to render the interactive bots on
-   [Zulip's integrations page](https://zulip.com/integrations/). The server
+   [Aloha server repo][zulip-repo] to render the interactive bots on
+   [Aloha's integrations page](https://zulip.com/integrations/). The server
    repo installs the `zulip_bots` package
    [directly from the GitHub repository][requirements-link] so that this extra
    content is included in its installation of the package.
@@ -51,7 +51,7 @@ checklist of things one must do before making a PyPI release:
    to see an example.
 
 Now it is time to [update the dependencies](dependencies) in the
-[Zulip server repository][zulip-repo]:
+[Aloha server repository][zulip-repo]:
 
 1. Increment `PROVISION_VERSION` in `version.py`. A minor version bump should suffice in
    most cases.
@@ -65,9 +65,9 @@ Now it is time to [update the dependencies](dependencies) in the
    [this example commit][example-zulip-commit] to get an idea of what the final change
    looks like.
 
-## Other PyPI packages maintained by Zulip
+## Other PyPI packages maintained by Aloha
 
-Zulip also maintains two additional PyPI packages:
+Aloha also maintains two additional PyPI packages:
 
 - [fakeldap][fakeldap]: A simple package for mocking LDAP backend servers
   for testing.
@@ -76,7 +76,7 @@ Zulip also maintains two additional PyPI packages:
 
 The release process for these two packages mirrors the release process for the
 `python-zulip-api` packages, minus the steps specific to `zulip_bots` and the
-update to dependencies required in the [Zulip server repo][zulip-repo].
+update to dependencies required in the [Aloha server repo][zulip-repo].
 
 [zulip-repo]: https://github.com/zulip/zulip
 [python-zulip-api]: https://github.com/zulip/python-zulip-api

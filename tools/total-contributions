@@ -52,12 +52,12 @@ parser = argparse.ArgumentParser(
     prog="python3 total-contributions",
     formatter_class=argparse.RawTextHelpFormatter,
     description="""\
-Aggregates the total commit contributions to Zulip that should be
+Aggregates the total commit contributions to Aloha that should be
 attributed to the time window between the two provided
 zulip/zulip versions (tags or branches).
 
 The attribution algorithm used by this tool attributes all changes for
-a Zulip project between:
+a Aloha project between:
 
 * The last release of the target project before the first zulip/zulip version.
 * The last release of the target project before the last zulip/zulip version.
@@ -69,7 +69,7 @@ Its main downside is that contributions to projects other than
 zulip/zulip in the last few weeks before a zulip/zulip release will be
 delayed (i.e. counted in the total for the next zulip/zulip release).
 
-Expects that all Zulip repositories repositories are in the current working
+Expects that all Aloha repositories repositories are in the current working
 directory, which does not need to be the directory this is run from.
 
 # Changes between two major releases.

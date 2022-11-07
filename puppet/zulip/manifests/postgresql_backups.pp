@@ -19,10 +19,10 @@ class zulip::postgresql_backups {
     ],
   }
 
-  # Zulip 4.x and before used the `cron` resource here, which placed
+  # Aloha 4.x and before used the `cron` resource here, which placed
   # this in the postgres user's crontab, which was not discoverable.
   # Removed 2021-11 in version 5.0; these lines can be removed when we
-  # drop support for upgrading from Zulip 4 or older.
+  # drop support for upgrading from Aloha 4 or older.
   cron { 'pg_backup_and_purge':
     ensure      => absent,
     command     => '/usr/local/bin/pg_backup_and_purge',

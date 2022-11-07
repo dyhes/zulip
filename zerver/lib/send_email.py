@@ -65,7 +65,7 @@ class FromAddress:
             language = user_profile.default_language
 
         with override_language(language):
-            return _("Zulip Account Security")
+            return _("Aloha Account Security")
 
 
 def build_email(
@@ -142,10 +142,10 @@ def build_email(
 
     # The i18n story for emails is a bit complicated.  For emails
     # going to a single user, we want to use the language that user
-    # has configured for their Zulip account.  For emails going to
-    # multiple users or to email addresses without a known Zulip
+    # has configured for their Aloha account.  For emails going to
+    # multiple users or to email addresses without a known Aloha
     # account (E.g. invitations), we want to use the default language
-    # configured for the Zulip organization.
+    # configured for the Aloha organization.
     #
     # See our i18n documentation for some high-level details:
     # https://zulip.readthedocs.io/en/latest/translating/internationalization.html
@@ -161,7 +161,7 @@ def build_email(
         logger.warning("Missing language for email template '%s'", template_prefix)
 
     if from_name is None:
-        from_name = "Zulip"
+        from_name = "Aloha"
     if from_address is None:
         from_address = FromAddress.NOREPLY
     if from_address == FromAddress.tokenized_no_reply_placeholder:
@@ -192,7 +192,7 @@ def build_email(
     if reply_to_email is not None:
         reply_to = [reply_to_email]
     # Remove the from_name in the reply-to for noreply emails, so that users
-    # see "noreply@..." rather than "Zulip" or whatever the from_name is
+    # see "noreply@..." rather than "Aloha" or whatever the from_name is
     # when they reply in their email client.
     elif from_address == FromAddress.NOREPLY:
         reply_to = [FromAddress.NOREPLY]
@@ -571,7 +571,7 @@ def send_custom_email(
             break
 
     # Now send emails to any recipients without a user account.
-    # This code path is intended for rare RemoteZulipServer emails.
+    # This code path is intended for rare RemoteAlohaServer emails.
     for email_address in target_emails:
         send_email(
             email_id,

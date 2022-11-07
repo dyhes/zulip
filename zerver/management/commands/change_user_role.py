@@ -8,11 +8,11 @@ from zerver.actions.users import (
     do_change_can_forge_sender,
     do_change_user_role,
 )
-from zerver.lib.management import ZulipBaseCommand
+from zerver.lib.management import AlohaBaseCommand
 from zerver.models import UserProfile
 
 
-class Command(ZulipBaseCommand):
+class Command(AlohaBaseCommand):
     help = """Change role of an existing user in their (own) Realm.
 
 ONLY perform this on customer request from an authorized person.

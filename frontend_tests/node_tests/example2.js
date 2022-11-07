@@ -78,7 +78,7 @@ run_test("message_store", () => {
     assert.deepEqual(topic_names, ["copenhagen"]);
 });
 
-// Tracking unread messages is a very fundamental part of the Zulip
+// Tracking unread messages is a very fundamental part of the Aloha
 // app, and we use the unread object to track unread messages.
 
 run_test("unread", () => {

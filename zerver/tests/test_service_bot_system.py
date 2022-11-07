@@ -12,7 +12,7 @@ from zerver.actions.message_send import get_service_bot_events
 from zerver.lib.bot_config import ConfigError, load_bot_config_template, set_bot_config
 from zerver.lib.bot_lib import EmbeddedBotEmptyRecipientsList, EmbeddedBotHandler, StateHandler
 from zerver.lib.bot_storage import StateError
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import mock_queue_publish
 from zerver.lib.validator import check_string
 from zerver.models import Recipient, UserProfile, get_realm
@@ -23,7 +23,7 @@ BOT_TYPE_TO_QUEUE_NAME = {
 }
 
 
-class TestServiceBotBasics(ZulipTestCase):
+class TestServiceBotBasics(AlohaTestCase):
     def _get_outgoing_bot(self) -> UserProfile:
         outgoing_bot = do_create_user(
             email="bar-bot@zulip.com",
@@ -170,7 +170,7 @@ class TestServiceBotBasics(ZulipTestCase):
         )
 
 
-class TestServiceBotStateHandler(ZulipTestCase):
+class TestServiceBotStateHandler(AlohaTestCase):
     def setUp(self) -> None:
         super().setUp()
         self.user_profile = self.example_user("othello")
@@ -347,7 +347,7 @@ class TestServiceBotStateHandler(ZulipTestCase):
         self.assertEqual(response_dict["storage"], {})
 
 
-class TestServiceBotConfigHandler(ZulipTestCase):
+class TestServiceBotConfigHandler(AlohaTestCase):
     def setUp(self) -> None:
         super().setUp()
         self.user_profile = self.example_user("othello")
@@ -451,7 +451,7 @@ def patch_queue_publish(
     return inner
 
 
-class TestServiceBotEventTriggers(ZulipTestCase):
+class TestServiceBotEventTriggers(AlohaTestCase):
     def setUp(self) -> None:
         super().setUp()
         self.user_profile = self.example_user("othello")

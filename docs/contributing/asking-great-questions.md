@@ -4,7 +4,7 @@ A well-formed question helps you learn, respects the person answering, and makes
 efficient use of time for everyone involved. Asking the right question, to the
 right person, in the right way, at the right time, is a skill which requires a
 lifetime of fine-tuning. This page offers some guidelines and resources that the
-[Zulip community](https://zulip.com/development-community/) has found helpful in this pursuit.
+[Aloha community](https://zulip.com/development-community/) has found helpful in this pursuit.
 
 ## Where to ask your question
 
@@ -13,7 +13,7 @@ stream, rather than in private messages. You’ll get better and faster answers
 since many people can help, and it makes it possible for others to benefit from
 the discussion.
 
-The [Zulip community
+The [Aloha community
 guide](https://zulip.com/development-community/#where-do-i-send-my-message)
 offers guidelines on how the major public streams in the community are used.
 Don’t stress too much about picking the right place if you’re not sure, as
@@ -43,12 +43,12 @@ When your question is answered, follow through on the advice you receive, and (w
 appropriate) summarize the resolution of your problem so that others can learn
 from your experience.
 
-You can find additional helpful tips in our guide to [what makes a great Zulip
+You can find additional helpful tips in our guide to [what makes a great Aloha
 contributor](contributing.md#what-makes-a-great-zulip-contributor).
 
 ## Follow the community guidelines
 
-As always, be sure to follow the [Zulip community
+As always, be sure to follow the [Aloha community
 norms](https://zulip.com/development-community/). In particular, check out [the
 section on getting help](https://zulip.com/development-community/#getting-help)
 before you post.

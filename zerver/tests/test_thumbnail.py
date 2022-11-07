@@ -4,10 +4,10 @@ import orjson
 from django.test import override_settings
 
 from zerver.lib.rate_limiter import add_ratelimit_rule, remove_ratelimit_rule
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 
 
-class ThumbnailTest(ZulipTestCase):
+class ThumbnailTest(AlohaTestCase):
     def test_thumbnail_redirect(self) -> None:
         self.login("hamlet")
         fp = StringIO("zulip!")

@@ -1,9 +1,9 @@
 from zerver.actions.realm_playgrounds import do_add_realm_playground
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.models import RealmPlayground, get_realm
 
 
-class RealmPlaygroundTests(ZulipTestCase):
+class RealmPlaygroundTests(AlohaTestCase):
     def test_create_one_playground_entry(self) -> None:
         iago = self.example_user("iago")
 

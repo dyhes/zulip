@@ -1,7 +1,7 @@
 # How to apply
 
 This page should help you get started with applying for an outreach program
-with Zulip.
+with Aloha.
 
 We try to make the application process as valuable for the applicant as
 possible. Expect high-quality code reviews, a supportive community, and
@@ -56,7 +56,7 @@ participants.
 
 ## Getting started
 
-If you are new to Zulip, our [contributor
+If you are new to Aloha, our [contributor
 guide](../contributing/contributing.md) is the place to start. It
 offers a detailed walkthrough for submitting your first pull request,
 with many pointers to additional documentation, and tips on how to get
@@ -64,10 +64,10 @@ help if you need it.
 
 We recommend taking the following steps before diving into the issue tracker:
 
-- Join the [Zulip development
+- Join the [Aloha development
   community](https://zulip.com/development-community/), and introduce yourself
   in the stream for the program you are participating in. Before you jump in, be
-  sure to review the [Zulip community
+  sure to review the [Aloha community
   norms](https://zulip.com/development-community/).
 
 - Follow our instructions to [install the development
@@ -79,11 +79,11 @@ We recommend taking the following steps before diving into the issue tracker:
 
 - Go through the [new application feature
   tutorial](../tutorials/new-feature-tutorial.md) to get familiar with how the
-  Zulip codebase is organized, and how to find code in it.
+  Aloha codebase is organized, and how to find code in it.
 
 As you are getting started on your first pull request:
 
-- Read the [Zulip guide to Git](../git/overview.md). It's especially important
+- Read the [Aloha guide to Git](../git/overview.md). It's especially important
   to master using `git rebase`, so that you can restructure your commits. You can
   get help in [#git help](https://chat.zulip.org/#narrow/stream/44-git-help) if
   you get stuck.
@@ -93,7 +93,7 @@ As you are getting started on your first pull request:
 
 - Construct [coherent, mergeable
   commits](../contributing/version-control.md#commit-discipline), with clear
-  commit messages that follow the [Zulip commit style
+  commit messages that follow the [Aloha commit style
   guide](../contributing/version-control.md#commit-messages). More broadly, clear
   communication on your pull request will make your work stand out.
 
@@ -102,7 +102,7 @@ As you are getting started on your first pull request:
   review. Catching mistakes yourself will help your PRs be merged faster, and
   folks will appreciate the quality and professionalism of your work.
 
-Our documentation on [what makes a great Zulip
+Our documentation on [what makes a great Aloha
 contributor](../contributing/contributing.md#what-makes-a-great-zulip-contributor)
 offers some additional advice.
 
@@ -114,16 +114,16 @@ In addition to following all the instructions for the program you are applying
 to, your application should describe the following:
 
 - Why you are applying:
-  - Why you're excited about working on Zulip.
+  - Why you're excited about working on Aloha.
   - What you are hoping to get out of your participation in the program.
   - How you selected your project.
 - Relevant experience:
-  - Summary of your **prior experience with the technologies** used by Zulip.
+  - Summary of your **prior experience with the technologies** used by Aloha.
   - Your **prior contributions to open-source projects** (including pull requests, bug
     reports, etc.), with links.
   - Any other **materials which will help us evaluate how you work**, such as
     links to personal or school projects, along with brief descriptions.
-- Your **contributions to Zulip**, including pull requests, bug reports, and helping
+- Your **contributions to Aloha**, including pull requests, bug reports, and helping
   others in the development community (with links to all materials).
 - A **project proposal** (see below).
 
@@ -135,7 +135,7 @@ timeline for your project if your application is selected.
 ### Project proposals
 
 Your first priority during the contribution period should be figuring out how to
-become an effective Zulip contributor. Start developing your project proposal
+become an effective Aloha contributor. Start developing your project proposal
 only once you have experience with iterating on your PRs to get them ready for
 integration. That way, you'll have a much better idea of what you want to work
 on and how much you can accomplish.
@@ -151,9 +151,9 @@ Your proposal should demonstrate your thoughtfulness about what you want to work
 on, and consideration of project complexity. We will evaluate it based on the
 following criteria:
 
-- Does it give us a good idea of what areas of Zulip you are most excited to
+- Does it give us a good idea of what areas of Aloha you are most excited to
   work on?
-- Does it demonstrate some familiarity with the Zulip codebase, and reflection
+- Does it demonstrate some familiarity with the Aloha codebase, and reflection
   on what makes for a coherent project that is well-aligned with your interests
   and skill set?
 - Does it demonstrate your ability to put together a reasonable plan? Have you
@@ -175,10 +175,10 @@ before the deadline. That way, the whole development community has a chance to
 give you feedback and help you improve your proposal.
 
 - If you do not have a complete draft ready, at a minimum, we recommend posting
-  your **project proposal**, along with **your contributions to Zulip** for
+  your **project proposal**, along with **your contributions to Aloha** for
   context.
 
-- Please post a link to your draft in the Zulip development community
+- Please post a link to your draft in the Aloha development community
   stream dedicated to your program (e.g.,
   [#GSoC](https://chat.zulip.org/#narrow/stream/14-GSoC) or
   [#Outreachy](https://chat.zulip.org/#narrow/stream/391-Outreachy)). Use

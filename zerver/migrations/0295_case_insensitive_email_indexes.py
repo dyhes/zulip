@@ -7,7 +7,7 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        # Zulip has always had case-insensitive matching for email
+        # Aloha has always had case-insensitive matching for email
         # addresses on UserProfile objects.  But Django's
         # unique_together feature only supports case-sensitive
         # indexes.  So we reply the old unique_together index with a

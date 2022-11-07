@@ -1,6 +1,6 @@
-# This class includes all the modules you need to run an entire Zulip
+# This class includes all the modules you need to run an entire Aloha
 # installation on a single server.  If desired, you can split up the
-# different `zulip::profile::*` components of a Zulip installation on
+# different `zulip::profile::*` components of a Aloha installation on
 # different servers by using the modules below on different machines
 # (the module list is stored in `puppet_classes` in
 # /etc/zulip/zulip.conf).  See the corresponding configuration in

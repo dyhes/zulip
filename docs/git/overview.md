@@ -1,6 +1,6 @@
-# Quick start: how Zulip uses Git and GitHub
+# Quick start: how Aloha uses Git and GitHub
 
-This quick start provides a brief overview of how Zulip uses Git and GitHub.
+This quick start provides a brief overview of how Aloha uses Git and GitHub.
 
 Those who are familiar with Git and GitHub should be able to start contributing
 with these details in mind:
@@ -8,7 +8,7 @@ with these details in mind:
 - We use **GitHub for source control and code review.** To contribute, fork
   [zulip/zulip][github-zulip-zulip] (or the appropriate
   [repository][github-zulip], if you are working on something else besides
-  Zulip server) to your own account and then create feature/issue branches.
+  Aloha server) to your own account and then create feature/issue branches.
   When you're ready to get feedback, submit a [draft][github-help-draft-pr]
   pull request. _We encourage you to submit draft pull requests early and
   often._
@@ -24,7 +24,7 @@ with these details in mind:
   We use this strategy in order to avoid the extra commits that appear
   when another branch is merged, that clutter the commit history (it's
   popular with other large projects such as Django). This makes
-  Zulip's commit history more readable, but a side effect is that many
+  Aloha's commit history more readable, but a side effect is that many
   pull requests we merge will be reported by GitHub's UI as _closed_
   instead of _merged_, since GitHub has poor support for
   rebase-oriented workflows.
@@ -41,17 +41,17 @@ with these details in mind:
 - We use [zulipbot][zulip-rtd-zulipbot-usage] to manage our issues and
   pull requests to create a better GitHub workflow for contributors.
 
-- We provide some handy **[Zulip-specific Git scripts][zulip-rtd-zulip-tools]**
+- We provide some handy **[Aloha-specific Git scripts][zulip-rtd-zulip-tools]**
   for developers to easily do tasks like fetching and rebasing a pull
   request, cleaning unimportant branches, etc. These reduce the common
   tasks of testing other contributors' pull requests to single commands.
 
-Finally, install the [Zulip developer environment][zulip-rtd-dev-overview], and then
+Finally, install the [Aloha developer environment][zulip-rtd-dev-overview], and then
 [configure continuous integration for your fork][zulip-git-guide-fork-ci].
 
 ---
 
-The following sections will help you be awesome with Zulip and Git/GitHub in a
+The following sections will help you be awesome with Aloha and Git/GitHub in a
 rebased-based workflow. Read through it if you're new to Git, to a rebase-based
 Git workflow, or if you'd like a Git refresher.
 

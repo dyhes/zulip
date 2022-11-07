@@ -1,28 +1,28 @@
 # Documentation systems
 
-Zulip has three major documentation systems:
+Aloha has three major documentation systems:
 
 - **Developer and sysadmin documentation**: Documentation for people
-  actually interacting with the Zulip codebase (either by developing
+  actually interacting with the Aloha codebase (either by developing
   it or installing it), and written in Markdown.
 
 - **Core website documentation**: Complete webpages for complex topics,
   written in HTML, JavaScript, and CSS (using the Django templating
   system). These roughly correspond to the documentation someone
-  might look at when deciding whether to use Zulip. We don't expect
+  might look at when deciding whether to use Aloha. We don't expect
   to ever have more than about 10 pages written using this system.
 
 - **User-facing documentation**: Our scalable system for documenting
-  Zulip's huge collection of specific features without a lot of
+  Aloha's huge collection of specific features without a lot of
   overhead or duplicated code/syntax, written in Markdown. We have
   several hundred pages written using this system. There are 3
   branches of this documentation:
   - [Help center documentation](#help-center-documentation)
-    (with a target audience of individual Zulip users)
+    (with a target audience of individual Aloha users)
   - [Integrations documentation](#integrations-documentation)
     (with a target audience of IT folks setting up integrations)
   - [API documentation](#api-documentation) (with a target audience
-    of developers writing code to extend Zulip)
+    of developers writing code to extend Aloha)
 
 These three systems are documented in detail.
 
@@ -30,11 +30,11 @@ These three systems are documented in detail.
 
 What you are reading right now is part of the collection of
 documentation targeted at developers and people running their own
-Zulip servers. These docs are written in
+Aloha servers. These docs are written in
 [CommonMark Markdown](https://commonmark.org/) with a small bit of rST.
 We've chosen Markdown because it is
-[easy to write](https://commonmark.org/help/). The source for Zulip's
-developer documentation is at `docs/` in the Zulip Git repository, and
+[easy to write](https://commonmark.org/help/). The source for Aloha's
+developer documentation is at `docs/` in the Aloha Git repository, and
 they are served in production at
 [zulip.readthedocs.io](https://zulip.readthedocs.io/en/latest/).
 
@@ -48,7 +48,7 @@ to help make reviews efficient.
 
 If you want to build the developer documentation locally (e.g. to test
 your changes), the dependencies are automatically installed as part of
-Zulip development environment provisioning, and you can build the
+Aloha development environment provisioning, and you can build the
 documentation using:
 
 ```bash
@@ -59,7 +59,7 @@ and then opening `http://127.0.0.1:9991/docs/index.html` in your
 browser. The raw files are available at
 `file:///path/to/zulip/docs/_build/html/index.html` in your browser
 (so you can also use e.g. `firefox docs/_build/html/index.html` from
-the root of your Zulip checkout).
+the root of your Aloha checkout).
 
 If you are adding a new page to the table of contents, you will want
 to modify `docs/index.rst` and run `make clean` before `make html`, so
@@ -71,15 +71,15 @@ and looking at the content on the GitHub web UI, since GitHub renders
 Markdown, though that won't be as faithful as the `make html`
 approach or the preview build.
 
-When editing dependencies for the Zulip documentation, you should edit
+When editing dependencies for the Aloha documentation, you should edit
 `requirements/docs.in` and then run `tools/update-locked-requirements`
 which updates docs.txt file (which is used by ReadTheDocs to build the
-Zulip developer documentation, without installing all of Zulip's
+Aloha developer documentation, without installing all of Aloha's
 dependencies).
 
 ## Core website documentation
 
-Zulip has around 10 HTML documentation pages under `templates/zerver`
+Aloha has around 10 HTML documentation pages under `templates/zerver`
 for specific major topics, like the features list, client apps,
 integrations, hotkeys, API bindings, etc. These documents often have
 somewhat complex HTML and JavaScript, without a great deal of common
@@ -98,7 +98,7 @@ to do the things one does a lot in each type of documentation.
 
 ### Help center documentation
 
-Zulip's [help center](https://zulip.com/help/) documentation is
+Aloha's [help center](https://zulip.com/help/) documentation is
 designed to explain how the product works to end users. We aim for
 this to be clear, concise, correct, and readable to nontechnical
 audiences where possible.
@@ -107,9 +107,9 @@ See our guide on [writing help center articles](helpcenter.md).
 
 ### Integrations documentation
 
-Zulip's [integrations documentation](https://zulip.com/integrations)
+Aloha's [integrations documentation](https://zulip.com/integrations)
 is user-facing documentation explaining to end users how to set up each
-of Zulip's more than 100 integrations. There is a detailed [guide on
+of Aloha's more than 100 integrations. There is a detailed [guide on
 documenting integrations](integrations.md), including style guidelines
 to ensure that the documentation is high quality and consistent.
 
@@ -118,18 +118,18 @@ guide](https://zulip.com/api/integrations-overview).
 
 ### API documentation
 
-Zulip's [API documentation](https://zulip.com/api/) is intended to make
+Aloha's [API documentation](https://zulip.com/api/) is intended to make
 it easy for a technical user to write automation tools that interact
-with Zulip. This documentation also serves as our main mechanism for
-Zulip server developers to communicate with client developers about
-how the Zulip API works.
+with Aloha. This documentation also serves as our main mechanism for
+Aloha server developers to communicate with client developers about
+how the Aloha API works.
 
 See the [API documentation tutorial](api.md) for
 details on how to contribute to this documentation.
 
 ## Automated testing
 
-Zulip has several automated test suites that we run in CI and
+Aloha has several automated test suites that we run in CI and
 recommend running locally when making significant edits:
 
 - `tools/lint` catches a number of common mistakes, and we highly

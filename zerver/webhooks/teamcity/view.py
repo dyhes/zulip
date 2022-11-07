@@ -19,7 +19,7 @@ from zerver.models import Realm, UserProfile
 
 MISCONFIGURED_PAYLOAD_TYPE_ERROR_MESSAGE = """
 Hi there! Your bot {bot_name} just received a TeamCity payload in a
-format that Zulip doesn't recognize. This usually indicates a
+format that Aloha doesn't recognize. This usually indicates a
 configuration issue in your TeamCity webhook settings. Please make sure
 that you set the **Payload Format** option to **Legacy Webhook (JSON)**
 in your TeamCity webhook configuration. Contact {support_email} if you
@@ -29,7 +29,7 @@ need further help!
 
 def guess_zulip_user_from_teamcity(teamcity_username: str, realm: Realm) -> Optional[UserProfile]:
     try:
-        # Try to find a matching user in Zulip
+        # Try to find a matching user in Aloha
         # We search a user's full name, short name,
         # and beginning of email address
         user = UserProfile.objects.filter(
@@ -132,7 +132,7 @@ def api_teamcity_webhook(
         if teamcity_user is None:
             # We can't figure out who started this build - there's nothing we can do here.
             logging.info(
-                "TeamCity webhook couldn't find a matching Zulip user for "
+                "TeamCity webhook couldn't find a matching Aloha user for "
                 "TeamCity user '%s' or '%s'",
                 teamcity_fullname,
                 teamcity_shortname,

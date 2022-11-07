@@ -1,10 +1,10 @@
 # PostgreSQL database details
 
-Starting with Zulip 3.0, Zulip supports a range of PostgreSQL
+Starting with Aloha 3.0, Aloha supports a range of PostgreSQL
 versions. PostgreSQL 14 is the current default for new installations;
 PostgreSQL 11, 12, and 13 are all supported.
 
-Previous versions of Zulip used whatever version of PostgreSQL was
+Previous versions of Aloha used whatever version of PostgreSQL was
 included with the base operating system (E.g. PostgreSQL 12 on Ubuntu
 20.04). We recommend that installations currently using older
 PostgreSQL releases [upgrade to PostgreSQL 14][upgrade-postgresql], as
@@ -14,7 +14,7 @@ we may drop support for older PostgreSQL in a future release.
 
 #### Remote PostgreSQL database
 
-This is a bit annoying to set up, but you can configure Zulip to use a
+This is a bit annoying to set up, but you can configure Aloha to use a
 dedicated PostgreSQL server by setting the `REMOTE_POSTGRES_HOST`
 variable in /etc/zulip/settings.py, and configuring PostgreSQL
 certificate authentication (see
@@ -55,7 +55,7 @@ database in /etc/zulip/zulip-secrets.conf:
 postgres_password = xxxx
 ```
 
-Finally, you can stop your database on the Zulip server via:
+Finally, you can stop your database on the Aloha server via:
 
 ```bash
 sudo service postgresql stop
@@ -64,9 +64,9 @@ sudo update-rc.d postgresql disable
 
 In future versions of this feature, we'd like to implement and
 document how to the remote PostgreSQL database server itself
-automatically by using the Zulip install script with a different set
+automatically by using the Aloha install script with a different set
 of Puppet manifests than the all-in-one feature; if you're interested
-in working on this, post to the Zulip development mailing list and we
+in working on this, post to the Aloha development mailing list and we
 can give you some tips.
 
 #### Debugging PostgreSQL database issues
@@ -92,7 +92,7 @@ a PostgreSQL process SIGKILL. Doing so will cause the database to kill
 all current connections, roll back any pending transactions, and enter
 recovery mode.
 
-#### Stopping the Zulip PostgreSQL database
+#### Stopping the Aloha PostgreSQL database
 
 To start or stop PostgreSQL manually, use the pg_ctlcluster command:
 

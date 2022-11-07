@@ -41,9 +41,9 @@ def gitter_workspace_to_realm(
     """
     Returns:
     1. realm, converted realm data
-    2. avatars, which is list to map avatars to Zulip avatar records.json
-    3. user_map, which is a dictionary to map from Gitter user id to Zulip user id
-    4. stream_map, which is a dictionary to map from Gitter rooms to Zulip stream id
+    2. avatars, which is list to map avatars to Aloha avatar records.json
+    3. user_map, which is a dictionary to map from Gitter user id to Aloha user id
+    4. stream_map, which is a dictionary to map from Gitter rooms to Aloha stream id
     """
     NOW = float(timezone_now().timestamp())
     zerver_realm: List[ZerverFieldsT] = build_zerver_realm(realm_id, realm_subdomain, NOW, "Gitter")
@@ -84,8 +84,8 @@ def build_userprofile(
     """
     Returns:
     1. zerver_userprofile, which is a list of user profile
-    2. avatar_list, which is list to map avatars to Zulip avatars records.json
-    3. added_users, which is a dictionary to map from Gitter user id to Zulip id
+    2. avatar_list, which is list to map avatars to Aloha avatars records.json
+    3. added_users, which is a dictionary to map from Gitter user id to Aloha id
     """
     logging.info("######### IMPORTING USERS STARTED #########\n")
     zerver_userprofile = []
@@ -119,7 +119,7 @@ def build_userprofile(
             # instance
             userprofile_dict["realm"] = realm_id
 
-            # We use this later, even though Zulip doesn't
+            # We use this later, even though Aloha doesn't
             # support short_name
             userprofile_dict["short_name"] = user_data["username"]
 
@@ -142,7 +142,7 @@ def build_stream_map(
     Returns:
     1. stream, which is the list of streams
     2. defaultstreams, which is the list of default streams
-    3. stream_map, which is a dictionary to map from Gitter rooms to Zulip stream id
+    3. stream_map, which is a dictionary to map from Gitter rooms to Aloha stream id
     """
     logging.info("######### IMPORTING STREAM STARTED #########\n")
     stream_id = 0
@@ -391,7 +391,7 @@ def do_convert_data(gitter_data_file: str, output_dir: str, threads: int = 6) ->
     subprocess.check_call(["tar", "-czf", output_dir + ".tar.gz", output_dir, "-P"])
 
     logging.info("######### DATA CONVERSION FINISHED #########\n")
-    logging.info("Zulip data dump created at %s", output_dir)
+    logging.info("Aloha data dump created at %s", output_dir)
 
 
 def write_data_to_file(output_file: str, data: Any) -> None:

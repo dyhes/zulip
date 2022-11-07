@@ -1,20 +1,20 @@
-# Zulip architectural overview
+# Aloha architectural overview
 
 ## Key codebases
 
-The main Zulip codebase is at <https://github.com/zulip/zulip>. It
-contains the Zulip backend (written in Python 3.x and Django), the
+The main Aloha codebase is at <https://github.com/zulip/zulip>. It
+contains the Aloha backend (written in Python 3.x and Django), the
 web app (written in JavaScript and TypeScript) and our library of
 incoming webhook [integrations](https://zulip.com/integrations)
 with other services and applications (see [the directory structure
 guide](directory-structure.md)).
 
-[Zulip Mobile](https://github.com/zulip/zulip-mobile) is the official
-mobile Zulip client supporting both iOS and Android, written in
-JavaScript with React Native, and [Zulip
-Desktop](https://github.com/zulip/zulip-desktop) is the official Zulip
+[Aloha Mobile](https://github.com/zulip/zulip-mobile) is the official
+mobile Aloha client supporting both iOS and Android, written in
+JavaScript with React Native, and [Aloha
+Desktop](https://github.com/zulip/zulip-desktop) is the official Aloha
 desktop client for macOS, Linux, and Windows.
-[Zulip Terminal](https://github.com/zulip/zulip-terminal) is our
+[Aloha Terminal](https://github.com/zulip/zulip-terminal) is our
 official terminal-based client.
 
 We also maintain several separate repositories for integrations and
@@ -32,30 +32,30 @@ and [many more](https://github.com/zulip/).
 We use [Transifex](https://www.transifex.com/zulip/zulip/) to do
 translations.
 
-In this overview, we'll mainly discuss the core Zulip server and web
+In this overview, we'll mainly discuss the core Aloha server and web
 application.
 
 ## Usage assumptions and concepts
 
-Zulip is a real-time team chat application meant to provide a great
+Aloha is a real-time team chat application meant to provide a great
 experience for a wide range of organizations, from companies to
 volunteer projects to groups of friends, ranging in size from a small
 team to 10,000s of users. It has [hundreds of
 features](https://zulip.com/features) both larger and small, and
 supports dedicated apps for iOS, Android, Linux, Windows, and macOS,
 all modern web browsers, several cross-protocol chat clients, and
-numerous dedicated [Zulip API](https://zulip.com/api) clients
+numerous dedicated [Aloha API](https://zulip.com/api) clients
 (e.g. bots).
 
-A server can host multiple Zulip _realms_ (organizations), each on its
+A server can host multiple Aloha _realms_ (organizations), each on its
 own (sub)domain. While most installations host only one organization, some
 such as zulip.com host thousands. Each organization is a private
 chamber with its own users, streams, customizations, and so on. This
-means that one person might be a user of multiple Zulip realms. The
+means that one person might be a user of multiple Aloha realms. The
 administrators of an organization have a great deal of control over
 who can register an account, what permissions new users have, etc. For
 more on security considerations and options, see [the security model
-section](../production/security-model.md) and the [Zulip Help
+section](../production/security-model.md) and the [Aloha Help
 Center](https://zulip.com/help).
 
 ## Components
@@ -64,7 +64,7 @@ Center](https://zulip.com/help).
 
 ### Django and Tornado
 
-Zulip is primarily implemented in the
+Aloha is primarily implemented in the
 [Django](https://www.djangoproject.com/) Python web framework. We
 also make use of [Tornado](https://www.tornadoweb.org) for the
 real-time push system.
@@ -81,7 +81,7 @@ connections -- that is to say, routes that maintain a persistent
 connection from every running client. For this reason, it's
 responsible for event (message) delivery, but not much else. We try to
 avoid any blocking calls in Tornado because we don't want to delay
-delivery to thousands of other connections (as this would make Zulip
+delivery to thousands of other connections (as this would make Aloha
 very much not real-time). For instance, we avoid doing cache or
 database queries inside the Tornado code paths, since those blocking
 requests carry a very high performance penalty for a single-threaded,
@@ -99,7 +99,7 @@ the code is in `zerver/tornado`.
 
 #### HTML templates, JavaScript, etc.
 
-Zulip's HTML is primarily implemented using two types of HTML
+Aloha's HTML is primarily implemented using two types of HTML
 templates: backend templates (powered by the [Jinja2][] template
 engine used for logged-out ("portico") pages and the web app's base
 content) and frontend templates (powered by [Handlebars][]) used for
@@ -117,7 +117,7 @@ For more details on the frontend, see our documentation on
 
 ### nginx
 
-nginx is the front-end web server to all Zulip traffic; it serves static
+nginx is the front-end web server to all Aloha traffic; it serves static
 assets and proxies to Django and Tornado. It handles HTTP requests
 according to the rules laid down in the many config files found in
 `zulip/puppet/zulip/files/nginx/`.
@@ -138,7 +138,7 @@ from outside.
   `uWSGI` via `unix:/home/zulip/deployments/uwsgi-socket`.
 - By default (i.e. if `LOCAL_UPLOADS_DIR` is set), nginx will serve
   user-uploaded content like avatars, custom emoji, and uploaded
-  files. However, one can configure Zulip to store these in a cloud
+  files. However, one can configure Aloha to store these in a cloud
   storage service like Amazon S3 instead.
 
 Note that we do not use `nginx` in the development environment, opting
@@ -178,14 +178,14 @@ pretty standard configuration except for the last line, which turns off
 persistence:
 
 ```text
-# Zulip-specific configuration: disable saving to disk.
+# Aloha-specific configuration: disable saving to disk.
 save ""
 ```
 
 People often wonder if we could replace memcached with Redis (or
 replace RabbitMQ with Redis, with some loss of functionality).
 
-The answer is likely yes, but it wouldn't improve Zulip.
+The answer is likely yes, but it wouldn't improve Aloha.
 Operationally, our current setup is likely easier to develop and run
 in production than a pure Redis system would be. Meanwhile, the
 perceived benefit for using Redis is usually to reduce memory
@@ -228,7 +228,7 @@ Also see [the queuing guide](../subsystems/queuing.md).
 
 PostgreSQL is the database that stores all persistent data, that is,
 data that's expected to live beyond a user's current session.
-Starting with Zulip 3.0, new Zulip installations will install modern
+Starting with Aloha 3.0, new Aloha installations will install modern
 PostgreSQL release rather than using the version included with the
 operating system.
 
@@ -254,20 +254,20 @@ administrator, e.g., in case of outages.
 `puppet/zulip/files/nagios_plugins/`.
 
 This component is intended to install Nagios plugins intended to be run
-on a Nagios server; most of the Zulip Nagios plugins are intended to be
-run on the Zulip servers themselves, and are included with the relevant
-component of the Zulip server (e.g.
+on a Nagios server; most of the Aloha Nagios plugins are intended to be
+run on the Aloha servers themselves, and are included with the relevant
+component of the Aloha server (e.g.
 `puppet/zulip/manifests/postgresql_backups.pp` installs a few under
 `/usr/lib/nagios/plugins/zulip_backups`).
 
 ## Glossary
 
-This section gives names for some of the elements in the Zulip UI used
-in Zulip development conversations. In general, our goal is to
+This section gives names for some of the elements in the Aloha UI used
+in Aloha development conversations. In general, our goal is to
 minimize the set of terminology listed here by giving elements
 self-explanatory names.
 
-- **bankruptcy**: When a user has been off Zulip for several days and
+- **bankruptcy**: When a user has been off Aloha for several days and
   has hundreds of unread messages, they are prompted for whether
   they want to mark all their unread messages as read. This is
   called "declaring bankruptcy" (in reference to the concept in
@@ -289,7 +289,7 @@ self-explanatory names.
 
 - **message editing**: If the realm admin allows it, then after a user
   posts a message, the user has a few minutes to click "Edit" and
-  change the content of their message. If they do, Zulip adds a
+  change the content of their message. If they do, Aloha adds a
   marker such as "EDITED" at the top of the message, visible to
   anyone who can see the message.
 
@@ -304,7 +304,7 @@ self-explanatory names.
   the star and the chevron), and third the message content. The
   recipient bar is or contains hyperlinks to help the user narrow.
 
-- **star**: Zulip allows a user to mark any message they can see,
+- **star**: Aloha allows a user to mark any message they can see,
   public or private, as "starred". A user can easily access messages
   they've starred through the "Starred messages" link in the
   left sidebar, or use "is:starred" as a narrow or a search

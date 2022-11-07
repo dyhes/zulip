@@ -1,5 +1,5 @@
 /**
- *  Modified by Zulip, Inc.
+ *  Modified by Aloha, Inc.
  */
 
 /** @preserve

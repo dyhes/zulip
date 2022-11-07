@@ -6,7 +6,7 @@ from django.conf import settings
 from django.core.management.base import CommandError
 from django.db.models.query import QuerySet
 
-from zerver.lib.management import ZulipBaseCommand
+from zerver.lib.management import AlohaBaseCommand
 from zerver.lib.soft_deactivation import (
     do_auto_soft_deactivate_users,
     do_soft_activate_users,
@@ -33,7 +33,7 @@ def get_users_from_emails(
     return users
 
 
-class Command(ZulipBaseCommand):
+class Command(AlohaBaseCommand):
     help = """Soft activate/deactivate users. Users are recognised by their emails here."""
 
     def add_arguments(self, parser: ArgumentParser) -> None:

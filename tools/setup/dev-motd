@@ -1,6 +1,6 @@
 #!/usr/bin/tail -n+2
 
-This is the Zulip development environment.  Popular commands:
+This is the Aloha development environment.  Popular commands:
 * tools/provision - Update the development environment
 * tools/run-dev.py - Run the development server
 * tools/lint - Run the linter (quick and catches many problems)

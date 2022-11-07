@@ -24,7 +24,7 @@ log_to_file(logger, settings.EMAIL_DELIVERER_LOG_PATH)
 
 
 class Command(BaseCommand):
-    help = """Send emails queued by various parts of Zulip
+    help = """Send emails queued by various parts of Aloha
 for later delivery.
 
 Run this command under supervisor.

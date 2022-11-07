@@ -1,7 +1,7 @@
 # UI: input pills
 
 This is a high level and API explanation of the input pill interface in the
-frontend of the Zulip web application.
+frontend of the Aloha web application.
 
 ## Setup
 

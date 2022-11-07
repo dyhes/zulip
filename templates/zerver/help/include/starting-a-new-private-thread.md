@@ -1,6 +1,6 @@
 {start_tabs}
 
-1. Click the **New private message** button at the bottom of the Zulip
+1. Click the **New private message** button at the bottom of the Aloha
    window, or type <kbd>X</kbd>.
 
 1. Type the names of one or more recipients. Auto-complete will provide

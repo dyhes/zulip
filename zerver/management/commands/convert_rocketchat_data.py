@@ -8,7 +8,7 @@ from zerver.data_import.rocketchat import do_convert_data
 
 
 class Command(BaseCommand):
-    help = """Convert the Rocketchat data into Zulip data format."""
+    help = """Convert the Rocketchat data into Aloha data format."""
 
     def add_arguments(self, parser: CommandParser) -> None:
         dir_help = "Directory containing all the `bson` files from mongodb dump of rocketchat."

@@ -318,7 +318,7 @@ def sanity_check_output(data: TableData) -> None:
     all_tables_db = {model._meta.db_table for model in target_models}
 
     # These assertion statements will fire when we add a new database
-    # table that is not included in Zulip's data exports.  Generally,
+    # table that is not included in Aloha's data exports.  Generally,
     # you can add your new table to `ALL_ZULIP_TABLES` and
     # `NON_EXPORTED_TABLES` during early work on a new feature so that
     # CI passes.
@@ -688,7 +688,7 @@ def export_from_config(
 
 def get_realm_config() -> Config:
     # This function generates the main Config object that defines how
-    # to do a full-realm export of a single realm from a Zulip server.
+    # to do a full-realm export of a single realm from a Aloha server.
 
     realm_config = Config(
         table="zerver_realm",
@@ -1207,7 +1207,7 @@ def export_partial_message_files(
     #
     # TODO: In theory, you should be able to export messages in
     # cross-realm PM threads; currently, this only exports cross-realm
-    # messages received by your realm that were sent by Zulip system
+    # messages received by your realm that were sent by Aloha system
     # bots (e.g. emailgateway, notification-bot).
 
     # Here, "we" and "us" refers to the inner circle of users who
@@ -2014,7 +2014,7 @@ def export_single_user(user_profile: UserProfile, response: TableData) -> None:
 
 def get_single_user_config() -> Config:
     # This function defines the limited configuration for what data to
-    # export when exporting all data that a single Zulip user has
+    # export when exporting all data that a single Aloha user has
     # access to in an organization.
 
     # zerver_userprofile

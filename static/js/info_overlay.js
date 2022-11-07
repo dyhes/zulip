@@ -33,7 +33,7 @@ const markdown_help_rows = [
         markdown: "~~strikethrough~~",
     },
     {
-        markdown: "[Zulip website](https://zulip.org)",
+        markdown: "[Aloha website](https://zulip.org)",
         usage_html: "(or <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>L</kbd>)",
     },
     {
@@ -120,18 +120,18 @@ Coffee`,
         markdown: `\
 \`\`\`
 def zulip():
-    print "Zulip"
+    print "Aloha"
 \`\`\``,
     },
     {
         markdown: `\
 \`\`\`python
 def zulip():
-    print "Zulip"
+    print "Aloha"
 \`\`\``,
         output_html: `\
 <div class="codehilite"><pre><span class="k">def</span> <span class="nf">zulip</span><span class="p">():</span>
-    <span class="k">print</span> <span class="s">"Zulip"</span></pre></div>`,
+    <span class="k">print</span> <span class="s">"Aloha"</span></pre></div>`,
     },
     {
         note_html: $t_html(

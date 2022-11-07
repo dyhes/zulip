@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Delete the "guest" default user and replace it with a Zulip user
+# Delete the "guest" default user and replace it with a Aloha user
 # with a real password
 set -eu
 

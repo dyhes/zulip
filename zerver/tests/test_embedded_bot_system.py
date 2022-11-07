@@ -3,7 +3,7 @@ from unittest.mock import patch
 import orjson
 
 from zerver.lib.bot_lib import EmbeddedBotQuitException
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.models import (
     UserProfile,
     get_display_recipient,
@@ -13,7 +13,7 @@ from zerver.models import (
 )
 
 
-class TestEmbeddedBotMessaging(ZulipTestCase):
+class TestEmbeddedBotMessaging(AlohaTestCase):
     def setUp(self) -> None:
         super().setUp()
         self.user_profile = self.example_user("othello")
@@ -87,7 +87,7 @@ class TestEmbeddedBotMessaging(ZulipTestCase):
                 self.assertEqual(m.output, ["WARNING:root:I'm quitting!"])
 
 
-class TestEmbeddedBotFailures(ZulipTestCase):
+class TestEmbeddedBotFailures(AlohaTestCase):
     def test_message_embedded_bot_with_invalid_service(self) -> None:
         user_profile = self.example_user("othello")
         self.create_test_bot(

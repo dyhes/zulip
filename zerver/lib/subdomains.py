@@ -21,7 +21,7 @@ def get_subdomain(request: HttpRequest) -> str:
     # For both EXTERNAL_HOST and REALM_HOSTS, we take a missing port
     # to mean that any port should be accepted in Host.  It's not
     # totally clear that's the right behavior, but it keeps
-    # compatibility with older versions of Zulip, so that's a start.
+    # compatibility with older versions of Aloha, so that's a start.
 
     host = request.get_host().lower()
     return get_subdomain_from_hostname(host)
@@ -65,9 +65,9 @@ def is_static_or_current_realm_url(url: str, realm: Optional[Realm]) -> bool:
     if split_url.netloc == split_static_url.netloc and url.startswith(settings.STATIC_URL):
         return True
 
-    # HTTPS access to this Zulip organization's domain; our existing
+    # HTTPS access to this Aloha organization's domain; our existing
     # HTTPS protects this request, and there's no privacy benefit to
-    # using camo in front of the Zulip server itself.
+    # using camo in front of the Aloha server itself.
     if (
         realm is not None
         and split_url.netloc == realm.host

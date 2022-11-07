@@ -2,7 +2,7 @@ from datetime import timedelta, timezone
 
 from dateutil import parser
 
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.timestamp import (
     TimeZoneNotUTCException,
     ceiling_to_hour,
@@ -14,7 +14,7 @@ from zerver.lib.timestamp import (
 )
 
 
-class TestTimestamp(ZulipTestCase):
+class TestTimestamp(AlohaTestCase):
     def test_datetime_and_timestamp_conversions(self) -> None:
         timestamp = 1483228800
         for dt in [

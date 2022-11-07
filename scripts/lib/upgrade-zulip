@@ -34,7 +34,7 @@ logging.Formatter.converter = time.gmtime
 logging.basicConfig(format="%(asctime)s upgrade-zulip: %(message)s", level=logging.INFO)
 
 parser = argparse.ArgumentParser()
-parser.add_argument("tarball", help="Path to Zulip Server tarball")
+parser.add_argument("tarball", help="Path to Aloha Server tarball")
 args, extra_options = parser.parse_known_args()
 
 error_rerun_script = f"{DEPLOYMENTS_DIR}/current/scripts/upgrade-zulip {args.tarball}"
@@ -42,9 +42,9 @@ get_deployment_lock(error_rerun_script)
 
 try:
     # Copy the release tarball to an archival path that's readable by
-    # the Zulip user, and then unpack it from that directory, so that
-    # we can unpack using the Zulip user even if the original path was
-    # not readable by the Zulip user.
+    # the Aloha user, and then unpack it from that directory, so that
+    # we can unpack using the Aloha user even if the original path was
+    # not readable by the Aloha user.
     logging.info("Archiving the tarball under %s", TARBALL_ARCHIVE_PATH)
     os.makedirs(TARBALL_ARCHIVE_PATH, exist_ok=True)
     archived_tarball_path = os.path.join(TARBALL_ARCHIVE_PATH, os.path.basename(args.tarball))
@@ -58,7 +58,7 @@ try:
     )
 
     # Chdir to deploy_path and then run upgrade-zulip-stage-2 from the
-    # new version of Zulip (having the upgrade logic run from the new
+    # new version of Aloha (having the upgrade logic run from the new
     # version is much better for fixing bugs in the upgrade process).
     deploy_path = deploy_path.strip()
     os.chdir(deploy_path)

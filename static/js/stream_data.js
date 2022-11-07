@@ -320,7 +320,7 @@ export function slug_to_name(slug) {
     is old or modern, we prefer modern, as long as the integer
     prefix matches a real stream id.  Eventually we will
     stop supporting the legacy slugs, which only matter now
-    because people have linked to Zulip threads in things like
+    because people have linked to Aloha threads in things like
     GitHub conversations.  We migrated to modern slugs in
     early 2018.
     */

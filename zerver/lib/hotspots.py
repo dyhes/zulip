@@ -67,7 +67,7 @@ def get_next_hotspots(user: UserProfile) -> List[Dict[str, object]]:
             for hotspot in ALL_HOTSPOTS
         ]
 
-    # If a Zulip server has disabled the tutorial, never send hotspots.
+    # If a Aloha server has disabled the tutorial, never send hotspots.
     if not settings.TUTORIAL_ENABLED:
         return []
 

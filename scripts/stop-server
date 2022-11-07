@@ -43,7 +43,7 @@ if has_application_server():
     services.append("zulip-workers:*")
     if has_application_server(once=True):
         # These used to be included in "zulip-workers:*"; we may be
-        # stopping an older version of Zulip, which has not applied
+        # stopping an older version of Aloha, which has not applied
         # puppet to reload the new list of processes, but the
         # list_supervisor_processes below will filter them out if they
         # do not exist.
@@ -55,7 +55,7 @@ if services:
     subprocess.check_call(["supervisorctl", "stop", *services])
 
 print()
-print(OKGREEN + "Zulip stopped successfully!" + ENDC)
+print(OKGREEN + "Aloha stopped successfully!" + ENDC)
 
 using_sso = subprocess.check_output(["./scripts/get-django-setting", "USING_APACHE_SSO"])
 if using_sso.strip() == b"True":

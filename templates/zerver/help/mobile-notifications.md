@@ -1,6 +1,6 @@
 # Mobile notifications
 
-In Zulip, you can customize whether [stream
+In Aloha, you can customize whether [stream
 messages](/help/stream-notifications), [private
 messages](/help/pm-mention-alert-notifications) and
 [mentions][notifications-wildcard-mentions] trigger mobile
@@ -11,11 +11,11 @@ while you are online.
 
 ## Mobile notifications while online
 
-You can customize whether or not Zulip will send mobile push
-notifications while you are actively using one of the Zulip apps.
+You can customize whether or not Aloha will send mobile push
+notifications while you are actively using one of the Aloha apps.
 
 !!! tip ""
-    When testing mobile notifications, make sure Zulip is
+    When testing mobile notifications, make sure Aloha is
     configured to send mobile notifications even when you're online.
 
 {start_tabs}

@@ -47,7 +47,7 @@ for zuliprc_path in zuliprc_paths_list:
         reason = "No zuliprc file found at specified path"
 
     if result not in ("ABORTED", "FAILURE"):
-        # Make sure the cwd is the root of Zulip checkout.
+        # Make sure the cwd is the root of Aloha checkout.
         os.chdir(ZULIP_PATH)
 
         if is_vagrant_env_host(ZULIP_PATH):

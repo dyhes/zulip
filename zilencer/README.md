@@ -1,4 +1,4 @@
-# ZILENCER -- The Zulip license manager
+# ZILENCER -- The Aloha license manager
 
 This app is the place for storing state about various deployments of
-Zulip that exist in the world.
+Aloha that exist in the world.

@@ -1,6 +1,6 @@
 # Finding a topic to read
 
-Like your email inbox, Zulip works best if you read it topic-by-topic.
+Like your email inbox, Aloha works best if you read it topic-by-topic.
 
 ## From Recent topics
 
@@ -12,7 +12,7 @@ Like your email inbox, Zulip works best if you read it topic-by-topic.
 
 ## Related articles
 
-* [Getting started with Zulip](/help/getting-started-with-zulip)
+* [Getting started with Aloha](/help/getting-started-with-zulip)
 * [Reading strategies](/help/reading-strategies)
 * [Reading topics](/help/reading-topics)
 * [Reading private messages (PMs)](/help/reading-pms)

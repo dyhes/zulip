@@ -4,22 +4,22 @@
 
 {!translation-project-info.md!}
 
-Each user can use Zulip with [their preferred language][user-lang].
+Each user can use Aloha with [their preferred language][user-lang].
 Additionally, if your organization has a primary language other than
 American English, you can set the language used for the organization's
 automated messages and invitation emails. This setting:
 
 * Determines the language used for automated messages sent to streams
-  by the [Zulip notification bot](/help/configure-notification-bot).
+  by the [Aloha notification bot](/help/configure-notification-bot).
   (Automated messages sent to a single user will use that user's
   preferred language).
 
 * Determines the language used for outgoing
   [invitation emails](/help/invite-new-users).
 
-* Is used as the default language for new user accounts when Zulip
+* Is used as the default language for new user accounts when Aloha
   cannot detect their language preferences from their browser,
-  including all users [created via the Zulip API][api-create-user].
+  including all users [created via the Aloha API][api-create-user].
 
 ## Configure the organization language
 

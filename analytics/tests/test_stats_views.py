@@ -7,19 +7,19 @@ from analytics.lib.counts import COUNT_STATS, CountStat
 from analytics.lib.time_utils import time_range
 from analytics.models import FillState, RealmCount, UserCount
 from analytics.views.stats import rewrite_client_arrays, sort_by_totals, sort_client_labels
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.timestamp import ceiling_to_day, ceiling_to_hour, datetime_to_timestamp
 from zerver.models import Client, get_realm
 
 
-class TestStatsEndpoint(ZulipTestCase):
+class TestStatsEndpoint(AlohaTestCase):
     def test_stats(self) -> None:
         self.user = self.example_user("hamlet")
         self.login_user(self.user)
         result = self.client_get("/stats")
         self.assertEqual(result.status_code, 200)
         # Check that we get something back
-        self.assert_in_response("Zulip analytics for", result)
+        self.assert_in_response("Aloha analytics for", result)
 
     def test_guest_user_cant_access_stats(self) -> None:
         self.user = self.example_user("polonius")
@@ -49,7 +49,7 @@ class TestStatsEndpoint(ZulipTestCase):
 
         result = self.client_get("/stats/realm/zulip/")
         self.assertEqual(result.status_code, 200)
-        self.assert_in_response("Zulip analytics for", result)
+        self.assert_in_response("Aloha analytics for", result)
 
     def test_stats_for_installation(self) -> None:
         user = self.example_user("hamlet")
@@ -64,10 +64,10 @@ class TestStatsEndpoint(ZulipTestCase):
 
         result = self.client_get("/stats/installation")
         self.assertEqual(result.status_code, 200)
-        self.assert_in_response("Zulip analytics for", result)
+        self.assert_in_response("Aloha analytics for", result)
 
 
-class TestGetChartData(ZulipTestCase):
+class TestGetChartData(AlohaTestCase):
     def setUp(self) -> None:
         super().setUp()
         self.realm = get_realm("zulip")
@@ -545,7 +545,7 @@ class TestGetChartData(ZulipTestCase):
         self.assert_json_success(result)
 
 
-class TestGetChartDataHelpers(ZulipTestCase):
+class TestGetChartDataHelpers(AlohaTestCase):
     def test_sort_by_totals(self) -> None:
         empty: List[int] = []
         value_arrays = {"c": [0, 1], "a": [9], "b": [1, 1, 1], "d": empty}
@@ -559,7 +559,7 @@ class TestGetChartDataHelpers(ZulipTestCase):
         self.assertEqual(sort_client_labels(data), ["a", "b", "c", "d", "e", "f", "g", "h"])
 
 
-class TestTimeRange(ZulipTestCase):
+class TestTimeRange(AlohaTestCase):
     def test_time_range(self) -> None:
         HOUR = timedelta(hours=1)
         DAY = timedelta(days=1)
@@ -594,22 +594,22 @@ class TestTimeRange(ZulipTestCase):
         )
 
 
-class TestMapArrays(ZulipTestCase):
+class TestMapArrays(AlohaTestCase):
     def test_map_arrays(self) -> None:
         a = {
             "desktop app 1.0": [1, 2, 3],
             "desktop app 2.0": [10, 12, 13],
             "desktop app 3.0": [21, 22, 23],
             "website": [1, 2, 3],
-            "ZulipiOS": [1, 2, 3],
-            "ZulipElectron": [2, 5, 7],
-            "ZulipMobile": [1, 5, 7],
-            "ZulipPython": [1, 2, 3],
+            "AlohaiOS": [1, 2, 3],
+            "AlohaElectron": [2, 5, 7],
+            "AlohaMobile": [1, 5, 7],
+            "AlohaPython": [1, 2, 3],
             "API: Python": [1, 2, 3],
             "SomethingRandom": [4, 5, 6],
-            "ZulipGitHubWebhook": [7, 7, 9],
-            "ZulipAndroid": [64, 63, 65],
-            "ZulipTerminal": [9, 10, 11],
+            "AlohaGitHubWebhook": [7, 7, 9],
+            "AlohaAndroid": [64, 63, 65],
+            "AlohaTerminal": [9, 10, 11],
         }
         result = rewrite_client_arrays(a)
         self.assertEqual(

@@ -24,7 +24,7 @@ from zerver.actions.streams import do_deactivate_stream, merge_streams
 from zerver.lib.realm_description import get_realm_rendered_description, get_realm_text_description
 from zerver.lib.send_email import send_future_email
 from zerver.lib.streams import create_stream_if_needed
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.models import (
     Attachment,
     CustomProfileField,
@@ -45,7 +45,7 @@ from zerver.models import (
 )
 
 
-class RealmTest(ZulipTestCase):
+class RealmTest(AlohaTestCase):
     def assert_user_profile_cache_gets_new_name(
         self, user_profile: UserProfile, new_realm_name: str
     ) -> None:
@@ -407,9 +407,9 @@ class RealmTest(ZulipTestCase):
         self.assertEqual(self.email_envelope_from(outbox[0]), settings.NOREPLY_EMAIL_ADDRESS)
         self.assertRegex(
             self.email_display_from(outbox[0]),
-            rf"^Zulip Account Security <{self.TOKENIZED_NOREPLY_REGEX}>\Z",
+            rf"^Aloha Account Security <{self.TOKENIZED_NOREPLY_REGEX}>\Z",
         )
-        self.assertIn("Reactivate your Zulip organization", outbox[0].subject)
+        self.assertIn("Reactivate your Aloha organization", outbox[0].subject)
         self.assertIn("Dear former administrators", outbox[0].body)
         admins = realm.get_human_admin_users()
         confirmation_url = self.get_confirmation_url_from_outbox(admins[0].delivery_email)
@@ -819,7 +819,7 @@ class RealmTest(ZulipTestCase):
         do_change_realm_plan_type(realm, Realm.PLAN_TYPE_LIMITED, acting_user=None)
         req = dict(message_retention_days=orjson.dumps(10).decode())
         result = self.client_patch("/json/realm", req)
-        self.assert_json_error(result, "Available on Zulip Cloud Standard. Upgrade to access.")
+        self.assert_json_error(result, "Available on Aloha Cloud Standard. Upgrade to access.")
 
         do_change_realm_plan_type(realm, Realm.PLAN_TYPE_STANDARD, acting_user=None)
         req = dict(message_retention_days=orjson.dumps(10).decode())
@@ -1079,7 +1079,7 @@ class RealmTest(ZulipTestCase):
         )
 
 
-class RealmAPITest(ZulipTestCase):
+class RealmAPITest(AlohaTestCase):
     def setUp(self) -> None:
         super().setUp()
         self.login("desdemona")
@@ -1116,7 +1116,7 @@ class RealmAPITest(ZulipTestCase):
             description=["Realm description", "New description"],
             digest_weekday=[0, 1, 2],
             message_retention_days=[10, 20],
-            name=["Zulip", "New Name"],
+            name=["Aloha", "New Name"],
             waiting_period_threshold=[10, 20],
             create_private_stream_policy=Realm.COMMON_POLICY_TYPES,
             create_public_stream_policy=Realm.COMMON_POLICY_TYPES,
@@ -1364,10 +1364,10 @@ class RealmAPITest(ZulipTestCase):
 
         req = {"enable_spectator_access": orjson.dumps(True).decode()}
         result = self.client_patch("/json/realm", req)
-        self.assert_json_error(result, "Available on Zulip Cloud Standard. Upgrade to access.")
+        self.assert_json_error(result, "Available on Aloha Cloud Standard. Upgrade to access.")
 
 
-class ScrubRealmTest(ZulipTestCase):
+class ScrubRealmTest(AlohaTestCase):
     def test_scrub_realm(self) -> None:
         zulip = get_realm("zulip")
         lear = get_realm("lear")

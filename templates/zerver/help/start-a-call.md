@@ -21,7 +21,7 @@ compose box.
 
 ## Change your video call provider
 
-By default, Zulip integrates with
+By default, Aloha integrates with
 [Jitsi Meet](https://jitsi.org/jitsi-meet/), a fully-encrypted, 100% open
 source video conferencing solution. Organization administrators can also
 change the organization's video call provider. The video call providers

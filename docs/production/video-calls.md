@@ -2,7 +2,7 @@
 
 This page documents the server-level configuration required to support
 non-default [video call integration
-options](https://zulip.com/help/start-a-call) on a self-hosted Zulip
+options](https://zulip.com/help/start-a-call) on a self-hosted Aloha
 server.
 
 ## Zoom
@@ -15,7 +15,7 @@ installation, you'll need to register a custom Zoom app as follows:
 
 1. Create an app with the **OAuth** type.
 
-   - Choose an app name such as "ExampleCorp Zulip".
+   - Choose an app name such as "ExampleCorp Aloha".
    - Select **User-managed app**.
    - Disable the option to publish the app on the Marketplace.
    - Click **Create**.
@@ -25,10 +25,10 @@ installation, you'll need to register a custom Zoom app as follows:
    - On the **App Credentials** tab, set both the **Redirect URL for
      OAuth** and the **Whitelist URL** to
      `https://zulip.example.com/calls/zoom/complete` (replacing
-     `zulip.example.com` by your main Zulip hostname).
+     `zulip.example.com` by your main Aloha hostname).
    - On the **Scopes** tab, add the `meeting:write` scope.
 
-You can then configure your Zulip server to use that Zoom app as
+You can then configure your Aloha server to use that Zoom app as
 follows:
 
 1. In `/etc/zulip/zulip-secrets.conf`, set `video_zoom_client_secret`
@@ -37,18 +37,18 @@ follows:
 1. In `/etc/zulip/settings.py`, set `VIDEO_ZOOM_CLIENT_ID` to your
    app's "Client ID".
 
-1. Restart the Zulip server with
+1. Restart the Aloha server with
    `/home/zulip/deployments/current/scripts/restart-server`.
 
-This enables Zoom support in your Zulip server. Finally, [configure
+This enables Zoom support in your Aloha server. Finally, [configure
 Zoom as the video call
-provider](https://zulip.com/help/start-a-call) in the Zulip
+provider](https://zulip.com/help/start-a-call) in the Aloha
 organization(s) where you want to use it.
 
 ## BigBlueButton
 
 To use the [BigBlueButton](https://bigbluebutton.org/) video call
-integration on a self-hosted Zulip installation, you'll need to have a
+integration on a self-hosted Aloha installation, you'll need to have a
 BigBlueButton server and configure it:
 
 1. Get the Shared Secret using the `bbb-conf --secret` command on your
@@ -59,7 +59,7 @@ BigBlueButton server and configure it:
    `https://bigbluebutton.example.com/bigbluebutton/` and can also be
    found using the `bbb-conf --secret` command.
 
-You can then configure your Zulip server to use that BigBlueButton
+You can then configure your Aloha server to use that BigBlueButton
 Server as follows:
 
 1. In `/etc/zulip/zulip-secrets.conf`, set `big_blue_button_secret`
@@ -68,10 +68,10 @@ Server as follows:
 2. In `/etc/zulip/settings.py`, set `BIG_BLUE_BUTTON_URL` to your
    to be your BigBlueButton Server's API URL.
 
-3. Restart the Zulip server with
+3. Restart the Aloha server with
    `/home/zulip/deployments/current/scripts/restart-server`.
 
-This enables BigBlueButton support in your Zulip server. Finally, [configure
+This enables BigBlueButton support in your Aloha server. Finally, [configure
 BigBlueButton as the video call
-provider](https://zulip.com/help/start-a-call) in the Zulip
+provider](https://zulip.com/help/start-a-call) in the Aloha
 organization(s) where you want to use it.

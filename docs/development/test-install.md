@@ -1,9 +1,9 @@
 # Testing the installer
 
-Zulip's install process is tested as part of [its continuous
+Aloha's install process is tested as part of [its continuous
 integrations suite][ci], but that only tests the most common
 configurations; when making changes to more complicated [installation
-options][installer-docs], Zulip provides tooling to repeatedly test
+options][installer-docs], Aloha provides tooling to repeatedly test
 the installation process in a clean environment each time.
 
 [ci]: https://github.com/zulip/zulip/actions/workflows/production-suite.yml?query=branch%3Amain

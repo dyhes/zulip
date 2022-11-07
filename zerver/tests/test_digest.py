@@ -23,7 +23,7 @@ from zerver.lib.digest import (
 )
 from zerver.lib.message import get_last_message_id
 from zerver.lib.streams import create_stream_if_needed
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import cache_tries_captured, queries_captured
 from zerver.models import (
     Client,
@@ -40,7 +40,7 @@ from zerver.models import (
 )
 
 
-class TestDigestEmailMessages(ZulipTestCase):
+class TestDigestEmailMessages(AlohaTestCase):
     @mock.patch("zerver.lib.digest.enough_traffic")
     @mock.patch("zerver.lib.digest.send_future_email")
     def test_multiple_stream_senders(
@@ -517,14 +517,14 @@ class TestDigestEmailMessages(ZulipTestCase):
         return message_ids
 
 
-class TestDigestContentInBrowser(ZulipTestCase):
+class TestDigestContentInBrowser(AlohaTestCase):
     def test_get_digest_content_in_browser(self) -> None:
         self.login("hamlet")
         result = self.client_get("/digest/")
-        self.assert_in_success_response(["Click here to log in to Zulip and catch up."], result)
+        self.assert_in_success_response(["Click here to log in to Aloha and catch up."], result)
 
 
-class TestDigestTopics(ZulipTestCase):
+class TestDigestTopics(AlohaTestCase):
     def populate_topic(
         self,
         topic: DigestTopic,

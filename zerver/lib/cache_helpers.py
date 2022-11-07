@@ -72,7 +72,7 @@ def session_cache_items(
 
 
 def get_active_realm_ids() -> ValuesQuerySet[RealmCount, int]:
-    """For installations like Zulip Cloud hosting a lot of realms, it only makes
+    """For installations like Aloha Cloud hosting a lot of realms, it only makes
     sense to do cache-filling work for realms that have any currently
     active users/clients.  Otherwise, we end up with every single-user
     trial organization that has ever been created costing us N streams

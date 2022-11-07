@@ -52,7 +52,7 @@ class IgnoreBundlesManifestStaticFilesStorage(ManifestStaticFilesStorage):
         return super().hashed_name(name, content, filename)
 
 
-class ZulipStorage(IgnoreBundlesManifestStaticFilesStorage):
+class AlohaStorage(IgnoreBundlesManifestStaticFilesStorage):
     # This is a hack to use staticfiles.json from within the
     # deployment, rather than a directory under STATIC_ROOT.  By doing
     # so, we can use a different copy of staticfiles.json for each

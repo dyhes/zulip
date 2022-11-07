@@ -1,9 +1,9 @@
 import orjson
 
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 
 
-class LegacySubjectTest(ZulipTestCase):
+class LegacySubjectTest(AlohaTestCase):
     def test_legacy_subject(self) -> None:
         self.login("hamlet")
 

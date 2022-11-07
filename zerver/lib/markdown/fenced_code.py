@@ -168,7 +168,7 @@ class FencedCodeExtension(Extension):
         )
 
 
-class ZulipBaseHandler:
+class AlohaBaseHandler:
     def __init__(
         self,
         processor: "FencedBlockPreprocessor",
@@ -222,7 +222,7 @@ def generic_handler(
     header: Optional[str],
     run_content_validators: bool = False,
     default_language: Optional[str] = None,
-) -> ZulipBaseHandler:
+) -> AlohaBaseHandler:
     if lang is not None:
         lang = lang.lower()
     if lang in ("quote", "quoted"):
@@ -257,7 +257,7 @@ def check_for_new_fence(
         output.append(line)
 
 
-class OuterHandler(ZulipBaseHandler):
+class OuterHandler(AlohaBaseHandler):
     def __init__(
         self,
         processor: "FencedBlockPreprocessor",
@@ -275,7 +275,7 @@ class OuterHandler(ZulipBaseHandler):
         )
 
 
-class CodeHandler(ZulipBaseHandler):
+class CodeHandler(AlohaBaseHandler):
     def __init__(
         self,
         processor: "FencedBlockPreprocessor",
@@ -299,7 +299,7 @@ class CodeHandler(ZulipBaseHandler):
         return self.processor.format_code(self.lang, text)
 
 
-class QuoteHandler(ZulipBaseHandler):
+class QuoteHandler(AlohaBaseHandler):
     def __init__(
         self,
         processor: "FencedBlockPreprocessor",
@@ -322,7 +322,7 @@ class QuoteHandler(ZulipBaseHandler):
         return self.processor.format_quote(text)
 
 
-class SpoilerHandler(ZulipBaseHandler):
+class SpoilerHandler(AlohaBaseHandler):
     def __init__(
         self,
         processor: "FencedBlockPreprocessor",
@@ -343,7 +343,7 @@ class SpoilerHandler(ZulipBaseHandler):
         return self.processor.format_spoiler(self.spoiler_header, text)
 
 
-class TexHandler(ZulipBaseHandler):
+class TexHandler(AlohaBaseHandler):
     def format_text(self, text: str) -> str:
         return self.processor.format_tex(text)
 
@@ -406,7 +406,7 @@ class FencedBlockPreprocessor(Preprocessor):
         self.run_content_validators = run_content_validators
         self.codehilite_conf: Mapping[str, Sequence[Any]] = {}
 
-    def push(self, handler: ZulipBaseHandler) -> None:
+    def push(self, handler: AlohaBaseHandler) -> None:
         self.handlers.append(handler)
 
     def pop(self) -> None:
@@ -415,15 +415,15 @@ class FencedBlockPreprocessor(Preprocessor):
     def run(self, lines: Iterable[str]) -> List[str]:
         """Match and store Fenced Code Blocks in the HtmlStash."""
 
-        from zerver.lib.markdown import ZulipMarkdown
+        from zerver.lib.markdown import AlohaMarkdown
 
         output: List[str] = []
 
         processor = self
-        self.handlers: List[ZulipBaseHandler] = []
+        self.handlers: List[AlohaBaseHandler] = []
 
         default_language = None
-        if isinstance(self.md, ZulipMarkdown) and self.md.zulip_realm is not None:
+        if isinstance(self.md, AlohaMarkdown) and self.md.zulip_realm is not None:
             default_language = self.md.zulip_realm.default_code_block_language
         handler = OuterHandler(processor, output, self.run_content_validators, default_language)
         self.push(handler)

@@ -1,6 +1,6 @@
 # How to have an amazing experience
 
-If you are joining Zulip as part of an outreach program (e.g.
+If you are joining Aloha as part of an outreach program (e.g.
 [GSoC](https://summerofcode.withgoogle.com/) or
 [Outreachy](https://www.outreachy.org/)), welcome! Please make sure you read
 this page carefully early on, and we encourage you to come back to it over the
@@ -8,7 +8,7 @@ course of the program.
 
 ## Your goals
 
-Your experience as a Zulip outreach program participant is your
+Your experience as a Aloha outreach program participant is your
 responsibility, and we strongly encourage you take full ownership. The
 more care, attention, and energy you put in, the more you'll be able
 to get out of the program. We're here to support you, but the journey
@@ -24,9 +24,9 @@ help you along.
   effective open-source developer. By the end of the program, all but the most
   complex PRs should ideally go through only a couple of rounds of code review
   before being merged. Our most successful contributors gain the expertise to
-  become a maintainer for one or more areas within Zulip.
+  become a maintainer for one or more areas within Aloha.
 
-- You should become a valued member of the Zulip community, who works to make it
+- You should become a valued member of the Aloha community, who works to make it
   better for all involved. Reviewing PRs, helping others debug, providing
   feedback, and finding bugs are wonderful ways to contribute beyond the code in
   your own project.
@@ -44,13 +44,13 @@ the rest of your life.
 
 ## You and your mentor
 
-Zulip operates under a **group mentorship** model. Every participant in a Zulip
+Aloha operates under a **group mentorship** model. Every participant in a Aloha
 mentorship program will:
 
 - Have an assigned mentor, who will be their go-to for personal questions and
   concerns, and a consistent point of contact throughout the program.
 
-- Receive lots of feedback and mentorship from others in the Zulip development
+- Receive lots of feedback and mentorship from others in the Aloha development
   community, in code reviews on pull requests, and by posting
   [questions](../contributing/asking-great-questions.md) and ideas in public
   streams.
@@ -69,7 +69,7 @@ up with an organization admin.
 ## Communication and check-ins
 
 Communicating proactively with your mentor, your peers, and the rest of the
-Zulip community is vital to having a successful mentorship program with Zulip.
+Aloha community is vital to having a successful mentorship program with Aloha.
 It's how we can help you make sure you're working on a great set of impactful
 issues, and not getting stuck or taking an approach that won't work out.
 
@@ -79,8 +79,8 @@ to get a feel for what they are working on and share ideas!
 
 ### Getting feedback and advice
 
-We strongly encourage all Zulip contributors to post their questions and ideas
-in public streams in the [Zulip development
+We strongly encourage all Aloha contributors to post their questions and ideas
+in public streams in the [Aloha development
 community](https://zulip.com/development-community/). When you post in a public
 stream, you give everyone the opportunity to help you out, and to learn from
 reading the discussion.
@@ -101,7 +101,7 @@ to ask your questions effectively.
 
 ### How to post your check-ins
 
-A check-in is a regular update that you post in the Zulip development community.
+A check-in is a regular update that you post in the Aloha development community.
 You can find many examples in the
 [#checkins](https://chat.zulip.org/#narrow/stream/65-checkins) and
 [#GSoC](https://chat.zulip.org/#narrow/stream/14-GSoC) streams.
@@ -153,7 +153,7 @@ developer, since you'll both see how others solve problems and also practice the
 art of catching bugs in unfamiliar code. As discussed in the [code review
 guide](../contributing/code-reviewing.md):
 
-> Doing code reviews is a valuable contribution to the Zulip project. It’s also
+> Doing code reviews is a valuable contribution to the Aloha project. It’s also
 > an important skill to develop for participating in open-source projects and
 > working in the industry in general... Anyone can do a code review – you don’t
 > have to have a ton of experience.
@@ -191,7 +191,7 @@ to move on to the next step of the review process.
 ## How do I figure out what to work on?
 
 Our goal is for contributors to improve their skills while making meaningful
-contributions to Zulip. We like to be flexible, which means that you are
+contributions to Aloha. We like to be flexible, which means that you are
 unlikely to work precisely on the issues described in your proposal, and that's
 OK!
 
@@ -201,7 +201,7 @@ In practice, this means that over the course of the program, you will:
   questions about what to tackle next in your
   [check-ins](#how-to-post-your-check-ins).
 
-- Like other Zulip contributors, [claim
+- Like other Aloha contributors, [claim
   issues](../contributing/contributing.md#claiming-an-issue) only when you
   actually start work on them.
 
@@ -260,20 +260,20 @@ can be highly successful in the program either way!
 
 ### Tips for finding issues to pick up
 
-- Look for, claim, and fix bugs to help keep Zulip polished. Bugs and polish
+- Look for, claim, and fix bugs to help keep Aloha polished. Bugs and polish
   make a huge difference to our users' experience. If you can fix a
   [high-priority
   bug](https://github.com/zulip/zulip/issues?page=2&q=is%3Aopen+is%3Aissue+label%3Abug+label%3A%22priority%3A+high%22)
   in an area you've been working on, it is likely to have more impact than any
   new feature you might build.
 
-- If you're working on something other than the Zulip server / web app codebase,
+- If you're working on something other than the Aloha server / web app codebase,
   follow your project on GitHub to keep track of what's happening.
 
-- The Zulip server / web app project is too active to follow, so instead we
-  recommend joining [Zulip's GitHub teams](https://github.com/orgs/zulip/teams)
+- The Aloha server / web app project is too active to follow, so instead we
+  recommend joining [Aloha's GitHub teams](https://github.com/orgs/zulip/teams)
   that relate to your projects and/or interests. When an area label is added to
-  an issue or PR, [Zulipbot](https://github.com/zulip/zulipbot) automatically
+  an issue or PR, [Alohabot](https://github.com/zulip/zulipbot) automatically
   mentions the relevant teams for that area, subscribing all team members to the
   issue or PR thread.
 
@@ -302,8 +302,8 @@ waiting for a question to be answered or for the next round of feedback on a PR:
 - Test and give feedback on new features that are deployed in the development
   community! It's fun, and it helps us find bugs before they reach our users.
 
-- As you are doing your work, keep thinking about what could make contributing to Zulip
-  easier for both yourself and the next generation of Zulip contributors. And then
+- As you are doing your work, keep thinking about what could make contributing to Aloha
+  easier for both yourself and the next generation of Aloha contributors. And then
   make those ideas reality!
 
 ## Timeline extensions for GSoC
@@ -315,7 +315,7 @@ obligations, etc.).
 
 We're generally very flexible, so if extending your project dates would make it
 less stressful to put in the required hours, please discuss this with your
-mentor and Zulip's GSoC administrator. Please start this conversation
+mentor and Aloha's GSoC administrator. Please start this conversation
 proactively as soon as you realize that you might need an extension, as this
 will give us confidence that you'll be able to manage your time effectively to
 successfully complete the program.
@@ -323,5 +323,5 @@ successfully complete the program.
 It is possible to have the midterm evaluation happen more than half-way through
 the project timeline. If the balance of hours you plan to spend on GSoC is
 significantly weighted towards the latter half of your GSoC contribution period,
-please contact Zulip's program administrator to discuss pushing out the midterm
+please contact Aloha's program administrator to discuss pushing out the midterm
 evaluation.

@@ -736,7 +736,7 @@ def write_emoticon_data(
             exported_emoji/7u7x8ytgp78q8jir81o9ejwwnr/image
             exported_emoji/h15ni7kf1bnj7jeua4qhmctsdo/image
 
-    We move all the relevant files to Zulip's more nested
+    We move all the relevant files to Aloha's more nested
     directory structure.
     """
 

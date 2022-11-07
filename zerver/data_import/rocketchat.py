@@ -177,7 +177,7 @@ def convert_channel_data(
             )
 
         # If the channel is read-only, then only admins and moderators
-        # should be allowed to post in the converted Zulip stream.
+        # should be allowed to post in the converted Aloha stream.
         # For more details: https://zulip.com/help/stream-sending-policy
         #
         # See `Stream` model in `zerver/models.py` to know about what each
@@ -927,7 +927,7 @@ def categorize_channels_and_map_with_id(
                     # messages in the duplicate.  We ignore these
                     # minor database corruptions in the Rocket.Chat
                     # export. Doing so is safe, because a huddle with no
-                    # message history has no value in Zulip's data
+                    # message history has no value in Aloha's data
                     # model.
                     logging.debug("Skipping huddle with 0 messages: %s", channel)
                 elif huddle_hash in huddle_hashed_channels:  # nocoverage

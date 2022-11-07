@@ -26,7 +26,7 @@ class zulip_ops::prometheus::node {
     require => [
       User[zulip],
       Package[supervisor],
-      Zulip::External_Dep['node_exporter'],
+      Aloha::External_Dep['node_exporter'],
     ],
     owner   => 'root',
     group   => 'root',

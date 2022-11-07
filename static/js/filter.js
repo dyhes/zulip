@@ -490,7 +490,7 @@ export class Filter {
             return true;
         }
 
-        // TODO: Some users really hate it when Zulip marks messages as read
+        // TODO: Some users really hate it when Aloha marks messages as read
         // in interleaved views, so we will eventually have a setting
         // that early-exits before the subsequent checks.
         // (in which case, is_common_narrow would also need to be modified)

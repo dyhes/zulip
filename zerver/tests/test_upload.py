@@ -37,7 +37,7 @@ from zerver.lib.rate_limiter import add_ratelimit_rule, remove_ratelimit_rule
 from zerver.lib.realm_icon import realm_icon_url
 from zerver.lib.realm_logo import get_realm_logo_url
 from zerver.lib.retention import clean_archived_data
-from zerver.lib.test_classes import UploadSerializeMixin, ZulipTestCase
+from zerver.lib.test_classes import UploadSerializeMixin, AlohaTestCase
 from zerver.lib.test_helpers import (
     avatar_disk_path,
     create_s3_buckets,
@@ -53,7 +53,7 @@ from zerver.lib.upload import (
     BadImageError,
     LocalUploadBackend,
     S3UploadBackend,
-    ZulipUploadBackend,
+    AlohaUploadBackend,
     delete_export_tarball,
     delete_message_image,
     get_local_file_path,
@@ -87,7 +87,7 @@ def destroy_uploads() -> None:
         shutil.rmtree(settings.LOCAL_UPLOADS_DIR)
 
 
-class FileUploadTest(UploadSerializeMixin, ZulipTestCase):
+class FileUploadTest(UploadSerializeMixin, AlohaTestCase):
     def test_rest_endpoint(self) -> None:
         """
         Tests the /api/v1/user_uploads API endpoint. Here a single file is uploaded
@@ -197,7 +197,7 @@ class FileUploadTest(UploadSerializeMixin, ZulipTestCase):
         self.assert_json_success(result)
 
     # This test will go through the code path for uploading files onto LOCAL storage
-    # when Zulip is in DEVELOPMENT mode.
+    # when Aloha is in DEVELOPMENT mode.
     def test_file_upload_authed(self) -> None:
         """
         A call to /json/user_uploads should return a uri and actually create an
@@ -992,7 +992,7 @@ class FileUploadTest(UploadSerializeMixin, ZulipTestCase):
         super().tearDown()
 
 
-class AvatarTest(UploadSerializeMixin, ZulipTestCase):
+class AvatarTest(UploadSerializeMixin, AlohaTestCase):
     def test_get_avatar_field(self) -> None:
         with self.settings(AVATAR_SALT="salt"):
             url = get_avatar_field(
@@ -1039,7 +1039,7 @@ class AvatarTest(UploadSerializeMixin, ZulipTestCase):
 
     def test_avatar_url(self) -> None:
         """Verifies URL schemes for avatars and realm icons."""
-        backend: ZulipUploadBackend = LocalUploadBackend()
+        backend: AlohaUploadBackend = LocalUploadBackend()
         self.assertEqual(backend.get_public_upload_root_url(), "/user_avatars/")
         self.assertEqual(backend.get_avatar_url("hash", False), "/user_avatars/hash.png")
         self.assertEqual(backend.get_avatar_url("hash", True), "/user_avatars/hash-medium.png")
@@ -1425,7 +1425,7 @@ class AvatarTest(UploadSerializeMixin, ZulipTestCase):
         super().tearDown()
 
 
-class EmojiTest(UploadSerializeMixin, ZulipTestCase):
+class EmojiTest(UploadSerializeMixin, AlohaTestCase):
     # While testing GIF resizing, we can't test if the final GIF has the same
     # number of frames as the original one because PIL drops duplicate frames
     # with a corresponding increase in the duration of the previous frame.
@@ -1494,7 +1494,7 @@ class EmojiTest(UploadSerializeMixin, ZulipTestCase):
         super().tearDown()
 
 
-class RealmIconTest(UploadSerializeMixin, ZulipTestCase):
+class RealmIconTest(UploadSerializeMixin, AlohaTestCase):
     def test_multiple_upload_failure(self) -> None:
         """
         Attempting to upload two files should fail.
@@ -1627,7 +1627,7 @@ class RealmIconTest(UploadSerializeMixin, ZulipTestCase):
         super().tearDown()
 
 
-class RealmLogoTest(UploadSerializeMixin, ZulipTestCase):
+class RealmLogoTest(UploadSerializeMixin, AlohaTestCase):
     night = False
 
     def test_multiple_upload_failure(self) -> None:
@@ -1677,7 +1677,7 @@ class RealmLogoTest(UploadSerializeMixin, ZulipTestCase):
             result = self.client_post(
                 "/json/realm/logo", {"file": fp, "night": orjson.dumps(self.night).decode()}
             )
-        self.assert_json_error(result, "Available on Zulip Cloud Standard. Upgrade to access.")
+        self.assert_json_error(result, "Available on Aloha Cloud Standard. Upgrade to access.")
 
     def test_get_default_logo(self) -> None:
         user_profile = self.example_user("hamlet")
@@ -1821,7 +1821,7 @@ class RealmNightLogoTest(RealmLogoTest):
     night = True
 
 
-class LocalStorageTest(UploadSerializeMixin, ZulipTestCase):
+class LocalStorageTest(UploadSerializeMixin, AlohaTestCase):
     def test_file_upload_local(self) -> None:
         user_profile = self.example_user("hamlet")
         uri = upload_message_file(
@@ -1982,7 +1982,7 @@ class LocalStorageTest(UploadSerializeMixin, ZulipTestCase):
         super().tearDown()
 
 
-class S3Test(ZulipTestCase):
+class S3Test(AlohaTestCase):
     @use_s3_backend
     def test_file_upload_s3(self) -> None:
         bucket = create_s3_buckets(settings.S3_AUTH_UPLOADS_BUCKET)[0]
@@ -2383,7 +2383,7 @@ class S3Test(ZulipTestCase):
         self.assertEqual(delete_export_tarball(path_id), path_id)
 
 
-class SanitizeNameTests(ZulipTestCase):
+class SanitizeNameTests(AlohaTestCase):
     def test_file_name(self) -> None:
         self.assertEqual(sanitize_name("test.txt"), "test.txt")
         self.assertEqual(sanitize_name(".hidden"), ".hidden")
@@ -2399,7 +2399,7 @@ class SanitizeNameTests(ZulipTestCase):
         )
 
 
-class UploadSpaceTests(UploadSerializeMixin, ZulipTestCase):
+class UploadSpaceTests(UploadSerializeMixin, AlohaTestCase):
     def setUp(self) -> None:
         super().setUp()
         self.realm = get_realm("zulip")
@@ -2437,7 +2437,7 @@ class UploadSpaceTests(UploadSerializeMixin, ZulipTestCase):
         self.assert_length(data2, self.realm.currently_used_upload_space_bytes())
 
 
-class DecompressionBombTests(ZulipTestCase):
+class DecompressionBombTests(AlohaTestCase):
     def setUp(self) -> None:
         super().setUp()
         self.test_urls = [

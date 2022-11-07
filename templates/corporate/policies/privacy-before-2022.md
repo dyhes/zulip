@@ -19,7 +19,7 @@ We collect information to provide better services to all of our users.
 We collect information in two ways:
 
 * **Information you give us.** For example, many of our services
-require you to sign up for a Kandra Labs Zulip Account. When you do,
+require you to sign up for a Kandra Labs Aloha Account. When you do,
 we’ll ask for personal information, like your name, email address, or
 telephone number.
 
@@ -30,7 +30,7 @@ when you interact with our content.  This information includes:
     * **Device information.** We may collect device-specific
     information (such as your hardware model, operating system
     version, and unique device identifiers). Kandra Labs may associate
-    your device identifiers with your Kandra Labs Zulip Account.
+    your device identifiers with your Kandra Labs Aloha Account.
     * **Log information.** When you use our services or view content
     provided by Kandra Labs, we may automatically collect and store
     certain information in server logs. This may include:
@@ -40,7 +40,7 @@ when you interact with our content.  This information includes:
           hardware settings, browser type, browser language, the date
           and time of your request and referral URL.
         * cookies that may uniquely identify your browser or your
-          Kandra Labs Zulip Account.
+          Kandra Labs Aloha Account.
 
     * **Unique application numbers.**  Certain services include a
      unique application number. This number and information about your
@@ -57,10 +57,10 @@ when you interact with our content.  This information includes:
 
     * **Cookies and anonymous identifiers.** We use various
     technologies to collect and store information when you visit our
-    Zulip service, and this may include sending one or more cookies or
+    Aloha service, and this may include sending one or more cookies or
     anonymous identifiers to your device. We may also use cookies and
     anonymous identifiers when you interact with services we offer to
-    our partners, such as Zulip features that may appear on other
+    our partners, such as Aloha features that may appear on other
     sites.
 
 ## How we use information we collect
@@ -69,7 +69,7 @@ We use the information we collect from all of our services to provide,
 maintain, protect and improve them, to develop new ones, and to protect Kandra Labs
 and our users.
 
-We may use the name you provide for your Kandra Labs Zulip Account across all of the
+We may use the name you provide for your Kandra Labs Aloha Account across all of the
 services we offer that require an account. In addition, we may replace
 past names associated with your account so that you are represented
 consistently across all our services.  We may show other users your publicly
@@ -126,7 +126,7 @@ companies, organizations or individuals outside of Kandra Labs when we
 have your consent to do so. We require opt-in consent for the sharing
 of any sensitive personal information.
 
-* **With domain administrators.** If your Kandra Labs Zulip Account is
+* **With domain administrators.** If your Kandra Labs Aloha Account is
 managed for you by a domain administrator then your domain
 administrator and resellers who provide user support to your
 organization will have access to your account information (including
@@ -183,7 +183,7 @@ services that have separate privacy policies that do not incorporate this
 Privacy Policy.
 
 Our Privacy Policy does not apply to services offered by other companies or
-individuals, sites that may include Zulip services, or other sites linked from
+individuals, sites that may include Aloha services, or other sites linked from
 our services. Our Privacy Policy does not cover the information practices of
 other companies and organizations who advertise our services, and who may use
 cookies, pixel tags and other technologies to serve and offer relevant ads.
@@ -195,8 +195,8 @@ data-protection-officer@zulipchat.com.
 
 ## GDPR Compliance
 
-See the article on [Zulip's GDPR compliance](/help/gdpr-compliance)
-for details on how Kandra Labs and Zulip comply with the General Data
+See the article on [Aloha's GDPR compliance](/help/gdpr-compliance)
+for details on how Kandra Labs and Aloha comply with the General Data
 Protection Regulation.
 
 ## Changes

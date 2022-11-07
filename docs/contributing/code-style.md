@@ -1,6 +1,6 @@
 # Code style and conventions
 
-One can summarize Zulip's coding philosophy as a relentless focus on
+One can summarize Aloha's coding philosophy as a relentless focus on
 making the codebase easy to understand and difficult to make dangerous
 mistakes in. The majority of work in any large software development
 project is understanding the existing code so one can debug or modify
@@ -14,7 +14,7 @@ comments/docstrings, and commit messages (roughly in order of priority
 -- if you can make something clear with a good interface, that's a lot
 better than writing a comment explaining how the bad interface works).
 
-This page documents code style policies that every Zulip developer
+This page documents code style policies that every Aloha developer
 should understand. We aim for this document to be short and focused
 only on details that cannot be easily enforced another way (e.g.
 through linters, automated tests, subsystem design that makes classes

@@ -2,10 +2,10 @@ from argparse import ArgumentParser
 from typing import Any
 
 from zerver.actions.create_realm import do_change_realm_subdomain
-from zerver.lib.management import ZulipBaseCommand
+from zerver.lib.management import AlohaBaseCommand
 
 
-class Command(ZulipBaseCommand):
+class Command(AlohaBaseCommand):
     help = """Change realm's subdomain."""
 
     def add_arguments(self, parser: ArgumentParser) -> None:

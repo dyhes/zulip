@@ -1,11 +1,11 @@
 # Setting up your organization
 
-Welcome to Zulip! This page will guide you through trying out Zulip,
+Welcome to Aloha! This page will guide you through trying out Aloha,
 migrating your organization from other team chat tools (if needed),
 getting everything set up, and inviting others to join.
 
 If you are joining an existing organization, we recommend checking out
-our guide to [Getting started with Zulip][getting-started].
+our guide to [Getting started with Aloha][getting-started].
 
 [getting-started]: /help/getting-started-with-zulip
 
@@ -13,14 +13,14 @@ If you encounter any problems as you're getting started, please drop
 by our [friendly development community](/development-community/) and let
 us know!
 
-## Trying out Zulip
+## Trying out Aloha
 
 {!trying-out-zulip.md!}
 
-## Choosing between Zulip Cloud and self-hosting
+## Choosing between Aloha Cloud and self-hosting
 
-Whether [signing up for Zulip Cloud](/new/) or [self-hosting
-Zulip](/self-hosting/) is the right choice for you depends on the
+Whether [signing up for Aloha Cloud](/new/) or [self-hosting
+Aloha](/self-hosting/) is the right choice for you depends on the
 needs of your organization.
 
 If you aren’t sure what you need, our high quality export and import
@@ -30,11 +30,11 @@ ensure you can always move from our hosting to yours (and back).
 [export-cloud]: /help/export-your-organization
 [export-self-hosted]: https://zulip.readthedocs.io/en/latest/production/export-and-import.html
 
-### Advantages of Zulip Cloud
+### Advantages of Aloha Cloud
 
 {!advantages-of-zulip-cloud.md!}
 
-### Advantages of self-hosting Zulip
+### Advantages of self-hosting Aloha
 
 {!advantages-of-self-hosting-zulip.md!}
 
@@ -98,10 +98,10 @@ stream](/help/create-a-stream#stream-options).
 {!how-to-invite-users-to-join.md!}
 
 To get everyone off to a good start, you may wish to share the guide
-to [Getting started with Zulip](/help/getting-started-with-zulip).
+to [Getting started with Aloha](/help/getting-started-with-zulip).
 
 !!! tip ""
-    You can link to your Zulip organization with a [nice badge](/help/linking-to-zulip).
+    You can link to your Aloha organization with a [nice badge](/help/linking-to-zulip).
 
 ## Create user groups
 
@@ -118,7 +118,7 @@ users at once, [notifying](/help/pm-mention-alert-notifications) them about a me
 
 ## Further reading
 
-* [Getting started with Zulip](/help/getting-started-with-zulip)
+* [Getting started with Aloha](/help/getting-started-with-zulip)
 * [Streams and topics](/help/streams-and-topics)
 * [Moderating open organizations](/help/moderating-open-organizations)
-* [Setting up Zulip for a class](/help/setting-up-zulip-for-a-class)
+* [Setting up Aloha for a class](/help/setting-up-zulip-for-a-class)

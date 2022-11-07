@@ -45,5 +45,5 @@ def main(args: argparse.Namespace) -> None:
 
 
 if __name__ == "__main__":
-    args = parse_cache_script_args("This script cleans redundant Zulip yarn caches.")
+    args = parse_cache_script_args("This script cleans redundant Aloha yarn caches.")
     main(args)

@@ -5,7 +5,7 @@ from django.db.models import Count
 
 
 def clear_duplicate_reactions(apps: StateApps, schema_editor: BaseDatabaseSchemaEditor) -> None:
-    """Zulip's data model for reactions has enforced via code,
+    """Aloha's data model for reactions has enforced via code,
     nontransactionally, that they can only react with one emoji_code
     for a given reaction_type.  This fixes any that were stored in the
     database via a race; the next migration will add the appropriate

@@ -6,7 +6,7 @@ from django.db import models
 from django.db.models import CASCADE
 
 from zerver.models import Realm, UserProfile
-from zilencer.models import RemoteZulipServer
+from zilencer.models import RemoteAlohaServer
 
 
 class Customer(models.Model):
@@ -17,7 +17,7 @@ class Customer(models.Model):
     """
 
     realm = models.OneToOneField(Realm, on_delete=CASCADE, null=True)
-    remote_server = models.OneToOneField(RemoteZulipServer, on_delete=CASCADE, null=True)
+    remote_server = models.OneToOneField(RemoteAlohaServer, on_delete=CASCADE, null=True)
     stripe_customer_id = models.CharField(max_length=255, null=True, unique=True)
     sponsorship_pending = models.BooleanField(default=False)
     # A percentage, like 85.
@@ -267,9 +267,9 @@ class CustomerPlan(models.Model):
     @property
     def name(self) -> str:
         return {
-            CustomerPlan.STANDARD: "Zulip Cloud Standard",
-            CustomerPlan.PLUS: "Zulip Plus",
-            CustomerPlan.ENTERPRISE: "Zulip Enterprise",
+            CustomerPlan.STANDARD: "Aloha Cloud Standard",
+            CustomerPlan.PLUS: "Aloha Plus",
+            CustomerPlan.ENTERPRISE: "Aloha Enterprise",
         }[self.tier]
 
     def get_plan_status_as_text(self) -> str:
@@ -344,7 +344,7 @@ class LicenseLedger(models.Model):
     licenses_at_next_renewal = models.IntegerField(null=True)
 
 
-class ZulipSponsorshipRequest(models.Model):
+class AlohaSponsorshipRequest(models.Model):
     realm = models.ForeignKey(Realm, on_delete=CASCADE)
     requested_by = models.ForeignKey(UserProfile, on_delete=CASCADE)
 

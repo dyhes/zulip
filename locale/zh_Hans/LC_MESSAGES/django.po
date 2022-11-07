@@ -15,7 +15,7 @@
 # 张建春 <zhang.jianchun1@gmail.com>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: Zulip\n"
+"Project-Id-Version: Aloha\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-10 15:54+0000\n"
 "PO-Revision-Date: 2015-12-06 00:18+0000\n"
@@ -72,58 +72,58 @@ msgstr "无效参数"
 #: corporate/lib/registration.py:29
 #, python-brace-format
 msgid ""
-"Your organization has no Zulip licenses remaining and can no longer accept "
+"Your organization has no Aloha licenses remaining and can no longer accept "
 "new users. Please [increase the number of licenses]({billing_page_link}) or "
 "[deactivate inactive users]({deactivate_user_help_page_link}) to allow new "
 "users to join."
-msgstr "您的社群没有剩余的 Zulip 许可证，并且不能再接受新用户。请[增加许可数量]({billing_page_link}) 或[停用非活动用户]({deactivate_user_help_page_link}) 以允许新用户加入。"
+msgstr "您的社群没有剩余的 Aloha 许可证，并且不能再接受新用户。请[增加许可数量]({billing_page_link}) 或[停用非活动用户]({deactivate_user_help_page_link}) 以允许新用户加入。"
 
 #: corporate/lib/registration.py:36
 #, python-brace-format
 msgid ""
-"Your organization has only one Zulip license remaining. You can [increase "
+"Your organization has only one Aloha license remaining. You can [increase "
 "the number of licenses]({billing_page_link}) or [deactivate inactive "
 "users]({deactivate_user_help_page_link}) to allow more than one user to "
 "join."
-msgstr "您的社群只剩下一个 Zulip 许可证。您可以 [增加许可证数量]({billing_page_link}) 或 [停用非活动用户]({deactivate_user_help_page_link}) 以允许多个用户加入。"
+msgstr "您的社群只剩下一个 Aloha 许可证。您可以 [增加许可证数量]({billing_page_link}) 或 [停用非活动用户]({deactivate_user_help_page_link}) 以允许多个用户加入。"
 
 #: corporate/lib/registration.py:41
 #, python-brace-format
 msgid ""
-"Your organization has only two Zulip licenses remaining. You can [increase "
+"Your organization has only two Aloha licenses remaining. You can [increase "
 "the number of licenses]({billing_page_link}) or [deactivate inactive "
 "users]({deactivate_user_help_page_link}) to allow more than two users to "
 "join."
-msgstr "您的社群只剩下两个 Zulip 许可证。您可以 [增加许可证数量]({billing_page_link}) 或 [停用非活动用户]({deactivate_user_help_page_link}) 以允许两个以上的用户加入。"
+msgstr "您的社群只剩下两个 Aloha 许可证。您可以 [增加许可证数量]({billing_page_link}) 或 [停用非活动用户]({deactivate_user_help_page_link}) 以允许两个以上的用户加入。"
 
 #: corporate/lib/registration.py:46
 #, python-brace-format
 msgid ""
-"Your organization has only three Zulip licenses remaining. You can [increase"
+"Your organization has only three Aloha licenses remaining. You can [increase"
 " the number of licenses]({billing_page_link}) or [deactivate inactive "
 "users]({deactivate_user_help_page_link}) to allow more than three users to "
 "join."
-msgstr "您的社群只剩下三个 Zulip 许可证。您可以 [增加许可证数量]({billing_page_link}) 或 [停用非活动用户]({deactivate_user_help_page_link}) 以允许三个以上的用户加入。"
+msgstr "您的社群只剩下三个 Aloha 许可证。您可以 [增加许可证数量]({billing_page_link}) 或 [停用非活动用户]({deactivate_user_help_page_link}) 以允许三个以上的用户加入。"
 
 #: corporate/lib/registration.py:57
 #, python-brace-format
 msgid ""
 "A new member ({email}) was unable to join your organization because all "
-"Zulip licenses are in use. Please [increase the number of "
+"Aloha licenses are in use. Please [increase the number of "
 "licenses]({billing_page_link}) or [deactivate inactive "
 "users]({deactivate_user_help_page_link}) to allow new members to join."
-msgstr "新成员 ({email}) 无法加入您的社群，因为所有 Zulip 许可证都在使用中。请[增加许可数量]({billing_page_link}) 或[停用非活动用户]({deactivate_user_help_page_link}) 以允许新成员加入。"
+msgstr "新成员 ({email}) 无法加入您的社群，因为所有 Aloha 许可证都在使用中。请[增加许可数量]({billing_page_link}) 或[停用非活动用户]({deactivate_user_help_page_link}) 以允许新成员加入。"
 
 #: corporate/lib/registration.py:113
-msgid "All Zulip licenses for this organization are currently in use."
-msgstr "该社群的所有 Zulip 许可证当前都在使用中。"
+msgid "All Aloha licenses for this organization are currently in use."
+msgstr "该社群的所有 Aloha 许可证当前都在使用中。"
 
 #: corporate/lib/registration.py:116
 #, python-brace-format
 msgid ""
-"Your organization does not have enough unused Zulip licenses to invite "
+"Your organization does not have enough unused Aloha licenses to invite "
 "{num_invites} users."
-msgstr "您的社群没有足够的未使用的 Zulip 许可证来邀请 {num_invites} 用户。"
+msgstr "您的社群没有足够的未使用的 Aloha 许可证来邀请 {num_invites} 用户。"
 
 #: corporate/lib/stripe.py:105
 msgid "You must invoice for at least {} users."
@@ -270,7 +270,7 @@ msgstr "服务器内部错误"
 #: templates/500.html:23
 msgid ""
 "\n"
-"                        Your Zulip chat cannot be loaded because the server is experiencing technical difficulties.\n"
+"                        Your Aloha chat cannot be loaded because the server is experiencing technical difficulties.\n"
 "                        "
 msgstr ""
 
@@ -285,7 +285,7 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"                            In the meantime, you can <a href=\"mailto:%(support_email)s\">contact Zulip support</a>.\n"
+"                            In the meantime, you can <a href=\"mailto:%(support_email)s\">contact Aloha support</a>.\n"
 "                            "
 msgstr ""
 
@@ -303,7 +303,7 @@ msgstr ""
 msgid ""
 "\n"
 "                            If you administer this server, you may want to check out the\n"
-"                            <a href=\"%(troubleshooting_url)s\">Zulip server troubleshooting guide</a>.\n"
+"                            <a href=\"%(troubleshooting_url)s\">Aloha server troubleshooting guide</a>.\n"
 "                            "
 msgstr ""
 
@@ -311,7 +311,7 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"    Analytics for %(target_name)s | Zulip\n"
+"    Analytics for %(target_name)s | Aloha\n"
 "    "
 msgstr ""
 
@@ -321,8 +321,8 @@ msgstr "组织创建24小时后方可查阅完整分析数据。"
 
 #: templates/analytics/stats.html:23
 #, python-format
-msgid "Zulip analytics for %(target_name)s"
-msgstr "Zulip分析之%(target_name)s"
+msgid "Aloha analytics for %(target_name)s"
+msgstr "Aloha分析之%(target_name)s"
 
 #: templates/analytics/stats.html:25
 msgid "Organization summary"
@@ -456,10 +456,10 @@ msgstr "电子邮件已修改！"
 #, python-format
 msgid ""
 "\n"
-"            This confirms that the email address for your Zulip account has changed\n"
+"            This confirms that the email address for your Aloha account has changed\n"
 "            from %(old_email_html_tag)s to %(new_email_html_tag)s\n"
 "            "
-msgstr "\n            确认一下嗷，Zulip社群的账户已经更改咯\n            从%(old_email_html_tag)s 更改为%(new_email_html_tag)s\n            "
+msgstr "\n            确认一下嗷，Aloha社群的账户已经更改咯\n            从%(old_email_html_tag)s 更改为%(new_email_html_tag)s\n            "
 
 #: templates/confirmation/confirm_preregistrationuser.html:5
 msgid "Confirming your email address"
@@ -536,8 +536,8 @@ msgid "All"
 msgstr "所有"
 
 #: templates/corporate/development-community.html:23
-msgid "The Zulip development community"
-msgstr "Zulip 开发社区"
+msgid "The Aloha development community"
+msgstr "Aloha 开发社区"
 
 #: templates/corporate/development-community.html:30
 #: templates/corporate/development-community.html:55
@@ -589,8 +589,8 @@ msgstr "查看定价"
 #: templates/corporate/for/research.html:42
 #: templates/corporate/for/research.html:408
 #: templates/corporate/for/use-cases.html:29
-msgid "Self-host Zulip"
-msgstr "自托管 Zulip"
+msgid "Self-host Aloha"
+msgstr "自托管 Aloha"
 
 #: templates/corporate/for/communities.html:37
 #: templates/corporate/for/communities.html:67
@@ -608,8 +608,8 @@ msgid "Education pricing"
 msgstr "教育定价"
 
 #: templates/corporate/hello.html:62
-msgid "Streams in Zulip"
-msgstr "Zulip中的频道"
+msgid "Streams in Aloha"
+msgstr "Aloha中的频道"
 
 #: templates/corporate/hello.html:66 templates/corporate/hello.html:81
 #: templates/corporate/hello.html:96
@@ -617,21 +617,21 @@ msgid "Streams in Slack"
 msgstr "Slack中的频道"
 
 #: templates/corporate/hello.html:77
-msgid "Topics in Zulip"
-msgstr "Zulip中的话题"
+msgid "Topics in Aloha"
+msgstr "Aloha中的话题"
 
 #: templates/corporate/hello.html:92
-msgid "Stream topics in Zulip"
-msgstr "Zulip中的频道话题"
+msgid "Stream topics in Aloha"
+msgstr "Aloha中的频道话题"
 
 #: templates/corporate/hello.html:104 templates/corporate/hello.html:105
 #: templates/corporate/hello.html:111 templates/corporate/hello.html:113
-msgid "The Tuesday night catering topic in Zulip"
-msgstr "Zulip中周二晚上的餐饮话题"
+msgid "The Tuesday night catering topic in Aloha"
+msgstr "Aloha中周二晚上的餐饮话题"
 
 #: templates/corporate/hello.html:115
-msgid "The Tuesday night catering topic in Zulip - compose box"
-msgstr "Zulip-组合框中周二晚上的餐饮话题"
+msgid "The Tuesday night catering topic in Aloha - compose box"
+msgstr "Aloha-组合框中周二晚上的餐饮话题"
 
 #: templates/corporate/hello.html:122 templates/corporate/hello.html:124
 msgid "The Tuesday night catering topic in Slack"
@@ -686,8 +686,8 @@ msgid "Features & pricing"
 msgstr "功能和定价"
 
 #: templates/corporate/self-hosting.html:31
-msgid "Zulip for business"
-msgstr "商务用Zulip"
+msgid "Aloha for business"
+msgstr "商务用Aloha"
 
 #: templates/corporate/support_request.html:7 templates/zerver/footer.html:94
 msgid "Contact support"
@@ -729,7 +729,7 @@ msgstr ""
 msgid ""
 "\n"
 "            You can find answers to frequently asked questions in the\n"
-"            <a href=\"/help/\">Zulip help center</a>.\n"
+"            <a href=\"/help/\">Aloha help center</a>.\n"
 "            "
 msgstr ""
 
@@ -790,9 +790,9 @@ msgstr "如果您的社群没有网站，请留空。"
 #: templates/corporate/zulipchat_migration_tos.html:3
 msgid ""
 "\n"
-"        This team chat is now being hosted on Zulip Cloud. Please accept the <a href=\"https://zulip.com/policies/terms\">Zulip Terms of Service</a> to continue.\n"
+"        This team chat is now being hosted on Aloha Cloud. Please accept the <a href=\"https://zulip.com/policies/terms\">Aloha Terms of Service</a> to continue.\n"
 "        "
-msgstr "\n这个团队聊天现在托管在 Zulip Cloud 上。请接受<a href=\"https://zulip.com/policies/terms\">Zulip 服务条款</a>以继续。"
+msgstr "\n这个团队聊天现在托管在 Aloha Cloud 上。请接受<a href=\"https://zulip.com/policies/terms\">Aloha 服务条款</a>以继续。"
 
 #: templates/two_factor/_wizard_forms.html:26
 msgid "Or, alternatively, use one of your backup phones:"
@@ -837,8 +837,8 @@ msgid "Sign up"
 msgstr "注册"
 
 #: templates/zerver/accounts_home.html:18
-msgid "Sign up for Zulip"
-msgstr "注册Zulip"
+msgid "Sign up for Aloha"
+msgstr "注册Aloha"
 
 #: templates/zerver/accounts_home.html:37
 msgid "You need an invitation to join this organization."
@@ -885,8 +885,8 @@ msgid ""
 msgstr ""
 
 #: templates/zerver/app/index.html:110
-msgid "Unable to connect to Zulip."
-msgstr "无法连接到 Zulip。"
+msgid "Unable to connect to Aloha."
+msgstr "无法连接到 Aloha。"
 
 #: templates/zerver/app/index.html:111
 msgid "Updates may be delayed."
@@ -929,8 +929,8 @@ msgstr ""
 #: templates/zerver/emails/followup_day2.txt:17
 #: templates/zerver/landing_nav.html:13 templates/zerver/portico-header.html:5
 #: templates/zerver/portico-header.html:9
-msgid "Zulip"
-msgstr "Zulip"
+msgid "Aloha"
+msgstr "Aloha"
 
 #: templates/zerver/close_window.html:5
 msgid "Video call ended"
@@ -958,8 +958,8 @@ msgid "Account not found"
 msgstr ""
 
 #: templates/zerver/confirm_continue_registration.html:14
-msgid "Zulip account not found."
-msgstr "未找到Zulip帐户。"
+msgid "Aloha account not found."
+msgstr "未找到Aloha帐户。"
 
 #: templates/zerver/confirm_continue_registration.html:18
 #, python-format
@@ -982,8 +982,8 @@ msgid "Create a new organization"
 msgstr "创建新的组织"
 
 #: templates/zerver/create_realm.html:16
-msgid "Create a new Zulip organization"
-msgstr "创建一个新的Zulip社群"
+msgid "Create a new Aloha organization"
+msgstr "创建一个新的Aloha社群"
 
 #: templates/zerver/create_realm.html:24 templates/zerver/reset.html:27
 msgid "Enter your email address"
@@ -1054,8 +1054,8 @@ msgstr ""
 
 #: templates/zerver/desktop_redirect.html:12
 msgid ""
-"Copy this login token and return to your Zulip app to finish logging in:"
-msgstr "复制此登录令牌并返回您的 Zulip 应用程序以完成登录："
+"Copy this login token and return to your Aloha app to finish logging in:"
+msgstr "复制此登录令牌并返回您的 Aloha 应用程序以完成登录："
 
 #: templates/zerver/desktop_redirect.html:17
 msgid "Copy"
@@ -1108,10 +1108,10 @@ msgstr "您好"
 #: templates/zerver/emails/confirm_new_email.txt:4
 #, python-format
 msgid ""
-"We received a request to change the email address for the Zulip account on "
+"We received a request to change the email address for the Aloha account on "
 "%(realm_uri)s from %(old_email)s to %(new_email)s. To confirm this change, "
 "please click below:"
-msgstr "我们收到您的Zulip账户%(realm_uri)s电子邮件地址由%(old_email)s变更为%(new_email)s的请求。如果确认更改，请点击下面："
+msgstr "我们收到您的Aloha账户%(realm_uri)s电子邮件地址由%(old_email)s变更为%(new_email)s的请求。如果确认更改，请点击下面："
 
 #: templates/zerver/emails/confirm_new_email.source.html:11
 msgid "Confirm email change"
@@ -1137,13 +1137,13 @@ msgstr "如果不是你请求的变更，请立即联系我们<%(support_email)s
 
 #: templates/zerver/emails/confirm_registration.source.html:10
 #: templates/zerver/emails/confirm_registration.txt:2
-msgid "You have requested a new Zulip organization. Awesome!"
-msgstr "您请求了一个新的 Zulip 社群。惊人的！"
+msgid "You have requested a new Aloha organization. Awesome!"
+msgstr "您请求了一个新的 Aloha 社群。惊人的！"
 
 #: templates/zerver/emails/confirm_registration.source.html:12
 #: templates/zerver/emails/confirm_registration.txt:4
-msgid "You recently signed up for Zulip. Awesome!"
-msgstr "您刚刚注册了Zulip，太棒了！"
+msgid "You recently signed up for Aloha. Awesome!"
+msgstr "您刚刚注册了Aloha，太棒了！"
 
 #: templates/zerver/emails/confirm_registration.source.html:17
 #: templates/zerver/emails/confirm_registration.txt:8
@@ -1173,12 +1173,12 @@ msgid ""
 msgstr "如果您遇到任何麻烦，有问题需要反馈，或仅仅想聊聊天，任何时间都可以通过%(support_email)s联系我们。"
 
 #: templates/zerver/emails/confirm_registration.subject.txt:2
-msgid "Create your Zulip organization"
-msgstr "创建您的 Zulip 社群"
+msgid "Create your Aloha organization"
+msgstr "创建您的 Aloha 社群"
 
 #: templates/zerver/emails/confirm_registration.subject.txt:4
-msgid "Activate your Zulip account"
-msgstr "激活您的Zulip账户"
+msgid "Activate your Aloha account"
+msgstr "激活您的Aloha账户"
 
 #: templates/zerver/emails/confirm_registration.txt:14
 #: templates/zerver/emails/invitation.txt:8
@@ -1203,7 +1203,7 @@ msgstr "退订营销电子邮件"
 #, python-format
 msgid ""
 "\n"
-"Your Zulip account on <a href=\"%(realm_uri)s\">%(realm_uri)s</a> has been deactivated, and you will no longer be able to log in.\n"
+"Your Aloha account on <a href=\"%(realm_uri)s\">%(realm_uri)s</a> has been deactivated, and you will no longer be able to log in.\n"
 msgstr ""
 
 #: templates/zerver/emails/deactivate.source.html:15
@@ -1220,7 +1220,7 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"Your Zulip account on %(realm_uri)s has been deactivated, and you will no longer be able to log in.\n"
+"Your Aloha account on %(realm_uri)s has been deactivated, and you will no longer be able to log in.\n"
 msgstr ""
 
 #: templates/zerver/emails/digest.source.html:27
@@ -1228,8 +1228,8 @@ msgid "New streams"
 msgstr "新频道"
 
 #: templates/zerver/emails/digest.source.html:34
-msgid "Click here to log in to Zulip and catch up."
-msgstr "单击此处登录 Zulip 。"
+msgid "Click here to log in to Aloha and catch up."
+msgstr "单击此处登录 Aloha 。"
 
 #: templates/zerver/emails/digest.source.html:40
 msgid "Unsubscribe from digest emails"
@@ -1237,13 +1237,13 @@ msgstr "退订摘要电子邮件"
 
 #: templates/zerver/emails/digest.subject.txt:1
 #, python-format
-msgid "Zulip digest for %(realm_name)s"
-msgstr "%(realm_name)s 的 Zulip 消息摘要"
+msgid "Aloha digest for %(realm_name)s"
+msgstr "%(realm_name)s 的 Aloha 消息摘要"
 
 #: templates/zerver/emails/digest.txt:12
 #, python-format
-msgid "Click here to log in to Zulip and catch up: %(organization_uri)s."
-msgstr "单击此处登录 Zulip 并赶上：%(organization_uri)s。"
+msgid "Click here to log in to Aloha and catch up: %(organization_uri)s."
+msgstr "单击此处登录 Aloha 并赶上：%(organization_uri)s。"
 
 #: templates/zerver/emails/digest.txt:15
 #: templates/zerver/emails/followup_day2.txt:19
@@ -1267,54 +1267,54 @@ msgstr "感谢您提交的需求！"
 #: templates/zerver/emails/find_team.source.html:10
 #, python-format
 msgid ""
-"Your email address %(email)s has accounts with the following Zulip "
+"Your email address %(email)s has accounts with the following Aloha "
 "organizations hosted by <a href=\"%(external_host)s\">%(external_host)s</a>:"
-msgstr "您的电子邮件地址 %(email)s 拥有以下由 %(external_host)s 托管的<a href=\"%(external_host)s\">Zulip</a>社群的帐户："
+msgstr "您的电子邮件地址 %(email)s 拥有以下由 %(external_host)s 托管的<a href=\"%(external_host)s\">Aloha</a>社群的帐户："
 
 #: templates/zerver/emails/find_team.source.html:18
 #: templates/zerver/emails/find_team.txt:10
 msgid ""
-"If you have trouble logging in, please contact Zulip support by replying to "
+"If you have trouble logging in, please contact Aloha support by replying to "
 "this email."
-msgstr "如果您登录遇到问题，请通过回复这封邮件联系Zulip支持团队"
+msgstr "如果您登录遇到问题，请通过回复这封邮件联系Aloha支持团队"
 
 #: templates/zerver/emails/find_team.source.html:20
 #: templates/zerver/emails/find_team.txt:13
-msgid "Thanks for using Zulip!"
-msgstr "感谢您使用Zulip！"
+msgid "Thanks for using Aloha!"
+msgstr "感谢您使用Aloha！"
 
 #: templates/zerver/emails/find_team.subject.txt:1
-msgid "Your Zulip accounts"
-msgstr "您的 Zulip 帐户"
+msgid "Your Aloha accounts"
+msgstr "您的 Aloha 帐户"
 
 #: templates/zerver/emails/find_team.txt:3
 #, python-format
 msgid ""
-"Your email address %(email)s has accounts with the following Zulip "
+"Your email address %(email)s has accounts with the following Aloha "
 "organizations hosted by %(external_host)s:"
-msgstr "您的电子邮件地址 %(email)s 拥有以下由 %(external_host)s 托管的 Zulip 社群的帐户："
+msgstr "您的电子邮件地址 %(email)s 拥有以下由 %(external_host)s 托管的 Aloha 社群的帐户："
 
 #: templates/zerver/emails/followup_day1.source.html:8
 #: templates/zerver/emails/followup_day1.txt:1
-msgid "Welcome to Zulip!"
-msgstr "欢迎访问Zulip！"
+msgid "Welcome to Aloha!"
+msgstr "欢迎访问Aloha！"
 
 #: templates/zerver/emails/followup_day1.source.html:13
 msgid ""
-"You've created a demo Zulip organization. Note that this organization will "
+"You've created a demo Aloha organization. Note that this organization will "
 "be automatically deleted in 30 days. Learn more about demo organizations <a "
 "href=\"https://zulip.com/help/demo-organizations\">here</a>!"
-msgstr "您已经创建了一个演示 Zulip 社群。请注意，此社群将在 30 天内自动删除。<a href=\"https://zulip.com/help/demo-organizations\">在此处</a>了解有关演示社群的更多信息！"
+msgstr "您已经创建了一个演示 Aloha 社群。请注意，此社群将在 30 天内自动删除。<a href=\"https://zulip.com/help/demo-organizations\">在此处</a>了解有关演示社群的更多信息！"
 
 #: templates/zerver/emails/followup_day1.source.html:15
 #, python-format
-msgid "You've created the new Zulip organization <b>%(realm_name)s</b>."
-msgstr "您创建了新的Zulip社群<b>%(realm_name)s</b>"
+msgid "You've created the new Aloha organization <b>%(realm_name)s</b>."
+msgstr "您创建了新的Aloha社群<b>%(realm_name)s</b>"
 
 #: templates/zerver/emails/followup_day1.source.html:18
 #, python-format
-msgid "You've joined the Zulip organization <b>%(realm_name)s</b>."
-msgstr "您加入了Zulip社群<b>%(realm_name)s</b>"
+msgid "You've joined the Aloha organization <b>%(realm_name)s</b>."
+msgstr "您加入了Aloha社群<b>%(realm_name)s</b>"
 
 #: templates/zerver/emails/followup_day1.source.html:23
 #: templates/zerver/emails/followup_day1.txt:15
@@ -1355,18 +1355,18 @@ msgstr "（您需要这些才能登录<a href=\"%(apps_page_link)s\">移动和�
 #, python-format
 msgid ""
 "Check out our <a href=\"%(getting_started_link)s\">guide for admins</a>, "
-"become a Zulip pro with a few <a "
+"become a Aloha pro with a few <a "
 "href=\"%(keyboard_shortcuts_link)s\">keyboard shortcuts</a>, or <a "
 "href=\"%(realm_uri)s\">dive right in</a>!"
-msgstr "查看我们的<a href=\"%(getting_started_link)s\">管理员向导</a>，<a href=\"%(keyboard_shortcuts_link)s\">快捷键</a>帮助更方便的使用Zulip，或者<a href=\"%(realm_uri)s\">直接进入</a>"
+msgstr "查看我们的<a href=\"%(getting_started_link)s\">管理员向导</a>，<a href=\"%(keyboard_shortcuts_link)s\">快捷键</a>帮助更方便的使用Aloha，或者<a href=\"%(realm_uri)s\">直接进入</a>"
 
 #: templates/zerver/emails/followup_day1.source.html:43
 #, python-format
 msgid ""
-"<a href=\"%(getting_started_link)s\">Learn more</a> about Zulip, become a "
+"<a href=\"%(getting_started_link)s\">Learn more</a> about Aloha, become a "
 "pro with a few <a href=\"%(keyboard_shortcuts_link)s\">keyboard "
 "shortcuts</a>, or <a href=\"%(realm_uri)s\">dive right in</a>!"
-msgstr "<a href=\"%(getting_started_link)s\">了解更多</a>关于Zulip的操作，<a href=\"%(keyboard_shortcuts_link)s\">快捷键</a>帮助更方便的使用Zulip，或者<a href=\"%(realm_uri)s\">直接进入</a>"
+msgstr "<a href=\"%(getting_started_link)s\">了解更多</a>关于Aloha的操作，<a href=\"%(keyboard_shortcuts_link)s\">快捷键</a>帮助更方便的使用Aloha，或者<a href=\"%(realm_uri)s\">直接进入</a>"
 
 #: templates/zerver/emails/followup_day1.source.html:48
 #: templates/zerver/emails/followup_day1.txt:36
@@ -1377,44 +1377,44 @@ msgstr "感谢"
 #: templates/zerver/emails/followup_day1.txt:37
 #: templates/zerver/emails/notify_change_in_email.source.html:14
 #: templates/zerver/emails/notify_change_in_email.txt:7
-msgid "Team Zulip"
-msgstr "Zulip团队"
+msgid "Team Aloha"
+msgstr "Aloha团队"
 
 #: templates/zerver/emails/followup_day1.source.html:53
 msgid ""
 "PS: Follow us on <a href=\"https://twitter.com/zulip\">Twitter</a>, star us "
 "on <a href=\"https://github.com/zulip/zulip\">GitHub</a>, or chat with us "
-"live on the <a href=\"https://zulip.com/development-community/\">Zulip "
+"live on the <a href=\"https://zulip.com/development-community/\">Aloha "
 "community server</a>!"
-msgstr "PS：在<a href=\"https://twitter.com/zulip\">Twitter 上</a>关注我们，在<a href=\"https://github.com/zulip/zulip\">GitHub 上</a>为我们加注星标，或在<a href=\"https://zulip.com/development-community/\">Zulip 社区服务器</a>上与我们实时聊天！"
+msgstr "PS：在<a href=\"https://twitter.com/zulip\">Twitter 上</a>关注我们，在<a href=\"https://github.com/zulip/zulip\">GitHub 上</a>为我们加注星标，或在<a href=\"https://zulip.com/development-community/\">Aloha 社区服务器</a>上与我们实时聊天！"
 
 #: templates/zerver/emails/followup_day1.subject.txt:2
 #, python-format
-msgid "%(realm_name)s on Zulip: Your new organization details"
-msgstr "Zulip社群%(realm_name)s：您的新社群详情"
+msgid "%(realm_name)s on Aloha: Your new organization details"
+msgstr "Aloha社群%(realm_name)s：您的新社群详情"
 
 #: templates/zerver/emails/followup_day1.subject.txt:4
 #, python-format
-msgid "%(realm_name)s on Zulip: Your new account details"
-msgstr "Zulip组织%(realm_name)s：您的新账户详情"
+msgid "%(realm_name)s on Aloha: Your new account details"
+msgstr "Aloha组织%(realm_name)s：您的新账户详情"
 
 #: templates/zerver/emails/followup_day1.txt:5
 msgid ""
-"You've created a demo Zulip organization. Note that this organization will "
+"You've created a demo Aloha organization. Note that this organization will "
 "be automatically deleted in 30 days. Learn more about demo organizations "
 "here: https://zulip.com/help/demo-organizations"
-msgstr "您已经创建了一个演示 Zulip 社群。请注意，此社群将在 30 天内自动删除。在此处了解有关演示社群的更多信息：https://zulip.com/help/demo-organizations"
+msgstr "您已经创建了一个演示 Aloha 社群。请注意，此社群将在 30 天内自动删除。在此处了解有关演示社群的更多信息：https://zulip.com/help/demo-organizations"
 
 #: templates/zerver/emails/followup_day1.txt:7
 #: templates/zerver/emails/followup_day1.txt:9
 #, python-format
-msgid "You've created the new Zulip organization %(realm_name)s."
-msgstr "您创建了新的Zulip社群%(realm_name)s"
+msgid "You've created the new Aloha organization %(realm_name)s."
+msgstr "您创建了新的Aloha社群%(realm_name)s"
 
 #: templates/zerver/emails/followup_day1.txt:11
 #, python-format
-msgid "You've joined the Zulip organization %(realm_name)s."
-msgstr "您加入了Zulip社群%(realm_name)s"
+msgid "You've joined the Aloha organization %(realm_name)s."
+msgstr "您加入了Aloha社群%(realm_name)s"
 
 #: templates/zerver/emails/followup_day1.txt:26
 #, python-format
@@ -1426,25 +1426,25 @@ msgstr "（您需要这些才能登录移动和桌面应用程序 (%(apps_page_l
 #: templates/zerver/emails/followup_day1.txt:30
 #, python-format
 msgid ""
-"Check out our guide (%(getting_started_link)s) for admins, become a Zulip "
+"Check out our guide (%(getting_started_link)s) for admins, become a Aloha "
 "pro with a few keyboard shortcuts (%(keyboard_shortcuts_link)s), or dive "
 "right in to %(realm_uri)s!"
-msgstr "查看我们的管理员向导（%(getting_started_link)s），快捷键（%(keyboard_shortcuts_link)s）帮助更方便的使用Zulip，或者直接进入%(realm_uri)s"
+msgstr "查看我们的管理员向导（%(getting_started_link)s），快捷键（%(keyboard_shortcuts_link)s）帮助更方便的使用Aloha，或者直接进入%(realm_uri)s"
 
 #: templates/zerver/emails/followup_day1.txt:32
 #, python-format
 msgid ""
-"Learn more (%(getting_started_link)s) about Zulip, become a pro with a few "
+"Learn more (%(getting_started_link)s) about Aloha, become a pro with a few "
 "keyboard shortcuts (%(keyboard_shortcuts_link)s), or dive right in to "
 "%(realm_uri)s!"
-msgstr "了解更多（%(getting_started_link)s）关于Zulip的操作，快捷键（%(keyboard_shortcuts_link)s）帮助更方便的使用Zulip，或者直接进入%(realm_uri)s"
+msgstr "了解更多（%(getting_started_link)s）关于Aloha的操作，快捷键（%(keyboard_shortcuts_link)s）帮助更方便的使用Aloha，或者直接进入%(realm_uri)s"
 
 #: templates/zerver/emails/followup_day1.txt:39
 msgid ""
 "PS: Check us out on Twitter (@zulip), star us on GitHub "
-"(https://github.com/zulip/zulip), or chat with us live on the Zulip "
+"(https://github.com/zulip/zulip), or chat with us live on the Aloha "
 "community server (https://zulip.com/development-community/)!"
-msgstr "PS：在 Twitter (@zulip) 上查看我们，在 GitHub 上为我们加注星标 (https://github.com/zulip/zulip)，或者在 Zulip 社区服务器上与我们实时聊天 (https://zulip.com/development-community/)！"
+msgstr "PS：在 Twitter (@zulip) 上查看我们，在 GitHub 上为我们加注星标 (https://github.com/zulip/zulip)，或者在 Aloha 社区服务器上与我们实时聊天 (https://zulip.com/development-community/)！"
 
 #: templates/zerver/emails/followup_day2.source.html:8
 #: templates/zerver/emails/followup_day2.txt:1
@@ -1455,8 +1455,8 @@ msgstr "嗨,"
 #: templates/zerver/emails/followup_day2.txt:3
 msgid ""
 "I wanted to share one last thing with you: a few tips about topics, since "
-"mastering topics is a key part of being a Zulip power user."
-msgstr "我想和你们分享最后一件事:关于主题的一些技巧，因为掌握主题是成为Zulip高级用户的关键部分。"
+"mastering topics is a key part of being a Aloha power user."
+msgstr "我想和你们分享最后一件事:关于主题的一些技巧，因为掌握主题是成为Aloha高级用户的关键部分。"
 
 #: templates/zerver/emails/followup_day2.source.html:12
 msgid "Examples of short topics"
@@ -1543,9 +1543,9 @@ msgstr "您好"
 #: templates/zerver/emails/invitation.source.html:12
 #, python-format
 msgid ""
-"%(referrer_name)s wants you to join them on Zulip &mdash; the team "
+"%(referrer_name)s wants you to join them on Aloha &mdash; the team "
 "communication tool designed for productivity."
-msgstr "%(referrer_name)s 希望您加入他们的 Zulip — 专为提高生产力而设计的团队沟通工具。"
+msgstr "%(referrer_name)s 希望您加入他们的 Aloha — 专为提高生产力而设计的团队沟通工具。"
 
 #: templates/zerver/emails/invitation.source.html:15
 #: templates/zerver/emails/invitation_reminder.source.html:13
@@ -1560,9 +1560,9 @@ msgstr "%(referrer_full_name)s 邀请您加入 %(referrer_realm_name)s"
 #: templates/zerver/emails/invitation.txt:3
 #, python-format
 msgid ""
-"%(referrer_full_name)s (%(referrer_email)s) wants you to join them on Zulip "
+"%(referrer_full_name)s (%(referrer_email)s) wants you to join them on Aloha "
 "-- the team communication tool designed for productivity."
-msgstr "%(referrer_full_name)s(%(referrer_email)s)邀请您加入他们的Zulip—高效的团队交流工具"
+msgstr "%(referrer_full_name)s(%(referrer_email)s)邀请您加入他们的Aloha—高效的团队交流工具"
 
 #: templates/zerver/emails/invitation.txt:5
 #: templates/zerver/emails/invitation_reminder.txt:5
@@ -1578,8 +1578,8 @@ msgstr "又见面了"
 #, python-format
 msgid ""
 "This is a friendly reminder that %(referrer_name)s wants you to join them on"
-" Zulip &mdash; the team communication tool designed for productivity."
-msgstr "这是一个友好的提醒，%(referrer_name)s 希望您加入他们的 Zulip - 专为提高生产力而设计的团队沟通工具。"
+" Aloha &mdash; the team communication tool designed for productivity."
+msgstr "这是一个友好的提醒，%(referrer_name)s 希望您加入他们的 Aloha - 专为提高生产力而设计的团队沟通工具。"
 
 #: templates/zerver/emails/invitation_reminder.source.html:18
 #: templates/zerver/emails/invitation_reminder.txt:8
@@ -1604,9 +1604,9 @@ msgstr "提示：%(referrer_name)s加入了%(referrer_realm_name)s"
 #, python-format
 msgid ""
 "This is a friendly reminder that %(referrer_name)s (%(referrer_email)s) "
-"wants you to join them on Zulip -- the team communication tool designed for "
+"wants you to join them on Aloha -- the team communication tool designed for "
 "productivity."
-msgstr "友情提示：%(referrer_name)s（%(referrer_email)s）邀请您加入他们的Zulip — 一个能大大提高工作效率的团队交流工具。"
+msgstr "友情提示：%(referrer_name)s（%(referrer_email)s）邀请您加入他们的Aloha — 一个能大大提高工作效率的团队交流工具。"
 
 #: templates/zerver/emails/invitation_reminder.txt:10
 #, python-format
@@ -1662,21 +1662,21 @@ msgstr ""
 #, python-format
 msgid ""
 "Reply to this email directly, <a href=\"%(narrow_url)s\">view it in "
-"%(realm_name)s Zulip</a>, or <a href=\"%(notif_url)s\">manage email "
+"%(realm_name)s Aloha</a>, or <a href=\"%(notif_url)s\">manage email "
 "preferences</a>."
 msgstr ""
 
 #: templates/zerver/emails/missed_message.source.html:40
 #, python-format
 msgid ""
-"<a href=\"%(narrow_url)s\">View or reply in %(realm_name)s Zulip</a>, or <a "
+"<a href=\"%(narrow_url)s\">View or reply in %(realm_name)s Aloha</a>, or <a "
 "href=\"%(notif_url)s\">manage email preferences</a>."
 msgstr ""
 
 #: templates/zerver/emails/missed_message.source.html:42
 #, python-format
 msgid ""
-"<a href=\"%(narrow_url)s\">Reply in %(realm_name)s Zulip</a>, or <a "
+"<a href=\"%(narrow_url)s\">Reply in %(realm_name)s Aloha</a>, or <a "
 "href=\"%(notif_url)s\">manage email preferences</a>."
 msgstr ""
 
@@ -1684,7 +1684,7 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"    Do not reply to this email. This Zulip server is not configured to accept incoming emails (<a href=\"%(url)s\">help</a>).\n"
+"    Do not reply to this email. This Aloha server is not configured to accept incoming emails (<a href=\"%(url)s\">help</a>).\n"
 "    "
 msgstr "\n    请勿回复此电子邮件。 (<a href=\"%(url)s\">help</a>).\n    "
 
@@ -1720,23 +1720,23 @@ msgstr "\n此电子邮件不包含消息内容，因为您已禁用出现在电�
 
 #: templates/zerver/emails/missed_message.txt:35
 #, python-format
-msgid "Reply to this email directly, or view it in %(realm_name)s Zulip:"
+msgid "Reply to this email directly, or view it in %(realm_name)s Aloha:"
 msgstr ""
 
 #: templates/zerver/emails/missed_message.txt:39
 #, python-format
-msgid "View or reply in %(realm_name)s Zulip:"
+msgid "View or reply in %(realm_name)s Aloha:"
 msgstr ""
 
 #: templates/zerver/emails/missed_message.txt:43
 #, python-format
-msgid "Reply in %(realm_name)s Zulip:"
+msgid "Reply in %(realm_name)s Aloha:"
 msgstr ""
 
 #: templates/zerver/emails/missed_message.txt:47
 msgid ""
 "\n"
-"Do not reply to this email. This Zulip server is not configured to accept\n"
+"Do not reply to this email. This Aloha server is not configured to accept\n"
 "incoming emails. Help:\n"
 msgstr "\n请勿回复次邮件. Help:\n"
 
@@ -1747,10 +1747,10 @@ msgstr "管理电子邮件首选项："
 #: templates/zerver/emails/notify_change_in_email.source.html:10
 #, python-format
 msgid ""
-"The email associated with your Zulip account was recently changed to "
+"The email associated with your Aloha account was recently changed to "
 "%(new_email)s. If you did not request this change, please contact us "
 "immediately at %(support_email)s."
-msgstr "与您的 Zulip 帐户关联的电子邮件最近更改为 %(new_email)s。如果您未请求此更改，请立即通过 %(support_email)s 与我们联系。"
+msgstr "与您的 Aloha 帐户关联的电子邮件最近更改为 %(new_email)s。如果您未请求此更改，请立即通过 %(support_email)s 与我们联系。"
 
 #: templates/zerver/emails/notify_change_in_email.source.html:13
 #: templates/zerver/emails/notify_change_in_email.txt:6
@@ -1759,16 +1759,16 @@ msgstr "最好"
 
 #: templates/zerver/emails/notify_change_in_email.subject.txt:1
 #, python-format
-msgid "Zulip email changed for %(realm_name)s"
-msgstr "Zulip电子邮件更改为%(realm_name)s"
+msgid "Aloha email changed for %(realm_name)s"
+msgstr "Aloha电子邮件更改为%(realm_name)s"
 
 #: templates/zerver/emails/notify_change_in_email.txt:3
 #, python-format
 msgid ""
-"The email associated with your Zulip account was recently changed to "
+"The email associated with your Aloha account was recently changed to "
 "%(new_email)s. If you did not request this change, please contact us "
 "immediately at <%(support_email)s>."
-msgstr "您Zulip账户关联的电子邮件变更为%(new_email)s。如果不是你请求的变更请立即联系我们<%(support_email)s>。"
+msgstr "您Aloha账户关联的电子邮件变更为%(new_email)s。如果不是你请求的变更请立即联系我们<%(support_email)s>。"
 
 #: templates/zerver/emails/notify_new_login.source.html:4
 #, python-format
@@ -1779,8 +1779,8 @@ msgstr "社群：%(organization_url)s时间：%(login_time)s电子邮件：%(use
 
 #: templates/zerver/emails/notify_new_login.source.html:12
 #: templates/zerver/emails/notify_new_login.txt:1
-msgid "We noticed a recent login for the following Zulip account."
-msgstr "我们注意到最近登录了以下Zulip帐户。"
+msgid "We noticed a recent login for the following Aloha account."
+msgstr "我们注意到最近登录了以下Aloha帐户。"
 
 #: templates/zerver/emails/notify_new_login.source.html:16
 #, python-format
@@ -1826,8 +1826,8 @@ msgstr "如果您不认识此登录名，或者认为您的帐户可能已被盗
 
 #: templates/zerver/emails/notify_new_login.source.html:41
 #: templates/zerver/emails/notify_new_login.txt:21
-msgid "Zulip Security"
-msgstr "Zulip安全"
+msgid "Aloha Security"
+msgstr "Aloha安全"
 
 #: templates/zerver/emails/notify_new_login.source.html:46
 msgid "Unsubscribe from login notifications"
@@ -1854,9 +1854,9 @@ msgstr "\n如果您不认识此登录名，或认为您的帐户可能已被盗�
 #: templates/zerver/emails/password_reset.txt:1
 #, python-format
 msgid ""
-"Somebody (possibly you) requested a new password for the Zulip account "
+"Somebody (possibly you) requested a new password for the Aloha account "
 "%(email)s on %(realm_uri)s."
-msgstr "有人（可能是你）为%(realm_uri)s社群的Zulip账户%(email)s请求一个新的密码。"
+msgstr "有人（可能是你）为%(realm_uri)s社群的Aloha账户%(email)s请求一个新的密码。"
 
 #: templates/zerver/emails/password_reset.source.html:13
 msgid "Click the button below to reset your password."
@@ -1876,8 +1876,8 @@ msgstr "您之前在 %(organization_url)s 上拥有一个帐户，但它已被�
 
 #: templates/zerver/emails/password_reset.source.html:21
 #: templates/zerver/emails/password_reset.txt:11
-msgid "You do not have an account in that Zulip organization."
-msgstr "您在那个Zulip社群中还没有账户"
+msgid "You do not have an account in that Aloha organization."
+msgstr "您在那个Aloha社群中还没有账户"
 
 #: templates/zerver/emails/password_reset.source.html:26
 #: templates/zerver/emails/password_reset.txt:16
@@ -1917,18 +1917,18 @@ msgstr "您在社群%(realm_uri)s中已有账号，但是被禁用了。您可�
 #, python-format
 msgid ""
 "\n"
-"    Your organization, %(organization_name_with_link)s, has been downgraded to the Zulip Cloud\n"
+"    Your organization, %(organization_name_with_link)s, has been downgraded to the Aloha Cloud\n"
 "    Free plan because of unpaid invoices. The unpaid invoices have been voided.\n"
 "    "
-msgstr "\n由于未付账单，您的组织 %(organization_name_with_link)s 已降级为 Zulip Cloud Free 计划。未付账单已作废。"
+msgstr "\n由于未付账单，您的组织 %(organization_name_with_link)s 已降级为 Aloha Cloud Free 计划。未付账单已作废。"
 
 #: templates/zerver/emails/realm_auto_downgraded.source.html:15
 #, python-format
 msgid ""
 "\n"
-"    To continue on the Zulip Cloud Standard plan, please upgrade again by going to %(upgrade_url)s.\n"
+"    To continue on the Aloha Cloud Standard plan, please upgrade again by going to %(upgrade_url)s.\n"
 "    "
-msgstr "\n要继续使用 Zulip Cloud 标准计划，请转到 %(upgrade_url)s 再次升级。"
+msgstr "\n要继续使用 Aloha Cloud 标准计划，请转到 %(upgrade_url)s 再次升级。"
 
 #: templates/zerver/emails/realm_auto_downgraded.source.html:22
 #, python-format
@@ -1949,8 +1949,8 @@ msgstr "尊敬的%(realm_name)s前管理员"
 #, python-format
 msgid ""
 "One of your administrators requested reactivation of the previously "
-"deactivated Zulip organization hosted at %(realm_uri)s."
-msgstr "您的一个管理员请求重新激活以前已停用Zulip社群，社群的地址是%(realm_uri)s。"
+"deactivated Aloha organization hosted at %(realm_uri)s."
+msgstr "您的一个管理员请求重新激活以前已停用Aloha社群，社群的地址是%(realm_uri)s。"
 
 #: templates/zerver/emails/realm_reactivation.source.html:13
 msgid "Click the button below to reactivate your organization."
@@ -1968,8 +1968,8 @@ msgid ""
 msgstr "如果请求是错误的，您可以不采取任何行动，这个链接将在24小时内过期。"
 
 #: templates/zerver/emails/realm_reactivation.subject.txt:1
-msgid "Reactivate your Zulip organization"
-msgstr "重新激活您的Zulip组织"
+msgid "Reactivate your Aloha organization"
+msgstr "重新激活您的Aloha组织"
 
 #: templates/zerver/emails/realm_reactivation.txt:7
 msgid "Click the link below to reactivate your organization."
@@ -1980,8 +1980,8 @@ msgid "Find your accounts"
 msgstr ""
 
 #: templates/zerver/find_account.html:12
-msgid "Find your Zulip accounts"
-msgstr "查找你的Zulip账户"
+msgid "Find your Aloha accounts"
+msgstr "查找你的Aloha账户"
 
 #: templates/zerver/find_account.html:45
 msgid "Email addresses"
@@ -2000,8 +2000,8 @@ msgid "Home"
 msgstr "主页"
 
 #: templates/zerver/footer.html:7
-msgid "Why Zulip"
-msgstr "为什么选择Zulip"
+msgid "Why Aloha"
+msgstr "为什么选择Aloha"
 
 #: templates/zerver/footer.html:8
 msgid "Features"
@@ -2128,16 +2128,16 @@ msgid "Setting up your organization"
 msgstr "设置您的社群"
 
 #: templates/zerver/footer.html:111
-msgid "Installing a Zulip server"
-msgstr "安装 Zulip 服务器"
+msgid "Installing a Aloha server"
+msgstr "安装 Aloha 服务器"
 
 #: templates/zerver/footer.html:116
-msgid "Upgrading a Zulip server"
-msgstr "升级 Zulip 服务器"
+msgid "Upgrading a Aloha server"
+msgstr "升级 Aloha 服务器"
 
 #: templates/zerver/footer.html:121
-msgid "Modifying Zulip"
-msgstr "修改 Zulip"
+msgid "Modifying Aloha"
+msgstr "修改 Aloha"
 
 #: templates/zerver/footer.html:127
 msgid "For contributors"
@@ -2180,7 +2180,7 @@ msgid "Website attributions"
 msgstr "网站归因"
 
 #: templates/zerver/footer.html:151
-msgid "Sponsor Zulip"
+msgid "Sponsor Aloha"
 msgstr "赞助商祖利普"
 
 #: templates/zerver/footer.html:167
@@ -2190,7 +2190,7 @@ msgstr ""
 #: templates/zerver/footer.html:175
 msgid ""
 "\n"
-"                Powered by <a href=\"https://zulip.com\" class=\"coloured-text\">Zulip</a>\n"
+"                Powered by <a href=\"https://zulip.com\" class=\"coloured-text\">Aloha</a>\n"
 "                "
 msgstr ""
 
@@ -2202,18 +2202,18 @@ msgstr "更新需求"
 #: templates/zerver/insecure_desktop_app.html:17
 msgid ""
 "\n"
-"                        You are using old version of the Zulip desktop\n"
+"                        You are using old version of the Aloha desktop\n"
 "                        app that is no longer supported.\n"
 "                        "
-msgstr "\n您使用的是不再受支持的旧版 Zulip 桌面应用程序。"
+msgstr "\n您使用的是不再受支持的旧版 Aloha 桌面应用程序。"
 
 #: templates/zerver/insecure_desktop_app.html:25
 msgid ""
 "\n"
 "                        The auto-update feature in this old version of\n"
-"                        Zulip desktop app no longer works.\n"
+"                        Aloha desktop app no longer works.\n"
 "                        "
-msgstr "\n这个旧版本的 Zulip 桌面应用程序中的自动更新功能不再起作用。"
+msgstr "\n这个旧版本的 Aloha 桌面应用程序中的自动更新功能不再起作用。"
 
 #: templates/zerver/insecure_desktop_app.html:34
 msgid "Download the latest release."
@@ -2264,8 +2264,8 @@ msgstr "无效的电子邮件"
 
 #: templates/zerver/invalid_email.html:11
 #: templates/zerver/invalid_realm.html:16
-msgid "Hi there! Thank you for your interest in Zulip."
-msgstr "您好，感谢关注Zulip！"
+msgid "Hi there! Thank you for your interest in Aloha."
+msgstr "您好，感谢关注Aloha！"
 
 #: templates/zerver/invalid_email.html:15
 msgid ""
@@ -2309,8 +2309,8 @@ msgid "Organization does not exist"
 msgstr "社群不存在"
 
 #: templates/zerver/invalid_realm.html:18
-msgid "There is no Zulip organization hosted at this subdomain."
-msgstr "该子域名中没有部署Zulip社群服务"
+msgid "There is no Aloha organization hosted at this subdomain."
+msgstr "该子域名中没有部署Aloha社群服务"
 
 #: templates/zerver/log_into_subdomain_token_invalid.html:4
 msgid "Invalid or expired login session"
@@ -2328,8 +2328,8 @@ msgid "Log in"
 msgstr "登录"
 
 #: templates/zerver/login.html:18
-msgid "Log in to Zulip"
-msgstr "登录Zulip"
+msgid "Log in to Aloha"
+msgstr "登录Aloha"
 
 #: templates/zerver/login.html:44
 msgid "View without an account"
@@ -2378,14 +2378,14 @@ msgstr "该社群目前已停止接受新成员。"
 #: templates/zerver/no_spare_licenses.html:15
 msgid ""
 "\n"
-"    New members cannot join this organization because all Zulip licenses are currently in use. Please contact the person who\n"
+"    New members cannot join this organization because all Aloha licenses are currently in use. Please contact the person who\n"
 "    invited you and ask them to increase the number of licenses, then try again.\n"
 "    "
-msgstr "\n新成员无法加入此组织，因为所有 Zulip 许可证当前都在使用中。请联系邀请您的人并要求他们增加许可证数量，然后重试。"
+msgstr "\n新成员无法加入此组织，因为所有 Aloha 许可证当前都在使用中。请联系邀请您的人并要求他们增加许可证数量，然后重试。"
 
 #: templates/zerver/portico-header-dropdown.html:3
-msgid "Go to Zulip"
-msgstr "上Zulip"
+msgid "Go to Aloha"
+msgstr "上Aloha"
 
 #: templates/zerver/rate_limit_exceeded.html:4
 msgid "Rate limit exceeded"
@@ -2420,10 +2420,10 @@ msgstr "该服务器已设置不允许普通用户创建社群"
 #, python-format
 msgid ""
 "\n"
-"                    Zulip is open source, so you can <a href=\"%(production_install_url)s\">install your own Zulip server</a> or create a new organization on\n"
-"                    <a href=\"%(zulip_cloud_link)s\">Zulip Cloud</a>\n"
+"                    Aloha is open source, so you can <a href=\"%(production_install_url)s\">install your own Aloha server</a> or create a new organization on\n"
+"                    <a href=\"%(zulip_cloud_link)s\">Aloha Cloud</a>\n"
 "                    "
-msgstr "\nZulip 是开源的，因此您可以<a href=\"%(production_install_url)s\">安装自己的 Zulip 服务器</a>或在<a href=\"%(zulip_cloud_link)s\">Zulip Cloud</a>上创建新组织"
+msgstr "\nAloha 是开源的，因此您可以<a href=\"%(production_install_url)s\">安装自己的 Aloha 服务器</a>或在<a href=\"%(zulip_cloud_link)s\">Aloha Cloud</a>上创建新组织"
 
 #: templates/zerver/realm_reactivation.html:4
 msgid "Organization successfully reactivated"
@@ -2447,8 +2447,8 @@ msgid "Log in to your organization"
 msgstr "登录您的社群"
 
 #: templates/zerver/realm_redirect.html:22
-msgid "Enter your organization's Zulip URL:"
-msgstr "输入您的社群Zulip地址："
+msgid "Enter your organization's Aloha URL:"
+msgstr "输入您的社群Aloha地址："
 
 #: templates/zerver/realm_redirect.html:25
 msgid "your-organization-url"
@@ -2463,8 +2463,8 @@ msgid "Find your organization."
 msgstr "寻找社群"
 
 #: templates/zerver/realm_redirect.html:47
-msgid "Need to get your group started on Zulip?"
-msgstr "需要让你的团队开始使用Zulip吗?"
+msgid "Need to get your group started on Aloha?"
+msgstr "需要让你的团队开始使用Aloha吗?"
 
 #: templates/zerver/realm_redirect.html:47
 msgid "Create a new organization."
@@ -2519,8 +2519,8 @@ msgid "Your account"
 msgstr "你的账户"
 
 #: templates/zerver/register.html:127
-msgid "Import settings from existing Zulip account"
-msgstr "从已有Zulip账户导入设置"
+msgid "Import settings from existing Aloha account"
+msgstr "从已有Aloha账户导入设置"
 
 #: templates/zerver/register.html:135
 msgid "Don&rsquo;t import settings"
@@ -2553,8 +2553,8 @@ msgid "What are you interested in?"
 msgstr "您对什么感兴趣？"
 
 #: templates/zerver/register.html:263
-msgid "Subscribe me to Zulip's low-traffic newsletter (a few emails a year)."
-msgstr "订阅我 Zulip 的低频量通讯（每年几封电子邮件）。"
+msgid "Subscribe me to Aloha's low-traffic newsletter (a few emails a year)."
+msgstr "订阅我 Aloha 的低频量通讯（每年几封电子邮件）。"
 
 #: templates/zerver/reset.html:4 templates/zerver/reset.html:12
 msgid "Reset your password"
@@ -2627,10 +2627,10 @@ msgstr "\n您的 GitHub 帐户也有与之关联的未经验证的电子邮件�
 #: templates/zerver/social_auth_select_email.html:73
 msgid ""
 "\n"
-"            To use one of these to log in to Zulip, you must first\n"
+"            To use one of these to log in to Aloha, you must first\n"
 "            <a href=\"https://github.com/settings/emails\">verify it with GitHub.</a>\n"
 "            "
-msgstr "\n要使用其中之一登录 Zulip，您必须先<a href=\"https://github.com/settings/emails\">使用 GitHub 进行验证。</a>"
+msgstr "\n要使用其中之一登录 Aloha，您必须先<a href=\"https://github.com/settings/emails\">使用 GitHub 进行验证。</a>"
 
 #: templates/zerver/unsubscribe_link_error.html:4
 msgid "Error unsubscribing email"
@@ -2663,9 +2663,9 @@ msgstr "邮件设置已更新"
 #, python-format
 msgid ""
 "\n"
-"                    You've successfully unsubscribed from Zulip %(subscription_type)s emails.\n"
+"                    You've successfully unsubscribed from Aloha %(subscription_type)s emails.\n"
 "                    "
-msgstr "\n您已成功退订 Zulip %(subscription_type)s 电子邮件。"
+msgstr "\n您已成功退订 Aloha %(subscription_type)s 电子邮件。"
 
 #: templates/zerver/unsubscribe_success.html:25
 #, python-format
@@ -2673,10 +2673,10 @@ msgid ""
 "\n"
 "                    You can undo this change or review your\n"
 "                    preferences in your\n"
-"                    <a href=\"%(realm_uri)s/#settings/notifications\">Zulip notification\n"
+"                    <a href=\"%(realm_uri)s/#settings/notifications\">Aloha notification\n"
 "                    settings</a>.\n"
 "                    "
-msgstr "\n您可以撤消此更改或在您的<a href=\"%(realm_uri)s/#settings/notifications\">Zulip 通知设置</a>中查看您的首选项。"
+msgstr "\n您可以撤消此更改或在您的<a href=\"%(realm_uri)s/#settings/notifications\">Aloha 通知设置</a>中查看您的首选项。"
 
 #: templates/zerver/unsupported_browser.html:4
 #: templates/zerver/unsupported_browser.html:15
@@ -2687,25 +2687,25 @@ msgstr "不支持的浏览器"
 #, python-format
 msgid ""
 "\n"
-"                        %(browser_name)s is not supported by Zulip.\n"
+"                        %(browser_name)s is not supported by Aloha.\n"
 "                        "
-msgstr "\nZulip 不支持 %(browser_name)s。"
+msgstr "\nAloha 不支持 %(browser_name)s。"
 
 #: templates/zerver/unsupported_browser.html:22
 msgid ""
 "\n"
-"                        Zulip supports modern browsers like Firefox,\n"
+"                        Aloha supports modern browsers like Firefox,\n"
 "                        Chrome, and Edge.\n"
 "                        "
-msgstr "\nZulip 支持现代浏览器，如 Firefox、Chrome 和 Edge。"
+msgstr "\nAloha 支持现代浏览器，如 Firefox、Chrome 和 Edge。"
 
 #: templates/zerver/unsupported_browser.html:28
 #, python-format
 msgid ""
 "\n"
-"                        You can also use the <a href=\"%(apps_page_link)s\">Zulip desktop app</a>.\n"
+"                        You can also use the <a href=\"%(apps_page_link)s\">Aloha desktop app</a>.\n"
 "                        "
-msgstr "\n您还可以使用<a href=\"%(apps_page_link)s\">Zulip 桌面应用程序</a>。"
+msgstr "\n您还可以使用<a href=\"%(apps_page_link)s\">Aloha 桌面应用程序</a>。"
 
 #: zerver/actions/create_realm.py:249
 msgid "Signups enabled"
@@ -2717,13 +2717,13 @@ msgstr "注册"
 
 #: zerver/actions/create_user.py:100 zerver/actions/create_user.py:124
 #, python-brace-format
-msgid "{user} just signed up for Zulip. (total: {user_count})"
-msgstr "{user} 刚刚注册了 Zulip。 （总计：{user_count}）"
+msgid "{user} just signed up for Aloha. (total: {user_count})"
+msgstr "{user} 刚刚注册了 Aloha。 （总计：{user_count}）"
 
 #: zerver/actions/create_user.py:237
 #, python-brace-format
-msgid "{user} accepted your invitation to join Zulip!"
-msgstr "{user} 接受了您加入 Zulip 的邀请！"
+msgid "{user} accepted your invitation to join Aloha!"
+msgstr "{user} 接受了您加入 Aloha 的邀请！"
 
 #: zerver/actions/custom_profile_fields.py:129
 msgid "Invalid order mapping."
@@ -2786,9 +2786,9 @@ msgstr "默认频道组“{}”已存在"
 
 #: zerver/actions/invites.py:84
 msgid ""
-"To protect users, Zulip limits the number of invitations you can send in one"
+"To protect users, Aloha limits the number of invitations you can send in one"
 " day. Because you have reached the limit, no invitations were sent."
-msgstr "为了保护用户，Zulip 限制了您一天内可以发送的邀请数量。由于您已达到限制，因此未发送任何邀请。"
+msgstr "为了保护用户，Aloha 限制了您一天内可以发送的邀请数量。由于您已达到限制，因此未发送任何邀请。"
 
 #: zerver/actions/invites.py:157
 msgid ""
@@ -2806,9 +2806,9 @@ msgstr "没有邀请任何人"
 
 #: zerver/actions/invites.py:241
 msgid ""
-"Some of those addresses are already using Zulip, so we didn't send them an "
+"Some of those addresses are already using Aloha, so we didn't send them an "
 "invitation. We did send invitations to everyone else!"
-msgstr "有部分地址已经在使用Zulip，因此没有向他们发送邀请；其余地址已经发送！"
+msgstr "有部分地址已经在使用Aloha，因此没有向他们发送邀请；其余地址已经发送！"
 
 #: zerver/actions/message_edit.py:85
 msgid "Nothing to change"
@@ -3160,10 +3160,10 @@ msgstr "在这个社群中电子邮件地址不能包含+"
 
 #: zerver/forms.py:225
 msgid ""
-"New members cannot join this organization because all Zulip licenses are in "
+"New members cannot join this organization because all Aloha licenses are in "
 "use. Please contact the person who invited you and ask them to increase the "
 "number of licenses, then try again."
-msgstr "新成员无法加入此社群，因为所有 Zulip 许可证都在使用中。请联系邀请您的人并要求他们增加许可证数量，然后重试。"
+msgstr "新成员无法加入此社群，因为所有 Aloha 许可证都在使用中。请联系邀请您的人并要求他们增加许可证数量，然后重试。"
 
 #: zerver/forms.py:261
 msgid "New password"
@@ -3198,8 +3198,8 @@ msgid "Please enter at most 10 emails."
 msgstr "请输入最多10个电子邮件地址"
 
 #: zerver/forms.py:554
-msgid "We couldn't find that Zulip organization."
-msgstr "我们找不到那个Zulip社群"
+msgid "We couldn't find that Aloha organization."
+msgstr "我们找不到那个Aloha社群"
 
 #: zerver/lib/addressee.py:22
 msgid "Invalid email '{}'"
@@ -3288,11 +3288,11 @@ msgid "Draft does not exist"
 msgstr "草稿不存在"
 
 #: zerver/lib/email_notifications.py:130 zerver/lib/email_notifications.py:152
-msgid "Open Zulip to see the spoiler content"
-msgstr "打开Zulip看剧透内容"
+msgid "Open Aloha to see the spoiler content"
+msgstr "打开Aloha看剧透内容"
 
 #: zerver/lib/email_notifications.py:523
-msgid "Zulip notifications"
+msgid "Aloha notifications"
 msgstr "祖利普通知"
 
 #: zerver/lib/email_validation.py:101
@@ -3620,7 +3620,7 @@ msgid "We also have a guide for [Setting up your organization]({help_url})."
 msgstr "我们还提供了[设置您的社群]({help_url}) 指南。"
 
 #: zerver/lib/onboarding.py:59
-msgid "Hello, and welcome to Zulip!"
+msgid "Hello, and welcome to Aloha!"
 msgstr "您好，欢迎来到祖利普！"
 
 #: zerver/lib/onboarding.py:64
@@ -3637,9 +3637,9 @@ msgstr "这是我的私聊，欢迎机器人。"
 #: zerver/lib/onboarding.py:75
 #, python-brace-format
 msgid ""
-"If you are new to Zulip, check out our [Getting started "
+"If you are new to Aloha, check out our [Getting started "
 "guide]({getting_started_url})!"
-msgstr "如果您是 Zulip 的新手，请查看我们的 [入门指南]({getting_started_url})！"
+msgstr "如果您是 Aloha 的新手，请查看我们的 [入门指南]({getting_started_url})！"
 
 #: zerver/lib/onboarding.py:80
 msgid ""
@@ -3653,9 +3653,9 @@ msgstr "以下是我理解的一些消息："
 
 #: zerver/lib/onboarding.py:120
 msgid ""
-"You can [download](/apps) the [mobile and desktop apps](/apps). Zulip also "
+"You can [download](/apps) the [mobile and desktop apps](/apps). Aloha also "
 "works great in a browser."
-msgstr "您可以[下载](/apps) [移动和桌面应用程序](/apps)。 Zulip 在浏览器中也能很好地工作。"
+msgstr "您可以[下载](/apps) [移动和桌面应用程序](/apps)。 Aloha 在浏览器中也能很好地工作。"
 
 #: zerver/lib/onboarding.py:125
 msgid ""
@@ -3669,15 +3669,15 @@ msgid ""
 "Go to [Display settings](#settings/display-settings) to [switch between the "
 "light and dark themes](/help/dark-theme), [pick your favorite emoji "
 "theme](/help/emoji-and-emoticons#change-your-emoji-set), [change your "
-"language](/help/change-your-language), and make other tweaks to your Zulip "
+"language](/help/change-your-language), and make other tweaks to your Aloha "
 "experience."
-msgstr "进入[显示设置](#settings/display-settings)[明暗主题切换](/help/dark-theme)，[选择你最喜欢的表情符号主题](/help/emoji-and-emoticons# change-your-emoji-set)，[更改您的语言](/help/change-your-language)，并对您的 Zulip 体验进行其他调整。"
+msgstr "进入[显示设置](#settings/display-settings)[明暗主题切换](/help/dark-theme)，[选择你最喜欢的表情符号主题](/help/emoji-and-emoticons# change-your-emoji-set)，[更改您的语言](/help/change-your-language)，并对您的 Aloha 体验进行其他调整。"
 
 #: zerver/lib/onboarding.py:141
 msgid ""
-"In Zulip, streams [determine who gets a message](/help/streams-and-topics). "
+"In Aloha, streams [determine who gets a message](/help/streams-and-topics). "
 "They are similar to channels in other chat apps."
-msgstr "在 Zulip 中，频道 [确定谁收到消息](/help/streams-and-topics)。它们类似于其他聊天应用程序中的频道。"
+msgstr "在 Aloha 中，频道 [确定谁收到消息](/help/streams-and-topics)。它们类似于其他聊天应用程序中的频道。"
 
 #: zerver/lib/onboarding.py:145
 msgid "[Browse and subscribe to streams](#streams/all)."
@@ -3685,10 +3685,10 @@ msgstr "[浏览和订阅频道](#streams/all)。"
 
 #: zerver/lib/onboarding.py:152
 msgid ""
-"In Zulip, topics [tell you what a message is about](/help/streams-and-"
+"In Aloha, topics [tell you what a message is about](/help/streams-and-"
 "topics). They are light-weight subjects, very similar to the subject line of"
 " an email."
-msgstr "在 Zulip 中，主题 [告诉您消息的内容](/help/streams-and-topics)。它们是轻量级主题，非常类似于电子邮件的主题行。"
+msgstr "在 Aloha 中，主题 [告诉您消息的内容](/help/streams-and-topics)。它们是轻量级主题，非常类似于电子邮件的主题行。"
 
 #: zerver/lib/onboarding.py:157
 msgid ""
@@ -3699,9 +3699,9 @@ msgstr "查看 [Recent topics](#recent_topics) 了解正在发生的事情！您
 
 #: zerver/lib/onboarding.py:166
 msgid ""
-"Zulip's [keyboard shortcuts](#keyboard-shortcuts) let you navigate the app "
+"Aloha's [keyboard shortcuts](#keyboard-shortcuts) let you navigate the app "
 "quickly and efficiently."
-msgstr "Zulip 的 [键盘快捷键](#keyboard-shortcuts) 可让您快速有效地浏览应用程序。"
+msgstr "Aloha 的 [键盘快捷键](#keyboard-shortcuts) 可让您快速有效地浏览应用程序。"
 
 #: zerver/lib/onboarding.py:170
 msgid "Press `?` any time to see a [cheat sheet](#keyboard-shortcuts)."
@@ -3709,10 +3709,10 @@ msgstr "随时按`?`查看[备忘单](#keyboard-shortcuts)。"
 
 #: zerver/lib/onboarding.py:177
 msgid ""
-"Zulip uses [Markdown](/help/format-your-message-using-markdown), an "
+"Aloha uses [Markdown](/help/format-your-message-using-markdown), an "
 "intuitive format for **bold**, *italics*, bulleted lists, and more. Click "
 "[here](#message-formatting) for a cheat sheet."
-msgstr "Zulip 使用 [Markdown](/help/format-your-message-using-markdown)，这是一种直观的 **bold** 、*italics*、项目符号列表等格式。单击  [此处](#message-formatting)  获取备忘单。"
+msgstr "Aloha 使用 [Markdown](/help/format-your-message-using-markdown)，这是一种直观的 **bold** 、*italics*、项目符号列表等格式。单击  [此处](#message-formatting)  获取备忘单。"
 
 #: zerver/lib/onboarding.py:183
 msgid ""
@@ -3833,8 +3833,8 @@ msgstr "用户没有授权本次查询"
 
 #: zerver/lib/recipient_users.py:71
 #, python-brace-format
-msgid "'{email}' is no longer using Zulip."
-msgstr "“{email}”不再使用 Zulip。"
+msgid "'{email}' is no longer using Aloha."
+msgstr "“{email}”不再使用 Aloha。"
 
 #: zerver/lib/recipient_users.py:78
 msgid "You can't send private messages outside of your organization."
@@ -3868,8 +3868,8 @@ msgid "Argument \"{}\" is not valid JSON."
 msgstr "参数“{}”不是有效的 JSON。"
 
 #: zerver/lib/send_email.py:68
-msgid "Zulip Account Security"
-msgstr "Zulip 账户安全"
+msgid "Aloha Account Security"
+msgstr "Aloha 账户安全"
 
 #: zerver/lib/streams.py:223
 msgid "Only organization administrators can send to this stream."
@@ -4217,8 +4217,8 @@ msgid "stream events"
 msgstr "频道事件"
 
 #: zerver/models.py:594
-msgid "Available on Zulip Cloud Standard. Upgrade to access."
-msgstr "在 Zulip Cloud Standard 上可用。升级访问。"
+msgid "Available on Aloha Cloud Standard. Upgrade to access."
+msgstr "在 Aloha Cloud Standard 上可用。升级访问。"
 
 #: zerver/models.py:1085
 msgid "Invalid characters in emoji name"
@@ -4317,8 +4317,8 @@ msgid "Custom emoji"
 msgstr "自定义表情"
 
 #: zerver/models.py:3087
-msgid "Zulip extra emoji"
-msgstr "Zulip额外表情"
+msgid "Aloha extra emoji"
+msgstr "Aloha额外表情"
 
 #: zerver/models.py:4445
 msgid "User with ID {} is deactivated"
@@ -4873,8 +4873,8 @@ msgid "Invalid email batching period: {} seconds"
 msgstr "无效的电子邮件批处理周期：{} 秒"
 
 #: zerver/views/user_settings.py:236
-msgid "Your Zulip password is managed in LDAP"
-msgstr "您的Zulip密码由LDAP管理"
+msgid "Your Aloha password is managed in LDAP"
+msgstr "您的Aloha密码由LDAP管理"
 
 #: zerver/views/user_settings.py:246
 msgid "Wrong password!"
@@ -5073,8 +5073,8 @@ msgid "Invalid subdomain for push notifications bouncer"
 msgstr "推送通知到无效子域"
 
 #: zilencer/auth.py:99
-msgid "Must validate with valid Zulip server API key"
-msgstr "必须验证有效的Zulip服务器 API Key"
+msgid "Must validate with valid Aloha server API key"
+msgstr "必须验证有效的Aloha服务器 API Key"
 
 #. error
 #: zilencer/views.py:61 zilencer/views.py:63

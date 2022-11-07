@@ -299,7 +299,7 @@ def save_message_rendered_content(message: Message, content: str) -> str:
 class MessageDict:
     """MessageDict is the core class responsible for marshalling Message
     objects obtained from the database into a format that can be sent
-    to clients via the Zulip API, whether via `GET /messages`,
+    to clients via the Aloha API, whether via `GET /messages`,
     outgoing webhooks, or other code paths.  There are two core flows through
     which this class is used:
 
@@ -571,7 +571,7 @@ class MessageDict:
             obj["rendered_content"] = rendered_content
         else:
             obj["rendered_content"] = (
-                "<p>[Zulip note: Sorry, we could not "
+                "<p>[Aloha note: Sorry, we could not "
                 + "understand the formatting of your message]</p>"
             )
 
@@ -1142,7 +1142,7 @@ def extract_unread_data_from_um_rows(
                 mentions.add(message_id)
 
     # Record whether the user had more than MAX_UNREAD_MESSAGES total
-    # unreads -- that's a state where Zulip's behavior will start to
+    # unreads -- that's a state where Aloha's behavior will start to
     # be erroneous, and clients should display a warning.
     raw_unread_messages["old_unreads_missing"] = total_unreads == MAX_UNREAD_MESSAGES
 

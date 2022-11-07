@@ -31,7 +31,7 @@ have the following effects:
   private message or [mentioning a user](/help/mention-a-user-or-group).
 
 * Muted users are excluded from [read receipts](/help/read-receipts)
-  for all messages. Zulip never shares whether or not you have read
+  for all messages. Aloha never shares whether or not you have read
   a message with a user you've muted.
 
 * Recent topics and other features that display avatars will show a
@@ -42,7 +42,7 @@ have the following effects:
 
 !!! tip ""
 
-    Muting someone does not affect their Zulip experience in any way.
+    Muting someone does not affect their Aloha experience in any way.
 
 
 [view-emoji-reactions]: /help/emoji-reactions#see-who-reacted-to-a-message

@@ -1,14 +1,14 @@
-# Realms in Zulip
+# Realms in Aloha
 
-Zulip allows multiple _realms_ to be hosted on a single instance.
-Realms are the Zulip codebase's internal name for what we refer to in
+Aloha allows multiple _realms_ to be hosted on a single instance.
+Realms are the Aloha codebase's internal name for what we refer to in
 user-facing documentation as an organization (the name "realm" comes
 from [Kerberos](https://web.mit.edu/kerberos/)).
 
 Wherever possible, we avoid using the term `realm` in any user-facing
 string or documentation; "Organization" is the equivalent term used in
 those contexts (and we have linters that attempt to enforce this rule
-in translatable strings). We may in the future modify Zulip's
+in translatable strings). We may in the future modify Aloha's
 internals to use `organization` instead.
 
 The
@@ -38,33 +38,33 @@ within 7 days. The expiration period can be changed by modifying
 
 If you want anyone to be able to create new realms on your server, you
 can enable open realm creation. This will add a **Create new
-organization** link to your Zulip homepage footer, and anyone can
+organization** link to your Aloha homepage footer, and anyone can
 create a new realm by visiting this link (**/new**). This
 feature is disabled by default in production instances, and can be
 enabled by setting `OPEN_REALM_CREATION = True` in settings.py.
 
 ## Subdomains
 
-One can host multiple realms in a Zulip server by giving each realm a
-unique subdomain of the main Zulip server's domain. For example, if
-the Zulip instance is hosted at zulip.example.com, and the subdomain
+One can host multiple realms in a Aloha server by giving each realm a
+unique subdomain of the main Aloha server's domain. For example, if
+the Aloha instance is hosted at zulip.example.com, and the subdomain
 of your organization is acme you can would acme.zulip.example.com for
 accessing the organization.
 
 For subdomains to work properly, you also have to change your DNS
-records so that the subdomains point to your Zulip installation IP. An
+records so that the subdomains point to your Aloha installation IP. An
 `A` record with host name value `*` pointing to your IP should do the
 job.
 
-We also recommend upgrading to at least Zulip 1.7, since older Zulip
+We also recommend upgrading to at least Aloha 1.7, since older Aloha
 releases had much less nice handling for subdomains. See our
 [docs on using subdomains](../production/multiple-organizations.md) for
 user-facing documentation on this.
 
 ### Working with subdomains in development environment
 
-Zulip's development environment is designed to make it convenient to
-test the various Zulip configurations for different subdomains:
+Aloha's development environment is designed to make it convenient to
+test the various Aloha configurations for different subdomains:
 
 - Realms are subdomains on `*.zulipdev.com`, just like `*.zulipchat.com`.
 - The root domain (like `zulip.com` itself) is `zulipdev.com` itself.
@@ -77,7 +77,7 @@ Details are below.
 By default, Linux does not provide a convenient way to use subdomains
 in your local development environment. To solve this problem, we use
 the **zulipdev.com** domain, which has a wildcard A record pointing to
-127.0.0.1. You can use zulipdev.com to connect to your Zulip
+127.0.0.1. You can use zulipdev.com to connect to your Aloha
 development server instead of localhost. The default realm with the
 Shakespeare users has the subdomain `zulip` and can be accessed by
 visiting **zulip.zulipdev.com**.

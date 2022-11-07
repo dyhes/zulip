@@ -138,7 +138,7 @@ class UploadSerializeMixin(SerializeMixin):
         super().setUpClass()
 
 
-class ZulipTestCase(TestCase):
+class AlohaTestCase(TestCase):
     # Ensure that the test system just shows us diffs
     maxDiff: Optional[int] = None
 
@@ -221,7 +221,7 @@ Output:
         # set User-Agent
         if "HTTP_AUTHORIZATION" in extra:
             # An API request; use mobile as the default user agent
-            default_user_agent = "ZulipMobile/26.22.145 (iOS 10.3.1)"
+            default_user_agent = "AlohaMobile/26.22.145 (iOS 10.3.1)"
         else:
             # A web app request; use a browser User-Agent string.
             default_user_agent = (
@@ -258,8 +258,8 @@ Output:
         intentionally_undocumented: bool = False,
     ) -> None:
         """
-        Validates all API responses received by this test against Zulip's API documentation,
-        declared in zerver/openapi/zulip.yaml.  This powerful test lets us use Zulip's
+        Validates all API responses received by this test against Aloha's API documentation,
+        declared in zerver/openapi/zulip.yaml.  This powerful test lets us use Aloha's
         extensive test coverage of corner cases in the API to ensure that we've properly
         documented those corner cases.
         """
@@ -741,7 +741,7 @@ Output:
         self,
         email: str,
         password: Optional[str],
-        realm_name: str = "Zulip Test",
+        realm_name: str = "Aloha Test",
         realm_subdomain: str = "zuliptest",
         from_confirmation: str = "",
         full_name: Optional[str] = None,
@@ -1458,7 +1458,7 @@ Output:
 
     def ldap_username(self, username: str) -> str:
         """
-        Maps Zulip username to the name of the corresponding LDAP user
+        Maps Aloha username to the name of the corresponding LDAP user
         in our test directory at zerver/tests/fixtures/ldap/directory.json,
         if the LDAP user exists.
         """
@@ -1717,7 +1717,7 @@ Output:
             self.assertEqual(user.long_term_idle, expected)
 
 
-class WebhookTestCase(ZulipTestCase):
+class WebhookTestCase(AlohaTestCase):
     """Shared test class for all incoming webhooks tests.
 
     Used by configuring the below class attributes, and calling
@@ -1786,7 +1786,7 @@ class WebhookTestCase(ZulipTestCase):
                     raise Exception(
                         f"""
 Error: This test triggered a message using the event "{complete_event_type}", which was not properly
-registered via the @webhook_view(..., event_types=[...]). These registrations are important for Zulip
+registered via the @webhook_view(..., event_types=[...]). These registrations are important for Aloha
 self-documenting the supported event types for this integration.
 
 You can fix this by adding "{complete_event_type}" to ALL_EVENT_TYPES for this webhook.
@@ -1833,7 +1833,7 @@ You can fix this by adding "{complete_event_type}" to ALL_EVENT_TYPES for this w
         """
         check_webhook is the main way to test "normal" webhooks that
         work by receiving a payload from a third party and then writing
-        some message to a Zulip stream.
+        some message to a Aloha stream.
 
         We use `fixture_name` to find the payload data in of our test
         fixtures.  Then we verify that a message gets sent to a stream:
@@ -1975,7 +1975,7 @@ one or more new messages.
         return body
 
 
-class MigrationsTestCase(ZulipTestCase):  # nocoverage
+class MigrationsTestCase(AlohaTestCase):  # nocoverage
     """
     Test class for database migrations inspired by this blog post:
        https://www.caktusgroup.com/blog/2016/02/02/writing-unit-tests-django-migrations/

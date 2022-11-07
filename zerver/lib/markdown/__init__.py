@@ -1,4 +1,4 @@
-# Zulip's main Markdown implementation.  See docs/subsystems/markdown.md for
+# Aloha's main Markdown implementation.  See docs/subsystems/markdown.md for
 # detailed documentation on our Markdown syntax.
 import cgi
 import datetime
@@ -589,7 +589,7 @@ class InlineImageProcessor(markdown.treeprocessors.Treeprocessor):
     view.
     """
 
-    def __init__(self, zmd: "ZulipMarkdown") -> None:
+    def __init__(self, zmd: "AlohaMarkdown") -> None:
         super().__init__(zmd)
         self.zmd = zmd
 
@@ -631,7 +631,7 @@ class InlineInterestingLinkProcessor(markdown.treeprocessors.Treeprocessor):
     TWITTER_MAX_TO_PREVIEW = 3
     INLINE_PREVIEW_LIMIT_PER_MESSAGE = 10
 
-    def __init__(self, zmd: "ZulipMarkdown") -> None:
+    def __init__(self, zmd: "AlohaMarkdown") -> None:
         super().__init__(zmd)
         self.zmd = zmd
 
@@ -1369,7 +1369,7 @@ class InlineInterestingLinkProcessor(markdown.treeprocessors.Treeprocessor):
 
 
 class CompiledInlineProcessor(markdown.inlinepatterns.InlineProcessor):
-    def __init__(self, compiled_re: Pattern[str], zmd: "ZulipMarkdown") -> None:
+    def __init__(self, compiled_re: Pattern[str], zmd: "AlohaMarkdown") -> None:
         # This is similar to the superclass's small __init__ function,
         # but we skip the compilation step and let the caller give us
         # a compiled regex.
@@ -1490,7 +1490,7 @@ def unicode_emoji_to_codepoint(unicode_emoji: str) -> str:
 class EmoticonTranslation(markdown.inlinepatterns.Pattern):
     """Translates emoticons like `:)` into emoji like `:smile:`."""
 
-    def __init__(self, pattern: str, zmd: "ZulipMarkdown") -> None:
+    def __init__(self, pattern: str, zmd: "AlohaMarkdown") -> None:
         super().__init__(pattern, zmd)
         self.zmd = zmd
 
@@ -1517,7 +1517,7 @@ class UnicodeEmoji(markdown.inlinepatterns.Pattern):
 
 
 class Emoji(markdown.inlinepatterns.Pattern):
-    def __init__(self, pattern: str, zmd: "ZulipMarkdown") -> None:
+    def __init__(self, pattern: str, zmd: "AlohaMarkdown") -> None:
         super().__init__(pattern, zmd)
         self.zmd = zmd
 
@@ -1581,7 +1581,7 @@ def sanitize_url(url: str) -> Optional[str]:
         # Allow fragment links
         return urllib.parse.urlunparse(("", "", "", "", "", fragment))
 
-    # Zulip modification: If scheme is not specified, assume http://
+    # Aloha modification: If scheme is not specified, assume http://
     # We re-enter sanitize_url because netloc etc. need to be re-parsed.
     if not scheme:
         return sanitize_url("http://" + url)
@@ -1627,7 +1627,7 @@ def url_to_a(
 
 
 class CompiledPattern(markdown.inlinepatterns.Pattern):
-    def __init__(self, compiled_re: Pattern[str], zmd: "ZulipMarkdown") -> None:
+    def __init__(self, compiled_re: Pattern[str], zmd: "AlohaMarkdown") -> None:
         # This is similar to the superclass's small __init__ function,
         # but we skip the compilation step and let the caller give us
         # a compiled regex.
@@ -1706,7 +1706,7 @@ class BlockQuoteProcessor(markdown.blockprocessors.BlockQuoteProcessor):
             # Remove ``> `` from beginning of each line.
             block = "\n".join([self.clean(line) for line in block[m.start() :].split("\n")])
 
-        # Zulip modification: The next line is patched to match
+        # Aloha modification: The next line is patched to match
         # CommonMark rather than original Markdown.  In original
         # Markdown, blockquotes with a blank line between them were
         # merged, which makes it impossible to break a blockquote with
@@ -1813,7 +1813,7 @@ class LinkifierPattern(CompiledInlineProcessor):
         self,
         source_pattern: str,
         format_string: str,
-        zmd: "ZulipMarkdown",
+        zmd: "AlohaMarkdown",
     ) -> None:
         # Do not write errors to stderr (this still raises exceptions)
         options = re2.Options()
@@ -2019,7 +2019,7 @@ class AlertWordNotificationProcessor(markdown.preprocessors.Preprocessor):
         "`",
     }
 
-    def __init__(self, zmd: "ZulipMarkdown") -> None:
+    def __init__(self, zmd: "AlohaMarkdown") -> None:
         super().__init__(zmd)
         self.zmd = zmd
 
@@ -2058,7 +2058,7 @@ class AlertWordNotificationProcessor(markdown.preprocessors.Preprocessor):
 
 
 class LinkInlineProcessor(markdown.inlinepatterns.LinkInlineProcessor):
-    def __init__(self, pattern: str, zmd: "ZulipMarkdown") -> None:
+    def __init__(self, pattern: str, zmd: "AlohaMarkdown") -> None:
         super().__init__(pattern, zmd)
         self.zmd = zmd
 
@@ -2117,7 +2117,7 @@ DEFAULT_MARKDOWN_KEY = -1
 ZEPHYR_MIRROR_MARKDOWN_KEY = -2
 
 
-class ZulipMarkdown(markdown.Markdown):
+class AlohaMarkdown(markdown.Markdown):
     zulip_message: Optional[Message]
     zulip_realm: Optional[Realm]
     zulip_db_data: Optional[DbData]
@@ -2336,7 +2336,7 @@ class ZulipMarkdown(markdown.Markdown):
             )
 
 
-md_engines: Dict[Tuple[int, bool], ZulipMarkdown] = {}
+md_engines: Dict[Tuple[int, bool], AlohaMarkdown] = {}
 linkifier_data: Dict[int, List[LinkifierDict]] = {}
 
 
@@ -2346,7 +2346,7 @@ def make_md_engine(linkifiers_key: int, email_gateway: bool) -> None:
         del md_engines[md_engine_key]
 
     linkifiers = linkifier_data[linkifiers_key]
-    md_engines[md_engine_key] = ZulipMarkdown(
+    md_engines[md_engine_key] = AlohaMarkdown(
         linkifiers=linkifiers,
         linkifiers_key=linkifiers_key,
         email_gateway=email_gateway,
@@ -2485,7 +2485,7 @@ def do_convert(
     email_gateway: bool = False,
     no_previews: bool = False,
 ) -> MessageRenderingResult:
-    """Convert Markdown to HTML, with Zulip-specific settings and hacks."""
+    """Convert Markdown to HTML, with Aloha-specific settings and hacks."""
     # This logic is a bit convoluted, but the overall goal is to support a range of use cases:
     # * Nothing is passed in other than content -> just run default options (e.g. for docs)
     # * message is passed, but no realm is -> look up realm from message

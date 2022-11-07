@@ -1,11 +1,11 @@
 from django.utils.timezone import now as timezone_now
 
 from zerver.actions.streams import do_change_stream_permission
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.models import Message, UserMessage, get_client, get_realm, get_stream
 
 
-class TopicHistoryTest(ZulipTestCase):
+class TopicHistoryTest(AlohaTestCase):
     def test_topics_history_zephyr_mirror(self) -> None:
         user_profile = self.mit_user("sipbtest")
         stream_name = "new_stream"
@@ -208,7 +208,7 @@ class TopicHistoryTest(ZulipTestCase):
         self.assert_json_error(result, "Invalid stream ID", 400)
 
 
-class TopicDeleteTest(ZulipTestCase):
+class TopicDeleteTest(AlohaTestCase):
     def test_topic_delete(self) -> None:
         initial_last_msg_id = self.get_last_message().id
         stream_name = "new_stream"

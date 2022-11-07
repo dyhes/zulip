@@ -15,7 +15,7 @@ from zerver.actions.users import do_change_can_create_users, do_change_user_role
 from zerver.lib.bot_config import ConfigError, get_bot_config
 from zerver.lib.bot_lib import get_bot_handler
 from zerver.lib.integrations import EMBEDDED_BOTS, WebhookIntegration
-from zerver.lib.test_classes import UploadSerializeMixin, ZulipTestCase
+from zerver.lib.test_classes import UploadSerializeMixin, AlohaTestCase
 from zerver.lib.test_helpers import avatar_disk_path, get_test_image_file, queries_captured
 from zerver.models import (
     Realm,
@@ -46,7 +46,7 @@ stripe_sample_config_options = [
 ]
 
 
-class BotTest(ZulipTestCase, UploadSerializeMixin):
+class BotTest(AlohaTestCase, UploadSerializeMixin):
     def get_bot_user(self, email: str) -> UserProfile:
         realm = get_realm("zulip")
         bot = get_user(email, realm)

@@ -10,10 +10,10 @@ from zerver.lib.integrations import (
     get_fixture_and_image_paths,
     split_fixture_path,
 )
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 
 
-class IntegrationsTestCase(ZulipTestCase):
+class IntegrationsTestCase(AlohaTestCase):
     def test_split_fixture_path(self) -> None:
         path = "zerver/webhooks/semaphore/fixtures/push.json"
         integration_name, fixture_name = split_fixture_path(path)

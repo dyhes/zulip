@@ -453,7 +453,7 @@ def format_user_row(
         del result["timezone"]
         result["date_joined"] = str(date_parser.parse(result["date_joined"]).date())
 
-    # Zulip clients that support using `GET /avatar/{user_id}` as a
+    # Aloha clients that support using `GET /avatar/{user_id}` as a
     # fallback if we didn't send an avatar URL in the user object pass
     # user_avatar_url_field_optional in client_capabilities.
     #
@@ -583,7 +583,7 @@ def get_raw_user_data(
     include_custom_profile_fields: bool = True,
 ) -> Dict[int, Dict[str, str]]:
     """Fetches data about the target user(s) appropriate for sending to
-    acting_user via the standard format for the Zulip API.  If
+    acting_user via the standard format for the Aloha API.  If
     target_user is None, we fetch all users in the realm.
     """
     profiles_by_user_id = None

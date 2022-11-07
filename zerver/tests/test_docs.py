@@ -12,7 +12,7 @@ from django.utils.timezone import now as timezone_now
 from corporate.models import Customer, CustomerPlan
 from zerver.context_processors import get_apps_page_url
 from zerver.lib.integrations import CATEGORIES, INTEGRATIONS, META_CATEGORY
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import HostRequestMock
 from zerver.models import Realm, get_realm
 from zerver.views.documentation import add_api_uri_context
@@ -21,7 +21,7 @@ if TYPE_CHECKING:
     from django.test.client import _MonkeyPatchedWSGIResponse as TestHttpResponse
 
 
-class DocPageTest(ZulipTestCase):
+class DocPageTest(AlohaTestCase):
     def get_doc(self, url: str, subdomain: str) -> "TestHttpResponse":
         if url[0:23] == "/integrations/doc-html/":
             return self.client_get(url, subdomain=subdomain, HTTP_X_REQUESTED_WITH="XMLHttpRequest")
@@ -138,7 +138,7 @@ class DocPageTest(ZulipTestCase):
         self.assertEqual(result.status_code, 404)
 
         # Test some API doc endpoints for specific content and metadata.
-        self._test("/api/", "The Zulip API")
+        self._test("/api/", "The Aloha API")
         self._test("/api/api-keys", "be careful with it")
         self._test("/api/installation-instructions", "No download required!")
         self._test("/api/send-message", "steal away your hearts")
@@ -179,20 +179,20 @@ class DocPageTest(ZulipTestCase):
         self._test("/hello/", "Chat for distributed teams", landing_missing_strings=["Log in"])
         self._test("/attribution/", "Website attributions")
         self._test("/communities/", "Open communities directory")
-        self._test("/development-community/", "Zulip development community")
+        self._test("/development-community/", "Aloha development community")
         self._test("/features/", "Beautiful messaging")
         self._test("/jobs/", "Work with us")
-        self._test("/self-hosting/", "Self-host Zulip")
+        self._test("/self-hosting/", "Self-host Aloha")
         self._test("/security/", "TLS encryption")
         self._test("/use-cases/", "Use cases and customer stories")
-        self._test("/why-zulip/", "Why Zulip?")
+        self._test("/why-zulip/", "Why Aloha?")
         # /for/... pages
         self._test("/for/open-source/", "for open source projects")
         self._test("/for/events/", "for conferences and events")
         self._test("/for/education/", "education pricing")
         self._test("/for/research/", "for research")
         self._test("/for/business/", "Communication efficiency represents")
-        self._test("/for/communities/", "Zulip for communities")
+        self._test("/for/communities/", "Aloha for communities")
         # case-studies
         self._test("/case-studies/tum/", "Technical University of Munich")
         self._test("/case-studies/ucsd/", "UCSD")
@@ -203,7 +203,7 @@ class DocPageTest(ZulipTestCase):
         self._test("/case-studies/asciidoctor/", "Case study: Asciidoctor")
 
     def test_open_organizations_endpoint(self) -> None:
-        zulip_dev_info = ["Zulip Dev", "great for testing!"]
+        zulip_dev_info = ["Aloha Dev", "great for testing!"]
 
         result = self.client_get("/communities/")
         self.assert_not_in_success_response(zulip_dev_info, result)
@@ -236,12 +236,12 @@ class DocPageTest(ZulipTestCase):
         self.assertEqual(result.status_code, 404)
 
     def test_integration_pages_open_graph_metadata(self) -> None:
-        og_description = '<meta property="og:description" content="Zulip comes with over'
+        og_description = '<meta property="og:description" content="Aloha comes with over'
 
         # Test a particular integration page
         url = "/integrations/doc/github"
-        title = '<meta property="og:title" content="GitHub | Zulip integrations" />'
-        description = '<meta property="og:description" content="Zulip comes with over'
+        title = '<meta property="og:title" content="GitHub | Aloha integrations" />'
+        description = '<meta property="og:description" content="Aloha comes with over'
         self._test(url, title, doc_html_str=True)
         self._test(url, description, doc_html_str=True)
 
@@ -249,18 +249,18 @@ class DocPageTest(ZulipTestCase):
         for category in CATEGORIES.keys():
             url = f"/integrations/{category}"
             if category in META_CATEGORY.keys():
-                title = f"<title>{CATEGORIES[category]} | Zulip integrations</title>"
-                og_title = f'<meta property="og:title" content="{CATEGORIES[category]} | Zulip integrations" />'
+                title = f"<title>{CATEGORIES[category]} | Aloha integrations</title>"
+                og_title = f'<meta property="og:title" content="{CATEGORIES[category]} | Aloha integrations" />'
             else:
-                title = f"<title>{CATEGORIES[category]} tools | Zulip integrations</title>"
-                og_title = f'<meta property="og:title" content="{CATEGORIES[category]} tools | Zulip integrations" />'
+                title = f"<title>{CATEGORIES[category]} tools | Aloha integrations</title>"
+                og_title = f'<meta property="og:title" content="{CATEGORIES[category]} tools | Aloha integrations" />'
             self._test(url, title)
             self._test(url, og_title, doc_html_str=True)
             self._test(url, og_description, doc_html_str=True)
 
         # Test integrations index page
         url = "/integrations/"
-        og_title = '<meta property="og:title" content="Zulip integrations" />'
+        og_title = '<meta property="og:title" content="Aloha integrations" />'
         self._test(url, og_title, doc_html_str=True)
         self._test(url, og_description, doc_html_str=True)
 
@@ -288,11 +288,11 @@ class DocPageTest(ZulipTestCase):
         # TODO: Ideally, this Mozilla would be the specific browser.
         self.assertTrue('data-platform="Mozilla"' in result.content.decode())
 
-        result = self.client_get("/accounts/password/reset/", HTTP_USER_AGENT="ZulipElectron/1.0.0")
-        self.assertTrue('data-platform="ZulipElectron"' in result.content.decode())
+        result = self.client_get("/accounts/password/reset/", HTTP_USER_AGENT="AlohaElectron/1.0.0")
+        self.assertTrue('data-platform="AlohaElectron"' in result.content.decode())
 
 
-class HelpTest(ZulipTestCase):
+class HelpTest(AlohaTestCase):
     def test_help_settings_links(self) -> None:
         result = self.client_get("/help/change-the-time-format")
         self.assertEqual(result.status_code, 200)
@@ -300,7 +300,7 @@ class HelpTest(ZulipTestCase):
             'Go to <a href="/#settings/display-settings">Display settings</a>', str(result.content)
         )
         # Check that the sidebar was rendered properly.
-        self.assertIn("Getting started with Zulip", str(result.content))
+        self.assertIn("Getting started with Aloha", str(result.content))
 
         with self.settings(ROOT_DOMAIN_LANDING_PAGE=True):
             result = self.client_get("/help/change-the-time-format", subdomain="")
@@ -331,7 +331,7 @@ class HelpTest(ZulipTestCase):
         self.assertNotIn("/#streams", str(result.content))
 
 
-class IntegrationTest(ZulipTestCase):
+class IntegrationTest(AlohaTestCase):
     def test_check_if_every_integration_has_logo_that_exists(self) -> None:
         for integration in INTEGRATIONS.values():
             assert integration.logo_url is not None
@@ -349,8 +349,8 @@ class IntegrationTest(ZulipTestCase):
     def test_api_url_view_subdomains_homepage_base(self) -> None:
         context: Dict[str, Any] = {}
         add_api_uri_context(context, HostRequestMock())
-        self.assertEqual(context["api_url_scheme_relative"], "yourZulipDomain.testserver/api")
-        self.assertEqual(context["api_url"], "http://yourZulipDomain.testserver/api")
+        self.assertEqual(context["api_url_scheme_relative"], "yourAlohaDomain.testserver/api")
+        self.assertEqual(context["api_url"], "http://yourAlohaDomain.testserver/api")
         self.assertFalse(context["html_settings_links"])
 
     def test_api_url_view_subdomains_full(self) -> None:
@@ -365,26 +365,26 @@ class IntegrationTest(ZulipTestCase):
         context: Dict[str, Any] = {}
         with self.settings(ROOT_DOMAIN_LANDING_PAGE=True):
             add_api_uri_context(context, HostRequestMock())
-        self.assertEqual(context["settings_html"], "Zulip settings page")
+        self.assertEqual(context["settings_html"], "Aloha settings page")
         self.assertEqual(context["subscriptions_html"], "streams page")
 
         context = {}
         with self.settings(ROOT_DOMAIN_LANDING_PAGE=True):
             add_api_uri_context(context, HostRequestMock(host="mysubdomain.testserver"))
-        self.assertEqual(context["settings_html"], '<a href="/#settings">Zulip settings page</a>')
+        self.assertEqual(context["settings_html"], '<a href="/#settings">Aloha settings page</a>')
         self.assertEqual(
             context["subscriptions_html"], '<a target="_blank" href="/#streams">streams page</a>'
         )
 
         context = {}
         add_api_uri_context(context, HostRequestMock())
-        self.assertEqual(context["settings_html"], '<a href="/#settings">Zulip settings page</a>')
+        self.assertEqual(context["settings_html"], '<a href="/#settings">Aloha settings page</a>')
         self.assertEqual(
             context["subscriptions_html"], '<a target="_blank" href="/#streams">streams page</a>'
         )
 
 
-class AboutPageTest(ZulipTestCase):
+class AboutPageTest(AlohaTestCase):
     @skipUnless(settings.ZILENCER_ENABLED, "requires zilencer")
     def test_endpoint(self) -> None:
         with self.settings(CONTRIBUTOR_DATA_FILE_PATH="zerver/tests/fixtures/authors.json"):
@@ -405,18 +405,18 @@ class AboutPageTest(ZulipTestCase):
             self.assertEqual(result["Location"], "https://zulip.com/team/")
 
 
-class SmtpConfigErrorTest(ZulipTestCase):
+class SmtpConfigErrorTest(AlohaTestCase):
     def test_smtp_error(self) -> None:
         result = self.client_get("/config-error/smtp")
         self.assertEqual(result.status_code, 200)
         self.assert_in_success_response(["email configuration"], result)
 
 
-class PlansPageTest(ZulipTestCase):
+class PlansPageTest(AlohaTestCase):
     def test_plans_auth(self) -> None:
         root_domain = ""
         result = self.client_get("/plans/", subdomain=root_domain)
-        self.assert_in_success_response(["Self-host Zulip"], result)
+        self.assert_in_success_response(["Self-host Aloha"], result)
         self.assert_not_in_success_response(["/upgrade#sponsorship"], result)
         self.assert_in_success_response(["/accounts/go/?next=%2Fupgrade%23sponsorship"], result)
 
@@ -536,7 +536,7 @@ class PlansPageTest(ZulipTestCase):
         self.assert_not_in_success_response([sign_up_now, upgrade_to_standard], result)
 
 
-class AppsPageTest(ZulipTestCase):
+class AppsPageTest(AlohaTestCase):
     def test_get_apps_page_url(self) -> None:
         with self.settings(ZILENCER_ENABLED=False):
             apps_page_url = get_apps_page_url()
@@ -568,7 +568,7 @@ class AppsPageTest(ZulipTestCase):
         self.assertIn("Apps for every platform.", html)
 
     def test_app_download_link_view(self) -> None:
-        return_value = "https://desktop-download.zulip.com/v5.4.3/Zulip-Web-Setup-5.4.3.exe"
+        return_value = "https://desktop-download.zulip.com/v5.4.3/Aloha-Web-Setup-5.4.3.exe"
         with mock.patch(
             "corporate.views.portico.get_latest_github_release_download_link_for_platform",
             return_value=return_value,
@@ -582,7 +582,7 @@ class AppsPageTest(ZulipTestCase):
         self.assertEqual(result.status_code, 404)
 
 
-class PrivacyTermsTest(ZulipTestCase):
+class PrivacyTermsTest(AlohaTestCase):
     def test_terms_and_policies_index(self) -> None:
         with self.settings(POLICIES_DIRECTORY="corporate/policies"):
             response = self.client_get("/policies/")
@@ -643,10 +643,10 @@ class PrivacyTermsTest(ZulipTestCase):
         # line of the test would change if we were to adjust the
         # design.
         response = self.client_get("/policies/terms")
-        self.assert_not_in_success_response(["Back to Zulip"], response)
+        self.assert_not_in_success_response(["Back to Aloha"], response)
 
         response = self.client_get("/policies/terms", {"nav": "no"})
-        self.assert_not_in_success_response(["Back to Zulip"], response)
+        self.assert_not_in_success_response(["Back to Aloha"], response)
 
         response = self.client_get("/policies/privacy", {"nav": "no"})
-        self.assert_not_in_success_response(["Back to Zulip"], response)
+        self.assert_not_in_success_response(["Back to Aloha"], response)

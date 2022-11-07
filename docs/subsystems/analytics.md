@@ -1,6 +1,6 @@
 # Analytics
 
-Zulip has a cool analytics system for tracking various useful statistics
+Aloha has a cool analytics system for tracking various useful statistics
 that currently power the `/stats` page, and over time will power other
 features, like showing usage statistics for the various streams. It is
 designed around the following goals:
@@ -23,7 +23,7 @@ There are three main components:
 - models: The UserCount, StreamCount, RealmCount, and InstallationCount
   tables (analytics/models.py) collect and store time series data.
 - stat definitions: The CountStat objects in the COUNT_STATS dictionary
-  (analytics/lib/counts.py) define the set of stats Zulip collects.
+  (analytics/lib/counts.py) define the set of stats Aloha collects.
 - accounting: The FillState table (analytics/models.py) keeps track of what
   has been collected for which CountStats.
 
@@ -31,7 +31,7 @@ The next several sections will dive into the details of these components.
 
 ## The \*Count database tables
 
-The Zulip analytics system is built around collecting time series data in a
+The Aloha analytics system is built around collecting time series data in a
 set of database tables. Each of these tables has the following fields:
 
 - property: A human readable string uniquely identifying a CountStat
@@ -75,7 +75,7 @@ by the system and with what data.
 
 ## The FillState table
 
-The default Zulip production configuration runs a cron job once an hour that
+The default Aloha production configuration runs a cron job once an hour that
 updates the \*Count tables for each of the CountStats in the COUNT_STATS
 dictionary. The FillState table simply keeps track of the last end_time that
 we successfully updated each stat. It also enables the analytics system to
@@ -87,14 +87,14 @@ running and running to completion.
 An important consideration with any analytics system is performance, since
 it's easy to end up processing a huge amount of data inefficiently and
 needing a system like Hadoop to manage it. For the built-in analytics in
-Zulip, we've designed something lightweight and fast that can be available
-on any Zulip server without any extra dependencies through the carefully
+Aloha, we've designed something lightweight and fast that can be available
+on any Aloha server without any extra dependencies through the carefully
 designed set of tables in PostgreSQL.
 
 This requires some care to avoid making the analytics tables larger than the
-rest of the Zulip database or adding a ton of computational load, but with
+rest of the Aloha database or adding a ton of computational load, but with
 careful design, we can make the analytics system very low cost to operate.
-Also, note that a Zulip application database has 2 huge tables: Message and
+Also, note that a Aloha application database has 2 huge tables: Message and
 UserMessage, and everything else is small and thus not performance or
 space-sensitive, so it's important to optimize how many expensive queries we
 do against those 2 tables.
@@ -112,7 +112,7 @@ efficient:
   slower if there's a lot of data involved). The Django ORM currently
   doesn't support the "insert into .. select" type SQL query that's needed
   for this, which is why we use raw database queries (which we usually avoid
-  in Zulip) rather than the ORM.
+  in Aloha) rather than the ORM.
 - Aggregating where possible to avoid unnecessary queries against the
   Message and UserMessage tables. E.g. rather than querying the Message
   table both to generate sent message counts for each realm and again for

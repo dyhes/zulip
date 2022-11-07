@@ -8,18 +8,18 @@ from django.core.management.base import CommandError
 
 from zerver.actions.realm_settings import do_deactivate_realm
 from zerver.lib.export import export_realm_wrapper
-from zerver.lib.management import ZulipBaseCommand
+from zerver.lib.management import AlohaBaseCommand
 from zerver.models import Message, Reaction, UserProfile
 
 
-class Command(ZulipBaseCommand):
-    help = """Exports all data from a Zulip realm
+class Command(AlohaBaseCommand):
+    help = """Exports all data from a Aloha realm
 
-    This command exports all significant data from a Zulip realm.  The
+    This command exports all significant data from a Aloha realm.  The
     result can be imported using the `./manage.py import` command.
 
     Things that are exported:
-    * All user-accessible data in the Zulip database (Messages,
+    * All user-accessible data in the Aloha database (Messages,
       Streams, UserMessages, RealmEmoji, etc.)
     * Copies of all uploaded files and avatar images along with
       metadata needed to restore them even in the ab
@@ -30,7 +30,7 @@ class Command(ZulipBaseCommand):
     * Users' passwords and API keys (users will need to use SSO or reset password)
     * Mobile tokens for APNS/GCM (users will need to reconnect their mobile devices)
     * ScheduledEmail (not relevant on a new server)
-    * RemoteZulipServer (unlikely to be migrated)
+    * RemoteAlohaServer (unlikely to be migrated)
     * third_party_api_results cache (this means rerendering all old
       messages could be expensive)
 
@@ -38,9 +38,9 @@ class Command(ZulipBaseCommand):
     * Passwords will not be transferred.  They will all need to go
       through the password reset flow to obtain a new password (unless
       they intend to only use e.g. Google auth).
-    * Users will need to log out and re-log in to the Zulip desktop and
+    * Users will need to log out and re-log in to the Aloha desktop and
       mobile apps.  The apps now all have an option on the login page
-      where you can specify which Zulip server to use; your users
+      where you can specify which Aloha server to use; your users
       should enter <domain name>.
     * All bots will stop working since they will be pointing to the
       wrong server URL, and all users' API keys have been rotated as

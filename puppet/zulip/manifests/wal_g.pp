@@ -31,7 +31,7 @@ class zulip::wal_g {
       cwd         => $source_dir,
       creates     => $bin,
       require     => [
-        Zulip::External_Dep['golang'],
+        Aloha::External_Dep['golang'],
         Exec['clone wal-g'],
       ],
       timeout     => 600,
@@ -50,7 +50,7 @@ class zulip::wal_g {
     target => $bin,
   }
   # We used to install versions into /usr/local/bin/wal-g-VERSION,
-  # until we moved to using Zulip::External_Dep which places them in
+  # until we moved to using Aloha::External_Dep which places them in
   # /srv/zulip-wal-g-VERSION.  Tidy old versions.
   tidy { '/usr/local/bin/wal-g-*':
     recurse => 1,

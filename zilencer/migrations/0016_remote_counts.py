@@ -28,7 +28,7 @@ class Migration(migrations.Migration):
                 (
                     "server",
                     models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE, to="zilencer.RemoteZulipServer"
+                        on_delete=django.db.models.deletion.CASCADE, to="zilencer.RemoteAlohaServer"
                     ),
                 ),
             ],
@@ -51,7 +51,7 @@ class Migration(migrations.Migration):
                 (
                     "server",
                     models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE, to="zilencer.RemoteZulipServer"
+                        on_delete=django.db.models.deletion.CASCADE, to="zilencer.RemoteAlohaServer"
                     ),
                 ),
             ],

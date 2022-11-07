@@ -1,4 +1,4 @@
-Get Zulip notifications for your Asana projects via Zapier!
+Get Aloha notifications for your Asana projects via Zapier!
 
 1.  {!create-stream.md!}
 
@@ -57,4 +57,4 @@ Get Zulip notifications for your Asana projects via Zapier!
 
 You can repeat the above process and create Zaps for different projects
 and/or different kinds of Asana events that you'd like to be notified
-about in Zulip.
+about in Aloha.

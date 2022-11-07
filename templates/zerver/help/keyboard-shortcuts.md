@@ -1,6 +1,6 @@
 # Keyboard shortcuts
 
-Everything in Zulip can be done with the mouse, but mastering a few keyboard
+Everything in Aloha can be done with the mouse, but mastering a few keyboard
 shortcuts will change your experience of the app. Start with the basics
 below, and add more to your repertoire as needed.
 
@@ -126,7 +126,7 @@ below, and add more to your repertoire as needed.
 
 * **Insert bold text**: `**bold**` or <kbd>Ctrl</kbd> + <kbd>B</kbd>
 
-* **Insert link**: `[Zulip website](https://zulip.org)` or <kbd>Ctrl</kbd> +
+* **Insert link**: `[Aloha website](https://zulip.org)` or <kbd>Ctrl</kbd> +
   <kbd>Shift</kbd> + <kbd>L</kbd>
 
 * **Cancel compose and save draft**: <kbd>Esc</kbd> or <kbd>Ctrl</kbd> +

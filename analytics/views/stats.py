@@ -37,7 +37,7 @@ from zerver.lib.validator import to_non_negative_int
 from zerver.models import Client, Realm, UserProfile, get_realm
 
 if settings.ZILENCER_ENABLED:
-    from zilencer.models import RemoteInstallationCount, RemoteRealmCount, RemoteZulipServer
+    from zilencer.models import RemoteInstallationCount, RemoteRealmCount, RemoteAlohaServer
 
 MAX_TIME_FOR_FULL_ANALYTICS_GENERATION = timedelta(days=1, minutes=30)
 
@@ -114,7 +114,7 @@ def stats_for_remote_realm(
     request: HttpRequest, remote_server_id: int, remote_realm_id: int
 ) -> HttpResponse:
     assert settings.ZILENCER_ENABLED
-    server = RemoteZulipServer.objects.get(id=remote_server_id)
+    server = RemoteAlohaServer.objects.get(id=remote_server_id)
     return render_stats(
         request,
         f"/remote/{server.id}/realm/{remote_realm_id}",
@@ -146,7 +146,7 @@ def get_chart_data_for_remote_realm(
     **kwargs: Any,
 ) -> HttpResponse:
     assert settings.ZILENCER_ENABLED
-    server = RemoteZulipServer.objects.get(id=remote_server_id)
+    server = RemoteAlohaServer.objects.get(id=remote_server_id)
     return get_chart_data(
         request,
         user_profile,
@@ -165,7 +165,7 @@ def stats_for_installation(request: HttpRequest) -> HttpResponse:
 @require_server_admin
 def stats_for_remote_installation(request: HttpRequest, remote_server_id: int) -> HttpResponse:
     assert settings.ZILENCER_ENABLED
-    server = RemoteZulipServer.objects.get(id=remote_server_id)
+    server = RemoteAlohaServer.objects.get(id=remote_server_id)
     return render_stats(
         request,
         f"/remote/{server.id}/installation",
@@ -194,7 +194,7 @@ def get_chart_data_for_remote_installation(
     **kwargs: Any,
 ) -> HttpResponse:
     assert settings.ZILENCER_ENABLED
-    server = RemoteZulipServer.objects.get(id=remote_server_id)
+    server = RemoteAlohaServer.objects.get(id=remote_server_id)
     return get_chart_data(
         request,
         user_profile,
@@ -218,7 +218,7 @@ def get_chart_data(
     for_installation: bool = False,
     remote: bool = False,
     remote_realm_id: Optional[int] = None,
-    server: Optional["RemoteZulipServer"] = None,
+    server: Optional["RemoteAlohaServer"] = None,
 ) -> HttpResponse:
     TableType = Union[
         Type["RemoteInstallationCount"],
@@ -462,20 +462,20 @@ def client_label_map(name: str) -> str:
         return "Web app"
     if name.startswith("desktop app"):
         return "Old desktop app"
-    if name == "ZulipElectron":
+    if name == "AlohaElectron":
         return "Desktop app"
-    if name == "ZulipTerminal":
+    if name == "AlohaTerminal":
         return "Terminal app"
-    if name == "ZulipAndroid":
+    if name == "AlohaAndroid":
         return "Old Android app"
-    if name == "ZulipiOS":
+    if name == "AlohaiOS":
         return "Old iOS app"
-    if name == "ZulipMobile":
+    if name == "AlohaMobile":
         return "Mobile app"
-    if name in ["ZulipPython", "API: Python"]:
+    if name in ["AlohaPython", "API: Python"]:
         return "Python API"
-    if name.startswith("Zulip") and name.endswith("Webhook"):
-        return name[len("Zulip") : -len("Webhook")] + " webhook"
+    if name.startswith("Aloha") and name.endswith("Webhook"):
+        return name[len("Aloha") : -len("Webhook")] + " webhook"
     return name
 
 

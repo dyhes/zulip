@@ -127,7 +127,7 @@ def fix_emojis(fragment: lxml.html.HtmlElement, base_url: str, emojiset: str) ->
 
 def fix_spoilers_in_html(fragment: lxml.html.HtmlElement, language: str) -> None:
     with override_language(language):
-        spoiler_title: str = _("Open Zulip to see the spoiler content")
+        spoiler_title: str = _("Open Aloha to see the spoiler content")
     spoilers = fragment.find_class("spoiler-block")
     for spoiler in spoilers:
         header = spoiler.find_class("spoiler-header")[0]
@@ -149,7 +149,7 @@ def fix_spoilers_in_html(fragment: lxml.html.HtmlElement, language: str) -> None
 
 def fix_spoilers_in_text(content: str, language: str) -> str:
     with override_language(language):
-        spoiler_title: str = _("Open Zulip to see the spoiler content")
+        spoiler_title: str = _("Open Aloha to see the spoiler content")
     lines = content.split("\n")
     output = []
     open_fence = None
@@ -225,7 +225,7 @@ def build_message_list(
     def build_message_payload(message: Message, sender: Optional[str] = None) -> Dict[str, str]:
         plain = message.content
         plain = fix_plaintext_image_urls(plain)
-        # There's a small chance of colliding with non-Zulip URLs containing
+        # There's a small chance of colliding with non-Aloha URLs containing
         # "/user_uploads/", but we don't have much information about the
         # structure of the URL to leverage. We can't use `relative_to_full_url()`
         # function here because it uses a stricter regex which will not work for
@@ -378,7 +378,7 @@ def do_send_missedmessage_events_reply_in_zulip(
     Send a reminder email to a user if she's missed some PMs by being offline.
 
     The email will have its reply to address set to a limited used email
-    address that will send a Zulip message to the correct recipient. This
+    address that will send a Aloha message to the correct recipient. This
     allows the user to respond to missed PMs, huddles, and @-mentions directly
     from the email.
 
@@ -423,7 +423,7 @@ def do_send_missedmessage_events_reply_in_zulip(
     )
 
     # If this setting (email mirroring integration) is enabled, only then
-    # can users reply to email to send message to Zulip. Thus, one must
+    # can users reply to email to send message to Aloha. Thus, one must
     # ensure to display warning in the template.
     if settings.EMAIL_GATEWAY_PATTERN:
         context.update(
@@ -440,7 +440,7 @@ def do_send_missedmessage_events_reply_in_zulip(
     if reply_to_address == FromAddress.NOREPLY:
         reply_to_name = ""
     else:
-        reply_to_name = "Zulip"
+        reply_to_name = "Aloha"
 
     narrow_url = get_narrow_url(user_profile, missed_messages[0]["message"])
     context.update(
@@ -520,12 +520,12 @@ def do_send_missedmessage_events_reply_in_zulip(
     )
 
     with override_language(user_profile.default_language):
-        from_name: str = _("Zulip notifications")
+        from_name: str = _("Aloha notifications")
     from_address = FromAddress.NOREPLY
     if len(senders) == 1 and settings.SEND_MISSED_MESSAGE_EMAILS_AS_USER:
-        # If this setting is enabled, you can reply to the Zulip
+        # If this setting is enabled, you can reply to the Aloha
         # message notification emails directly back to the original sender.
-        # However, one must ensure the Zulip server is in the SPF
+        # However, one must ensure the Aloha server is in the SPF
         # record for the domain, or there will be spam/deliverability
         # problems.
         #
@@ -693,15 +693,15 @@ def enqueue_welcome_emails(user: UserProfile, realm_creation: bool = False) -> N
         context["getting_started_link"] = "https://zulip.com"
 
     # Imported here to avoid import cycles.
-    from zproject.backends import ZulipLDAPAuthBackend, email_belongs_to_ldap
+    from zproject.backends import AlohaLDAPAuthBackend, email_belongs_to_ldap
 
     if email_belongs_to_ldap(user.realm, user.delivery_email):
         context["ldap"] = True
         for backend in get_backends():
             # If the user is doing authentication via LDAP, Note that
-            # we exclude ZulipLDAPUserPopulator here, since that
+            # we exclude AlohaLDAPUserPopulator here, since that
             # isn't used for authentication.
-            if isinstance(backend, ZulipLDAPAuthBackend):
+            if isinstance(backend, AlohaLDAPAuthBackend):
                 context["ldap_username"] = backend.django_to_ldap_username(user.delivery_email)
                 break
 

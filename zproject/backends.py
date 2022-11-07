@@ -1,10 +1,10 @@
-# Documentation for Zulip's authentication backends is split across a few places:
+# Documentation for Aloha's authentication backends is split across a few places:
 #
 # * https://zulip.readthedocs.io/en/latest/production/authentication-methods.html and
 #   zproject/prod_settings_template.py have user-level configuration documentation.
 # * https://zulip.readthedocs.io/en/latest/development/authentication.html
 #   has developer-level documentation, especially on testing authentication backends
-#   in the Zulip development environment.
+#   in the Aloha development environment.
 #
 # Django upstream's documentation for authentication backends is also
 # helpful background.  The most important detail to understand for
@@ -109,7 +109,7 @@ from zproject.settings_types import OIDCIdPConfigDict
 
 redis_client = get_redis_client()
 
-# This first batch of methods is used by other code in Zulip to check
+# This first batch of methods is used by other code in Aloha to check
 # whether a given authentication backend is enabled for a given realm.
 # In each case, we both needs to check at the server level (via
 # `settings.AUTHENTICATION_BACKENDS`, queried via
@@ -353,7 +353,7 @@ def log_auth_attempt(
     )
 
 
-class ZulipAuthMixin:
+class AlohaAuthMixin:
     """This common mixin is used to override Django's default behavior for
     looking up a logged-in user by ID to use a version that fetches
     from memcached before checking the database (avoiding a database
@@ -378,7 +378,7 @@ class ZulipAuthMixin:
             return None
 
 
-class ZulipDummyBackend(ZulipAuthMixin):
+class AlohaDummyBackend(AlohaAuthMixin):
     """Used when we want to log you in without checking any
     authentication (i.e. new user registration or when otherwise
     authentication has already been checked earlier in the process).
@@ -420,7 +420,7 @@ def check_password_strength(password: str) -> bool:
     return True
 
 
-class EmailAuthBackend(ZulipAuthMixin):
+class EmailAuthBackend(AlohaAuthMixin):
     """
     Email+Password authentication backend (the default).
 
@@ -586,29 +586,29 @@ class LDAPReverseEmailSearch(_LDAPUser):
         return ldap_users
 
 
-class ZulipLDAPException(_LDAPUser.AuthenticationFailed):
+class AlohaLDAPException(_LDAPUser.AuthenticationFailed):
     """Since this inherits from _LDAPUser.AuthenticationFailed, these will
     be caught and logged at debug level inside django-auth-ldap's authenticate()"""
 
 
-class ZulipLDAPExceptionNoMatchingLDAPUser(ZulipLDAPException):
+class AlohaLDAPExceptionNoMatchingLDAPUser(AlohaLDAPException):
     pass
 
 
-class ZulipLDAPExceptionOutsideDomain(ZulipLDAPExceptionNoMatchingLDAPUser):
+class AlohaLDAPExceptionOutsideDomain(AlohaLDAPExceptionNoMatchingLDAPUser):
     pass
 
 
-class ZulipLDAPConfigurationError(Exception):
+class AlohaLDAPConfigurationError(Exception):
     pass
 
 
 LDAP_USER_ACCOUNT_CONTROL_DISABLED_MASK = 2
 
 
-class ZulipLDAPAuthBackendBase(ZulipAuthMixin, LDAPBackend):
-    """Common code between LDAP authentication (ZulipLDAPAuthBackend) and
-    using LDAP just to sync user data (ZulipLDAPUserPopulator).
+class AlohaLDAPAuthBackendBase(AlohaAuthMixin, LDAPBackend):
+    """Common code between LDAP authentication (AlohaLDAPAuthBackend) and
+    using LDAP just to sync user data (AlohaLDAPUserPopulator).
 
     To fully understand our LDAP backend, you may want to skim
     django_auth_ldap/backend.py from the upstream django-auth-ldap
@@ -647,14 +647,14 @@ class ZulipLDAPAuthBackendBase(ZulipAuthMixin, LDAPBackend):
         Translates django username (user_profile.delivery_email or whatever the user typed in the login
         field when authenticating via the LDAP backend) into LDAP username.
         Guarantees that the username it returns actually has an entry in the LDAP directory.
-        Raises ZulipLDAPExceptionNoMatchingLDAPUser if that's not possible.
+        Raises AlohaLDAPExceptionNoMatchingLDAPUser if that's not possible.
         """
         result = username
         if settings.LDAP_APPEND_DOMAIN:
             if is_valid_email(username):
                 address = Address(addr_spec=username)
                 if address.domain != settings.LDAP_APPEND_DOMAIN:
-                    raise ZulipLDAPExceptionOutsideDomain(
+                    raise AlohaLDAPExceptionOutsideDomain(
                         f"Email {username} does not match LDAP domain {settings.LDAP_APPEND_DOMAIN}."
                     )
                 result = address.username
@@ -679,7 +679,7 @@ class ZulipLDAPAuthBackendBase(ZulipAuthMixin, LDAPBackend):
             error_message = (
                 "No LDAP user matching django_to_ldap_username result: {}. Input username: {}"
             )
-            raise ZulipLDAPExceptionNoMatchingLDAPUser(
+            raise AlohaLDAPExceptionNoMatchingLDAPUser(
                 error_message.format(result, username),
             )
 
@@ -697,7 +697,7 @@ class ZulipLDAPAuthBackendBase(ZulipAuthMixin, LDAPBackend):
         if settings.LDAP_EMAIL_ATTR is not None:
             # Get email from LDAP attributes.
             if settings.LDAP_EMAIL_ATTR not in ldap_user.attrs:
-                raise ZulipLDAPException(
+                raise AlohaLDAPException(
                     f"LDAP user doesn't have the needed {settings.LDAP_EMAIL_ATTR} attribute"
                 )
             else:
@@ -708,7 +708,7 @@ class ZulipLDAPAuthBackendBase(ZulipAuthMixin, LDAPBackend):
     def ldap_to_django_username(self, username: str) -> str:
         """
         This is called inside django_auth_ldap with only one role:
-        to convert _LDAPUser._username to django username (so in Zulip, the email)
+        to convert _LDAPUser._username to django username (so in Aloha, the email)
         and pass that as "username" argument to get_or_build_user(username, ldapuser).
         In many cases, the email is stored in the _LDAPUser's attributes, so it can't be
         constructed just from the username. We choose to do nothing in this function,
@@ -754,7 +754,7 @@ class ZulipLDAPAuthBackendBase(ZulipAuthMixin, LDAPBackend):
     def is_user_disabled_in_ldap(self, ldap_user: _LDAPUser) -> bool:
         """Implements checks for whether a user has been
         disabled in the LDAP server being integrated with
-        Zulip."""
+        Aloha."""
         if "userAccountControl" in settings.AUTH_LDAP_USER_ATTR_MAP:
             account_control_value = ldap_user.attrs[
                 settings.AUTH_LDAP_USER_ATTR_MAP["userAccountControl"]
@@ -819,7 +819,7 @@ class ZulipLDAPAuthBackendBase(ZulipAuthMixin, LDAPBackend):
 
     @classmethod
     def get_mapped_name(cls, ldap_user: _LDAPUser) -> str:
-        """Constructs the user's Zulip full_name from the LDAP data"""
+        """Constructs the user's Aloha full_name from the LDAP data"""
         if "full_name" in settings.AUTH_LDAP_USER_ATTR_MAP:
             full_name_attr = settings.AUTH_LDAP_USER_ATTR_MAP["full_name"]
             full_name = ldap_user.attrs[full_name_attr][0]
@@ -830,7 +830,7 @@ class ZulipLDAPAuthBackendBase(ZulipAuthMixin, LDAPBackend):
             last_name = ldap_user.attrs[last_name_attr][0]
             full_name = f"{first_name} {last_name}"
         else:
-            raise ZulipLDAPException("Missing required mapping for user's full name")
+            raise AlohaLDAPException("Missing required mapping for user's full name")
 
         return full_name
 
@@ -842,7 +842,7 @@ class ZulipLDAPAuthBackendBase(ZulipAuthMixin, LDAPBackend):
             try:
                 full_name = check_full_name(full_name)
             except JsonableError as e:
-                raise ZulipLDAPException(e.msg)
+                raise AlohaLDAPException(e.msg)
             do_change_full_name(user_profile, full_name, None)
 
     def sync_custom_profile_fields_from_ldap(
@@ -865,10 +865,10 @@ class ZulipLDAPAuthBackendBase(ZulipAuthMixin, LDAPBackend):
         try:
             sync_user_profile_custom_fields(user_profile, values_by_var_name)
         except SyncUserException as e:
-            raise ZulipLDAPException(str(e)) from e
+            raise AlohaLDAPException(str(e)) from e
 
 
-class ZulipLDAPAuthBackend(ZulipLDAPAuthBackendBase):
+class AlohaLDAPAuthBackend(AlohaLDAPAuthBackendBase):
     REALM_IS_NONE_ERROR = 1
 
     @rate_limit_auth
@@ -896,7 +896,7 @@ class ZulipLDAPAuthBackend(ZulipLDAPAuthBackendBase):
             # to the user's LDAP username before calling the
             # django-auth-ldap authenticate().
             username = self.django_to_ldap_username(username)
-        except ZulipLDAPExceptionNoMatchingLDAPUser as e:
+        except AlohaLDAPExceptionNoMatchingLDAPUser as e:
             ldap_logger.debug("%s: %s", type(self).__name__, e)
             if return_data is not None:
                 return_data["no_matching_ldap_user"] = True
@@ -917,10 +917,10 @@ class ZulipLDAPAuthBackend(ZulipLDAPAuthBackendBase):
 
         This function's responsibility is to check (1) whether the
         email address for this user obtained from LDAP has an active
-        account in this Zulip realm.  If so, it will log them in.
+        account in this Aloha realm.  If so, it will log them in.
 
         Otherwise, to provide a seamless single sign-on experience
-        with LDAP, this function can automatically create a new Zulip
+        with LDAP, this function can automatically create a new Aloha
         user account in the realm (assuming the realm is configured to
         allow that email address to sign up).
         """
@@ -929,14 +929,14 @@ class ZulipLDAPAuthBackend(ZulipLDAPAuthBackendBase):
         username = self.user_email_from_ldapuser(username, ldap_user)
 
         if self.is_account_realm_access_forbidden(ldap_user, self._realm):
-            raise ZulipLDAPException("User not allowed to access realm")
+            raise AlohaLDAPException("User not allowed to access realm")
 
         if ldap_should_sync_active_status():  # nocoverage
             ldap_disabled = self.is_user_disabled_in_ldap(ldap_user)
             if ldap_disabled:
-                # Treat disabled users as deactivated in Zulip.
+                # Treat disabled users as deactivated in Aloha.
                 return_data["inactive_user"] = True
-                raise ZulipLDAPException("User has been deactivated")
+                raise AlohaLDAPException("User has been deactivated")
 
         user_profile = common_get_active_user(username, self._realm, return_data)
         if user_profile is not None:
@@ -945,9 +945,9 @@ class ZulipLDAPAuthBackend(ZulipLDAPAuthBackendBase):
 
         if return_data.get("inactive_realm"):
             # This happens if there is a user account in a deactivated realm
-            raise ZulipLDAPException("Realm has been deactivated")
+            raise AlohaLDAPException("Realm has been deactivated")
         if return_data.get("inactive_user"):
-            raise ZulipLDAPException("User has been deactivated")
+            raise AlohaLDAPException("User has been deactivated")
         # An invalid_subdomain `return_data` value here is ignored,
         # since that just means we're trying to create an account in a
         # second realm on the server (`ldap_auth_enabled(realm)` would
@@ -956,7 +956,7 @@ class ZulipLDAPAuthBackend(ZulipLDAPAuthBackendBase):
         if self._realm.deactivated:
             # This happens if no account exists, but the realm is
             # deactivated, so we shouldn't create a new user account
-            raise ZulipLDAPException("Realm has been deactivated")
+            raise AlohaLDAPException("Realm has been deactivated")
 
         try:
             validate_email(username)
@@ -966,7 +966,7 @@ class ZulipLDAPAuthBackend(ZulipLDAPAuthBackendBase):
             # or a malformed email value in the ldap directory,
             # so we should log a warning about this before failing.
             self.logger.warning(error_message)
-            raise ZulipLDAPException(error_message)
+            raise AlohaLDAPException(error_message)
 
         # Makes sure that email domain hasn't be restricted for this
         # realm.  The main thing here is email_allowed_for_realm; but
@@ -976,16 +976,16 @@ class ZulipLDAPAuthBackend(ZulipLDAPAuthBackendBase):
             email_allowed_for_realm(username, self._realm)
             validate_email_not_already_in_realm(self._realm, username)
         except DomainNotAllowedForRealmError:
-            raise ZulipLDAPException("This email domain isn't allowed in this organization.")
+            raise AlohaLDAPException("This email domain isn't allowed in this organization.")
         except (DisposableEmailError, EmailContainsPlusError):
-            raise ZulipLDAPException("Email validation failed.")
+            raise AlohaLDAPException("Email validation failed.")
 
         # We have valid LDAP credentials; time to create an account.
         full_name = self.get_mapped_name(ldap_user)
         try:
             full_name = check_full_name(full_name)
         except JsonableError as e:
-            raise ZulipLDAPException(e.msg)
+            raise AlohaLDAPException(e.msg)
 
         opts: Dict[str, Any] = {}
         if self._prereg_user:
@@ -1012,7 +1012,7 @@ class ZulipLDAPAuthBackend(ZulipLDAPAuthBackendBase):
         return user_profile, True
 
 
-class ZulipLDAPUser(_LDAPUser):
+class AlohaLDAPUser(_LDAPUser):
     """
     This is an extension of the _LDAPUser class, with a realm attribute
     attached to it. It's purpose is to call its inherited method
@@ -1028,8 +1028,8 @@ class ZulipLDAPUser(_LDAPUser):
         super().__init__(*args, **kwargs)
 
 
-class ZulipLDAPUserPopulator(ZulipLDAPAuthBackendBase):
-    """Just like ZulipLDAPAuthBackend, but doesn't let you log in.  Used
+class AlohaLDAPUserPopulator(AlohaLDAPAuthBackendBase):
+    """Just like AlohaLDAPAuthBackend, but doesn't let you log in.  Used
     for syncing data like names, avatars, and custom profile fields
     from LDAP in `manage.py sync_ldap_user_data` as well as in
     registration for organizations that use a different SSO solution
@@ -1048,7 +1048,7 @@ class ZulipLDAPUserPopulator(ZulipLDAPAuthBackendBase):
         return None
 
     def get_or_build_user(
-        self, username: str, ldap_user: ZulipLDAPUser
+        self, username: str, ldap_user: AlohaLDAPUser
     ) -> Tuple[UserProfile, bool]:
         """This is used only in non-authentication contexts such as:
         ./manage.py sync_ldap_user_data
@@ -1086,11 +1086,11 @@ class ZulipLDAPUserPopulator(ZulipLDAPAuthBackendBase):
         return (user, built)
 
 
-class PopulateUserLDAPError(ZulipLDAPException):
+class PopulateUserLDAPError(AlohaLDAPException):
     pass
 
 
-@receiver(ldap_error, sender=ZulipLDAPUserPopulator)
+@receiver(ldap_error, sender=AlohaLDAPUserPopulator)
 def catch_ldap_error(signal: Signal, **kwargs: Any) -> None:
     """
     Inside django_auth_ldap populate_user(), if LDAPError is raised,
@@ -1107,10 +1107,10 @@ def catch_ldap_error(signal: Signal, **kwargs: Any) -> None:
 
 
 def sync_user_from_ldap(user_profile: UserProfile, logger: logging.Logger) -> bool:
-    backend = ZulipLDAPUserPopulator()
+    backend = AlohaLDAPUserPopulator()
     try:
         ldap_username = backend.django_to_ldap_username(user_profile.delivery_email)
-    except ZulipLDAPExceptionNoMatchingLDAPUser:
+    except AlohaLDAPExceptionNoMatchingLDAPUser:
         if (
             settings.ONLY_LDAP
             if settings.LDAP_DEACTIVATE_NON_MATCHING_USERS is None
@@ -1127,7 +1127,7 @@ def sync_user_from_ldap(user_profile: UserProfile, logger: logging.Logger) -> bo
     # `backend.populate_user`, which in turn just creates the
     # `_LDAPUser` object and calls `ldap_user.populate_user()` on
     # that.  Unfortunately, that will produce incorrect results in the
-    # case that the server has multiple Zulip users in different
+    # case that the server has multiple Aloha users in different
     # realms associated with a single LDAP user, because
     # `django-auth-ldap` isn't implemented with the possibility of
     # multiple realms on different subdomains in mind.
@@ -1138,7 +1138,7 @@ def sync_user_from_ldap(user_profile: UserProfile, logger: logging.Logger) -> bo
     #
     # Ideally, we'd contribute changes to `django-auth-ldap` upstream
     # making this flow possible in a more directly supported fashion.
-    updated_user = ZulipLDAPUser(backend, ldap_username, realm=user_profile.realm).populate_user()
+    updated_user = AlohaLDAPUser(backend, ldap_username, realm=user_profile.realm).populate_user()
     if updated_user:
         logger.info("Updated %s.", user_profile.delivery_email)
         return True
@@ -1155,7 +1155,7 @@ def query_ldap(email: str) -> List[str]:
     if backend is not None:
         try:
             ldap_username = backend.django_to_ldap_username(email)
-        except ZulipLDAPExceptionNoMatchingLDAPUser as e:
+        except AlohaLDAPExceptionNoMatchingLDAPUser as e:
             values.append(f"No such user found: {e}")
             return values
 
@@ -1174,9 +1174,9 @@ def query_ldap(email: str) -> List[str]:
     return values
 
 
-class DevAuthBackend(ZulipAuthMixin):
+class DevAuthBackend(AlohaAuthMixin):
     """Allow logging in as any user without a password.  This is used for
-    convenience when developing Zulip, and is disabled in production."""
+    convenience when developing Aloha, and is disabled in production."""
 
     name = "dev"
 
@@ -1384,7 +1384,7 @@ def sync_user_profile_custom_fields(
 
 
 @external_auth_method
-class ZulipRemoteUserBackend(RemoteUserBackend, ExternalAuthMethod):
+class AlohaRemoteUserBackend(RemoteUserBackend, ExternalAuthMethod):
     """Authentication backend that reads the Apache REMOTE_USER variable.
     Used primarily in enterprise environments with an SSO solution
     that has an Apache REMOTE_USER integration.  For manual testing, see
@@ -1455,8 +1455,8 @@ def redirect_deactivated_user_to_login(realm: Realm, email: str) -> HttpResponse
 def social_associate_user_helper(
     backend: BaseAuth, return_data: Dict[str, Any], *args: Any, **kwargs: Any
 ) -> Union[HttpResponse, Optional[UserProfile]]:
-    """Responsible for doing the Zulip account lookup and validation parts
-    of the Zulip social auth pipeline (similar to the authenticate()
+    """Responsible for doing the Aloha account lookup and validation parts
+    of the Aloha social auth pipeline (similar to the authenticate()
     methods in most other auth backends in this file).
 
     Returns a UserProfile object for successful authentication, and None otherwise.
@@ -1791,16 +1791,16 @@ def social_auth_finish(
     return redirect_and_log_into_subdomain(result)
 
 
-class SocialAuthMixin(ZulipAuthMixin, ExternalAuthMethod, BaseAuth):
+class SocialAuthMixin(AlohaAuthMixin, ExternalAuthMethod, BaseAuth):
     # Whether we expect that the full_name value obtained by the
     # social backend is definitely how the user should be referred to
-    # in Zulip, which in turn determines whether we should always show
+    # in Aloha, which in turn determines whether we should always show
     # a registration form in the event with a default value of the
     # user's name when using this social backend so they can change
     # it.  For social backends like SAML that are expected to be a
     # central database, this should be True; for backends like GitHub
     # where the user might not have a name set or have it set to
-    # something other than the name they will prefer to use in Zulip,
+    # something other than the name they will prefer to use in Aloha,
     # it should be False.
     full_name_validated = False
 
@@ -1914,7 +1914,7 @@ class GitHubAuthBackend(SocialAuthMixin, GithubOAuth2):
 
     def user_data(self, access_token: str, *args: Any, **kwargs: Any) -> Dict[str, str]:
         """This patched user_data function lets us combine together the 3
-        social auth backends into a single Zulip backend for GitHub OAuth2"""
+        social auth backends into a single Aloha backend for GitHub OAuth2"""
         team_id = settings.SOCIAL_AUTH_GITHUB_TEAM_ID
         org_name = settings.SOCIAL_AUTH_GITHUB_ORG_NAME
 
@@ -2163,7 +2163,7 @@ class AppleAuthBackend(SocialAuthMixin, AppleIdAuth):
             return None
 
 
-class ZulipSAMLIdentityProvider(SAMLIdentityProvider):
+class AlohaSAMLIdentityProvider(SAMLIdentityProvider):
     def get_user_details(self, attributes: Dict[str, Any]) -> Dict[str, Any]:
         """
         Overridden to support plumbing of additional Attributes
@@ -2286,7 +2286,7 @@ class SAMLAuthBackend(SocialAuthMixin, SAMLAuth):
 
     # The full_name provided by the IdP is very likely the standard
     # employee directory name for the user, and thus what they and
-    # their organization want to use in Zulip.  So don't unnecessarily
+    # their organization want to use in Aloha.  So don't unnecessarily
     # provide a registration flow prompt for them to set their name.
     full_name_validated = True
 
@@ -2307,11 +2307,11 @@ class SAMLAuthBackend(SocialAuthMixin, SAMLAuth):
                     del settings.SOCIAL_AUTH_SAML_ENABLED_IDPS[idp_name]
         super().__init__(*args, **kwargs)
 
-    def get_idp(self, idp_name: str) -> ZulipSAMLIdentityProvider:
+    def get_idp(self, idp_name: str) -> AlohaSAMLIdentityProvider:
         """Given the name of an IdP, get a SAMLIdentityProvider instance.
         Forked to use our subclass of SAMLIdentityProvider for more flexibility."""
         idp_config = self.setting("ENABLED_IDPS")[idp_name]
-        return ZulipSAMLIdentityProvider(idp_name, **idp_config)
+        return AlohaSAMLIdentityProvider(idp_name, **idp_config)
 
     def auth_url(self) -> str:
         """Get the URL to which we must redirect in order to
@@ -2755,7 +2755,7 @@ def get_external_method_dicts(realm: Optional[Realm] = None) -> List[ExternalAut
 AUTH_BACKEND_NAME_MAP: Dict[str, Any] = {
     "Dev": DevAuthBackend,
     "Email": EmailAuthBackend,
-    "LDAP": ZulipLDAPAuthBackend,
+    "LDAP": AlohaLDAPAuthBackend,
 }
 
 for external_method in EXTERNAL_AUTH_METHODS:

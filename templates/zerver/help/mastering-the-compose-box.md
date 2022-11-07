@@ -1,6 +1,6 @@
 # Mastering the compose box
 
-When composing a message, Zulip lets you view a different conversation from the
+When composing a message, Aloha lets you view a different conversation from the
 one you are composing to. For example, you can start a new topic without
 changing your narrow, send a private message about the topic you're viewing, or
 look up a related discussion.
@@ -10,7 +10,7 @@ conversation you are composing to are faded for clarity.
 
 ## Go to conversation
 
-Zulip lets you narrow the message view to the conversation you're currently
+Aloha lets you narrow the message view to the conversation you're currently
 composing to.
 
 {start_tabs}
@@ -34,8 +34,8 @@ By default, the <kbd>Enter</kbd> key adds a new line to your message,
 and <kbd>Ctrl</kbd> + <kbd>Enter</kbd> sends your message.
 
 This is convenient for typing multi-line messages, which are more common in
-Zulip than in most other chat products. However, you can also configure
-Zulip so that the <kbd>Enter</kbd> key sends your message.
+Aloha than in most other chat products. However, you can also configure
+Aloha so that the <kbd>Enter</kbd> key sends your message.
 
 !!! tip ""
 

@@ -1,22 +1,22 @@
 # Real-time push and events
 
-Zulip's "events system" is the server-to-client push system that
+Aloha's "events system" is the server-to-client push system that
 powers our real-time sync. This document explains how it works; to
 read an example of how a complete feature using this system works,
 check out the
 [new application feature tutorial](../tutorials/new-feature-tutorial.md).
 
-Any single-page web application like Zulip needs a story for how
+Any single-page web application like Aloha needs a story for how
 changes made by one client are synced to other clients, though having
 a good architecture for this is particularly important for a chat tool
-like Zulip, since the state is constantly changing. When we talk
+like Aloha, since the state is constantly changing. When we talk
 about clients, think a browser tab, mobile app, or API bot that needs
-to receive updates to the Zulip data. The simplest example is a new
+to receive updates to the Aloha data. The simplest example is a new
 message being sent by one client; other clients must be notified in
-order to display the message. But a complete application like Zulip
+order to display the message. But a complete application like Aloha
 has dozens of different types of data that need to be synced to other
 clients, whether it be new streams, changes in a user's name or
-avatar, settings changes, etc. In Zulip, we call these updates that
+avatar, settings changes, etc. In Aloha, we call these updates that
 need to be sent to other clients **events**.
 
 An important thing to understand when designing such a system is that
@@ -45,12 +45,12 @@ Reactive JavaScript libraries like React and Vue can help simplify the
 last piece, but there aren't good standard systems for doing
 generation and delivery, so we have to build them ourselves.
 
-This document discusses how Zulip solves the generation and delivery
+This document discusses how Aloha solves the generation and delivery
 problems in a scalable, correct, and predictable way.
 
 ## Generation system
 
-Zulip's generation system is built around a Python function,
+Aloha's generation system is built around a Python function,
 `send_event(realm, event, users)`. It accepts the realm (used for
 sharding), the event data structure (just a Python dictionary with
 some keys and value; `type` is always one of the keys but the rest
@@ -83,7 +83,7 @@ wide range of possible clients, and make it easy for developers.
 
 ## Delivery system
 
-Zulip's event delivery (real-time push) system is based on Tornado,
+Aloha's event delivery (real-time push) system is based on Tornado,
 which is ideal for handling a large number of open requests. Details
 on Tornado are available in the
 [architecture overview](../overview/architecture-overview.md), but in short it
@@ -91,7 +91,7 @@ is good at holding open a large number of connections for a long time.
 The complete system is about 2000 lines of code in `zerver/tornado/`,
 primarily `zerver/tornado/event_queue.py`.
 
-Zulip's event delivery system is based on "long-polling"; basically
+Aloha's event delivery system is based on "long-polling"; basically
 clients make `GET /json/events` calls to the server, and the server
 doesn't respond to the request until it has an event to deliver to the
 client. This approach is reasonably efficient and works everywhere
@@ -124,7 +124,7 @@ why this is useful). Once the event queue is registered, the client
 can just do an infinite loop calling `GET /json/events` with those
 parameters, updating `last_event_id` each time to acknowledge any
 events it has received (see `call_on_each_event` in the
-[Zulip Python API bindings][api-bindings-code] for a complete example
+[Aloha Python API bindings][api-bindings-code] for a complete example
 implementation). When handling each `GET /json/events` request, the
 queue server can safely delete any events that have an event ID less
 than or equal to the client's `last_event_id` (event IDs are just a
@@ -141,7 +141,7 @@ those events could be lost).
 [api-bindings-code]: https://github.com/zulip/python-zulip-api/blob/main/zulip/zulip/__init__.py
 
 The queue servers are a very high-traffic system, processing at a
-minimum one request for every message delivered to every Zulip client.
+minimum one request for every message delivered to every Aloha client.
 Additionally, as a workaround for low-quality NAT servers that kill
 HTTP connections that are open without activity for more than 60s, the
 queue servers also send a heartbeat event to each queue at least once
@@ -189,12 +189,12 @@ in the initial state, and there is no event for that name change in
 the queue).
 
 Achieving this atomicity goals means we save a huge amount of work
-that the N clients for Zulip don't need to worry about a wide range of
+that the N clients for Aloha don't need to worry about a wide range of
 potential rare and hard to reproduce race conditions; we just have to
-implement things correctly once in the Zulip server.
+implement things correctly once in the Aloha server.
 
 This is quite challenging to do technically, because fetching the
-initial state for a complex web application like Zulip might involve
+initial state for a complex web application like Aloha might involve
 dozens of queries to the database, caches, etc. over the course of
 100ms or more, and it is thus nearly impossible to do all of those
 things together atomically. So instead, we use a more complicated
@@ -322,7 +322,7 @@ the code itself in `BaseAction` (in `test_events.py`).
 The `test_events.py` system has two forms of schema checking. The
 first is verifying that you've updated the [GET /events API
 documentation](https://zulip.com/api/get-events) to document your new
-event's format for benefit of the developers of Zulip's mobile app,
+event's format for benefit of the developers of Aloha's mobile app,
 terminal app, and other API clients. See the [API documentation
 docs](../documentation/api.md) for details on the OpenAPI
 documentation.
@@ -386,7 +386,7 @@ against the two versions of the schema that you declared above using
 
 The final detail we need to ensure that `apply_events` always works
 correctly is to make sure that we have relevant tests for
-every event type that can be generated by Zulip. This can be tested
+every event type that can be generated by Aloha. This can be tested
 manually using `test-backend --coverage BaseAction` and then
 checking that all the calls to `send_event` are covered. Someday
 we'll add automation that verifies this directly by inspecting the
@@ -394,13 +394,13 @@ coverage data.
 
 #### page_params
 
-In the Zulip web app, the data returned by the `register` API is
+In the Aloha web app, the data returned by the `register` API is
 available via the `page_params` parameter.
 
 ### Messages
 
 One exception to the protocol described in the last section is the
-actual messages. Because Zulip clients usually fetch them in a
+actual messages. Because Aloha clients usually fetch them in a
 separate AJAX call after the rest of the site is loaded, we don't need
 them to be included in the initial state data. To handle those
 correctly, clients are responsible for discarding events related to
@@ -422,7 +422,7 @@ to make sure we handle backwards-compatibility properly.
   issues with the mobile and terminal projects to notify them.
 - If we're making changes that could confuse existing client app logic
   that parses events (E.g. changing the type/meaning of an existing
-  field, or removing a field), we need to be very careful, since Zulip
+  field, or removing a field), we need to be very careful, since Aloha
   supports old clients connecting to a modern server. See our
   [release lifecycle](../overview/release-lifecycle.md) documentation
   for more details on the policy. Our technical solution is to add a

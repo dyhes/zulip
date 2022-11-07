@@ -1,4 +1,4 @@
-/* Reusable, object-oriented CSS base components for the Zulip web app
+/* Reusable, object-oriented CSS base components for the Aloha web app
    (not included in the portico CSS) */
 
 .flex {
@@ -100,7 +100,7 @@ Reply box like a placeholder.  Chrome uses color to set placeholder,
 while Firefox uses opacity, so we need to set both properties to avoid
 mixed styling.
 
-While we usually prefer opacity for text color in Zulip, there's some
+While we usually prefer opacity for text color in Aloha, there's some
 evidence Edge may have bugs in its handling of placeholder opacity
 CSS: https://github.com/necolas/normalize.css/issues/741
 */

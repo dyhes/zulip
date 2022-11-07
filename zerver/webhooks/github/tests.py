@@ -309,7 +309,7 @@ class GitHubWebhookTest(WebhookTestCase):
         )
         self.check_webhook(
             "pull_request__unassigned",
-            "helloworld / PR #1 Mention that Zulip rocks!",
+            "helloworld / PR #1 Mention that Aloha rocks!",
             expected_message,
         )
 

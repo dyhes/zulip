@@ -1,7 +1,7 @@
 {% extends "zerver/portico.html" %}
 
 {% block title %}
-<title>{{ _("Find your accounts") }} | Zulip</title>
+<title>{{ _("Find your accounts") }} | Aloha</title>
 {% endblock %}
 
 {% block portico_content %}
@@ -9,7 +9,7 @@
 <div class="app find-account-page flex full-page">
     <div class="inline-block new-style">
         <div class="lead">
-            <h1 class="get-started">{{ _("Find your Zulip accounts") }}…</h1>
+            <h1 class="get-started">{{ _("Find your Aloha accounts") }}…</h1>
         </div>
 
         <div class="app-main find-account-page-container white-box">
@@ -17,7 +17,7 @@
             <div id="results">
                 <p>
                     Emails sent! You will only receive emails at addresses associated
-                    with Zulip organizations. The addresses entered on the previous page
+                    with Aloha organizations. The addresses entered on the previous page
                     are listed below:
                 </p>
 
@@ -34,7 +34,7 @@
             <div class="find-account-form">
                 <p>
                     We will send you an email with the sign-in information for
-                    any Zulip organization(s) associated with the addresses you enter below.
+                    any Aloha organization(s) associated with the addresses you enter below.
                 </p>
                 <form class="form-inline" id="find_account" name="email_form"
                   action="{{ current_url() }}" method="post">

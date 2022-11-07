@@ -11,10 +11,10 @@ from zerver.lib.queue import (
     get_queue_client,
     queue_json_publish,
 )
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 
 
-class TestTornadoQueueClient(ZulipTestCase):
+class TestTornadoQueueClient(AlohaTestCase):
     @mock.patch("zerver.lib.queue.ExceptionFreeTornadoConnection", autospec=True)
     def test_on_open_closed(self, mock_cxn: mock.MagicMock) -> None:
         with self.assertLogs("zulip.queue", "WARNING") as m:
@@ -29,7 +29,7 @@ class TestTornadoQueueClient(ZulipTestCase):
             )
 
 
-class TestQueueImplementation(ZulipTestCase):
+class TestQueueImplementation(AlohaTestCase):
     @override_settings(USING_RABBITMQ=True)
     def test_register_consumer(self) -> None:
         output = []

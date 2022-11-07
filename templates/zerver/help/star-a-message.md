@@ -29,7 +29,7 @@ used to star it.
 You can access your starred messages by clicking **Starred messages** in the
 left sidebar, or by [searching](/help/search-for-messages) for `is:starred`.
 
-By default, Zulip displays the number of starred messages in the left
+By default, Aloha displays the number of starred messages in the left
 sidebar; this allows you to use them as an inbox of messages you'd
 like to come back to. If you are using starred messages for something
 else and would prefer not to see the count in your left sidebar, you

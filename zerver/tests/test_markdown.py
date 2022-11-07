@@ -48,7 +48,7 @@ from zerver.lib.mention import (
     possible_user_group_mentions,
 )
 from zerver.lib.message import render_markdown
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.tex import render_tex
 from zerver.lib.user_groups import create_user_group
 from zerver.models import (
@@ -78,7 +78,7 @@ class SimulatedFencedBlockPreprocessor(FencedBlockPreprocessor):
         return "**" + s.strip("\n") + "**"
 
 
-class FencedBlockPreprocessorTest(ZulipTestCase):
+class FencedBlockPreprocessorTest(AlohaTestCase):
     def test_simple_quoting(self) -> None:
         processor = FencedBlockPreprocessor(Markdown())
         markdown_input = [
@@ -203,7 +203,7 @@ def markdown_convert_wrapper(content: str) -> str:
     ).rendered_content
 
 
-class MarkdownMiscTest(ZulipTestCase):
+class MarkdownMiscTest(AlohaTestCase):
     def test_diffs_work_as_expected(self) -> None:
         str1 = "<p>The quick brown fox jumps over the lazy dog.  Animal stories are fun, yeah</p>"
         str2 = "<p>The fast fox jumps over the lazy dogs and cats.  Animal stories are fun</p>"
@@ -286,7 +286,7 @@ class MarkdownMiscTest(ZulipTestCase):
             self.assertEqual(m.output, ["ERROR:root:Cannot find KaTeX for latex rendering!"])
 
 
-class MarkdownListPreprocessorTest(ZulipTestCase):
+class MarkdownListPreprocessorTest(AlohaTestCase):
     # We test that the preprocessor inserts blank lines at correct places.
     # We use <> to indicate that we need to insert a blank line here.
     def split_message(self, msg: str) -> Tuple[List[str], List[str]]:
@@ -376,7 +376,7 @@ Outside. Should convert:<>
         self.assertEqual(preprocessor.run(original), expected)
 
 
-class MarkdownTest(ZulipTestCase):
+class MarkdownTest(AlohaTestCase):
     def setUp(self) -> None:
         super().setUp()
         clear_state_for_testing()
@@ -941,7 +941,7 @@ class MarkdownTest(ZulipTestCase):
             "http://twitter.com/NEVNBoston/status/421654515616849920/photo/1</a>"
         )
 
-        emoji_in_tweet_html = """Zulip is <span aria-label=\"100\" class="emoji emoji-1f4af" role=\"img\" title="100">:100:</span>% open-source!"""
+        emoji_in_tweet_html = """Aloha is <span aria-label=\"100\" class="emoji emoji-1f4af" role=\"img\" title="100">:100:</span>% open-source!"""
 
         def make_inline_twitter_preview(url: str, tweet_html: str, image_html: str = "") -> str:
             ## As of right now, all previews are mocked to be the exact same tweet
@@ -2867,7 +2867,7 @@ class MarkdownTest(ZulipTestCase):
         self.assertEqual(converted, dedent(expected_output))
 
 
-class MarkdownApiTests(ZulipTestCase):
+class MarkdownApiTests(AlohaTestCase):
     def test_render_message_api(self) -> None:
         content = "That is a **bold** statement"
         result = self.api_post(
@@ -2897,7 +2897,7 @@ class MarkdownApiTests(ZulipTestCase):
         )
 
 
-class MarkdownErrorTests(ZulipTestCase):
+class MarkdownErrorTests(AlohaTestCase):
     def test_markdown_error_handling(self) -> None:
         with self.simulated_markdown_failure():
             with self.assertRaises(MarkdownRenderingException):

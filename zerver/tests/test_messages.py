@@ -4,7 +4,7 @@ from typing import List
 from django.utils.timezone import now as timezone_now
 
 from zerver.actions.message_send import get_active_presence_idle_user_ids
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.models import (
     Message,
     UserPresence,
@@ -15,7 +15,7 @@ from zerver.models import (
 )
 
 
-class MissedMessageTest(ZulipTestCase):
+class MissedMessageTest(AlohaTestCase):
     def test_presence_idle_user_ids(self) -> None:
         UserPresence.objects.all().delete()
 
@@ -95,7 +95,7 @@ class MissedMessageTest(ZulipTestCase):
         assert_missing([othello.id])
 
 
-class TestBulkGetHuddleUserIds(ZulipTestCase):
+class TestBulkGetHuddleUserIds(AlohaTestCase):
     def test_bulk_get_huddle_user_ids(self) -> None:
         hamlet = self.example_user("hamlet")
         cordelia = self.example_user("cordelia")

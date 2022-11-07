@@ -1,8 +1,8 @@
-# Zulip's OpenAPI-based API documentation system is documented at
+# Aloha's OpenAPI-based API documentation system is documented at
 #   https://zulip.readthedocs.io/en/latest/documentation/api.html
 #
 # This file contains helper functions for generating cURL examples
-# based on Zulip's OpenAPI definitions, as well as test setup and
+# based on Aloha's OpenAPI definitions, as well as test setup and
 # fetching of appropriate parameter values to use when running the
 # cURL examples as part of the tools/test-api test suite.
 from functools import wraps
@@ -17,7 +17,7 @@ from zerver.actions.realm_linkifiers import do_add_linkifier
 from zerver.actions.realm_playgrounds import do_add_realm_playground
 from zerver.lib.events import do_events_register
 from zerver.lib.initial_password import initial_password
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.upload import upload_message_file
 from zerver.lib.users import get_api_key
 from zerver.models import Client, Message, UserGroup, UserPresence, get_realm, get_user
@@ -29,7 +29,7 @@ CALLED_GENERATOR_FUNCTIONS: Set[str] = set()
 # to write to it from another module.
 AUTHENTICATION_LINE: List[str] = [""]
 
-helpers = ZulipTestCase()
+helpers = AlohaTestCase()
 
 
 def openapi_param_value_generator(

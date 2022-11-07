@@ -7,15 +7,15 @@ from django.http import HttpResponse
 
 from zerver.lib.realm_icon import get_realm_icon_url
 from zerver.lib.request import RequestNotes
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import HostRequestMock
 from zerver.lib.utils import assert_is_not_none
 from zerver.middleware import LogRequests, is_slow_query, write_log_line
 from zerver.models import get_realm
-from zilencer.models import RemoteZulipServer
+from zilencer.models import RemoteAlohaServer
 
 
-class SlowQueryTest(ZulipTestCase):
+class SlowQueryTest(AlohaTestCase):
     SLOW_QUERY_TIME = 10
     log_data = {
         "extra": "[transport=websocket]",
@@ -63,7 +63,7 @@ class SlowQueryTest(ZulipTestCase):
             )
 
 
-class OpenGraphTest(ZulipTestCase):
+class OpenGraphTest(AlohaTestCase):
     def check_title_and_description(
         self,
         path: str,
@@ -94,9 +94,9 @@ class OpenGraphTest(ZulipTestCase):
         # in the first paragraph.
         self.check_title_and_description(
             "/help/disable-message-edit-history",
-            "Disable message edit history | Zulip help center",
+            "Disable message edit history | Aloha help center",
             [
-                "In Zulip, users can view the edit history of a message. | To remove the",
+                "In Aloha, users can view the edit history of a message. | To remove the",
                 "best to delete the message entirely. ",
             ],
             [
@@ -111,7 +111,7 @@ class OpenGraphTest(ZulipTestCase):
         # deactivate-your-account starts with {settings_tab|account-and-privacy}
         self.check_title_and_description(
             "/help/deactivate-your-account",
-            "Deactivate your account | Zulip help center",
+            "Deactivate your account | Aloha help center",
             ["Any bots that you maintain will be disabled. | Deactivating "],
             ["Confirm by clicking", "  ", "\n"],
         )
@@ -120,10 +120,10 @@ class OpenGraphTest(ZulipTestCase):
         # logging-out starts with {start_tabs}
         self.check_title_and_description(
             "/help/logging-out",
-            "Logging out | Zulip help center",
+            "Logging out | Aloha help center",
             # Ideally we'd do something better here
             [
-                "Your feedback helps us make Zulip better for everyone! Please contact us "
+                "Your feedback helps us make Aloha better for everyone! Please contact us "
                 + "with questions, suggestions, and feature requests."
             ],
             ["Click on the gear"],
@@ -132,17 +132,17 @@ class OpenGraphTest(ZulipTestCase):
     def test_index_pages(self) -> None:
         self.check_title_and_description(
             "/help/",
-            "Zulip help center",
-            [("Welcome to the Zulip")],
+            "Aloha help center",
+            [("Welcome to the Aloha")],
             [],
         )
 
         self.check_title_and_description(
             "/api/",
-            "Zulip API documentation",
+            "Aloha API documentation",
             [
                 (
-                    "Zulip's APIs allow you to integrate other services with Zulip. This "
+                    "Aloha's APIs allow you to integrate other services with Aloha. This "
                     "guide should help you find the API you need:"
                 )
             ],
@@ -152,11 +152,11 @@ class OpenGraphTest(ZulipTestCase):
     def test_nonexistent_page(self) -> None:
         self.check_title_and_description(
             "/help/not-a-real-page",
-            # Probably we should make this "Zulip Help Center"
-            "No such article. | Zulip help center",
+            # Probably we should make this "Aloha Help Center"
+            "No such article. | Aloha help center",
             [
                 "No such article.",
-                "Your feedback helps us make Zulip better for everyone! Please contact us",
+                "Your feedback helps us make Aloha better for everyone! Please contact us",
             ],
             [],
             # Test that our open graph logic doesn't throw a 500
@@ -164,9 +164,9 @@ class OpenGraphTest(ZulipTestCase):
         )
 
     def test_login_page_simple_description(self) -> None:
-        name = "Zulip Dev"
+        name = "Aloha Dev"
         description = (
-            "The Zulip development environment default organization. It's great for testing!"
+            "The Aloha development environment default organization. It's great for testing!"
         )
 
         self.check_title_and_description("/login/", name, [description], [])
@@ -174,7 +174,7 @@ class OpenGraphTest(ZulipTestCase):
     def test_login_page_markdown_description(self) -> None:
         realm = get_realm("zulip")
         description = (
-            "Welcome to **Clojurians Zulip** - the place where the Clojure community meets.\n\n"
+            "Welcome to **Clojurians Aloha** - the place where the Clojure community meets.\n\n"
             "Before you signup/login:\n\n"
             "* note-1\n"
             "* note-2\n"
@@ -186,9 +186,9 @@ class OpenGraphTest(ZulipTestCase):
 
         self.check_title_and_description(
             "/login/",
-            "Zulip Dev",
+            "Aloha Dev",
             [
-                "Welcome to Clojurians Zulip - the place where the Clojure community meets",
+                "Welcome to Clojurians Aloha - the place where the Clojure community meets",
                 "* note-1 * note-2 * note-3 | Enjoy!",
             ],
             [],
@@ -237,7 +237,7 @@ class OpenGraphTest(ZulipTestCase):
         self.assertTrue(open_graph_url.endswith("/api/"))
 
 
-class LogRequestsTest(ZulipTestCase):
+class LogRequestsTest(AlohaTestCase):
     meta_data = {"REMOTE_ADDR": "127.0.0.1"}
 
     def test_requestor_for_logs_as_user(self) -> None:
@@ -250,7 +250,7 @@ class LogRequestsTest(ZulipTestCase):
             self.assertIn(hamlet.format_requestor_for_logs(), m.output[0])
 
     def test_requestor_for_logs_as_remote_server(self) -> None:
-        remote_server = RemoteZulipServer()
+        remote_server = RemoteAlohaServer()
         request = HostRequestMock(remote_server=remote_server, meta_data=self.meta_data)
         RequestNotes.get_notes(request).log_data = None
 

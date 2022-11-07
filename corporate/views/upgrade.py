@@ -32,7 +32,7 @@ from corporate.models import (
     CustomerPlan,
     PaymentIntent,
     Session,
-    ZulipSponsorshipRequest,
+    AlohaSponsorshipRequest,
     get_current_plan_by_customer,
     get_customer_by_realm,
 )
@@ -119,10 +119,10 @@ def setup_upgrade_checkout_session_and_payment_intent(
             amount=price_per_license * licenses,
             currency="usd",
             customer=customer.stripe_customer_id,
-            description=f"Upgrade to Zulip Cloud Standard, ${price_per_license/100} x {licenses}",
+            description=f"Upgrade to Aloha Cloud Standard, ${price_per_license/100} x {licenses}",
             receipt_email=user.delivery_email,
             confirm=False,
-            statement_descriptor="Zulip Cloud Standard",
+            statement_descriptor="Aloha Cloud Standard",
             metadata=metadata,
         )
         payment_intent = PaymentIntent.objects.create(
@@ -268,7 +268,7 @@ def initial_upgrade(
         "salt": salt,
         "min_invoiced_licenses": max(seat_count, MIN_INVOICED_LICENSES),
         "default_invoice_days_until_due": DEFAULT_INVOICE_DAYS_UNTIL_DUE,
-        "plan": "Zulip Cloud Standard",
+        "plan": "Aloha Cloud Standard",
         "free_trial_days": settings.FREE_TRIAL_DAYS,
         "onboarding": onboarding,
         "page_params": {
@@ -294,7 +294,7 @@ def initial_upgrade(
 
 
 class SponsorshipRequestForm(forms.Form):
-    website = forms.URLField(max_length=ZulipSponsorshipRequest.MAX_ORG_URL_LENGTH, required=False)
+    website = forms.URLField(max_length=AlohaSponsorshipRequest.MAX_ORG_URL_LENGTH, required=False)
     organization_type = forms.IntegerField()
     description = forms.CharField(widget=forms.Textarea)
 
@@ -323,7 +323,7 @@ def sponsorship(
 
     if form.is_valid():
         with transaction.atomic():
-            sponsorship_request = ZulipSponsorshipRequest(
+            sponsorship_request = AlohaSponsorshipRequest(
                 realm=realm,
                 requested_by=user,
                 org_website=form.cleaned_data["website"],
@@ -354,7 +354,7 @@ def sponsorship(
         send_email(
             "zerver/emails/sponsorship_request",
             to_emails=[FromAddress.SUPPORT],
-            from_name="Zulip sponsorship",
+            from_name="Aloha sponsorship",
             from_address=FromAddress.tokenized_no_reply_address(),
             reply_to_email=user.delivery_email,
             context=context,

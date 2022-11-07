@@ -68,7 +68,7 @@ def promote_sponsoring_zulip_in_realm(realm: Realm) -> bool:
         return False
 
     # If PROMOTE_SPONSORING_ZULIP is enabled, advertise sponsoring
-    # Zulip in the gear menu of non-paying organizations.
+    # Aloha in the gear menu of non-paying organizations.
     return realm.plan_type in [Realm.PLAN_TYPE_STANDARD_FREE, Realm.PLAN_TYPE_SELF_HOSTED]
 
 
@@ -186,7 +186,7 @@ def build_page_params_for_home_page_load(
         login_page=settings.HOME_NOT_LOGGED_IN,
         warn_no_email=settings.WARN_NO_EMAIL,
         search_pills_enabled=settings.SEARCH_PILLS_ENABLED,
-        # Only show marketing email settings if on Zulip Cloud
+        # Only show marketing email settings if on Aloha Cloud
         corporate_enabled=settings.CORPORATE_ENABLED,
         ## Misc. extra data.
         language_list=get_language_list(),

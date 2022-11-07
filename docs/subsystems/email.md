@@ -1,6 +1,6 @@
 # Email
 
-This page has developer documentation on the Zulip email system. If you're
+This page has developer documentation on the Aloha email system. If you're
 trying to configure your server to send email, you might be looking for our
 guide to [sending outgoing email](../production/email.md). If you're trying to
 configure an email integration to receive incoming email (e.g. so that users
@@ -8,7 +8,7 @@ can reply to message notification emails via email), you might be interested in
 our instructions for
 [setting up an email integration](https://zulip.com/integrations/doc/email).
 
-On to the documentation. Zulip's email system is fairly straightforward,
+On to the documentation. Aloha's email system is fairly straightforward,
 with only a few things you need to know to get started.
 
 - All email templates are in `templates/zerver/emails/`. Each email has three
@@ -124,7 +124,7 @@ email_password = gmail_password
 
 ## Email templates
 
-Zulip's email templates live under `templates/zerver/emails`. Email
+Aloha's email templates live under `templates/zerver/emails`. Email
 templates are a messy problem, because on the one hand, you want nice,
 readable markup and styling, but on the other, email clients have very
 limited CSS support and generally require us to inject any CSS we're

@@ -46,7 +46,7 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 if settings.ZILENCER_ENABLED:
-    from zilencer.models import RemotePushDeviceToken, RemoteZulipServer
+    from zilencer.models import RemotePushDeviceToken, RemoteAlohaServer
 
 DeviceToken = Union[PushDeviceToken, "RemotePushDeviceToken"]
 
@@ -118,7 +118,7 @@ class APNsContext:
 
 @lru_cache(maxsize=None)
 def get_apns_context() -> Optional[APNsContext]:
-    # We lazily do this import as part of optimizing Zulip's base
+    # We lazily do this import as part of optimizing Aloha's base
     # import time.
     import aioapns
 
@@ -151,7 +151,7 @@ def apns_enabled() -> bool:
 
 
 def modernize_apns_payload(data: Mapping[str, Any]) -> Mapping[str, Any]:
-    """Take a payload in an unknown Zulip version's format, and return in current format."""
+    """Take a payload in an unknown Aloha version's format, and return in current format."""
     # TODO this isn't super robust as is -- if a buggy remote server
     # sends a malformed payload, we are likely to raise an exception.
     if "message_ids" in data:
@@ -184,11 +184,11 @@ def send_apple_push_notification(
     user_identity: UserPushIndentityCompat,
     devices: Sequence[DeviceToken],
     payload_data: Mapping[str, Any],
-    remote: Optional["RemoteZulipServer"] = None,
+    remote: Optional["RemoteAlohaServer"] = None,
 ) -> None:
     if not devices:
         return
-    # We lazily do the APNS imports as part of optimizing Zulip's base
+    # We lazily do the APNS imports as part of optimizing Aloha's base
     # import time; since these are only needed in the push
     # notification queue worker, it's best to only import them in the
     # code that needs them.
@@ -251,7 +251,7 @@ def send_apple_push_notification(
                 "APNs: Removing invalid/expired token %s (%s)", device.token, result.description
             )
             # We remove all entries for this token (There
-            # could be multiple for different Zulip servers).
+            # could be multiple for different Aloha servers).
             DeviceTokenClass.objects.filter(token=device.token, kind=DeviceTokenClass.APNS).delete()
         else:
             logger.warning(
@@ -315,11 +315,11 @@ def parse_gcm_options(options: Dict[str, Any], data: Dict[str, Any]) -> str:
     """
     Parse GCM options, supplying defaults, and raising an error if invalid.
 
-    The options permitted here form part of the Zulip notification
+    The options permitted here form part of the Aloha notification
     bouncer's API.  They are:
 
     `priority`: Passed through to GCM; see upstream doc linked below.
-        Zulip servers should always set this; when unset, we guess a value
+        Aloha servers should always set this; when unset, we guess a value
         based on the behavior of old server versions.
 
     Including unrecognized options is an error.
@@ -344,7 +344,7 @@ def parse_gcm_options(options: Dict[str, Any], data: Dict[str, Any]) -> str:
         )
 
     if options:
-        # We're strict about the API; there is no use case for a newer Zulip
+        # We're strict about the API; there is no use case for a newer Aloha
         # server talking to an older bouncer, so we only need to provide
         # one-way compatibility.
         raise JsonableError(
@@ -362,7 +362,7 @@ def send_android_push_notification(
     devices: Sequence[DeviceToken],
     data: Dict[str, Any],
     options: Dict[str, Any],
-    remote: Optional["RemoteZulipServer"] = None,
+    remote: Optional["RemoteAlohaServer"] = None,
 ) -> None:
     """
     Send a GCM message to the given devices.
@@ -462,7 +462,7 @@ def send_android_push_notification(
                 for reg_id in reg_ids:
                     logger.info("GCM: Removing %s", reg_id)
                     # We remove all entries for this token (There
-                    # could be multiple for different Zulip servers).
+                    # could be multiple for different Aloha servers).
                     DeviceTokenClass.objects.filter(
                         token=reg_id, kind=DeviceTokenClass.GCM
                     ).delete()

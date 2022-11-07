@@ -1,11 +1,11 @@
 import time
 import traceback
 
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.timeout import TimeoutExpired, timeout
 
 
-class TimeoutTestCase(ZulipTestCase):
+class TimeoutTestCase(AlohaTestCase):
     # We can't use assertRaises because that doesn't store the
     # traceback, which we want to verify
 

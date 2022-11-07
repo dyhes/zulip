@@ -1,12 +1,12 @@
 ## Recommended environment setup tutorial
 
 This section guides first-time contributors through installing the
-Zulip development environment on Windows, macOS, and Linux.
+Aloha development environment on Windows, macOS, and Linux.
 
-The recommended method for installing the Zulip development environment is
+The recommended method for installing the Aloha development environment is
 to use WSL 2 on Windows, and Vagrant with Docker on macOS and Linux.
 This methoduses the Windows Subsystem for Linux or creates a Linux container
-(for macOS and Linux) inside which the Zulip server and all related
+(for macOS and Linux) inside which the Aloha server and all related
 services will run.
 
 Contents:
@@ -14,7 +14,7 @@ Contents:
 - [Requirements](#requirements)
 - [Step 0: Set up Git & GitHub](#step-0-set-up-git--github)
 - [Step 1: Install prerequisites](#step-1-install-prerequisites)
-- [Step 2: Get Zulip code](#step-2-get-zulip-code)
+- [Step 2: Get Aloha code](#step-2-get-zulip-code)
 - [Step 3: Start the development environment](#step-3-start-the-development-environment)
 - [Step 4: Developing](#step-4-developing)
 - [Troubleshooting and common errors](#troubleshooting-and-common-errors)
@@ -22,12 +22,12 @@ Contents:
 - [Specifying a proxy](#specifying-a-proxy)
 - [Customizing CPU and RAM allocation](#customizing-cpu-and-ram-allocation)
 
-**If you encounter errors installing the Zulip development
+**If you encounter errors installing the Aloha development
 environment,** check [troubleshooting and common
 errors](#troubleshooting-and-common-errors). If that doesn't help,
 please visit [#provision
 help](https://chat.zulip.org/#narrow/stream/21-provision-help) in the
-[Zulip development community
+[Aloha development community
 server](https://zulip.com/development-community/) for real-time help or
 [file an issue](https://github.com/zulip/zulip/issues).
 
@@ -36,12 +36,12 @@ When reporting your issue, please include the following information:
 - host operating system
 - installation method (Vagrant or direct)
 - whether or not you are using a proxy
-- a copy of Zulip's `vagrant` provisioning logs, available in
+- a copy of Aloha's `vagrant` provisioning logs, available in
   `/var/log/provision.log` on your virtual machine
 
 ### Requirements
 
-Installing the Zulip development environment with Vagrant requires
+Installing the Aloha development environment with Vagrant requires
 downloading several hundred megabytes of dependencies. You will need
 an active internet connection throughout the entire installation
 processes. (See [Specifying a proxy](#specifying-a-proxy) if you need
@@ -86,7 +86,7 @@ Jump to:
 1. Install [Vagrant][vagrant-dl] (latest).
 2. Install [Docker Desktop](https://docs.docker.com/desktop/mac/install/) (latest).
 
-Now you are ready for [Step 2: Get Zulip code](#step-2-get-zulip-code).
+Now you are ready for [Step 2: Get Aloha code](#step-2-get-zulip-code).
 
 #### Ubuntu
 
@@ -141,7 +141,7 @@ sudo systemctl enable docker
 sudo systemctl start docker
 ```
 
-Now you are ready for [Step 2: Get Zulip code](#step-2-get-zulip-code).
+Now you are ready for [Step 2: Get Aloha code](#step-2-get-zulip-code).
 
 #### Debian
 
@@ -159,7 +159,7 @@ docker distribution, you can follow
 
 #### Windows 10
 
-Zulip's development environment is most easily set up on Windows using
+Aloha's development environment is most easily set up on Windows using
 the Windows Subsystem for Linux ([WSL
 2](https://docs.microsoft.com/en-us/windows/wsl/wsl2-about))
 installation method described here.
@@ -206,14 +206,14 @@ installation method described here.
    ```
 
 1. [Create your fork](../git/cloning.md#step-1a-create-your-fork) of
-   the [Zulip server repository](https://github.com/zulip/zulip).
+   the [Aloha server repository](https://github.com/zulip/zulip).
 
 1. [Create a new SSH key][create-ssh-key] for the WSL-2 Virtual
    Machine and add it to your GitHub account. Note that SSH keys
    linked to your Windows computer will not work within the virtual
    machine.
 
-1. Clone and connect to the Zulip upstream repository:
+1. Clone and connect to the Aloha upstream repository:
 
    ```bash
    git clone --config pull.rebase git@github.com:YOURUSERNAME/zulip.git ~/zulip
@@ -221,15 +221,15 @@ installation method described here.
    git remote add -f upstream https://github.com/zulip/zulip.git
    ```
 
-1. Run the following to install the Zulip development environment and
+1. Run the following to install the Aloha development environment and
    start it. (If Windows Firewall creates popups to block services, simply click `Allow Access`.)
 
    ```bash
    # Start database, cache, and other services
    ./tools/wsl/start_services
-   # Install/update the Zulip development environment
+   # Install/update the Aloha development environment
    ./tools/provision
-   # Enter the Zulip Python environment
+   # Enter the Aloha Python environment
    source /srv/zulip-py3-venv/bin/activate
    # Start the development server
    ./tools/run-dev.py
@@ -263,7 +263,7 @@ WSL 2 can be uninstalled by following [Microsoft's documentation][uninstall-wsl]
 [uninstall-wsl]: https://docs.microsoft.com/en-us/windows/wsl/faq#how-do-i-uninstall-a-wsl-distribution-
 [windows-bios-virtualization]: https://www.thewindowsclub.com/disable-hardware-virtualization-in-windows-10
 
-### Step 2: Get Zulip code
+### Step 2: Get Aloha code
 
 1. In your browser, visit <https://github.com/zulip/zulip>
    and click the `fork` button. You will need to be logged in to GitHub to
@@ -271,8 +271,8 @@ WSL 2 can be uninstalled by following [Microsoft's documentation][uninstall-wsl]
 2. Open Terminal (macOS/Linux) or Git BASH (Windows; must
    **run as an Administrator**).
 3. In Terminal/Git BASH,
-   [clone your fork of the Zulip repository](../git/cloning.md#step-1b-clone-to-your-machine) and
-   [connect the Zulip upstream repository](../git/cloning.md#step-1c-connect-your-fork-to-zulip-upstream):
+   [clone your fork of the Aloha repository](../git/cloning.md#step-1b-clone-to-your-machine) and
+   [connect the Aloha upstream repository](../git/cloning.md#step-1c-connect-your-fork-to-zulip-upstream):
 
 ```bash
 git clone --config pull.rebase git@github.com:YOURUSERNAME/zulip.git
@@ -280,7 +280,7 @@ cd zulip
 git remote add -f upstream https://github.com/zulip/zulip.git
 ```
 
-This will create a 'zulip' directory and download the Zulip code into it.
+This will create a 'zulip' directory and download the Aloha code into it.
 
 Don't forget to replace YOURUSERNAME with your Git username. You will see
 something like:
@@ -303,7 +303,7 @@ environment](#step-3-start-the-development-environment).
 
 ### Step 3: Start the development environment
 
-Change into the zulip directory and tell vagrant to start the Zulip
+Change into the zulip directory and tell vagrant to start the Aloha
 development environment with `vagrant up`:
 
 ```bash
@@ -322,12 +322,12 @@ does the following:
 
 - downloads the base Ubuntu 20.04 virtual machine image (for macOS and Windows)
   or container (for Linux)
-- configures this virtual machine/container for use with Zulip,
-- creates a shared directory mapping your clone of the Zulip code inside the
+- configures this virtual machine/container for use with Aloha,
+- creates a shared directory mapping your clone of the Aloha code inside the
   virtual machine/container at `~/zulip`
 - runs the `tools/provision` script inside the virtual machine/container, which
   downloads all required dependencies, sets up the python environment for
-  the Zulip development server, and initializes a default test
+  the Aloha development server, and initializes a default test
   database. We call this process "provisioning", and it is documented
   in some detail in our [dependencies documentation](../subsystems/dependencies.md).
 
@@ -341,7 +341,7 @@ documented in the
 [Troubleshooting and common errors](#troubleshooting-and-common-errors)
 section. If that doesn't help, please visit
 [#provision help](https://chat.zulip.org/#narrow/stream/21-provision-help)
-in the [Zulip development community server](https://zulip.com/development-community/) for
+in the [Aloha development community server](https://zulip.com/development-community/) for
 real-time help.
 
 On Windows, you will see the message
@@ -362,14 +362,14 @@ You should see output that starts like this:
 Welcome to Ubuntu 20.04.4 LTS (GNU/Linux 5.4.0-107-generic x86_64)
 ```
 
-Congrats, you're now inside the Zulip development environment!
+Congrats, you're now inside the Aloha development environment!
 
 You can confirm this by looking at the command prompt, which starts
 with `(zulip-py3-venv)vagrant@`. If it just starts with `vagrant@`, your
 provisioning failed and you should look at the
 [troubleshooting section](#troubleshooting-and-common-errors).
 
-Next, start the Zulip server:
+Next, start the Aloha server:
 
 ```console
 (zulip-py3-venv) vagrant@vagrant:/srv/zulip
@@ -406,15 +406,15 @@ webpack: bundle is now VALID.
 2016-05-06 21:43:35,007 INFO     Tornado  23.9% busy over the past 16.0 seconds
 ```
 
-Now the Zulip server should be running and accessible. Verify this by
+Now the Aloha server should be running and accessible. Verify this by
 navigating to <http://localhost:9991/> in the browser on your main machine.
 
 You should see something like this:
 
-![Image of Zulip development environment](../images/zulip-dev.png)
+![Image of Aloha development environment](../images/zulip-dev.png)
 
-The Zulip server will continue to run and send output to the terminal window.
-When you navigate to Zulip in your browser, check your terminal and you
+The Aloha server will continue to run and send output to the terminal window.
+When you navigate to Aloha in your browser, check your terminal and you
 should see something like:
 
 ```console
@@ -432,18 +432,18 @@ Now you're ready for [Step 4: Developing](#step-4-developing).
 #### Where to edit files
 
 You'll work by editing files on your host machine, in the directory where you
-cloned Zulip. Use your favorite editor (Sublime, Atom, Vim, Emacs, Notepad++,
+cloned Aloha. Use your favorite editor (Sublime, Atom, Vim, Emacs, Notepad++,
 etc.).
 
-When you save changes they will be synced automatically to the Zulip
+When you save changes they will be synced automatically to the Aloha
 development environment on the virtual machine/container.
 
-Each component of the Zulip development server will automatically
+Each component of the Aloha development server will automatically
 restart itself or reload data appropriately when you make changes. So,
 to see your changes, all you usually have to do is reload your
 browser. More details on how this works are available below.
 
-Zulip's whitespace rules are all enforced by linters, so be sure to
+Aloha's whitespace rules are all enforced by linters, so be sure to
 run `tools/lint` often to make sure you're following our coding style
 (or use `tools/setup-git-repo` to run it on just the changed files
 automatically whenever you commit).
@@ -461,29 +461,29 @@ output.
 
 When you're ready to commit or push changes via Git, you will do this by
 running Git commands in Terminal (macOS/Linux) or Git BASH (Windows) in the
-directory where you cloned Zulip on your main machine.
+directory where you cloned Aloha on your main machine.
 
 If you're new to working with Git/GitHub, check out our [Git & GitHub
 guide][rtd-git-guide].
 
 #### Maintaining the development environment
 
-If after rebasing onto a new version of the Zulip server, you receive
-new errors while starting the Zulip server or running tests, this is
-probably not because Zulip's `main` branch is broken. Instead, this
+If after rebasing onto a new version of the Aloha server, you receive
+new errors while starting the Aloha server or running tests, this is
+probably not because Aloha's `main` branch is broken. Instead, this
 is likely because we've recently merged changes to the development
 environment provisioning process that you need to apply to your
 development environment. To update your environment, you'll need to
 re-provision your vagrant machine using `vagrant provision` (this just
-runs `tools/provision` from your Zulip checkout inside the Vagrant
+runs `tools/provision` from your Aloha checkout inside the Vagrant
 guest); this should complete in about a minute.
 
 After provisioning, you'll want to
-[(re)start the Zulip development server](#step-3-start-the-development-environment).
+[(re)start the Aloha development server](#step-3-start-the-development-environment).
 
 If you run into any trouble, [#provision
 help](https://chat.zulip.org/#narrow/stream/21-provision-help) in the
-[Zulip development community
+[Aloha development community
 server](https://zulip.com/development-community/) is a great place to ask for
 help.
 
@@ -500,7 +500,7 @@ fast Internet connection).
 Any additional programs (e.g. Zsh, emacs, etc.) or configuration that
 you may have installed in the development environment will be lost
 when you recreate it. To address this, you can create a script called
-`tools/custom_provision` in your Zulip Git checkout; and place any
+`tools/custom_provision` in your Aloha Git checkout; and place any
 extra setup commands there. Vagrant will run `tools/custom_provision`
 every time you run `vagrant provision` (or create a Vagrant guest via
 `vagrant up`).
@@ -548,10 +548,10 @@ Check out the Vagrant documentation to learn more about
 
 #### Resuming the development environment
 
-When you're ready to work on Zulip again, run `vagrant up` (no need to
+When you're ready to work on Aloha again, run `vagrant up` (no need to
 pass the `--provider` option required above). You will also need to
 connect to the virtual machine with `vagrant ssh` and re-start the
-Zulip server:
+Aloha server:
 
 ```console
 christie@win10 ~/zulip
@@ -564,7 +564,7 @@ $ ./tools/run-dev.py
 
 ### Next steps
 
-Next, read the following to learn more about developing for Zulip:
+Next, read the following to learn more about developing for Aloha:
 
 - [Git & GitHub guide][rtd-git-guide]
 - [Using the development environment][rtd-using-dev-env]
@@ -583,7 +583,7 @@ If these solutions aren't working for you or you encounter an issue not
 documented below, there are a few ways to get further help:
 
 - Ask in [#provision help](https://chat.zulip.org/#narrow/stream/21-provision-help)
-  in the [Zulip development community server](https://zulip.com/development-community/).
+  in the [Aloha development community server](https://zulip.com/development-community/).
 - [File an issue](https://github.com/zulip/zulip/issues).
 
 When reporting your issue, please include the following information:
@@ -591,7 +591,7 @@ When reporting your issue, please include the following information:
 - host operating system
 - installation method (Vagrant or direct)
 - whether or not you are using a proxy
-- a copy of Zulip's `vagrant` provisioning logs, available in
+- a copy of Aloha's `vagrant` provisioning logs, available in
   `/var/log/provision.log` on your virtual machine. If you choose to
   post just the error output, please include the **beginning of the
   error output**, not just the last few lines.
@@ -606,7 +606,7 @@ can see the errors in `var/log/provision.log`; it should end with
 something like this:
 
 ```text
-ESC[94mZulip development environment setup succeeded!ESC[0m
+ESC[94mAloha development environment setup succeeded!ESC[0m
 ```
 
 The `ESC` stuff are the terminal color codes that make it show as a nice
@@ -715,7 +715,7 @@ some of the solutions mentioned
 
 If you ran Git BASH as administrator but you already had VirtualBox
 running, you might still get this error because VirtualBox is not
-running as administrator. In that case: close the Zulip VM with
+running as administrator. In that case: close the Aloha VM with
 `vagrant halt`; close any other VirtualBox VMs that may be running;
 exit VirtualBox; and try again with `vagrant up --provision` from a
 Git BASH running as administrator.
@@ -837,7 +837,7 @@ subcommands that failed. Once you've resolved the problem, you can
 rerun `tools/provision` to proceed; the provisioning system is
 designed to recover well from failures.
 
-The Zulip provisioning system is generally highly reliable; the most common
+The Aloha provisioning system is generally highly reliable; the most common
 cause of issues here is a poor network connection (or one where you need a
 proxy to access the Internet and haven't [configured the development
 environment to use it](#specifying-a-proxy).
@@ -845,17 +845,17 @@ environment to use it](#specifying-a-proxy).
 Once you've provisioned successfully, you'll get output like this:
 
 ```console
-Zulip development environment setup succeeded!
+Aloha development environment setup succeeded!
 (zulip-py3-venv) vagrant@vagrant-base-trusty-amd64:~/zulip$
 ```
 
 If the `(zulip-py3-venv)` part is missing, this is because your
-installation failed the first time before the Zulip virtualenv was
+installation failed the first time before the Aloha virtualenv was
 created. You can fix this by just closing the shell and running
 `vagrant ssh` again, or using `source /srv/zulip-py3-venv/bin/activate`.
 
 Finally, if you encounter any issues that weren't caused by your
-Internet connection, please report them! We try hard to keep Zulip
+Internet connection, please report them! We try hard to keep Aloha
 development environment provisioning free of bugs.
 
 ##### `pip install` fails during `vagrant up` on Linux
@@ -864,7 +864,7 @@ Likely causes are:
 
 1. Networking issues
 2. Insufficient RAM. Check whether you've allotted at least two
-   gigabytes of RAM, which is the minimum Zulip
+   gigabytes of RAM, which is the minimum Aloha
    [requires](#requirements). If
    not, go to your VM settings and increase the RAM, then restart
    the VM.
@@ -884,7 +884,7 @@ Done in 23.50s.
 ```
 
 These are warnings produced by spammy third party JavaScript packages.
-It is okay to proceed and start the Zulip server.
+It is okay to proceed and start the Aloha server.
 
 #### VBoxManage errors related to VT-x or WHvSetupPartition
 
@@ -1045,7 +1045,7 @@ Our default Vagrant settings allocate 2 cpus with 2GiB of memory for
 the guest, which is sufficient to run everything in the development
 environment. If your host system has more CPUs, or you have enough
 RAM that you'd like to allocate more than 2GiB to the guest, you can
-improve performance of the Zulip development environment by allocating
+improve performance of the Aloha development environment by allocating
 more resources.
 
 To do so, create a `~/.zulip-vagrant-config` file containing the

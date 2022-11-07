@@ -12,7 +12,7 @@
     "type":"epic",
     "data":{
         "assigned_to":null,
-        "description":"This Epic has details on why Zulip is awesome!",
+        "description":"This Epic has details on why Aloha is awesome!",
         "custom_attributes_values":{
 
         },
@@ -27,7 +27,7 @@
             "permalink":"https://tree.taiga.io/project/eeshangarg-zulip",
             "logo_big_url":null,
             "id":229096,
-            "name":"Zulip"
+            "name":"Aloha"
         },
         "epics_order":1508641159928,
         "created_date":"2017-10-22T02:59:19.958Z",
@@ -36,7 +36,7 @@
 
         ],
         "id":50266,
-        "subject":"Zulip is awesome!",
+        "subject":"Aloha is awesome!",
         "owner":{
             "photo":null,
             "permalink":"https://tree.taiga.io/profile/eeshangarg",

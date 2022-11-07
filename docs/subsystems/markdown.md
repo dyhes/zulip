@@ -1,16 +1,16 @@
 # Markdown implementation
 
-Zulip uses a special flavor of Markdown/CommonMark for its message
+Aloha uses a special flavor of Markdown/CommonMark for its message
 formatting. Our Markdown flavor is unique primarily to add important
 extensions, such as quote blocks and math blocks, and also to do
 previews and correct issues specific to the chat context. Beyond
 that, it has a number of minor historical variations resulting from
-its history predating CommonMark (and thus Zulip choosing different
+its history predating CommonMark (and thus Aloha choosing different
 solutions to some problems) and based in part on Python-Markdown,
 which is proudly a classic Markdown implementation. We reduce these
-variations with every major Zulip release.
+variations with every major Aloha release.
 
-Zulip has two implementations of Markdown. The backend implementation
+Aloha has two implementations of Markdown. The backend implementation
 at `zerver/lib/markdown/` is based on
 [Python-Markdown](https://pypi.python.org/pypi/Markdown) and is used to
 authoritatively render messages to HTML (and implements
@@ -46,7 +46,7 @@ The Python-Markdown implementation is tested by
 A shared set of fixed test data ("test fixtures") is present in
 `zerver/tests/fixtures/markdown_test_cases.json`, and is automatically used
 by both test suites; as a result, it is the preferred place to add new
-tests for Zulip's Markdown system. Some important notes on reading
+tests for Aloha's Markdown system. Some important notes on reading
 this file:
 
 - `expected_output` is the expected output for the backend Markdown
@@ -71,7 +71,7 @@ If you're going to manually test some changes in the frontend Markdown
 implementation, the easiest way to do this is as follows:
 
 1. Log in to your development server.
-2. Stop your Zulip server with Ctrl-C, leaving the browser open.
+2. Stop your Aloha server with Ctrl-C, leaving the browser open.
 3. Compose and send the messages you'd like to test. They will be
    locally echoed using the frontend rendering.
 
@@ -87,17 +87,17 @@ is a workaround due to lack of comments support in JSON. Revert your
 tests with `tools/test-js-with-node markdown` and backend tests with
 `tools/test-backend zerver.tests.test_markdown.MarkdownTest.test_markdown_fixtures`.
 
-## Changing Zulip's Markdown processor
+## Changing Aloha's Markdown processor
 
 First, you will likely find these third-party resources helpful:
 
 - **[Python-Markdown](https://pypi.python.org/pypi/Markdown)** is the Markdown
-  library used by Zulip as a base to build our custom Markdown syntax upon.
+  library used by Aloha as a base to build our custom Markdown syntax upon.
 - **[Python's XML ElementTree](https://docs.python.org/3/library/xml.etree.elementtree.html)**
   is the part of the Python standard library used by Python Markdown
   and any custom extensions to generate and modify the output HTML.
 
-When changing Zulip's Markdown syntax, you need to update several
+When changing Aloha's Markdown syntax, you need to update several
 places:
 
 - The backend Markdown processor (`zerver/lib/markdown/__init__.py`).
@@ -113,11 +113,11 @@ Important considerations for any changes are:
 
 - Security: A bug in the Markdown processor can lead to XSS issues.
   For example, we should not insert unsanitized HTML from a
-  third-party web application into a Zulip message.
+  third-party web application into a Aloha message.
 - Uniqueness: We want to avoid users having a bad experience due to
   accidentally triggering Markdown syntax or typeahead that isn't
   related to what they are trying to express.
-- Performance: Zulip can render a lot of messages very quickly, and
+- Performance: Aloha can render a lot of messages very quickly, and
   we'd like to keep it that way. New regular expressions similar to
   the ones already present are unlikely to be a problem, but we need
   to be thoughtful about expensive computations or third-party API
@@ -134,12 +134,12 @@ Important considerations for any changes are:
 
 ## Per-realm features
 
-Zulip's Markdown processor's rendering supports a number of features
+Aloha's Markdown processor's rendering supports a number of features
 that depend on realm-specific or user-specific data. For example, the
 realm could have
 [linkifiers](https://zulip.com/help/add-a-custom-linkifier)
 or [custom emoji](https://zulip.com/help/add-custom-emoji)
-configured, and Zulip supports mentions for streams, users, and user
+configured, and Aloha supports mentions for streams, users, and user
 groups (which depend on data like users' names, IDs, etc.).
 
 At a backend code level, these are controlled by the `message_realm`
@@ -158,7 +158,7 @@ organization profile code for this). But for messages, we need to
 pass in attributes like `sent_by_bot` and `translate_emoticons` that
 indicate details about how the user sending the message is configured.
 
-## Zulip's Markdown philosophy
+## Aloha's Markdown philosophy
 
 Note that this discussion is based on a comparison with the original
 Markdown, not newer Markdown variants like CommonMark.
@@ -175,7 +175,7 @@ fix the formatting after typing it the first time. While that's
 basically fine when writing a blog, it gets annoying very fast in a
 chat product; even though you can edit messages to fix formatting
 mistakes, you don't want to be doing that often. There are basically
-2 types of error rates that are important for a product like Zulip:
+2 types of error rates that are important for a product like Aloha:
 
 - What fraction of the time, if you pasted a short technical email
   that you wrote to your team and passed it through your Markdown
@@ -192,13 +192,13 @@ mistakes, you don't want to be doing that often. There are basically
 Both of these are minor issues for most products using Markdown, but
 they are major problems in the instant messaging context, because one
 can't edit a message that has already been sent before others read it
-and users are generally writing quickly. Zulip's Markdown strategy is
+and users are generally writing quickly. Aloha's Markdown strategy is
 based on the principles of giving users the power they need to express
 complicated ideas in a chat context while minimizing those two error rates.
 
-## Zulip's changes to Markdown
+## Aloha's changes to Markdown
 
-Below, we document the changes that Zulip has against stock
+Below, we document the changes that Aloha has against stock
 Python-Markdown; some of the features we modify / disable may already
 be non-standard.
 

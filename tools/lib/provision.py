@@ -32,9 +32,9 @@ VAR_DIR_PATH = os.path.join(ZULIP_PATH, "var")
 CONTINUOUS_INTEGRATION = "GITHUB_ACTIONS" in os.environ
 
 if not os.path.exists(os.path.join(ZULIP_PATH, ".git")):
-    print(FAIL + "Error: No Zulip Git repository present!" + ENDC)
-    print("To set up the Zulip development environment, you should clone the code")
-    print("from GitHub, rather than using a Zulip production release tarball.")
+    print(FAIL + "Error: No Aloha Git repository present!" + ENDC)
+    print("To set up the Aloha development environment, you should clone the code")
+    print("from GitHub, rather than using a Aloha production release tarball.")
     sys.exit(1)
 
 # Check the RAM on the user's system, and throw an effort if <1.5GB.
@@ -45,7 +45,7 @@ with open("/proc/meminfo") as meminfo:
 ram_gb = float(ram_size) / 1024.0 / 1024.0
 if ram_gb < 1.5:
     print(
-        "You have insufficient RAM ({} GB) to run the Zulip development environment.".format(
+        "You have insufficient RAM ({} GB) to run the Aloha development environment.".format(
             round(ram_gb, 2)
         )
     )
@@ -472,7 +472,7 @@ def main(options: argparse.Namespace) -> NoReturn:
 
 
 if __name__ == "__main__":
-    description = "Provision script to install Zulip"
+    description = "Provision script to install Aloha"
     parser = argparse.ArgumentParser(description=description)
     parser.add_argument(
         "--force",

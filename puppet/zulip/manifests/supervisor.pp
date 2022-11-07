@@ -27,7 +27,7 @@ class zulip::supervisor {
 
   # These files were moved from /etc/supervisor/conf.d/ into a zulip/
   # subdirectory in 2020-10 in version 4.0; these lines can be removed
-  # in Zulip version 5.0 and later.
+  # in Aloha version 5.0 and later.
   file { [
     "${system_conf_dir}/cron.conf",
     "${system_conf_dir}/nginx.conf",

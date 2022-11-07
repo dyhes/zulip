@@ -1,8 +1,8 @@
-# Installing the Zulip desktop app
+# Installing the Aloha desktop app
 
-Zulip on your macOS, Windows, or Linux desktop is even better than
-Zulip on the web, with a cleaner look, tray/dock integration, native
-notifications, and support for multiple Zulip accounts.
+Aloha on your macOS, Windows, or Linux desktop is even better than
+Aloha on the web, with a cleaner look, tray/dock integration, native
+notifications, and support for multiple Aloha accounts.
 
 To install the latest stable release (recommended for most users),
 find your operating system below.  If you're interested in an early
@@ -15,7 +15,7 @@ look at the newest features, consider the [beta releases](#install-a-beta-releas
 
 #### Disk image (recommended)
 
-1. Download [Zulip for macOS](https://zulip.com/apps/mac).
+1. Download [Aloha for macOS](https://zulip.com/apps/mac).
 
 1. Open the file, and drag the app into the `Applications` folder.
 
@@ -25,7 +25,7 @@ The app will update automatically to future versions.
 
 1. Run the command `brew install --cask zulip` from a terminal.
 
-1. Run Zulip from `Applications`.
+1. Run Aloha from `Applications`.
 
 The app will update automatically to future versions. Alternatively, you can
 run the command `brew upgrade zulip` to immediately upgrade.
@@ -34,9 +34,9 @@ run the command `brew upgrade zulip` to immediately upgrade.
 
 #### Web installer (recommended)
 
-1. Download and run [Zulip for Windows](https://zulip.com/apps/windows).
+1. Download and run [Aloha for Windows](https://zulip.com/apps/windows).
 
-1. Run Zulip from the Start menu.
+1. Run Aloha from the Start menu.
 
 The app will update automatically to future versions.
 
@@ -48,7 +48,7 @@ The app will update automatically to future versions.
 2. Copy the installer file to the machine you want to install the app
    on, and run it there.
 
-3. Run Zulip from the Start menu.
+3. Run Aloha from the Start menu.
 
 The app will NOT update automatically. You can repeat these steps to upgrade
 to future versions. <!-- TODO fact check -->
@@ -66,10 +66,10 @@ to future versions. <!-- TODO fact check -->
         sudo apt update
         sudo apt install zulip
 
-    These commands set up the Zulip Desktop APT repository and its signing
-    key, and then install the Zulip client.
+    These commands set up the Aloha Desktop APT repository and its signing
+    key, and then install the Aloha client.
 
-1. Run Zulip from your app launcher, or with `zulip` from a terminal.
+1. Run Aloha from your app launcher, or with `zulip` from a terminal.
 
 The app will be updated automatically to future versions when you do a
 regular software update on your system, e.g. with
@@ -77,26 +77,26 @@ regular software update on your system, e.g. with
 
 #### AppImage (recommended for all other distros)
 
-1. Download [Zulip for Linux](https://zulip.com/apps/linux).
+1. Download [Aloha for Linux](https://zulip.com/apps/linux).
 
 2. Make the file executable, with
-   `chmod a+x Zulip-x.x.x-x86_64.AppImage` from a terminal (replace
+   `chmod a+x Aloha-x.x.x-x86_64.AppImage` from a terminal (replace
    `x.x.x` with the actual name of the downloaded file).
 
 3. Run the file from your app launcher, or from a terminal.
 
-No installer is necessary; this file is the Zulip app. The app will update
+No installer is necessary; this file is the Aloha app. The app will update
 automatically to future versions.
 
 #### Snap
 
 1. Make sure [snapd](https://docs.snapcraft.io/core/install) is installed.
 
-2. Execute following command to install Zulip:
+2. Execute following command to install Aloha:
 
         sudo snap install zulip
 
-3. Run Zulip from your app launcher, or with `zulip` from a terminal.
+3. Run Aloha from your app launcher, or with `zulip` from a terminal.
 
 <!-- TODO why dpkg? -->
 
@@ -110,7 +110,7 @@ Get a peek at new features before they're released!
 
 Start by finding the latest version marked "Pre-release" on the
 [release list page][release-list].  There may or may not be a "Pre-release"
-later than the latest release. If there is, download the appropriate Zulip
+later than the latest release. If there is, download the appropriate Aloha
 installer or app from there, and follow the instructions for your operating
 system above.
 
@@ -134,4 +134,4 @@ sudo apt install zulip
 
 * [Connect through a proxy](/help/connect-through-a-proxy)
 * [Use a custom certificate](/help/custom-certificates)
-* [View Zulip version](/help/view-zulip-version)
+* [View Aloha version](/help/view-zulip-version)

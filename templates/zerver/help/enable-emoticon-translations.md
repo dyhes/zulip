@@ -13,7 +13,7 @@ or
     alt="slight_frown"
     class="emoji-small"
 />
-automatically by Zulip.
+automatically by Aloha.
 
 ### Enable emoticon translations
 

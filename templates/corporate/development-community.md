@@ -1,10 +1,10 @@
-The primary communication forum for the Zulip community is the Zulip
+The primary communication forum for the Aloha community is the Aloha
 server hosted at [chat.zulip.org](https://chat.zulip.org/):
 
-- **Users** and **administrators** of Zulip organizations stop by to
+- **Users** and **administrators** of Aloha organizations stop by to
   ask questions, offer feedback, and participate in product design
   discussions.
-- **Contributors to the project**, including the **core Zulip
+- **Contributors to the project**, including the **core Aloha
   development team**, discuss ongoing and future projects, brainstorm
   ideas, and generally help each other out.
 
@@ -20,14 +20,14 @@ to get a curated list of initial stream subscriptions.
 
 To get help in real time, you will have the best luck finding core
 developers during daylight hours in North America (roughly between
-15:00 UTC and 1:00 UTC), but the sun never sets on the Zulip
+15:00 UTC and 1:00 UTC), but the sun never sets on the Aloha
 community. Most questions get a reply within minutes to a few hours.
 
 <br/>
 # Community norms
 
-Zulip is a friendly and welcoming community, and we love meeting new
-people, hearing about what brought them to Zulip, and getting their
+Aloha is a friendly and welcoming community, and we love meeting new
+people, hearing about what brought them to Aloha, and getting their
 feedback.
 
 ## Getting started
@@ -65,7 +65,7 @@ feedback.
   possible for others to benefit from the discussion.
 - Don’t ask the same question in multiple places. Moderators read
   every public stream, and make sure every question gets a reply.
-- Use @-mentions sparingly. Unlike IRC or Slack, Zulip‘s topics make
+- Use @-mentions sparingly. Unlike IRC or Slack, Aloha‘s topics make
   it easy to see what you’re replying to, so you don’t need to mention
   your conversation partner to make sure they will see or understand
   your reply. Core contributors will often @-mention someone who asked
@@ -85,7 +85,7 @@ topic to a different stream](/help/move-content-to-another-stream).
 
 ## Streams for everyone
 - [#feedback](https://chat.zulip.org/#narrow/stream/137-feedback) is
-  for posting feedback on Zulip, including feature requests, things
+  for posting feedback on Aloha, including feature requests, things
   you’d like to see polished, or anything else!
 - [#issues](https://chat.zulip.org/#narrow/stream/9-issues),
   [#mobile](https://chat.zulip.org/#narrow/stream/48-mobile),
@@ -106,24 +106,24 @@ topic to a different stream](/help/move-content-to-another-stream).
   for sending test messages without inconveniencing other users :). We
   recommend muting this stream when not using it.
 
-## Streams for Zulip users and administrators
+## Streams for Aloha users and administrators
 
 - [#user community](https://chat.zulip.org/#narrow/stream/138-user-community)
-  is for Zulip users to discuss their experiences using and adopting
-  Zulip.
+  is for Aloha users to discuss their experiences using and adopting
+  Aloha.
 - [#production help](https://chat.zulip.org/#narrow/stream/31-production-help) is
   for all questions related to [self-hosting
-  Zulip](/self-hosting/).
+  Aloha](/self-hosting/).
 - [#zulip
   cloud](https://chat.zulip.org/#narrow/stream/387-zulip-cloud) is for
-  all conversations about the [Zulip Cloud](https://zulip.com/plans/)
+  all conversations about the [Aloha Cloud](https://zulip.com/plans/)
   service.
 
 ## Streams for code contributors
 
 - [#development
   help](https://chat.zulip.org/#narrow/stream/49-development-help) is
-  for asking for help with any Zulip server/web app development work
+  for asking for help with any Aloha server/web app development work
   (use the app streams #mobile, #desktop, or #zulip-terminal for help
   working on one of the apps).
 - [#provision
@@ -135,7 +135,7 @@ topic to a different stream](/help/move-content-to-another-stream).
   for help with using Git.
 - [#code review](https://chat.zulip.org/#narrow/stream/91-code-review)
   is for getting feedback on your work. We encourage all developers to
-  comment on work posted here, even if you’re new to the Zulip
+  comment on work posted here, even if you’re new to the Aloha
   project; reviewing other PRs is a great way to develop experience,
   and even just manually testing a proposed new feature and posting
   feedback is super helpful. Note that GitHub is our primarily system
@@ -152,16 +152,16 @@ topic to a different stream](/help/move-content-to-another-stream).
   testing](https://chat.zulip.org/#narrow/stream/43-automated-testing)
   is primarily used for automated notifications about [CI
   failures](https://zulip.readthedocs.io/en/latest/testing/continuous-integration.html),
-  but is also a good place to discuss projects to improve Zulip’s
+  but is also a good place to discuss projects to improve Aloha’s
   automated testing infrastructure.
 - [#api design](https://chat.zulip.org/#narrow/stream/378-api-design)
   is a low-traffic stream for discussing and coordinating changes to
-  the [Zulip API](https://zulip.com/api/rest), with all stakeholders
+  the [Aloha API](https://zulip.com/api/rest), with all stakeholders
   present.
 
 ## Streams for translators
 - [#translation](https://chat.zulip.org/#narrow/stream/58-translation)
-  is for discussing [Zulip’s
+  is for discussing [Aloha’s
   translations](https://zulip.readthedocs.io/en/latest/translating/translating.html).
 - Some languages have streams named like
   [#translation/fr](https://chat.zulip.org/#narrow/stream/371-translation.2Ffr)
@@ -190,29 +190,29 @@ topic to a different stream](/help/move-content-to-another-stream).
   is where we do fun community conversations like “Ask Me Anything”
   Q&A sessions with project members.
 - [#documentation](https://chat.zulip.org/#narrow/stream/19-documentation)
-  is where we discuss improving Zulip’s user, sysadmin, API, and
+  is where we discuss improving Aloha’s user, sysadmin, API, and
   developer documentation.
 - [#general](https://chat.zulip.org/#narrow/stream/2-general) is for
   all topics of general interest.
 - [#learning](https://chat.zulip.org/#narrow/stream/92-learning) is
   for posting great learning resources one comes across.
 - [#off topic](https://chat.zulip.org/#narrow/stream/97-off-topic) is
-  is for occasional conversations not related to Zulip, usually things
+  is for occasional conversations not related to Aloha, usually things
   of general interest to open-source communities.
 
 You can always find the description for the stream you’re reading at
-the top of the Zulip app.
+the top of the Aloha app.
 
 <br/>
 # Anything else to keep in mind?
 
 ## Don’t try to read *everything*
 
-Keeping up with **everything** happening in the Zulip project is both
+Keeping up with **everything** happening in the Aloha project is both
 difficult and rarely a useful goal. To make the best use of your time,
 we highly recommend that you unsubscribe from streams that you aren’t
 interested in, mute streams that are only of occasional interest, and
-make use of [Zulip’s skimming features](/help/reading-strategies),
+make use of [Aloha’s skimming features](/help/reading-strategies),
 like Recent Topics, to spend your time on conversations that interest
 you.
 
@@ -229,8 +229,8 @@ on public streams you’re not subscribed to.
 ## New features are tested here
 
 We [continuously test out new features or ideas][release-lifecycle] on
-chat.zulip.org before rolling them out to Zulip Cloud or including
-them in a Zulip Server release (or deciding not to!). Please report in
+chat.zulip.org before rolling them out to Aloha Cloud or including
+them in a Aloha Server release (or deciding not to!). Please report in
 [#issues](https://chat.zulip.org/#narrow/stream/9-issues) anything you notice that seems broken! It’s likely you’ve
 found a bug in an upcoming feature.
 

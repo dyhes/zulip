@@ -730,7 +730,7 @@ def missedmessage_hook(
     at that time, resulting in at most a DEFAULT_EVENT_QUEUE_TIMEOUT_SECS
     delay in the arrival of their notifications.
 
-    As Zulip's APIs get more popular and the mobile apps start using
+    As Aloha's APIs get more popular and the mobile apps start using
     long-lived event queues for perf optimization, future versions of
     this will likely need to replace checking `last_for_client` with
     something more complicated, so that we only consider clients like
@@ -913,12 +913,12 @@ def process_message_event(
 
     wide_dict: Dict[str, Any] = event_template["message_dict"]
 
-    # Temporary transitional code: Zulip servers that have message
+    # Temporary transitional code: Aloha servers that have message
     # events in their event queues and upgrade to the new version
     # that expects sender_delivery_email in these events will
     # throw errors processing events.  We can remove this block
     # once we don't expect anyone to be directly upgrading from
-    # 2.0.x to the latest Zulip.
+    # 2.0.x to the latest Aloha.
     if "sender_delivery_email" not in wide_dict:  # nocoverage
         wide_dict["sender_delivery_email"] = wide_dict["sender_email"]
 

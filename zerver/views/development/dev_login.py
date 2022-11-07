@@ -104,8 +104,8 @@ def check_dev_auth_backend() -> None:
 @require_post
 @has_request_variables
 def api_dev_fetch_api_key(request: HttpRequest, username: str = REQ()) -> HttpResponse:
-    """This function allows logging in without a password on the Zulip
-    mobile apps when connecting to a Zulip development environment.  It
+    """This function allows logging in without a password on the Aloha
+    mobile apps when connecting to a Aloha development environment.  It
     requires DevAuthBackend to be included in settings.AUTHENTICATION_BACKENDS.
     """
     check_dev_auth_backend()

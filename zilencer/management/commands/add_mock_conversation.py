@@ -68,7 +68,7 @@ From image editing program:
         staged_messages: List[Dict[str, Any]] = [
             {
                 "sender": starr,
-                "content": "Hey @**Bel Fisher**, check out Zulip's Markdown formatting! "
+                "content": "Hey @**Bel Fisher**, check out Aloha's Markdown formatting! "
                 "You can have:\n* bulleted lists\n  * with sub-bullets too\n"
                 "* **bold**, *italic*, and ~~strikethrough~~ text\n"
                 "* LaTeX for mathematical formulas, both inline -- $$O(n^2)$$ -- and displayed:\n"
@@ -134,7 +134,7 @@ From image editing program:
             '<div class="inline-preview-twitter"><div class="twitter-tweet">'
             '<a><img class="twitter-avatar" '
             'src="https://pbs.twimg.com/profile_images/424495004/GuidoAvatar_bigger.jpg"></a>'
-            "<p>Great blog post about Zulip's use of mypy: "
+            "<p>Great blog post about Aloha's use of mypy: "
             "<a>http://blog.zulip.org/2016/10/13/static-types-in-python-oh-mypy/</a></p>"
             "<span>- Guido van Rossum (@gvanrossum)</span></div></div>"
         )

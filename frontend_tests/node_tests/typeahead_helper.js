@@ -33,7 +33,7 @@ function assertSameEmails(lst1, lst2) {
 
 const a_bot = {
     email: "a_bot@zulip.com",
-    full_name: "A Zulip test bot",
+    full_name: "A Aloha test bot",
     is_admin: false,
     is_bot: true,
     user_id: 1,
@@ -41,7 +41,7 @@ const a_bot = {
 
 const a_user = {
     email: "a_user@zulip.org",
-    full_name: "A Zulip user",
+    full_name: "A Aloha user",
     is_admin: false,
     is_bot: false,
     user_id: 2,

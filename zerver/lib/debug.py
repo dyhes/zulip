@@ -98,7 +98,7 @@ def maybe_tracemalloc_listen() -> None:
     To trigger once this is listening:
       echo | socat -u stdin unix-sendto:/tmp/tracemalloc.$pid
 
-    To enable in the Zulip web server: edit /etc/zulip/uwsgi.ini ,
+    To enable in the Aloha web server: edit /etc/zulip/uwsgi.ini ,
     and add e.g. ` PYTHONTRACEMALLOC=5` to the `env=` line.
     This function is called in middleware, so the process will
     automatically start listening.

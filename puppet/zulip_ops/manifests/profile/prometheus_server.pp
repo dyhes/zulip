@@ -19,7 +19,7 @@ class zulip_ops::profile::prometheus_server {
   file { '/usr/local/bin/promtool':
     ensure  => link,
     target  => "${dir}/promtool",
-    require => Zulip::External_Dep['prometheus'],
+    require => Aloha::External_Dep['prometheus'],
   }
   # This was moved to an external dep in 2021/12, and the below can be
   # removed once the prod server has taken the update.
@@ -52,7 +52,7 @@ class zulip_ops::profile::prometheus_server {
     ensure  => file,
     require => [
       Package[supervisor],
-      Zulip::External_Dep['prometheus'],
+      Aloha::External_Dep['prometheus'],
       File[$data_dir],
       File['/etc/prometheus/prometheus.yaml'],
     ],

@@ -12,11 +12,11 @@ from django.utils.timezone import now as timezone_now
 
 from scripts.lib.zulip_tools import TIMESTAMP_FORMAT, parse_os_release, run
 from version import ZULIP_VERSION
-from zerver.lib.management import ZulipBaseCommand
+from zerver.lib.management import AlohaBaseCommand
 from zerver.logging_handlers import try_git_describe
 
 
-class Command(ZulipBaseCommand):
+class Command(AlohaBaseCommand):
     # Fix support for multi-line usage strings
     def create_parser(self, prog_name: str, subcommand: str, **kwargs: Any) -> CommandParser:
         parser = super().create_parser(prog_name, subcommand, **kwargs)

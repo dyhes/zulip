@@ -19,7 +19,7 @@ def api_zapier_webhook(
 ) -> HttpResponse:
     if payload.get("type").tame(check_none_or(check_string)) == "auth":
         # The bot's details are used by our Zapier app to format a connection
-        # label for users to be able to distinguish between different Zulip
+        # label for users to be able to distinguish between different Aloha
         # bots and API keys in their UI
         return json_success(
             request,

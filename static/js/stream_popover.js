@@ -423,7 +423,7 @@ export function build_move_topic_to_stream_popover(current_stream_id, topic_name
     function update_submit_button_disabled_state(select_stream_id) {
         const {current_stream_id, new_topic_name, old_topic_name} = get_params_from_form();
 
-        // Unlike most topic comparisons in Zulip, we intentionally do
+        // Unlike most topic comparisons in Aloha, we intentionally do
         // a case-sensitive comparison, since adjusting the
         // capitalization of a topic is a valid operation.
         // new_topic_name can be undefined when the new topic input is

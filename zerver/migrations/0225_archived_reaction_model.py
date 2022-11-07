@@ -29,7 +29,7 @@ class Migration(migrations.Migration):
                         choices=[
                             ("unicode_emoji", "Unicode emoji"),
                             ("realm_emoji", "Custom emoji"),
-                            ("zulip_extra_emoji", "Zulip extra emoji"),
+                            ("zulip_extra_emoji", "Aloha extra emoji"),
                         ],
                         default="unicode_emoji",
                         max_length=30,

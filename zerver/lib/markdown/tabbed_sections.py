@@ -79,7 +79,7 @@ TAB_SECTION_LABELS = {
     "via-organization-settings": "Via organization settings",
     "default-subdomain": "Default subdomain",
     "custom-subdomain": "Custom subdomain",
-    "zulip-cloud": "Zulip Cloud",
+    "zulip-cloud": "Aloha Cloud",
     "self-hosting": "Self hosting",
     "okta": "Okta",
     "onelogin": "OneLogin",

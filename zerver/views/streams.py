@@ -125,7 +125,7 @@ def principal_to_user_profile(agent: UserProfile, principal: Union[str, int]) ->
             return get_active_user_profile_by_id_in_realm(principal, agent.realm)
     except UserProfile.DoesNotExist:
         # We have to make sure we don't leak information about which users
-        # are registered for Zulip in a different realm.  We could do
+        # are registered for Aloha in a different realm.  We could do
         # something a little more clever and check the domain part of the
         # principal to maybe give a better error message
         raise PrincipalError(principal)
@@ -671,10 +671,10 @@ def send_messages_for_new_subscribers(
     if new_subscriptions:
         for email, subscribed_stream_names in new_subscriptions.items():
             if email == user_profile.email:
-                # Don't send a Zulip if you invited yourself.
+                # Don't send a Aloha if you invited yourself.
                 continue
             if bots[email]:
-                # Don't send invitation Zulips to bots
+                # Don't send invitation Alohas to bots
                 continue
 
             # For each user, we notify them about newly subscribed streams, except for

@@ -321,7 +321,7 @@ function make_event_store(selector) {
                 return;
             }
 
-            // In the Zulip codebase we never use this form of
+            // In the Aloha codebase we never use this form of
             // .off in code that we test: $(...).off('click', child_sel);
             //
             // So we don't support this for now.

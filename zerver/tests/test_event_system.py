@@ -17,7 +17,7 @@ from zerver.lib.event_schema import check_restart_event
 from zerver.lib.events import fetch_initial_state_data
 from zerver.lib.exceptions import AccessDeniedError
 from zerver.lib.request import RequestVariableMissingError
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import (
     HostRequestMock,
     dummy_handler,
@@ -52,7 +52,7 @@ from zerver.views.events_register import (
 )
 
 
-class EventsEndpointTest(ZulipTestCase):
+class EventsEndpointTest(AlohaTestCase):
     def test_events_register_endpoint(self) -> None:
 
         # This test is intended to get minimal coverage on the
@@ -257,7 +257,7 @@ class EventsEndpointTest(ZulipTestCase):
         self.assertEqual(context.exception.http_status_code, 400)
 
 
-class GetEventsTest(ZulipTestCase):
+class GetEventsTest(AlohaTestCase):
     def tornado_call(
         self,
         view_func: Callable[[HttpRequest, UserProfile], HttpResponse],
@@ -521,7 +521,7 @@ class GetEventsTest(ZulipTestCase):
         self.assertIn("not authorized for queue", cm.output[0])
 
 
-class FetchInitialStateDataTest(ZulipTestCase):
+class FetchInitialStateDataTest(AlohaTestCase):
     # Non-admin users don't have access to all bots
     def test_realm_bots_non_admin(self) -> None:
         user_profile = self.example_user("cordelia")
@@ -683,7 +683,7 @@ class FetchInitialStateDataTest(ZulipTestCase):
             self.assertIn(prop, result["user_settings"])
 
 
-class ClientDescriptorsTest(ZulipTestCase):
+class ClientDescriptorsTest(AlohaTestCase):
     def test_get_client_info_for_all_public_streams(self) -> None:
         hamlet = self.example_user("hamlet")
         realm = hamlet.realm
@@ -978,7 +978,7 @@ class ClientDescriptorsTest(ZulipTestCase):
         )
 
 
-class RestartEventsTest(ZulipTestCase):
+class RestartEventsTest(AlohaTestCase):
     def tornado_call(
         self,
         view_func: Callable[[HttpRequest, UserProfile], HttpResponse],
@@ -1107,7 +1107,7 @@ class RestartEventsTest(ZulipTestCase):
             )
 
 
-class FetchQueriesTest(ZulipTestCase):
+class FetchQueriesTest(AlohaTestCase):
     def test_queries(self) -> None:
         user = self.example_user("hamlet")
 
@@ -1175,7 +1175,7 @@ class FetchQueriesTest(ZulipTestCase):
             self.assert_length(queries, count)
 
 
-class TestEventsRegisterAllPublicStreamsDefaults(ZulipTestCase):
+class TestEventsRegisterAllPublicStreamsDefaults(AlohaTestCase):
     def setUp(self) -> None:
         super().setUp()
         self.user_profile = self.example_user("hamlet")
@@ -1218,7 +1218,7 @@ class TestEventsRegisterAllPublicStreamsDefaults(ZulipTestCase):
         self.assertFalse(result)
 
 
-class TestEventsRegisterNarrowDefaults(ZulipTestCase):
+class TestEventsRegisterNarrowDefaults(AlohaTestCase):
     def setUp(self) -> None:
         super().setUp()
         self.user_profile = self.example_user("hamlet")
@@ -1250,7 +1250,7 @@ class TestEventsRegisterNarrowDefaults(ZulipTestCase):
         self.assertEqual(result, [])
 
 
-class TestGetRawUserDataSystemBotRealm(ZulipTestCase):
+class TestGetRawUserDataSystemBotRealm(AlohaTestCase):
     def test_get_raw_user_data_on_system_bot_realm(self) -> None:
         realm = get_realm(settings.SYSTEM_BOT_REALM)
         result = get_raw_user_data(
@@ -1266,7 +1266,7 @@ class TestGetRawUserDataSystemBotRealm(ZulipTestCase):
             self.assertTrue(result[bot_profile.id]["is_system_bot"])
 
 
-class TestUserPresenceUpdatesDisabled(ZulipTestCase):
+class TestUserPresenceUpdatesDisabled(AlohaTestCase):
     # For this test, we verify do_update_user_presence doesn't send
     # events for organizations with more than
     # USER_LIMIT_FOR_SENDING_PRESENCE_UPDATE_EVENTS users, unless

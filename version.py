@@ -18,7 +18,7 @@ LATEST_RELEASE_VERSION = "5.6"
 LATEST_RELEASE_ANNOUNCEMENT = "https://blog.zulip.com/2022/03/29/zulip-5-0-released/"
 
 # Versions of the desktop app below DESKTOP_MINIMUM_VERSION will be
-# prevented from connecting to the Zulip server.  Versions above
+# prevented from connecting to the Aloha server.  Versions above
 # DESKTOP_MINIMUM_VERSION but below DESKTOP_WARNING_VERSION will have
 # a banner at the top of the page asking the user to upgrade.
 DESKTOP_MINIMUM_VERSION = "5.2.0"

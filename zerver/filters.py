@@ -5,7 +5,7 @@ from django.http import HttpRequest
 from django.views.debug import SafeExceptionReporterFilter
 
 
-class ZulipExceptionReporterFilter(SafeExceptionReporterFilter):
+class AlohaExceptionReporterFilter(SafeExceptionReporterFilter):
     def get_post_parameters(self, request: Optional[HttpRequest]) -> Dict[str, Any]:
         post_data = SafeExceptionReporterFilter.get_post_parameters(self, request)
         assert isinstance(post_data, dict)

@@ -752,7 +752,7 @@ def api_github_webhook(
 ) -> HttpResponse:
     """
     GitHub sends the event as an HTTP header.  We have our
-    own Zulip-specific concept of an event that often maps
+    own Aloha-specific concept of an event that often maps
     directly to the X-GitHub-Event header's event, but we sometimes
     refine it based on the payload.
     """

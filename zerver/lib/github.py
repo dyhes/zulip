@@ -36,10 +36,10 @@ def verify_release_download_link(link: str) -> bool:
 
 
 PLATFORM_TO_SETUP_FILE = {
-    "linux": "Zulip-{version}-x86_64.AppImage",
-    "mac": "Zulip-{version}-x64.dmg",
-    "mac-arm64": "Zulip-{version}-arm64.dmg",
-    "windows": "Zulip-Web-Setup-{version}.exe",
+    "linux": "Aloha-{version}-x86_64.AppImage",
+    "mac": "Aloha-{version}-x64.dmg",
+    "mac-arm64": "Aloha-{version}-arm64.dmg",
+    "windows": "Aloha-Web-Setup-{version}.exe",
 }
 
 

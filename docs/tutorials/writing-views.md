@@ -1,8 +1,8 @@
-# Writing views in Zulip
+# Writing views in Aloha
 
 ## What this covers
 
-This page documents how views work in Zulip. You may want to read the
+This page documents how views work in Aloha. You may want to read the
 [new feature tutorial](new-feature-tutorial.md)
 and treat this as a reference.
 
@@ -16,30 +16,30 @@ documentation.
 
 ## What is a view?
 
-A view in Zulip is everything that helps implement a server endpoint.
-Every path that the Zulip server supports (doesn't show a 404 page
+A view in Aloha is everything that helps implement a server endpoint.
+Every path that the Aloha server supports (doesn't show a 404 page
 for) is a view. The obvious ones are those you can visit in your
 browser, for example
 [/integrations](https://zulip.com/integrations/), which shows the
 integration documentation. These paths show up in the address bar of
 the browser. There are other views that are only seen by software,
 namely the API views. They are used to build the various clients that
-Zulip has, namely the web client (which is also used by the desktop
+Aloha has, namely the web client (which is also used by the desktop
 client) and the mobile clients.
 
 ## Modifying urls.py
 
 A view is anything with an entry in the appropriate urls.py, usually
-`zproject/urls.py`. Zulip views either serve HTML (pages for browsers)
-or JSON (data for Zulip clients on all platforms, custom bots, and
+`zproject/urls.py`. Aloha views either serve HTML (pages for browsers)
+or JSON (data for Aloha clients on all platforms, custom bots, and
 integrations).
 
 The format of the URL patterns in Django is [documented
 here](https://docs.djangoproject.com/en/3.2/topics/http/urls/), and
-the Zulip specific details for these are discussed in detail in the
+the Aloha specific details for these are discussed in detail in the
 [life of a request doc](life-of-a-request.md#options).
 
-We have two Zulip-specific conventions we use for internationalization and for
+We have two Aloha-specific conventions we use for internationalization and for
 our REST API, respectively.
 
 ## Writing human-readable views
@@ -86,7 +86,7 @@ redirects the browser to a login page. This is used in the root path
 browser without a valid session cookie, they are redirected to a login
 page. It is a small fork of Django's
 [login_required][login-required-link], adding a few extra checks
-specific to Zulip.
+specific to Aloha.
 
 ```py
 @zulip_login_required
@@ -103,7 +103,7 @@ Templates for the main website are found in
 ## Writing API REST endpoints
 
 These are code-parsable views that take x-www-form-urlencoded or JSON
-request bodies, and return JSON-string responses. Almost all Zulip
+request bodies, and return JSON-string responses. Almost all Aloha
 view code is in the implementations of API REST endpoints.
 
 The REST API does authentication of the user through `rest_dispatch`,
@@ -135,7 +135,7 @@ one of several bad outcomes:
 - Every view function comes with another function that does the
   validation that has the problems from the last bullet point.
 
-In Zulip, we solve this problem with a special decorator called
+In Aloha, we solve this problem with a special decorator called
 `has_request_variables` which allows a developer to declare the
 arguments a view function takes and validate their types all within
 the `def` line of the function. We like this framework because we
@@ -235,7 +235,7 @@ the state of the server. This is _idempotency_.
 
 You will often want to return an error if a request to change
 something would do nothing because the state is already as desired, to
-make debugging Zulip clients easier. This means that the response for
+make debugging Aloha clients easier. This means that the response for
 repeated requests may not be the same, but the repeated requests won't
 change the server more than once or cause unwanted side effects.
 
@@ -276,12 +276,12 @@ def update_realm(
 `realm.save()` actually saves the changes to the realm to the
 database, and `send_event` sends the event to active clients belonging
 to the provided list of users (in this case, all active users in the
-Zulip realm).
+Aloha realm).
 
 ### Calling from the web application
 
 You should always use `channel.<method>` to make an `HTTP <method>` call
-to the Zulip JSON API. As an example, in
+to the Aloha JSON API. As an example, in
 [static/js/admin.js](https://github.com/zulip/zulip/blob/main/static/js/admin.js)
 
 ```js
@@ -315,7 +315,7 @@ r = requests.patch(SERVER_URL + 'api/v1/realm',
                   )
 ```
 
-This is simply an illustration; we recommend making use of the [Zulip
+This is simply an illustration; we recommend making use of the [Aloha
 Python API bindings](https://www.zulipchat.com/api) since they provide
 a nice interface for accessing the API.
 
@@ -351,6 +351,6 @@ def api_pagerduty_webhook(request, user_profile,
                           topic=REQ(default=None)):
 ```
 
-`request.client` will be the result of `get_client("ZulipPagerDutyWebhook")`
+`request.client` will be the result of `get_client("AlohaPagerDutyWebhook")`
 in this example and it will be passed to `check_send_stream_message`. For
-more information, see [Clients in Zulip](../subsystems/client.md).
+more information, see [Clients in Aloha](../subsystems/client.md).

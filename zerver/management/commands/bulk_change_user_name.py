@@ -4,10 +4,10 @@ from typing import Any
 from django.core.management.base import CommandError
 
 from zerver.actions.user_settings import do_change_full_name
-from zerver.lib.management import ZulipBaseCommand
+from zerver.lib.management import AlohaBaseCommand
 
 
-class Command(ZulipBaseCommand):
+class Command(AlohaBaseCommand):
     help = """Change the names for many users."""
 
     def add_arguments(self, parser: ArgumentParser) -> None:

@@ -1,7 +1,7 @@
-# Zulip's OpenAPI-based API documentation system is documented at
+# Aloha's OpenAPI-based API documentation system is documented at
 #   https://zulip.readthedocs.io/en/latest/documentation/api.html
 #
-# This file defines the Python code examples that appears in Zulip's
+# This file defines the Python code examples that appears in Aloha's
 # REST API documentation, and also contains a system for running the
 # example code as part of the `tools/test-api` test suite.
 #
@@ -442,7 +442,7 @@ def add_realm_filter(client: Client) -> None:
 
     # {code_example|start}
     # Add a filter to automatically linkify #<number> to the corresponding
-    # issue in Zulip's server repo
+    # issue in Aloha's server repo
     result = client.add_realm_filter(
         "#(?P<id>[0-9]+)", "https://github.com/zulip/zulip/issues/%(id)s"
     )
@@ -665,7 +665,7 @@ def get_subscribers(client: Client) -> None:
 def get_user_agent(client: Client) -> None:
 
     result = client.get_user_agent()
-    assert result.startswith("ZulipPython/")
+    assert result.startswith("AlohaPython/")
 
 
 @openapi_test_function("/users/me/subscriptions:get")

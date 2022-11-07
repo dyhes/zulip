@@ -10,7 +10,7 @@ set -o pipefail
 # Set the Ubuntu mirror
 [ ! "$UBUNTU_MIRROR" ] || sudo sed -i 's|http://\(\w*\.\)*archive\.ubuntu\.com/ubuntu/\? |'"$UBUNTU_MIRROR"' |' /etc/apt/sources.list
 
-# Set the MOTD on the system to have Zulip instructions
+# Set the MOTD on the system to have Aloha instructions
 sudo ln -nsf /srv/zulip/tools/setup/dev-motd /etc/update-motd.d/99-zulip-dev
 sudo rm -f /etc/update-motd.d/10-help-text
 sudo dpkg --purge landscape-client landscape-common ubuntu-release-upgrader-core update-manager-core update-notifier-common ubuntu-server

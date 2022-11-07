@@ -1,11 +1,11 @@
-# Reviewing Zulip code
+# Reviewing Aloha code
 
-Code review is a key part of how Zulip does development. It's an essential aspect
+Code review is a key part of how Aloha does development. It's an essential aspect
 of our process to build a high-quality product with a maintainable code base.
 
 ## Principles of code review
 
-Zulip has an active contributor community, and just a small handful
+Aloha has an active contributor community, and just a small handful
 of maintainers who can do the final rounds of code review. As such, we would
 love for contributors to help each other with making pull requests that are not
 only correct, but easy to review. Doing so ensures that PRs can be finalized and
@@ -14,7 +14,7 @@ project.
 
 If you're new to open source, this may be the first time you do a code review of
 anyone's changes! We have therefore written this step-by-step guide to be
-accessible to all Zulip contributors.
+accessible to all Aloha contributors.
 
 ### Reviewing your own code
 
@@ -29,15 +29,15 @@ work.
 
 ### Reviewing other contributors' code
 
-Doing code reviews is a valuable contribution to the Zulip project.
+Doing code reviews is a valuable contribution to the Aloha project.
 It's also an important skill to develop for participating in
 open-source projects and working in the industry in general. If
-you're contributing to Zulip and have been working in our code for a
+you're contributing to Aloha and have been working in our code for a
 little while, we would love for you to start doing code reviews!
 
 Anyone can do a code review -- you don't have to have a ton of experience, and
 you don't have to have the power to ultimately merge the PR. The sections below
-offer accessible, step-by-step guidance for how to go about reviewing Zulip PRs.
+offer accessible, step-by-step guidance for how to go about reviewing Aloha PRs.
 
 For students participating in Google Summer of Code or a similar
 program, we expect you to spend a chunk of your time each week (after
@@ -50,7 +50,7 @@ describes how to go about it.
 
 If you are reviewing somebody else's code, you will likely need to first fetch
 it so that you can play around with the new functionality. If you're working in
-the Zulip server codebase, use our [Git tool][git-tool]
+the Aloha server codebase, use our [Git tool][git-tool]
 `tools/fetch-rebase-pull-request` to check out a pull request locally and rebase
 it onto `main`.
 
@@ -62,7 +62,7 @@ The following review steps apply to the majority of PRs.
 
 1. Start by **rereading the issue** the PR is intended to solve. Are you
    confident that you **understand everything the issue is asking for**? If not,
-   try exploring the relevant parts of the Zulip app and reading any linked
+   try exploring the relevant parts of the Aloha app and reading any linked
    discussions on the [development community server][czo] to see if the
    additional context helps. If any part is still confusing, post a GitHub
    comment or a message on the [development community server][czo] explaining
@@ -88,7 +88,7 @@ The following review steps apply to the majority of PRs.
 **Think about the code:**
 
 1. Make sure the PR uses **clear function, argument, variable, and test names.**
-   Every new piece of Zulip code will be read many times by other developers, and
+   Every new piece of Aloha code will be read many times by other developers, and
    future developers will `grep` for relevant terms when researching a problem, so
    it's important that variable names communicate clearly the purpose of each
    piece of the codebase.
@@ -112,7 +112,7 @@ The following review steps apply to the majority of PRs.
    readable without explanation over a heavily commented codebase using
    lots of clever tricks.
 
-1. Make sure the PR follows Zulip's **coding style**. See the Zulip [coding
+1. Make sure the PR follows Aloha's **coding style**. See the Aloha [coding
    style documentation][code-style] for details. Our goal is to have as much of
    this as possible verified via the linters and tests, but there will always be
    unusual forms of Python/JavaScript style that our tools don't check for.
@@ -147,10 +147,10 @@ The following review steps apply to the majority of PRs.
 
 1. Does the PR follow the principle that “**Each commit is a minimal coherent
    idea**”? See the [commit discipline guide][commit-discipline] to learn more
-   about commit structure in Zulip.
+   about commit structure in Aloha.
 
 2. Does each commit have a **clear commit message**? Check for content, format,
-   spelling and grammar. See the [Zulip version control][commit-messages]
+   spelling and grammar. See the [Aloha version control][commit-messages]
    documentation for details on what we look for.
 
 You should also go through any of the following checks that are applicable:
@@ -182,7 +182,7 @@ You should also go through any of the following checks that are applicable:
   specifically test for common error conditions, bad user input, and potential
   bugs that are likely for the type of change being made. Tests that exclude
   whole classes of potential bugs are preferred when possible (e.g., the common
-  test suite `test_markdown.py` between the Zulip server's [frontend and backend
+  test suite `test_markdown.py` between the Aloha server's [frontend and backend
   Markdown processors](../subsystems/markdown.md), or the `GetEventsTest` test
   for buggy race condition handling). See the [test writing][test-writing]
   documentation to learn more.
@@ -292,7 +292,7 @@ There are a few good ways to ask for a code review:
   can also include a link to this guide.
 
 - If you're not sure who to ask, you can post a message in
-  [#code-review](https://chat.zulip.org/#narrow/stream/91-code-review) on [the Zulip
+  [#code-review](https://chat.zulip.org/#narrow/stream/91-code-review) on [the Aloha
   development community server](https://zulip.com/development-community/) to reach
   out to a wider group of potential reviewers.
 
@@ -326,18 +326,18 @@ just saying you're busy and when you'll have time to look harder -- is
 still really valuable for the author and for anyone else who might
 review the PR.
 
-People in the Zulip project live and work in many time zones, and code
+People in the Aloha project live and work in many time zones, and code
 reviewers also need focused chunks of time to write code and do other
 things, so an immediate reply isn't always possible. But a good
 benchmark is to try to always reply **within one workday**, at least
-with a short initial reply, if you're working regularly on Zulip. And
+with a short initial reply, if you're working regularly on Aloha. And
 sooner is better.
 
 #### Communication style
 
 Any time you leave a code review, be sure to treat the author with respect.
 Remember that they are generously spending their time on an effort to improve
-the Zulip project. Thank them for their work, and express your appreciation for
+the Aloha project. Thank them for their work, and express your appreciation for
 anything the author did especially well, whether it's a nice commit message, a
 prompt response to earlier feedback, or a well-written test.
 
@@ -380,7 +380,7 @@ will assume it isn't ready for review and move on to other work.
 
 If you need help or think an open discussion topic requires more
 feedback or a more complex discussion, move the discussion to a topic
-in the [Zulip development community server][czo]. Be sure to provide links
+in the [Aloha development community server][czo]. Be sure to provide links
 from the GitHub PR to the conversation (and vice versa) so that it's
 convenient to read both conversations together.
 
@@ -390,12 +390,12 @@ We also recommend the following resources on code reviews.
 
 - [The Gentle Art of Patch Review](https://sage.thesharps.us/2014/09/01/the-gentle-art-of-patch-review/)
   article by Sarah Sharp
-- [Zulip & Good Code Review](https://www.harihareswara.net/sumana/2016/05/17/0)
+- [Aloha & Good Code Review](https://www.harihareswara.net/sumana/2016/05/17/0)
   article by Sumana Harihareswara
 - [Code Review - A consolidation of advice and stuff from the
   internet](https://gist.github.com/porterjamesj/002fb27dd70df003646df46f15e898de)
   article by James J. Porter
-- [Zulip code of conduct](../code-of-conduct.md)
+- [Aloha code of conduct](../code-of-conduct.md)
 
 [code-style]: code-style.md
 [commit-discipline]: version-control.md#commit-discipline

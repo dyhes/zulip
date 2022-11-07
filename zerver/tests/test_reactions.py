@@ -9,7 +9,7 @@ from zerver.lib.cache import cache_get, to_dict_cache_key_id
 from zerver.lib.emoji import emoji_name_to_emoji_code
 from zerver.lib.exceptions import JsonableError
 from zerver.lib.message import extract_message_dict
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import zulip_reaction_info
 from zerver.models import Message, Reaction, RealmEmoji, UserMessage, get_realm
 
@@ -17,7 +17,7 @@ if TYPE_CHECKING:
     from django.test.client import _MonkeyPatchedWSGIResponse as TestHttpResponse
 
 
-class ReactionEmojiTest(ZulipTestCase):
+class ReactionEmojiTest(AlohaTestCase):
     def test_missing_emoji(self) -> None:
         """
         Sending reaction without emoji fails
@@ -245,7 +245,7 @@ class ReactionEmojiTest(ZulipTestCase):
         self.assertEqual(str(exc.exception), "Emoji 'invalid_emoji' does not exist")
 
 
-class ReactionMessageIDTest(ZulipTestCase):
+class ReactionMessageIDTest(AlohaTestCase):
     def test_missing_message_id(self) -> None:
         """
         Reacting without a message_id fails
@@ -298,7 +298,7 @@ class ReactionMessageIDTest(ZulipTestCase):
         self.assert_json_error(result, "Invalid message(s)")
 
 
-class ReactionTest(ZulipTestCase):
+class ReactionTest(AlohaTestCase):
     def test_add_existing_reaction(self) -> None:
         """
         Creating the same reaction twice fails
@@ -416,7 +416,7 @@ class ReactionTest(ZulipTestCase):
         self.assert_json_success(result)
 
 
-class ReactionEventTest(ZulipTestCase):
+class ReactionEventTest(AlohaTestCase):
     def test_add_event(self) -> None:
         """
         Recipients of the message receive the reaction event
@@ -644,7 +644,7 @@ class ReactionEventTest(ZulipTestCase):
         self.assertEqual(event_user_ids, {iago.id, hamlet.id, polonius.id})
 
 
-class EmojiReactionBase(ZulipTestCase):
+class EmojiReactionBase(AlohaTestCase):
     """Reusable testing functions for emoji reactions tests.  Be careful when
     changing this: It's used in test_retention.py as well."""
 
@@ -908,7 +908,7 @@ class DefaultEmojiReactionTests(EmojiReactionBase):
         self.assertFalse(user_message.flags.starred)
 
 
-class ZulipExtraEmojiReactionTest(EmojiReactionBase):
+class AlohaExtraEmojiReactionTest(EmojiReactionBase):
     def test_add_zulip_emoji_reaction(self) -> None:
         result = self.post_reaction(zulip_reaction_info())
         self.assert_json_success(result)

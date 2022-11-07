@@ -17,7 +17,7 @@ failed=${PIPESTATUS[0]}
 
 if [ "$failed" -ne 0 ]; then
     echo -e '\033[0;31m'
-    echo "Zulip installation failed (exit code $failed)!"
+    echo "Aloha installation failed (exit code $failed)!"
     echo
     echo -n "The install process is designed to be idempotent, so you can retry "
     echo -n "after resolving whatever issue caused the failure (there should be a traceback above). "

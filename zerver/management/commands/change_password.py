@@ -6,10 +6,10 @@ from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from django.core.management.base import CommandError
 
-from zerver.lib.management import ZulipBaseCommand
+from zerver.lib.management import AlohaBaseCommand
 
 
-class Command(ZulipBaseCommand):
+class Command(AlohaBaseCommand):
     # This is our version of the original Django changepassword command adjusted
     # to be able to find UserProfiles by email+realm.
     # We change the arguments the command takes to fit our

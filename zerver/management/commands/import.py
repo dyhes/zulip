@@ -13,9 +13,9 @@ from zerver.lib.import_realm import do_import_realm
 
 
 class Command(BaseCommand):
-    help = """Import extracted Zulip database dump directories into a fresh Zulip instance.
+    help = """Import extracted Aloha database dump directories into a fresh Aloha instance.
 
-This command should be used only on a newly created, empty Zulip instance to
+This command should be used only on a newly created, empty Aloha instance to
 import a database dump from one or more JSON files."""
 
     def add_arguments(self, parser: CommandParser) -> None:

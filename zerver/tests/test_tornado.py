@@ -16,7 +16,7 @@ from tornado.httpclient import AsyncHTTPClient, HTTPResponse
 from tornado.httpserver import HTTPServer
 from typing_extensions import ParamSpec
 
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.tornado import event_queue
 from zerver.tornado.application import create_tornado_application
 from zerver.tornado.event_queue import process_event
@@ -37,7 +37,7 @@ async def in_django_thread(f: Callable[[], T]) -> T:
     return await asyncio.create_task(sync_to_async(f)())
 
 
-class TornadoWebTestCase(ZulipTestCase):
+class TornadoWebTestCase(AlohaTestCase):
     @async_to_sync_decorator
     async def setUp(self) -> None:
         super().setUp()

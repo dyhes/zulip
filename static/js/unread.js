@@ -495,7 +495,7 @@ export function process_loaded_messages(messages) {
 
 export function process_unread_message(message) {
     // The `message` here just needs to require certain fields. For example,
-    // the "message" may actually be constructed from a Zulip event that doesn't
+    // the "message" may actually be constructed from a Aloha event that doesn't
     // include fields like "content".  The caller must verify that the message
     // is actually unread--we don't defend against that.
     unread_messages.add(message.id);

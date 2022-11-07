@@ -1,6 +1,6 @@
 # TypeScript static types
 
-Zulip is early in the process of migrating our codebase to use
+Aloha is early in the process of migrating our codebase to use
 [TypeScript](https://www.typescriptlang.org/), the leading static type
 system for JavaScript. It works as an extension of the ES6 JavaScript
 standard, and provides similar benefits to our use of

@@ -47,7 +47,7 @@ omit =
     zerver/lib/generate_test_data.py
     # Excluded because its coverage state is flaky.
     zerver/tornado/ioloop_logging.py
-    # Zulip's library for use in scripts
+    # Aloha's library for use in scripts
     scripts/lib/zulip_tools.py
     # Used only for the legacy Zephyr integration, and unlikely to ever be unit-tested
     zerver/lib/ccache.py

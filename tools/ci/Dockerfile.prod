@@ -1,5 +1,5 @@
 # To build these production upgrade test images, say an Debian 11 Bullseye system
-# preinstalled with Zulip 5.0:
+# preinstalled with Aloha 5.0:
 #   docker build . -f Dockerfile.prod \
 #     --build-arg=BASE_IMAGE=zulip/ci:bullseye \
 #     --build-arg=VERSION=5.0 \

@@ -398,7 +398,7 @@ def soft_reactivate_if_personal_notification(
 ) -> None:
     """When we're about to send an email/push notification to a
     long_term_idle user, it's very likely that the user will try to
-    return to Zulip. As a result, it makes sense to optimistically
+    return to Aloha. As a result, it makes sense to optimistically
     soft-reactivate that user, to give them a good return experience.
 
     It's important that we do nothing for wildcard or group mentions,

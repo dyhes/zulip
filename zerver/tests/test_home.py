@@ -21,7 +21,7 @@ from zerver.lib.home import (
     promote_sponsoring_zulip_in_realm,
 )
 from zerver.lib.soft_deactivation import do_soft_deactivate_users
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import get_user_messages, queries_captured
 from zerver.models import (
     DefaultStream,
@@ -43,7 +43,7 @@ if TYPE_CHECKING:
 logger_string = "zulip.soft_deactivation"
 
 
-class HomeTest(ZulipTestCase):
+class HomeTest(AlohaTestCase):
 
     # Keep this list sorted!!!
     expected_page_params_keys = [
@@ -292,7 +292,7 @@ class HomeTest(ZulipTestCase):
         realm = get_realm("zulip")
 
         # We construct a scheduled deletion date that's definitely in
-        # the future, regardless of how long ago the Zulip realm was
+        # the future, regardless of how long ago the Aloha realm was
         # created.
         realm.demo_organization_scheduled_deletion_date = timezone_now() + datetime.timedelta(
             days=1
@@ -468,9 +468,9 @@ class HomeTest(ZulipTestCase):
         user = self.example_user("hamlet")
         self.login_user(user)
 
-        result = self.client_get("/", HTTP_USER_AGENT="ZulipElectron/2.3.82")
+        result = self.client_get("/", HTTP_USER_AGENT="AlohaElectron/2.3.82")
         html = result.content.decode()
-        self.assertIn("You are using old version of the Zulip desktop", html)
+        self.assertIn("You are using old version of the Aloha desktop", html)
 
     def test_unsupported_browser(self) -> None:
         user = self.example_user("hamlet")
@@ -485,7 +485,7 @@ class HomeTest(ZulipTestCase):
         for user_agent in unsupported_user_agents:
             result = self.client_get("/", HTTP_USER_AGENT=user_agent)
             html = result.content.decode()
-            self.assertIn("Internet Explorer is not supported by Zulip.", html)
+            self.assertIn("Internet Explorer is not supported by Aloha.", html)
 
     def test_terms_of_service_first_time_template(self) -> None:
         user = self.example_user("hamlet")

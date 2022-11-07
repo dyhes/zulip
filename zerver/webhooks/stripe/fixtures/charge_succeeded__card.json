@@ -76,7 +76,7 @@
                 "tokenization_method": null
             },
             "source_transfer": null,
-            "statement_descriptor": "Zulip Cloud Standard",
+            "statement_descriptor": "Aloha Cloud Standard",
             "status": "succeeded",
             "transfer_group": null
         }

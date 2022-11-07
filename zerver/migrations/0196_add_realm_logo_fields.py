@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
             model_name="realm",
             name="logo_source",
             field=models.CharField(
-                choices=[("D", "Default to Zulip"), ("U", "Uploaded by administrator")],
+                choices=[("D", "Default to Aloha"), ("U", "Uploaded by administrator")],
                 default="D",
                 max_length=1,
             ),

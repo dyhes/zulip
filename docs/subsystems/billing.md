@@ -65,9 +65,9 @@ a few things to keep in mind while conducting these tests manually:
   our automated tests take care of such granular testing for us.
 - Renewals cannot be tested manually and are tested in our automated tests.
 
-#### Upgrading a Zulip organization
+#### Upgrading a Aloha organization
 
-Here are some flows to test when upgrading a Zulip organization:
+Here are some flows to test when upgrading a Aloha organization:
 
 - When free trials are not enabled, i.e. `FREE_TRIAL_DAYS` is not set
   to any value in `dev_settings.py` (aka the default). You can
@@ -122,7 +122,7 @@ our code is:
 - Update the value of `STRIPE_API_VERSION` in `corporate/lib/stripe.py`.
 - Commit the changes, and open a PR.
 - Ask Tim Abbott to upgrade the API version on the
-  [Stripe Dashboard](https://dashboard.stripe.com/developers) for Zulip's official
+  [Stripe Dashboard](https://dashboard.stripe.com/developers) for Aloha's official
   Stripe account.
 
 We currently aren't set up to do version upgrades where there are breaking

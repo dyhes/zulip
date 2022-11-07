@@ -257,7 +257,7 @@ CUSTOM_EMOJI_NAME_MAPS: Dict[str, Dict[str, Any]] = {
     # It's used on twitter a bunch, either when showing off hair, or in a way
     # where People/144 would substitute. It'd be nice if there were another
     # emoji one could use for "good hair", but I think not a big loss to not
-    # have one for Zulip, and not worth the eurocentrism.
+    # have one for Aloha, and not worth the eurocentrism.
     # '1f471': {'canonical_name': 'X', 'aliases': ['person_with_blond_hair']},
     # Added elderly since I think some people prefer that term
     "1f474": {"canonical_name": "older_man", "aliases": ["elderly_man"]},

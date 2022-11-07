@@ -1,4 +1,4 @@
-Get Wekan notifications in Zulip!
+Get Wekan notifications in Aloha!
 
 1. {!create-stream.md!}
 

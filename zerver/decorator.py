@@ -211,7 +211,7 @@ def process_client(
     created/updated to record this request.
 
     In particular, unauthenticate requests and those authenticated to
-    a non-user object like RemoteZulipServer should not pass the
+    a non-user object like RemoteAlohaServer should not pass the
     `user` parameter.
     """
     request_notes = RequestNotes.get_notes(request)
@@ -223,9 +223,9 @@ def process_client(
     # We could check for a browser's name being "Mozilla", but
     # e.g. Opera and MobileSafari don't set that, and it seems
     # more robust to just key off whether it was a browser view
-    if is_browser_view and not client_name.startswith("Zulip"):
+    if is_browser_view and not client_name.startswith("Aloha"):
         # Avoid changing the client string for browsers, but let
-        # the Zulip desktop apps be themselves.
+        # the Aloha desktop apps be themselves.
         client_name = "website"
 
     request_notes.client = get_client(client_name)
@@ -320,7 +320,7 @@ def log_exception_to_webhook_logger(err: Exception) -> None:
 def full_webhook_client_name(raw_client_name: Optional[str] = None) -> Optional[str]:
     if raw_client_name is None:
         return None
-    return f"Zulip{raw_client_name}Webhook"
+    return f"Aloha{raw_client_name}Webhook"
 
 
 # Use this for webhook views that don't get an email passed in.
@@ -899,7 +899,7 @@ def internal_notify_view(
     [Callable[Concatenate[HttpRequest, ParamT], HttpResponse]],
     Callable[Concatenate[HttpRequest, ParamT], HttpResponse],
 ]:
-    """Used for situations where something running on the Zulip server
+    """Used for situations where something running on the Aloha server
     needs to make a request to the (other) Django/Tornado processes running on
     the server."""
 

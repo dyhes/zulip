@@ -4,14 +4,14 @@ from typing import Any, Collection, List
 from django.conf import settings
 from django.core.management.base import CommandError
 
-from zerver.lib.management import ZulipBaseCommand
+from zerver.lib.management import AlohaBaseCommand
 from zerver.lib.send_email import send_custom_email
 from zerver.models import Realm, UserProfile
 
 
-class Command(ZulipBaseCommand):
+class Command(AlohaBaseCommand):
     help = """
-    Send a custom email with Zulip branding to the specified users.
+    Send a custom email with Aloha branding to the specified users.
 
     Useful to send a notice to all users of a realm or server.
 
@@ -35,7 +35,7 @@ class Command(ZulipBaseCommand):
         parser.add_argument(
             "--remote-servers",
             action="store_true",
-            help="Send to registered contact email addresses for remote Zulip servers.",
+            help="Send to registered contact email addresses for remote Aloha servers.",
         )
         parser.add_argument(
             "--markdown-template-path",
@@ -88,11 +88,11 @@ class Command(ZulipBaseCommand):
                 long_term_idle=False,
             ).distinct("delivery_email")
         elif options["remote_servers"]:
-            from zilencer.models import RemoteZulipServer
+            from zilencer.models import RemoteAlohaServer
 
             target_emails = list(
                 set(
-                    RemoteZulipServer.objects.filter(deactivated=False).values_list(
+                    RemoteAlohaServer.objects.filter(deactivated=False).values_list(
                         "contact_email", flat=True
                     )
                 )

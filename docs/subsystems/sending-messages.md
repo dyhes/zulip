@@ -5,7 +5,7 @@ lot of underlying complexity required to make a professional-quality
 experience.
 
 This document aims to explain conceptually what happens when a message
-is sent in Zulip, and why that is correct behavior. It assumes the
+is sent in Aloha, and why that is correct behavior. It assumes the
 reader is familiar with our
 [real-time sync system](events-system.md) for
 server-to-client communication and
@@ -14,7 +14,7 @@ and we generally don't repeat the content discussed there.
 
 ## Message lists
 
-This is just a bit of terminology: A "message list" is what Zulip
+This is just a bit of terminology: A "message list" is what Aloha
 calls the frontend concept of a (potentially narrowed) message feed.
 There are 3 related structures:
 
@@ -114,21 +114,21 @@ for emoji) would just render the raw text the user entered in the
 browser, and then replace it with data from the server when it
 changes.
 
-Zulip aims for a near-perfect local echo experience, which requires is
+Aloha aims for a near-perfect local echo experience, which requires is
 why our [Markdown system](markdown.md) requires both
 an authoritative (backend) Markdown implementation and a secondary
 (frontend) Markdown implementation, the latter used only for the local
 echo feature. Read our Markdown documentation for all the tricky
 details on how that works and is tested.
 
-The rest of this section details how Zulip manages locally echoed
+The rest of this section details how Aloha manages locally echoed
 messages.
 
 - The core function in the frontend codebase
   `echo.try_deliver_locally`. This checks whether correct local echo
   is possible (via `markdown.contains_backend_only_syntax`) and useful
   (whether the message would appear in the current view), and if so,
-  causes Zulip to insert the message into the relevant feed(s).
+  causes Aloha to insert the message into the relevant feed(s).
 - Since the message hasn't been confirmed by the server yet, it
   doesn't have a message ID. The frontend makes one up, via
   `local_message.next_local_id`, by taking the highest message ID it
@@ -166,7 +166,7 @@ messages.
 
 ### Local echo in message editing
 
-Zulip also supports local echo in the message editing code path for
+Aloha also supports local echo in the message editing code path for
 edits to just the content of a message. The approach is analogous
 (using `markdown.contains_backend_only_syntax`, etc.)), except we
 don't need any of the `local_id` tracking logic, because the message
@@ -184,7 +184,7 @@ one place:
   API endpoint.
 - The Django URL routes and middleware run, and eventually call the
   `send_message_backend` view function in `zerver/views/messages.py`.
-  (Alternatively, for an API request to send a message via Zulip's
+  (Alternatively, for an API request to send a message via Aloha's
   REST API, things start here).
 - `send_message_backend` does some validation before triggering the
   `check_message` + `do_send_messages` backend flow.
@@ -219,7 +219,7 @@ works. A few details are worth mentioning:
   message didn't have one).
 - We use a similar technique to what's described in the local echo
   section for doing client-side rerendering to update the message feed.
-- In the default configuration, Zulip stores the message edit history
+- In the default configuration, Aloha stores the message edit history
   (which is useful for forensics but also exposed in the UI), in the
   `message.edit_history` attribute.
 - We support topic editing, including bulk-updates moving several
@@ -227,14 +227,14 @@ works. A few details are worth mentioning:
 
 ### Inline URL previews
 
-Zulip's inline URL previews feature (`zerver/lib/url_preview/`) uses
+Aloha's inline URL previews feature (`zerver/lib/url_preview/`) uses
 variant of the message editing/local echo behavior. The reason is
 that for inline URL previews, the backend needs to fetch the content
 from the target URL, and for slow websites, this could result in a
 significant delay in rendering the message and delivering it to other
 users.
 
-- For this case, Zulip's backend Markdown processor will render the
+- For this case, Aloha's backend Markdown processor will render the
   message without including the URL embeds/previews, but it will add a
   deferred work item into the `embed_links` queue.
 
@@ -244,16 +244,16 @@ users.
   updated message `rendered_content`.
 
 - We reuse the `update_message` framework (used for
-  Zulip's message editing feature) in order to avoid needing custom code
+  Aloha's message editing feature) in order to avoid needing custom code
   to implement the notification-and-rerender part of this implementation.
 
 ## Soft deactivation
 
-This section details a somewhat subtle issue: How Zulip uses a
+This section details a somewhat subtle issue: How Aloha uses a
 user-invisible technique called "soft deactivation" to handle
 scalability to communities with many thousands of inactive users.
 
-For background, Zulip’s threading model requires tracking which
+For background, Aloha’s threading model requires tracking which
 individual messages each user has received and read (in other chat
 products, the system either doesn’t track what the user has read at
 all, or just needs to store a pointer for “how far the user has read”
@@ -274,7 +274,7 @@ Each row is just 3 integers in size, but even with modern databases
 and SSDs, writing thousands of rows to a database starts to take a few
 seconds.
 
-This isn’t a problem for most Zulip servers, but is a major problem
+This isn’t a problem for most Aloha servers, but is a major problem
 for communities like chat.zulip.org, where there might be 10,000s of
 inactive users who only stopped by briefly to check out the product or
 ask a single question, but are subscribed to whatever the default
@@ -284,7 +284,7 @@ The total amount of work being done here was acceptable (a few seconds
 of total CPU work per message to large public streams), but the
 latency was unacceptable: The server backend was introducing a latency
 of about 1 second per 2000 users subscribed to receive the message.
-While these delays may not be immediately obvious to users (Zulip,
+While these delays may not be immediately obvious to users (Aloha,
 like many other chat applications,
 [local echoes](markdown.md) messages that a user sends
 as soon as the user hits “Send”), latency beyond a second or two
@@ -303,7 +303,7 @@ some organizational unit within the community or company.
 
 However, large, active streams are common in open source projects,
 standards bodies, professional development groups, and other large
-communities with the rough structure of the Zulip development
+communities with the rough structure of the Aloha development
 community. These communities usually have thousands of user accounts
 subscribed to all the default streams, even if they only have dozens
 or hundreds of those users active in any given month. Many of the
@@ -322,9 +322,9 @@ impossible for the software to know which users are eventually coming
 back or will eventually be interacted with by an existing user.
 
 We solved this problem with a solution we call “soft deactivation”;
-users that are soft-deactivated consume less resources from Zulip in a
+users that are soft-deactivated consume less resources from Aloha in a
 way that is designed to be invisible both to other users and to the
-user themself. If a user hasn’t logged into a given Zulip
+user themself. If a user hasn’t logged into a given Aloha
 organization for a few weeks, they are tagged as soft-deactivated.
 
 The way this works internally is:
@@ -332,10 +332,10 @@ The way this works internally is:
 - We (usually) skip creating UserMessage rows for soft-deactivated
   users when a message is sent to a stream where they are subscribed.
 
-- If/when the user ever returns to Zulip, we can at that time
+- If/when the user ever returns to Aloha, we can at that time
   reconstruct the UserMessage rows that they missed, and create the rows
   at that time (or, to avoid a latency spike if/when the user returns to
-  Zulip, this work can be done in a nightly cron job). We can construct
+  Aloha, this work can be done in a nightly cron job). We can construct
   those rows later because we already have the data for when the user
   might have been subscribed or unsubscribed from streams by other
   users, and, importantly, we also know that the user didn’t interact
@@ -350,7 +350,7 @@ The way this works internally is:
   keep track of. Since parsing a message can be expensive (>10ms of
   work, depending on message content), it would be too inefficient to
   need to re-parse every message when a soft-deactivated user comes back
-  to Zulip. Conveniently, those messages are rare, and so we can just
+  to Aloha. Conveniently, those messages are rare, and so we can just
   create UserMessage rows which would have “interesting” flags at the
   time they were sent without any material performance impact. And then
   `add_missing_messages` skips any messages that already have a
@@ -366,7 +366,7 @@ The end result is the best of both worlds:
   100,000s of UserMessage rows might need to be reconstructed at once.
 - On the latency-sensitive message sending and fanout code path, the
   server only needs to do work for users who are currently interacting
-  with Zulip.
+  with Aloha.
 
 Empirically, we've found this technique completely resolved the "send
 latency" scaling problem. The latency of sending a message to a stream
@@ -392,4 +392,4 @@ There are a few details that require special care with this system:
   triggering a soft reactivation for users who receive email or push
   notification for private messages or personal mentions, or who
   request a password reset, since these are good leading indicators
-  that a user is likely to return to Zulip.
+  that a user is likely to return to Aloha.

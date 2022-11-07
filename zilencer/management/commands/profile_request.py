@@ -7,7 +7,7 @@ from django.contrib.sessions.backends.base import SessionBase
 from django.core.management.base import CommandParser
 from django.http import HttpRequest, HttpResponse
 
-from zerver.lib.management import ZulipBaseCommand
+from zerver.lib.management import AlohaBaseCommand
 from zerver.lib.request import RequestNotes
 from zerver.lib.test_helpers import HostRequestMock
 from zerver.middleware import LogRequests
@@ -32,7 +32,7 @@ def profile_request(request: HttpRequest) -> HttpResponse:
     return response
 
 
-class Command(ZulipBaseCommand):
+class Command(AlohaBaseCommand):
     def add_arguments(self, parser: CommandParser) -> None:
         parser.add_argument("email", metavar="<email>", help="Email address of the user")
         self.add_realm_args(parser)

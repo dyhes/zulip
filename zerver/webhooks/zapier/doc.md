@@ -1,6 +1,6 @@
 Zapier supports integrations with
 [hundreds of popular products](https://zapier.com/apps). Get notifications
-sent by Zapier directly in Zulip.
+sent by Zapier directly in Aloha.
 
 1. {!create-stream.md!}
 
@@ -16,9 +16,9 @@ sent by Zapier directly in Zulip.
 1. Follow the instructions to select a Trigger App and Event (**When this happens ...** (Step 1)).
    This could be an app like Trello, Gmail, Calendar, or anything else.
 
-1. **Do this ...** (Step 2): Search for Zulip, and click on the Zulip icon. Follow the instructions.
+1. **Do this ...** (Step 2): Search for Aloha, and click on the Aloha icon. Follow the instructions.
 
-1. At some point, Zapier will ask you to sign in with your Zulip
+1. At some point, Zapier will ask you to sign in with your Aloha
    credentials. Use the email address and API key of the bot you created above.
 
 1. Fill out the topic/recipient/message content fields as desired.

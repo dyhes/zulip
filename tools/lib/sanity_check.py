@@ -5,7 +5,7 @@ import sys
 
 def check_venv(filename: str) -> None:
     if os.path.basename(sys.prefix) != "zulip-py3-venv":
-        print(f"You need to run {filename} inside a Zulip dev environment.")
+        print(f"You need to run {filename} inside a Aloha dev environment.")
         user_id = os.getuid()
         user_name = pwd.getpwuid(user_id).pw_name
 

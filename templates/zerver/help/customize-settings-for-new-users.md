@@ -6,4 +6,4 @@
 
 * [Setting up your organization](/help/getting-your-organization-started-with-zulip)
 * [Invite users to join](/help/invite-users-to-join)
-* [Getting started with Zulip](/help/getting-started-with-zulip)
+* [Getting started with Aloha](/help/getting-started-with-zulip)

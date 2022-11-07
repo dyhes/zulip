@@ -13,7 +13,7 @@ from zerver.actions.realm_settings import (
     do_send_realm_reactivation_email,
     do_set_realm_property,
 )
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import reset_emails_in_zulip_realm
 from zerver.models import (
     MultiuseInvite,
@@ -29,7 +29,7 @@ if TYPE_CHECKING:
     from django.test.client import _MonkeyPatchedWSGIResponse as TestHttpResponse
 
 
-class TestSupportEndpoint(ZulipTestCase):
+class TestSupportEndpoint(AlohaTestCase):
     def test_search(self) -> None:
         reset_emails_in_zulip_realm()
         lear_user = self.lear_user("king")
@@ -105,7 +105,7 @@ class TestSupportEndpoint(ZulipTestCase):
                 [
                     f"<b>First human user</b>: {first_human_user.delivery_email}\n",
                     f'<input type="hidden" name="realm_id" value="{zulip_realm.id}"',
-                    "Zulip Dev</h3>",
+                    "Aloha Dev</h3>",
                     '<option value="1" selected>Self-hosted</option>',
                     '<option value="2" >Limited</option>',
                     'input type="number" name="discount" value="None"',
@@ -130,7 +130,7 @@ class TestSupportEndpoint(ZulipTestCase):
                     '<option value="deactivated" >Deactivated</option>',
                     'scrub-realm-button">',
                     'data-string-id="lear"',
-                    "<b>Name</b>: Zulip Cloud Standard",
+                    "<b>Name</b>: Aloha Cloud Standard",
                     "<b>Status</b>: Active",
                     "<b>Billing schedule</b>: Annual",
                     "<b>Licenses</b>: 2/10 (Manual)",

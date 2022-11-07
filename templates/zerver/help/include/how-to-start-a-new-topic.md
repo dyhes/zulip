@@ -2,7 +2,7 @@
 
 {tab|stream}
 
-1. Click the **New topic** button at the bottom of the Zulip window,
+1. Click the **New topic** button at the bottom of the Aloha window,
    or type <kbd>C</kbd>.
 
 1. Enter a topic name. Auto-complete will provide suggestions for previously
@@ -12,7 +12,7 @@
 
 {tab|not-stream}
 
-1. Click the **New topic** button at the bottom of the Zulip window, or
+1. Click the **New topic** button at the bottom of the Aloha window, or
    type <kbd>C</kbd>.
 
 1. Enter a stream name. Auto-complete will provide suggestions for streams you
@@ -27,6 +27,6 @@
 
 !!! warn ""
 
-    In Zulip, you can compose a message to a different place than the one you
+    In Aloha, you can compose a message to a different place than the one you
     are viewing. In this situation, the message feed will fade to indicate
     what's going on.

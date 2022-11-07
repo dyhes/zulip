@@ -6,7 +6,7 @@ try:
 except Exception:
     import traceback
 
-    print("\nException importing Zulip core modules on startup!")
+    print("\nException importing Aloha core modules on startup!")
     traceback.print_exc()
 else:
-    print("\nSuccessfully imported Zulip settings, models, and actions functions.")
+    print("\nSuccessfully imported Aloha settings, models, and actions functions.")

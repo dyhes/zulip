@@ -1,4 +1,4 @@
-Get Zulip notifications for your Git repositories!
+Get Aloha notifications for your Git repositories!
 
 1. {!create-an-incoming-webhook.md!}
 

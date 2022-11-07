@@ -27,12 +27,12 @@ from zerver.lib.email_notifications import (
     relative_to_full_url,
 )
 from zerver.lib.send_email import FromAddress, deliver_scheduled_emails, send_custom_email
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.user_groups import create_user_group
 from zerver.models import ScheduledEmail, UserMessage, UserProfile, get_realm, get_stream
 
 
-class TestCustomEmails(ZulipTestCase):
+class TestCustomEmails(AlohaTestCase):
     def test_send_custom_email_argument(self) -> None:
         hamlet = self.example_user("hamlet")
         email_subject = "subject_test"
@@ -82,7 +82,7 @@ class TestCustomEmails(ZulipTestCase):
         self.assertNotIn("{% block content %}", msg.body)
         # Verify that the HTML version contains the footer.
         self.assertIn(
-            "You are receiving this email to update you about important changes to Zulip",
+            "You are receiving this email to update you about important changes to Aloha",
             str(msg.message()),
         )
 
@@ -206,7 +206,7 @@ class TestCustomEmails(ZulipTestCase):
             self.assert_length(mail.outbox, 0)
 
 
-class TestFollowupEmails(ZulipTestCase):
+class TestFollowupEmails(AlohaTestCase):
     def test_day1_email_context(self) -> None:
         hamlet = self.example_user("hamlet")
         enqueue_welcome_emails(hamlet)
@@ -235,8 +235,8 @@ class TestFollowupEmails(ZulipTestCase):
     # for case details.
     @override_settings(
         AUTHENTICATION_BACKENDS=(
-            "zproject.backends.ZulipLDAPAuthBackend",
-            "zproject.backends.ZulipDummyBackend",
+            "zproject.backends.AlohaLDAPAuthBackend",
+            "zproject.backends.AlohaDummyBackend",
         ),
         # configure email search for email address in the uid attribute:
         AUTH_LDAP_REVERSE_EMAIL_SEARCH=LDAPSearch(
@@ -264,8 +264,8 @@ class TestFollowupEmails(ZulipTestCase):
 
     @override_settings(
         AUTHENTICATION_BACKENDS=(
-            "zproject.backends.ZulipLDAPAuthBackend",
-            "zproject.backends.ZulipDummyBackend",
+            "zproject.backends.AlohaLDAPAuthBackend",
+            "zproject.backends.AlohaDummyBackend",
         )
     )
     def test_day1_email_ldap_case_b_login_credentials(self) -> None:
@@ -288,8 +288,8 @@ class TestFollowupEmails(ZulipTestCase):
 
     @override_settings(
         AUTHENTICATION_BACKENDS=(
-            "zproject.backends.ZulipLDAPAuthBackend",
-            "zproject.backends.ZulipDummyBackend",
+            "zproject.backends.AlohaLDAPAuthBackend",
+            "zproject.backends.AlohaDummyBackend",
         )
     )
     def test_day1_email_ldap_case_c_login_credentials(self) -> None:
@@ -314,7 +314,7 @@ class TestFollowupEmails(ZulipTestCase):
         cordelia = self.example_user("cordelia")
 
         enqueue_welcome_emails(self.example_user("hamlet"))
-        # Hamlet has account only in Zulip realm so both day1 and day2 emails should be sent
+        # Hamlet has account only in Aloha realm so both day1 and day2 emails should be sent
         scheduled_emails = ScheduledEmail.objects.filter(users=hamlet).order_by(
             "scheduled_timestamp"
         )
@@ -350,7 +350,7 @@ class TestFollowupEmails(ZulipTestCase):
         self.assert_length(outbox, 1)
 
         message = outbox[0]
-        self.assertIn("You've created the new Zulip organization", message.body)
+        self.assertIn("You've created the new Aloha organization", message.body)
         self.assertNotIn("demo org", message.body)
 
     def test_followup_emails_for_demo_realms(self) -> None:
@@ -372,10 +372,10 @@ class TestFollowupEmails(ZulipTestCase):
         self.assert_length(outbox, 1)
 
         message = outbox[0]
-        self.assertIn("You've created a demo Zulip organization", message.body)
+        self.assertIn("You've created a demo Aloha organization", message.body)
 
 
-class TestMissedMessages(ZulipTestCase):
+class TestMissedMessages(AlohaTestCase):
     def test_read_message(self) -> None:
         hamlet = self.example_user("hamlet")
         cordelia = self.example_user("cordelia")
@@ -462,14 +462,14 @@ class TestMissedMessages(ZulipTestCase):
         if settings.EMAIL_GATEWAY_PATTERN != "":
             reply_to_addresses = [settings.EMAIL_GATEWAY_PATTERN % (t,) for t in tokens]
             reply_to_emails = [
-                str(Address(display_name="Zulip", addr_spec=address))
+                str(Address(display_name="Aloha", addr_spec=address))
                 for address in reply_to_addresses
             ]
         else:
             reply_to_emails = ["noreply@testserver"]
         msg = mail.outbox[0]
         assert isinstance(msg, EmailMultiAlternatives)
-        from_email = str(Address(display_name="Zulip notifications", addr_spec=FromAddress.NOREPLY))
+        from_email = str(Address(display_name="Aloha notifications", addr_spec=FromAddress.NOREPLY))
         self.assert_length(mail.outbox, 1)
         if send_as_user:
             from_email = f'"{othello.full_name}" <{othello.email}>'
@@ -488,7 +488,7 @@ class TestMissedMessages(ZulipTestCase):
         for text in verify_body_does_not_include:
             self.assertNotIn(text, self.normalize_string(msg.body))
 
-        self.assertEqual(msg.extra_headers["List-Id"], "Zulip Dev <zulip.testserver>")
+        self.assertEqual(msg.extra_headers["List-Id"], "Aloha Dev <zulip.testserver>")
 
     def _realm_name_in_missed_message_email_subject(
         self, realm_name_in_notifications: bool
@@ -502,7 +502,7 @@ class TestMissedMessages(ZulipTestCase):
         email_subject = "PMs with Othello, the Moor of Venice"
 
         if realm_name_in_notifications:
-            email_subject = "PMs with Othello, the Moor of Venice [Zulip Dev]"
+            email_subject = "PMs with Othello, the Moor of Venice [Aloha Dev]"
         self._test_cases(msg_id, verify_body_include, email_subject, False)
 
     def _extra_context_in_missed_stream_messages_mention(
@@ -527,7 +527,7 @@ class TestMissedMessages(ZulipTestCase):
             verify_body_include = [
                 "This email does not include message content because you have disabled message ",
                 "http://zulip.testserver/help/pm-mention-alert-notifications ",
-                "View or reply in Zulip Dev Zulip",
+                "View or reply in Aloha Dev Aloha",
                 " Manage email preferences: http://zulip.testserver/#settings/notifications",
             ]
 
@@ -538,7 +538,7 @@ class TestMissedMessages(ZulipTestCase):
                 "1 2 3 4 5 6 7 8 9 10 @**King Hamlet**",
                 "private",
                 "group",
-                "Reply to this email directly, or view it in Zulip Dev Zulip",
+                "Reply to this email directly, or view it in Aloha Dev Aloha",
             ]
         self._test_cases(
             msg_id,
@@ -570,7 +570,7 @@ class TestMissedMessages(ZulipTestCase):
             verify_body_include = [
                 "This email does not include message content because you have disabled message ",
                 "http://zulip.testserver/help/pm-mention-alert-notifications ",
-                "View or reply in Zulip Dev Zulip",
+                "View or reply in Aloha Dev Aloha",
                 " Manage email preferences: http://zulip.testserver/#settings/notifications",
             ]
             email_subject = "New messages"
@@ -580,7 +580,7 @@ class TestMissedMessages(ZulipTestCase):
                 "1 2 3 4 5 @**all**",
                 "private",
                 "group",
-                "Reply to this email directly, or view it in Zulip Dev Zulip",
+                "Reply to this email directly, or view it in Aloha Dev Aloha",
             ]
         self._test_cases(
             msg_id,
@@ -648,14 +648,14 @@ class TestMissedMessages(ZulipTestCase):
                 verify_body_include = [
                     "This email does not include message content because your organization has disabled",
                     "http://zulip.testserver/help/hide-message-content-in-emails",
-                    "View or reply in Zulip Dev Zulip",
+                    "View or reply in Aloha Dev Aloha",
                     " Manage email preferences: http://zulip.testserver/#settings/notifications",
                 ]
             elif message_content_disabled_by_user:
                 verify_body_include = [
                     "This email does not include message content because you have disabled message ",
                     "http://zulip.testserver/help/pm-mention-alert-notifications ",
-                    "View or reply in Zulip Dev Zulip",
+                    "View or reply in Aloha Dev Aloha",
                     " Manage email preferences: http://zulip.testserver/#settings/notifications",
                 ]
             email_subject = "New messages"
@@ -664,7 +664,7 @@ class TestMissedMessages(ZulipTestCase):
                 "Extremely personal message!",
                 "mentioned",
                 "group",
-                "Reply to this email directly, or view it in Zulip Dev Zulip",
+                "Reply to this email directly, or view it in Aloha Dev Aloha",
             ]
         self._test_cases(
             msg_id,
@@ -681,7 +681,7 @@ class TestMissedMessages(ZulipTestCase):
             self.example_user("hamlet"),
             "Extremely personal message!",
         )
-        verify_body_include = ["Reply to this email directly, or view it in Zulip Dev Zulip"]
+        verify_body_include = ["Reply to this email directly, or view it in Aloha Dev Aloha"]
         email_subject = "PMs with Othello, the Moor of Venice"
         self._test_cases(msg_id, verify_body_include, email_subject, send_as_user)
 
@@ -717,7 +717,7 @@ class TestMissedMessages(ZulipTestCase):
             verify_body_include = [
                 "This email does not include message content because you have disabled message ",
                 "http://zulip.testserver/help/pm-mention-alert-notifications ",
-                "View or reply in Zulip Dev Zulip",
+                "View or reply in Aloha Dev Aloha",
                 " Manage email preferences: http://zulip.testserver/#settings/notifications",
             ]
             email_subject = "New messages"
@@ -726,7 +726,7 @@ class TestMissedMessages(ZulipTestCase):
                 "Othello, the Moor of Venice Othello, the Moor of Venice",
                 "Group personal message!",
                 "mentioned",
-                "Reply to this email directly, or view it in Zulip Dev Zulip",
+                "Reply to this email directly, or view it in Aloha Dev Aloha",
             ]
         self._test_cases(
             msg_id,
@@ -1464,7 +1464,7 @@ class TestMissedMessages(ZulipTestCase):
         fragment = lxml.html.fromstring(test_data)
         fix_spoilers_in_html(fragment, "en")
         actual_output = lxml.html.tostring(fragment, encoding="unicode")
-        expected_output = '<div><div class="spoiler-block">\n\n<p><a>header</a> text <span class="spoiler-title" title="Open Zulip to see the spoiler content">(Open Zulip to see the spoiler content)</span></p>\n</div>\n\n<p>outside spoiler</p></div>'
+        expected_output = '<div><div class="spoiler-block">\n\n<p><a>header</a> text <span class="spoiler-title" title="Open Aloha to see the spoiler content">(Open Aloha to see the spoiler content)</span></p>\n</div>\n\n<p>outside spoiler</p></div>'
         self.assertEqual(actual_output, expected_output)
 
         # test against our markdown_test_cases so these features do not get out of sync.
@@ -1485,7 +1485,7 @@ class TestMissedMessages(ZulipTestCase):
     def test_spoilers_in_text_emails(self) -> None:
         content = "@**King Hamlet**\n\n```spoiler header text\nsecret-text\n```"
         msg_id = self.send_stream_message(self.example_user("othello"), "Denmark", content)
-        verify_body_include = ["header text", "Open Zulip to see the spoiler content"]
+        verify_body_include = ["header text", "Open Aloha to see the spoiler content"]
         verify_body_does_not_include = ["secret-text"]
         email_subject = "#Denmark > test"
         send_as_user = False
@@ -1519,7 +1519,7 @@ class TestMissedMessages(ZulipTestCase):
             self.example_user("hamlet"),
             "```\n```",
         )
-        verify_body_include = ["view it in Zulip Dev Zulip"]
+        verify_body_include = ["view it in Aloha Dev Aloha"]
         email_subject = "PMs with Othello, the Moor of Venice"
         self._test_cases(
             msg_id, verify_body_include, email_subject, send_as_user=False, verify_html_body=True
@@ -1582,7 +1582,7 @@ class TestMissedMessages(ZulipTestCase):
             )
 
 
-class TestFollowupEmailDelay(ZulipTestCase):
+class TestFollowupEmailDelay(AlohaTestCase):
     def test_followup_day2_email_delay(self) -> None:
         user_profile = self.example_user("hamlet")
         # Test date_joined == Thursday
@@ -1593,7 +1593,7 @@ class TestFollowupEmailDelay(ZulipTestCase):
         self.assertEqual(followup_day2_email_delay(user_profile), timedelta(days=3, hours=-1))
 
 
-class TestCustomEmailSender(ZulipTestCase):
+class TestCustomEmailSender(AlohaTestCase):
     def test_custom_email_sender(self) -> None:
         name = "Nonreg Email"
         email = self.nonreg_email("test")

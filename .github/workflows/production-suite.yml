@@ -1,4 +1,4 @@
-name: Zulip production suite
+name: Aloha production suite
 
 on:
   push:
@@ -112,7 +112,7 @@ jobs:
   production_install:
     # This job installs the server release tarball built above on a
     # range of platforms, and does some basic health checks on the
-    # resulting installer Zulip server.
+    # resulting installer Aloha server.
     strategy:
       fail-fast: false
       matrix:
@@ -207,7 +207,7 @@ jobs:
 
   production_upgrade:
     # The production upgrade job starts with a container with a
-    # previous Zulip release installed, and attempts to upgrade it to
+    # previous Aloha release installed, and attempts to upgrade it to
     # the release tarball built for the current commit being tested.
     #
     # This is intended to catch bugs that result in the upgrade

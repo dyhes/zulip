@@ -358,7 +358,7 @@ class WebhookError(JsonableError):
 
 class UnsupportedWebhookEventType(WebhookError):
     """Intended as an exception for event formats that we know the
-    third-party service generates but which Zulip doesn't support /
+    third-party service generates but which Aloha doesn't support /
     generate a message for.
 
     Exceptions where we cannot parse the event type, possibly because
@@ -404,7 +404,7 @@ class MissingAuthenticationError(JsonableError):
         pass
 
     # No msg_format is defined since this exception is caught and
-    # converted into json_unauthorized in Zulip's middleware.
+    # converted into json_unauthorized in Aloha's middleware.
 
 
 class InvalidSubdomainError(JsonableError):
@@ -465,7 +465,7 @@ class ResourceNotFoundError(JsonableError):
 
 class ValidationFailureError(JsonableError):
     # This class translations a Django ValidationError into a
-    # Zulip-style JsonableError, sending back just the first error for
+    # Aloha-style JsonableError, sending back just the first error for
     # consistency of API.
     data_fields = ["errors"]
 

@@ -14,7 +14,7 @@ from zerver.lib.rate_limiter import (
     add_ratelimit_rule,
     remove_ratelimit_rule,
 )
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 
 RANDOM_KEY_PREFIX = secrets.token_hex(16)
 
@@ -35,7 +35,7 @@ class RateLimitedTestObject(RateLimitedObject):
         return self._rules
 
 
-class RateLimiterBackendBase(ZulipTestCase, ABC):
+class RateLimiterBackendBase(AlohaTestCase, ABC):
     backend: Type[RateLimiterBackend]
 
     def setUp(self) -> None:
@@ -219,7 +219,7 @@ class TornadoInMemoryRateLimiterBackendTest(RateLimiterBackendBase):
             self.make_request(obj, expect_ratelimited=False, verify_api_calls_left=False)
 
 
-class RateLimitedObjectsTest(ZulipTestCase):
+class RateLimitedObjectsTest(AlohaTestCase):
     def test_user_rate_limits(self) -> None:
         user_profile = self.example_user("hamlet")
         user_profile.rate_limits = "1:3,2:4"

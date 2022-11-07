@@ -1,7 +1,7 @@
 "use strict";
 
 // This is a general tour of how to write node tests that
-// may also give you some quick insight on how the Zulip
+// may also give you some quick insight on how the Aloha
 // browser app is constructed.
 
 // The statements below are pretty typical for most node
@@ -13,7 +13,7 @@ const {zrequire} = require("../zjsunit/namespace");
 const {run_test} = require("../zjsunit/test");
 
 // We will use our special zrequire helper to import the
-// Zulip code. We use zrequire instead of require,
+// Aloha code. We use zrequire instead of require,
 // because it has some magic to clear state when we move
 // on to the next test.
 const people = zrequire("people");
@@ -40,7 +40,7 @@ const isaac = {
 };
 
 // The `people`object is a very fundamental object in the
-// Zulip app.  You can learn a lot more about it by reading
+// Aloha app.  You can learn a lot more about it by reading
 // the tests in people.js in the same directory as this file.
 
 // Let's exercise the code and use assert to verify it works!

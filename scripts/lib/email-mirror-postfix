@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 
 """Postfix implementation of the incoming email gateway's helper for
-forwarding emails into Zulip.
+forwarding emails into Aloha.
 
 https://zulip.readthedocs.io/en/latest/production/email-gateway.html
 
 The email gateway supports two major modes of operation: An email
 server (using Postfix) where the email address configured in
-EMAIL_GATEWAY_PATTERN delivers emails directly to Zulip (this) or a
+EMAIL_GATEWAY_PATTERN delivers emails directly to Aloha (this) or a
 cron job that connects to an IMAP inbox (which receives the emails)
 periodically.
 
-Zulip's Puppet configuration takes care of configuring Postfix to
+Aloha's Puppet configuration takes care of configuring Postfix to
 execute this script when emails are received by Postfix, piping the
 email content via standard input (and the destination email address in
 the ORIGINAL_RECIPIENT environment variable).
@@ -29,7 +29,7 @@ Also you can use optional keys to configure the script and change default values
                     "/etc/zulip/zulip-secrets.conf".  This key is used to authenticate
                     the HTTP requests made by this tool.
 
--d HOST             Destination Zulip host for email uploading. Address must contain type of
+-d HOST             Destination Aloha host for email uploading. Address must contain type of
                     HTTP protocol, i.e "https://example.com". Default value: "https://127.0.0.1".
 
 -u URL             Destination relative for email uploading. Default value: "/email_mirror_message".
@@ -37,7 +37,7 @@ Also you can use optional keys to configure the script and change default values
 -n                  Disable checking ssl certificate. This option is used for
                     self-signed certificates. Default value: False.
 
--t                  Disable sending request to the Zulip server. Default value: False.
+-t                  Disable sending request to the Aloha server. Default value: False.
 
 """
 import argparse

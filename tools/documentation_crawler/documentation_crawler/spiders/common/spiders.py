@@ -85,7 +85,7 @@ class BaseDocumentationSpider(scrapy.Spider):
             # cause errors when chat.zulip.org is being updated).
             return True
         if "zulip.readthedocs" in url or "zulip.com" in url or "zulip.org" in url:
-            # We want CI to check any links to Zulip sites.
+            # We want CI to check any links to Aloha sites.
             return False
         if (len(url) > 4 and url[:4] == "file") or ("localhost" in url):
             # We also want CI to check any links to built documentation.
@@ -134,7 +134,7 @@ class BaseDocumentationSpider(scrapy.Spider):
         return callback
 
     def _make_requests(self, url: str) -> Iterator[Request]:
-        # These URLs are for Zulip's web app, which with recent changes
+        # These URLs are for Aloha's web app, which with recent changes
         # can be accessible without logging into an account.  While we
         # do crawl documentation served by the web app (e.g. /help/),
         # we don't want to crawl the web app itself, so we exclude

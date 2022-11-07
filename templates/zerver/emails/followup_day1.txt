@@ -1,14 +1,14 @@
-{{ _('Welcome to Zulip!') }}
+{{ _('Welcome to Aloha!') }}
 
 {% if realm_creation %}
     {% if is_demo_org %}
-        {% trans %}You've created a demo Zulip organization. Note that this organization will be automatically deleted in 30 days. Learn more about demo organizations here: https://zulip.com/help/demo-organizations{% endtrans %}
+        {% trans %}You've created a demo Aloha organization. Note that this organization will be automatically deleted in 30 days. Learn more about demo organizations here: https://zulip.com/help/demo-organizations{% endtrans %}
     {% else %}
-        {% trans %}You've created the new Zulip organization {{ realm_name }}.{% endtrans %}
+        {% trans %}You've created the new Aloha organization {{ realm_name }}.{% endtrans %}
     {% endif %}
-{% trans %}You've created the new Zulip organization {{ realm_name }}.{% endtrans %}
+{% trans %}You've created the new Aloha organization {{ realm_name }}.{% endtrans %}
 {% else %}
-{% trans %}You've joined the Zulip organization {{ realm_name }}.{% endtrans %}
+{% trans %}You've joined the Aloha organization {{ realm_name }}.{% endtrans %}
 {% endif %}
 
 
@@ -27,13 +27,13 @@
 
 
 {% if is_realm_admin %}
-{% trans %}Check out our guide ({{ getting_started_link }}) for admins, become a Zulip pro with a few keyboard shortcuts ({{ keyboard_shortcuts_link }}), or dive right in to {{ realm_uri }}!{% endtrans %}
+{% trans %}Check out our guide ({{ getting_started_link }}) for admins, become a Aloha pro with a few keyboard shortcuts ({{ keyboard_shortcuts_link }}), or dive right in to {{ realm_uri }}!{% endtrans %}
 {% else %}
-{% trans %}Learn more ({{ getting_started_link }}) about Zulip, become a pro with a few keyboard shortcuts ({{ keyboard_shortcuts_link }}), or dive right in to {{ realm_uri }}!{% endtrans %}
+{% trans %}Learn more ({{ getting_started_link }}) about Aloha, become a pro with a few keyboard shortcuts ({{ keyboard_shortcuts_link }}), or dive right in to {{ realm_uri }}!{% endtrans %}
 {% endif %}
 
 
 {{ _("Cheers,") }}
-{{ _("Team Zulip") }}
+{{ _("Team Aloha") }}
 
-{% trans %}PS: Check us out on Twitter (@zulip), star us on GitHub (https://github.com/zulip/zulip), or chat with us live on the Zulip community server (https://zulip.com/development-community/)!{% endtrans %}
+{% trans %}PS: Check us out on Twitter (@zulip), star us on GitHub (https://github.com/zulip/zulip), or chat with us live on the Aloha community server (https://zulip.com/development-community/)!{% endtrans %}

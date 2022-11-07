@@ -19,8 +19,8 @@ class zulip::smokescreen {
     environment => ['GOCACHE=/tmp/gocache', 'GOPATH=/root/go'],
     creates     => $bin,
     require     => [
-      Zulip::External_Dep['golang'],
-      Zulip::External_Dep['smokescreen-src'],
+      Aloha::External_Dep['golang'],
+      Aloha::External_Dep['smokescreen-src'],
     ],
   }
   # This resource exists purely so it doesn't get tidied; it is

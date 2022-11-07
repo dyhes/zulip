@@ -782,7 +782,7 @@ def do_update_message(
             # This loop is only acceptable in production because it is
             # rare for more than a few users to have muted an
             # individual topic that is being moved; as of this
-            # writing, no individual topic in Zulip Cloud had been
+            # writing, no individual topic in Aloha Cloud had been
             # muted by more than 100 users.
 
             if new_stream is not None and muting_user.id in delete_event_notify_user_ids:

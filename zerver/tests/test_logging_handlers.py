@@ -12,7 +12,7 @@ from django.http import HttpRequest, HttpResponse
 from django.utils.log import AdminEmailHandler
 from typing_extensions import Concatenate, ParamSpec
 
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import mock_queue_publish
 from zerver.logging_handlers import AdminNotifyHandler, HasRequest
 from zerver.models import UserProfile
@@ -46,7 +46,7 @@ def capture_and_throw(
     return wrapped_view
 
 
-class AdminNotifyHandlerTest(ZulipTestCase):
+class AdminNotifyHandlerTest(AlohaTestCase):
     logger = logging.getLogger("django")
 
     def setUp(self) -> None:
@@ -253,7 +253,7 @@ class AdminNotifyHandlerTest(ZulipTestCase):
         self.assertEqual(report["user"]["user_email"], None)
 
 
-class LoggingConfigTest(ZulipTestCase):
+class LoggingConfigTest(AlohaTestCase):
     @staticmethod
     def all_loggers() -> Iterator[logging.Logger]:
         # There is no documented API for enumerating the loggers; but the
@@ -271,7 +271,7 @@ class LoggingConfigTest(ZulipTestCase):
                 assert not isinstance(handler, AdminEmailHandler)
 
 
-class ErrorFiltersTest(ZulipTestCase):
+class ErrorFiltersTest(AlohaTestCase):
     def test_clean_data_from_query_parameters(self) -> None:
         from zerver.filters import clean_data_from_query_parameters
 
@@ -285,7 +285,7 @@ class ErrorFiltersTest(ZulipTestCase):
         )
 
 
-class RateLimitFilterTest(ZulipTestCase):
+class RateLimitFilterTest(AlohaTestCase):
     # This logger has special settings configured in
     # test_extra_settings.py.
     logger = logging.getLogger("zulip.test_zulip_admins_handler")

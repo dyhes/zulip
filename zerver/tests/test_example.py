@@ -8,7 +8,7 @@ from django.utils.timezone import now as timezone_now
 from zerver.actions.users import do_change_can_create_users, do_change_user_role
 from zerver.lib.exceptions import JsonableError
 from zerver.lib.streams import access_stream_for_send_message
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import most_recent_message, queries_captured
 from zerver.lib.users import is_administrator_role
 from zerver.models import (
@@ -21,10 +21,10 @@ from zerver.models import (
 )
 
 
-# Most Zulip tests use ZulipTestCase, which inherits from django.test.TestCase.
+# Most Aloha tests use AlohaTestCase, which inherits from django.test.TestCase.
 # We recommend learning Django basics first, so search the web for "django testing".
 # A common first result is https://docs.djangoproject.com/en/3.2/topics/testing/
-class TestBasics(ZulipTestCase):
+class TestBasics(AlohaTestCase):
     def test_basics(self) -> None:
         # Django's tests are based on Python's unittest module, so you
         # will see us use things like assertEqual, assertTrue, and assertRaisesRegex
@@ -33,8 +33,8 @@ class TestBasics(ZulipTestCase):
         self.assertEqual(7 * 6, 42)
 
 
-class TestBasicUserStuff(ZulipTestCase):
-    # Zulip has test fixtures with built-in users.  It's good to know
+class TestBasicUserStuff(AlohaTestCase):
+    # Aloha has test fixtures with built-in users.  It's good to know
     # which users are special. For example, Iago is our built-in
     # realm administrator.  You can also modify users as needed.
     def test_users(self) -> None:
@@ -88,8 +88,8 @@ class TestBasicUserStuff(ZulipTestCase):
         self.assertFalse(is_administrator_role(hamlet.role))
 
 
-class TestFullStack(ZulipTestCase):
-    # Zulip's backend tests are largely full-stack integration tests,
+class TestFullStack(AlohaTestCase):
+    # Aloha's backend tests are largely full-stack integration tests,
     # making use of some strategic mocking at times, though we do use
     # unit tests for some classes of low-level functions.
     #
@@ -103,8 +103,8 @@ class TestFullStack(ZulipTestCase):
         # The login_user helper basically wraps Django's client.login().
         self.login_user(hamlet)
 
-        # Zulip's client_get is a very thin wrapper on Django's client.get.
-        # We always use the Zulip wrappers for client_get and client_post.
+        # Aloha's client_get is a very thin wrapper on Django's client.get.
+        # We always use the Aloha wrappers for client_get and client_post.
         url = f"/json/users/{cordelia.id}"
         result = self.client_get(url)
 
@@ -167,7 +167,7 @@ class TestFullStack(ZulipTestCase):
             full_name="Romeo Montague",
         )
 
-        # Use the Zulip wrapper.
+        # Use the Aloha wrapper.
         result = self.client_post("/json/users", params)
 
         # Once again we check that the HTTP request was successful.
@@ -218,7 +218,7 @@ class TestFullStack(ZulipTestCase):
         self.assert_json_error(result, "Email 'romeo@zulip.net' already in use", 400)
 
     def test_tornado_redirects(self) -> None:
-        # Let's poke a bit at Zulip's event system.
+        # Let's poke a bit at Aloha's event system.
         # See https://zulip.readthedocs.io/en/latest/subsystems/events-system.html
         # for context on the system itself and how it should be tested.
         #
@@ -238,7 +238,7 @@ class TestFullStack(ZulipTestCase):
 
         self.assert_json_success(result)
 
-        # Check that the POST to Zulip caused the expected events to be sent
+        # Check that the POST to Aloha caused the expected events to be sent
         # to Tornado.
         self.assertEqual(
             events[0]["event"],
@@ -255,8 +255,8 @@ class TestFullStack(ZulipTestCase):
         self.assertEqual(row.status_text, "on vacation")
 
 
-class TestStreamHelpers(ZulipTestCase):
-    # Streams are an important concept in Zulip, and ZulipTestCase
+class TestStreamHelpers(AlohaTestCase):
+    # Streams are an important concept in Aloha, and AlohaTestCase
     # has helpers such as subscribe, users_subscribed_to_stream,
     # and make_stream.
     def test_new_streams(self) -> None:
@@ -302,7 +302,7 @@ class TestStreamHelpers(ZulipTestCase):
             access_stream_for_send_message(othello, stream, forwarder_user_profile=None)
 
 
-class TestMessageHelpers(ZulipTestCase):
+class TestMessageHelpers(AlohaTestCase):
     # If you are testing behavior related to messages, then it's good
     # to know about send_stream_message, send_personal_message, and
     # most_recent_message.
@@ -353,7 +353,7 @@ class TestMessageHelpers(ZulipTestCase):
         self.assertEqual(cordelia_message.content, "hello there!")
 
 
-class TestQueryCounts(ZulipTestCase):
+class TestQueryCounts(AlohaTestCase):
     def test_capturing_queries(self) -> None:
         # It's a common pitfall in Django to accidentally perform
         # database queries in a loop, due to lazy evaluation of
@@ -375,11 +375,11 @@ class TestQueryCounts(ZulipTestCase):
                 content="hello there!",
             )
 
-        # The assert_length helper is another useful extra from ZulipTestCase.
+        # The assert_length helper is another useful extra from AlohaTestCase.
         self.assert_length(queries, 15)
 
 
-class TestDevelopmentEmailsLog(ZulipTestCase):
+class TestDevelopmentEmailsLog(AlohaTestCase):
     # We have development specific utilities that automate common tasks
     # to improve developer productivity.
     #
@@ -422,10 +422,10 @@ class TestDevelopmentEmailsLog(ZulipTestCase):
 
             # assert_in_success_response() is another helper that is commonly used to ensure
             # we are on the right page by verifying a string exists in the page's content.
-            self.assert_in_success_response(["All the emails sent in the Zulip"], result)
+            self.assert_in_success_response(["All the emails sent in the Aloha"], result)
 
 
-class TestMocking(ZulipTestCase):
+class TestMocking(AlohaTestCase):
     # Mocking, primarily used in testing, is a technique that allows you to
     # replace methods or objects with fake entities.
     #

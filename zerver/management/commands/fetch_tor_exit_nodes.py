@@ -6,7 +6,7 @@ import orjson
 from django.conf import settings
 from urllib3.util import Retry
 
-from zerver.lib.management import ZulipBaseCommand
+from zerver.lib.management import AlohaBaseCommand
 from zerver.lib.outgoing_http import OutgoingSession
 
 
@@ -26,7 +26,7 @@ class TorDataSession(OutgoingSession):
         super().__init__(role="tor_data", timeout=3, max_retries=retry)
 
 
-class Command(ZulipBaseCommand):
+class Command(AlohaBaseCommand):
     help = """Fetch the list of TOR exit nodes, and write the list of IP addresses
 to a file for access from Django for rate-limiting purposes.
 

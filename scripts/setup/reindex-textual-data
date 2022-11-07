@@ -88,7 +88,7 @@ which means that production traffic will be affected.
 
 On PostgreSQL 11 and above, you can pass --concurrently, which will do
 the index rebuilds without taking such a lock. We recommend only using
---concurrently if the Zulip server will be serving traffic while
+--concurrently if the Aloha server will be serving traffic while
 running this tool, because concurrent reindexing takes longer to
 complete even if the server is not running.
 """
@@ -135,7 +135,7 @@ This tool has regenerated all database indexes that do not have duplicate rows.
 Once you have manually repaired duplicate rows, you can rerun this command
 to regenerate the rest.
 
-It is reasonable to run your Zulip server to avoid downtime while you
+It is reasonable to run your Aloha server to avoid downtime while you
 plan the manual repair work. Additional duplicate rows may be created
 for any corrupted index that has not yet been regenerated. But any new
 duplicate rows will be similar to existing duplicate rows that you

@@ -31,4 +31,4 @@ For more details about stream settings, see [Create a stream](/help/create-a-str
 * [Create a stream](/help/create-a-stream#stream-options)
 * [Stream permissions](/help/stream-permissions)
 * [Set default streams for new users](/help/set-default-streams-for-new-users)
-* [Getting started with Zulip](/help/getting-started-with-zulip)
+* [Getting started with Aloha](/help/getting-started-with-zulip)

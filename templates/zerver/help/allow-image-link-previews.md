@@ -6,8 +6,8 @@ By default, when a user links to an image or a website, a preview of the
 image or website content is shown. You can choose to disable previews of
 images and/or website links.
 
-Zulip proxies all external images in messages through the server, to
-prevent images from being used to track Zulip users.
+Aloha proxies all external images in messages through the server, to
+prevent images from being used to track Aloha users.
 
 ### Block image and website previews
 

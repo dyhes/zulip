@@ -16,7 +16,7 @@ from zerver.lib.soft_deactivation import (
     reactivate_user_if_soft_deactivated,
 )
 from zerver.lib.stream_subscription import get_subscriptions_for_send_message
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import (
     get_subscription,
     get_user_messages,
@@ -39,7 +39,7 @@ from zerver.models import (
 logger_string = "zulip.soft_deactivation"
 
 
-class UserSoftDeactivationTests(ZulipTestCase):
+class UserSoftDeactivationTests(AlohaTestCase):
     def test_do_soft_deactivate_user(self) -> None:
         user = self.example_user("hamlet")
         self.assertFalse(user.long_term_idle)
@@ -308,7 +308,7 @@ class UserSoftDeactivationTests(ZulipTestCase):
         self.assertEqual(0, received_count)
 
 
-class SoftDeactivationMessageTest(ZulipTestCase):
+class SoftDeactivationMessageTest(AlohaTestCase):
     def test_reactivate_user_if_soft_deactivated(self) -> None:
         recipient_list = [self.example_user("hamlet"), self.example_user("iago")]
         for user_profile in recipient_list:

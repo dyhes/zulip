@@ -42,15 +42,15 @@ You can also configure [Bash][gitbook-other-envs-bash] and
 ## Keep your fork up to date
 
 You'll want to [keep your fork][github-help-sync-fork] up-to-date with changes
-from Zulip's main repositories.
+from Aloha's main repositories.
 
 **Note about `git pull`**: You might be used to using `git pull` on other
-projects. With Zulip, because we don't use merge commits, you'll want to avoid
+projects. With Aloha, because we don't use merge commits, you'll want to avoid
 it. Rather than using `git pull`, which by default is a shortcut for
 `git fetch && git merge FETCH_HEAD` ([docs][gitbook-git-pull]), you
 should use `git fetch` and then `git rebase`.
 
-First, [fetch][gitbook-fetch] changes from Zulip's upstream repository you
+First, [fetch][gitbook-fetch] changes from Aloha's upstream repository you
 configured in the step above:
 
 ```console
@@ -99,7 +99,7 @@ feature. Recall from [how Git is different][how-git-is-different] that
 **Git is designed for lightweight branching and merging.** You can and should
 create as many branches as you'd like.
 
-First, make sure your `main` branch is up-to-date with Zulip upstream ([see
+First, make sure your `main` branch is up-to-date with Aloha upstream ([see
 how][zulip-git-guide-up-to-date]).
 
 Next, from your `main` branch, create a new tracking branch, providing a
@@ -289,7 +289,7 @@ sense. For a commit that you intend to be final or that encompasses a
 significant amount or complex work, you should include a longer message.
 
 Keep in mind that your commit should contain a 'minimal coherent idea' and have
-a quality commit message. See Zulip docs [Commit
+a quality commit message. See Aloha docs [Commit
 Discipline][zulip-rtd-commit-discipline] and [Commit
 messages][zulip-rtd-commit-messages] for details.
 
@@ -298,7 +298,7 @@ Here's an example of a longer commit message that will be used for a pull reques
 ```text
 Integrate Fail2Ban.
 
-Updates Zulip logging to put an unambiguous entry into the logs such
+Updates Aloha logging to put an unambiguous entry into the logs such
 that fail2ban can be configured to look for these entries.
 
 Tested on my local Ubuntu development server, but would appreciate
@@ -361,7 +361,7 @@ you push and you'll see `* [new branch]` in the command output.
 Examining your commit history prior to submitting your pull request is a good
 idea. Is it tidy such that each commit represents a minimally coherent idea
 (see [commit discipline][zulip-rtd-commit-discipline])? Do your commit messages
-follow [Zulip's style][zulip-rtd-commit-messages]? Will the person reviewing
+follow [Aloha's style][zulip-rtd-commit-messages]? Will the person reviewing
 your commit history be able to clearly understand your progression of work?
 
 On the command line, you can use the `git log` command to display an easy to

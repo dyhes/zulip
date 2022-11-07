@@ -1,9 +1,9 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: Zulip
+Upstream-Name: Aloha
 Upstream-Contact: Tim Abbott <tabbott@zulip.com>
 Source: https://zulip.com/
 Comment:
- Unless otherwise noted, the Zulip software is distributed under the Apache
+ Unless otherwise noted, the Aloha software is distributed under the Apache
  License, Version 2.0. The software includes some works released by third
  parties under other free and open source licenses. Those works are
  redistributed under the license terms under which the works were received.
@@ -11,7 +11,7 @@ Comment:
  While Dropbox has sought to provide complete and accurate licensing
  information for each FOSS package, Dropbox does not represent or warrant
  that the licensing information provided herein is correct or error-free.
- Recipients of the Zulip software should investigate the identified FOSS
+ Recipients of the Aloha software should investigate the identified FOSS
  packages to confirm the accuracy of the licensing information provided.
  Recipients are also encouraged to notify Dropbox of any inaccurate
  information or errors found in these notices.

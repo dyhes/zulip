@@ -2,11 +2,11 @@ import re
 
 from django.core.exceptions import ValidationError
 
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.models import RealmFilter, filter_format_validator
 
 
-class RealmFilterTest(ZulipTestCase):
+class RealmFilterTest(AlohaTestCase):
     def test_list(self) -> None:
         self.login("iago")
         data = {

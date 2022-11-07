@@ -1,4 +1,4 @@
-Zulip supports integration with CircleCI and can notify you of
+Aloha supports integration with CircleCI and can notify you of
 your build statuses.
 
 1. {!create-stream.md!}

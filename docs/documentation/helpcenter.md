@@ -1,7 +1,7 @@
 # Writing help center articles
 
-Our goal is for Zulip to have complete, high-quality
-documentation about Zulip's features and how to perform certain tasks, such
+Our goal is for Aloha to have complete, high-quality
+documentation about Aloha's features and how to perform certain tasks, such
 as setting up an organization.
 
 There are two types of help center documents: articles about specific features,
@@ -12,31 +12,31 @@ and a handful of longer guides. The feature articles serve a few different purpo
 
 - Public documentation of our feature set, for someone googling "can zulip do ..."
 
-- Quick responses to support questions; if someone emails a Zulip admin
+- Quick responses to support questions; if someone emails a Aloha admin
   asking "How do I change my name?", they can reply with a link to the doc.
 
-- Feature explanations for new Zulip users and admins, especially for
+- Feature explanations for new Aloha users and admins, especially for
   organization settings.
 
-Zulip help center documentation is available under `/help/` on any Zulip server;
+Aloha help center documentation is available under `/help/` on any Aloha server;
 (e.g. <https://zulip.com/help/> or `http://localhost:9991/help/` in
-the Zulip development environment). The help center documentation is not hosted
-on ReadTheDocs, since Zulip supports running a server completely disconnected
+the Aloha development environment). The help center documentation is not hosted
+on ReadTheDocs, since Aloha supports running a server completely disconnected
 from the Internet, and we'd like the documentation to be available in that
 environment.
 
 The source for help center documentation is the Markdown files under
 `templates/zerver/help/` in the
-[main Zulip server repository](https://github.com/zulip/zulip). The file
+[main Aloha server repository](https://github.com/zulip/zulip). The file
 `foo.md` is automatically rendered by the `render_markdown_path` function in
 `zerver/templatetags/app_filters.py` when the user accesses a URL of the
 form `/help/foo`; with special cases for `/help/` going to `index.md` and
 `/help/unknown_article` going to `missing.md` (with a 404 response). Images
 are usually linked from `static/images/help/`.
 
-This means that you can contribute to the Zulip help center documentation
+This means that you can contribute to the Aloha help center documentation
 by just adding to or editing the collection of Markdown files under
-`templates/zerver/help`. If you have the Zulip development environment
+`templates/zerver/help`. If you have the Aloha development environment
 set up, you simply need to reload your browser on
 `http://localhost:9991/help/foo` to see the latest version of `foo.md`
 rendered.
@@ -53,10 +53,10 @@ experience with.
 ### Getting started
 
 There are over 100 feature articles and longer guides in the
-[Zulip help center](https://zulip.com/help/), so make the most of
+[Aloha help center](https://zulip.com/help/), so make the most of
 the current documentation as a resource and guide as you begin.
 
-- Use the list on [Zulip help center home](https://zulip.com/help/)
+- Use the list on [Aloha help center home](https://zulip.com/help/)
   to find the section of the docs (e.g. Display settings, Sending
   messages, Reading messages, etc.) that relates to the new feature
   you're documenting.
@@ -84,7 +84,7 @@ be merged into the existing help center documentation where appropriate.
 If you are unsure about how and where to document the feature, you
 can always ask in
 [#documentation](https://chat.zulip.org/#narrow/stream/19-documentation)
-on the [Zulip community server](https://zulip.com/development-community/).
+on the [Aloha community server](https://zulip.com/development-community/).
 
 ### Updating an existing article
 
@@ -104,7 +104,7 @@ existing help center articles:
 
 - Think about where inline links to other help center documentation
   would be appropriate in the description of the feature. For example,
-  your new feature might relate to general Zulip features like
+  your new feature might relate to general Aloha features like
   [keyboard shortcuts](https://zulip.com/help/keyboard-shortcuts)
   or [streams and topics](https://zulip.com/help/streams-and-topics).
 
@@ -132,10 +132,10 @@ updating existing documentation:
 - If the feature exists in other team chat products, check out their
   documentation for inspiration.
 
-- Fewer words is better than more. Many Zulip users have English as a second
+- Fewer words is better than more. Many Aloha users have English as a second
   language.
 
-- Try to put yourself in the shoes of a new Zulip user. What would you want
+- Try to put yourself in the shoes of a new Aloha user. What would you want
   to know?
 
 - Remember to explain the purpose of the feature and give context as well
@@ -156,9 +156,9 @@ where the user will see it as they are interacting with the feature.
 
 From time to time, we might want to rename an article in the help
 center, or REST API documentation. This change will break incoming
-links, including links in published Zulip blog posts, links in other
+links, including links in published Aloha blog posts, links in other
 branches of the repository that haven't been rebased, and more
-importantly links from previous versions of Zulip.
+importantly links from previous versions of Aloha.
 
 To fix these broken links, you can easily add a URL redirect in:
 `zerver/lib/url_redirects.py`.
@@ -191,7 +191,7 @@ Updating section headers in existing help center articles does not
 require adding a URL redirect, but you will need to update any
 existing links to that article's section in your branch.
 
-If you have the Zulip development environment set up, you can manually
+If you have the Aloha development environment set up, you can manually
 test your changes by loading the old URL in your browser (e.g.,
 `http://localhost:9991/help/foo`), and confirming that it redirects to
 the new url (e.g., `http://localhost:9991/help/bar`).
@@ -206,11 +206,11 @@ checks all the URL redirects, which you can run from the command line:
 ## Writing style
 
 Below are some general style and writing conventions that should be used
-as guidance when documenting Zulip's features.
+as guidance when documenting Aloha's features.
 
 ### User interface
 
-When you refer to the features in the Zulip UI, you should **bold** the
+When you refer to the features in the Aloha UI, you should **bold** the
 feature's name followed by the feature itself (e.g. **Settings** page,
 **Change password** button, **Email** field). No quotation marks should be
 used.
@@ -220,7 +220,7 @@ is needed. **Never identify or refer to a button by its color.**
 
 ### Voice
 
-Do not use `we` to refer to Zulip or its creators; for example, "Zulip also
+Do not use `we` to refer to Aloha or its creators; for example, "Aloha also
 allows ...", rather than "we also allow ...". On the other hand, `you` is ok
 and used liberally.
 
@@ -240,7 +240,7 @@ For symbols, such as `?` or `@`, that are produced through key combinations that
 change depending on the user's keyboard layout, you should use the symbol as it
 appears on a keyboard instead of any specific combination of keys.
 
-Use non-Mac keyboard keys; for example `Enter`, instead of `Return`. Zulip will
+Use non-Mac keyboard keys; for example `Enter`, instead of `Return`. Aloha will
 automatically translate non-Mac keys to the Mac versions for users with a Mac
 user agent. If you want to confirm that your documentation is rendering Mac keys
 correctly when writing documentation in Windows or Linux, you can temporarily
@@ -257,20 +257,20 @@ article.
 
 ## Markdown features
 
-Zulip's Markdown processor allows you to include several special features in
+Aloha's Markdown processor allows you to include several special features in
 your documentation to help improve its readability:
 
 - Since raw HTML is supported in Markdown, you can include arbitrary
   HTML/CSS in your documentation as needed.
 
 - Code blocks allow you to highlight syntax, similar to
-  [Zulip's own Markdown](https://zulip.com/help/format-your-message-using-markdown).
+  [Aloha's own Markdown](https://zulip.com/help/format-your-message-using-markdown).
 
 - Anchor tags can be used to link to headers in other documents.
 
-- [Images](#images) of Zulip UI can be added to documentation, if needed.
+- [Images](#images) of Aloha UI can be added to documentation, if needed.
 
-- Inline [icons](#icons) are used to refer to features in the Zulip UI.
+- Inline [icons](#icons) are used to refer to features in the Aloha UI.
 
 - Utilize [macros](#macros) to limit repeated content in the documentation.
 
@@ -295,7 +295,7 @@ to update them every time the UI is changed) and also can make the
 instructions for something simple look long and complicated.
 
 When taking screenshots, the image should never include the whole
-Zulip browser window in a screenshot; instead, it should only show
+Aloha browser window in a screenshot; instead, it should only show
 relevant parts of the app. In addition, the screenshot should always
 come _after_ the text that describes it, never before.
 
@@ -304,7 +304,7 @@ spaces to be formatted correctly.
 
 ### Icons
 
-You can refer to features in the Zulip UI by referencing their names
+You can refer to features in the Aloha UI by referencing their names
 and their [FontAwesome](https://fontawesome.com/v4.7.0/) (version 4.7.0) text
 icons within parentheses. **Note:** We have completed migrating away from older
 base class `icon-vector` and have dropped support for it. We now only support
@@ -354,7 +354,7 @@ repeated content in our documentation.
 
 The source for macros is the Markdown files under
 `templates/zerver/help/include` in the
-[main Zulip server repository](https://github.com/zulip/zulip).
+[main Aloha server repository](https://github.com/zulip/zulip).
 
 - **Administrator only feature** `{!admin-only.md!}`: Notes that the feature
   is only available to organization administrators.

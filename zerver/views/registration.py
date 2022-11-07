@@ -80,8 +80,8 @@ from zerver.views.auth import (
 )
 from zproject.backends import (
     ExternalAuthResult,
-    ZulipLDAPAuthBackend,
-    ZulipLDAPExceptionNoMatchingLDAPUser,
+    AlohaLDAPAuthBackend,
+    AlohaLDAPExceptionNoMatchingLDAPUser,
     email_auth_enabled,
     email_belongs_to_ldap,
     get_external_method_dicts,
@@ -240,12 +240,12 @@ def accounts_register(
                 if isinstance(backend, LDAPBackend):
                     try:
                         ldap_username = backend.django_to_ldap_username(email)
-                    except ZulipLDAPExceptionNoMatchingLDAPUser:
+                    except AlohaLDAPExceptionNoMatchingLDAPUser:
                         logging.warning("New account email %s could not be found in LDAP", email)
                         break
 
                     # Note that this `ldap_user` object is not a
-                    # `ZulipLDAPUser` with a `Realm` attached, so
+                    # `AlohaLDAPUser` with a `Realm` attached, so
                     # calling `.populate_user()` on it will crash.
                     # This is OK, since we're just accessing this user
                     # to extract its name.
@@ -263,12 +263,12 @@ def accounts_register(
                     except TypeError:
                         break
 
-                    # Check whether this is ZulipLDAPAuthBackend,
+                    # Check whether this is AlohaLDAPAuthBackend,
                     # which is responsible for authentication and
                     # requires that LDAP accounts enter their LDAP
-                    # password to register, or ZulipLDAPUserPopulator,
+                    # password to register, or AlohaLDAPUserPopulator,
                     # which just populates UserProfile fields (no auth).
-                    require_ldap_password = isinstance(backend, ZulipLDAPAuthBackend)
+                    require_ldap_password = isinstance(backend, AlohaLDAPAuthBackend)
                     break
 
         if ldap_full_name:
@@ -409,7 +409,7 @@ def accounts_register(
                     # enabled, and there's no matching user in the LDAP
                     # directory then the intent is to create a user in the
                     # realm with their email outside the LDAP organization
-                    # (with e.g. a password stored in the Zulip database,
+                    # (with e.g. a password stored in the Aloha database,
                     # not LDAP).  So we fall through and create the new
                     # account.
                     pass
@@ -806,7 +806,7 @@ def find_account(
             # We organize the data in preparation for sending exactly
             # one outgoing email per provided email address, with each
             # email listing all of the accounts that email address has
-            # with the current Zulip server.
+            # with the current Aloha server.
             context: Dict[str, Dict[str, Any]] = {}
             for user in user_profiles:
                 key = user.delivery_email.lower()
@@ -831,7 +831,7 @@ def find_account(
 
             # Note: Show all the emails in the result otherwise this
             # feature can be used to ascertain which email addresses
-            # are associated with Zulip.
+            # are associated with Aloha.
             data = urllib.parse.urlencode({"emails": ",".join(emails)})
             return redirect(append_url_query_string(url, data))
     else:

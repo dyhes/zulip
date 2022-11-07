@@ -18,7 +18,7 @@ A few settings to highlight:
 * [Add custom emoji](/help/custom-emoji), including your organization's logo.
 
 For many other settings, e.g. [message and topic editing
-permissions][topic-editing-permissions], you can experience how Zulip
+permissions][topic-editing-permissions], you can experience how Aloha
 works for your organization before deciding what settings are best for
 you.
 

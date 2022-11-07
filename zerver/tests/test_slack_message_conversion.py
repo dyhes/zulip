@@ -8,10 +8,10 @@ from zerver.data_import.slack_message_conversion import (
     get_user_full_name,
 )
 from zerver.lib import mdiff
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 
 
-class SlackMessageConversion(ZulipTestCase):
+class SlackMessageConversion(AlohaTestCase):
     def assertEqual(self, first: Any, second: Any, msg: str = "") -> None:
         if isinstance(first, str) and isinstance(second, str):
             if first != second:

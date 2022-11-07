@@ -23,7 +23,7 @@
 # ARCHIVED_DATA_VACUUMING_DELAY_DAYS after they were created.
 #
 # Because of the nice properties of this deletion system, we use the
-# same system for routine deletions via the Zulip UI (deleting a
+# same system for routine deletions via the Aloha UI (deleting a
 # message or group of messages) as we use for message retention policy
 # deletions.
 import logging
@@ -264,7 +264,7 @@ def move_expired_personal_and_huddle_messages_to_archive(
 
     # Archive cross-realm personal messages to users in the realm.  We
     # don't archive cross-realm huddle messages via retention policy,
-    # as we don't support them as a feature in Zulip, and the query to
+    # as we don't support them as a feature in Aloha, and the query to
     # find and delete them would be a lot of complexity and potential
     # performance work for a case that doesn't actually happen.
     query = SQL(

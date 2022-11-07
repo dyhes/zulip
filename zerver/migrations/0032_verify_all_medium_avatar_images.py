@@ -16,7 +16,7 @@ from zerver.models import UserProfile
 # between copying in a historical version of hundreds of lines of code
 # from zerver.lib.upload (which would pretty annoying, but would be a
 # pain) and just using the current version, which doesn't work
-# since we rearranged the avatars in Zulip 1.6.
+# since we rearranged the avatars in Aloha 1.6.
 def patched_user_avatar_path(user_profile: UserProfile) -> str:
     email = user_profile.email
     user_key = email.lower() + settings.AVATAR_SALT

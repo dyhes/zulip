@@ -2,12 +2,12 @@ from typing import Any, List, Mapping
 
 import orjson
 
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import queries_captured
 from zerver.models import Huddle, get_huddle_hash
 
 
-class TypingValidateOperatorTest(ZulipTestCase):
+class TypingValidateOperatorTest(AlohaTestCase):
     def test_missing_parameter(self) -> None:
         """
         Sending typing notification without op parameter fails
@@ -40,7 +40,7 @@ class TypingValidateOperatorTest(ZulipTestCase):
         self.assert_json_error(result, "Invalid op")
 
 
-class TypingMessagetypeTest(ZulipTestCase):
+class TypingMessagetypeTest(AlohaTestCase):
     def test_invalid_type(self) -> None:
         sender = self.example_user("hamlet")
         params = dict(
@@ -52,7 +52,7 @@ class TypingMessagetypeTest(ZulipTestCase):
         self.assert_json_error(result, "Invalid type")
 
 
-class TypingValidateToArgumentsTest(ZulipTestCase):
+class TypingValidateToArgumentsTest(AlohaTestCase):
     def test_empty_to_array_pms(self) -> None:
         """
         Sending pms typing notification without recipient fails
@@ -134,7 +134,7 @@ class TypingValidateToArgumentsTest(ZulipTestCase):
         self.assert_json_error(result, "Invalid stream ID")
 
 
-class TypingHappyPathTestPMs(ZulipTestCase):
+class TypingHappyPathTestPMs(AlohaTestCase):
     def test_start_to_single_recipient(self) -> None:
         sender = self.example_user("hamlet")
         recipient_user = self.example_user("othello")
@@ -346,7 +346,7 @@ class TypingHappyPathTestPMs(ZulipTestCase):
         self.assertEqual(event["op"], "stop")
 
 
-class TypingHappyPathTestStreams(ZulipTestCase):
+class TypingHappyPathTestStreams(AlohaTestCase):
     def test_start(self) -> None:
         sender = self.example_user("hamlet")
         stream_name = self.get_streams(sender)[0]
@@ -420,7 +420,7 @@ class TypingHappyPathTestStreams(ZulipTestCase):
         self.assertEqual("stop", event["op"])
 
 
-class TestSendTypingNotificationsSettings(ZulipTestCase):
+class TestSendTypingNotificationsSettings(AlohaTestCase):
     def test_send_private_typing_notifications_setting(self) -> None:
         sender = self.example_user("hamlet")
         recipient_user = self.example_user("othello")

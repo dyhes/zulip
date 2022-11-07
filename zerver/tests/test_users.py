@@ -36,7 +36,7 @@ from zerver.lib.send_email import (
     send_future_email,
 )
 from zerver.lib.stream_topic import StreamTopicTarget
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import (
     cache_tries_captured,
     get_subscription,
@@ -89,7 +89,7 @@ def find_dict(lst: Iterable[Dict[K, V]], k: K, v: V) -> Dict[K, V]:
     raise AssertionError(f"Cannot find element in list where key {k} == {v}")
 
 
-class PermissionTest(ZulipTestCase):
+class PermissionTest(AlohaTestCase):
     def test_role_setters(self) -> None:
         user_profile = self.example_user("hamlet")
 
@@ -770,7 +770,7 @@ class PermissionTest(ZulipTestCase):
         self.assert_json_error(result, "Insufficient permission")
 
 
-class QueryCountTest(ZulipTestCase):
+class QueryCountTest(AlohaTestCase):
     def test_create_user_with_multiple_streams(self) -> None:
         # add_new_user_history needs messages to be current
         Message.objects.all().update(date_sent=timezone_now())
@@ -834,7 +834,7 @@ class QueryCountTest(ZulipTestCase):
         )
 
 
-class BulkCreateUserTest(ZulipTestCase):
+class BulkCreateUserTest(AlohaTestCase):
     def test_create_users(self) -> None:
         realm = get_realm("zulip")
         realm.email_address_visibility = Realm.EMAIL_ADDRESS_VISIBILITY_ADMINS
@@ -875,7 +875,7 @@ class BulkCreateUserTest(ZulipTestCase):
         self.assertEqual(cher.full_name, "Cher")
 
 
-class AdminCreateUserTest(ZulipTestCase):
+class AdminCreateUserTest(AlohaTestCase):
     def test_create_user_backend(self) -> None:
 
         # This test should give us complete coverage on
@@ -1014,7 +1014,7 @@ class AdminCreateUserTest(ZulipTestCase):
         self.assert_json_success(result)
 
 
-class UserProfileTest(ZulipTestCase):
+class UserProfileTest(AlohaTestCase):
     def test_valid_user_id(self) -> None:
         realm = get_realm("zulip")
         hamlet = self.example_user("hamlet")
@@ -1360,7 +1360,7 @@ class UserProfileTest(ZulipTestCase):
         self.assertFalse(result["is_subscribed"])
 
 
-class ActivateTest(ZulipTestCase):
+class ActivateTest(AlohaTestCase):
     def test_basics(self) -> None:
         user = self.example_user("hamlet")
         do_deactivate_user(user, acting_user=None)
@@ -1433,7 +1433,7 @@ class ActivateTest(ZulipTestCase):
 
         self.assert_length(outbox, 1)
         msg = outbox[0]
-        self.assertEqual(msg.subject, "Notification of account deactivation on Zulip Dev")
+        self.assertEqual(msg.subject, "Notification of account deactivation on Aloha Dev")
         self.assert_length(msg.reply_to, 1)
         self.assertEqual(msg.reply_to[0], "noreply@testserver")
         self.assertIn("Dear Hamlet,", msg.body)
@@ -1731,7 +1731,7 @@ class ActivateTest(ZulipTestCase):
         )
 
 
-class RecipientInfoTest(ZulipTestCase):
+class RecipientInfoTest(AlohaTestCase):
     def test_stream_recipient_info(self) -> None:
         hamlet = self.example_user("hamlet")
         cordelia = self.example_user("cordelia")
@@ -1992,7 +1992,7 @@ class RecipientInfoTest(ZulipTestCase):
             )
 
 
-class BulkUsersTest(ZulipTestCase):
+class BulkUsersTest(AlohaTestCase):
     def test_client_gravatar_option(self) -> None:
         reset_emails_in_zulip_realm()
         self.login("cordelia")
@@ -2024,7 +2024,7 @@ class BulkUsersTest(ZulipTestCase):
         )
 
 
-class GetProfileTest(ZulipTestCase):
+class GetProfileTest(AlohaTestCase):
     def test_cache_behavior(self) -> None:
         """Tests whether fetching a user object the normal way, with
         `get_user`, makes 1 cache query and 1 database query.
@@ -2231,7 +2231,7 @@ class GetProfileTest(ZulipTestCase):
         self.assertEqual(result["user"].get("email"), hamlet.delivery_email)
 
 
-class DeleteUserTest(ZulipTestCase):
+class DeleteUserTest(AlohaTestCase):
     def test_do_delete_user(self) -> None:
         realm = get_realm("zulip")
         cordelia = self.example_user("cordelia")
@@ -2293,7 +2293,7 @@ class DeleteUserTest(ZulipTestCase):
             )
 
 
-class FakeEmailDomainTest(ZulipTestCase):
+class FakeEmailDomainTest(AlohaTestCase):
     def test_get_fake_email_domain(self) -> None:
         realm = get_realm("zulip")
         self.assertEqual("zulip.testserver", get_fake_email_domain(realm))
@@ -2319,7 +2319,7 @@ class FakeEmailDomainTest(ZulipTestCase):
             get_fake_email_domain(realm)
 
 
-class TestBulkRegenerateAPIKey(ZulipTestCase):
+class TestBulkRegenerateAPIKey(AlohaTestCase):
     def test_bulk_regenerate_api_keys(self) -> None:
         hamlet = self.example_user("hamlet")
         cordelia = self.example_user("cordelia")

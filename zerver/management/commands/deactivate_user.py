@@ -4,12 +4,12 @@ from typing import Any
 from django.core.management.base import CommandError
 
 from zerver.actions.users import do_deactivate_user
-from zerver.lib.management import ZulipBaseCommand
+from zerver.lib.management import AlohaBaseCommand
 from zerver.lib.sessions import user_sessions
 from zerver.lib.users import get_active_bots_owned_by_user
 
 
-class Command(ZulipBaseCommand):
+class Command(AlohaBaseCommand):
     help = "Deactivate a user, including forcibly logging them out."
 
     def add_arguments(self, parser: ArgumentParser) -> None:

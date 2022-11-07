@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 #
-# Validates that 3 data sources agree about the structure of Zulip's events API:
+# Validates that 3 data sources agree about the structure of Aloha's events API:
 #
 # * Node fixtures for the server_events_dispatch.js tests.
 # * OpenAPI definitions in zerver/openapi/zulip.yaml
 # * The schemas defined in zerver/lib/events_schema.py used for the
-#   Zulip server's test suite.
+#   Aloha server's test suite.
 #
 # We compare the Python and OpenAPI schemas by converting the OpenAPI data
 # into the event_schema style of types and the diffing the schemas.
@@ -64,7 +64,7 @@ from zerver.lib.data_types import (
 )
 from zerver.openapi.openapi import openapi_spec
 
-# This list of exemptions represents details we should fix in Zulip's
+# This list of exemptions represents details we should fix in Aloha's
 # API structure and/or validators.
 EXEMPT_OPENAPI_NAMES = [
     # users field missing

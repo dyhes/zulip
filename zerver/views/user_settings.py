@@ -233,7 +233,7 @@ def json_change_settings(
     if new_password is not None:
         return_data: Dict[str, Any] = {}
         if email_belongs_to_ldap(user_profile.realm, user_profile.delivery_email):
-            raise JsonableError(_("Your Zulip password is managed in LDAP"))
+            raise JsonableError(_("Your Aloha password is managed in LDAP"))
 
         try:
             if not authenticate(

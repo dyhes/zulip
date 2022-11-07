@@ -7,7 +7,7 @@ from django.utils.timezone import now as timezone_now
 
 from zerver.actions.users import do_deactivate_user
 from zerver.lib.presence import get_presence_dict_by_realm
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import make_client, reset_emails_in_zulip_realm
 from zerver.lib.timestamp import datetime_to_timestamp
 from zerver.models import (
@@ -19,7 +19,7 @@ from zerver.models import (
 )
 
 
-class TestClientModel(ZulipTestCase):
+class TestClientModel(AlohaTestCase):
     def test_client_stringification(self) -> None:
         """
         This test is designed to cover __str__ method for Client.
@@ -28,7 +28,7 @@ class TestClientModel(ZulipTestCase):
         self.assertEqual(str(client), "<Client: some_client>")
 
 
-class UserPresenceModelTests(ZulipTestCase):
+class UserPresenceModelTests(AlohaTestCase):
     def test_date_logic(self) -> None:
         UserPresence.objects.all().delete()
 
@@ -96,7 +96,7 @@ class UserPresenceModelTests(ZulipTestCase):
         self.assertTrue(pushable())
 
 
-class UserPresenceTests(ZulipTestCase):
+class UserPresenceTests(AlohaTestCase):
     def test_invalid_presence(self) -> None:
         user = self.example_user("hamlet")
         self.login_user(user)
@@ -260,7 +260,7 @@ class UserPresenceTests(ZulipTestCase):
 
         # Active presence from the mobile app doesn't count
         self.client_post(
-            "/json/users/me/presence", {"status": "active"}, HTTP_USER_AGENT="ZulipMobile/1.0"
+            "/json/users/me/presence", {"status": "active"}, HTTP_USER_AGENT="AlohaMobile/1.0"
         )
         self.assertEqual(filter_presence_idle_user_ids({user_profile.id}), [user_profile.id])
 
@@ -324,7 +324,7 @@ class UserPresenceTests(ZulipTestCase):
         )
 
 
-class SingleUserPresenceTests(ZulipTestCase):
+class SingleUserPresenceTests(AlohaTestCase):
     def test_email_access(self) -> None:
         user = self.example_user("hamlet")
         self.login_user(user)
@@ -353,13 +353,13 @@ class SingleUserPresenceTests(ZulipTestCase):
         self.login_user(user)
         result = self.client_post("/json/users/me/presence", {"status": "active"})
         result = self.client_post(
-            "/json/users/me/presence", {"status": "active"}, HTTP_USER_AGENT="ZulipDesktop/1.0"
+            "/json/users/me/presence", {"status": "active"}, HTTP_USER_AGENT="AlohaDesktop/1.0"
         )
         result = self.api_post(
             user,
             "/api/v1/users/me/presence",
             {"status": "idle"},
-            HTTP_USER_AGENT="ZulipAndroid/1.0",
+            HTTP_USER_AGENT="AlohaAndroid/1.0",
         )
         self.assert_json_success(result)
 
@@ -398,14 +398,14 @@ class SingleUserPresenceTests(ZulipTestCase):
         result = self.client_get("/json/users/othello@zulip.com/presence")
         result_dict = self.assert_json_success(result)
         self.assertEqual(
-            set(result_dict["presence"].keys()), {"ZulipAndroid", "website", "aggregated"}
+            set(result_dict["presence"].keys()), {"AlohaAndroid", "website", "aggregated"}
         )
         self.assertEqual(set(result_dict["presence"]["website"].keys()), {"status", "timestamp"})
 
         result = self.client_get(f"/json/users/{othello.id}/presence")
         result_dict = self.assert_json_success(result)
         self.assertEqual(
-            set(result_dict["presence"].keys()), {"ZulipAndroid", "website", "aggregated"}
+            set(result_dict["presence"].keys()), {"AlohaAndroid", "website", "aggregated"}
         )
         self.assertEqual(set(result_dict["presence"]["website"].keys()), {"status", "timestamp"})
 
@@ -420,7 +420,7 @@ class SingleUserPresenceTests(ZulipTestCase):
         self.assertEqual(self.assert_json_success(result)["msg"], "")
 
 
-class UserPresenceAggregationTests(ZulipTestCase):
+class UserPresenceAggregationTests(AlohaTestCase):
     def _send_presence_for_aggregated_tests(
         self, user: UserProfile, status: str, validate_time: datetime.datetime
     ) -> Dict[str, Dict[str, Any]]:
@@ -433,14 +433,14 @@ class UserPresenceAggregationTests(ZulipTestCase):
                 user,
                 "/api/v1/users/me/presence",
                 {"status": status},
-                HTTP_USER_AGENT="ZulipAndroid/1.0",
+                HTTP_USER_AGENT="AlohaAndroid/1.0",
             )
         with mock.patch(timezone_util, return_value=validate_time - datetime.timedelta(seconds=7)):
             latest_result = self.api_post(
                 user,
                 "/api/v1/users/me/presence",
                 {"status": status},
-                HTTP_USER_AGENT="ZulipIOS/1.0",
+                HTTP_USER_AGENT="AlohaIOS/1.0",
             )
         latest_result_dict = self.assert_json_success(latest_result)
         self.assertDictEqual(
@@ -448,7 +448,7 @@ class UserPresenceAggregationTests(ZulipTestCase):
             {
                 "status": status,
                 "timestamp": datetime_to_timestamp(validate_time - datetime.timedelta(seconds=2)),
-                "client": "ZulipAndroid",
+                "client": "AlohaAndroid",
             },
         )
 
@@ -467,7 +467,7 @@ class UserPresenceAggregationTests(ZulipTestCase):
                 user,
                 "/api/v1/users/me/presence",
                 {"status": "active"},
-                HTTP_USER_AGENT="ZulipTestDev/1.0",
+                HTTP_USER_AGENT="AlohaTestDev/1.0",
             )
         result_dict = self.assert_json_success(result)
         self.assertDictEqual(
@@ -475,7 +475,7 @@ class UserPresenceAggregationTests(ZulipTestCase):
             {
                 "status": "active",
                 "timestamp": datetime_to_timestamp(validate_time - datetime.timedelta(seconds=1)),
-                "client": "ZulipTestDev",
+                "client": "AlohaTestDev",
             },
         )
 
@@ -515,7 +515,7 @@ class UserPresenceAggregationTests(ZulipTestCase):
                 user,
                 "/api/v1/users/me/presence",
                 {"status": "active"},
-                HTTP_USER_AGENT="ZulipTestDev/1.0",
+                HTTP_USER_AGENT="AlohaTestDev/1.0",
             )
         result_dict = self._send_presence_for_aggregated_tests(user, "idle", validate_time)
         self.assertDictEqual(
@@ -541,7 +541,7 @@ class UserPresenceAggregationTests(ZulipTestCase):
         )
 
 
-class GetRealmStatusesTest(ZulipTestCase):
+class GetRealmStatusesTest(AlohaTestCase):
     def test_get_statuses(self) -> None:
         # Set up the test by simulating users reporting their presence data.
         othello = self.example_user("othello")
@@ -551,14 +551,14 @@ class GetRealmStatusesTest(ZulipTestCase):
             othello,
             "/api/v1/users/me/presence",
             dict(status="active"),
-            HTTP_USER_AGENT="ZulipAndroid/1.0",
+            HTTP_USER_AGENT="AlohaAndroid/1.0",
         )
 
         result = self.api_post(
             hamlet,
             "/api/v1/users/me/presence",
             dict(status="idle"),
-            HTTP_USER_AGENT="ZulipDesktop/1.0",
+            HTTP_USER_AGENT="AlohaDesktop/1.0",
         )
         json = self.assert_json_success(result)
         self.assertEqual(set(json["presences"].keys()), {hamlet.email, othello.email})
@@ -567,7 +567,7 @@ class GetRealmStatusesTest(ZulipTestCase):
             hamlet,
             "/api/v1/users/me/presence",
             dict(status="active", slim_presence="true"),
-            HTTP_USER_AGENT="ZulipDesktop/1.0",
+            HTTP_USER_AGENT="AlohaDesktop/1.0",
         )
         json = self.assert_json_success(result)
         self.assertEqual(set(json["presences"].keys()), {str(hamlet.id), str(othello.id)})
@@ -591,14 +591,14 @@ class GetRealmStatusesTest(ZulipTestCase):
             othello,
             "/api/v1/users/me/presence",
             dict(status="active"),
-            HTTP_USER_AGENT="ZulipAndroid/1.0",
+            HTTP_USER_AGENT="AlohaAndroid/1.0",
         )
 
         result = self.api_post(
             hamlet,
             "/api/v1/users/me/presence",
             dict(status="idle"),
-            HTTP_USER_AGENT="ZulipDesktop/1.0",
+            HTTP_USER_AGENT="AlohaDesktop/1.0",
         )
         json = self.assert_json_success(result)
 
@@ -609,7 +609,7 @@ class GetRealmStatusesTest(ZulipTestCase):
             hamlet,
             "/api/v1/users/me/presence",
             dict(status="active", slim_presence="true"),
-            HTTP_USER_AGENT="ZulipDesktop/1.0",
+            HTTP_USER_AGENT="AlohaDesktop/1.0",
         )
         json = self.assert_json_success(result)
         self.assertEqual(set(json["presences"].keys()), {str(hamlet.id)})

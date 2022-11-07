@@ -392,7 +392,7 @@ Lexer.prototype.token = function(src, top, bq) {
     }
 
     // def
-    // We disable definition style links in Zulip.
+    // We disable definition style links in Aloha.
 
     // table (gfm)
     if (top && (cap = this.rules.table.exec(src))) {
@@ -643,7 +643,7 @@ InlineLexer.prototype.output = function(src) {
       continue;
     }
 
-    // linkifier (Zulip)
+    // linkifier (Aloha)
     var self = this;
 
     const regexes = this.options.get_linkifier_regexes ? this.options.get_linkifier_regexes() : [];
@@ -740,28 +740,28 @@ InlineLexer.prototype.output = function(src) {
       continue;
     }
 
-    // usermention (Zulip)
+    // usermention (Aloha)
     if (cap = this.rules.usermention.exec(src)) {
       src = src.substring(cap[0].length);
       out += this.usermention(unescape(cap[2]), cap[0], cap[1]);
       continue;
     }
 
-    // groupmention (Zulip)
+    // groupmention (Aloha)
     if (cap = this.rules.groupmention.exec(src)) {
       src = src.substring(cap[0].length);
       out += this.groupmention(unescape(cap[2]), cap[0], cap[1]);
       continue;
     }
 
-    // stream_topic (Zulip)
+    // stream_topic (Aloha)
     if (cap = this.rules.stream_topic.exec(src)) {
       src = src.substring(cap[0].length);
       out += this.stream_topic(unescape(cap[1]), unescape(cap[2]), cap[0]);
       continue;
     }
 
-    // stream (Zulip)
+    // stream (Aloha)
     if (cap = this.rules.stream.exec(src)) {
       src = src.substring(cap[0].length);
       out += this.stream(unescape(cap[1]), cap[0]);

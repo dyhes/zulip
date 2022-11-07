@@ -35,12 +35,12 @@ from zerver.lib.validator import check_anything
 from zerver.models import Client, Realm
 
 if settings.ZILENCER_ENABLED:
-    from zilencer.models import RemoteZulipServer
+    from zilencer.models import RemoteAlohaServer
 
 
 @dataclass
 class RequestNotes(BaseNotes[HttpRequest, "RequestNotes"]):
-    """This class contains extra metadata that Zulip associated with a
+    """This class contains extra metadata that Aloha associated with a
     Django HttpRequest object. See the docstring for BaseNotes for
     details on how it works.
 
@@ -71,7 +71,7 @@ class RequestNotes(BaseNotes[HttpRequest, "RequestNotes"]):
     tornado_handler_id: Optional[int] = None
     processed_parameters: Set[str] = field(default_factory=set)
     ignored_parameters: Set[str] = field(default_factory=set)
-    remote_server: Optional["RemoteZulipServer"] = None
+    remote_server: Optional["RemoteAlohaServer"] = None
 
     @classmethod
     def init_notes(cls) -> "RequestNotes":

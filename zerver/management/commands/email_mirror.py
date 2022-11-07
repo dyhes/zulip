@@ -1,15 +1,15 @@
-"""Cron job implementation of Zulip's incoming email gateway's helper
-for forwarding emails into Zulip.
+"""Cron job implementation of Aloha's incoming email gateway's helper
+for forwarding emails into Aloha.
 
 https://zulip.readthedocs.io/en/latest/production/email-gateway.html
 
 The email gateway supports two major modes of operation: An email
 server (using postfix) where the email address configured in
-EMAIL_GATEWAY_PATTERN delivers emails directly to Zulip, and this, a
+EMAIL_GATEWAY_PATTERN delivers emails directly to Aloha, and this, a
 cron job that connects to an IMAP inbox (which receives the emails)
 periodically.
 
-Run this in a cron job every N minutes if you have configured Zulip to
+Run this in a cron job every N minutes if you have configured Aloha to
 poll an external IMAP mailbox for messages. The script will then
 connect to your IMAP server and batch-process all messages.
 

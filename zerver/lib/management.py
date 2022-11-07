@@ -41,7 +41,7 @@ class CreateUserParameters:
     password: Optional[str]
 
 
-class ZulipBaseCommand(BaseCommand):
+class AlohaBaseCommand(BaseCommand):
 
     # Fix support for multi-line usage
     def create_parser(self, prog_name: str, subcommand: str, **kwargs: Any) -> CommandParser:
@@ -53,7 +53,7 @@ class ZulipBaseCommand(BaseCommand):
         self, parser: ArgumentParser, *, required: bool = False, help: Optional[str] = None
     ) -> None:
         if help is None:
-            help = """The numeric or string ID (subdomain) of the Zulip organization to modify.
+            help = """The numeric or string ID (subdomain) of the Aloha organization to modify.
 You can use the command list_realms to find ID of the realms in this server."""
 
         parser.add_argument("-r", "--realm", dest="realm_id", required=required, help=help)
@@ -163,16 +163,16 @@ server via `ps -ef` or reading bash history. Prefer
             return UserProfile.objects.select_related().get(delivery_email__iexact=email.strip())
         except MultipleObjectsReturned:
             raise CommandError(
-                "This Zulip server contains multiple users with that email "
+                "This Aloha server contains multiple users with that email "
                 + "(in different realms); please pass `--realm` "
                 "to specify which one to modify."
             )
         except UserProfile.DoesNotExist:
-            raise CommandError(f"This Zulip server does not contain a user with email '{email}'")
+            raise CommandError(f"This Aloha server does not contain a user with email '{email}'")
 
     def get_client(self) -> Client:
-        """Returns a Zulip Client object to be used for things done in management commands"""
-        return get_client("ZulipServer")
+        """Returns a Aloha Client object to be used for things done in management commands"""
+        return get_client("AlohaServer")
 
     def get_create_user_params(self, options: Dict[str, Any]) -> CreateUserParameters:  # nocoverage
         """

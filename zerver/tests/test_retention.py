@@ -18,7 +18,7 @@ from zerver.lib.retention import (
     restore_all_data_from_archive,
     restore_retention_policy_deletions_for_stream,
 )
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import queries_captured, zulip_reaction_info
 from zerver.lib.upload import create_attachment
 from zerver.models import (
@@ -47,7 +47,7 @@ ZULIP_REALM_DAYS = 30
 MIT_REALM_DAYS = 100
 
 
-class RetentionTestingBase(ZulipTestCase):
+class RetentionTestingBase(AlohaTestCase):
     def _get_usermessage_ids(self, message_ids: List[int]) -> List[int]:
         return list(
             UserMessage.objects.filter(message_id__in=message_ids).values_list("id", flat=True)
@@ -214,7 +214,7 @@ class TestArchiveMessagesGeneral(ArchiveMessagesTestingBase):
         # Make some non-expired messages in MIT:
         self._make_mit_messages(4, timezone_now() - timedelta(days=MIT_REALM_DAYS - 1))
 
-        # Change some Zulip messages to be expired:
+        # Change some Aloha messages to be expired:
         expired_zulip_msg_ids = list(
             Message.objects.order_by("id")
             .filter(sender__realm=self.zulip_realm)
@@ -246,7 +246,7 @@ class TestArchiveMessagesGeneral(ArchiveMessagesTestingBase):
         # Make some non-expired messages in MIT:
         self._make_mit_messages(4, timezone_now() - timedelta(days=MIT_REALM_DAYS - 1))
 
-        # Change some Zulip messages date_sent, but the realm has no retention policy,
+        # Change some Aloha messages date_sent, but the realm has no retention policy,
         # so they shouldn't get archived
         zulip_msg_ids = list(
             Message.objects.order_by("id")
@@ -345,7 +345,7 @@ class TestArchiveMessagesGeneral(ArchiveMessagesTestingBase):
         # Make some non-expired messages in MIT:
         self._make_mit_messages(4, timezone_now() - timedelta(days=MIT_REALM_DAYS - 1))
 
-        # Change some Zulip messages to be expired:
+        # Change some Aloha messages to be expired:
         expired_zulip_msg_ids = self._make_expired_zulip_messages(7)
 
         expired_crossrealm_msg_id = self._send_cross_realm_personal_message()
@@ -891,7 +891,7 @@ class TestCleaningArchive(ArchiveMessagesTestingBase):
             self.assertEqual(message.archive_transaction_id, remaining_transactions[0].id)
 
 
-class TestGetRealmAndStreamsForArchiving(ZulipTestCase):
+class TestGetRealmAndStreamsForArchiving(AlohaTestCase):
     def fix_ordering_of_result(self, result: List[Tuple[Realm, List[Stream]]]) -> None:
         """
         This is a helper for giving the structure returned by get_realms_and_streams_for_archiving
@@ -1046,7 +1046,7 @@ class TestRestoreStreamMessages(ArchiveMessagesTestingBase):
         self.assertFalse(Message.objects.filter(id__in=message_ids_to_archive_manually))
 
 
-class TestDoDeleteMessages(ZulipTestCase):
+class TestDoDeleteMessages(AlohaTestCase):
     def test_do_delete_messages_multiple(self) -> None:
         realm = get_realm("zulip")
         cordelia = self.example_user("cordelia")

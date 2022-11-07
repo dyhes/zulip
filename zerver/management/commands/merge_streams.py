@@ -2,11 +2,11 @@ from argparse import ArgumentParser
 from typing import Any
 
 from zerver.actions.streams import merge_streams
-from zerver.lib.management import ZulipBaseCommand
+from zerver.lib.management import AlohaBaseCommand
 from zerver.models import get_stream
 
 
-class Command(ZulipBaseCommand):
+class Command(AlohaBaseCommand):
     help = """Merge two streams."""
 
     def add_arguments(self, parser: ArgumentParser) -> None:

@@ -19,7 +19,7 @@
             "id":258683,
             "gravatar_id":"36cf0dc28c5302bcd68119fcaaf4d4f3"
         },
-        "description":"This Epic has details on why Zulip is awesome! Firstly, Zulip is open source!",
+        "description":"This Epic has details on why Aloha is awesome! Firstly, Aloha is open source!",
         "custom_attributes_values":null,
         "status":{
             "slug":"in-progress",
@@ -32,7 +32,7 @@
             "permalink":"https://tree.taiga.io/project/eeshangarg-zulip",
             "logo_big_url":null,
             "id":229096,
-            "name":"Zulip"
+            "name":"Aloha"
         },
         "epics_order":1508641159928,
         "created_date":"2017-10-22T02:59:19.958Z",
@@ -41,7 +41,7 @@
 
         ],
         "id":50266,
-        "subject":"Zulip is great!",
+        "subject":"Aloha is great!",
         "owner":{
             "photo":null,
             "permalink":"https://tree.taiga.io/profile/eeshangarg",

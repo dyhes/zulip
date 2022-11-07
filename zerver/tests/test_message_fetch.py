@@ -35,7 +35,7 @@ from zerver.lib.narrow import (
 )
 from zerver.lib.sqlalchemy_utils import get_sqlalchemy_connection
 from zerver.lib.streams import StreamDict, create_streams_if_needed, get_public_streams_queryset
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import HostRequestMock, get_user_messages, queries_captured
 from zerver.lib.topic import MATCH_TOPIC, RESOLVED_TOPIC_PREFIX, TOPIC_NAME
 from zerver.lib.types import DisplayRecipientT
@@ -99,7 +99,7 @@ def first_visible_id_as(message_id: int) -> Any:
     )
 
 
-class NarrowBuilderTest(ZulipTestCase):
+class NarrowBuilderTest(AlohaTestCase):
     def setUp(self) -> None:
         super().setUp()
         self.realm = get_realm("zulip")
@@ -535,7 +535,7 @@ class NarrowBuilderTest(ZulipTestCase):
         return self.builder.add_term(self.raw_query, term)
 
 
-class NarrowLibraryTest(ZulipTestCase):
+class NarrowLibraryTest(AlohaTestCase):
     def test_build_narrow_filter(self) -> None:
         fixtures_path = os.path.join(os.path.dirname(__file__), "fixtures/narrow.json")
         with open(fixtures_path, "rb") as f:
@@ -591,7 +591,7 @@ class NarrowLibraryTest(ZulipTestCase):
         self.assertFalse(is_spectator_compatible([{"operator": "has"}]))
 
 
-class IncludeHistoryTest(ZulipTestCase):
+class IncludeHistoryTest(AlohaTestCase):
     def test_ok_to_include_history(self) -> None:
         user_profile = self.example_user("hamlet")
         self.make_stream("public_stream", realm=user_profile.realm)
@@ -732,7 +732,7 @@ class IncludeHistoryTest(ZulipTestCase):
         self.assertTrue(ok_to_include_history(narrow, subscribed_user_profile, False))
 
 
-class PostProcessTest(ZulipTestCase):
+class PostProcessTest(AlohaTestCase):
     def test_basics(self) -> None:
         def verify(
             in_ids: List[int],
@@ -1314,7 +1314,7 @@ class PostProcessTest(ZulipTestCase):
         )
 
 
-class GetOldMessagesTest(ZulipTestCase):
+class GetOldMessagesTest(AlohaTestCase):
     def get_and_check_messages(
         self, modified_params: Dict[str, Union[str, int]], **kwargs: Any
     ) -> Dict[str, Any]:
@@ -3753,7 +3753,7 @@ WHERE user_profile_id = {hamlet_id} AND (content ILIKE '%jumping%' OR subject IL
         )
 
 
-class MessageHasKeywordsTest(ZulipTestCase):
+class MessageHasKeywordsTest(AlohaTestCase):
     """Test for keywords like has_link, has_image, has_attachment."""
 
     def setup_dummy_attachments(self, user_profile: UserProfile) -> List[str]:
@@ -3967,7 +3967,7 @@ class MessageHasKeywordsTest(ZulipTestCase):
             m.reset_mock()
 
 
-class MessageVisibilityTest(ZulipTestCase):
+class MessageVisibilityTest(AlohaTestCase):
     def test_update_first_visible_message_id(self) -> None:
         Message.objects.all().delete()
         message_ids = [
@@ -4026,7 +4026,7 @@ class MessageVisibilityTest(ZulipTestCase):
         m.assert_called_once_with(realm)
 
 
-class PersonalMessagesNearTest(ZulipTestCase):
+class PersonalMessagesNearTest(AlohaTestCase):
     def test_near_pm_message_url(self) -> None:
         realm = get_realm("zulip")
         message = dict(

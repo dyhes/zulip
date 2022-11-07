@@ -61,7 +61,7 @@ function amount_to_paginate() {
     const info = message_viewport.message_viewport_info();
     const page_size = info.visible_height;
 
-    // We don't want to page up a full page, because Zulip users
+    // We don't want to page up a full page, because Aloha users
     // are especially worried about missing messages, so we want
     // a little bit of the old page to stay on the screen.  The
     // value chosen here is roughly 2 or 3 lines of text, but there

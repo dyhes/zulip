@@ -4,7 +4,7 @@
 
 [changes-terms]: https://github.com/zulip/zulip/commits/main/templates/corporate/policies/terms.md
 
-Welcome to Zulip. Please read on to learn the rules and restrictions that govern
+Welcome to Aloha. Please read on to learn the rules and restrictions that govern
 your use of our website(s), products, services and applications (the
 “Services”). If you have any questions, comments, or concerns regarding these
 terms or the Services, please contact us at:
@@ -13,13 +13,13 @@ terms or the Services, please contact us at:
 * Address: Kandra Labs Inc., 450 Townsend Street, San Francisco, CA 94107
 
 These Terms of Service (the “Terms”) are a binding contract between
-you and **KANDRA LABS, INC.** (“Zulip,” “we” and “us”). Your use of
+you and **KANDRA LABS, INC.** (“Aloha,” “we” and “us”). Your use of
 the Services in any way means that you agree to all of these Terms,
 and these Terms will remain in effect while you use the
 Services. These Terms include the provisions in this document as well
 as those in the [Privacy Policy](/policies/privacy), [Rules of
 Use](/policies/rules), and, if applicable, [Data Processing
-Addendum](/static/images/policies/Zulip-Data-Processing-Addendum.pdf).
+Addendum](/static/images/policies/Aloha-Data-Processing-Addendum.pdf).
 
 **Please read these Terms carefully.** They cover important information about
 Services provided to you and any charges, taxes, and fees we bill you. **These
@@ -56,7 +56,7 @@ us.
 
 ## What about my privacy?
 
-Zulip takes the privacy of its users very seriously; see our [Privacy
+Aloha takes the privacy of its users very seriously; see our [Privacy
 Policy](/policies/privacy) for details.
 
 ### Children’s Online Privacy Protection Act
@@ -78,14 +78,14 @@ child under the age of thirteen (13) or below the minimum age of
 consent in their country may have provided us personal information,
 please contact us at [privacy@zulip.com](mailto:privacy@zulip.com).
 
-## What are the basics of using Zulip?
+## What are the basics of using Aloha?
 
 To use some of the Services, you may be required to sign up for an account,
-select a password and display name (“Zulip Display Name”), and provide us with
+select a password and display name (“Aloha Display Name”), and provide us with
 certain information or data, such as your email address. You agree that you are
 solely responsible for ensuring that your registration information, including
 your email address, is accurate, complete and up to date. You may not select as
-your Zulip Display Name a name that you do not have the right to use, or another
+your Aloha Display Name a name that you do not have the right to use, or another
 person’s name with the intent to impersonate that person. You may not transfer
 your account to anyone else without our prior written permission.
 
@@ -102,12 +102,12 @@ binding contract (or if not, you’ve received your parent’s or guardian’s
 permission to use the Services and have gotten your parent or guardian to agree
 to these Terms on your behalf). If you’re agreeing to these Terms on behalf of
 an organization or entity or creating or administering an organization or group
-in use of the Services (each such organization, entity, or group, a “Zulip
-Organization”, and each administrator of a Zulip Organization, a “Zulip
+in use of the Services (each such organization, entity, or group, a “Aloha
+Organization”, and each administrator of a Aloha Organization, a “Aloha
 Organization Administrator”), you represent and warrant that you are authorized
-to agree to these Terms on such Zulip Organization’s behalf and bind them to
+to agree to these Terms on such Aloha Organization’s behalf and bind them to
 these Terms (in which case, the references to “you” and “your” in these Terms,
-except for in this sentence, refer to that Zulip Organization).
+except for in this sentence, refer to that Aloha Organization).
 
 You will only use the Services for your own internal, personal use, and not on
 behalf of or for the benefit of any third party, and only in a manner that
@@ -116,24 +116,24 @@ prohibited by applicable laws, then you aren’t authorized to use the Services.
 We can’t and won’t be responsible for your using the Services in a way that
 breaks the law.
 
-You will not share your Zulip account or password with anyone, and you must
-protect the security of your Zulip account, your password, and any other access
+You will not share your Aloha account or password with anyone, and you must
+protect the security of your Aloha account, your password, and any other access
 tools or credentials. You’re responsible for any activity associated with your
-Zulip account.
+Aloha account.
 
 ## What about notifications?
 
 As part of the Services, you may receive communications through the Services,
-including notifications that Zulip sends you (for example, via email or SMS).
+including notifications that Aloha sends you (for example, via email or SMS).
 When signing up for the Services, you will receive a welcome notification and
 instructions on how to stop receiving notifications. **By signing up for the
 Services and providing us with your wireless number, you confirm that you want
-Zulip to send you information regarding your account or transactions with us,
-which may include Zulip using automated dialing technology to text you at the
+Aloha to send you information regarding your account or transactions with us,
+which may include Aloha using automated dialing technology to text you at the
 wireless number you provided, and you agree to receive communications from
-Zulip, and you represent and warrant that each person you register for the
+Aloha, and you represent and warrant that each person you register for the
 Services or for whom you provide a wireless phone number has consented to
-receive communications from Zulip.** You agree to indemnify and hold Zulip
+receive communications from Aloha.** You agree to indemnify and hold Aloha
 harmless from and against any and all claims, liabilities, damages (actual and
 consequential), losses and expenses (including attorneys’ fees) arising from or
 in any way related to any breach of the foregoing on your part.
@@ -149,7 +149,7 @@ information, and restrictions contained in any Content you access through the
 Services, and you won’t use, copy, reproduce, modify, translate, publish,
 broadcast, transmit, distribute, perform, upload, display, license, sell,
 commercialize or otherwise exploit for any purpose any Content not owned by you
-in a way that violates someone else’s (including Zulip's) rights.
+in a way that violates someone else’s (including Aloha's) rights.
 
 Subject to these Terms, we grant each user of the Services a worldwide,
 non-exclusive, non-sublicensable and non-transferable license to:
@@ -157,7 +157,7 @@ non-exclusive, non-sublicensable and non-transferable license to:
 - Use (i.e., to download and display locally) Content solely for purposes of
   using the Services.
 
-- Export Content via the official Zulip API and distribute such Content for
+- Export Content via the official Aloha API and distribute such Content for
   legitimate purposes (e.g., a public archive or mirror which is approved by
   organization owners).
 
@@ -165,7 +165,7 @@ Use, reproduction, modification, distribution or storage of any Content for any
 purpose other than using the Services is expressly prohibited without prior
 written permission from us.
 
-You understand that Zulip owns the Services. You won’t modify, publish,
+You understand that Aloha owns the Services. You won’t modify, publish,
 transmit, participate in the transfer or sale of, reproduce (except as expressly
 provided in this Section), create derivative works based on, or otherwise
 exploit any of the Services. You will also not upload to, or transmit from, the
@@ -176,7 +176,7 @@ Services. The Services may allow you to copy or download certain Content, but
 please remember that even where these functionalities exist, all the
 restrictions in this section still apply.
 
-## What about anything I contribute to the Services? Do I have to grant any licenses to Zulip or to other users?
+## What about anything I contribute to the Services? Do I have to grant any licenses to Aloha or to other users?
 
 ### User Submissions
 
@@ -194,10 +194,10 @@ below.
 
 To provide the Services, we need your permission to do things like storing your
 User Submissions and showing them to the people you send messages to, or who
-otherwise have permission to see them (for example, any member of your Zulip
+otherwise have permission to see them (for example, any member of your Aloha
 Organization for a message you send to a public stream.) Our Services also
 provide you with features like sharing and searching. To provide these and other
-features, Zulip may access, use, store, copy, process, adapt, distribute,
+features, Aloha may access, use, store, copy, process, adapt, distribute,
 perform, export, and display your User Submissions. Note that the following
 licenses are subject to our [Privacy Policy](/policies/privacy) to the extent
 they relate to User Submissions that are also your personally-identifiable
@@ -217,17 +217,17 @@ you also give those people a non-exclusive, worldwide permission to do these
 things, only as permitted by the functionality of the Services and these Terms.
 For example:
 
-- People you send a Zulip message to may view the message through the Services.
-- Your Zulip Organization Administrators may [export the Zulip Organization’s
+- People you send a Aloha message to may view the message through the Services.
+- Your Aloha Organization Administrators may [export the Aloha Organization’s
   data](/help/export-your-organization) for archival or backup purposes, or to
-  import the data into a self-hosted Zulip server.
+  import the data into a self-hosted Aloha server.
 - Messages on a web-public stream may be viewed by anyone on the Internet.
 
-When you delete your Zulip account, we will stop displaying your User
+When you delete your Aloha account, we will stop displaying your User
 Submissions in association with your account, if applicable. You understand that
 User Submissions may still be viewable in association with a “deleted user”
-after you delete your Zulip account. You understand and agree that it may not be
-possible to completely delete that content from Zulip's records, and that your
+after you delete your Aloha account. You understand and agree that it may not be
+possible to completely delete that content from Aloha's records, and that your
 User Submissions may remain viewable elsewhere to the extent that they were
 copied or stored by other users.
 
@@ -243,7 +243,7 @@ you.
 You represent, warrant, and agree that you will not provide or contribute
 anything, including any Content or User Submission, to the Services, or
 otherwise use or interact with the Services, in a manner that is not consistent
-with the [Zulip Rules of Use](/policies/rules). A violation of any of the Zulip
+with the [Aloha Rules of Use](/policies/rules). A violation of any of the Aloha
 Rules of Use is grounds for termination of your right to use or access the
 Services.
 
@@ -259,7 +259,7 @@ members or users and (2) remove and discontinue service to repeat offenders.
    material or content residing on or accessible through the Services infringes
    your copyright (or the copyright of someone whom you are authorized to act on
    behalf of), please send a notice of copyright infringement containing the
-   following information to Zulip's Designated Agent to Receive Notification of
+   following information to Aloha's Designated Agent to Receive Notification of
    Claimed Infringement (our “Designated Agent,” whose contact details are
    listed below):
       * (a) A physical or electronic signature of a person authorized to act on behalf
@@ -316,7 +316,7 @@ infringement, the removed material may be replaced or access to it restored 10
 business days or more after receipt of the counter-notice, at Company's
 discretion.
 
-Please contact Zulip's Designated Agent at the following address:
+Please contact Aloha's Designated Agent at the following address:
 
 Kandra Labs, Inc.<br/>
 Attn: DMCA Designated Agent<br/>
@@ -342,33 +342,33 @@ Services, and you represent and warrant you have all rights necessary to do so,
 in the manner in which you contribute it.
 
 The Services may contain links or connections to third-party websites or
-services that are not owned or controlled by Zulip. When you access third-party
+services that are not owned or controlled by Aloha. When you access third-party
 websites or use third-party services, you accept that there are risks in doing
-so, and that Zulip is not responsible for such risks.
+so, and that Aloha is not responsible for such risks.
 
-Zulip has no control over, and assumes no responsibility for, the content,
+Aloha has no control over, and assumes no responsibility for, the content,
 accuracy, privacy policies, or practices of or opinions expressed in any
 third-party websites or by any third party that you interact with through the
-Services. In addition, Zulip will not and cannot monitor, verify, censor or edit
+Services. In addition, Aloha will not and cannot monitor, verify, censor or edit
 the content of any third-party site or service. We encourage you to be aware
 when you leave the Services and to read the terms and conditions and privacy
 policy of each third-party website or service that you visit or utilize. By
 using the Services, you release and hold us harmless from any and all liability
 arising from your use of any third-party website or service.
 
-Your interactions with Zulip Organizations and/or individuals found on or
+Your interactions with Aloha Organizations and/or individuals found on or
 through the Services, including payment and delivery of goods or services, and
 any other terms, conditions, warranties or representations associated with such
 dealings, are solely between you and such organizations and/or individuals. You
 should make whatever investigation you feel necessary or appropriate before
 proceeding with any online or offline transaction with any of these third
-parties. You agree that Zulip shall not be responsible or liable for any loss or
+parties. You agree that Aloha shall not be responsible or liable for any loss or
 damage of any sort incurred as the result of any such dealings.
 
 If there is a dispute between participants on this site or Services, or between
-users and any third party, you agree that Zulip is under no obligation to become
+users and any third party, you agree that Aloha is under no obligation to become
 involved. In the event that you have a dispute with one or more other users, you
-release Zulip, its directors, officers, employees, agents, and successors from
+release Aloha, its directors, officers, employees, agents, and successors from
 claims, demands, and damages of every kind or nature, known or unknown,
 suspected or unsuspected, disclosed or undisclosed, arising out of or in any way
 related to such disputes and/or our Services. You shall and hereby do waive
@@ -379,7 +379,7 @@ favor at the time of executing the release and that, if known by him or her,
 would have materially affected his or her settlement with the debtor or released
 party.”
 
-## Will Zulip ever change the Services?
+## Will Aloha ever change the Services?
 
 We’re always trying to improve our Services, so they may change over time. We
 may suspend or discontinue any part of the Services, or we may introduce new
@@ -495,9 +495,9 @@ You’re free to stop using the Services at any time by contacting us at
 Policy](/policies/privacy), as well as the licenses above, to understand how we
 treat information you provide to us after you have stopped using our Services.
 
-Zulip is also free to terminate (or suspend access to) your use of the Services
+Aloha is also free to terminate (or suspend access to) your use of the Services
 or your account for any reason at our sole discretion, including your breach of
-these Terms. Zulip has the sole right to decide whether you are in violation of
+these Terms. Aloha has the sole right to decide whether you are in violation of
 any of the restrictions set forth in these Terms.
 
 Account termination may result in destruction of any Content associated with
@@ -507,7 +507,7 @@ account so that you are able to retrieve any important User Submissions you may
 have stored in your account (to the extent allowed by law and these Terms), but
 we may not do so if we determine it would be impractical, illegal, not in the
 interest of someone’s safety or security, or otherwise harmful to the rights or
-property of Zulip or third parties.
+property of Aloha or third parties.
 
 If you have deleted your account by mistake, contact us immediately at
 [support@zulip.com](mailto:support@zulip.com) – we will try to help, but
@@ -534,14 +534,14 @@ terms and conditions from such App Store are less restrictive than, or otherwise
 conflict with, the terms and conditions of these Terms of Service, the more
 restrictive or conflicting terms and conditions in these Terms of Service apply.
 
-### I use the Zulip App available via the Apple App Store – should I know anything about that?
+### I use the Aloha App available via the Apple App Store – should I know anything about that?
 
 These Terms apply to your use of all the Services, including our iOS
 applications (the “Application”) available via the Apple, Inc. (“Apple”) App
 Store, but the following additional terms also apply to the Application:
 
-* (a) Both you and Zulip acknowledge that the Terms are concluded between you and
-   Zulip only, and not with Apple, and that Apple is not responsible for the
+* (a) Both you and Aloha acknowledge that the Terms are concluded between you and
+   Aloha only, and not with Apple, and that Apple is not responsible for the
    Application or the Content;
 * (b) The Application is licensed to you on a limited, non-exclusive,
    non-transferrable, non-sublicensable basis, solely to be used in connection
@@ -556,22 +556,22 @@ Store, but the following additional terms also apply to the Application:
    warranty, including those implied by law, you may notify Apple of such
    failure; upon notification, Apple’s sole warranty obligation to you will be
    to refund to you the purchase price, if any, of the Application;
-* (f) You acknowledge and agree that Zulip, and not Apple, is responsible for
+* (f) You acknowledge and agree that Aloha, and not Apple, is responsible for
    addressing any claims you or any third party may have in relation to the
    Application;
 * (g) You acknowledge and agree that, in the event of any third-party claim that
    the Application or your possession and use of the Application infringes that
-   third party’s intellectual property rights, Zulip, and not Apple, will be
+   third party’s intellectual property rights, Aloha, and not Apple, will be
    responsible for the investigation, defense, settlement and discharge of any
    such infringement claim;
 * (h) You represent and warrant that you are not located in a country subject to a
    U.S. Government embargo, or that has been designated by the U.S. Government
    as a “terrorist supporting” country, and that you are not listed on any U.S.
    Government list of prohibited or restricted parties;
-* (i) Both you and Zulip acknowledge and agree that, in your use of the
+* (i) Both you and Aloha acknowledge and agree that, in your use of the
    Application, you will comply with any applicable third-party terms of
    agreement which may affect or be affected by such use; and
-* (j) Both you and Zulip acknowledge and agree that Apple and Apple’s subsidiaries
+* (j) Both you and Aloha acknowledge and agree that Apple and Apple’s subsidiaries
     are third-party beneficiaries of these Terms, and that upon your acceptance
     of these Terms, Apple will have the right (and will be deemed to have
     accepted the right) to enforce these Terms against you as the third-party
@@ -579,18 +579,18 @@ Store, but the following additional terms also apply to the Application:
 
 ## What else do I need to know?
 
-*Warranty Disclaimer.* Zulip and its licensors, suppliers, partners, parent,
+*Warranty Disclaimer.* Aloha and its licensors, suppliers, partners, parent,
 subsidiaries or affiliated entities, and each of their respective officers,
 directors, members, employees, consultants, contract employees, representatives
-and agents, and each of their respective successors and assigns (Zulip and all
-such parties together, the “Zulip Parties”) make no representations or
+and agents, and each of their respective successors and assigns (Aloha and all
+such parties together, the “Aloha Parties”) make no representations or
 warranties concerning the Services, including without limitation regarding any
-Content contained in or accessed through the Services, and the Zulip Parties
+Content contained in or accessed through the Services, and the Aloha Parties
 will not be responsible or liable for the accuracy, copyright compliance,
 legality, or decency of material contained in or accessed through the Services
 or any claims, actions, suits, procedures, costs, expenses, damages or
 liabilities arising out of use of, or in any way related to your participation
-in, the Services. The Zulip Parties make no representations or warranties
+in, the Services. The Aloha Parties make no representations or warranties
 regarding suggestions or recommendations of services or products offered or
 purchased through or in connection with the Services. THE SERVICES AND CONTENT
 ARE PROVIDED BY ZULIP (AND ITS LICENSORS AND SUPPLIERS) ON AN “AS-IS” BASIS,
@@ -616,7 +616,7 @@ INCIDENTAL OR CONSEQUENTIAL OR CERTAIN OTHER DAMAGES, SO THE ABOVE LIMITATION
 AND EXCLUSIONS MAY NOT APPLY TO YOU.
 
 *Indemnity*. To the fullest extent allowed by applicable law, you agree to
-indemnify and hold the Zulip Parties harmless from and against any and all
+indemnify and hold the Aloha Parties harmless from and against any and all
 claims, liabilities, damages (actual and consequential), losses and expenses
 (including attorneys’ fees) arising from or in any way related to any claims
 relating to (a) your use of the Services (including any actions taken by a third
@@ -624,7 +624,7 @@ party using your account), and (b) your violation of these Terms.
 
 *Assignment*. You may not assign, delegate or transfer these Terms or your
 rights or obligations hereunder, or your Services account, in any way (by
-operation of law or otherwise) without Zulip's prior written consent. We may
+operation of law or otherwise) without Aloha's prior written consent. We may
 transfer, assign, or delegate these Terms and our rights and obligations without
 consent.
 
@@ -634,9 +634,9 @@ California, without regard to the conflicts of laws provisions thereof.
 
 *Arbitration Agreement.* Please read the following ARBITRATION AGREEMENT
 carefully because it requires you to arbitrate certain disputes and claims with
-Zulip and limits the manner in which you can seek relief from Zulip. Both you
-and Zulip acknowledge and agree that for the purposes of any dispute arising out
-of or relating to the subject matter of these Terms, Zulip's officers,
+Aloha and limits the manner in which you can seek relief from Aloha. Both you
+and Aloha acknowledge and agree that for the purposes of any dispute arising out
+of or relating to the subject matter of these Terms, Aloha's officers,
 directors, employees and independent contractors (“Personnel”) are third-party
 beneficiaries of these Terms, and that upon your acceptance of these Terms,
 Personnel will have the right (and will be deemed to have accepted the right) to
@@ -657,11 +657,11 @@ enforce these Terms against you as the third-party beneficiary hereof.
   such arbitrator may be entered in any court of competent jurisdiction.
 
 * (b) *Costs of Arbitration*. The Rules will govern payment of all arbitration
-  fees. Zulip will pay all arbitration fees for claims less than seventy-five
-  thousand ($75,000) dollars. Zulip will not seek its attorneys’ fees and costs
+  fees. Aloha will pay all arbitration fees for claims less than seventy-five
+  thousand ($75,000) dollars. Aloha will not seek its attorneys’ fees and costs
   in arbitration unless the arbitrator determines that your claim is frivolous.
 
-* (c) *Small Claims Court; Infringement*. Either you or Zulip may assert claims,
+* (c) *Small Claims Court; Infringement*. Either you or Aloha may assert claims,
   if they qualify, in small claims court in San Francisco County, California or
   any United States county where you live or work. Furthermore, notwithstanding
   the foregoing obligation to arbitrate disputes, each party shall have the
@@ -672,10 +672,10 @@ enforce these Terms against you as the third-party beneficiary hereof.
 
 * (d) *Waiver of Jury Trial*. YOU AND ZULIP WAIVE ANY CONSTITUTIONAL AND
   STATUTORY RIGHTS TO GO TO COURT AND HAVE A TRIAL IN FRONT OF A JUDGE OR JURY.
-  You and Zulip are instead choosing to have claims and disputes resolved by
+  You and Aloha are instead choosing to have claims and disputes resolved by
   arbitration. Arbitration procedures are typically more limited, more
   efficient, and less costly than rules applicable in court and are subject to
-  very limited review by a court. In any litigation between you and Zulip over
+  very limited review by a court. In any litigation between you and Aloha over
   whether to vacate or enforce an arbitration award, YOU AND ZULIP WAIVE ALL
   RIGHTS TO A JURY TRIAL, and elect instead to have the dispute be resolved by a
   judge.
@@ -685,7 +685,7 @@ enforce these Terms against you as the third-party beneficiary hereof.
   INDIVIDUAL BASIS AND NOT ON A CLASS BASIS. CLAIMS OF MORE THAN ONE CUSTOMER OR
   USER CANNOT BE ARBITRATED OR LITIGATED JOINTLY OR CONSOLIDATED WITH THOSE OF
   ANY OTHER CUSTOMER OR USER. If however, this waiver of class or consolidated
-  actions is deemed invalid or unenforceable, neither you nor Zulip is entitled
+  actions is deemed invalid or unenforceable, neither you nor Aloha is entitled
   to arbitration; instead all claims and disputes will be resolved in a court as
   set forth in (g) below.
 
@@ -699,9 +699,9 @@ enforce these Terms against you as the third-party beneficiary hereof.
 
 * (g) *Exclusive Venue*. If you send the opt-out notice in (f), and/or in any
   circumstances where the foregoing arbitration agreement permits either you or
-  Zulip to litigate any dispute arising out of or relating to the subject matter
+  Aloha to litigate any dispute arising out of or relating to the subject matter
   of these Terms in court, then the foregoing arbitration agreement will not
-  apply to either party, and both you and Zulip agree that any judicial
+  apply to either party, and both you and Aloha agree that any judicial
   proceeding (other than small claims actions) will be brought in the state or
   federal courts located in, respectively, San Francisco County, California, or
   the federal district in which that county falls.
@@ -710,25 +710,25 @@ enforce these Terms against you as the third-party beneficiary hereof.
   brought on behalf of third parties contained above is found to be
   unenforceable, then all of the preceding language in this Arbitration
   Agreement section will be null and void. This arbitration agreement will
-  survive the termination of your relationship with Zulip.
+  survive the termination of your relationship with Aloha.
 
 *Miscellaneous*. You will be responsible for paying, withholding, filing, and
 reporting all taxes, duties, and other governmental assessments associated with
-your activity in connection with the Services, provided that Zulip may, in its
+your activity in connection with the Services, provided that Aloha may, in its
 sole discretion, do any of the foregoing on your behalf or for itself as it sees
 fit. The failure of either you or us to exercise, in any way, any right herein
 shall not be deemed a waiver of any further rights hereunder. If any provision
 of these Terms are found to be unenforceable or invalid, that provision will be
 limited or eliminated, to the minimum extent necessary, so that these Terms
-shall otherwise remain in full force and effect and enforceable. You and Zulip
+shall otherwise remain in full force and effect and enforceable. You and Aloha
 agree that these Terms are the complete and exclusive statement of the mutual
-understanding between you and Zulip, and that these Terms supersede and cancel
+understanding between you and Aloha, and that these Terms supersede and cancel
 all previous written and oral agreements, communications and other
 understandings relating to the subject matter of these Terms. You hereby
 acknowledge and agree that neither these Terms nor your use of the Services
-makes you an employee, agent, partner, or joint venture of Zulip, and you do not
-have any authority of any kind to bind Zulip in any respect whatsoever.
+makes you an employee, agent, partner, or joint venture of Aloha, and you do not
+have any authority of any kind to bind Aloha in any respect whatsoever.
 
 Except as expressly set forth in the sections above regarding the Apple
-Application and the arbitration agreement, you and Zulip agree there are no
+Application and the arbitration agreement, you and Aloha agree there are no
 third-party beneficiaries intended under these Terms.

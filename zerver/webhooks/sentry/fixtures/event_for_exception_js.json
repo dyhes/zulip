@@ -19,7 +19,7 @@
                 ["user", "ip:223.230.114.198"],
                 [
                     "url",
-                    "file:///mnt/data/Documents/Stuff%20for%20Zulip/Repos/sentry/js/trigger-exception-with-external.html"
+                    "file:///mnt/data/Documents/Stuff%20for%20Aloha/Repos/sentry/js/trigger-exception-with-external.html"
                 ]
             ],
             "_metrics": {
@@ -38,10 +38,10 @@
                     "name": "Firefox"
                 }
             },
-            "culprit": "?(/mnt/data/Documents/Stuff%20for%20Zulip/Repos/sentry/js/external.js)",
+            "culprit": "?(/mnt/data/Documents/Stuff%20for%20Aloha/Repos/sentry/js/external.js)",
             "errors": [
                 {
-                    "url": "file:///mnt/data/Documents/Stuff%20for%20Zulip/Repos/sentry/js/external.js",
+                    "url": "file:///mnt/data/Documents/Stuff%20for%20Aloha/Repos/sentry/js/external.js",
                     "type": "js_no_source"
                 }
             ],
@@ -51,8 +51,8 @@
                         "stacktrace": {
                             "frames": [
                                 {
-                                    "abs_path": "file:///mnt/data/Documents/Stuff%20for%20Zulip/Repos/sentry/js/external.js",
-                                    "filename": "/mnt/data/Documents/Stuff%20for%20Zulip/Repos/sentry/js/external.js",
+                                    "abs_path": "file:///mnt/data/Documents/Stuff%20for%20Aloha/Repos/sentry/js/external.js",
+                                    "filename": "/mnt/data/Documents/Stuff%20for%20Aloha/Repos/sentry/js/external.js",
                                     "colno": 25,
                                     "data": {
                                         "orig_in_app": 1
@@ -87,13 +87,13 @@
             "logger": "",
             "metadata": {
                 "type": "Error",
-                "filename": "/mnt/data/Documents/Stuff%20for%20Zulip/Repos/sentry/js/external.js",
+                "filename": "/mnt/data/Documents/Stuff%20for%20Aloha/Repos/sentry/js/external.js",
                 "value": "Something external broke."
             },
             "received": 1592406695.060435,
             "request": {
                 "cookies": null,
-                "url": "file:///mnt/data/Documents/Stuff%20for%20Zulip/Repos/sentry/js/trigger-exception-with-external.html",
+                "url": "file:///mnt/data/Documents/Stuff%20for%20Aloha/Repos/sentry/js/trigger-exception-with-external.html",
                 "headers": [
                     [
                         "User-Agent",

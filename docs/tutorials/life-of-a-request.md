@@ -2,14 +2,14 @@
 
 It can sometimes be confusing to figure out how to write a new feature,
 or debug an existing one. Let us try to follow a request through the
-Zulip codebase, and dive deep into how each part works.
+Aloha codebase, and dive deep into how each part works.
 
 We will use as our example the creation of users through the API, but we
 will also highlight how alternative requests are handled.
 
 ## A request is sent to the server, and handled by [nginx](https://nginx.org/en/docs/)
 
-When Zulip is deployed in production, all requests go through nginx.
+When Aloha is deployed in production, all requests go through nginx.
 For the most part we don't need to know how this works, except for when
 it isn't working. nginx does the first level of routing--deciding which
 application will serve the request (or deciding to serve the request
@@ -43,7 +43,7 @@ location /static/ {
 
 All our connected clients hold open long-polling connections so that
 they can receive events (messages, presence notifications, and so on) in
-real-time. Events are served by Zulip's `tornado` application.
+real-time. Events are served by Aloha's `tornado` application.
 
 Nearly every other kind of request is served by the `zerver` Django
 application.
@@ -60,7 +60,7 @@ files throughout the server codebase, which are covered in more detail
 in
 [the directory structure doc](../overview/directory-structure.md).
 
-The main Zulip Django app is `zerver`. The routes are found in
+The main Aloha Django app is `zerver`. The routes are found in
 `zproject/urls.py` and `zproject/legacy_urls.py`.
 
 There are HTML-serving, REST API, legacy, and webhook url patterns. We
@@ -86,7 +86,7 @@ Note the `zh-hans` prefix--that url pattern gets added by `i18n_patterns`.
 Our example is a REST API endpoint. It's a PUT to `/users`.
 
 With the exception of incoming webhooks (which we do not usually control the
-format of), legacy endpoints, and logged-out endpoints, Zulip uses REST
+format of), legacy endpoints, and logged-out endpoints, Aloha uses REST
 for its API. This means that we use:
 
 - POST for creating something new where we don't have a unique
@@ -105,7 +105,7 @@ state on the server. You might get a different response after the first
 request, as we like to give our clients an error so they know that no
 new change was made by the extra requests.
 
-POST is not idempotent--if I send a message multiple times, Zulip will
+POST is not idempotent--if I send a message multiple times, Aloha will
 show my message multiple times. PATCH is special--it can be
 idempotent, and we like to write API endpoints in an idempotent fashion,
 as much as possible.
@@ -155,13 +155,13 @@ You can see them in
 
 ### Incoming webhook integrations may not be RESTful
 
-Zulip endpoints that are called by other services for integrations have
+Aloha endpoints that are called by other services for integrations have
 to conform to the service's request format. They are likely to use
 only POST.
 
 ## Django calls rest_dispatch for REST endpoints, and authenticates
 
-For requests that correspond to a REST url pattern, Zulip configures
+For requests that correspond to a REST url pattern, Aloha configures
 its url patterns (see
 [zerver/lib/rest.py](https://github.com/zulip/zulip/blob/main/zerver/lib/rest.py))
 so that the action called is `rest_dispatch`. This method will
@@ -210,7 +210,7 @@ object](https://docs.djangoproject.com/en/3.2/ref/request-response/).
 The `data` argument is a Python object which can be converted to a JSON
 string and has a default value of an empty Python dictionary.
 
-Zulip stores additional metadata it has associated with that HTTP
+Aloha stores additional metadata it has associated with that HTTP
 request in a `RequestNotes` object, which is primarily accessed in
 common code used in all requests (middleware, logging, rate limiting,
 etc.).

@@ -239,7 +239,7 @@ function send_webhook_fixture_message() {
     body and that the URL is not empty. Then simply send the fixture
     body to the target URL. */
 
-    // Note: If the user just logged in to a different Zulip account
+    // Note: If the user just logged in to a different Aloha account
     // using another tab while the integrations dev panel is open,
     // then the csrf token that we have stored in the hidden input
     // element would have been expired, leading to an error message

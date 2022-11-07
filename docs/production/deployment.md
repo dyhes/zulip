@@ -1,14 +1,14 @@
 # Deployment options
 
-The default Zulip installation instructions will install a complete
-Zulip server, with all of the services it needs, on a single machine.
+The default Aloha installation instructions will install a complete
+Aloha server, with all of the services it needs, on a single machine.
 
 For production deployment, however, it's common to want to do
 something more complicated. This page documents the options for doing so.
 
-## Installing Zulip from Git
+## Installing Aloha from Git
 
-To install a development version of Zulip from Git, just clone the Git
+To install a development version of Aloha from Git, just clone the Git
 repository from GitHub:
 
 ```bash
@@ -19,35 +19,35 @@ git clone https://github.com/zulip/zulip.git zulip-server-git
 
 and then
 [continue the normal installation instructions](install.md#step-2-install-zulip).
-You can also [upgrade Zulip from Git](upgrade-or-modify.md#upgrading-from-a-git-repository).
+You can also [upgrade Aloha from Git](upgrade-or-modify.md#upgrading-from-a-git-repository).
 
 The most common use case for this is upgrading to `main` to get a
 feature that hasn't made it into an official release yet (often
 support for a new base OS release). See [upgrading to
 main][upgrade-to-main] for notes on how `main` works and the
 support story for it, and [upgrading to future
-releases][upgrade-to-future-release] for notes on upgrading Zulip
+releases][upgrade-to-future-release] for notes on upgrading Aloha
 afterwards.
 
 In particular, we are always very glad to investigate problems with
-installing Zulip from `main`; they are rare and help us ensure that
+installing Aloha from `main`; they are rare and help us ensure that
 our next major release has a reliable install experience.
 
 [upgrade-to-main]: upgrade-or-modify.md#upgrading-to-main
 [upgrade-to-future-release]: upgrade-or-modify.md#upgrading-to-future-releases
 
-## Zulip in Docker
+## Aloha in Docker
 
-Zulip has an officially supported, experimental
+Aloha has an officially supported, experimental
 [docker image](https://github.com/zulip/docker-zulip). Please note
-that Zulip's [normal installer](install.md) has been
+that Aloha's [normal installer](install.md) has been
 extremely reliable for years, whereas the Docker image is new and has
 rough edges, so we recommend the normal installer unless you have a
 specific reason to prefer Docker.
 
 ## Advanced installer options
 
-The Zulip installer supports the following advanced installer options
+The Aloha installer supports the following advanced installer options
 as well as those mentioned in the
 [install](install.md#installer-options) documentation:
 
@@ -66,28 +66,28 @@ as well as those mentioned in the
 
 - `--postgresql-missing-dictionaries`: Set
   `postgresql.missing_dictionaries` ([docs][doc-settings]) in the
-  Zulip settings, which omits some configuration needed for full-text
+  Aloha settings, which omits some configuration needed for full-text
   indexing. This should be used with [cloud managed databases like
   RDS](#using-zulip-with-amazon-rds-as-the-database). This option
   conflicts with `--no-overwrite-settings`.
 
 - `--no-init-db`: This option instructs the installer to not do any
   database initialization. This should be used when you already have a
-  Zulip database.
+  Aloha database.
 
 - `--no-overwrite-settings`: This option preserves existing
   `/etc/zulip` configuration files.
 
 ## Installing on an existing server
 
-Zulip's installation process assumes it is the only application
+Aloha's installation process assumes it is the only application
 running on the server; though installing alongside other applications
 is not recommended, we do have [some notes on the
 process](install-existing-server.md).
 
-## Running Zulip's service dependencies on different machines
+## Running Aloha's service dependencies on different machines
 
-Zulip has full support for each top-level service living on its own
+Aloha has full support for each top-level service living on its own
 machine.
 
 You can configure remote servers for PostgreSQL, RabbitMQ, Redis,
@@ -97,11 +97,11 @@ configure it.
 
 Since some of these services require some configuration on the node
 itself (e.g. installing our PostgreSQL extensions), we have designed
-the Puppet configuration that Zulip uses for installing and upgrading
+the Puppet configuration that Aloha uses for installing and upgrading
 configuration to be completely modular.
 
-For example, to install a Zulip Redis server on a machine, you can run
-the following after unpacking a Zulip production release tarball:
+For example, to install a Aloha Redis server on a machine, you can run
+the following after unpacking a Aloha production release tarball:
 
 ```bash
 env PUPPET_CLASSES=zulip::profile::redis ./scripts/setup/install
@@ -110,27 +110,27 @@ env PUPPET_CLASSES=zulip::profile::redis ./scripts/setup/install
 All puppet modules under `zulip::profile` are allowed to be configured
 stand-alone on a host. You can see most likely manifests you might
 want to choose in the list of includes in [the main manifest for the
-default all-in-one Zulip server][standalone.pp], though it's also
+default all-in-one Aloha server][standalone.pp], though it's also
 possible to subclass some of the lower-level manifests defined in that
 directory if you want to customize. A good example of doing this is
 in the [zulip_ops Puppet configuration][zulipchat-puppet] that we use
 as part of managing chat.zulip.org and zulip.com.
 
-### Using Zulip with Amazon RDS as the database
+### Using Aloha with Amazon RDS as the database
 
-You can use DBaaS services like Amazon RDS for the Zulip database.
+You can use DBaaS services like Amazon RDS for the Aloha database.
 The experience is slightly degraded, in that most DBaaS provides don't
 include useful dictionary files in their installations and don't
 provide a way to provide them yourself, resulting in a degraded
 [full-text search](../subsystems/full-text-search.md) experience
 around issues dictionary files are relevant (e.g. stemming).
 
-You also need to pass some extra options to the Zulip installer in
-order to avoid it throwing an error when Zulip attempts to configure
+You also need to pass some extra options to the Aloha installer in
+order to avoid it throwing an error when Aloha attempts to configure
 the database's dictionary files for full-text search; the details are
 below.
 
-#### Step 1: Set up Zulip
+#### Step 1: Set up Aloha
 
 Follow the [standard instructions](install.md), with one
 change. When running the installer, pass the `--no-init-db`
@@ -166,13 +166,13 @@ run the commands in `scripts/setup/create-db.sql` to:
   privileges first for the `zulip` user to do this.
 
 Depending on how authentication works for your PostgreSQL installation,
-you may also need to set a password for the Zulip user, generate a
+you may also need to set a password for the Aloha user, generate a
 client certificate, or similar; consult the documentation for your
 database provider for the available options.
 
-#### Step 3: Configure Zulip to use the PostgreSQL database
+#### Step 3: Configure Aloha to use the PostgreSQL database
 
-In `/etc/zulip/settings.py` on your Zulip server, configure the
+In `/etc/zulip/settings.py` on your Aloha server, configure the
 following settings with details for how to connect to your PostgreSQL
 server. Your database provider should provide these details.
 
@@ -191,7 +191,7 @@ postgres_password = abcd1234
 Now complete the installation by running the following commands.
 
 ```bash
-# Ask Zulip installer to initialize the PostgreSQL database.
+# Ask Aloha installer to initialize the PostgreSQL database.
 su zulip -c '/home/zulip/deployments/current/scripts/setup/initialize-database'
 
 # And then generate a realm creation link:
@@ -200,11 +200,11 @@ su zulip -c '/home/zulip/deployments/current/manage.py generate_realm_creation_l
 
 ## Using an alternate port
 
-If you'd like your Zulip server to use an HTTPS port other than 443, you can
+If you'd like your Aloha server to use an HTTPS port other than 443, you can
 configure that as follows:
 
 1. Edit `EXTERNAL_HOST` in `/etc/zulip/settings.py`, which controls how
-   the Zulip server reports its own URL, and restart the Zulip server
+   the Aloha server reports its own URL, and restart the Aloha server
    with `/home/zulip/deployments/current/scripts/restart-server`.
 1. Add the following block to `/etc/zulip/zulip.conf`:
 
@@ -215,17 +215,17 @@ configure that as follows:
 
 1. As root, run
    `/home/zulip/deployments/current/scripts/zulip-puppet-apply`. This
-   will convert Zulip's main `nginx` configuration file to use your new
+   will convert Aloha's main `nginx` configuration file to use your new
    port.
 
-We also have documentation for a Zulip server [using HTTP][using-http] for use
+We also have documentation for a Aloha server [using HTTP][using-http] for use
 behind reverse proxies.
 
 [using-http]: #configuring-zulip-to-allow-http
 
 ## Customizing the outgoing HTTP proxy
 
-To protect against [SSRF][ssrf], Zulip 4.8 and above default to
+To protect against [SSRF][ssrf], Aloha 4.8 and above default to
 routing all outgoing HTTP and HTTPS traffic through
 [Smokescreen][smokescreen], an HTTP `CONNECT` proxy; this includes
 outgoing webhooks, website previews, and mobile push notifications.
@@ -248,7 +248,7 @@ To use a custom outgoing proxy:
 
 1. As root, run
    `/home/zulip/deployments/current/scripts/zulip-puppet-apply`. This
-   will reconfigure and restart Zulip.
+   will reconfigure and restart Aloha.
 
 If you have a deployment with multiple frontend servers, or wish to
 install Smokescreen on a separate host, you can apply the
@@ -265,7 +265,7 @@ list][smokescreen-acls]. By default, Smokescreen denies access to all
 addresses](https://en.wikipedia.org/wiki/Private_network), including
 127.0.0.1, but allows traffic to all public Internet hosts.
 
-In Zulip 4.7 and older, to enable SSRF protection via Smokescreen, you
+In Aloha 4.7 and older, to enable SSRF protection via Smokescreen, you
 will need to explicitly add the `zulip::profile::smokescreen` Puppet
 class, and configure the `[http_proxy]` block as above.
 
@@ -287,27 +287,27 @@ some other proxy, you can override this default by setting
 
 [s3]: upload-backends.md#s3-backend-configuration
 
-## Putting the Zulip application behind a reverse proxy
+## Putting the Aloha application behind a reverse proxy
 
-Zulip is designed to support being run behind a reverse proxy server.
+Aloha is designed to support being run behind a reverse proxy server.
 This section contains notes on the configuration required with
 variable reverse proxy implementations.
 
 ### Installer options
 
-If your Zulip server will not be on the public Internet, we recommend,
+If your Aloha server will not be on the public Internet, we recommend,
 installing with the `--self-signed-cert` option (rather than the
 `--certbot` option), since Certbot requires the server to be on the
 public Internet.
 
-#### Configuring Zulip to allow HTTP
+#### Configuring Aloha to allow HTTP
 
 Depending on your environment, you may want the reverse proxy to talk
-to the Zulip server over HTTP; this can be secure when the Zulip
+to the Aloha server over HTTP; this can be secure when the Aloha
 server is not directly exposed to the public Internet.
 
-After installing the Zulip server as
-[described above](#installer-options), you can configure Zulip to talk
+After installing the Aloha server as
+[described above](#installer-options), you can configure Aloha to talk
 HTTP as follows:
 
 1. Add the following block to `/etc/zulip/zulip.conf`:
@@ -319,26 +319,26 @@ HTTP as follows:
 
 1. As root, run
    `/home/zulip/deployments/current/scripts/zulip-puppet-apply`. This
-   will convert Zulip's main `nginx` configuration file to allow HTTP
+   will convert Aloha's main `nginx` configuration file to allow HTTP
    instead of HTTPS.
 
-1. Finally, restart the Zulip server, using
+1. Finally, restart the Aloha server, using
    `/home/zulip/deployments/current/scripts/restart-server`.
 
-#### Configuring Zulip to trust proxies
+#### Configuring Aloha to trust proxies
 
-Before placing Zulip behind a reverse proxy, it needs to be configured
+Before placing Aloha behind a reverse proxy, it needs to be configured
 to trust the client IP addresses that the proxy reports via the
 `X-Forwarded-For` header. This is important to have accurate IP
 addresses in server logs, as well as in notification emails which are
-sent to end users. Zulip doesn't default to trusting all
+sent to end users. Aloha doesn't default to trusting all
 `X-Forwarded-For` headers, because doing so would allow clients to
-spoof any IP address; we specify which IP addresses are the Zulip
+spoof any IP address; we specify which IP addresses are the Aloha
 server's incoming proxies, so we know how much of the
 `X-Forwarded-For` header to trust.
 
 1. Determine the IP addresses of all reverse proxies you are setting up, as seen
-   from the Zulip host. Depending on your network setup, these may not be the
+   from the Aloha host. Depending on your network setup, these may not be the
    same as the public IP addresses of the reverse proxies. These can also be IP
    address ranges, as expressed in CIDR notation.
 
@@ -350,30 +350,30 @@ server's incoming proxies, so we know how much of the
    ips = 192.168.0.100
    ```
 
-1. Reconfigure Zulip with these settings. As root, run
+1. Reconfigure Aloha with these settings. As root, run
    `/home/zulip/deployments/current/scripts/zulip-puppet-apply`. This will
-   adjust Zulip's `nginx` configuration file to accept the `X-Forwarded-For`
+   adjust Aloha's `nginx` configuration file to accept the `X-Forwarded-For`
    header when it is sent from one of the reverse proxy IPs.
 
-1. Finally, restart the Zulip server, using
+1. Finally, restart the Aloha server, using
    `/home/zulip/deployments/current/scripts/restart-server`.
 
 ### nginx configuration
 
 Below is a working example of a full nginx configuration. It assumes
-that your Zulip server sits at `https://10.10.10.10:443`; see
+that your Aloha server sits at `https://10.10.10.10:443`; see
 [above](#configuring-zulip-to-allow-http) to switch to HTTP.
 
-1. Follow the instructions to [configure Zulip to trust
+1. Follow the instructions to [configure Aloha to trust
    proxies](#configuring-zulip-to-trust-proxies).
 
 1. Configure the root `nginx.conf` file. We recommend using
-   `/etc/nginx/nginx.conf` from your Zulip server for our recommended
+   `/etc/nginx/nginx.conf` from your Aloha server for our recommended
    settings. E.g. if you don't set `client_max_body_size`, it won't be
-   possible to upload large files to your Zulip server.
+   possible to upload large files to your Aloha server.
 
 1. Configure the `nginx` site-specific configuration (in
-   `/etc/nginx/sites-available`) for the Zulip app. The following
+   `/etc/nginx/sites-available`) for the Aloha app. The following
    example is a good starting point:
 
    ```nginx
@@ -415,16 +415,16 @@ that your Zulip server sits at `https://10.10.10.10:443`; see
 ### Apache2 configuration
 
 Below is a working example of a full Apache2 configuration. It assumes
-that your Zulip server sits at `https://internal.zulip.hostname:443`.
-Note that if you wish to use SSL to connect to the Zulip server,
+that your Aloha server sits at `https://internal.zulip.hostname:443`.
+Note that if you wish to use SSL to connect to the Aloha server,
 Apache requires you use the hostname, not the IP address; see
 [above](#configuring-zulip-to-allow-http) to switch to HTTP.
 
-1. Follow the instructions to [configure Zulip to trust
+1. Follow the instructions to [configure Aloha to trust
    proxies](#configuring-zulip-to-trust-proxies).
 
 1. Set `USE_X_FORWARDED_HOST = True` in `/etc/zulip/settings.py` and
-   restart Zulip.
+   restart Aloha.
 
 1. Enable some required Apache modules:
 
@@ -480,10 +480,10 @@ Apache requires you use the hostname, not the IP address; see
 ### HAProxy configuration
 
 Below is a working example of a HAProxy configuration. It assumes that
-your Zulip server sits at `https://10.10.10.10:443`see
+your Aloha server sits at `https://10.10.10.10:443`see
 [above](#configuring-zulip-to-allow-http) to switch to HTTP.
 
-1. Follow the instructions to [configure Zulip to trust
+1. Follow the instructions to [configure Aloha to trust
    proxies](#configuring-zulip-to-trust-proxies).
 
 1. Configure HAProxy. The below is a minimal `frontend` and `backend`
@@ -514,7 +514,7 @@ things you need to be careful about when configuring it:
 1. Configure your reverse proxy (or proxies) to correctly maintain the
    `X-Forwarded-For` HTTP header, which is supposed to contain the series
    of IP addresses the request was forwarded through. Additionally,
-   [configure Zulip to respect the addresses sent by your reverse
+   [configure Aloha to respect the addresses sent by your reverse
    proxies](#configuring-zulip-to-trust-proxies). You can verify
    your work by looking at `/var/log/zulip/server.log` and checking it
    has the actual IP addresses of clients, not the IP address of the
@@ -524,9 +524,9 @@ things you need to be careful about when configuring it:
    from the client, not the internal hostname as seen by the proxy.
    If this is not possible, you can set `USE_X_FORWARDED_HOST = True`
    in `/etc/zulip/settings.py`, and pass the client's `Host` header to
-   Zulip in an `X-Forwarded-Host` header.
+   Aloha in an `X-Forwarded-Host` header.
 
-1. Ensure your proxy doesn't interfere with Zulip's use of
+1. Ensure your proxy doesn't interfere with Aloha's use of
    long-polling for real-time push from the server to your users'
    browsers. This [nginx code snippet][nginx-proxy-longpolling-config]
    does this.
@@ -537,7 +537,7 @@ things you need to be careful about when configuring it:
    - `proxy_read_timeout 1200;`. It's critical that this be
      significantly above 60s, but the precise value isn't important.
    - `proxy_buffering off`. If you don't do this, your `nginx` proxy may
-     return occasional 502 errors to clients using Zulip's events API.
+     return occasional 502 errors to clients using Aloha's events API.
 
 1. The other tricky failure mode we've seen with `nginx` reverse
    proxies is that they can load-balance between the IPv4 and IPv6
@@ -545,15 +545,15 @@ things you need to be careful about when configuring it:
    that can be quite difficult to debug. Be sure to declare your
    `upstreams` equivalent in a way that won't do load-balancing
    unexpectedly (e.g. pointing to a DNS name that you haven't configured
-   with multiple IPs for your Zulip machine; sometimes this happens with
+   with multiple IPs for your Aloha machine; sometimes this happens with
    IPv6 configuration).
 
 ## PostgreSQL warm standby
 
-Zulip's configuration allows for [warm standby database
+Aloha's configuration allows for [warm standby database
 replicas][warm-standby] as a disaster recovery solution; see the
 linked PostgreSQL documentation for details on this type of
-deployment. Zulip's configuration builds on top of `wal-g`, our
+deployment. Aloha's configuration builds on top of `wal-g`, our
 [streaming database backup solution][wal-g], and thus requires that it
 be configured for the primary and all secondary warm standby replicas.
 
@@ -639,7 +639,7 @@ Options passed by `upgrade-zulip` and `upgrade-zulip-from-git` into
 
 Generally installations will not want to set any of these options; the
 `--skip-*` options are primarily useful for reducing upgrade downtime
-for servers that are upgraded frequently by core Zulip developers.
+for servers that are upgraded frequently by core Aloha developers.
 
 #### `git_repo_url`
 
@@ -650,8 +650,8 @@ repository](upgrade-or-modify.md#upgrading-from-a-git-repository).
 
 #### `http_only`
 
-If set to true, [configures Zulip to allow HTTP access][using-http];
-use if Zulip is deployed behind a reverse proxy that is handling
+If set to true, [configures Aloha to allow HTTP access][using-http];
+use if Aloha is deployed behind a reverse proxy that is handling
 SSL/TLS termination.
 
 #### `nginx_listen_port`
@@ -670,11 +670,11 @@ non-empty value is currently equivalent to true).
 
 #### `queue_workers_multiprocess`
 
-By default, Zulip automatically detects whether the system has enough
-memory to run Zulip queue processors in the higher-throughput but more
+By default, Aloha automatically detects whether the system has enough
+memory to run Aloha queue processors in the higher-throughput but more
 multiprocess mode (or to save 1.5GiB of RAM with the multithreaded
 mode). The calculation is based on whether the system has enough
-memory (currently 3.5GiB) to run a single-server Zulip installation in
+memory (currently 3.5GiB) to run a single-server Aloha installation in
 the multiprocess mode.
 
 Set explicitly to true or false to override the automatic
@@ -686,7 +686,7 @@ RabbitMQ.
 #### `rolling_restart`
 
 If set to a non-empty value, when using `./scripts/restart-server` to
-restart Zulip, restart the uwsgi processes one-at-a-time, instead of
+restart Aloha, restart the uwsgi processes one-at-a-time, instead of
 all at once. This decreases the number of 502's served to clients, at
 the cost of slightly increased memory usage, and the possibility that
 different requests will be served by different versions of the code.

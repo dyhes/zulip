@@ -93,7 +93,7 @@ and do not appear in your list of streams.
 
 ## Access a PM or group PM
 
-If using Zulip in a browser or desktop, there are several ways to access an existing PM or group PM.
+If using Aloha in a browser or desktop, there are several ways to access an existing PM or group PM.
 
 * Click on **Private messages** near the top of the left sidebar to access
   recent conversations.

@@ -12,14 +12,14 @@ import type {
 
 /*
     This file contains translations between the integer values used in
-    the Zulip API to describe values in dropdowns, radio buttons, and
+    the Aloha API to describe values in dropdowns, radio buttons, and
     similar widgets and the user-facing strings that should be used to
     describe them, as well as data details like sort orders that may
     be useful for some widgets.
 
     We plan to eventually transition much of this file to have a more
     standard format and then to be populated using data sent from the
-    Zulip server in `page_params`, so that the data is available for
+    Aloha server in `page_params`, so that the data is available for
     other parts of the ecosystem to use (including the mobile apps and
     API documentation) without a ton of copying.
 */
@@ -514,7 +514,7 @@ export const notification_settings_labels = {
         defaultMessage: "Send email notifications for new logins to my account",
     }),
     enable_marketing_emails: $t({
-        defaultMessage: "Send me Zulip's low-traffic newsletter (a few emails a year)",
+        defaultMessage: "Send me Aloha's low-traffic newsletter (a few emails a year)",
     }),
     message_content_in_email_notifications: $t({
         defaultMessage: "Include message content in message notification emails",

@@ -57,7 +57,7 @@ from zerver.lib.remote_server import (
 )
 from zerver.lib.response import json_response_from_error
 from zerver.lib.soft_deactivation import do_soft_deactivate_users
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import mock_queue_publish
 from zerver.lib.timestamp import datetime_to_timestamp
 from zerver.lib.user_groups import create_user_group
@@ -76,7 +76,7 @@ from zerver.models import (
     get_stream,
     get_user_profile_by_id,
 )
-from zilencer.models import RemoteZulipServerAuditLog
+from zilencer.models import RemoteAlohaServerAuditLog
 
 if settings.ZILENCER_ENABLED:
     from zilencer.models import (
@@ -84,15 +84,15 @@ if settings.ZILENCER_ENABLED:
         RemotePushDeviceToken,
         RemoteRealmAuditLog,
         RemoteRealmCount,
-        RemoteZulipServer,
+        RemoteAlohaServer,
     )
 
 
 @skipUnless(settings.ZILENCER_ENABLED, "requires zilencer")
-class BouncerTestCase(ZulipTestCase):
+class BouncerTestCase(AlohaTestCase):
     def setUp(self) -> None:
         self.server_uuid = "6cde5f7a-1f7e-4978-9716-49f69ebfc9fe"
-        self.server = RemoteZulipServer(
+        self.server = RemoteAlohaServer(
             uuid=self.server_uuid,
             api_key="magic_secret_api_key",
             hostname="demo.example.com",
@@ -102,7 +102,7 @@ class BouncerTestCase(ZulipTestCase):
         super().setUp()
 
     def tearDown(self) -> None:
-        RemoteZulipServer.objects.filter(uuid=self.server_uuid).delete()
+        RemoteAlohaServer.objects.filter(uuid=self.server_uuid).delete()
         super().tearDown()
 
     def request_callback(self, request: PreparedRequest) -> Tuple[int, ResponseHeaders, bytes]:
@@ -163,7 +163,7 @@ class PushBouncerNotificationTest(BouncerTestCase):
             dict(user_id=15, token=token, token_kind=token_kind),
             subdomain="",
         )
-        self.assert_json_error(result, "Must validate with valid Zulip server API key")
+        self.assert_json_error(result, "Must validate with valid Aloha server API key")
 
         # Try with deactivated remote servers
         self.server.deactivated = True
@@ -216,7 +216,7 @@ class PushBouncerNotificationTest(BouncerTestCase):
             endpoint,
             dict(user_id=user_id, token_kind=token_kind, token=token),
         )
-        self.assert_json_error(result, "Must validate with valid Zulip server API key")
+        self.assert_json_error(result, "Must validate with valid Aloha server API key")
 
         result = self.uuid_post(
             self.server_uuid,
@@ -236,7 +236,7 @@ class PushBouncerNotificationTest(BouncerTestCase):
         )
         self.assert_json_error(
             result,
-            "Zulip server auth failure: key does not match role 6cde5f7a-1f7e-4978-9716-49f69ebfc9fe",
+            "Aloha server auth failure: key does not match role 6cde5f7a-1f7e-4978-9716-49f69ebfc9fe",
             status_code=401,
         )
 
@@ -251,7 +251,7 @@ class PushBouncerNotificationTest(BouncerTestCase):
         )
         self.assert_json_error(
             result,
-            "Zulip server auth failure: invalid_uuid is not registered -- did you run `manage.py register_server`?",
+            "Aloha server auth failure: invalid_uuid is not registered -- did you run `manage.py register_server`?",
             status_code=401,
         )
         del self.API_KEYS["invalid_uuid"]
@@ -266,7 +266,7 @@ class PushBouncerNotificationTest(BouncerTestCase):
         )
         self.assert_json_error(
             result,
-            f"Zulip server auth failure: {credentials_uuid} is not registered -- did you run `manage.py register_server`?",
+            f"Aloha server auth failure: {credentials_uuid} is not registered -- did you run `manage.py register_server`?",
             status_code=401,
         )
 
@@ -305,7 +305,7 @@ class PushBouncerNotificationTest(BouncerTestCase):
 
     def test_send_notification_endpoint(self) -> None:
         hamlet = self.example_user("hamlet")
-        server = RemoteZulipServer.objects.get(uuid=self.server_uuid)
+        server = RemoteAlohaServer.objects.get(uuid=self.server_uuid)
         token = "aaaa"
         android_tokens = []
         for i in ["aa", "bb"]:
@@ -423,7 +423,7 @@ class PushBouncerNotificationTest(BouncerTestCase):
         self.add_mock_response()
         user = self.example_user("cordelia")
         self.login_user(user)
-        server = RemoteZulipServer.objects.get(uuid=self.server_uuid)
+        server = RemoteAlohaServer.objects.get(uuid=self.server_uuid)
 
         endpoints = [
             ("/json/users/me/apns_device_token", "apple-tokenaz", RemotePushDeviceToken.APNS),
@@ -739,13 +739,13 @@ class AnalyticsBouncerTest(BouncerTestCase):
         self.assertEqual(m.output, ["WARNING:root:Invalid property invalid count stat"])
         self.assertEqual(RemoteRealmCount.objects.count(), 0)
 
-    # Servers on Zulip 2.0.6 and earlier only send realm_counts and installation_counts data,
+    # Servers on Aloha 2.0.6 and earlier only send realm_counts and installation_counts data,
     # and don't send realmauditlog_rows. Make sure that continues to work.
     @override_settings(PUSH_NOTIFICATION_BOUNCER_URL="https://push.zulip.org.example.com")
     @responses.activate
     def test_old_two_table_format(self) -> None:
         self.add_mock_response()
-        # Send fixture generated with Zulip 2.0 code
+        # Send fixture generated with Aloha 2.0 code
         send_to_push_bouncer(
             "POST",
             "server/analytics",
@@ -889,13 +889,13 @@ class PushNotificationTest(BouncerTestCase):
                 kind=RemotePushDeviceToken.APNS,
                 token=hex_to_b64(id_token),
                 user_id=self.user_profile.id,
-                server=RemoteZulipServer.objects.get(uuid=self.server_uuid),
+                server=RemoteAlohaServer.objects.get(uuid=self.server_uuid),
             )
             RemotePushDeviceToken.objects.create(
                 kind=RemotePushDeviceToken.APNS,
                 token=hex_to_b64(uuid_token),
                 user_uuid=self.user_profile.uuid,
-                server=RemoteZulipServer.objects.get(uuid=self.server_uuid),
+                server=RemoteAlohaServer.objects.get(uuid=self.server_uuid),
             )
 
     def setup_gcm_tokens(self) -> None:
@@ -914,13 +914,13 @@ class PushNotificationTest(BouncerTestCase):
                 kind=RemotePushDeviceToken.GCM,
                 token=hex_to_b64(id_token),
                 user_id=self.user_profile.id,
-                server=RemoteZulipServer.objects.get(uuid=self.server_uuid),
+                server=RemoteAlohaServer.objects.get(uuid=self.server_uuid),
             )
             RemotePushDeviceToken.objects.create(
                 kind=RemotePushDeviceToken.GCM,
                 token=hex_to_b64(uuid_token),
                 user_uuid=self.user_profile.uuid,
-                server=RemoteZulipServer.objects.get(uuid=self.server_uuid),
+                server=RemoteAlohaServer.objects.get(uuid=self.server_uuid),
             )
 
 
@@ -2165,7 +2165,7 @@ class TestGetGCMPayload(PushNotificationTest):
         )
 
 
-class TestSendNotificationsToBouncer(ZulipTestCase):
+class TestSendNotificationsToBouncer(AlohaTestCase):
     @mock.patch("zerver.lib.remote_server.send_to_push_bouncer")
     def test_send_notifications_to_bouncer(self, mock_send: mock.MagicMock) -> None:
         mock_send.return_value = {"total_android_devices": 1, "total_apple_devices": 3}
@@ -2190,7 +2190,7 @@ class TestSendNotificationsToBouncer(ZulipTestCase):
 
 
 @override_settings(PUSH_NOTIFICATION_BOUNCER_URL="https://push.zulip.org.example.com")
-class TestSendToPushBouncer(ZulipTestCase):
+class TestSendToPushBouncer(AlohaTestCase):
     def add_mock_response(
         self, body: bytes = orjson.dumps({"msg": "error"}), status: int = 200
     ) -> None:
@@ -2215,17 +2215,17 @@ class TestSendToPushBouncer(ZulipTestCase):
 
     @responses.activate
     def test_400_error_invalid_server_key(self) -> None:
-        from zilencer.auth import InvalidZulipServerError
+        from zilencer.auth import InvalidAlohaServerError
 
-        # This is the exception our decorator uses for an invalid Zulip server
-        error_response = json_response_from_error(InvalidZulipServerError("testRole"))
+        # This is the exception our decorator uses for an invalid Aloha server
+        error_response = json_response_from_error(InvalidAlohaServerError("testRole"))
         self.add_mock_response(body=error_response.content, status=error_response.status_code)
         with self.assertRaises(PushNotificationBouncerException) as exc:
             send_to_push_bouncer("POST", "register", {"msg": "true"})
         self.assertEqual(
             str(exc.exception),
             "Push notifications bouncer error: "
-            "Zulip server auth failure: testRole is not registered -- did you run `manage.py register_server`?",
+            "Aloha server auth failure: testRole is not registered -- did you run `manage.py register_server`?",
         )
 
     @responses.activate
@@ -2369,7 +2369,7 @@ class TestPushApi(BouncerTestCase):
         self.assertEqual(PushDeviceToken.objects.all().count(), 0)
 
 
-class GCMParseOptionsTest(ZulipTestCase):
+class GCMParseOptionsTest(AlohaTestCase):
     def test_invalid_option(self) -> None:
         with self.assertRaises(JsonableError):
             parse_gcm_options({"invalid": True}, {})
@@ -2541,7 +2541,7 @@ class GCMSendTest(PushNotificationTest):
             self.assertEqual(msg, logger.output[0])
 
 
-class TestClearOnRead(ZulipTestCase):
+class TestClearOnRead(AlohaTestCase):
     def test_mark_stream_as_read(self) -> None:
         n_msgs = 3
 
@@ -2570,7 +2570,7 @@ class TestClearOnRead(ZulipTestCase):
         self.assertEqual({id for g in groups for id in g}, set(message_ids))
 
 
-class TestPushNotificationsContent(ZulipTestCase):
+class TestPushNotificationsContent(AlohaTestCase):
     def test_fixtures(self) -> None:
         fixtures = orjson.loads(self.fixture_data("markdown_test_cases.json"))
         tests = fixtures["regular_tests"]
@@ -2609,7 +2609,7 @@ class TestPushNotificationsContent(ZulipTestCase):
 
 
 @skipUnless(settings.ZILENCER_ENABLED, "requires zilencer")
-class PushBouncerSignupTest(ZulipTestCase):
+class PushBouncerSignupTest(AlohaTestCase):
     def test_deactivate_remote_server(self) -> None:
         zulip_org_id = str(uuid.uuid4())
         zulip_org_key = get_random_string(64)
@@ -2621,15 +2621,15 @@ class PushBouncerSignupTest(ZulipTestCase):
         )
         result = self.client_post("/api/v1/remotes/server/register", request)
         self.assert_json_success(result)
-        server = RemoteZulipServer.objects.get(uuid=zulip_org_id)
+        server = RemoteAlohaServer.objects.get(uuid=zulip_org_id)
         self.assertEqual(server.hostname, "example.com")
         self.assertEqual(server.contact_email, "server-admin@example.com")
 
         result = self.uuid_post(zulip_org_id, "/api/v1/remotes/server/deactivate", subdomain="")
         self.assert_json_success(result)
 
-        server = RemoteZulipServer.objects.get(uuid=zulip_org_id)
-        remote_realm_audit_log = RemoteZulipServerAuditLog.objects.filter(
+        server = RemoteAlohaServer.objects.get(uuid=zulip_org_id)
+        remote_realm_audit_log = RemoteAlohaServerAuditLog.objects.filter(
             event_type=RealmAuditLog.REMOTE_SERVER_DEACTIVATED
         ).last()
         assert remote_realm_audit_log is not None
@@ -2670,7 +2670,7 @@ class PushBouncerSignupTest(ZulipTestCase):
         self.assert_json_error(result, "Enter a valid email address.")
 
     def test_push_signup_invalid_zulip_org_id(self) -> None:
-        zulip_org_id = "x" * RemoteZulipServer.UUID_LENGTH
+        zulip_org_id = "x" * RemoteAlohaServer.UUID_LENGTH
         zulip_org_key = get_random_string(64)
         request = dict(
             zulip_org_id=zulip_org_id,
@@ -2700,7 +2700,7 @@ class PushBouncerSignupTest(ZulipTestCase):
         )
         result = self.client_post("/api/v1/remotes/server/register", request)
         self.assert_json_success(result)
-        server = RemoteZulipServer.objects.get(uuid=zulip_org_id)
+        server = RemoteAlohaServer.objects.get(uuid=zulip_org_id)
         self.assertEqual(server.hostname, "example.com")
         self.assertEqual(server.contact_email, "server-admin@example.com")
 
@@ -2713,7 +2713,7 @@ class PushBouncerSignupTest(ZulipTestCase):
         )
         result = self.client_post("/api/v1/remotes/server/register", request)
         self.assert_json_success(result)
-        server = RemoteZulipServer.objects.get(uuid=zulip_org_id)
+        server = RemoteAlohaServer.objects.get(uuid=zulip_org_id)
         self.assertEqual(server.hostname, "zulip.example.com")
         self.assertEqual(server.contact_email, "server-admin@example.com")
 
@@ -2727,7 +2727,7 @@ class PushBouncerSignupTest(ZulipTestCase):
         )
         result = self.client_post("/api/v1/remotes/server/register", request)
         self.assert_json_success(result)
-        server = RemoteZulipServer.objects.get(uuid=zulip_org_id)
+        server = RemoteAlohaServer.objects.get(uuid=zulip_org_id)
         self.assertEqual(server.hostname, "example.com")
         self.assertEqual(server.contact_email, "server-admin@example.com")
         zulip_org_key = request["new_org_key"]
@@ -2742,7 +2742,7 @@ class PushBouncerSignupTest(ZulipTestCase):
         )
         result = self.client_post("/api/v1/remotes/server/register", request)
         self.assert_json_success(result)
-        server = RemoteZulipServer.objects.get(uuid=zulip_org_id)
+        server = RemoteAlohaServer.objects.get(uuid=zulip_org_id)
         self.assertEqual(server.hostname, "zulip.example.com")
         self.assertEqual(server.contact_email, "new-server-admin@example.com")
 
@@ -2755,11 +2755,11 @@ class PushBouncerSignupTest(ZulipTestCase):
         )
         result = self.client_post("/api/v1/remotes/server/register", request)
         self.assert_json_error(
-            result, f"Zulip server auth failure: key does not match role {zulip_org_id}"
+            result, f"Aloha server auth failure: key does not match role {zulip_org_id}"
         )
 
 
-class TestUserPushIndentityCompat(ZulipTestCase):
+class TestUserPushIndentityCompat(AlohaTestCase):
     def test_filter_q(self) -> None:
         user_identity_id = UserPushIndentityCompat(user_id=1)
         user_identity_uuid = UserPushIndentityCompat(user_uuid="aaaa")

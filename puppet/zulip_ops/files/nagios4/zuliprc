@@ -1,4 +1,4 @@
-# Zulip, Inc's internal nagios plugin configuration.
+# Aloha, Inc's internal nagios plugin configuration.
 # The plugin and example config are under api/integrations/
 
 [api]

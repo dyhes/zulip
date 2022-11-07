@@ -303,7 +303,7 @@ class Realm(models.Model):  # type: ignore[django-manager-missing] # django-stub
     enable_spectator_access = models.BooleanField(default=False)
 
     # Whether organization has given permission to be advertised in the
-    # Zulip communities directory.
+    # Aloha communities directory.
     want_advertise_in_communities_directory = models.BooleanField(default=False, db_index=True)
 
     # Whether the organization has enabled inline image and URL previews.
@@ -591,10 +591,10 @@ class Realm(models.Model):  # type: ignore[django-manager-missing] # django-stub
         choices=[(t["id"], t["name"]) for t in ORG_TYPES.values()],
     )
 
-    UPGRADE_TEXT_STANDARD = gettext_lazy("Available on Zulip Cloud Standard. Upgrade to access.")
+    UPGRADE_TEXT_STANDARD = gettext_lazy("Available on Aloha Cloud Standard. Upgrade to access.")
     # plan_type controls various features around resource/feature
-    # limitations for a Zulip organization on multi-tenant installations
-    # like Zulip Cloud.
+    # limitations for a Aloha organization on multi-tenant installations
+    # like Aloha Cloud.
     PLAN_TYPE_SELF_HOSTED = 1
     PLAN_TYPE_LIMITED = 2
     PLAN_TYPE_STANDARD = 3
@@ -749,7 +749,7 @@ class Realm(models.Model):  # type: ignore[django-manager-missing] # django-stub
     LOGO_DEFAULT = "D"
     LOGO_UPLOADED = "U"
     LOGO_SOURCES = (
-        (LOGO_DEFAULT, "Default to Zulip"),
+        (LOGO_DEFAULT, "Default to Aloha"),
         (LOGO_UPLOADED, "Uploaded by administrator"),
     )
     logo_source = models.CharField(
@@ -956,7 +956,7 @@ class Realm(models.Model):  # type: ignore[django-manager-missing] # django-stub
             return False
 
         if self.plan_type == Realm.PLAN_TYPE_LIMITED:
-            # In Zulip Cloud, we also require a paid or sponsored
+            # In Aloha Cloud, we also require a paid or sponsored
             # plan, to protect against the spam/abuse attacks that
             # target every open Internet service that can host files.
             return False
@@ -1419,12 +1419,12 @@ def get_realm_playgrounds(realm: Realm) -> List[RealmPlaygroundDict]:
 
 
 class Recipient(models.Model):
-    """Represents an audience that can potentially receive messages in Zulip.
+    """Represents an audience that can potentially receive messages in Aloha.
 
     This table essentially functions as a generic foreign key that
     allows Message.recipient_id to be a simple ForeignKey representing
     the audience for a message, while supporting the different types
-    of audiences Zulip supports for a message.
+    of audiences Aloha supports for a message.
 
     Recipient has just two attributes: The enum type, and a type_id,
     which is the ID of the UserProfile/Stream/Huddle object containing
@@ -1434,7 +1434,7 @@ class Recipient(models.Model):
        who will receive any message to this Recipient. The sender
        of such a message is represented separately.
     2. Stream message: The type_id is the ID of the associated Stream.
-    3. Group private message: In Zulip, group private messages are
+    3. Group private message: In Aloha, group private messages are
        represented by Huddle objects, which encode the set of users
        in the conversation. The type_id is the ID of the associated Huddle
        object; the set of users is usually retrieved via the Subscription
@@ -1491,7 +1491,7 @@ class UserBaseSettings(models.Model):
     # display settings
     left_side_userlist = models.BooleanField(default=False)
     default_language = models.CharField(default="en", max_length=MAX_LANGUAGE_ID_LENGTH)
-    # This setting controls which view is rendered first when Zulip loads.
+    # This setting controls which view is rendered first when Aloha loads.
     # Values for it are URL suffix after `#`.
     default_view = models.TextField(default="recent_topics")
     escape_navigates_to_default_view = models.BooleanField(default=True)
@@ -1508,7 +1508,7 @@ class UserBaseSettings(models.Model):
     COLOR_SCHEME_CHOICES = [COLOR_SCHEME_AUTOMATIC, COLOR_SCHEME_NIGHT, COLOR_SCHEME_LIGHT]
     color_scheme = models.PositiveSmallIntegerField(default=COLOR_SCHEME_AUTOMATIC)
 
-    # UI setting controlling Zulip's behavior of demoting in the sort
+    # UI setting controlling Aloha's behavior of demoting in the sort
     # order and graying out streams with no recent traffic.  The
     # default behavior, automatic, enables this behavior once a user
     # is subscribed to 30+ streams in the web app.
@@ -1699,7 +1699,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin, UserBaseSettings):  # type
     # On updating it here, update it there as well.
     OUTGOING_WEBHOOK_BOT = 3
     """
-    Embedded bots run within the Zulip server itself; events are added to the
+    Embedded bots run within the Aloha server itself; events are added to the
     embedded_bots queue and then handled by a QueueProcessingWorker.
     """
     EMBEDDED_BOT = 4
@@ -1716,7 +1716,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin, UserBaseSettings):  # type
         EMBEDDED_BOT,
     ]
 
-    # For historical reasons, Zulip has two email fields.  The
+    # For historical reasons, Aloha has two email fields.  The
     # `delivery_email` field is the user's email address, where all
     # email notifications will be sent, and is used for all
     # authentication use cases.
@@ -1725,7 +1725,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin, UserBaseSettings):  # type
     # with EMAIL_ADDRESS_VISIBILITY_EVERYONE.  For other
     # organizations, it will be a unique value of the form
     # user1234@example.com.  This field exists for backwards
-    # compatibility in Zulip APIs where users are referred to by their
+    # compatibility in Aloha APIs where users are referred to by their
     # email address, not their ID; it should be used in all API use cases.
     #
     # Both fields are unique within a realm (in a case-insensitive
@@ -1762,7 +1762,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin, UserBaseSettings):  # type
 
     # For a normal user, this is True unless the user or an admin has
     # deactivated their account.  The name comes from Django; this field
-    # isn't related to presence or to whether the user has recently used Zulip.
+    # isn't related to presence or to whether the user has recently used Aloha.
     #
     # See also `long_term_idle`.
     is_active = models.BooleanField(default=True, db_index=True)
@@ -1795,16 +1795,16 @@ class UserProfile(AbstractBaseUser, PermissionsMixin, UserBaseSettings):  # type
 
     # Whether the user has been "soft-deactivated" due to weeks of inactivity.
     # For these users we avoid doing UserMessage table work, as an optimization
-    # for large Zulip organizations with lots of single-visit users.
+    # for large Aloha organizations with lots of single-visit users.
     long_term_idle = models.BooleanField(default=False, db_index=True)
 
     # When we last added basic UserMessage rows for a long_term_idle user.
     last_active_message_id = models.IntegerField(null=True)
 
     # Mirror dummies are fake (!is_active) users used to provide
-    # message senders in our cross-protocol Zephyr<->Zulip content
+    # message senders in our cross-protocol Zephyr<->Aloha content
     # mirroring integration, so that we can display mirrored content
-    # like native Zulip messages (with a name + avatar, etc.).
+    # like native Aloha messages (with a name + avatar, etc.).
     is_mirror_dummy = models.BooleanField(default=False)
 
     # Users with this flag set are allowed to forge messages as sent by another
@@ -2475,7 +2475,7 @@ class Stream(models.Model):
     # we just use a concrete field.  (Zephyr public streams aren't exactly like
     # invite-only streams--while both are private in terms of listing users,
     # for Zephyr we don't even list users to stream members, yet membership
-    # is more public in the sense that you don't need a Zulip invite to join.
+    # is more public in the sense that you don't need a Aloha invite to join.
     # This field is populated directly from UserProfile.is_zephyr_mirror_realm,
     # and the reason for denormalizing field is performance.
     is_in_zephyr_realm = models.BooleanField(default=False)
@@ -2524,7 +2524,7 @@ class Stream(models.Model):
         return self.history_public_to_subscribers
 
     # Stream fields included whenever a Stream object is provided to
-    # Zulip clients via the API.  A few details worth noting:
+    # Aloha clients via the API.  A few details worth noting:
     # * "id" is represented as "stream_id" in most API interfaces.
     # * "email_token" is not realm-public and thus is not included here.
     # * is_in_zephyr_realm is a backend-only optimization.
@@ -2815,7 +2815,7 @@ class AbstractMessage(models.Model):
 
     # The message's topic.
     #
-    # Early versions of Zulip called this concept a "subject", as in an email
+    # Early versions of Aloha called this concept a "subject", as in an email
     # "subject line", before changing to "topic" in 2013 (commit dac5a46fa).
     # UI and user documentation now consistently say "topic".  New APIs and
     # new code should generally also say "topic".
@@ -2922,7 +2922,7 @@ class Message(AbstractMessage):
         )
 
     def sent_by_human(self) -> bool:
-        """Used to determine whether a message was sent by a full Zulip UI
+        """Used to determine whether a message was sent by a full Aloha UI
         style client (and thus whether the message should be treated
         as sent by a human and automatically marked as read for the
         sender).  The purpose of this distinction is to ensure that
@@ -2992,7 +2992,7 @@ post_save.connect(flush_message, sender=Message)
 
 class AbstractSubMessage(models.Model):
     # We can send little text messages that are associated with a regular
-    # Zulip message.  These can be used for experimental widgets like embedded
+    # Aloha message.  These can be used for experimental widgets like embedded
     # games, surveys, mini threads, etc.  These are designed to be pretty
     # generic in purpose.
 
@@ -3084,7 +3084,7 @@ class AbstractEmoji(models.Model):
     REACTION_TYPES = (
         (UNICODE_EMOJI, gettext_lazy("Unicode emoji")),
         (REALM_EMOJI, gettext_lazy("Custom emoji")),
-        (ZULIP_EXTRA_EMOJI, gettext_lazy("Zulip extra emoji")),
+        (ZULIP_EXTRA_EMOJI, gettext_lazy("Aloha extra emoji")),
     )
     reaction_type = models.CharField(default=UNICODE_EMOJI, choices=REACTION_TYPES, max_length=30)
 
@@ -3107,7 +3107,7 @@ class AbstractEmoji(models.Model):
     # * For user uploaded custom emoji (`reaction_type="realm_emoji"`), the stringified ID
     #   of the RealmEmoji object, computed as `str(realm_emoji.id)`.
     #
-    # * For "Zulip extra emoji" (like :zulip:), the name of the emoji (e.g. "zulip").
+    # * For "Aloha extra emoji" (like :zulip:), the name of the emoji (e.g. "zulip").
     emoji_code = models.TextField()
 
     class Meta:
@@ -3172,7 +3172,7 @@ class ArchivedReaction(AbstractReaction):
 # queries for "User X's messages with flag Y" extremely fast without
 # consuming much storage space.
 #
-# UserMessage is the largest table in many Zulip installations, even
+# UserMessage is the largest table in many Aloha installations, even
 # though each row is only 4 integers.
 class AbstractUserMessage(models.Model):
     id = models.BigAutoField(primary_key=True)
@@ -3206,7 +3206,7 @@ class AbstractUserMessage(models.Model):
         "active_mobile_push_notification",
     ]
     # Certain flags are used only for internal accounting within the
-    # Zulip backend, and don't make sense to expose to the API.
+    # Aloha backend, and don't make sense to expose to the API.
     NON_API_FLAGS = {"is_private", "active_mobile_push_notification"}
     # Certain additional flags are just set once when the UserMessage
     # row is created.
@@ -3659,14 +3659,14 @@ class Subscription(models.Model):
         return f"<Subscription: {self.user_profile} -> {self.recipient}>"
 
     # Subscription fields included whenever a Subscription object is provided to
-    # Zulip clients via the API.  A few details worth noting:
+    # Aloha clients via the API.  A few details worth noting:
     # * These fields will generally be merged with Stream.API_FIELDS
     #   data about the stream.
     # * "user_profile" is usually implied as full API access to Subscription
     #   is primarily done for the current user; API access to other users'
     #   subscriptions is generally limited to boolean yes/no.
     # * "id" and "recipient_id" are not included as they are not used
-    #   in the Zulip API; it's an internal implementation detail.
+    #   in the Aloha API; it's an internal implementation detail.
     #   Subscription objects are always looked up in the API via
     #   (user_profile, stream) pairs.
     # * "active" is often excluded in API use cases where it is implied.
@@ -3692,7 +3692,7 @@ def get_user_profile_by_id(user_profile_id: int) -> UserProfile:
 def get_user_profile_by_email(email: str) -> UserProfile:
     """This function is intended to be used for
     manual manage.py shell work; robust code must use get_user or
-    get_user_by_delivery_email instead, because Zulip supports
+    get_user_by_delivery_email instead, because Aloha supports
     multiple users with a given (delivery) email address existing on a
     single server (in different realms).
     """
@@ -3722,7 +3722,7 @@ def get_user_profile_by_api_key(api_key: str) -> UserProfile:
 def get_user_by_delivery_email(email: str, realm: Realm) -> UserProfile:
     """Fetches a user given their delivery email.  For use in
     authentication/registration contexts.  Do not use for user-facing
-    views (e.g. Zulip API endpoints) as doing so would violate the
+    views (e.g. Aloha API endpoints) as doing so would violate the
     EMAIL_ADDRESS_VISIBILITY_ADMINS security model.  Use get_user in
     those code paths.
     """
@@ -3954,12 +3954,12 @@ def get_or_create_huddle_backend(huddle_hash: str, id_list: List[int]) -> Huddle
 
 
 class UserActivity(models.Model):
-    """Data table recording the last time each user hit Zulip endpoints
+    """Data table recording the last time each user hit Aloha endpoints
     via which Clients; unlike UserPresence, these data are not exposed
-    to users via the Zulip API.
+    to users via the Aloha API.
 
     Useful for debugging as well as to answer analytics questions like
-    "How many users have accessed the Zulip mobile app in the last
+    "How many users have accessed the Aloha mobile app in the last
     month?" or "Which users/organizations have recently used API
     endpoint X that is about to be desupported" for communications
     and database migration purposes.
@@ -3993,7 +3993,7 @@ class UserPresence(models.Model):
     """A record from the last time we heard from a given user on a given client.
 
     NOTE: Users can disable updates to this table (see UserProfile.presence_enabled),
-    so this cannot be used to determine if a user was recently active on Zulip.
+    so this cannot be used to determine if a user was recently active on Aloha.
     The UserActivity table is recommended for that purpose.
 
     This is a tricky subsystem, because it is highly optimized.  See the docs:
@@ -4013,7 +4013,7 @@ class UserPresence(models.Model):
     # The time we heard this update from the client.
     timestamp = models.DateTimeField("presence changed")
 
-    # The user was actively using this Zulip client as of `timestamp` (i.e.,
+    # The user was actively using this Aloha client as of `timestamp` (i.e.,
     # they had interacted with the client recently).  When the timestamp is
     # itself recent, this is the green "active" status in the web app.
     ACTIVE = 1
@@ -4183,7 +4183,7 @@ class NotificationTriggers:
 
 class ScheduledMessageNotificationEmail(models.Model):
     """Stores planned outgoing message notification emails. They may be
-    processed earlier should Zulip choose to batch multiple messages
+    processed earlier should Aloha choose to batch multiple messages
     in a single email, but typically will be processed just after
     scheduled_timestamp.
     """
@@ -4344,7 +4344,7 @@ class AbstractRealmAuditLog(models.Model):
     STREAM_PROPERTY_CHANGED = 607
     STREAM_CAN_REMOVE_SUBSCRIBERS_GROUP_CHANGED = 608
 
-    # The following values are only for RemoteZulipServerAuditLog
+    # The following values are only for RemoteAlohaServerAuditLog
     # Values should be exactly 10000 greater than the corresponding
     # value used for the same purpose in RealmAuditLog (e.g.
     # REALM_DEACTIVATED = 201, and REMOTE_SERVER_DEACTIVATED = 10201).
@@ -4354,7 +4354,7 @@ class AbstractRealmAuditLog(models.Model):
 
     event_type = models.PositiveSmallIntegerField()
 
-    # event_types synced from on-prem installations to Zulip Cloud when
+    # event_types synced from on-prem installations to Aloha Cloud when
     # billing for mobile push notifications is enabled.  Every billing
     # event_type should have ROLE_COUNT populated in extra_data.
     SYNCED_BILLING_EVENTS = [
@@ -4374,7 +4374,7 @@ class AbstractRealmAuditLog(models.Model):
 class RealmAuditLog(AbstractRealmAuditLog):
     """
     RealmAuditLog tracks important changes to users, streams, and
-    realms in Zulip.  It is intended to support both
+    realms in Aloha.  It is intended to support both
     debugging/introspection (e.g. determining when a user's left a
     given stream?) as well as help with some database migrations where
     we might be able to do a better data backfill with it.  Here are a

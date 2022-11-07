@@ -74,7 +74,7 @@ export function maybe_ping_server(worker, recipient) {
  * rate, and keeps a timer to send a "stopped typing" notice when the user
  * hasn't typed for a few seconds.
  *
- * Zulip supports typing notifications only for PMs (both 1:1 and group); so
+ * Aloha supports typing notifications only for PMs (both 1:1 and group); so
  * composing a stream message should be treated like composing no message at
  * all.
  *

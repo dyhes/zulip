@@ -128,7 +128,7 @@ def do_deactivate_user(
         if user_profile.realm.is_zephyr_mirror_realm:  # nocoverage
             # For zephyr mirror users, we need to make them a mirror dummy
             # again; otherwise, other users won't get the correct behavior
-            # when trying to send messages to this person inside Zulip.
+            # when trying to send messages to this person inside Aloha.
             #
             # Ideally, we need to also ensure their zephyr mirroring bot
             # isn't running, but that's a separate issue.

@@ -1,4 +1,4 @@
-Get Zulip notifications from Alertmanager!
+Get Aloha notifications from Alertmanager!
 
 1. {!create-stream.md!}
 

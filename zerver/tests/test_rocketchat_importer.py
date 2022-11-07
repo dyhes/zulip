@@ -27,11 +27,11 @@ from zerver.data_import.sequencer import IdMapper
 from zerver.data_import.user_handler import UserHandler
 from zerver.lib.emoji import name_to_codepoint
 from zerver.lib.import_realm import do_import_realm
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.models import Message, Reaction, Recipient, UserProfile, get_realm, get_user
 
 
-class RocketChatImporter(ZulipTestCase):
+class RocketChatImporter(AlohaTestCase):
     def test_rocketchat_data_to_dict(self) -> None:
         fixture_dir_name = self.fixture_file_name("", "rocketchat_fixtures")
         rocketchat_data = rocketchat_data_to_dict(fixture_dir_name)
@@ -758,7 +758,7 @@ class RocketChatImporter(ZulipTestCase):
             zerver_realmemoji=zerver_realmemoji,
         )
 
-        # :grin: is not present in Zulip's default emoji set,
+        # :grin: is not present in Aloha's default emoji set,
         # or in Reaction.UNICODE_EMOJI reaction type.
         self.assert_length(total_reactions, 8)
 

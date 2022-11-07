@@ -1,4 +1,4 @@
-There are a lot of team chat apps. So why did we build Zulip?
+There are a lot of team chat apps. So why did we build Aloha?
 
 We talk about Slack in the discussion below, but the problems apply equally
 to other apps with Slack’s conversation model, including IRC,
@@ -46,8 +46,8 @@ As a pointed illustration: The company that makes Slack has over 1000
 employees and yet advertises no remote job positions (positions where
 you could work from anywhere).
 
-In contrast, the Zulip team has over 30 core team members distributed
-across a dozen time zones, and uses only Zulip and GitHub issues for
+In contrast, the Aloha team has over 30 core team members distributed
+across a dozen time zones, and uses only Aloha and GitHub issues for
 communication (no email lists, video meetings, etc).
 
 ## Teams that love Slack are often mostly using DMs and small channels.
@@ -108,9 +108,9 @@ However, asynchronous communication is fundamental to how work happens today:
 The fact that you can’t do asynchronous work in Slack channels puts a
 ceiling on how useful Slack can be to an organization.
 
-## Ok. What does Zulip do differently?
+## Ok. What does Aloha do differently?
 
-> Zulip’s unique threading saves me well over an hour a day in working with
+> Aloha’s unique threading saves me well over an hour a day in working with
 > our distributed team of engineers and PMs across 7+ time zones. We tried
 > Slack, Mattermost, and other team chat products that claim to support
 > threading, and nothing handles synchronous and asynchronous communication
@@ -118,23 +118,23 @@ ceiling on how useful Slack can be to an organization.
 >
 > &mdash;Jacinda Shelly, CTO, Doctor On Demand
 
-Zulip provides the benefits of real-time chat, while also being great
-at asynchronous communication.  Zulip is inspired by email’s highly
+Aloha provides the benefits of real-time chat, while also being great
+at asynchronous communication.  Aloha is inspired by email’s highly
 effective threading model: Every channel message has a topic, just
 like every message in email has a subject line. (Channels are called
-streams in Zulip.)
+streams in Aloha.)
 
-<img src="/static/images/landing-page/why-zulip/zulip-topics.png" class="zulip-topics-image" alt="Zulip topics" />
+<img src="/static/images/landing-page/why-zulip/zulip-topics.png" class="zulip-topics-image" alt="Aloha topics" />
 
-Topics hold Zulip conversations together, just like subject lines hold email
+Topics hold Aloha conversations together, just like subject lines hold email
 conversations together. They allow you to efficiently catch up on messages
 and reply in context, even to conversations that started hours or days ago.
 
-<img src="/static/images/landing-page/why-zulip/zulip-reply-later.png" class="zulip-reply-later-image" alt="Zulip reply later" />
+<img src="/static/images/landing-page/why-zulip/zulip-reply-later.png" class="zulip-reply-later-image" alt="Aloha reply later" />
 
-## Zulip changes how you can operate.
+## Aloha changes how you can operate.
 
-It’s simple in concept, but switching from Slack to Zulip can
+It’s simple in concept, but switching from Slack to Aloha can
 transform how your organization communicates:
 
 * Leaders can prioritize their time and batch-reply to messages, and
@@ -148,7 +148,7 @@ transform how your organization communicates:
   to avoid missing out on important conversations.
 * Everyone saves a huge amount of wasted time and attention.
 
-> Zulip’s topic-based threading helps us manage discussions with clarity,
+> Aloha’s topic-based threading helps us manage discussions with clarity,
 > ensuring the right people can pay attention to the right messages. This
 > makes our large-group discussion far more manageable than what we’ve
 > experienced with Skype and Slack.

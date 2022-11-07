@@ -18,7 +18,7 @@ from zerver.actions.realm_settings import do_change_realm_plan_type, do_set_real
 from zerver.actions.streams import do_change_stream_post_policy, do_deactivate_stream
 from zerver.actions.users import do_change_user_role
 from zerver.lib.message import MessageDict, has_message_access, messages_for_ids
-from zerver.lib.test_classes import ZulipTestCase, get_topic_messages
+from zerver.lib.test_classes import AlohaTestCase, get_topic_messages
 from zerver.lib.test_helpers import cache_tries_captured, queries_captured
 from zerver.lib.topic import RESOLVED_TOPIC_PREFIX, TOPIC_NAME
 from zerver.lib.user_topics import (
@@ -34,7 +34,7 @@ if TYPE_CHECKING:
     from django.test.client import _MonkeyPatchedWSGIResponse as TestHttpResponse
 
 
-class EditMessageTestCase(ZulipTestCase):
+class EditMessageTestCase(AlohaTestCase):
     def check_topic(self, msg_id: int, topic_name: str) -> None:
         msg = Message.objects.get(id=msg_id)
         self.assertEqual(msg.topic_name(), topic_name)
@@ -753,7 +753,7 @@ class EditMessageTest(EditMessageTestCase):
         self.assertEqual(mention_user_ids, {cordelia.id})
 
     def test_edit_cases(self) -> None:
-        """This test verifies the accuracy of construction of Zulip's edit
+        """This test verifies the accuracy of construction of Aloha's edit
         history data structures."""
         self.login("hamlet")
         hamlet = self.example_user("hamlet")
@@ -3039,7 +3039,7 @@ class EditMessageTest(EditMessageTestCase):
         )
 
 
-class DeleteMessageTest(ZulipTestCase):
+class DeleteMessageTest(AlohaTestCase):
     def test_delete_message_invalid_request_format(self) -> None:
         self.login("iago")
         hamlet = self.example_user("hamlet")

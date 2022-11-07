@@ -1,6 +1,6 @@
 class zulip::camo (String $listen_address = '0.0.0.0') {
   # TODO/compatibility: Removed 2021-11 in version 5.0; these lines
-  # can be removed once one must have upgraded through Zulip 5.0 or
+  # can be removed once one must have upgraded through Aloha 5.0 or
   # higher to get to the next release.
   package { 'camo':
     ensure => purged,
@@ -45,7 +45,7 @@ class zulip::camo (String $listen_address = '0.0.0.0') {
     require => [
       Package['camo'],
       Package[supervisor],
-      Zulip::External_Dep['go-camo'],
+      Aloha::External_Dep['go-camo'],
       File['/usr/local/bin/secret-env-wrapper'],
     ],
     owner   => 'root',

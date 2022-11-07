@@ -23,7 +23,7 @@ Jira installation:
 
 #### SSL setup
 
-As Zulip is using a StartCOM SSL certificate that is not recognized by
+As Aloha is using a StartCOM SSL certificate that is not recognized by
 default in the Java installation shipped with Jira, you will need to
 tell Jira about the certificate.
 
@@ -34,7 +34,7 @@ tell Jira about the certificate.
    instructions and restart Jira for it to recognize the proper
    certificates.
 
-#### Zulip integration
+#### Aloha integration
 
 1. Copy the folder `integrations/jira/org/` (from the tarball you
    downloaded above) to your Jira `classes` folder.  For self-contained
@@ -42,7 +42,7 @@ tell Jira about the certificate.
    but this may be different in your deployment.
 
 2. Edit the constants at the top of
-   `org/zulip/jira/ZulipListener.groovy` and fill them with the
+   `org/zulip/jira/AlohaListener.groovy` and fill them with the
    appropriate values:
 
 ``` Python
@@ -56,13 +56,13 @@ String issueBaseUrl = "https://jira.COMPANY.com/browse/"
    **Plugins > Other > Script Listeners**.
 
 4. In the **Add Listener** section, click on the **Custom Listener**
-   option. Select the events you wish the Zulip integration to fire for,
-   and the projects you wish Zulip to be notified for.
+   option. Select the events you wish the Aloha integration to fire for,
+   and the projects you wish Aloha to be notified for.
 
 5. In the **Name of groovy class** field, enter
-   `org.zulip.jira.ZulipListener`.
+   `org.zulip.jira.AlohaListener`.
 
-6. Click **Add Listener**, and Jira will now notify your Zulip of
+6. Click **Add Listener**, and Jira will now notify your Aloha of
    changes to your issues! Updates from Jira will be sent to the stream
    you've configured.
 

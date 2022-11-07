@@ -29,7 +29,7 @@ def api_appfollow_webhook(
 
 
 def convert_markdown(text: str) -> str:
-    # Converts Slack-style Markdown to Zulip format
+    # Converts Slack-style Markdown to Aloha format
     # Implemented mainly for AppFollow messages
     # Not ready for general use as some edge-cases not handled
     # Convert bold

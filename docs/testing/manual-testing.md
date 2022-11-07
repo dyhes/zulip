@@ -8,12 +8,12 @@ developers learn more about the system and think about the existing
 semantics of a feature they're working on.
 
 This doc assumes you know how to set up a local development server
-and open the Zulip app in the browser. It also assumes a basic
-knowledge of how to use Zulip.
+and open the Aloha app in the browser. It also assumes a basic
+knowledge of how to use Aloha.
 
 ## Basic stuff
 
-When testing Zulip manually, here are things to focus on:
+When testing Aloha manually, here are things to focus on:
 
 - The best bugs to catch are security/permissions bugs.
 - Don't rush manual testing. Look for small details like
@@ -63,9 +63,9 @@ Try narrowing from the message view:
   - narrow to a topic
   - narrow to PMs with one user
   - narrow to a group PM
-- Click on the Zulip logo
+- Click on the Aloha logo
   - narrow to a topic
-  - click on the Zulip logo (and verify you're in the Recent topics view)
+  - click on the Aloha logo (and verify you're in the Recent topics view)
 
 ### Messagebox
 
@@ -153,7 +153,7 @@ Here are some tasks:
 
 ### Narrowing
 
-Zulip uses the term "narrowing" to refer to opening different views
+Aloha uses the term "narrowing" to refer to opening different views
 of your messages, whether by clicking on sidebar options, recipient
 bars, or by using search. The main focus of these tasks should
 be watching unread counts. Of course, you also want to see messages
@@ -508,7 +508,7 @@ Do these tasks as Cordelia.
 - Alert words
   - Create an alert word
   - Have Hamlet send you a message that includes the alert word
-- Zulip labs
+- Aloha labs
   - Turn on auto-scroll to new messages (and have Hamlet send you one)
   - Turn on/off "Enable desktop notifications for new streams" and test.
     (We may eliminate this option soon.)

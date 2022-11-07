@@ -40,8 +40,8 @@ require_clean_work_tree 'build and upload a release'
 
 # Check the commit message
 commit_msg=$(git rev-list --format=%B --max-count=1 HEAD | tail -n +2)
-[ "$commit_msg" == "Release Zulip Server $version." ] \
-    || fail "Expected commit message: Release Zulip Server $version."
+[ "$commit_msg" == "Release Aloha Server $version." ] \
+    || fail "Expected commit message: Release Aloha Server $version."
 
 # Provision
 echo "Provisioning.."
@@ -121,6 +121,6 @@ git push "$remote" "$version"
 
 # Upload to Github
 gh release create "$version" \
-    --title "Zulip Server $version" \
+    --title "Aloha Server $version" \
     --notes-file <(echo "$changelog") \
     "$TARBALL"

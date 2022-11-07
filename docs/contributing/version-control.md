@@ -57,7 +57,7 @@ Other considerations:
   that by amending the commit to fix the bug, not writing a new "fix
   tests" commit on top of it.
 
-Zulip expects you to structure the commits in your pull requests to form
+Aloha expects you to structure the commits in your pull requests to form
 a clean history before we will merge them. It's best to write your
 commits following these guidelines in the first place, but if you don't,
 you can always fix your history using `git rebase -i` (more on that
@@ -136,7 +136,7 @@ Compare "_gather_subscriptions: Fix exception handling bad input._" with:
 The summary is followed by a blank line, and then the body of the
 commit message.
 
-**Tip:** You can set up [Zulip's Git pre-commit hook][commit-hook] to
+**Tip:** You can set up [Aloha's Git pre-commit hook][commit-hook] to
 automatically catch common mistakes in the commit message itself.
 
 [commit-hook]: ../git/zulip-tools.md#set-up-git-repo-script
@@ -157,7 +157,7 @@ automatically catch common mistakes in the commit message itself.
   your commit
   message](https://help.github.com/en/articles/closing-issues-via-commit-messages)
   so that the issue is automatically closed when your code is merged.
-  Zulip's preferred style for this is to have the final paragraph of
+  Aloha's preferred style for this is to have the final paragraph of
   the commit message read e.g. "Fixes: \#123.".
 - Avoid `Partially fixes #1234`; GitHub's regular expressions ignore
   the "partially" and close the issue. `Fixes part of #1234` is a good alternative.

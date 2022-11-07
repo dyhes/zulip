@@ -35,7 +35,7 @@ from zerver.lib.addressee import Addressee
 from zerver.lib.cache import cache_delete, get_stream_cache_key
 from zerver.lib.exceptions import JsonableError
 from zerver.lib.message import MessageDict, get_raw_unread_data, get_recent_private_conversations
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import (
     get_user_messages,
     make_client,
@@ -75,7 +75,7 @@ if TYPE_CHECKING:
     from django.test.client import _MonkeyPatchedWSGIResponse as TestHttpResponse
 
 
-class MessagePOSTTest(ZulipTestCase):
+class MessagePOSTTest(AlohaTestCase):
     def _send_and_verify_message(
         self, user: UserProfile, stream_name: str, error_msg: Optional[str] = None
     ) -> None:
@@ -659,7 +659,7 @@ class MessagePOSTTest(ZulipTestCase):
                 "to": orjson.dumps([othello.id]).decode(),
             },
         )
-        self.assert_json_error(result, f"'{othello.email}' is no longer using Zulip.")
+        self.assert_json_error(result, f"'{othello.email}' is no longer using Aloha.")
 
         result = self.client_post(
             "/json/messages",
@@ -669,7 +669,7 @@ class MessagePOSTTest(ZulipTestCase):
                 "to": orjson.dumps([othello.id, cordelia.id]).decode(),
             },
         )
-        self.assert_json_error(result, f"'{othello.email}' is no longer using Zulip.")
+        self.assert_json_error(result, f"'{othello.email}' is no longer using Aloha.")
 
     def test_invalid_type(self) -> None:
         """
@@ -1345,7 +1345,7 @@ class MessagePOSTTest(ZulipTestCase):
         self.assert_json_success(result)
 
 
-class ScheduledMessageTest(ZulipTestCase):
+class ScheduledMessageTest(AlohaTestCase):
     def last_scheduled_message(self) -> ScheduledMessage:
         return ScheduledMessage.objects.all().order_by("-id")[0]
 
@@ -1486,7 +1486,7 @@ class ScheduledMessageTest(ZulipTestCase):
         )
 
 
-class StreamMessagesTest(ZulipTestCase):
+class StreamMessagesTest(AlohaTestCase):
     def assert_stream_message(
         self, stream_name: str, topic_name: str = "test topic", content: str = "test content"
     ) -> None:
@@ -1977,7 +1977,7 @@ class StreamMessagesTest(ZulipTestCase):
         self.assertEqual(recent_conversation["max_message_id"], message2_id)
 
 
-class PersonalMessageSendTest(ZulipTestCase):
+class PersonalMessageSendTest(AlohaTestCase):
     def test_personal_to_self(self) -> None:
         """
         If you send a personal to yourself, only you see it.
@@ -2078,7 +2078,7 @@ class PersonalMessageSendTest(ZulipTestCase):
         )
 
 
-class ExtractTest(ZulipTestCase):
+class ExtractTest(AlohaTestCase):
     def test_extract_stream_indicator(self) -> None:
         self.assertEqual(
             extract_stream_indicator("development"),
@@ -2185,7 +2185,7 @@ class ExtractTest(ZulipTestCase):
             extract_private_recipients(mixed)
 
 
-class InternalPrepTest(ZulipTestCase):
+class InternalPrepTest(AlohaTestCase):
     def test_returns_for_internal_sends(self) -> None:
         # For our internal_send_* functions we return
         # if the prep stages fail.  This is mostly defensive
@@ -2303,7 +2303,7 @@ class InternalPrepTest(ZulipTestCase):
         Stream.objects.get(name=stream_name, realm_id=realm.id)
 
 
-class TestCrossRealmPMs(ZulipTestCase):
+class TestCrossRealmPMs(AlohaTestCase):
     def make_realm(self, domain: str) -> Realm:
         realm = do_create_realm(string_id=domain, name=domain)
         do_set_realm_property(realm, "invite_required", False, acting_user=None)
@@ -2420,7 +2420,7 @@ class TestCrossRealmPMs(ZulipTestCase):
         with assert_invalid_user():
             self.send_personal_message(user1, user2)
 
-        # Users on non-zulip realms can't PM "ordinary" Zulip users
+        # Users on non-zulip realms can't PM "ordinary" Aloha users
         with assert_invalid_user():
             self.send_personal_message(user1, self.example_user("hamlet"))
 
@@ -2429,7 +2429,7 @@ class TestCrossRealmPMs(ZulipTestCase):
             self.send_huddle_message(user1, [user2, user3])
 
 
-class TestAddressee(ZulipTestCase):
+class TestAddressee(AlohaTestCase):
     def test_addressee_for_user_ids(self) -> None:
         realm = get_realm("zulip")
         user_ids = [
@@ -2487,7 +2487,7 @@ class TestAddressee(ZulipTestCase):
         self.assertEqual(stream.id, stream_id)
 
 
-class CheckMessageTest(ZulipTestCase):
+class CheckMessageTest(AlohaTestCase):
     def test_basic_check_message_call(self) -> None:
         sender = self.example_user("othello")
         client = make_client(name="test suite")

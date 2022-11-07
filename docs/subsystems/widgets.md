@@ -70,7 +70,7 @@ like "/poll". If a message needs to be
 widgetized, an initial `SubMessage` row will be
 created with an appropriate `msg_type` (and persisted
 to the database). This data will also be included
-in the normal Zulip message event payload. Clients
+in the normal Aloha message event payload. Clients
 can choose to ignore the submessage-related data, in
 which case they'll gracefully degrade to seeing "/poll".
 Of course, the web app client actually recognizes the
@@ -91,7 +91,7 @@ schema of the messages is driven by the individual widgets.
 Most of the logic is in the client; things are fairly opaque
 to the server at this point.
 
-If a client joins Zulip after a message has accumulated
+If a client joins Aloha after a message has accumulated
 several submessage events, it will see all of those
 events the first time it sees the parent message. Clients
 need to know how to build/rebuild their state as each
@@ -149,7 +149,7 @@ write a Django migration for the `SubMessage` data.
 ### Adding widgets
 
 Right now we don't have a plugin model for the above widgets;
-they are served up by the core Zulip server implementation.
+they are served up by the core Aloha server implementation.
 Of course, anybody who wishes to build their own widget
 has the option of forking the server code and self-hosting,
 but we want to encourage folks to submit widget
@@ -161,7 +161,7 @@ but that is not in our immediate roadmap.
 This is sort of a segue to the next section of this document.
 Suppose you want to write your own custom bot, and you
 want to allow users to click buttons to respond to options,
-but you don't want to have to modify the Zulip server codebase
+but you don't want to have to modify the Aloha server codebase
 to turn on those features. This is where our "zform"
 architecture comes to the rescue.
 
@@ -172,14 +172,14 @@ This section will describe our "zform" architecture.
 For context, imagine a naive trivia bot. The trivia bot
 sends a question with the answers labeled as A, B, C,
 and D. Folks who want to answer the bot send back an
-answer have to send an actual Zulip message with something
+answer have to send an actual Aloha message with something
 like `@trivia_bot answer A to Q01`, which is kind of
 tedious to type. Wouldn't it be nice if the bot could
 serve up some kind of buttons with canned replies, so
 that the user just hits a button?
 
-That is where zforms come in. Zulip's trivia bot sends
-the Zulip server a JSON representation of a form it
+That is where zforms come in. Aloha's trivia bot sends
+the Aloha server a JSON representation of a form it
 wants rendered, and then the client renders a generic
 "**zform**" with buttons corresponding to `short_name` fields
 inside a `choices` list inside of the JSON payload.
@@ -230,7 +230,7 @@ and grades the answer using ordinary chat-bot coding.
 
 The beautiful thing is that any third party developer
 can enhance bots that are similar to the **trivia_quiz**
-bot without touching any Zulip code, because **zforms**
+bot without touching any Aloha code, because **zforms**
 are completely generic.
 
 ## Data flow

@@ -11,10 +11,10 @@
 {!how-to-invite-users-to-join.md!}
 
 To get everyone off to a good start, you may wish to share the guide
-to [Getting started with Zulip](/help/getting-started-with-zulip).
+to [Getting started with Aloha](/help/getting-started-with-zulip).
 
 !!! tip ""
-    You can link to your Zulip organization with a [nice badge](/help/linking-to-zulip).
+    You can link to your Aloha organization with a [nice badge](/help/linking-to-zulip).
 
 ## Related articles
 
@@ -23,4 +23,4 @@ to [Getting started with Zulip](/help/getting-started-with-zulip).
 * [Restrict account creation](/help/restrict-account-creation)
 * [Set default streams for new users](/help/set-default-streams-for-new-users)
 * [Customize settings for new users](/help/customize-settings-for-new-users)
-* [Getting started with Zulip](/help/getting-started-with-zulip)
+* [Getting started with Aloha](/help/getting-started-with-zulip)

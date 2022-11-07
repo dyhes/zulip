@@ -40,8 +40,8 @@ class ClubhouseWebhookTest(WebhookTestCase):
         self.check_webhook("story_archive", "Story 2", expected_message)
 
     def test_epic_archive(self) -> None:
-        expected_message = "The epic **Zulip is epic!** was archived."
-        self.check_webhook("epic_archive", "Zulip is epic!", expected_message)
+        expected_message = "The epic **Aloha is epic!** was archived."
+        self.check_webhook("epic_archive", "Aloha is epic!", expected_message)
 
     def test_story_unarchive(self) -> None:
         expected_message = (

@@ -24,8 +24,8 @@ from zerver.lib.rest import default_never_cache_responses, get_target_view_funct
 from zerver.lib.subdomains import get_subdomain
 from zerver.models import Realm
 from zilencer.models import (
-    RateLimitedRemoteZulipServer,
-    RemoteZulipServer,
+    RateLimitedRemoteAlohaServer,
+    RemoteAlohaServer,
     get_remote_server_by_uuid,
 )
 
@@ -34,7 +34,7 @@ logger = logging.getLogger(__name__)
 ParamT = ParamSpec("ParamT")
 
 
-class InvalidZulipServerError(JsonableError):
+class InvalidAlohaServerError(JsonableError):
     code = ErrorCode.INVALID_ZULIP_SERVER
     data_fields = ["role"]
 
@@ -43,23 +43,23 @@ class InvalidZulipServerError(JsonableError):
 
     @staticmethod
     def msg_format() -> str:
-        return "Zulip server auth failure: {role} is not registered -- did you run `manage.py register_server`?"
+        return "Aloha server auth failure: {role} is not registered -- did you run `manage.py register_server`?"
 
 
-class InvalidZulipServerKeyError(InvalidZulipServerError):
+class InvalidAlohaServerKeyError(InvalidAlohaServerError):
     @staticmethod
     def msg_format() -> str:
-        return "Zulip server auth failure: key does not match role {role}"
+        return "Aloha server auth failure: key does not match role {role}"
 
 
 def rate_limit_remote_server(
-    request: HttpRequest, remote_server: RemoteZulipServer, domain: str
+    request: HttpRequest, remote_server: RemoteAlohaServer, domain: str
 ) -> None:
     if not should_rate_limit(request):
         return
 
     try:
-        RateLimitedRemoteZulipServer(remote_server, domain=domain).rate_limit_request(request)
+        RateLimitedRemoteAlohaServer(remote_server, domain=domain).rate_limit_request(request)
     except RateLimited as e:
         logger.warning("Remote server %s exceeded rate limits on domain %s", remote_server, domain)
         raise e
@@ -69,13 +69,13 @@ def validate_remote_server(
     request: HttpRequest,
     role: str,
     api_key: str,
-) -> RemoteZulipServer:
+) -> RemoteAlohaServer:
     try:
         remote_server = get_remote_server_by_uuid(role)
-    except RemoteZulipServer.DoesNotExist:
-        raise InvalidZulipServerError(role)
+    except RemoteAlohaServer.DoesNotExist:
+        raise InvalidAlohaServerError(role)
     if not constant_time_compare(api_key, remote_server.api_key):
-        raise InvalidZulipServerKeyError(role)
+        raise InvalidAlohaServerKeyError(role)
 
     if remote_server.deactivated:
         raise RemoteServerDeactivatedError()
@@ -88,7 +88,7 @@ def validate_remote_server(
 
 
 def authenticated_remote_server_view(
-    view_func: Callable[Concatenate[HttpRequest, RemoteZulipServer, ParamT], HttpResponse]
+    view_func: Callable[Concatenate[HttpRequest, RemoteAlohaServer, ParamT], HttpResponse]
 ) -> Callable[Concatenate[HttpRequest, ParamT], HttpResponse]:
     @wraps(view_func)
     def _wrapped_view_func(
@@ -96,7 +96,7 @@ def authenticated_remote_server_view(
     ) -> HttpResponse:
         role, api_key = get_basic_credentials(request)
         if "@" in role:
-            raise JsonableError(_("Must validate with valid Zulip server API key"))
+            raise JsonableError(_("Must validate with valid Aloha server API key"))
         try:
             remote_server = validate_remote_server(request, role, api_key)
         except JsonableError as e:
@@ -120,6 +120,6 @@ def remote_server_dispatch(request: HttpRequest, /, **kwargs: Any) -> HttpRespon
 
 def remote_server_path(
     route: str,
-    **handlers: Callable[Concatenate[HttpRequest, RemoteZulipServer, ParamT], HttpResponse],
+    **handlers: Callable[Concatenate[HttpRequest, RemoteAlohaServer, ParamT], HttpResponse],
 ) -> URLPattern:
     return path(route, remote_server_dispatch, handlers)

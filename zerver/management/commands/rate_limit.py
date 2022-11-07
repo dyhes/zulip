@@ -3,12 +3,12 @@ from typing import Any
 
 from django.core.management.base import CommandError
 
-from zerver.lib.management import ZulipBaseCommand
+from zerver.lib.management import AlohaBaseCommand
 from zerver.lib.rate_limiter import RateLimitedUser
 from zerver.models import UserProfile, get_user_profile_by_api_key
 
 
-class Command(ZulipBaseCommand):
+class Command(AlohaBaseCommand):
     help = """Manually block or unblock a user from accessing the API"""
 
     def add_arguments(self, parser: ArgumentParser) -> None:

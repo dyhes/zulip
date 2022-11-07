@@ -1,4 +1,4 @@
-# Minimal configuration to run a Zulip application server.
+# Minimal configuration to run a Aloha application server.
 # Default nginx configuration is included in extension app_frontend.pp.
 class zulip::app_frontend_base {
   include zulip::nginx

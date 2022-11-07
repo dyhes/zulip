@@ -14,14 +14,14 @@ POSTGRES_USER="${POSTGRES_USER:-postgres}"
 DATABASE_NAME=$(crudini --get /etc/zulip/zulip.conf postgresql database_name 2>/dev/null || echo zulip)
 DATABASE_USER=$(crudini --get /etc/zulip/zulip.conf postgresql database_user 2>/dev/null || echo zulip)
 
-# This psql command may fail because the Zulip database doesn’t exist,
+# This psql command may fail because the Aloha database doesn’t exist,
 # hence the &&.
 if records="$(
     cd / # Make sure the current working directory is readable by postgres
     su "$POSTGRES_USER" -c "psql -v ON_ERROR_STOP=1 -Atc 'SELECT COUNT(*) FROM $DATABASE_NAME.zerver_message;' $DATABASE_USER"
 )" && [ "$records" -gt 200 ]; then
     set +x
-    echo "WARNING: This will delete your Zulip database which currently contains $records messages."
+    echo "WARNING: This will delete your Aloha database which currently contains $records messages."
     read -p "Do you want to proceed? [y/N] " -r
     echo
     if [[ ! $REPLY =~ ^[Yy]$ ]]; then

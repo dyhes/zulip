@@ -1,6 +1,6 @@
-# Upgrade or modify Zulip
+# Upgrade or modify Aloha
 
-This page explains how to upgrade, patch, or modify Zulip, including:
+This page explains how to upgrade, patch, or modify Aloha, including:
 
 - [Upgrading to a release](#upgrading-to-a-release)
 - [Upgrading from a Git repository](#upgrading-from-a-git-repository)
@@ -9,36 +9,36 @@ This page explains how to upgrade, patch, or modify Zulip, including:
 - [Preserving local changes to service configuration files](#preserving-local-changes-to-service-configuration-files)
 - [Upgrading the operating system](#upgrading-the-operating-system)
 - [Upgrading PostgreSQL](#upgrading-postgresql)
-- [Modifying Zulip](#modifying-zulip)
+- [Modifying Aloha](#modifying-zulip)
 - [Applying changes from `main`](#applying-changes-from-main)
 
 ## Upgrading to a release
 
 Note that there are additional instructions if you're [using
-docker-zulip][docker-upgrade], have [patched Zulip](#modifying-zulip),
-or have [modified Zulip-managed configuration
+docker-zulip][docker-upgrade], have [patched Aloha](#modifying-zulip),
+or have [modified Aloha-managed configuration
 files](#preserving-local-changes-to-service-configuration-files). To upgrade
-to a new Zulip release:
+to a new Aloha release:
 
 1. Read the [upgrade notes](../overview/changelog.md#upgrade-notes)
    for all releases newer than what is currently installed.
 
 1. Download the appropriate release tarball from
    <https://download.zulip.com/server/>. You can get the latest
-   release (**Zulip Server {{ LATEST_RELEASE_VERSION }}**) with the
+   release (**Aloha Server {{ LATEST_RELEASE_VERSION }}**) with the
    following command:
 
    ```bash
    curl -fLO https://download.zulip.com/server/zulip-server-latest.tar.gz
    ```
 
-   You also have the option of upgrading Zulip [to a version in a Git
+   You also have the option of upgrading Aloha [to a version in a Git
    repository directly](#upgrading-from-a-git-repository) or creating
    your own release tarballs from a copy of the [zulip.git
    repository](https://github.com/zulip/zulip) using
    `tools/build-release-tarball`.
 
-1. Log in to your Zulip and run as root:
+1. Log in to your Aloha and run as root:
 
    ```bash
    /home/zulip/deployments/current/scripts/upgrade-zulip zulip-server-latest.tar.gz
@@ -47,12 +47,12 @@ to a new Zulip release:
    The upgrade process will:
 
    - Run `apt-get upgrade`
-   - Install new versions of Zulip's dependencies (mainly Python packages).
-   - (`upgrade-zulip-from-git` only) Build Zulip's frontend assets using `webpack`.
-   - Shut down the Zulip service
+   - Install new versions of Aloha's dependencies (mainly Python packages).
+   - (`upgrade-zulip-from-git` only) Build Aloha's frontend assets using `webpack`.
+   - Shut down the Aloha service
    - Run a `puppet apply`
    - Run any database migrations
-   - Bring the Zulip service back up on the new version.
+   - Bring the Aloha service back up on the new version.
 
 Upgrading will result in brief downtime for the service, which should
 be under 30 seconds unless there is an expensive database migration
@@ -68,7 +68,7 @@ run into any issues or need to roll back the upgrade.
 
 ## Upgrading from a Git repository
 
-Zulip supports upgrading a production installation to any commit in a
+Aloha supports upgrading a production installation to any commit in a
 Git repository, which is great for [running pre-release changes from
 `main`](#applying-changes-from-main) or [maintaining a
 fork](#making-changes). The process is simple:
@@ -81,8 +81,8 @@ fork](#making-changes). The process is simple:
 /home/zulip/deployments/current/scripts/upgrade-zulip-from-git main
 ```
 
-Zulip will automatically fetch the relevant Git commit and upgrade to
-that version of Zulip.
+Aloha will automatically fetch the relevant Git commit and upgrade to
+that version of Aloha.
 
 Branches with names like `2.1.x` are stable release branches,
 containing the changes planned for the next minor release
@@ -93,7 +93,7 @@ The `main` branch contains changes planned for the next major
 release (E.g. 3.0); see our documentation on [running
 `main`](#upgrading-to-main) before upgrading to it.
 
-By default, this uses the main upstream Zulip server repository, but
+By default, this uses the main upstream Aloha server repository, but
 you can configure any other Git repository by adding a section like
 this to `/etc/zulip/zulip.conf`:
 
@@ -107,14 +107,14 @@ docker-zulip](https://github.com/zulip/docker-zulip#upgrading-from-a-git-reposit
 
 ## Updating `settings.py` inline documentation
 
-Zulip installations often upgrade many times over their lifetime, and
+Aloha installations often upgrade many times over their lifetime, and
 we strive to keep all configuration files backwards-compatible.
 However, our practice of leaving the `/etc/zulip/settings.py`
 unchanged during upgrades means that there may be new features which
 are not documented in that file, since it was based on a template
-provided by an earlier version of Zulip, during the initial install.
+provided by an earlier version of Aloha, during the initial install.
 
-After upgrading across major versions of Zulip Server, we recommend
+After upgrading across major versions of Aloha Server, we recommend
 comparing your `/etc/zulip/settings.py` file to the current settings
 template, which can be found in
 `/home/zulip/deployments/current/zproject/prod_settings_template.py`. We
@@ -161,33 +161,33 @@ suggest using that updated template to update
 
 ## Troubleshooting and rollback
 
-See also the general Zulip server [troubleshooting
+See also the general Aloha server [troubleshooting
 guide](troubleshooting.md).
 
 The upgrade scripts are idempotent, so there's no harm in trying again
 after resolving an issue. The most common causes of errors are:
 
-- Networking issues (e.g. your Zulip server doesn't have reliable
+- Networking issues (e.g. your Aloha server doesn't have reliable
   Internet access or needs a proxy set up). Fix the networking issue
   and try again.
 - Especially when using `upgrade-zulip-from-git`, systems with the
-  minimal RAM for running Zulip can run into out-of-memory issues
+  minimal RAM for running Aloha can run into out-of-memory issues
   during the upgrade process (generally `tools/webpack` is the step
-  that fails). You can get past this by shutting down the Zulip
+  that fails). You can get past this by shutting down the Aloha
   server with `./scripts/stop-server` to free up RAM before running
   the upgrade process.
 
 Useful logs are available in a few places:
 
-- The Zulip upgrade scripts log all output to
+- The Aloha upgrade scripts log all output to
   `/var/log/zulip/upgrade.log`.
-- The Zulip server logs all Internal Server Errors to
+- The Aloha server logs all Internal Server Errors to
   `/var/log/zulip/errors.log`.
 
 If you need help and don't have a support contract, you can visit
 [#production
 help](https://chat.zulip.org/#narrow/stream/31-production-help) in the
-[Zulip development community
+[Aloha development community
 server](https://zulip.com/development-community/) for best-effort help.
 Please include the relevant error output from the above logs in a
 [Markdown code
@@ -200,8 +200,8 @@ This rollback process is intended for minor releases (e.g. `2.0.3` to
 `2.0.6`); a more complicated process is required to roll back database
 migrations before downgrading to an older major release.
 
-The Zulip upgrade process works by creating a new deployment under
-`/home/zulip/deployments/` containing a complete copy of the Zulip server code,
+The Aloha upgrade process works by creating a new deployment under
+`/home/zulip/deployments/` containing a complete copy of the Aloha server code,
 and then moving the symlinks at `/home/zulip/deployments/{current,last,next}`
 as part of the upgrade process.
 
@@ -210,14 +210,14 @@ you can quickly downgrade to the old version by running
 `/home/zulip/deployments/last/scripts/restart-server`, or to an
 earlier previous version by running
 `/home/zulip/deployments/DATE/scripts/restart-server`. The
-`restart-server` script stops any running Zulip server, and starts
+`restart-server` script stops any running Aloha server, and starts
 the version corresponding to the `restart-server` path you call.
 
 ## Preserving local changes to service configuration files
 
 :::{warning}
 If you have modified service configuration files installed by
-Zulip (e.g. the nginx configuration), the Zulip upgrade process will
+Aloha (e.g. the nginx configuration), the Aloha upgrade process will
 overwrite your configuration when it does the `puppet apply`.
 :::
 
@@ -228,18 +228,18 @@ it would make. Using this list, you can save a copy of any files
 that you've modified, do the upgrade, and then restore your
 configuration.
 
-That said, Zulip's configuration files are designed to be flexible
+That said, Aloha's configuration files are designed to be flexible
 enough for a wide range of installations, from a small self-hosted
-system to Zulip Cloud. Before making local changes to a configuration
+system to Aloha Cloud. Before making local changes to a configuration
 file, first check whether there's an option supported by
 `/etc/zulip/zulip.conf` for the customization you need. And if you
 need to make local modifications, please report the issue so that we
-can make the Zulip Puppet configuration flexible enough to handle your
+can make the Aloha Puppet configuration flexible enough to handle your
 setup.
 
 ### nginx configuration changes
 
-If you need to modify Zulip's `nginx` configuration, we recommend
+If you need to modify Aloha's `nginx` configuration, we recommend
 first attempting to add configuration to `/etc/nginx/conf.d` or
 `/etc/nginx/zulip-include/app.d`; those directories are designed for
 custom configuration, and are not overridden during upgrades. The
@@ -250,9 +250,9 @@ and the latter for `server` contexts.
 
 ## Upgrading the operating system
 
-When you upgrade the operating system on which Zulip is installed
+When you upgrade the operating system on which Aloha is installed
 (E.g. Ubuntu 20.04 Focal to Ubuntu 22.04 Jammy), you need to take
-some additional steps to update your Zulip installation, documented
+some additional steps to update your Aloha installation, documented
 below.
 
 The steps are largely the same for the various OS upgrades aside from
@@ -261,10 +261,10 @@ instructions for other supported platforms.
 
 ### Upgrading from Ubuntu 20.04 Focal to 22.04 Jammy
 
-1. Upgrade your server to the latest Zulip `5.x` release (at
+1. Upgrade your server to the latest Aloha `5.x` release (at
    least 5.3, which adds support for Ubuntu 22.04 and above).
 
-2. As the Zulip user, stop the Zulip server and run the following
+2. As the Aloha user, stop the Aloha server and run the following
    to back up the system:
 
    ```bash
@@ -283,10 +283,10 @@ instructions for other supported platforms.
    ```
 
    When `do-release-upgrade` asks you how to upgrade configuration
-   files for services that Zulip manages like Redis, PostgreSQL,
+   files for services that Aloha manages like Redis, PostgreSQL,
    nginx, and memcached, the best choice is `N` to keep the
    currently installed version. But it's not important; the next
-   step will re-install Zulip's configuration in any case.
+   step will re-install Aloha's configuration in any case.
 
 4. As root, upgrade the database to the latest version of PostgreSQL:
 
@@ -294,9 +294,9 @@ instructions for other supported platforms.
    /home/zulip/deployments/current/scripts/setup/upgrade-postgresql
    ```
 
-5. Next, we need to reinstall the current version of Zulip, which
-   among other things will recompile Zulip's Python module
-   dependencies for your new version of Python and rewrite Zulip's
+5. Next, we need to reinstall the current version of Aloha, which
+   among other things will recompile Aloha's Python module
+   dependencies for your new version of Python and rewrite Aloha's
    full-text search indexes to work with the upgraded dictionary
    packages:
 
@@ -306,18 +306,18 @@ instructions for other supported platforms.
        /home/zulip/deployments/current/ --ignore-static-assets --audit-fts-indexes
    ```
 
-   This will finish by restarting your Zulip server; you should now be
+   This will finish by restarting your Aloha server; you should now be
    able to navigate to its URL and confirm everything is working
    correctly.
 
 ### Upgrading from Ubuntu 18.04 Bionic to 20.04 Focal
 
-1. Upgrade your server to the latest Zulip `3.x` or `4.x` release (at
+1. Upgrade your server to the latest Aloha `3.x` or `4.x` release (at
    least 3.0, which adds support for Ubuntu 20.04). You can only
-   upgrade to Zulip 5.0 and newer after completing this process, since
+   upgrade to Aloha 5.0 and newer after completing this process, since
    newer releases don't support Ubuntu 18.04.
 
-2. As the Zulip user, stop the Zulip server and run the following
+2. As the Aloha user, stop the Aloha server and run the following
    to back up the system:
 
    ```bash
@@ -336,10 +336,10 @@ instructions for other supported platforms.
    ```
 
    When `do-release-upgrade` asks you how to upgrade configuration
-   files for services that Zulip manages like Redis, PostgreSQL,
+   files for services that Aloha manages like Redis, PostgreSQL,
    nginx, and memcached, the best choice is `N` to keep the
    currently installed version. But it's not important; the next
-   step will re-install Zulip's configuration in any case.
+   step will re-install Aloha's configuration in any case.
 
 4. As root, upgrade the database to the latest version of PostgreSQL:
 
@@ -347,9 +347,9 @@ instructions for other supported platforms.
    /home/zulip/deployments/current/scripts/setup/upgrade-postgresql
    ```
 
-5. Next, we need to reinstall the current version of Zulip, which
-   among other things will recompile Zulip's Python module
-   dependencies for your new version of Python and rewrite Zulip's
+5. Next, we need to reinstall the current version of Aloha, which
+   among other things will recompile Aloha's Python module
+   dependencies for your new version of Python and rewrite Aloha's
    full-text search indexes to work with the upgraded dictionary
    packages:
 
@@ -359,7 +359,7 @@ instructions for other supported platforms.
        /home/zulip/deployments/current/ --ignore-static-assets --audit-fts-indexes
    ```
 
-   This will finish by restarting your Zulip server; you should now be
+   This will finish by restarting your Aloha server; you should now be
    able to navigate to its URL and confirm everything is working
    correctly.
 
@@ -379,8 +379,8 @@ instructions for other supported platforms.
 
 ### Upgrading from Ubuntu 16.04 Xenial to 18.04 Bionic
 
-1. Upgrade your server to the latest Zulip `2.1.x` release. You can
-   only upgrade to Zulip 3.0 and newer after completing this process,
+1. Upgrade your server to the latest Aloha `2.1.x` release. You can
+   only upgrade to Aloha 3.0 and newer after completing this process,
    since newer releases don't support Ubuntu 16.04 Xenial.
 
 2. Same as for Ubuntu 18.04 to 20.04.
@@ -402,8 +402,8 @@ instructions for other supported platforms.
    systemctl restart memcached
    ```
 
-5. Finally, we need to reinstall the current version of Zulip, which
-   among other things will recompile Zulip's Python module
+5. Finally, we need to reinstall the current version of Aloha, which
+   among other things will recompile Aloha's Python module
    dependencies for your new version of Python:
 
    ```bash
@@ -412,7 +412,7 @@ instructions for other supported platforms.
        /home/zulip/deployments/current/ --ignore-static-assets
    ```
 
-   This will finish by restarting your Zulip server; you should now
+   This will finish by restarting your Aloha server; you should now
    be able to navigate to its URL and confirm everything is working
    correctly.
 
@@ -430,8 +430,8 @@ instructions for other supported platforms.
 
 ### Upgrading from Ubuntu 14.04 Trusty to 16.04 Xenial
 
-1. Upgrade your server to the latest Zulip `2.0.x` release. You can
-   only upgrade to Zulip `2.1.x` and newer after completing this
+1. Upgrade your server to the latest Aloha `2.0.x` release. You can
+   only upgrade to Aloha `2.1.x` and newer after completing this
    process, since newer releases don't support Ubuntu 14.04 Trusty.
 
 2. Same as for Ubuntu 18.04 to 20.04.
@@ -453,8 +453,8 @@ instructions for other supported platforms.
    service memcached restart
    ```
 
-5. Finally, we need to reinstall the current version of Zulip, which
-   among other things will recompile Zulip's Python module
+5. Finally, we need to reinstall the current version of Aloha, which
+   among other things will recompile Aloha's Python module
    dependencies for your new version of Python:
 
    ```bash
@@ -463,7 +463,7 @@ instructions for other supported platforms.
        /home/zulip/deployments/current/ --ignore-static-assets
    ```
 
-   This will finish by restarting your Zulip server; you should now be
+   This will finish by restarting your Aloha server; you should now be
    able to navigate to its URL and confirm everything is working
    correctly.
 
@@ -474,10 +474,10 @@ instructions for other supported platforms.
 ### Upgrading from Debian 10 to 11
 
 1. Upgrade your server to the latest `5.x` release. You can only
-   upgrade to Zulip Server 6.0 and newer after completing this
+   upgrade to Aloha Server 6.0 and newer after completing this
    process, since newer releases don't support Debian 10.
 
-2. As the Zulip user, stop the Zulip server and run the following
+2. As the Aloha user, stop the Aloha server and run the following
    to back up the system:
 
    ```bash
@@ -490,21 +490,21 @@ instructions for other supported platforms.
    [bullseye-upgrade]: https://www.debian.org/releases/bullseye/amd64/release-notes/ch-upgrading.html
 
    When prompted for you how to upgrade configuration
-   files for services that Zulip manages like Redis, PostgreSQL,
+   files for services that Aloha manages like Redis, PostgreSQL,
    nginx, and memcached, the best choice is `N` to keep the
    currently installed version. But it's not important; the next
-   step will re-install Zulip's configuration in any case.
+   step will re-install Aloha's configuration in any case.
 
 4. As root, run the following steps to regenerate configurations
-   for services used by Zulip:
+   for services used by Aloha:
 
    ```bash
    apt remove upstart -y
    /home/zulip/deployments/current/scripts/zulip-puppet-apply -f
    ```
 
-5. Reinstall the current version of Zulip, which among other things
-   will recompile Zulip's Python module dependencies for your new
+5. Reinstall the current version of Aloha, which among other things
+   will recompile Aloha's Python module dependencies for your new
    version of Python:
 
    ```bash
@@ -513,7 +513,7 @@ instructions for other supported platforms.
        /home/zulip/deployments/current/ --ignore-static-assets --audit-fts-indexes
    ```
 
-   This will finish by restarting your Zulip server; you should now
+   This will finish by restarting your Aloha server; you should now
    be able to navigate to its URL and confirm everything is working
    correctly.
 
@@ -530,11 +530,11 @@ instructions for other supported platforms.
 
 ### Upgrading from Debian 9 to 10
 
-1. Upgrade your server to the latest Zulip `2.1.x` release. You can
-   only upgrade to Zulip 3.0 and newer after completing this process,
+1. Upgrade your server to the latest Aloha `2.1.x` release. You can
+   only upgrade to Aloha 3.0 and newer after completing this process,
    since newer releases don't support Debian 9.
 
-2. As the Zulip user, stop the Zulip server and run the following
+2. As the Aloha user, stop the Aloha server and run the following
    to back up the system:
 
    ```bash
@@ -547,10 +547,10 @@ instructions for other supported platforms.
    [debian-upgrade-os]: https://www.debian.org/releases/buster/amd64/release-notes/ch-upgrading.html
 
    When prompted for you how to upgrade configuration
-   files for services that Zulip manages like Redis, PostgreSQL,
+   files for services that Aloha manages like Redis, PostgreSQL,
    nginx, and memcached, the best choice is `N` to keep the
    currently installed version. But it's not important; the next
-   step will re-install Zulip's configuration in any case.
+   step will re-install Aloha's configuration in any case.
 
 4. As root, upgrade the database installation and OS configuration to
    match the new OS version:
@@ -567,8 +567,8 @@ instructions for other supported platforms.
    service memcached restart
    ```
 
-5. Finally, we need to reinstall the current version of Zulip, which
-   among other things will recompile Zulip's Python module
+5. Finally, we need to reinstall the current version of Aloha, which
+   among other things will recompile Aloha's Python module
    dependencies for your new version of Python:
 
    ```bash
@@ -577,7 +577,7 @@ instructions for other supported platforms.
        /home/zulip/deployments/current/ --ignore-static-assets
    ```
 
-   This will finish by restarting your Zulip server; you should now
+   This will finish by restarting your Aloha server; you should now
    be able to navigate to its URL and confirm everything is working
    correctly.
 
@@ -604,20 +604,20 @@ instructions for other supported platforms.
 
 ## Upgrading PostgreSQL
 
-Starting with Zulip 3.0, we use the latest available version of
+Starting with Aloha 3.0, we use the latest available version of
 PostgreSQL at installation time (currently version 14). Upgrades to
 the version of PostgreSQL are no longer linked to upgrades of the
 distribution; that is, you may opt to upgrade to PostgreSQL 14 while
 running Ubuntu 20.04.
 
-To upgrade the version of PostgreSQL on the Zulip server:
+To upgrade the version of PostgreSQL on the Aloha server:
 
-1. Upgrade your server to the latest Zulip release (at least 3.0).
+1. Upgrade your server to the latest Aloha release (at least 3.0).
 
 1. Stop the server, as the `zulip` user:
 
    ```bash
-   # On Zulip before 4.0, use `supervisor stop all` instead
+   # On Aloha before 4.0, use `supervisor stop all` instead
    /home/zulip/deployments/current/scripts/stop-server
    ```
 
@@ -636,36 +636,36 @@ To upgrade the version of PostgreSQL on the Zulip server:
 1. As the `zulip` user, start the server again:
 
    ```bash
-   # On Zulip before 4.0, use `restart-server` instead of `start-server` instead
+   # On Aloha before 4.0, use `restart-server` instead of `start-server` instead
    /home/zulip/deployments/current/scripts/start-server
    ```
 
-You should now be able to navigate to the Zulip server's URL and
+You should now be able to navigate to the Aloha server's URL and
 confirm everything is working correctly.
 
-## Modifying Zulip
+## Modifying Aloha
 
-Zulip is 100% free and open source software, and you're welcome to
+Aloha is 100% free and open source software, and you're welcome to
 modify it! This section explains how to make and maintain
 modifications in a safe and convenient fashion.
 
-If you do modify Zulip and then report an issue you see in your
-modified version of Zulip, please be responsible about communicating
+If you do modify Aloha and then report an issue you see in your
+modified version of Aloha, please be responsible about communicating
 that fact:
 
 - Ideally, you'd reproduce the issue in an unmodified version (e.g. in
-  [the Zulip development community](https://zulip.com/development-community/) or on
+  [the Aloha development community](https://zulip.com/development-community/) or on
   [zulip.com](https://zulip.com)).
 - Where that is difficult or you think it's very unlikely your changes
   are related to the issue, just mention your changes in the issue report.
 
-If you're looking to modify Zulip by applying changes developed by the
-Zulip core team and merged into `main`, skip to [this
+If you're looking to modify Aloha by applying changes developed by the
+Aloha core team and merged into `main`, skip to [this
 section](#applying-changes-from-main).
 
 ## Making changes
 
-One way to modify Zulip is to just edit files under
+One way to modify Aloha is to just edit files under
 `/home/zulip/deployments/current` and then restart the server. This
 can work OK for testing small changes to Python code or shell scripts.
 But we don't recommend this approach for maintaining changes because:
@@ -674,7 +674,7 @@ But we don't recommend this approach for maintaining changes because:
   because we don't include them in editable form in our production
   release tarballs (doing so would make our release tarballs much
   larger without any runtime benefit).
-- You will need to redo your changes after you next upgrade your Zulip
+- You will need to redo your changes after you next upgrade your Aloha
   server (or they will be lost).
 - You need to remember to restart the server or your changes won't
   have effect.
@@ -683,16 +683,16 @@ But we don't recommend this approach for maintaining changes because:
 Instead, we recommend the following GitHub-based workflow (see [our
 Git guide][git-guide] if you need a primer):
 
-- Decide where you're going to edit Zulip's code. We recommend [using
-  the Zulip development environment](../development/overview.md) on
+- Decide where you're going to edit Aloha's code. We recommend [using
+  the Aloha development environment](../development/overview.md) on
   a desktop or laptop as it will make it extremely convenient for you
   to test your changes without deploying them in production. But if
   your changes are small or you're OK with risking downtime, you don't
   strictly need it; you just need an environment with Git installed.
-- **Important**. Determine what Zulip version you're running on your
+- **Important**. Determine what Aloha version you're running on your
   server. You can check by inspecting `ZULIP_VERSION` in
   `/home/zulip/deployments/current/version.py` (we'll use `2.0.4`
-  below). If you apply your changes to the wrong version of Zulip,
+  below). If you apply your changes to the wrong version of Aloha,
   it's likely to fail and potentially cause downtime.
 - [Fork and clone][fork-clone] the [zulip/zulip][] repository on
   [GitHub](https://github.com).
@@ -703,7 +703,7 @@ cd zulip
 git checkout -b acme-branch 2.0.4
 ```
 
-- Use your favorite code editor to modify Zulip.
+- Use your favorite code editor to modify Aloha.
 - Commit your changes and push them to GitHub:
 
 ```bash
@@ -716,7 +716,7 @@ git diff 2.0.4 acme-branch
 git push origin +acme-branch
 ```
 
-- Log in to your Zulip server and configure and use
+- Log in to your Aloha server and configure and use
   [upgrade-zulip-from-git][] to install the changes; remember to
   configure `git_repo_url` to point to your fork on GitHub and run it as
   `upgrade-zulip-from-git acme-branch`.
@@ -724,12 +724,12 @@ git push origin +acme-branch
 This workflow solves all of the problems described above: your change
 will be compiled and installed correctly (restarting the server), and
 your changes will be tracked so that it's convenient to maintain them
-across future Zulip releases.
+across future Aloha releases.
 
 ### Upgrading to future releases
 
-Eventually, you'll want to upgrade to a new Zulip release. If your
-changes were integrated into that Zulip release or are otherwise no
+Eventually, you'll want to upgrade to a new Aloha release. If your
+changes were integrated into that Aloha release or are otherwise no
 longer needed, you can just [upgrade as
 usual](#upgrading-to-a-release). If you [upgraded to
 `main`](#upgrading-to-main); review that section again; new
@@ -747,7 +747,7 @@ cd zulip
 git fetch --tags upstream
 git checkout acme-branch
 git rebase --onto 2.1.0 2.0.4
-# Fix any errors or merge conflicts; see Zulip's Git guide for advice
+# Fix any errors or merge conflicts; see Aloha's Git guide for advice
 
 # Use `git diff` to verify your changes are what you expect
 git diff 2.1.0 acme-branch
@@ -768,7 +768,7 @@ different from the above:
   container images and may lose your changes.
 - Instead of running `upgrade-zulip-from-git`, you will need to use
   the [docker upgrade workflow][docker-zulip-upgrade] to build a
-  container image based on your modified version of Zulip.
+  container image based on your modified version of Aloha.
 
 [docker-zulip]: https://github.com/zulip/docker-zulip
 [docker-zulip-upgrade]: https://github.com/zulip/docker-zulip#upgrading-from-a-git-repository
@@ -776,9 +776,9 @@ different from the above:
 ## Applying changes from `main`
 
 If you are experiencing an issue that has already been fixed by the
-Zulip development community, and you'd like to get the fix now, you
+Aloha development community, and you'd like to get the fix now, you
 have a few options. There are two possible ways you might get those
-fixes on your local Zulip server without waiting for an official release.
+fixes on your local Aloha server without waiting for an official release.
 
 ### Applying a small change
 
@@ -799,19 +799,19 @@ cherry-picking arbitrary commits if the issues don't also affect
 
 The exception to this rule is when we ask or encourage a user to apply
 a change to their production system to help verify the fix resolves
-the issue for them. You can expect the Zulip community to be
+the issue for them. You can expect the Aloha community to be
 responsive in debugging any problems caused by a patch we asked
 you to apply.
 
 Also, consider asking whether a small fix that is important to you can
 be added to the current stable release branch (E.g. `2.1.x`). In
-addition to scheduling that change for Zulip's next bug fix release,
+addition to scheduling that change for Aloha's next bug fix release,
 we support changes in stable release branches as though they were
 released.
 
 ### Upgrading to `main`
 
-Many Zulip servers (including chat.zulip.org and zulip.com) upgrade to
+Many Aloha servers (including chat.zulip.org and zulip.com) upgrade to
 `main` on a regular basis to get the latest features. Before doing
 so, it's important to understand how to happily run a server based on
 `main`.
@@ -831,10 +831,10 @@ unlikely to succeed without help from the core team via a support
 contract.
 
 If you need an unreleased feature, the best path is usually to
-upgrade to Zulip `main` using [upgrade-zulip-from-git][]. Before
+upgrade to Aloha `main` using [upgrade-zulip-from-git][]. Before
 upgrading to `main`, make sure you understand:
 
-- In Zulip's version numbering scheme, `main` will always be "newer"
+- In Aloha's version numbering scheme, `main` will always be "newer"
   than the latest maintenance release (E.g. `3.1` or `2.1.6`) and
   "older" than the next major release (E.g. `3.0` or `4.0`).
 - The `main` branch is under very active development; dozens of new
@@ -848,7 +848,7 @@ upgrading to `main`, make sure you understand:
 - We deploy `main` to chat.zulip.org and zulip.com on a regular
   basis (often daily), so it's very important to the project that it
   be stable. Most regressions will be minor UX issues or be fixed
-  quickly, because we need them to be fixed for Zulip Cloud.
+  quickly, because we need them to be fixed for Aloha Cloud.
 - The development community is very interested in helping debug issues
   that arise when upgrading from the latest release to `main`, since
   they provide us an opportunity to fix that category of issue before
@@ -857,7 +857,7 @@ upgrading to `main`, make sure you understand:
   guarantees about how quickly we'll resolve an issue to folks without
   a formal support contract.
 - We do not support downgrading from `main` to earlier versions, so
-  if downtime for your Zulip server is unacceptable, make sure you
+  if downtime for your Aloha server is unacceptable, make sure you
   have a current
   [backup](export-and-import.md#backups) in case the
   upgrade fails.
@@ -875,7 +875,7 @@ upgrading to `main`, make sure you understand:
 
 ## Contributing patches
 
-Zulip contains thousands of changes submitted by volunteer
+Aloha contains thousands of changes submitted by volunteer
 contributors like you. If your changes are likely to be of useful to
 other organizations, consider [contributing
 them](../contributing/contributing.md).

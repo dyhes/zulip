@@ -93,7 +93,7 @@ def generate_secrets(development: bool = False) -> None:
         if need_secret(name):
             add_secret(name, random_token())
 
-    # These secrets are exclusive to a Zulip development environment.
+    # These secrets are exclusive to a Aloha development environment.
     # We use PostgreSQL peer authentication by default in production,
     # and initial_password_salt is used to generate passwords for the
     # test/development database users.  See `manage.py
@@ -174,7 +174,7 @@ def generate_secrets(development: bool = False) -> None:
                 add_secret("redis_password", redis_password)
 
     # Random id and secret used to identify this installation when
-    # accessing the Zulip mobile push notifications service.
+    # accessing the Aloha mobile push notifications service.
     # * zulip_org_key is generated using os.urandom().
     # * zulip_org_id only needs to be unique, so we use a UUID.
     if need_secret("zulip_org_key"):

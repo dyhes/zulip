@@ -7,10 +7,10 @@ maxdepth: 3
 
 Quick start <overview>
 Set up Git <setup>
-Zulip-specific tools <zulip-tools>
+Aloha-specific tools <zulip-tools>
 How Git is different <the-git-difference>
 Important Git terms <terminology>
-Get Zulip code <cloning>
+Get Aloha code <cloning>
 Working copies <working-copies>
 Using Git as you work <using>
 Pull requests <pull-requests>

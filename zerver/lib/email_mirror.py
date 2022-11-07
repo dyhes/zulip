@@ -14,8 +14,8 @@ from zerver.actions.message_send import (
     internal_send_stream_message,
 )
 from zerver.lib.email_mirror_helpers import (
-    ZulipEmailForwardError,
-    ZulipEmailForwardUserError,
+    AlohaEmailForwardError,
+    AlohaEmailForwardUserError,
     decode_email_address,
     get_email_gateway_message_string_from_address,
 )
@@ -62,7 +62,7 @@ def redact_email_address(error_message: str) -> str:
             try:
                 target_stream_id = decode_stream_email_address(email_address)[0].id
                 annotation = f" <Address to stream id: {target_stream_id}>"
-            except ZulipEmailForwardError:
+            except AlohaEmailForwardError:
                 annotation = " <Invalid address>"
 
         # Scrub the address from the message, to the form XXXXX@example.com:
@@ -106,7 +106,7 @@ def generate_missed_message_token() -> str:
 def is_missed_message_address(address: str) -> bool:
     try:
         msg_string = get_email_gateway_message_string_from_address(address)
-    except ZulipEmailForwardError:
+    except AlohaEmailForwardError:
         return False
 
     return is_mm_32_format(msg_string)
@@ -124,7 +124,7 @@ def get_missed_message_token_from_address(address: str) -> str:
     msg_string = get_email_gateway_message_string_from_address(address)
 
     if not is_mm_32_format(msg_string):
-        raise ZulipEmailForwardError("Could not parse missed message address")
+        raise AlohaEmailForwardError("Could not parse missed message address")
 
     return msg_string
 
@@ -134,7 +134,7 @@ def get_usable_missed_message_address(address: str) -> MissedMessageEmailAddress
     try:
         mm_address = MissedMessageEmailAddress.objects.select_related().get(email_token=token)
     except MissedMessageEmailAddress.DoesNotExist:
-        raise ZulipEmailForwardError("Zulip notification reply address is invalid.")
+        raise AlohaEmailForwardError("Aloha notification reply address is invalid.")
 
     return mm_address
 
@@ -142,7 +142,7 @@ def get_usable_missed_message_address(address: str) -> MissedMessageEmailAddress
 def create_missed_message_address(user_profile: UserProfile, message: Message) -> str:
     # If the email gateway isn't configured, we specify a reply
     # address, since there's no useful way for the user to reply into
-    # Zulip.
+    # Aloha.
     if settings.EMAIL_GATEWAY_PATTERN == "":
         return FromAddress.NOREPLY
 
@@ -161,7 +161,7 @@ def construct_zulip_body(
     prefer_text: bool = True,
 ) -> str:
     body = extract_body(message, include_quotes, prefer_text)
-    # Remove null characters, since Zulip will reject
+    # Remove null characters, since Aloha will reject
     body = body.replace("\x00", "")
     if not include_footer:
         body = filter_footer(body)
@@ -179,7 +179,7 @@ def construct_zulip_body(
     return body
 
 
-## Sending the Zulip ##
+## Sending the Aloha ##
 
 
 def send_zulip(sender: UserProfile, stream: Stream, topic: str, content: str) -> None:
@@ -246,9 +246,9 @@ def extract_body(
 
     if plaintext_content is None and html_content is None:
         logger.warning("Content types: %s", [part.get_content_type() for part in message.walk()])
-        raise ZulipEmailForwardUserError("Unable to find plaintext or HTML message body")
+        raise AlohaEmailForwardUserError("Unable to find plaintext or HTML message body")
     if not plaintext_content and not html_content:
-        raise ZulipEmailForwardUserError("Email has no nonempty body sections; ignoring.")
+        raise AlohaEmailForwardUserError("Email has no nonempty body sections; ignoring.")
 
     if prefer_text:
         if plaintext_content:
@@ -350,7 +350,7 @@ def decode_stream_email_address(email: str) -> Tuple[Stream, Dict[str, bool]]:
     try:
         stream = Stream.objects.get(email_token=token)
     except Stream.DoesNotExist:
-        raise ZulipEmailForwardError("Bad stream token from email recipient " + email)
+        raise AlohaEmailForwardError("Bad stream token from email recipient " + email)
 
     return stream, options
 
@@ -383,7 +383,7 @@ def find_emailgateway_recipient(message: EmailMessage) -> str:
                 if match_email_re.match(email):
                     return email
 
-    raise ZulipEmailForwardError("Missing recipient in mirror email")
+    raise AlohaEmailForwardError("Missing recipient in mirror email")
 
 
 def strip_from_subject(subject: str) -> str:
@@ -406,7 +406,7 @@ def process_stream_message(to: str, message: EmailMessage) -> None:
     subject = strip_from_subject(subject_header) or "(no topic)"
 
     # We don't want to reject email messages with disallowed characters in the Subject,
-    # so we just remove them to make it a valid Zulip topic name.
+    # so we just remove them to make it a valid Aloha topic name.
     subject = "".join([char for char in subject if is_character_printable(char)]) or "(no topic)"
 
     stream, options = decode_stream_email_address(to)
@@ -482,10 +482,10 @@ def process_message(message: EmailMessage, rcpt_to: Optional[str] = None) -> Non
             process_missed_message(to, message)
         else:
             process_stream_message(to, message)
-    except ZulipEmailForwardUserError as e:
+    except AlohaEmailForwardUserError as e:
         # TODO: notify sender of error, retry if appropriate.
         logger.info(e.args[0])
-    except ZulipEmailForwardError as e:
+    except AlohaEmailForwardError as e:
         log_and_report(message, e.args[0], to)
 
 
@@ -499,7 +499,7 @@ def validate_to_address(rcpt_to: str) -> None:
 def mirror_email_message(rcpt_to: str, msg_base64: str) -> Dict[str, str]:
     try:
         validate_to_address(rcpt_to)
-    except ZulipEmailForwardError as e:
+    except AlohaEmailForwardError as e:
         return {
             "status": "error",
             "msg": f"5.1.1 Bad destination mailbox address: {e}",

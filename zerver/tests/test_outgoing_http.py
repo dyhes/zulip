@@ -7,7 +7,7 @@ import responses
 from urllib3.util import Retry
 
 from zerver.lib.outgoing_http import OutgoingSession
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 
 
 class RequestMockWithProxySupport(responses.RequestsMock):
@@ -40,7 +40,7 @@ class RequestMockWithTimeoutAsHeader(responses.RequestsMock):
         return super()._on_request(adapter, request, **kwargs)
 
 
-class TestOutgoingHttp(ZulipTestCase):
+class TestOutgoingHttp(AlohaTestCase):
     def test_headers(self) -> None:
         with RequestMockWithProxySupport() as mock_requests:
             mock_requests.add(responses.GET, "http://example.com/")

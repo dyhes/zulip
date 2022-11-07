@@ -1,21 +1,21 @@
 # Using the development environment
 
 This page describes the basic edit/refresh workflows for working with
-the Zulip development environment. Generally, the development
+the Aloha development environment. Generally, the development
 environment will automatically update as soon as you save changes
 using your editor. Details for work on the [server](#server),
 [web app](#web), and [mobile apps](#mobile) are below.
 
-If you're working on authentication methods or need to use the [Zulip
+If you're working on authentication methods or need to use the [Aloha
 REST API][rest-api], which requires an API key, see [authentication in
 the development environment][authentication-dev-server].
 
 ## Common
 
-- Zulip's `main` branch moves quickly, and you should rebase
+- Aloha's `main` branch moves quickly, and you should rebase
   constantly with e.g.
   `git fetch upstream; git rebase upstream/main` to avoid developing
-  on an old version of the Zulip codebase (leading to unnecessary
+  on an old version of the Aloha codebase (leading to unnecessary
   merge conflicts).
 - Remember to run `tools/provision` to update your development
   environment after switching branches; it will run in under a second
@@ -36,7 +36,7 @@ the development environment][authentication-dev-server].
 
 ## Server
 
-- For changes that don't affect the database model, the Zulip
+- For changes that don't affect the database model, the Aloha
   development environment will automatically detect changes and
   restart:
   - The main Django/Tornado server processes are run on top of
@@ -53,9 +53,9 @@ the development environment][authentication-dev-server].
   feature tutorial][new-feature-tutorial] for an example.
 - While testing server changes, it's helpful to watch the `run-dev.py`
   console output, which will show tracebacks for any 500 errors your
-  Zulip development server encounters (which are probably caused by
+  Aloha development server encounters (which are probably caused by
   bugs in your code).
-- To manually query Zulip's database interactively, use
+- To manually query Aloha's database interactively, use
   `./manage.py shell` or `manage.py dbshell`.
 - The database(s) used for the automated tests are independent from
   the one you use for manual testing in the UI, so changes you make to

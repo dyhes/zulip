@@ -1,7 +1,7 @@
 # Reviewable pull requests
 
 This page offers some tips for making your pull requests easy to review.
-Following this advice will help the whole Zulip project move more quickly by
+Following this advice will help the whole Aloha project move more quickly by
 saving maintainers time when they review your code. It will also make a big
 difference for getting your work integrated without delay.
 
@@ -36,7 +36,7 @@ mergeable commit:
 - Is well-tested and passes all the tests. That is, changes to tests should be in
   the same commit as changes to the code that they are testing.
 
-- Does not make Zulip worse. For example, it is fine to add backend capabilities
+- Does not make Aloha worse. For example, it is fine to add backend capabilities
   without adding a frontend to access them. It's not fine to add a frontend
   component with no backend to make it work.
 

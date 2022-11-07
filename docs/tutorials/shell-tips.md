@@ -17,7 +17,7 @@ Linux/macOS environments (Unix shells). You can also use a tool, for example
 
 ## The prompt (`$`)
 
-When searching Google, or Zulip's docs, you'll find commands that begin
+When searching Google, or Aloha's docs, you'll find commands that begin
 with a dollar sign `$` or a dollar sign preceded by some text
 (e.g. `(venv)john@laptop:~$`).
 
@@ -173,7 +173,7 @@ e.g. in a documentation file.
 In those cases, you can use a backslash at the end of each line, to inform the
 shell "wait, there's more on the next line".
 
-This is an example, taken from the docs on how to install the Zulip development
+This is an example, taken from the docs on how to install the Aloha development
 environment:
 
 ```bash
@@ -260,7 +260,7 @@ all the arguments for every single command. There are
 You can run some files directly, without specifying a program to interpret
 them.
 
-That's why you may have seen cases, in the Zulip codebase or
+That's why you may have seen cases, in the Aloha codebase or
 elsewhere, when some Python scripts are called with `python`:
 
 ```console
@@ -301,7 +301,7 @@ $ /usr/bin/env python3 ./my_program.py
 The purpose of `/usr/bin/env` in our shebangs is as a way to locate
 the `python3` program in your current environment, the same one the
 shell would use if you ran `python3 my_program.py`. You may see
-Python scripts outside of Zulip with a shebang like
+Python scripts outside of Aloha with a shebang like
 `#!/usr/bin/python3`; but because of the way Python virtualenvs work,
 this has the effect of running the script outside of any currently
 activated virtualenv. We use `/usr/bin/env` to keep our scripts

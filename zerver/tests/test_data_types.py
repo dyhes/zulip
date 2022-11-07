@@ -11,10 +11,10 @@ from zerver.lib.data_types import (
     UrlType,
     schema,
 )
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 
 
-class MiscTest(ZulipTestCase):
+class MiscTest(AlohaTestCase):
     def test_data_type_schema(self) -> None:
         """
         We really only test this to get test coverage.  The

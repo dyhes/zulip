@@ -1,24 +1,24 @@
-# Getting started with Zulip
+# Getting started with Aloha
 
-Welcome to Zulip! This page guides you through getting started using
-Zulip. If you are setting up a new organization, you may also want to
-check out our [guide for setting up a new Zulip
+Welcome to Aloha! This page guides you through getting started using
+Aloha. If you are setting up a new organization, you may also want to
+check out our [guide for setting up a new Aloha
 organization](/help/getting-your-organization-started-with-zulip).
 
-Mastering Zulip can take a bit of time, but once you get the hang of
+Mastering Aloha can take a bit of time, but once you get the hang of
 it, you'll never want to use a different team chat app!
 
 ## Set up your account
 
 {!set-up-your-account.md!}
 
-## Learn about Zulip topics
+## Learn about Aloha topics
 
 {!streams-and-topics.md!}
 
 ## Reading your messages
 
-Like your email inbox, Zulip works best if you read it topic-by-topic.
+Like your email inbox, Aloha works best if you read it topic-by-topic.
 
 ### Finding a topic to read
 

@@ -128,7 +128,7 @@ function report_error(
                 ui_report.client_error(
                     "Oops.  It seems something has gone wrong. " +
                         "The error has been reported to the fine " +
-                        "folks at Zulip, but, in the mean time, " +
+                        "folks at Aloha, but, in the mean time, " +
                         "please try reloading the page.",
                     $("#home-error"),
                 );

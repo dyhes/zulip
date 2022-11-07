@@ -45,5 +45,5 @@ def main(args: argparse.Namespace) -> None:
 
 
 if __name__ == "__main__":
-    args = parse_cache_script_args("This script cleans unused Zulip emoji caches.")
+    args = parse_cache_script_args("This script cleans unused Aloha emoji caches.")
     main(args)

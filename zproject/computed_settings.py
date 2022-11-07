@@ -77,7 +77,7 @@ SHARED_SECRET = get_mandatory_secret("shared_secret")
 
 # We use this salt to hash a user's email into a filename for their user-uploaded
 # avatar.  If this salt is discovered, attackers will only be able to determine
-# that the owner of an email account has uploaded an avatar to Zulip, which isn't
+# that the owner of an email account has uploaded an avatar to Aloha, which isn't
 # the end of the world.  Don't use the salt where there is more security exposure.
 AVATAR_SALT = get_mandatory_secret("avatar_salt")
 
@@ -172,11 +172,11 @@ MIDDLEWARE = (
     "zerver.middleware.JsonErrorHandler",
     "zerver.middleware.RateLimitMiddleware",
     "zerver.middleware.FlushDisplayRecipientCache",
-    "zerver.middleware.ZulipCommonMiddleware",
+    "zerver.middleware.AlohaCommonMiddleware",
     "zerver.middleware.LocaleMiddleware",
     "zerver.middleware.HostDomainMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
-    "zerver.middleware.ZulipSCIMAuthCheckMiddleware",
+    "zerver.middleware.AlohaSCIMAuthCheckMiddleware",
     # Make sure 2FA middlewares come after authentication middleware.
     "django_otp.middleware.OTPMiddleware",  # Required by two factor auth.
     "two_factor.middleware.threadlocals.ThreadLocals",  # Required by Twilio
@@ -240,7 +240,7 @@ SILENCED_SYSTEM_CHECKS = [
 # DATABASE CONFIGURATION
 ########################################################################
 
-# Zulip's Django configuration supports 4 different ways to do
+# Aloha's Django configuration supports 4 different ways to do
 # PostgreSQL authentication:
 #
 # * The development environment uses the `local_database_password`
@@ -446,7 +446,7 @@ if DEVELOPMENT:
     INITIAL_PASSWORD_SALT = get_secret("initial_password_salt")
 else:
     # For production, use the best password hashing algorithm: Argon2
-    # Zulip was originally on PBKDF2 so we need it for compatibility
+    # Aloha was originally on PBKDF2 so we need it for compatibility
     PASSWORD_HASHERS = (
         "django.contrib.auth.hashers.Argon2PasswordHasher",
         "django.contrib.auth.hashers.PBKDF2PasswordHasher",
@@ -484,7 +484,7 @@ TWITTER_CONSUMER_SECRET = get_secret("twitter_consumer_secret")
 TWITTER_ACCESS_TOKEN_KEY = get_secret("twitter_access_token_key")
 TWITTER_ACCESS_TOKEN_SECRET = get_secret("twitter_access_token_secret")
 
-# These are the bots that Zulip sends automated messages as.
+# These are the bots that Aloha sends automated messages as.
 INTERNAL_BOTS = [
     {
         "var_name": "NOTIFICATION_BOT",
@@ -568,16 +568,16 @@ if PRODUCTION or IS_DEV_DROPLET or os.getenv("EXTERNAL_HOST") is not None:
 else:
     STATIC_URL = "http://localhost:9991/static/"
 
-# ZulipStorage is a modified version of ManifestStaticFilesStorage,
+# AlohaStorage is a modified version of ManifestStaticFilesStorage,
 # and, like that class, it inserts a file hash into filenames
 # to prevent the browser from using stale files from cache.
 #
 # Unlike PipelineStorage, it requires the files to exist in
 # STATIC_ROOT even for dev servers.  So we only use
-# ZulipStorage when not DEBUG.
+# AlohaStorage when not DEBUG.
 
 if not DEBUG:
-    STATICFILES_STORAGE = "zerver.lib.storage.ZulipStorage"
+    STATICFILES_STORAGE = "zerver.lib.storage.AlohaStorage"
     if PRODUCTION:
         STATIC_ROOT = "/home/zulip/prod-static"
     else:
@@ -682,7 +682,7 @@ TEMPLATES = [
 
 def zulip_path(path: str) -> str:
     if DEVELOPMENT:
-        # if DEVELOPMENT, store these files in the Zulip checkout
+        # if DEVELOPMENT, store these files in the Aloha checkout
         if path.startswith("/var/log"):
             path = os.path.join(DEVELOPMENT_LOG_DIRECTORY, os.path.basename(path))
         else:
@@ -755,15 +755,15 @@ LOGGING: Dict[str, Any] = {
     "disable_existing_loggers": False,
     "formatters": {
         "default": {
-            "()": "zerver.lib.logging_util.ZulipFormatter",
+            "()": "zerver.lib.logging_util.AlohaFormatter",
         },
         "webhook_request_data": {
-            "()": "zerver.lib.logging_util.ZulipWebhookFormatter",
+            "()": "zerver.lib.logging_util.AlohaWebhookFormatter",
         },
     },
     "filters": {
-        "ZulipLimiter": {
-            "()": "zerver.lib.logging_util.ZulipLimiter",
+        "AlohaLimiter": {
+            "()": "zerver.lib.logging_util.AlohaLimiter",
         },
         "EmailLimiter": {
             "()": "zerver.lib.logging_util.EmailLimiter",
@@ -797,7 +797,7 @@ LOGGING: Dict[str, Any] = {
             "level": "ERROR",
             "class": "zerver.logging_handlers.AdminNotifyHandler",
             "filters": (
-                ["ZulipLimiter", "require_debug_false", "require_really_deployed"]
+                ["AlohaLimiter", "require_debug_false", "require_really_deployed"]
                 if not DEBUG_ERROR_REPORTING
                 else []
             ),
@@ -950,7 +950,7 @@ LOGGING: Dict[str, Any] = {
             "level": "WARNING",
             # pika spews a lot of ERROR logs when a connection fails.
             # We reconnect automatically, so those should be treated as WARNING --
-            # write to the log for use in debugging, but no error emails/Zulips.
+            # write to the log for use in debugging, but no error emails/Alohas.
             "handlers": ["console", "file", "errors_file"],
             "propagate": False,
         },
@@ -1042,10 +1042,10 @@ EVENT_QUEUE_LONGPOLL_TIMEOUT_SECONDS = 90
 # SSO AND LDAP SETTINGS
 ########################################################################
 
-USING_LDAP = "zproject.backends.ZulipLDAPAuthBackend" in AUTHENTICATION_BACKENDS
-ONLY_LDAP = AUTHENTICATION_BACKENDS == ("zproject.backends.ZulipLDAPAuthBackend",)
-USING_APACHE_SSO = "zproject.backends.ZulipRemoteUserBackend" in AUTHENTICATION_BACKENDS
-ONLY_SSO = AUTHENTICATION_BACKENDS == ("zproject.backends.ZulipRemoteUserBackend",)
+USING_LDAP = "zproject.backends.AlohaLDAPAuthBackend" in AUTHENTICATION_BACKENDS
+ONLY_LDAP = AUTHENTICATION_BACKENDS == ("zproject.backends.AlohaLDAPAuthBackend",)
+USING_APACHE_SSO = "zproject.backends.AlohaRemoteUserBackend" in AUTHENTICATION_BACKENDS
+ONLY_SSO = AUTHENTICATION_BACKENDS == ("zproject.backends.AlohaRemoteUserBackend",)
 
 if CUSTOM_HOME_NOT_LOGGED_IN is not None:
     # We import this with a different name to avoid a mypy bug with
@@ -1057,12 +1057,12 @@ elif ONLY_SSO:
 else:
     HOME_NOT_LOGGED_IN = "/login/"
 
-AUTHENTICATION_BACKENDS += ("zproject.backends.ZulipDummyBackend",)
+AUTHENTICATION_BACKENDS += ("zproject.backends.AlohaDummyBackend",)
 
 POPULATE_PROFILE_VIA_LDAP = bool(AUTH_LDAP_SERVER_URI)
 
 if POPULATE_PROFILE_VIA_LDAP and not USING_LDAP:
-    AUTHENTICATION_BACKENDS += ("zproject.backends.ZulipLDAPUserPopulator",)
+    AUTHENTICATION_BACKENDS += ("zproject.backends.AlohaLDAPUserPopulator",)
 else:
     POPULATE_PROFILE_VIA_LDAP = USING_LDAP or POPULATE_PROFILE_VIA_LDAP
 
@@ -1131,7 +1131,7 @@ SOCIAL_AUTH_GITHUB_TEAM_SECRET = SOCIAL_AUTH_GITHUB_SECRET
 SOCIAL_AUTH_GOOGLE_SECRET = get_secret("social_auth_google_secret")
 # Fallback to google-oauth settings in case social auth settings for
 # Google are missing; this is for backwards-compatibility with older
-# Zulip versions where /etc/zulip/settings.py has not been migrated yet.
+# Aloha versions where /etc/zulip/settings.py has not been migrated yet.
 GOOGLE_OAUTH2_CLIENT_SECRET = get_secret("google_oauth2_client_secret")
 SOCIAL_AUTH_GOOGLE_KEY = SOCIAL_AUTH_GOOGLE_KEY or GOOGLE_OAUTH2_CLIENT_ID
 SOCIAL_AUTH_GOOGLE_SECRET = SOCIAL_AUTH_GOOGLE_SECRET or GOOGLE_OAUTH2_CLIENT_SECRET
@@ -1175,7 +1175,7 @@ SOCIAL_AUTH_PIPELINE = [
 # EMAIL SETTINGS
 ########################################################################
 
-# Django setting. Not used in the Zulip codebase.
+# Django setting. Not used in the Aloha codebase.
 DEFAULT_FROM_EMAIL = ZULIP_ADMINISTRATOR
 
 if EMAIL_BACKEND is not None:
@@ -1209,7 +1209,7 @@ AUTH_LDAP_BIND_PASSWORD = get_secret("auth_ldap_bind_password", "")
 
 if PRODUCTION:
     # Filter out user data
-    DEFAULT_EXCEPTION_REPORTER_FILTER = "zerver.filters.ZulipExceptionReporterFilter"
+    DEFAULT_EXCEPTION_REPORTER_FILTER = "zerver.filters.AlohaExceptionReporterFilter"
 
 # This is a debugging option only
 PROFILE_ALL_REQUESTS = False
@@ -1226,8 +1226,8 @@ TWO_FACTOR_PATCH_ADMIN = False
 SENTRY_DSN = os.environ.get("SENTRY_DSN", SENTRY_DSN)
 
 SCIM_SERVICE_PROVIDER = {
-    "USER_ADAPTER": "zerver.lib.scim.ZulipSCIMUser",
-    "USER_FILTER_PARSER": "zerver.lib.scim_filter.ZulipUserFilterQuery",
+    "USER_ADAPTER": "zerver.lib.scim.AlohaSCIMUser",
+    "USER_FILTER_PARSER": "zerver.lib.scim_filter.AlohaUserFilterQuery",
     # NETLOC is actually overridden by the behavior of base_scim_location_getter,
     # but django-scim2 requires it to be set, even though it ends up not being used.
     # So we need to give it some value here, and EXTERNAL_HOST is the most generic.

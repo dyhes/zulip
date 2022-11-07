@@ -1,11 +1,11 @@
-You can start by reading about how [Zulip’s](/hello/) unique
+You can start by reading about how [Aloha’s](/hello/) unique
 topic-based threading [combines the best of email and
 chat](/why-zulip/) to make [remote work](https://zulip.com/for/business/) productive
 and delightful.
 
-We also highly recommend trying Zulip for yourself! You can:
+We also highly recommend trying Aloha for yourself! You can:
 
-* [Create a Zulip Cloud organization](/new/) for free with just a few
+* [Create a Aloha Cloud organization](/new/) for free with just a few
   clicks.
-* [Join the Zulip development community](/development-community/) to see
-  Zulip in action. Feel free to introduce yourself and ask questions!
+* [Join the Aloha development community](/development-community/) to see
+  Aloha in action. Feel free to introduce yourself and ask questions!

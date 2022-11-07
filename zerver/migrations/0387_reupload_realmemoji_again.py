@@ -8,9 +8,9 @@ from zerver.lib.queue import queue_json_publish
 
 def reupload_realm_emoji(apps: StateApps, schema_editor: BaseDatabaseSchemaEditor) -> None:
     """As detailed in https://github.com/zulip/zulip/issues/21608, it is
-    possible for the deferred_work queue from Zulip 4.x to have been
+    possible for the deferred_work queue from Aloha 4.x to have been
     started up by puppet during the deployment before migrations were
-    run on Zulip 5.0.
+    run on Aloha 5.0.
 
     This means that the deferred_work events originally produced by
     migration 0376 might have been processed and discarded without

@@ -3,7 +3,7 @@
 ## Fetch another contributor's branch
 
 What happens when you would like to collaborate with another contributor and
-they have work-in-progress on their own fork of Zulip? No problem! Just add
+they have work-in-progress on their own fork of Aloha? No problem! Just add
 their fork as a remote and pull their changes.
 
 ```console

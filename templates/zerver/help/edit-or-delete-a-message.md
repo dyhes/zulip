@@ -5,7 +5,7 @@
     **Note:** Editing message topic is discussed in a
     [separate guide](/help/rename-a-topic).
 
-By default, Zulip allows you to edit the content of your messages within 10
+By default, Aloha allows you to edit the content of your messages within 10
 minutes of when you send them. Organization administrators can
 [change the time limit](/help/configure-message-editing-and-deletion),
 remove the time limit, or remove the ability to edit messages entirely.
@@ -44,7 +44,7 @@ icon instead. Clicking the file icon will allow you to view the
 Editing a message to delete its content will cause the message to be
 displayed as **(deleted)**.  The original sender and timestamp of the
 message will still be displayed, and the original content of the
-message is still accessible via Zulip's [edit
+message is still accessible via Aloha's [edit
 history](/help/view-a-messages-edit-history) feature.  This can be the
 least confusing option for other users.
 
@@ -74,7 +74,7 @@ permissions to delete that message.
 ## How deletion works
 
 * Deleted messages will immediately disappear from the UI in all
-  official Zulip clients.
+  official Aloha clients.
 * Any uploaded files referenced only by deleted messages will also be
   immediately inaccessible (An uploaded file shared in multiple
   messages will not be deleted until all of those messages are
@@ -90,7 +90,7 @@ permissions to delete that message.
   deletions, messages deleted directly or via a [message retention
   policy](/help/message-retention-policy) are archived for 30 days in a
   format that can be restored by a server administrator.  After that
-  time, they are permanently and irrecoverably deleted from the Zulip
+  time, they are permanently and irrecoverably deleted from the Aloha
   server.  Server administrators can adjust the archival time using
   the `ARCHIVED_DATA_VACUUMING_DELAY_DAYS` setting.
 

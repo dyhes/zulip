@@ -44,7 +44,7 @@ from zerver.data_import.slack import (
     users_to_zerver_userprofile,
 )
 from zerver.lib.import_realm import do_import_realm
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import read_test_image_file
 from zerver.lib.topic import EXPORT_TOPIC_NAME
 from zerver.models import Message, Realm, RealmAuditLog, Recipient, UserProfile, get_realm
@@ -111,7 +111,7 @@ def request_callback(request: PreparedRequest) -> Tuple[int, Dict[str, str], byt
     return (200, {}, orjson.dumps({"ok": True, "team": {"id": team_id, "domain": team_domain}}))
 
 
-class SlackImporter(ZulipTestCase):
+class SlackImporter(AlohaTestCase):
     @responses.activate
     def test_get_slack_api_data(self) -> None:
         token = "xoxp-valid-token"

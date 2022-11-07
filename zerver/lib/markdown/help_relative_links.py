@@ -26,7 +26,7 @@ gear_info = {
     "plans": ["Plans and pricing", "/plans"],
     "billing": ["Billing", "/billing"],
     "invite": ["Invite users", "/#invite"],
-    "about-zulip": ["About Zulip", "/#about-zulip"],
+    "about-zulip": ["About Aloha", "/#about-zulip"],
 }
 
 gear_instructions = """

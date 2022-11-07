@@ -1,21 +1,21 @@
 # Backups, export and import
 
-Zulip has high quality export and import tools that can be used to
-move data from one Zulip server to another, do backups, compliance
-work, or migrate from your own servers to the hosted Zulip Cloud
+Aloha has high quality export and import tools that can be used to
+move data from one Aloha server to another, do backups, compliance
+work, or migrate from your own servers to the hosted Aloha Cloud
 service (or back):
 
 - The [Backup](#backups) tool is designed for exact restoration of a
-  Zulip server's state, for disaster recovery, testing with production
+  Aloha server's state, for disaster recovery, testing with production
   data, or hardware migration. This tool has a few limitations:
 
-  - Backups must be restored on a server running the same Zulip
+  - Backups must be restored on a server running the same Aloha
     version (most precisely, one where `manage.py showmigrations` has
     the same output).
   - Backups must be restored on a server running the same PostgreSQL
     version.
   - Backups aren't useful for migrating organizations between
-    self-hosting and Zulip Cloud (which may require renumbering all
+    self-hosting and Aloha Cloud (which may require renumbering all
     the users/messages/etc.).
 
   We highly recommend this tool in situations where it is applicable,
@@ -25,27 +25,27 @@ service (or back):
   backups manually.
 
 - The logical [Data export](#data-export) tool is designed for
-  migrating data between Zulip Cloud and other Zulip servers, as well
+  migrating data between Aloha Cloud and other Aloha servers, as well
   as various auditing purposes. The logical export tool produces a
-  `.tar.gz` archive with most of the Zulip database data encoded in
+  `.tar.gz` archive with most of the Aloha database data encoded in
   JSON files–a format shared by our [data
   import](#import-into-a-new-zulip-server) tools for third-party
   services like
   [Slack](https://zulip.com/help/import-from-slack).
 
   Like the backup tool, logical data exports must be imported on a
-  Zulip server running the same version. However, logical data
-  exports can be imported on Zulip servers running a different
-  PostgreSQL version or hosting a different set of Zulip
+  Aloha server running the same version. However, logical data
+  exports can be imported on Aloha servers running a different
+  PostgreSQL version or hosting a different set of Aloha
   organizations. We recommend this tool in cases where the backup
   tool isn't applicable, including situations where an easily
   machine-parsable export format is desired.
 
-- Zulip also has an [HTML archive
+- Aloha also has an [HTML archive
   tool](https://github.com/zulip/zulip-archive), which is primarily
   intended for public archives, but can also be useful to
   inexpensively preserve public stream conversations when
-  decommissioning a Zulip organization.
+  decommissioning a Aloha organization.
 
 - It's possible to set up [PostgreSQL streaming
   replication](deployment.md#postgresql-warm-standby)
@@ -55,7 +55,7 @@ service (or back):
 
 ## Backups
 
-The Zulip server has a built-in backup tool:
+The Aloha server has a built-in backup tool:
 
 ```bash
 # As the zulip user
@@ -76,20 +76,20 @@ The backup tool provides the following options:
   in that directory will be ignored.
 
 This will generate a `.tar.gz` archive containing all the data stored
-on your Zulip server that would be needed to restore your Zulip
+on your Aloha server that would be needed to restore your Aloha
 server's state on another machine perfectly.
 
 ### Restoring backups
 
-First, [install a new Zulip server through Step 3][install-server]
-with the same version of both the base OS and Zulip from your previous
+First, [install a new Aloha server through Step 3][install-server]
+with the same version of both the base OS and Aloha from your previous
 installation. Then, run as root:
 
 ```bash
 /home/zulip/deployments/current/scripts/setup/restore-backup /path/to/backup
 ```
 
-When that finishes, your Zulip server should be fully operational again.
+When that finishes, your Aloha server should be fully operational again.
 
 #### Changing the hostname
 
@@ -100,9 +100,9 @@ disrupting service (e.g. `zuliptest.example.com` rather than
 
 If you do so, just like any other time you change the hostname, you'll
 need to [update `EXTERNAL_HOST`](settings.md) and then
-restart the Zulip server (after backup restoration completes).
+restart the Aloha server (after backup restoration completes).
 
-Until you do, your Zulip server will think its user-facing hostname is
+Until you do, your Aloha server will think its user-facing hostname is
 still `zulip.example.com` and will return HTTP `400 BAD REQUEST`
 errors when trying to access it via `zuliptest.example.com`.
 
@@ -136,18 +136,18 @@ tar -Oaxf /path/to/archive/zulip-backup-rest.tar.gz zulip-backup/zulip-version
 
 ### What is included
 
-Backups contain everything you need to fully restore your Zulip
+Backups contain everything you need to fully restore your Aloha
 server, including the database, settings, secrets from
-`/etc/zulip`, and user-uploaded files stored on the Zulip server.
+`/etc/zulip`, and user-uploaded files stored on the Aloha server.
 
 The following data is not included in these backup archives,
 and you may want to back up separately:
 
-- The server access/error logs from `/var/log/zulip`. The Zulip
+- The server access/error logs from `/var/log/zulip`. The Aloha
   server only appends to logs, and they can be very large compared to
-  the rest of the data for a Zulip server.
+  the rest of the data for a Aloha server.
 
-- Files uploaded with the Zulip
+- Files uploaded with the Aloha
   [S3 file upload backend](upload-backends.md). We
   don't include these for two reasons. First, the uploaded file data
   in S3 can easily be many times larger than the rest of the backup,
@@ -159,8 +159,8 @@ and you may want to back up separately:
   particularly security-sensitive and are either trivially replaced
   (if generated via Certbot) or provided by the system administrator.
 
-For completeness, Zulip's backups do not include certain highly
-transient state that Zulip doesn't store in a database. For example,
+For completeness, Aloha's backups do not include certain highly
+transient state that Aloha doesn't store in a database. For example,
 typing status data, API rate-limiting counters, and RabbitMQ queues
 that are essentially always empty in a healthy server (like outgoing
 emails to send). You can check whether these queues are empty using
@@ -171,12 +171,12 @@ emails to send). You can check whether these queues are empty using
 This section is primarily for users managing backups themselves
 (E.g. if they're using a remote PostgreSQL database with an existing
 backup strategy), and also serves as documentation for what is
-included in the backups generated by Zulip's standard tools. The
+included in the backups generated by Aloha's standard tools. The
 data includes:
 
 - The PostgreSQL database. You can back this up with any standard
   database export or backup tool; see
-  [below](#database-only-backup-tools) for Zulip's built-in support
+  [below](#database-only-backup-tools) for Aloha's built-in support
   for continuous point-in-time backups.
 
 - Any user-uploaded files. If you're using S3 as storage for file
@@ -184,7 +184,7 @@ data includes:
   `LOCAL_UPLOADS_DIR`, any files uploaded by users (including avatars)
   will be stored in that directory and you'll want to back it up.
 
-- Your Zulip configuration including secrets from `/etc/zulip/`.
+- Your Aloha configuration including secrets from `/etc/zulip/`.
   E.g. if you lose the value of `secret_key`, all users will need to
   log in again when you set up a replacement server since you won't be
   able to verify their cookies. If you lose `avatar_salt`, any
@@ -198,7 +198,7 @@ data includes:
 
 To restore from a manual backup, the process is basically the reverse of the above:
 
-- Install new server as normal by downloading a Zulip release tarball
+- Install new server as normal by downloading a Aloha release tarball
   and then using `scripts/setup/install`. You should pass
   `--no-init-db` because we don't need to create a new database.
 
@@ -216,7 +216,7 @@ To restore from a manual backup, the process is basically the reverse of the abo
 
 - Start the server using `scripts/restart-server`.
 
-This restoration process can also be used to migrate a Zulip
+This restoration process can also be used to migrate a Aloha
 installation from one server to another.
 
 We recommend running a disaster recovery after setting up your backups to
@@ -226,9 +226,9 @@ that they are up to date using the Nagios plugin at:
 
 ## Data export
 
-Zulip's powerful data export tool is designed to handle migration of a
-Zulip organization between different Zulip installations; as a result,
-these exports contain all non-transient data for a Zulip organization,
+Aloha's powerful data export tool is designed to handle migration of a
+Aloha organization between different Aloha installations; as a result,
+these exports contain all non-transient data for a Aloha organization,
 with the exception of passwords and API keys.
 
 We recommend using the [backup tool](#backups) if your primary goal is
@@ -242,12 +242,12 @@ you're exporting data. There are two ways to do this:
 
 1. `./scripts/stop-server`, which stops the whole server. This is
    preferred if you're not hosting multiple organizations, because it has
-   no side effects other than disabling the Zulip server for the
+   no side effects other than disabling the Aloha server for the
    duration.
 1. Pass `--deactivate` to `./manage export`, which first deactivates
    the target organization, logging out all active login sessions and
    preventing all accounts from logging in or accessing the API. This is
-   preferred for environments like Zulip Cloud where you might want to
+   preferred for environments like Aloha Cloud where you might want to
    export a single organization without disrupting any other users, and
    the intent is to move hosting of the organization (and forcing users
    to re-log in would be required as part of the hosting migration
@@ -258,9 +258,9 @@ that neither runs (using the `# ` at the start of the lines). If
 you'd like to use one of these options, remove the `# ` at the start
 of the lines for the appropriate option.
 
-### Export your Zulip data
+### Export your Aloha data
 
-Log in to a shell on your Zulip server as the `zulip` user. Run the
+Log in to a shell on your Aloha server as the `zulip` user. Run the
 following commands:
 
 ```bash
@@ -271,40 +271,40 @@ cd /home/zulip/deployments/current
 ```
 
 (The `-r` option lets you specify the organization to export; `''` is
-the default organization hosted at the Zulip server's root domain.)
+the default organization hosted at the Aloha server's root domain.)
 
 This will generate a tarred archive with a name like
 `/tmp/zulip-export-zcmpxfm6.tar.gz`. The archive contains several
-JSON files (containing the Zulip organization's data) as well as an
+JSON files (containing the Aloha organization's data) as well as an
 archive of all the organization's uploaded files.
 
-## Import into a new Zulip server
+## Import into a new Aloha server
 
-1. [Install a new Zulip server](install.md),
-   **skipping Step 3** (you'll create your Zulip organization via the data
+1. [Install a new Aloha server](install.md),
+   **skipping Step 3** (you'll create your Aloha organization via the data
    import tool instead).
 
-   - Ensure that the Zulip server you're importing into is running the same
-     version of Zulip as the server you're exporting from.
+   - Ensure that the Aloha server you're importing into is running the same
+     version of Aloha as the server you're exporting from.
 
-   - For exports from Zulip Cloud (zulip.com), you need to [upgrade to
+   - For exports from Aloha Cloud (zulip.com), you need to [upgrade to
      `main`][upgrade-zulip-from-git], since we run `main` on
-     Zulip Cloud:
+     Aloha Cloud:
 
      ```bash
      /home/zulip/deployments/current/scripts/upgrade-zulip-from-git main
      ```
 
      It is not sufficient to be on the latest stable release, as
-     zulip.com runs pre-release versions of Zulip that are often
+     zulip.com runs pre-release versions of Aloha that are often
      several months of development ahead of the latest release.
 
    - Note that if your server has limited free RAM, you'll want to
-     shut down the Zulip server with `./scripts/stop-server` while
+     shut down the Aloha server with `./scripts/stop-server` while
      you run the import, since our minimal system requirements do not
      budget extra RAM for running the data import tool.
 
-2. If your new Zulip server is meant to fully replace a previous Zulip
+2. If your new Aloha server is meant to fully replace a previous Aloha
    server, you may want to copy some settings from `/etc/zulip` to your
    new server to reuse the server-level configuration and secret keys
    from your old server. There are a few important details to understand
@@ -320,7 +320,7 @@ archive of all the organization's uploaded files.
      renumbered during the import process (this can be checked using
      `manage.py shell` with some care). The push notifications
      service has a mapping of which `user_id` values are associated
-     with which devices for a given Zulip server (represented by the
+     with which devices for a given Aloha server (represented by the
      `zulip_org_id` registration). This means that if any `user_id`
      values were renumbered during the import and you don't register a
      new `zulip_org_id`, push notifications meant for the user who now
@@ -332,19 +332,19 @@ archive of all the organization's uploaded files.
    - If you copy the `rabbitmq_password` secret from
      `zulip-secrets.conf`, you'll need to run
      `scripts/setup/configure-rabbitmq` as root to update your local RabbitMQ
-     installation to use the password in your Zulip secrets file.
+     installation to use the password in your Aloha secrets file.
    - You will likely want to copy `camo_key` (required to avoid
      breaking certain links) and any settings you added related to
      authentication and email delivery so that those work on your new
      server.
    - Copying `avatar_salt` is not recommended, due to similar issues
-     to the mobile push notifications service. Zulip will
+     to the mobile push notifications service. Aloha will
      automatically rewrite avatars at URLs appropriate for the new
      user IDs, and using the same avatar salt (and same server URL)
      post import could result in issues with browsers caching the
      avatar image improperly for users whose ID was renumbered.
 
-3. Log in to a shell on your Zulip server as the `zulip` user. Run the
+3. Log in to a shell on your Aloha server as the `zulip` user. Run the
    following commands, replacing the filename with the path to your data
    export tarball:
 
@@ -365,7 +365,7 @@ importing.
 #### Import options
 
 The commands above create an imported organization on the root domain
-(`EXTERNAL_HOST`) of the Zulip installation. You can also import into a
+(`EXTERNAL_HOST`) of the Aloha installation. You can also import into a
 custom subdomain, e.g. if you already have an existing organization on the
 root domain. Replace the last three lines above with the following, after replacing
 `<subdomain>` with the desired subdomain.
@@ -378,7 +378,7 @@ root domain. Replace the last three lines above with the following, after replac
 ### Logging in
 
 Once the import completes, all your users will have accounts in your
-new Zulip organization, but those accounts won't have passwords yet
+new Aloha organization, but those accounts won't have passwords yet
 (since for security reasons, passwords are not exported).
 Your users will need to either authenticate using something like
 Google auth or start by resetting their passwords.
@@ -401,12 +401,12 @@ and then once you're ready, you can email them to everyone using e.g.
 
 ### Deleting and re-importing
 
-If you did a test import of a Zulip organization, you may want to
-delete the test import data from your Zulip server before doing a
-final import. You can **permanently delete** all data from a Zulip
+If you did a test import of a Aloha organization, you may want to
+delete the test import data from your Aloha server before doing a
+final import. You can **permanently delete** all data from a Aloha
 organization using the following procedure:
 
-- Start a [Zulip management shell](management-commands.md#managepy-shell)
+- Start a [Aloha management shell](management-commands.md#managepy-shell)
 - In the management shell, run the following commands, replacing `""`
   with the subdomain if [you are hosting the organization on a
   subdomain](multiple-organizations.md):
@@ -418,7 +418,7 @@ realm.delete()
 
 The output contains details on the objects deleted from the database.
 
-Now, exit the management shell and run this to clear Zulip's cache:
+Now, exit the management shell and run this to clear Aloha's cache:
 
 ```bash
 /home/zulip/deployments/current/scripts/setup/flush-memcached
@@ -427,7 +427,7 @@ Now, exit the management shell and run this to clear Zulip's cache:
 Assuming you're using the
 [local file uploads backend](upload-backends.md), you
 can additionally delete all file uploads, avatars, and custom emoji on
-a Zulip server (across **all organizations**) with the following
+a Aloha server (across **all organizations**) with the following
 command:
 
 ```bash
@@ -438,7 +438,7 @@ If you're hosting multiple organizations and would like to remove
 uploads from a single organization, you'll need to access `realm.id`
 in the management shell before deleting the organization from the
 database (this will be `2` for the first organization created on a
-Zulip server, shown in the example below), e.g.:
+Aloha server, shown in the example below), e.g.:
 
 ```bash
 rm -rf /home/zulip/uploads/*/2/
@@ -448,17 +448,17 @@ Once that's done, you can simply re-run the import process.
 
 ## Database-only backup tools
 
-The [Zulip-specific backup tool documented above](#backups) is perfect
+The [Aloha-specific backup tool documented above](#backups) is perfect
 for an all-in-one backup solution, and can be used for nightly
 backups. For administrators wanting continuous point-in-time backups,
-Zulip has built-in support for taking daily backup snapshots along
+Aloha has built-in support for taking daily backup snapshots along
 with [streaming write-ahead log (WAL)][wal] backups using
 [wal-g](https://github.com/wal-g/wal-g) and storing them in Amazon S3.
 By default, these backups are stored for 30 days.
 
 Note these database backups, by themselves, do not constitute a full
-backup of the Zulip system! [See above](#backup-details) for other
-pieces which are necessary to back up a Zulip system.
+backup of the Aloha system! [See above](#backup-details) for other
+pieces which are necessary to back up a Aloha system.
 
 To enable continuous point-in-time backups:
 
@@ -479,11 +479,11 @@ archive file will be written to S3 as it is saved by PostgreSQL; these
 are written every 16KiB of the WAL. This means that if there are
 periods of slow activity, it may be minutes before the backup is saved
 into S3 -- see [`archive_timeout`][archive-timout] for how to set an
-upper bound on this. On an active Zulip server, this also means the
-Zulip server will be regularly sending PutObject requests to S3,
+upper bound on this. On an active Aloha server, this also means the
+Aloha server will be regularly sending PutObject requests to S3,
 possibly thousands of times per day.
 
-If you need always-current backup availability, Zulip also has
+If you need always-current backup availability, Aloha also has
 [built-in database replication support](deployment.md#postgresql-warm-standby).
 
 You can (and should) monitor that backups are running regularly via

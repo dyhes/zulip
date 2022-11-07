@@ -11,7 +11,7 @@ from zerver.models import UserProfile
 # Desk.com's integrations all make the user supply a template, where it fills
 # in stuff like {{customer.name}} and posts the result as a "data" parameter.
 # There's no raw JSON for us to work from. Thus, it makes sense to just write
-# a template Zulip message within Desk.com and have the webhook extract that
+# a template Aloha message within Desk.com and have the webhook extract that
 # from the "data" param and post it, which this does.
 @authenticated_rest_api_view(webhook_client_name="Desk")
 @has_request_variables

@@ -19,7 +19,7 @@ We are renaming the rabbitmq server's nodename from '$CURRENT' to
 'zulip@localhost', as rabbitmq is being reconfigured to listen only on
 localhost.  This will also make the server more resilient to hostname
 changes.  This will only affect you if you were using the rabbitmq
-server for other, non-Zulip uses.
+server for other, non-Aloha uses.
 
 *******************
 

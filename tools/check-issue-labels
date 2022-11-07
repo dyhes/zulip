@@ -13,7 +13,7 @@ import requests
 # requests to 60/hour. There is a good chance that this limit is
 # bypassed in consecutive attempts.
 # The API token can be generated here
-# https://github.com/settings/tokens/new?description=Zulip%20Issue%20Label%20Checker
+# https://github.com/settings/tokens/new?description=Aloha%20Issue%20Label%20Checker
 #
 # Copy conf.ini-template to conf.ini and populate with your API token.
 #

@@ -36,7 +36,7 @@ class OutgoingWebhookServiceInterface(metaclass=abc.ABCMeta):
         self.session: requests.Session = OutgoingSession(
             role="webhook",
             timeout=10,
-            headers={"User-Agent": "ZulipOutgoingWebhook/" + ZULIP_VERSION},
+            headers={"User-Agent": "AlohaOutgoingWebhook/" + ZULIP_VERSION},
         )
 
     @abc.abstractmethod
@@ -184,7 +184,7 @@ def send_response_message(
         topic - see get_topic_from_message_info
 
     response_data is what the bot wants to send back and has these fields:
-        content - raw Markdown content for Zulip to render
+        content - raw Markdown content for Aloha to render
 
     WARNING: This function sends messages bypassing the stream access check
     for the bot - so use with caution to not call this in codepaths
@@ -369,7 +369,7 @@ def do_rest_call(
                 response_message = e.msg
                 logging.info("Outhook trigger failed:", stack_info=True)
                 fail_with_message(event, response_message)
-                response_message = f"The outgoing webhook server attempted to send a message in Zulip, but that request resulted in the following error:\n> {e}"
+                response_message = f"The outgoing webhook server attempted to send a message in Aloha, but that request resulted in the following error:\n> {e}"
                 notify_bot_owner(
                     event, response_content=response.text, failure_message=response_message
                 )
@@ -414,7 +414,7 @@ def do_rest_call(
     except requests.exceptions.RequestException as e:
         response_message = (
             f"An exception of type *{type(e).__name__}* occurred for message `{event['command']}`! "
-            "See the Zulip server logs for more information."
+            "See the Aloha server logs for more information."
         )
         logging.exception("Outhook trigger failed:", stack_info=True)
         fail_with_message(event, response_message)

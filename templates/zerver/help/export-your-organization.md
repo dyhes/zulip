@@ -2,14 +2,14 @@
 
 !!! warn ""
 
-    These instructions are specific to the hosted Zulip Cloud service.
+    These instructions are specific to the hosted Aloha Cloud service.
     If you're running your own server, you may be looking for our
     documentation on [server export and import][export-and-import] or
     [server backups][production-backups].
 
-Zulip has high quality export tools that can be used to migrate from the
-hosted Zulip Cloud service (zulip.com) to your own servers. There are
-three types of Zulip Cloud exports.
+Aloha has high quality export tools that can be used to migrate from the
+hosted Aloha Cloud service (zulip.com) to your own servers. There are
+three types of Aloha Cloud exports.
 
 * **Export of public data**: An export of all users, settings, and all the data that
   appears in public streams.
@@ -18,7 +18,7 @@ three types of Zulip Cloud exports.
 * **Full export without member consent**: All the data in the organization.
 
 All organizations have access to the first two kinds of export. Only corporate
-Zulip Cloud Standard customers have access to **full export without member consent**.
+Aloha Cloud Standard customers have access to **full export without member consent**.
 
 ## Export of public data
 
@@ -33,7 +33,7 @@ Zulip Cloud Standard customers have access to **full export without member conse
 1. After a few minutes, you'll be able to download the export as a `.tar.gz`
 file from that page.
 
-1. Import the tarball using [Zulip's logical data import tool][import-only].
+1. Import the tarball using [Aloha's logical data import tool][import-only].
 
 {end_tabs}
 
@@ -48,7 +48,7 @@ with lots of messages or uploaded files.
 
 1. Email support@zulip.com with your organization's zulip.com URL, asking for
    a full export with member consent. Email us from the same address that
-   you use to sign in to Zulip.
+   you use to sign in to Aloha.
 
 1. We will verify that you are an organization administrator, and email you
    instructions on how to collect member consent.
@@ -57,7 +57,7 @@ with lots of messages or uploaded files.
    format as the exports of public data discussed above, including extra
    private stream and private message data for users who gave consent.
 
-1. Import the tarball using [Zulip's logical data import tool][import-only].
+1. Import the tarball using [Aloha's logical data import tool][import-only].
 
 {end_tabs}
 
@@ -74,7 +74,7 @@ import.
 
 {!owner-only.md!}
 
-This export is limited to paid Zulip Cloud Standard customers, though in rare
+This export is limited to paid Aloha Cloud Standard customers, though in rare
 cases may be available to other organizations in case of due legal process.
 
 To start this export, email support@zulip.com with your zulip.com

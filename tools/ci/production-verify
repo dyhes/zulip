@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# This tests a Zulip production environment (installed via
+# This tests a Aloha production environment (installed via
 # production-install) with some Nagios checks and other tools to
 # verify that everything is working properly.
 set -e
@@ -76,13 +76,13 @@ if supervisorctl status | grep -vq RUNNING || supervisorctl status | sed 's/^.*u
     echo
     supervisorctl status
     echo
-    echo "DEBUG: printing Zulip server's error log:"
+    echo "DEBUG: printing Aloha server's error log:"
     cat /var/log/zulip/errors.log
     echo
-    echo "DEBUG: printing Zulip server's workers log:"
+    echo "DEBUG: printing Aloha server's workers log:"
     cat /var/log/zulip/workers.log
     echo
-    echo "DEBUG: printing Zulip server's tornado log:"
+    echo "DEBUG: printing Aloha server's tornado log:"
     cat /var/log/zulip/tornado.log
     echo
     echo "DEBUG: printing process_fts_updates log:"
@@ -153,7 +153,7 @@ if ! /usr/lib/nagios/plugins/zulip_app_frontend/check_queue_worker_errors \
     echo
     echo "FAILURE: Nagios checks don't pass:"
     echo
-    echo "DEBUG: printing Zulip server's error log:"
+    echo "DEBUG: printing Aloha server's error log:"
     cat /var/log/zulip/errors.log
     exit 1
 fi

@@ -18,7 +18,7 @@ RUN ln -sf /usr/share/zoneinfo/Etc/UTC /etc/localtime
 # Set the locale.
 ENV LC_ALL C.UTF-8
 
-# Extra packages used by Zulip.
+# Extra packages used by Aloha.
 RUN apt-get update \
   && apt-get -y install --no-install-recommends \
     build-essential \

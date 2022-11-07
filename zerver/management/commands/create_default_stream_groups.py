@@ -1,12 +1,12 @@
 from argparse import ArgumentParser
 from typing import Any
 
-from zerver.lib.management import ZulipBaseCommand
+from zerver.lib.management import AlohaBaseCommand
 from zerver.lib.streams import ensure_stream
 from zerver.models import DefaultStreamGroup
 
 
-class Command(ZulipBaseCommand):
+class Command(AlohaBaseCommand):
     help = """
 Create default stream groups which the users can choose during sign up.
 

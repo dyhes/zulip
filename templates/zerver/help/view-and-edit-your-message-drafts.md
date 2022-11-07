@@ -1,6 +1,6 @@
 # View and edit your message drafts
 
-When you close the compose box, Zulip stores the content in a draft,
+When you close the compose box, Aloha stores the content in a draft,
 so that you never lose your work. Drafts are saved for 30 days.
 
 !!! warn ""

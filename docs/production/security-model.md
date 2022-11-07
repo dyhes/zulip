@@ -1,23 +1,23 @@
 # Security model
 
-This section attempts to document the Zulip security model. It likely
+This section attempts to document the Aloha security model. It likely
 does not cover every issue; if there are details you're curious about,
 please feel free to ask questions in [#production
 help](https://chat.zulip.org/#narrow/stream/31-production-help) on the
-[Zulip community server](https://zulip.com/development-community/) (or if you
+[Aloha community server](https://zulip.com/development-community/) (or if you
 think you've found a security bug, please report it to
 security@zulip.com so we can do a responsible security
 announcement).
 
-## Secure your Zulip server like your email server
+## Secure your Aloha server like your email server
 
-- It's reasonable to think about security for a Zulip server like you
+- It's reasonable to think about security for a Aloha server like you
   do security for a team email server -- only trusted individuals
   within an organization should have shell access to the server.
 
-  In particular, anyone with root access to a Zulip application server
-  or Zulip database server, or with access to the `zulip` user on a
-  Zulip application server, has complete control over the Zulip
+  In particular, anyone with root access to a Aloha application server
+  or Aloha database server, or with access to the `zulip` user on a
+  Aloha application server, has complete control over the Aloha
   installation and all of its data (so they can read messages, modify
   history, etc.). It would be difficult or impossible to avoid this,
   because the server needs access to the data to support features
@@ -27,28 +27,28 @@ announcement).
 
 ## Encryption and authentication
 
-- Traffic between clients (web, desktop and mobile) and the Zulip
-  server is encrypted using HTTPS. By default, all Zulip services
+- Traffic between clients (web, desktop and mobile) and the Aloha
+  server is encrypted using HTTPS. By default, all Aloha services
   talk to each other either via a localhost connection or using an
   encrypted SSL connection.
 
-- Zulip requires CSRF tokens in all interactions with the web API to
+- Aloha requires CSRF tokens in all interactions with the web API to
   prevent CSRF attacks.
 
-- The preferred way to log in to Zulip is using a single sign-on (SSO)
-  solution like Google authentication, LDAP, or similar, but Zulip
+- The preferred way to log in to Aloha is using a single sign-on (SSO)
+  solution like Google authentication, LDAP, or similar, but Aloha
   also supports password authentication. See [the authentication
   methods documentation](authentication-methods.md) for
-  details on Zulip's available authentication methods.
+  details on Aloha's available authentication methods.
 
 ### Passwords
 
-Zulip stores user passwords using the standard Argon2 and PBKDF2
+Aloha stores user passwords using the standard Argon2 and PBKDF2
 algorithms. Argon2 is used for all new and changed passwords as of
-Zulip Server 1.6.0, but legacy PBKDF2 passwords that were last changed
+Aloha Server 1.6.0, but legacy PBKDF2 passwords that were last changed
 before the 1.6.0 upgrade are still supported.
 
-When the user is choosing a password, Zulip checks the password's
+When the user is choosing a password, Aloha checks the password's
 strength using the popular [zxcvbn][zxcvbn] library. Weak passwords
 are rejected, and strong passwords encouraged. The minimum password
 strength allowed is controlled by two settings in
@@ -62,7 +62,7 @@ strength allowed is controlled by two settings in
   password, in terms of the estimated number of passwords an attacker
   is likely to guess before trying this one. If the user attempts to
   set a password that `zxcvbn` estimates to be guessable in less than
-  `PASSWORD_MIN_GUESSES`, then Zulip rejects the password.
+  `PASSWORD_MIN_GUESSES`, then Aloha rejects the password.
 
   By default, `PASSWORD_MIN_GUESSES` is 10000. This provides
   significant protection against online attacks, while limiting the
@@ -95,11 +95,11 @@ strength allowed is controlled by two settings in
 
 ## Messages and history
 
-- Zulip message content is rendered using a specialized Markdown
+- Aloha message content is rendered using a specialized Markdown
   parser which escapes content to protect against cross-site scripting
   attacks.
 
-- Zulip supports both public streams and private streams.
+- Aloha supports both public streams and private streams.
 
   - Any non-guest user can join any public stream in the organization,
     and can view the complete message history of any public stream
@@ -120,7 +120,7 @@ strength allowed is controlled by two settings in
 
   - See [Stream permissions](https://zulip.com/help/stream-permissions) for more details.
 
-- Zulip supports editing the content and topics of messages that have
+- Aloha supports editing the content and topics of messages that have
   already been sent. As a general philosophy, our policies provide
   hard limits on the ways in which message content can be changed or
   undone. In contrast, our policies around message topics favor
@@ -138,7 +138,7 @@ strength allowed is controlled by two settings in
 
 ## Users and bots
 
-- There are several types of users in a Zulip organization: organization
+- There are several types of users in a Aloha organization: organization
   owners, organization administrators, members (normal users), guests,
   and bots.
 
@@ -161,31 +161,31 @@ strength allowed is controlled by two settings in
     limited to what the bot can do. (E.g. incoming webhook bots cannot read
     messages.)
 
-- Every Zulip user has an API key, available on the settings page.
+- Every Aloha user has an API key, available on the settings page.
   This API key can be used to do essentially everything the user can
   do; for that reason, users should keep their API key safe. Users
   can rotate their own API key if it is accidentally compromised.
 
-- To properly remove a user's access to a Zulip team, it does not
+- To properly remove a user's access to a Aloha team, it does not
   suffice to change their password or deactivate their account in a
   single sign-on (SSO) system, since neither of those prevents
   authenticating with the user's API key or those of bots the user has
   created. Instead, you should [deactivate the user's
   account](https://zulip.com/help/deactivate-or-reactivate-a-user) via
-  Zulip's "Organization settings" interface.
+  Aloha's "Organization settings" interface.
 
-- The Zulip mobile apps authenticate to the server by sending the
+- The Aloha mobile apps authenticate to the server by sending the
   user's password and retrieving the user's API key; the apps then use
   the API key to authenticate all future interactions with the site.
   Thus, if a user's phone is lost, in addition to changing passwords,
-  you should rotate the user's Zulip API key.
+  you should rotate the user's Aloha API key.
 
 - Guest users are like Members, but they do not have automatic access
   to public streams.
 
-- Zulip supports several kinds of bots with different capabilities.
+- Aloha supports several kinds of bots with different capabilities.
 
-  - Incoming webhook bots can only send messages into Zulip.
+  - Incoming webhook bots can only send messages into Aloha.
   - Outgoing webhook bots and Generic bots can essentially do anything a
     non-administrator user can, with a few exceptions (e.g. a bot cannot
     log in to the web application, register for mobile push
@@ -195,26 +195,26 @@ strength allowed is controlled by two settings in
     streams, including private streams. This is important for implementing
     integrations like the Jabber, IRC, and Zephyr mirrors.
 
-    These bots cannot be created by Zulip users, including
+    These bots cannot be created by Aloha users, including
     organization owners. They can only be created on the command
     line (via `manage.py change_user_role can_forge_sender`).
 
 ## User-uploaded content and user-generated requests
 
-- Zulip supports user-uploaded files. Ideally they should be hosted
-  from a separate domain from the main Zulip server to protect against
+- Aloha supports user-uploaded files. Ideally they should be hosted
+  from a separate domain from the main Aloha server to protect against
   various same-domain attacks (e.g. zulip-user-content.example.com).
 
   We support two ways of hosting them: the basic `LOCAL_UPLOADS_DIR`
   file storage backend, where they are stored in a directory on the
-  Zulip server's filesystem, and the S3 backend, where the files are
+  Aloha server's filesystem, and the S3 backend, where the files are
   stored in Amazon S3. It would not be difficult to add additional
   supported backends should there be a need; see
   `zerver/lib/upload.py` for the full interface.
 
   For both backends, the URLs used to access uploaded files are long,
   random strings, providing one layer of security against unauthorized
-  users accessing files uploaded in Zulip (an authorized user would
+  users accessing files uploaded in Aloha (an authorized user would
   need to share the URL with an unauthorized user in order for the
   file to be accessed by the unauthorized user. Of course, any
   such authorized user could have just downloaded and sent the file
@@ -224,31 +224,31 @@ strength allowed is controlled by two settings in
   missed-message email or leaks involving the Referer header), we
   provide additional layers of protection in both backends as well.
 
-  In the Zulip S3 backend, the random URLs to access files that are
+  In the Aloha S3 backend, the random URLs to access files that are
   presented to users don't actually host the content. Instead, the S3
-  backend verifies that the user has a valid Zulip session in the
-  relevant organization (and that has access to a Zulip message linking to
+  backend verifies that the user has a valid Aloha session in the
+  relevant organization (and that has access to a Aloha message linking to
   the file), and if so, then redirects the browser to a temporary S3
   URL for the file that expires a short time later. In this way,
-  possessing a URL to a secret file in Zulip does not provide
+  possessing a URL to a secret file in Aloha does not provide
   unauthorized users with access to that file.
 
   We have a similar protection for the `LOCAL_UPLOADS_DIR` backend.
   Every access
   to an uploaded file has access control verified (confirming that the
-  browser is logged into a Zulip account that has received the
+  browser is logged into a Aloha account that has received the
   uploaded file in question).
 
-- Zulip supports using the [go-camo][go-camo] image proxy to proxy content like
-  inline image previews, that can be inserted into the Zulip message feed by
+- Aloha supports using the [go-camo][go-camo] image proxy to proxy content like
+  inline image previews, that can be inserted into the Aloha message feed by
   other users. This ensures that clients do not make requests to external
   servers to fetch images, improving privacy.
 
-- By default, Zulip will provide image previews inline in the body of
+- By default, Aloha will provide image previews inline in the body of
   messages when a message contains a link to an image. You can
   control this using the `INLINE_IMAGE_PREVIEW` setting.
 
-- Zulip may make outgoing HTTP connections to other servers in a
+- Aloha may make outgoing HTTP connections to other servers in a
   number of cases:
 
   - Outgoing webhook bots (creation of which can be restricted)
@@ -259,9 +259,9 @@ strength allowed is controlled by two settings in
   - Mobile push notifications (must be configured to be enabled)
 
 - Notably, these first 3 features give end users (limited) control to cause
-  the Zulip server to make HTTP requests on their behalf. Because of this,
-  Zulip routes all outgoing HTTP requests [through
-  Smokescreen][smokescreen-setup] to ensure that Zulip cannot be
+  the Aloha server to make HTTP requests on their behalf. Because of this,
+  Aloha routes all outgoing HTTP requests [through
+  Smokescreen][smokescreen-setup] to ensure that Aloha cannot be
   used to execute [SSRF attacks][ssrf] against other systems on an
   internal corporate network. The default Smokescreen configuration
   denies access to all non-public IP addresses, including 127.0.0.1.
@@ -277,10 +277,10 @@ strength allowed is controlled by two settings in
 
 ## Final notes and security response
 
-If you find some aspect of Zulip that seems inconsistent with this
+If you find some aspect of Aloha that seems inconsistent with this
 security model, please report it to security@zulip.com so that we can
 investigate and coordinate an appropriate security release if needed.
 
-Zulip security announcements will be sent to
+Aloha security announcements will be sent to
 zulip-announce@googlegroups.com, so you should subscribe if you are
-running Zulip in production.
+running Aloha in production.

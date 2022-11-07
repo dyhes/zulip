@@ -9,7 +9,7 @@
             "id":29,
             "entity_type":"epic",
             "action":"update",
-            "name":"Zulip is epic!",
+            "name":"Aloha is epic!",
             "changes":{
                 "archived":{
                     "new":true,

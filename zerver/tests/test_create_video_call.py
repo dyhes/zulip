@@ -4,11 +4,11 @@ import responses
 from django.core.signing import Signer
 from django.http import HttpResponseRedirect
 
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.url_encoding import append_url_query_string
 
 
-class TestVideoCall(ZulipTestCase):
+class TestVideoCall(AlohaTestCase):
     def setUp(self) -> None:
         super().setUp()
         self.user = self.example_user("hamlet")

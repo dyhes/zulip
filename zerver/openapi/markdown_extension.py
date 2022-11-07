@@ -1,9 +1,9 @@
-# Zulip's OpenAPI-based API documentation system is documented at
+# Aloha's OpenAPI-based API documentation system is documented at
 #   https://zulip.readthedocs.io/en/latest/documentation/api.html
 #
 # This file defines the special Markdown extension that is used to
 # render the code examples, example responses, etc. that appear in
-# Zulip's public API documentation.
+# Aloha's public API documentation.
 
 import inspect
 import json

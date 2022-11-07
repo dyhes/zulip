@@ -37,14 +37,14 @@ from zerver.lib.validator import (
     check_string_fixed_length,
 )
 from zerver.views.push_notifications import validate_token
-from zilencer.auth import InvalidZulipServerKeyError
+from zilencer.auth import InvalidAlohaServerKeyError
 from zilencer.models import (
     RemoteInstallationCount,
     RemotePushDeviceToken,
     RemoteRealmAuditLog,
     RemoteRealmCount,
-    RemoteZulipServer,
-    RemoteZulipServerAuditLog,
+    RemoteAlohaServer,
+    RemoteAlohaServerAuditLog,
 )
 
 logger = logging.getLogger(__name__)
@@ -74,7 +74,7 @@ def validate_bouncer_token_request(token: str, kind: int) -> None:
 @has_request_variables
 def deactivate_remote_server(
     request: HttpRequest,
-    remote_server: RemoteZulipServer,
+    remote_server: RemoteAlohaServer,
 ) -> HttpResponse:
     do_deactivate_remote_server(remote_server)
     return json_success(request)
@@ -85,14 +85,14 @@ def deactivate_remote_server(
 @has_request_variables
 def register_remote_server(
     request: HttpRequest,
-    zulip_org_id: str = REQ(str_validator=check_string_fixed_length(RemoteZulipServer.UUID_LENGTH)),
+    zulip_org_id: str = REQ(str_validator=check_string_fixed_length(RemoteAlohaServer.UUID_LENGTH)),
     zulip_org_key: str = REQ(
-        str_validator=check_string_fixed_length(RemoteZulipServer.API_KEY_LENGTH)
+        str_validator=check_string_fixed_length(RemoteAlohaServer.API_KEY_LENGTH)
     ),
-    hostname: str = REQ(str_validator=check_capped_string(RemoteZulipServer.HOSTNAME_MAX_LENGTH)),
+    hostname: str = REQ(str_validator=check_capped_string(RemoteAlohaServer.HOSTNAME_MAX_LENGTH)),
     contact_email: str = REQ(),
     new_org_key: Optional[str] = REQ(
-        str_validator=check_string_fixed_length(RemoteZulipServer.API_KEY_LENGTH), default=None
+        str_validator=check_string_fixed_length(RemoteAlohaServer.API_KEY_LENGTH), default=None
     ),
 ) -> HttpResponse:
     # REQ validated the the field lengths, but we still need to
@@ -115,7 +115,7 @@ def register_remote_server(
         raise JsonableError(e.message)
 
     with transaction.atomic():
-        remote_server, created = RemoteZulipServer.objects.get_or_create(
+        remote_server, created = RemoteAlohaServer.objects.get_or_create(
             uuid=zulip_org_id,
             defaults={
                 "hostname": hostname,
@@ -124,14 +124,14 @@ def register_remote_server(
             },
         )
         if created:
-            RemoteZulipServerAuditLog.objects.create(
-                event_type=RemoteZulipServerAuditLog.REMOTE_SERVER_CREATED,
+            RemoteAlohaServerAuditLog.objects.create(
+                event_type=RemoteAlohaServerAuditLog.REMOTE_SERVER_CREATED,
                 server=remote_server,
                 event_time=remote_server.last_updated,
             )
         else:
             if not constant_time_compare(remote_server.api_key, zulip_org_key):
-                raise InvalidZulipServerKeyError(zulip_org_id)
+                raise InvalidAlohaServerKeyError(zulip_org_id)
             else:
                 remote_server.hostname = hostname
                 remote_server.contact_email = contact_email
@@ -145,7 +145,7 @@ def register_remote_server(
 @has_request_variables
 def register_remote_push_device(
     request: HttpRequest,
-    server: RemoteZulipServer,
+    server: RemoteAlohaServer,
     user_id: Optional[int] = REQ(json_validator=check_int, default=None),
     user_uuid: Optional[str] = REQ(default=None),
     token: str = REQ(),
@@ -184,7 +184,7 @@ def register_remote_push_device(
 @has_request_variables
 def unregister_remote_push_device(
     request: HttpRequest,
-    server: RemoteZulipServer,
+    server: RemoteAlohaServer,
     token: str = REQ(),
     token_kind: int = REQ(json_validator=check_int),
     user_id: Optional[int] = REQ(json_validator=check_int, default=None),
@@ -206,7 +206,7 @@ def unregister_remote_push_device(
 @has_request_variables
 def unregister_all_remote_push_devices(
     request: HttpRequest,
-    server: RemoteZulipServer,
+    server: RemoteAlohaServer,
     user_id: Optional[int] = REQ(json_validator=check_int, default=None),
     user_uuid: Optional[str] = REQ(default=None),
 ) -> HttpResponse:
@@ -219,7 +219,7 @@ def unregister_all_remote_push_devices(
 @has_request_variables
 def remote_server_notify_push(
     request: HttpRequest,
-    server: RemoteZulipServer,
+    server: RemoteAlohaServer,
     payload: Dict[str, Any] = REQ(argument_type="body"),
 ) -> HttpResponse:
     user_identity = UserPushIndentityCompat(payload.get("user_id"), payload.get("user_uuid"))
@@ -266,7 +266,7 @@ def remote_server_notify_push(
         return payload
 
     # The full request must complete within 30s, the timeout set by
-    # Zulip remote hosts for push notification requests (see
+    # Aloha remote hosts for push notification requests (see
     # PushBouncerSession).  The timeouts in the FCM and APNS codepaths
     # must be set accordingly; see send_android_push_notification and
     # send_apple_push_notification.
@@ -292,7 +292,7 @@ def remote_server_notify_push(
 
 
 def validate_incoming_table_data(
-    server: RemoteZulipServer, model: Any, rows: List[Dict[str, Any]], is_count_stat: bool = False
+    server: RemoteAlohaServer, model: Any, rows: List[Dict[str, Any]], is_count_stat: bool = False
 ) -> None:
     last_id = get_last_id_from_server(server, model)
     for row in rows:
@@ -307,7 +307,7 @@ ModelT = TypeVar("ModelT", bound=Model)
 
 
 def batch_create_table_data(
-    server: RemoteZulipServer,
+    server: RemoteAlohaServer,
     model: Type[ModelT],
     row_objects: List[ModelT],
 ) -> None:
@@ -329,7 +329,7 @@ def batch_create_table_data(
 @has_request_variables
 def remote_server_post_analytics(
     request: HttpRequest,
-    server: RemoteZulipServer,
+    server: RemoteAlohaServer,
     realm_counts: List[Dict[str, Any]] = REQ(
         json_validator=check_list(
             check_dict_only(
@@ -425,7 +425,7 @@ def remote_server_post_analytics(
     return json_success(request)
 
 
-def get_last_id_from_server(server: RemoteZulipServer, model: Any) -> int:
+def get_last_id_from_server(server: RemoteAlohaServer, model: Any) -> int:
     last_count = model.objects.filter(server=server).order_by("remote_id").last()
     if last_count is not None:
         return last_count.remote_id
@@ -433,7 +433,7 @@ def get_last_id_from_server(server: RemoteZulipServer, model: Any) -> int:
 
 
 @has_request_variables
-def remote_server_check_analytics(request: HttpRequest, server: RemoteZulipServer) -> HttpResponse:
+def remote_server_check_analytics(request: HttpRequest, server: RemoteAlohaServer) -> HttpResponse:
     result = {
         "last_realm_count_id": get_last_id_from_server(server, RemoteRealmCount),
         "last_installation_count_id": get_last_id_from_server(server, RemoteInstallationCount),

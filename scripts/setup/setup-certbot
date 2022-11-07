@@ -112,7 +112,7 @@ certbot certonly "${method_args[@]}" \
 symlink_with_backup() {
     if [ -e "$2" ]; then
         # If the user is setting up our automatic certbot-management on a
-        # system that already has certs for Zulip, use some extra caution
+        # system that already has certs for Aloha, use some extra caution
         # to keep the old certs available.
         mv -f --backup=numbered "$2" "$2".setup-certbot || true
     fi

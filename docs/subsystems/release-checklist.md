@@ -1,4 +1,4 @@
-# Zulip server release checklist
+# Aloha server release checklist
 
 This document has reminders of things one might forget to do when
 preparing a new release.

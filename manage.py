@@ -18,10 +18,10 @@ from scripts.lib.zulip_tools import assert_not_running_as_root
 
 
 def get_filtered_commands() -> Dict[str, str]:
-    """Because Zulip uses management commands in production, `manage.py
+    """Because Aloha uses management commands in production, `manage.py
     help` is a form of documentation for users. Here we exclude from
     that documentation built-in commands that are not constructive for
-    end users or even Zulip developers to run.
+    end users or even Aloha developers to run.
 
     Ideally, we'd do further customization to display management
     commands with more organization in the help text, and also hide
@@ -30,7 +30,7 @@ def get_filtered_commands() -> Dict[str, str]:
     all_commands = get_commands()
     documented_commands = dict()
     documented_apps = [
-        # "auth" removed because its commands are not applicable to Zulip.
+        # "auth" removed because its commands are not applicable to Aloha.
         # "contenttypes" removed because we don't use that subsystem, and
         #   even if we did.
         "django.core",
@@ -40,7 +40,7 @@ def get_filtered_commands() -> Dict[str, str]:
         #   name, since all it does is delete expired sessions.
         # "social_django" removed for similar reasons to sessions.
         # "staticfiles" removed because its commands are only usefully run when
-        #   wrapped by Zulip tooling.
+        #   wrapped by Aloha tooling.
         # "two_factor" removed because it's a 2FA internals detail.
         "zerver",
         "zilencer",
@@ -71,7 +71,7 @@ class FilteredManagementUtility(ManagementUtility):
     that calls our get_filtered_commands(), rather than the default
     get_commands() function.
 
-    All other change are just code style differences to pass the Zulip linter.
+    All other change are just code style differences to pass the Aloha linter.
     """
 
     def main_help_text(self, commands_only: bool = False) -> str:
@@ -132,7 +132,7 @@ if __name__ == "__main__":
         # and lack of access for /etc/zulip/zulip-secrets.conf (which
         # should be only readable by root and zulip)
         print(
-            "Error accessing Zulip secrets; manage.py in production must be run as the zulip user."
+            "Error accessing Aloha secrets; manage.py in production must be run as the zulip user."
         )
         sys.exit(1)
 

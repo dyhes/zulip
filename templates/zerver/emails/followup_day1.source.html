@@ -5,17 +5,17 @@
 {% endblock %}
 
 {% block content %}
-<p>{{ _('Welcome to Zulip!') }}</p>
+<p>{{ _('Welcome to Aloha!') }}</p>
 
 <p>
     {% if realm_creation %}
         {% if is_demo_org %}
-            {% trans %}You've created a demo Zulip organization. Note that this organization will be automatically deleted in 30 days. Learn more about demo organizations <a href="https://zulip.com/help/demo-organizations">here</a>!{% endtrans %}
+            {% trans %}You've created a demo Aloha organization. Note that this organization will be automatically deleted in 30 days. Learn more about demo organizations <a href="https://zulip.com/help/demo-organizations">here</a>!{% endtrans %}
         {% else %}
-            {% trans %}You've created the new Zulip organization <b>{{ realm_name }}</b>.{% endtrans %}
+            {% trans %}You've created the new Aloha organization <b>{{ realm_name }}</b>.{% endtrans %}
         {% endif %}
     {% else %}
-        {% trans %}You've joined the Zulip organization <b>{{ realm_name }}</b>.{% endtrans %}
+        {% trans %}You've joined the Aloha organization <b>{{ realm_name }}</b>.{% endtrans %}
     {% endif %}
 </p>
 
@@ -38,18 +38,18 @@
 
 <p>
     {% if is_realm_admin %}
-        {% trans %}Check out our <a href="{{ getting_started_link }}">guide for admins</a>, become a Zulip pro with a few <a href="{{ keyboard_shortcuts_link }}">keyboard shortcuts</a>, or <a href="{{ realm_uri }}">dive right in</a>!{% endtrans %}
+        {% trans %}Check out our <a href="{{ getting_started_link }}">guide for admins</a>, become a Aloha pro with a few <a href="{{ keyboard_shortcuts_link }}">keyboard shortcuts</a>, or <a href="{{ realm_uri }}">dive right in</a>!{% endtrans %}
     {% else %}
-        {% trans %}<a href="{{ getting_started_link }}">Learn more</a> about Zulip, become a pro with a few <a href="{{ keyboard_shortcuts_link }}">keyboard shortcuts</a>, or <a href="{{ realm_uri }}">dive right in</a>!{% endtrans %}
+        {% trans %}<a href="{{ getting_started_link }}">Learn more</a> about Aloha, become a pro with a few <a href="{{ keyboard_shortcuts_link }}">keyboard shortcuts</a>, or <a href="{{ realm_uri }}">dive right in</a>!{% endtrans %}
     {% endif %}
 </p>
 
 <p>
     {{ _("Cheers,") }}<br />
-    {{ _("Team Zulip") }}
+    {{ _("Team Aloha") }}
 </p>
 
 <p>
-    {% trans %}PS: Follow us on <a href="https://twitter.com/zulip">Twitter</a>, star us on <a href="https://github.com/zulip/zulip">GitHub</a>, or chat with us live on the <a href="https://zulip.com/development-community/">Zulip community server</a>!{% endtrans %}
+    {% trans %}PS: Follow us on <a href="https://twitter.com/zulip">Twitter</a>, star us on <a href="https://github.com/zulip/zulip">GitHub</a>, or chat with us live on the <a href="https://zulip.com/development-community/">Aloha community server</a>!{% endtrans %}
 </p>
 {% endblock %}

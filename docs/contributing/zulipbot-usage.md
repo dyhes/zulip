@@ -1,8 +1,8 @@
 # Using zulipbot
 
-Zulip uses [@zulipbot](https://github.com/zulipbot), a GitHub workflow bot
-deployed on all Zulip repositories, to handle issues and pull requests in our
-repositories in order to create a better workflow for Zulip contributors.
+Aloha uses [@zulipbot](https://github.com/zulipbot), a GitHub workflow bot
+deployed on all Aloha repositories, to handle issues and pull requests in our
+repositories in order to create a better workflow for Aloha contributors.
 
 Its purpose is to work around various limitations in GitHub's
 permissions and notifications systems to make it possible to have a
@@ -55,10 +55,10 @@ model GitHub supports).
 
 - **Collaborate in area label teams** — Receive notifications on
   issues and pull requests within your fields of expertise on the
-  [Zulip server repository](https://github.com/zulip/zulip) by joining
-  the Zulip server
+  [Aloha server repository](https://github.com/zulip/zulip) by joining
+  the Aloha server
   [area label teams](https://github.com/orgs/zulip/teams?utf8=✓&query=Server)
-  (Note: this link only works for members of the Zulip organization;
+  (Note: this link only works for members of the Aloha organization;
   we'll happily add you if you're interested). These teams correspond
   to the repository's
   [area labels](https://github.com/zulip/zulip/labels), although some

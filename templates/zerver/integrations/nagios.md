@@ -56,8 +56,8 @@ on your Nagios instance.
 ### Troubleshooting
 
 You can confirm whether you’ve correctly configured Nagios to run the
-Zulip plugin by looking for `SERVICE NOTIFICATION` lines mentioning
+Aloha plugin by looking for `SERVICE NOTIFICATION` lines mentioning
 zulip in `/var/log/nagios4/nagios.log`. You can confirm whether you’ve
-configured the Zulip plugin code correctly by running
+configured the Aloha plugin code correctly by running
 `/usr/local/share/zulip/integrations/nagios/nagios-notify-zulip`
 directly.

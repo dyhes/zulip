@@ -1,6 +1,6 @@
 # Directory structure
 
-This page documents the Zulip directory structure, where to find
+This page documents the Aloha directory structure, where to find
 things, and how to decide where to put a file.
 
 You may also find the [new application feature
@@ -9,7 +9,7 @@ flow through these files.
 
 ### Core Python files
 
-Zulip uses the [Django web
+Aloha uses the [Django web
 framework](https://docs.djangoproject.com/en/3.2/), so a lot of these
 paths will be familiar to Django developers.
 
@@ -19,7 +19,7 @@ paths will be familiar to Django developers.
 
 - `zerver/models.py` Main
   [Django models](https://docs.djangoproject.com/en/3.2/topics/db/models/)
-  file. Defines Zulip's database tables.
+  file. Defines Aloha's database tables.
 
 - `zerver/lib/*.py` Most library code.
 
@@ -30,7 +30,7 @@ paths will be familiar to Django developers.
 
 - `zerver/views/*.py` Most [Django views](https://docs.djangoproject.com/en/3.2/topics/http/views/).
 
-- `zerver/webhooks/` Webhook views and tests for [Zulip's incoming webhook integrations](https://zulip.com/api/incoming-webhooks-overview).
+- `zerver/webhooks/` Webhook views and tests for [Aloha's incoming webhook integrations](https://zulip.com/api/incoming-webhooks-overview).
 
 - `zerver/tornado/views.py` Tornado views.
 
@@ -44,7 +44,7 @@ paths will be familiar to Django developers.
 
 ### HTML templates
 
-See [our docs](../subsystems/html-css.md) for details on Zulip's
+See [our docs](../subsystems/html-css.md) for details on Aloha's
 templating systems.
 
 - `templates/zerver/` For [Jinja2](http://jinja.pocoo.org/) templates
@@ -56,11 +56,11 @@ templating systems.
 
 ### JavaScript, TypeScript, and other static assets
 
-- `static/js/` Zulip's own JavaScript and TypeScript sources.
+- `static/js/` Aloha's own JavaScript and TypeScript sources.
 
-- `static/styles/` Zulip's own CSS.
+- `static/styles/` Aloha's own CSS.
 
-- `static/images/` Zulip's images.
+- `static/images/` Aloha's images.
 
 - `static/third/` Third-party JavaScript and CSS that has been vendored.
 
@@ -110,10 +110,10 @@ Django context (i.e. with database access).
 - `scripts/setup/` Scripts that production deployments will only run
   once, during installation.
 
-- `tools/` Scripts used only in a Zulip development environment.
-  These are not included in production release tarballs for Zulip, so
+- `tools/` Scripts used only in a Aloha development environment.
+  These are not included in production release tarballs for Aloha, so
   that we can include scripts here one wouldn't want someone to run in
-  production accidentally (e.g. things that delete the Zulip database
+  production accidentally (e.g. things that delete the Aloha database
   without prompting).
 
 - `tools/setup/` Subdirectory of `tools/` for things only used during
@@ -127,10 +127,10 @@ Django context (i.e. with database access).
 
 ### API and bots
 
-- See the [Zulip API repository](https://github.com/zulip/python-zulip-api).
-  Zulip's Python API bindings, a number of Zulip integrations and
-  bots, and a framework for running and testing Zulip bots, used to be
-  developed in the main Zulip server repo but are now in their own repo.
+- See the [Aloha API repository](https://github.com/zulip/python-zulip-api).
+  Aloha's Python API bindings, a number of Aloha integrations and
+  bots, and a framework for running and testing Aloha bots, used to be
+  developed in the main Aloha server repo but are now in their own repo.
 
 - `templates/zerver/integrations/` (within `templates/zerver/`, above).
   Documentation for these integrations.
@@ -143,7 +143,7 @@ This is used to deploy essentially all configuration in production.
 
 - `puppet/zulip/` For configuration for production deployments.
 
-- `puppet/zulip/manifests/profile/standalone.pp` Main manifest for Zulip standalone deployments.
+- `puppet/zulip/manifests/profile/standalone.pp` Main manifest for Aloha standalone deployments.
 
 ---
 
@@ -151,10 +151,10 @@ This is used to deploy essentially all configuration in production.
 
 - `confirmation` Email confirmation system.
 
-- `analytics` Analytics for the Zulip server administrator (needs work to
-  be useful to normal Zulip sites).
+- `analytics` Analytics for the Aloha server administrator (needs work to
+  be useful to normal Aloha sites).
 
-- `corporate` The old Zulip.com website. Not included in production
+- `corporate` The old Aloha.com website. Not included in production
   distribution.
 
 - `zilencer` Primarily used to hold management commands that aren't

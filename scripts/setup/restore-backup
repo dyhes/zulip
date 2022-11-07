@@ -122,7 +122,7 @@ def restore_backup(tarball_file: IO[bytes], keep_settings: bool, keep_zulipconf:
         os.setresuid(0, 0, 0)
 
         if settings.PRODUCTION:
-            # In case we are restoring a backup from an older Zulip
+            # In case we are restoring a backup from an older Aloha
             # version, there may be new secrets to generate.
             run(
                 [

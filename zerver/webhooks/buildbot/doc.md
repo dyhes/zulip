@@ -1,4 +1,4 @@
-Get Zulip notifications for your Buildbot builds!
+Get Aloha notifications for your Buildbot builds!
 
 !!! tip ""
 
@@ -8,18 +8,18 @@ Get Zulip notifications for your Buildbot builds!
 
 1. {!create-an-incoming-webhook.md!}
 
-1. Edit the Buildbot configuration file to add a new Zulip reporter
+1. Edit the Buildbot configuration file to add a new Aloha reporter
  ([or follow the steps listed here][1]):
 
         from buildbot.plugins import reporters
 
-        zs = reporters.ZulipStatusPush('{{ zulip_url }}',
+        zs = reporters.AlohaStatusPush('{{ zulip_url }}',
                                        token='api_key',
                                        stream='{{ recommended_stream_name }}')
         c['services'].append(zs)
 
     When adding the new reporter, modify the code above such that `api_key`
-    is the API key of your Zulip bot, and `stream` is set to the stream name
+    is the API key of your Aloha bot, and `stream` is set to the stream name
     you want the notifications sent to.
 
 [1]: https://docs.buildbot.net/latest/manual/configuration/reporters/zulip_status.html

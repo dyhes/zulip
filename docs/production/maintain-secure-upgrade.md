@@ -11,7 +11,7 @@ have since all moved to dedicated pages:
 
 Moved to [Troubleshooting](troubleshooting.md#monitoring).
 
-### Securing your Zulip server
+### Securing your Aloha server
 
 Moved to [Security model](security-model.md).
 
@@ -37,6 +37,6 @@ Moved to [Scalability](requirements.md#scalability).
 
 Moved to [Management commands](management-commands.md).
 
-### API and your Zulip URL
+### API and your Aloha URL
 
 Moved to [REST API](https://zulip.com/api/rest).

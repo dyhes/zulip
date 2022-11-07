@@ -323,7 +323,7 @@ def print_listeners() -> None:
     else:
         default_hostname = "localhost"
     external_host = os.getenv("EXTERNAL_HOST", f"{default_hostname}:{proxy_port}")
-    print(f"\nStarting Zulip on:\n\n\t{CYAN}http://{external_host}/{ENDC}\n\nInternal ports:")
+    print(f"\nStarting Aloha on:\n\n\t{CYAN}http://{external_host}/{ENDC}\n\nInternal ports:")
     ports = [
         (proxy_port, "Development server proxy (connect here)"),
         (django_port, "Django"),

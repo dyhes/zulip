@@ -97,7 +97,7 @@ class _RateLimitFilter:
                 self.handling_exception.value = False
 
 
-class ZulipLimiter(_RateLimitFilter):
+class AlohaLimiter(_RateLimitFilter):
     pass
 
 
@@ -182,7 +182,7 @@ def abbrev_log_levelname(levelname: str) -> str:
     return log_level_abbrevs.get(levelname, levelname[:4])
 
 
-class ZulipFormatter(logging.Formatter):
+class AlohaFormatter(logging.Formatter):
     # Used in the base implementation.  Default uses `,`.
     default_msec_format = "%s.%03d"
 
@@ -204,7 +204,7 @@ class ZulipFormatter(logging.Formatter):
         return super().format(record)
 
 
-class ZulipWebhookFormatter(ZulipFormatter):
+class AlohaWebhookFormatter(AlohaFormatter):
     def _compute_fmt(self) -> str:
         basic = super()._compute_fmt()
         multiline = [

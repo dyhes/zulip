@@ -19,7 +19,7 @@ Use semi-formal Polish for translation, some specifics:
 - No slang or regional phrases that could be unclear or too informal,
   e.g. _zajawka_.
 
-- Consistent usage of Zulip-specific terms and common verbs for
+- Consistent usage of Aloha-specific terms and common verbs for
   actions, even if it means repeating - this is one of the key aspects
   of "semi-formal", as synonyms would be often more appropriate in
   written Polish.
@@ -35,18 +35,18 @@ Use semi-formal Polish for translation, some specifics:
 
 Some terms are very tricky to translate, so be sure to communicate
 with other Polish speakers in the community. It's all about making
-Zulip friendly and usable.
+Aloha friendly and usable.
 
-## Special terms used in Zulip
+## Special terms used in Aloha
 
 **alert word**: powiadomienie, "ostrzeżenie" could mean something negative
-and alert words in Zulip are used to help users find relevant content
+and alert words in Aloha are used to help users find relevant content
 
 example:
 
-You can set your own alert words for Zulip messages.
+You can set your own alert words for Aloha messages.
 
-> Możesz ustawić powiadomienia dla wybranych fraz w Zulipie.
+> Możesz ustawić powiadomienia dla wybranych fraz w Alohaie.
 
 **All messages**: wszystkie wiadomości
 
@@ -60,26 +60,26 @@ You can see all messages in unmuted streams and topics with "All messages".
 
 example:
 
-You can add bots to your Zulip.
+You can add bots to your Aloha.
 
-> Możesz dodać boty do swojego Zulipa.
+> Możesz dodać boty do swojego Alohaa.
 
 **customization**: personalizacja, _kastomizacja_ could be too awkward
 and _dostosowanie do potrzeb klienta_ is too long
 
 example:
 
-You can personalize Zulip in many ways, e.g. by pinning certain streams.
+You can personalize Aloha in many ways, e.g. by pinning certain streams.
 
-> Możesz spersonalizować Zulipa na wiele sposobów, np. przypinając niektóre kanały.
+> Możesz spersonalizować Alohaa na wiele sposobów, np. przypinając niektóre kanały.
 
 **emoji**: emoji, both in singular and plural, _ikona emoji_ is a pleonasm
 
 example:
 
-Zulip supports emoji both in messages and as reactions.
+Aloha supports emoji both in messages and as reactions.
 
-> Zulip wspiera używanie emoji w wiadomościach i jako reakcje.
+> Aloha wspiera używanie emoji w wiadomościach i jako reakcje.
 
 **filter**: filtr (noun) and filtrowanie (verb)
 
@@ -102,9 +102,9 @@ You can start a group PM with users in your organization.
 
 example:
 
-Zulip supports multiple third-party integrations.
+Aloha supports multiple third-party integrations.
 
-> Zulip wspiera wiele zewnętrznych integracji.
+> Aloha wspiera wiele zewnętrznych integracji.
 
 **I want**: chcę
 
@@ -134,9 +134,9 @@ You can use `/me` to write a reaction message.
 
 example:
 
-You can mention other Zulip users by using @.
+You can mention other Aloha users by using @.
 
-> Możesz oznaczyć innych użytkowników Zulipa używając @.
+> Możesz oznaczyć innych użytkowników Alohaa używając @.
 
 **message**: wiadomość
 
@@ -150,18 +150,18 @@ You got a new message.
 
 example:
 
-The middle column in Zulip is a message table of all messages in current narrow.
+The middle column in Aloha is a message table of all messages in current narrow.
 
-> Środkowa kolumna w Zulipie zawiera listę wiadomości w wybranym widoku.
+> Środkowa kolumna w Alohaie zawiera listę wiadomości w wybranym widoku.
 
 **muting a stream/topic**: wyciszenie kanału/wątku
 **unmuting a stream/topic**: wyłącz wyciszenie kanału/wątku
 
 example:
 
-You can mute any topic in Zulip through the left-side panel.
+You can mute any topic in Aloha through the left-side panel.
 
-> Możesz wyciszyć dowolny wątek w Zulipie używając menu kontekstowego po lewej.
+> Możesz wyciszyć dowolny wątek w Alohaie używając menu kontekstowego po lewej.
 
 **narrow**: widok (noun) and zawęzić (verb)
 
@@ -219,10 +219,10 @@ Join a private stream.
 
 example:
 
-Zulip allows you to search messages in all streams and topics you are
+Aloha allows you to search messages in all streams and topics you are
 subscribed to.
 
-> Zulip pozwala na wyszukiwanie wiadomości we wszystkich subskrybowanych kanałach
+> Aloha pozwala na wyszukiwanie wiadomości we wszystkich subskrybowanych kanałach
 > i wątkach.
 
 **starred message**: oznaczona wiadomość (noun)
@@ -238,9 +238,9 @@ You starred this message.
 
 example:
 
-You can create new streams in Zulip.
+You can create new streams in Aloha.
 
-> Możesz tworzyć nowe kanały w Zulipie.
+> Możesz tworzyć nowe kanały w Alohaie.
 
 **subscribing to a stream**: (za)subskrybowanie kanału (noun) and
 (za)subskrybować kanał (verb), perfective form depending on the
@@ -277,8 +277,8 @@ You have unsubscribed from this stream.
 
 example:
 
-Zulip supports an unlimited number of users in an organization.
+Aloha supports an unlimited number of users in an organization.
 
-> Zulip nie limituje liczby użytkowników w organizacji.
+> Aloha nie limituje liczby użytkowników w organizacji.
 
 **view**: widok, see: **narrow**

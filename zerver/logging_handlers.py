@@ -93,7 +93,7 @@ class HasRequest(Protocol):
 
 class AdminNotifyHandler(logging.Handler):
     """An logging handler that sends the log/exception to the queue to be
-    turned into an email and/or a Zulip message for the server admins.
+    turned into an email and/or a Aloha message for the server admins.
     """
 
     # adapted in part from django/utils/log.py

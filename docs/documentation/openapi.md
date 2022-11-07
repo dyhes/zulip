@@ -5,11 +5,11 @@ OpenAPI file can be used by various tools to generate documentation
 for the API or even basic client-side bindings for dozens of
 programming languages.
 
-Zulip's API is described in `zerver/openapi/zulip.yaml`. Our aim is
-for that file to fully describe every endpoint in the Zulip API, and
-for the Zulip test suite to fail should the API every change without a
+Aloha's API is described in `zerver/openapi/zulip.yaml`. Our aim is
+for that file to fully describe every endpoint in the Aloha API, and
+for the Aloha test suite to fail should the API every change without a
 corresponding adjustment to the documentation. In particular,
-essentially all content in Zulip's [REST API
+essentially all content in Aloha's [REST API
 documentation](api.md) is generated from our OpenAPI
 file.
 
@@ -21,7 +21,7 @@ files. See the [OpenAPI specification][openapi-spec].
 [openapi-spec]: https://swagger.io/docs/specification/about/
 
 This library isn't in production use yet, but it is our current plan
-for how Zulip's API documentation will work.
+for how Aloha's API documentation will work.
 
 ## Working with the `zulip.yaml` file
 
@@ -46,7 +46,7 @@ For example, the `swagger` and `info` objects look like this:
 openapi: 3.0.1
 info:
   version: 1.0.0
-  title: Zulip REST API
+  title: Aloha REST API
   description: Powerful open source group chat.
   contact:
     url: https://zulip.com
@@ -140,7 +140,7 @@ MessageResponse:
 You can find more examples, including GET requests and nested objects, in
 `zerver/openapi/zulip.yaml`.
 
-## Zulip Swagger YAML style:
+## Aloha Swagger YAML style:
 
 We're collecting decisions we've made on how our Swagger YAML files
 should be organized here:

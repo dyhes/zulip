@@ -53,11 +53,11 @@ from zerver.models import (
     UserProfile,
 )
 
-SlackToZulipUserIDT = Dict[str, int]
+SlackToAlohaUserIDT = Dict[str, int]
 AddedChannelsT = Dict[str, Tuple[str, int]]
 AddedMPIMsT = Dict[str, Tuple[str, int]]
 DMMembersT = Dict[str, Tuple[str, str]]
-SlackToZulipRecipientT = Dict[str, int]
+SlackToAlohaRecipientT = Dict[str, int]
 # Generic type for SlackBotEmail class
 SlackBotEmailT = TypeVar("SlackBotEmailT", bound="SlackBotEmail")
 
@@ -140,8 +140,8 @@ def slack_workspace_to_realm(
     custom_emoji_list: ZerverFieldsT,
 ) -> Tuple[
     ZerverFieldsT,
-    SlackToZulipUserIDT,
-    SlackToZulipRecipientT,
+    SlackToAlohaUserIDT,
+    SlackToAlohaRecipientT,
     AddedChannelsT,
     AddedMPIMsT,
     DMMembersT,
@@ -151,13 +151,13 @@ def slack_workspace_to_realm(
     """
     Returns:
     1. realm, converted realm data
-    2. slack_user_id_to_zulip_user_id, which is a dictionary to map from Slack user id to Zulip user id
+    2. slack_user_id_to_zulip_user_id, which is a dictionary to map from Slack user id to Aloha user id
     3. slack_recipient_name_to_zulip_recipient_id, which is a dictionary to map from Slack recipient
-       name(channel names, mpim names, usernames, etc) to Zulip recipient id
-    4. added_channels, which is a dictionary to map from channel name to channel id, Zulip stream_id
-    5. added_mpims, which is a dictionary to map from MPIM name to MPIM id, Zulip huddle_id
+       name(channel names, mpim names, usernames, etc) to Aloha recipient id
+    4. added_channels, which is a dictionary to map from channel name to channel id, Aloha stream_id
+    5. added_mpims, which is a dictionary to map from MPIM name to MPIM id, Aloha huddle_id
     6. dm_members, which is a dictionary to map from DM id to tuple of DM participants.
-    7. avatars, which is list to map avatars to Zulip avatar records.json
+    7. avatars, which is list to map avatars to Aloha avatar records.json
     8. emoji_url_map, which is maps emoji name to its Slack URL
     """
     NOW = float(timezone_now().timestamp())
@@ -233,15 +233,15 @@ def users_to_zerver_userprofile(
 ) -> Tuple[
     List[ZerverFieldsT],
     List[ZerverFieldsT],
-    SlackToZulipUserIDT,
+    SlackToAlohaUserIDT,
     List[ZerverFieldsT],
     List[ZerverFieldsT],
 ]:
     """
     Returns:
     1. zerver_userprofile, which is a list of user profile
-    2. avatar_list, which is list to map avatars to Zulip avatar records.json
-    3. slack_user_id_to_zulip_user_id, which is a dictionary to map from Slack user ID to Zulip
+    2. avatar_list, which is list to map avatars to Aloha avatar records.json
+    3. slack_user_id_to_zulip_user_id, which is a dictionary to map from Slack user ID to Aloha
        user id
     4. zerver_customprofilefield, which is a list of all custom profile fields
     5. zerver_customprofilefield_values, which is a list of user profile fields
@@ -482,19 +482,19 @@ def channels_to_zerver_stream(
     slack_data_dir: str,
     realm_id: int,
     realm: Dict[str, Any],
-    slack_user_id_to_zulip_user_id: SlackToZulipUserIDT,
+    slack_user_id_to_zulip_user_id: SlackToAlohaUserIDT,
     zerver_userprofile: List[ZerverFieldsT],
 ) -> Tuple[
-    Dict[str, List[ZerverFieldsT]], AddedChannelsT, AddedMPIMsT, DMMembersT, SlackToZulipRecipientT
+    Dict[str, List[ZerverFieldsT]], AddedChannelsT, AddedMPIMsT, DMMembersT, SlackToAlohaRecipientT
 ]:
     """
     Returns:
     1. realm, converted realm data
-    2. added_channels, which is a dictionary to map from channel name to channel id, Zulip stream_id
-    3. added_mpims, which is a dictionary to map from MPIM(multiparty IM) name to MPIM id, Zulip huddle_id
+    2. added_channels, which is a dictionary to map from channel name to channel id, Aloha stream_id
+    3. added_mpims, which is a dictionary to map from MPIM(multiparty IM) name to MPIM id, Aloha huddle_id
     4. dm_members, which is a dictionary to map from DM id to tuple of DM participants.
     5. slack_recipient_name_to_zulip_recipient_id, which is a dictionary to map from Slack recipient
-       name(channel names, mpim names, usernames etc) to Zulip recipient_id
+       name(channel names, mpim names, usernames etc) to Aloha recipient_id
     """
     logging.info("######### IMPORTING CHANNELS STARTED #########\n")
 
@@ -520,7 +520,7 @@ def channels_to_zerver_stream(
         nonlocal subscription_id_count
 
         for channel in channels:
-            # map Slack's topic and purpose content into Zulip's stream description.
+            # map Slack's topic and purpose content into Aloha's stream description.
             # WARN This mapping is lossy since the topic.creator, topic.last_set,
             # purpose.creator, purpose.last_set fields are not preserved.
             description = channel["purpose"]["value"]
@@ -562,7 +562,7 @@ def channels_to_zerver_stream(
             recipient_id_count += 1
             logging.info("%s -> created", channel["name"])
 
-            # TODO map Slack's pins to Zulip's stars
+            # TODO map Slack's pins to Aloha's stars
             # There is the security model that Slack's pins are known to the team owner
             # as evident from where it is stored at (channels)
             # "pins": [
@@ -653,7 +653,7 @@ def get_subscription(
     channel_members: List[str],
     zerver_subscription: List[ZerverFieldsT],
     recipient_id: int,
-    slack_user_id_to_zulip_user_id: SlackToZulipUserIDT,
+    slack_user_id_to_zulip_user_id: SlackToAlohaUserIDT,
     subscription_id: int,
 ) -> int:
     for slack_user_id in channel_members:
@@ -668,7 +668,7 @@ def get_subscription(
 def process_long_term_idle_users(
     slack_data_dir: str,
     users: List[ZerverFieldsT],
-    slack_user_id_to_zulip_user_id: SlackToZulipUserIDT,
+    slack_user_id_to_zulip_user_id: SlackToAlohaUserIDT,
     added_channels: AddedChannelsT,
     added_mpims: AddedMPIMsT,
     dm_members: DMMembersT,
@@ -688,8 +688,8 @@ def convert_slack_workspace_messages(
     slack_data_dir: str,
     users: List[ZerverFieldsT],
     realm_id: int,
-    slack_user_id_to_zulip_user_id: SlackToZulipUserIDT,
-    slack_recipient_name_to_zulip_recipient_id: SlackToZulipRecipientT,
+    slack_user_id_to_zulip_user_id: SlackToAlohaUserIDT,
+    slack_recipient_name_to_zulip_recipient_id: SlackToAlohaRecipientT,
     added_channels: AddedChannelsT,
     added_mpims: AddedMPIMsT,
     dm_members: DMMembersT,
@@ -830,8 +830,8 @@ def get_messages_iterator(
 def channel_message_to_zerver_message(
     realm_id: int,
     users: List[ZerverFieldsT],
-    slack_user_id_to_zulip_user_id: SlackToZulipUserIDT,
-    slack_recipient_name_to_zulip_recipient_id: SlackToZulipRecipientT,
+    slack_user_id_to_zulip_user_id: SlackToAlohaUserIDT,
+    slack_recipient_name_to_zulip_recipient_id: SlackToAlohaRecipientT,
     all_messages: List[ZerverFieldsT],
     zerver_realmemoji: List[ZerverFieldsT],
     subscriber_map: Dict[int, Set[int]],
@@ -871,7 +871,7 @@ def channel_message_to_zerver_message(
 
         subtype = message.get("subtype", False)
         if subtype in [
-            # Zulip doesn't have a pinned_item concept
+            # Aloha doesn't have a pinned_item concept
             "pinned_item",
             "unpinned_item",
             # Slack's channel join/leave notices are spammy
@@ -1007,7 +1007,7 @@ def process_message_files(
     message_id: int,
     slack_user_id: str,
     users: List[ZerverFieldsT],
-    slack_user_id_to_zulip_user_id: SlackToZulipUserIDT,
+    slack_user_id_to_zulip_user_id: SlackToAlohaUserIDT,
     zerver_attachment: List[ZerverFieldsT],
     uploads_list: List[ZerverFieldsT],
 ) -> Dict[str, Any]:
@@ -1112,7 +1112,7 @@ def get_attachment_path_and_content(fileinfo: ZerverFieldsT, realm_id: int) -> T
 def build_reactions(
     reaction_list: List[ZerverFieldsT],
     reactions: List[ZerverFieldsT],
-    slack_user_id_to_zulip_user_id: SlackToZulipUserIDT,
+    slack_user_id_to_zulip_user_id: SlackToAlohaUserIDT,
     message_id: int,
     zerver_realmemoji: List[ZerverFieldsT],
 ) -> None:
@@ -1129,9 +1129,9 @@ def build_reactions(
             try:
                 zulip_emoji_name = codepoint_to_name[emoji_code]
             except KeyError:
-                print(f"WARN: Emoji found in iamcal but not Zulip: {emoji_name}")
+                print(f"WARN: Emoji found in iamcal but not Aloha: {emoji_name}")
                 continue
-            # Convert Slack emoji name to Zulip emoji name.
+            # Convert Slack emoji name to Aloha emoji name.
             emoji_name = zulip_emoji_name
             reaction_type = Reaction.UNICODE_EMOJI
         elif emoji_name in realmemoji:
@@ -1390,7 +1390,7 @@ def do_convert_data(original_path: str, output_dir: str, token: str, threads: in
     subprocess.check_call(["tar", "-czf", output_dir + ".tar.gz", output_dir, "-P"])
 
     logging.info("######### DATA CONVERSION FINISHED #########\n")
-    logging.info("Zulip data dump created at %s", output_dir)
+    logging.info("Aloha data dump created at %s", output_dir)
 
 
 def get_data_file(path: str) -> Any:

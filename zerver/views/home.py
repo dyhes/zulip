@@ -72,7 +72,7 @@ def accounts_accept_terms(request: HttpRequest) -> HttpResponse:
 def detect_narrowed_window(
     request: HttpRequest, user_profile: Optional[UserProfile]
 ) -> Tuple[List[List[str]], Optional[Stream], Optional[str]]:
-    """This function implements Zulip's support for a mini Zulip window
+    """This function implements Aloha's support for a mini Aloha window
     that just handles messages from a single narrow"""
     if user_profile is None:
         return [], None, None

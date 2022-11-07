@@ -5,7 +5,7 @@ from unittest import mock
 import orjson
 from django.test import override_settings
 
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import mock_queue_publish
 from zerver.lib.utils import statsd
 
@@ -31,7 +31,7 @@ class StatsMock:
         return f
 
 
-class TestReport(ZulipTestCase):
+class TestReport(AlohaTestCase):
     def test_send_time(self) -> None:
         self.login("hamlet")
 

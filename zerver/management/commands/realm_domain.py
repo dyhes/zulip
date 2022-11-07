@@ -7,11 +7,11 @@ from django.core.management.base import CommandError
 from django.db.utils import IntegrityError
 
 from zerver.lib.domains import validate_domain
-from zerver.lib.management import ZulipBaseCommand
+from zerver.lib.management import AlohaBaseCommand
 from zerver.models import RealmDomain, get_realm_domains
 
 
-class Command(ZulipBaseCommand):
+class Command(AlohaBaseCommand):
     help = """Manage domains for the specified realm"""
 
     def add_arguments(self, parser: ArgumentParser) -> None:

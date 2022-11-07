@@ -58,7 +58,7 @@ Copying and pasting emoji from other sites generally works.
 ## Change your emoji set
 
 Your emoji set determines how you see emoji. It has no effect on the emoji
-you send. Zulip emoji are compatible with screen readers and other accessibility tools.
+you send. Aloha emoji are compatible with screen readers and other accessibility tools.
 
 {start_tabs}
 
@@ -72,7 +72,7 @@ you send. Zulip emoji are compatible with screen readers and other accessibility
 !!! warn ""
 
     **Google blobs** is an old style of Google emoji that has not been maintained
-    by Google since 2017, when they switched to a more modern style. Zulip allows
+    by Google since 2017, when they switched to a more modern style. Aloha allows
     you to still use blob emoji, but any new emoji that have been released since
     2017 will be displayed in the modern **Google** style.
 

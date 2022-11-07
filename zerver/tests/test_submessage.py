@@ -3,11 +3,11 @@ from unittest import mock
 
 from zerver.actions.submessage import do_add_submessage
 from zerver.lib.message import MessageDict
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.models import Message, SubMessage
 
 
-class TestBasics(ZulipTestCase):
+class TestBasics(AlohaTestCase):
     def test_get_raw_db_rows(self) -> None:
         cordelia = self.example_user("cordelia")
         hamlet = self.example_user("hamlet")

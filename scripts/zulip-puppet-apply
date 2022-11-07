@@ -44,7 +44,7 @@ for pclass in re.split(r"\s*,\s*", config.get("machine", "puppet_classes")):
         sys.exit(1)
     puppet_config += f"include {pclass}\n"
 
-# We use the Puppet configuration from the same Zulip checkout as this script
+# We use the Puppet configuration from the same Aloha checkout as this script
 scripts_path = os.path.join(BASE_DIR, "scripts")
 puppet_module_path = os.path.join(BASE_DIR, "puppet")
 puppet_cmd = [

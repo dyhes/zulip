@@ -268,7 +268,7 @@ HTML_VOID_TAGS = {
 }
 
 # The following excludes some obscure tags that are never used
-# in Zulip code.
+# in Aloha code.
 HTML_INLINE_TAGS = {
     "a",
     "b",

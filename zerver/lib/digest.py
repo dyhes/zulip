@@ -371,7 +371,7 @@ def bulk_handle_digest_email(user_ids: List[int], cutoff: float) -> None:
                 "zerver/emails/digest",
                 user.realm,
                 to_user_ids=[user.id],
-                from_name="Zulip Digest",
+                from_name="Aloha Digest",
                 from_address=FromAddress.no_reply_placeholder,
                 context=context,
             )

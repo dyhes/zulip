@@ -7,7 +7,7 @@ from django.http import HttpRequest, HttpResponse
 
 from zerver.actions.streams import do_change_subscription_property
 from zerver.actions.user_topics import do_mute_topic
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import HostRequestMock, dummy_handler, mock_queue_publish
 from zerver.lib.user_groups import create_user_group, remove_user_from_user_group
 from zerver.models import Recipient, Stream, Subscription, UserProfile, get_stream
@@ -23,7 +23,7 @@ from zerver.tornado.event_queue import (
 from zerver.tornado.views import cleanup_event_queue, get_events
 
 
-class MissedMessageNotificationsTest(ZulipTestCase):
+class MissedMessageNotificationsTest(AlohaTestCase):
     """Tests the logic for when missed-message notifications
     should be triggered, based on user settings"""
 
@@ -603,7 +603,7 @@ class MissedMessageNotificationsTest(ZulipTestCase):
         self.assert_json_success(result)
 
 
-class FileReloadLogicTest(ZulipTestCase):
+class FileReloadLogicTest(AlohaTestCase):
     def test_persistent_queue_filename(self) -> None:
         with self.settings(
             JSON_PERSISTENT_QUEUE_FILENAME_PATTERN="/home/zulip/tornado/event_queues%s.json"
@@ -628,7 +628,7 @@ class FileReloadLogicTest(ZulipTestCase):
             )
 
 
-class PruneInternalDataTest(ZulipTestCase):
+class PruneInternalDataTest(AlohaTestCase):
     def test_prune_internal_data(self) -> None:
         user_profile = self.example_user("hamlet")
         queue_data = dict(
@@ -665,7 +665,7 @@ class PruneInternalDataTest(ZulipTestCase):
         self.assertTrue("internal_data" in events[2])
 
 
-class EventQueueTest(ZulipTestCase):
+class EventQueueTest(AlohaTestCase):
     def get_client_descriptor(self) -> ClientDescriptor:
         hamlet = self.example_user("hamlet")
         realm = hamlet.realm
@@ -929,7 +929,7 @@ class EventQueueTest(ZulipTestCase):
         self.verify_to_dict_end_to_end(client)
 
 
-class SchemaMigrationsTests(ZulipTestCase):
+class SchemaMigrationsTests(AlohaTestCase):
     def test_reformat_legacy_send_message_event(self) -> None:
         hamlet = self.example_user("hamlet")
         cordelia = self.example_user("cordelia")

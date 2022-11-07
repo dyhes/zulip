@@ -90,7 +90,7 @@ def same_realm_zephyr_user(user_profile: UserProfile, email: str) -> bool:
     # Are the sender and recipient both addresses in the same Zephyr
     # mirroring realm?  We have to handle this specially, inferring
     # the domain from the e-mail address, because the recipient may
-    # not existing in Zulip and we may need to make a stub Zephyr
+    # not existing in Aloha and we may need to make a stub Zephyr
     # mirroring user on the fly.
     try:
         validators.validate_email(email)
@@ -132,7 +132,7 @@ def same_realm_jabber_user(user_profile: UserProfile, email: str) -> bool:
         return False
 
     # If your Jabber users have a different email domain than the
-    # Zulip users, this is where you would do any translation.
+    # Aloha users, this is where you would do any translation.
     domain = Address(addr_spec=email).domain
 
     # Assumes allow_subdomains=False for all RealmDomain's corresponding to

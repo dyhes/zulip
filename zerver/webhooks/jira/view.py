@@ -28,7 +28,7 @@ IGNORED_EVENTS = [
 
 def guess_zulip_user_from_jira(jira_username: str, realm: Realm) -> Optional[UserProfile]:
     try:
-        # Try to find a matching user in Zulip
+        # Try to find a matching user in Aloha
         # We search a user's full name, short name,
         # and beginning of email address
         user = UserProfile.objects.filter(
@@ -43,7 +43,7 @@ def guess_zulip_user_from_jira(jira_username: str, realm: Realm) -> Optional[Use
 
 def convert_jira_markup(content: str, realm: Realm) -> str:
     # Attempt to do some simplistic conversion of Jira
-    # formatting to Markdown, for consumption in Zulip
+    # formatting to Markdown, for consumption in Aloha
 
     # Jira uses *word* for bold, we use **word**
     content = re.sub(r"\*([^\*]+)\*", r"**\1**", content)
@@ -76,8 +76,8 @@ def convert_jira_markup(content: str, realm: Realm) -> str:
     content = re.sub(full_link_re, r"[\g<title>](\g<url>)", content)
 
     # Try to convert a Jira user mention of format [~username] into a
-    # Zulip user mention. We don't know the email, just the Jira username,
-    # so we naively guess at their Zulip account using this
+    # Aloha user mention. We don't know the email, just the Jira username,
+    # so we naively guess at their Aloha account using this
     mention_re = re.compile("\\[~(.*?)\\]")
     for username in mention_re.findall(content):
         # Try to look up username

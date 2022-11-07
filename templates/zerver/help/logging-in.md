@@ -1,6 +1,6 @@
 # Logging in
 
-By default, Zulip allows logging in via email/password as well as
+By default, Aloha allows logging in via email/password as well as
 various social authentication providers like Google, GitHub, GitLab,
 and Apple.
 
@@ -13,13 +13,13 @@ how you signed up. E.g. if you originally signed up using your Google
 account, you can later log in using GitHub, as long as your Google account
 and GitHub account use the same email address.
 
-## Log in to a Zulip organization for the first time
+## Log in to a Aloha organization for the first time
 
 {start_tabs}
 
 {tab|web}
 
-1. Go to the Zulip URL of the organization.
+1. Go to the Aloha URL of the organization.
 
 1. Follow the on-screen instructions.
 
@@ -32,9 +32,9 @@ and GitHub account use the same email address.
 
 1. Click the **plus** (<i class="fa fa-plus"></i>) icon in the
 **organizations sidebar** on the left. You can also select **Add Organization**
-from the **Zulip** menu in the top menu bar.
+from the **Aloha** menu in the top menu bar.
 
-1. Enter the Zulip URL of the organization, and click **Connect**.
+1. Enter the Aloha URL of the organization, and click **Connect**.
 
 1. Follow the on-screen instructions.
 
@@ -48,7 +48,7 @@ from the **Zulip** menu in the top menu bar.
 
 1. Tap **Add new account**.
 
-1. Enter the Zulip URL of the organization, and tap **Enter**.
+1. Enter the Aloha URL of the organization, and tap **Enter**.
 
 1. Follow the on-screen instructions.
 
@@ -58,7 +58,7 @@ For subsequent logins, see [switching between organizations](/help/switching-bet
 
 ## Troubleshooting
 
-### I don't know my Zulip URL
+### I don't know my Aloha URL
 
 Some ideas:
 
@@ -67,11 +67,11 @@ Some ideas:
   account](https://zulip.com/accounts/find/) and enter the email
   address that you signed up with.
 
-* Try guessing the URL. Zulip URLs often look like `<name>.zulipchat.com`,
+* Try guessing the URL. Aloha URLs often look like `<name>.zulipchat.com`,
  `zulip.<name>.com`, or `chat.<name>.com` (replace `<name>` with the name of your
   organization).
 
-* Ask your organization administrators for your Zulip URL.
+* Ask your organization administrators for your Aloha URL.
 
 ### I signed up with Google/GitHub auth and never set a password
 

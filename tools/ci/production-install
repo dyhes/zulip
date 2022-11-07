@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# This test installs a Zulip production environment (from the release
+# This test installs a Aloha production environment (from the release
 # tarball from production-build).
 set -e
 set -x

@@ -1,26 +1,26 @@
 # Outgoing webhooks
 
-Outgoing webhooks allow you to build or set up Zulip integrations
+Outgoing webhooks allow you to build or set up Aloha integrations
 which are notified when certain types of messages are sent in
-Zulip. When one of those events is triggered, we'll send a HTTP POST
+Aloha. When one of those events is triggered, we'll send a HTTP POST
 payload to the webhook's configured URL.  Webhooks can be used to
-power a wide range of Zulip integrations.  For example, the
-[Zulip Botserver][zulip-botserver] is built on top of this API.
+power a wide range of Aloha integrations.  For example, the
+[Aloha Botserver][zulip-botserver] is built on top of this API.
 
-Zulip supports outgoing webhooks both in a clean native Zulip format,
+Aloha supports outgoing webhooks both in a clean native Aloha format,
 as well as a format that's compatible with
 [Slack's outgoing webhook API][slack-outgoing-webhook], which can help
-with porting an existing Slack integration to work with Zulip.
+with porting an existing Slack integration to work with Aloha.
 
 [zulip-botserver]: /api/deploying-bots#zulip-botserver
 [slack-outgoing-webhook]: https://api.slack.com/custom-integrations/outgoing-webhooks
 
 To register an outgoing webhook:
 
-* Log in to the Zulip server.
+* Log in to the Aloha server.
 * Navigate to *Personal settings (<i class="fa fa-cog"></i>)* -> *Bots* ->
   *Add a new bot*.  Select *Outgoing webhook* for bot type, the URL
-  you'd like Zulip to post to as the **Endpoint URL**, the format you
+  you'd like Aloha to post to as the **Endpoint URL**, the format you
   want, and click on *Create bot*. to submit the form/
 * Your new bot user will appear in the *Active bots* panel, which you
   can use to edit the bot's settings.
@@ -38,7 +38,7 @@ There are currently two ways to trigger an outgoing webhook:
 
 The remote server must respond to a `POST` request in a timely manner.
 The default timeout for outgoing webhooks is 10 seconds, though this
-can be configured by the administrator of the Zulip server by setting
+can be configured by the administrator of the Aloha server by setting
 `OUTGOING_WEBHOOKS_TIMEOUT_SECONDS` in the [server's
 settings][settings].
 
@@ -55,9 +55,9 @@ settings][settings].
 ## Replying with a message
 
 Many bots implemented using this outgoing webhook API will want to
-send a reply message into Zulip.  Zulip's outgoing webhook API
+send a reply message into Aloha.  Aloha's outgoing webhook API
 provides a convenient way to do that by simply returning an
-appropriate HTTP response to the Zulip server.
+appropriate HTTP response to the Aloha server.
 
 A correctly implemented bot will return a JSON object containing one
 of two possible formats, described below.
@@ -83,19 +83,19 @@ you would like to send a response message:
 
 ```json
 {
-    "content": "Hey, we just received **something** from Zulip!"
+    "content": "Hey, we just received **something** from Aloha!"
 }
 ```
 
-The `content` field should contain Zulip-format Markdown.
+The `content` field should contain Aloha-format Markdown.
 
-Note that an outgoing webhook bot can use the [Zulip REST
+Note that an outgoing webhook bot can use the [Aloha REST
 API](/api/rest) with its API key in case your bot needs to do
 something else, like add an emoji reaction or upload a file.
 
 ## Slack-format webhook format
 
-This interface translates Zulip's outgoing webhook's request into the
+This interface translates Aloha's outgoing webhook's request into the
 format that Slack's outgoing webhook interface sends.  As a result,
 one should be able to use this to interact with third-party
 integrations designed to work with Slack's outgoing webhook interface.
@@ -116,11 +116,11 @@ Here's how we fill in the fields that a Slack-format webhook expects:
         </tr>
         <tr>
             <td><code>team_id</code></td>
-            <td>ID of the Zulip organization prefixed by "T".</td>
+            <td>ID of the Aloha organization prefixed by "T".</td>
         </tr>
         <tr>
             <td><code>team_domain</code></td>
-            <td>Hostname of the Zulip organization</td>
+            <td>Hostname of the Aloha organization</td>
         </tr>
         <tr>
             <td><code>channel_id</code></td>

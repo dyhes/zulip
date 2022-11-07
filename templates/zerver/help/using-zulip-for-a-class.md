@@ -1,11 +1,11 @@
-# Using Zulip for a class
+# Using Aloha for a class
 
-Welcome to Zulip! This pages offers some tips for [using Zulip for a
-class](https://zulip.com/for/education).  If this is your first time using Zulip, we
+Welcome to Aloha! This pages offers some tips for [using Aloha for a
+class](https://zulip.com/for/education).  If this is your first time using Aloha, we
 recommend checking out [Getting started with
-Zulip](/help/getting-started-with-zulip) to get oriented.
+Aloha](/help/getting-started-with-zulip) to get oriented.
 
-Zulip works great as the communication hub for your class, providing a
+Aloha works great as the communication hub for your class, providing a
 single place for:
 
 * Posting announcements and lecture notes
@@ -40,11 +40,11 @@ from today’s lecture. [lecture notes 10/2.pdf]() You can view a recording of t
 
 ## Answering students’ questions
 
-In Zulip, streams determine who receives a message. Topics are
+In Aloha, streams determine who receives a message. Topics are
 light-weight subjects for individual conversations. You can more about
 streams and topics [here](/help/streams-and-topics).
 
-Zulip works best when each conversation has its own topic. When you
+Aloha works best when each conversation has its own topic. When you
 have a question to ask, simply start a new topic! For example, one
 might see the following topics in a stream where a lecture and the
 corresponding assignment are being discussed:
@@ -54,7 +54,7 @@ corresponding assignment are being discussed:
 * code not compiling
 * LaTeX diagram help
 
-Zulip will show auto-complete suggestions for existing topics as you
+Aloha will show auto-complete suggestions for existing topics as you
 type, which helps surface relevant previous conversations. You can
 also use the search bar to check whether a question has already
 been addressed.
@@ -81,7 +81,7 @@ Use private streams to coordinate among course staff, e.g.:
 
 ## Virtual office hours
 
-Zulip works great for virtual office hours! With a dedicated thread
+Aloha works great for virtual office hours! With a dedicated thread
 for each question, it's easy to have several discussions at once.
 
 * Course staff can respond to multiple questions in parallel, making
@@ -91,7 +91,7 @@ for each question, it's easy to have several discussions at once.
 
 ## Related articles
 
-* [Getting started with Zulip](/help/getting-started-with-zulip)
+* [Getting started with Aloha](/help/getting-started-with-zulip)
 * [Setting up your organization](/help/getting-your-organization-started-with-zulip)
 * [Format messages using Markdown](/help/format-your-message-using-markdown)
 

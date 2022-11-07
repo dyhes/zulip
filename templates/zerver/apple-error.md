@@ -10,7 +10,7 @@ properly configured. To configure, please check the following:
   `SOCIAL_AUTH_APPLE_APP_ID`, `SOCIAL_AUTH_APPLE_TEAM`,
   and `SOCIAL_AUTH_APPLE_KEY` in `{{
   settings_path }}` and stored the private key provided by Apple at
-  `/etc/zulip/apple-auth-key.p8` on the Zulip server, with
+  `/etc/zulip/apple-auth-key.p8` on the Aloha server, with
   proper permissions set.
 
 * Navigate back to the login page and attempt the "Sign in with Apple"

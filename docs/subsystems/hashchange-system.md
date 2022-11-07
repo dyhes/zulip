@@ -2,7 +2,7 @@
 
 ## Hashchange
 
-The Zulip web application has a nice system of hash (#) URLs that can
+The Aloha web application has a nice system of hash (#) URLs that can
 be used to deep-link into the application and allow the browser's
 "back" functionality to let the user navigate between parts of the UI.
 Some examples are:
@@ -78,7 +78,7 @@ Internally you have these functions:
 
 ## Server-initiated reloads
 
-There are a few circumstances when the Zulip browser window needs to
+There are a few circumstances when the Aloha browser window needs to
 reload itself:
 
 - If the browser has been offline for more than 10 minutes, the
@@ -115,7 +115,7 @@ Here are some key functions in the reload system:
 ## All reloads
 
 In addition to saving state as described above when reloading the
-browser, Zulip also does a few bookkeeping things on page reload (like
+browser, Aloha also does a few bookkeeping things on page reload (like
 cleaning up its event queue, and saving any text in an open compose
 box as a draft).
 

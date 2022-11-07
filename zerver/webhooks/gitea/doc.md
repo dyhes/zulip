@@ -1,4 +1,4 @@
-Receive Gitea notifications in Zulip!
+Receive Gitea notifications in Aloha!
 
 1. {!create-stream.md!}
 

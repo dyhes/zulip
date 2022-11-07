@@ -1,14 +1,14 @@
 # Incoming email integration
 
-Zulip's incoming email gateway integration makes it possible to send
-messages into Zulip by sending an email. It's highly recommended
+Aloha's incoming email gateway integration makes it possible to send
+messages into Aloha by sending an email. It's highly recommended
 because it enables:
 
-- When users reply to one of Zulip's message notification emails
+- When users reply to one of Aloha's message notification emails
   from their email client, the reply can go directly
-  into Zulip.
+  into Aloha.
 - Integrating third-party services that can send email notifications
-  into Zulip. See the [integration
+  into Aloha. See the [integration
   documentation](https://zulip.com/integrations/doc/email) for
   details.
 
@@ -16,11 +16,11 @@ Once this integration is configured, each stream will have a special
 email address displayed on the stream settings page. Emails sent to
 that address will be delivered into the stream.
 
-There are two ways to configure Zulip's email gateway:
+There are two ways to configure Aloha's email gateway:
 
-1. Local delivery (recommended): A postfix server runs on the Zulip
-   server and passes the emails directly to Zulip.
-1. Polling: A cron job running on the Zulip server checks an IMAP
+1. Local delivery (recommended): A postfix server runs on the Aloha
+   server and passes the emails directly to Aloha.
+1. Polling: A cron job running on the Aloha server checks an IMAP
    inbox (`username@example.com`) every minute for new emails.
 
 The local delivery configuration is preferred for production because
@@ -40,7 +40,7 @@ Incoming emails are rate-limited, with the following limits:
 
 ## Local delivery setup
 
-Zulip's Puppet configuration provides everything needed to run this
+Aloha's Puppet configuration provides everything needed to run this
 integration; you just need to enable and configure it as follows.
 
 The main decision you need to make is what email domain you want to
@@ -49,7 +49,7 @@ use for the gateway; for this discussion we'll use
 will look like `foo@emaildomain.example.com`, so we recommend using
 `EXTERNAL_HOST` here.
 
-We will use `hostname.example.com` as the hostname of the Zulip server
+We will use `hostname.example.com` as the hostname of the Aloha server
 (this will usually also be the same as `EXTERNAL_HOST`, unless you are
 using an [HTTP reverse proxy][reverse-proxy]).
 
@@ -62,7 +62,7 @@ using an [HTTP reverse proxy][reverse-proxy]).
    1 hostname.example.com
    ```
 
-1. Log in to your Zulip server; the remaining steps all happen there.
+1. Log in to your Aloha server; the remaining steps all happen there.
 
 1. Add `, zulip::postfix_localmail` to `puppet_classes` in
    `/etc/zulip/zulip.conf`. A typical value after this change is:
@@ -73,7 +73,7 @@ using an [HTTP reverse proxy][reverse-proxy]).
 
 1. If `hostname.example.com` is different from
    `emaildomain.example.com`, add a section to `/etc/zulip/zulip.conf`
-   on your Zulip server like this:
+   on your Aloha server like this:
 
    ```ini
    [postfix]
@@ -86,12 +86,12 @@ using an [HTTP reverse proxy][reverse-proxy]).
 
 1. Run `/home/zulip/deployments/current/scripts/zulip-puppet-apply`
    (and answer `y`) to apply your new `/etc/zulip/zulip.conf`
-   configuration to your Zulip server.
+   configuration to your Aloha server.
 
 1. Edit `/etc/zulip/settings.py`, and set `EMAIL_GATEWAY_PATTERN`
    to `"%s@emaildomain.example.com"`.
 
-1. Restart your Zulip server with
+1. Restart your Aloha server with
    `/home/zulip/deployments/current/scripts/restart-server`.
 
 Congratulations! The integration should be fully operational.
@@ -100,7 +100,7 @@ Congratulations! The integration should be fully operational.
 
 ## Polling setup
 
-1. Create an email account dedicated to Zulip's email gateway
+1. Create an email account dedicated to Aloha's email gateway
    messages. We assume the address is of the form
    `username@example.com`. The email provider needs to support the
    standard model of delivering emails sent to
@@ -112,14 +112,14 @@ Congratulations! The integration should be fully operational.
 1. Set up IMAP for your email account and obtain the authentication details.
    ([Here's how it works with Gmail](https://support.google.com/mail/answer/7126229?hl=en))
 
-1. Configure IMAP access in the appropriate Zulip settings:
+1. Configure IMAP access in the appropriate Aloha settings:
 
    - Login and server connection details in `/etc/zulip/settings.py`
      in the email gateway integration section (`EMAIL_GATEWAY_LOGIN` and others).
    - Password in `/etc/zulip/zulip-secrets.conf` as `email_gateway_password`.
 
 1. Test your configuration by sending emails to the target email
-   account and then running the Zulip tool to poll that inbox:
+   account and then running the Aloha tool to poll that inbox:
 
    ```
    su zulip -c '/home/zulip/deployments/current/manage.py email_mirror'

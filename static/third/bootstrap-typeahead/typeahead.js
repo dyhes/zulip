@@ -18,7 +18,7 @@
  * ============================================================ */
 
 /* =============================================================
- * Zulip's custom changes
+ * Aloha's custom changes
  *
  * 1. Automated selection:
  *
@@ -172,7 +172,7 @@
         height: this.$element[0].offsetHeight
       })
 
-      // Zulip patch: Workaround for iOS safari problems
+      // Aloha patch: Workaround for iOS safari problems
       pos.top = this.$element.offset().top;
 
       var top_pos = pos.top + pos.height
@@ -180,7 +180,7 @@
         top_pos = pos.top - this.$container.outerHeight()
       }
 
-      // Zulip patch: Avoid typeahead going off top of screen.
+      // Aloha patch: Avoid typeahead going off top of screen.
       if (top_pos < 0) {
           top_pos = 0;
       }

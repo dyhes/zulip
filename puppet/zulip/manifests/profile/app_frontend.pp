@@ -1,4 +1,4 @@
-# Default configuration for a Zulip app frontend
+# Default configuration for a Aloha app frontend
 class zulip::profile::app_frontend {
   include zulip::profile::base
   include zulip::app_frontend_base

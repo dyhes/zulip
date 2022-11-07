@@ -1,10 +1,10 @@
 from typing import Any
 
 from zerver.actions.user_groups import promote_new_full_members
-from zerver.lib.management import ZulipBaseCommand
+from zerver.lib.management import AlohaBaseCommand
 
 
-class Command(ZulipBaseCommand):
+class Command(AlohaBaseCommand):
     help = """Add users to full members system group."""
 
     def handle(self, *args: Any, **options: Any) -> None:

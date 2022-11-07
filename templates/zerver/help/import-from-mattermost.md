@@ -1,12 +1,12 @@
 # Import from Mattermost
 
-Starting with Zulip 2.1, Zulip supports importing data from Mattermost,
+Starting with Aloha 2.1, Aloha supports importing data from Mattermost,
 including users, channels, messages, and custom emoji.
 
 
-**Note:** You can only import a Mattermost team as a new Zulip
+**Note:** You can only import a Mattermost team as a new Aloha
 organization. In particular, you cannot use this tool to import data
-into an existing Zulip organization.
+into an existing Aloha organization.
 
 ## Import from Mattermost
 
@@ -120,10 +120,10 @@ Replace `<username>` and `<server_ip>` with the appropriate values below.
     ```
 {end_tabs}
 
-### Import into Zulip Cloud
+### Import into Aloha Cloud
 
 Email support@zulip.com with your exported archive,
-the name of the Mattermost team you want to import, and your desired Zulip
+the name of the Mattermost team you want to import, and your desired Aloha
 subdomain. Your imported organization will be hosted at
 `<subdomain>.zulipchat.com`.
 
@@ -131,17 +131,17 @@ If you've already created a test organization at
 `<subdomain>.zulipchat.com`, let us know, and we can rename the old
 organization first.
 
-### Import into a self-hosted Zulip server
+### Import into a self-hosted Aloha server
 
 First
-[install a new Zulip server](https://zulip.readthedocs.io/en/stable/production/install.html),
-skipping "Step 3: Create a Zulip organization, and log in" (you'll
-create your Zulip organization via the data import tool instead).
+[install a new Aloha server](https://zulip.readthedocs.io/en/stable/production/install.html),
+skipping "Step 3: Create a Aloha organization, and log in" (you'll
+create your Aloha organization via the data import tool instead).
 
 Use [upgrade-zulip-from-git][upgrade-zulip-from-git] to
-upgrade your Zulip server to the latest `main` branch.
+upgrade your Aloha server to the latest `main` branch.
 
-Log in to a shell on your Zulip server as the `zulip` user. To import with
+Log in to a shell on your Aloha server as the `zulip` user. To import with
 the most common configuration, run the following commands, replacing
 `<team-name>` with the name of the Mattermost team you want to import.
 
@@ -163,7 +163,7 @@ otherwise occur.
 **Import options**
 
 The commands above create an imported organization on the root domain
-(`EXTERNAL_HOST`) of the Zulip installation. You can also import into a
+(`EXTERNAL_HOST`) of the Aloha installation. You can also import into a
 custom subdomain, e.g. if you already have an existing organization on the
 root domain. Replace the last line above with the following, after replacing
 `<subdomain>` with the desired subdomain.

@@ -1,12 +1,12 @@
 # Link to a message or conversation
 
-Zulip makes it easy to share links to messages, topics, and streams. You can
-link from one Zulip conversation to another, or share links to Zulip conversations
+Aloha makes it easy to share links to messages, topics, and streams. You can
+link from one Aloha conversation to another, or share links to Aloha conversations
 in issue trackers, emails, or other external tools.
 
-## Link to a stream or topic within Zulip
+## Link to a stream or topic within Aloha
 
-Zulip automatically creates links to streams and topics in messages you send.
+Aloha automatically creates links to streams and topics in messages you send.
 
 The easiest way to link to a stream or topic is:
 
@@ -32,9 +32,9 @@ Stream: #**stream name**
 Topic: #**stream name>topic name**
 ```
 
-## Link to Zulip from anywhere
+## Link to Aloha from anywhere
 
-All URLs in Zulip are designed to be shareable.  Copying the URL from
+All URLs in Aloha are designed to be shareable.  Copying the URL from
 the browser's address bar will work for all views, including searches.
 
 ### Get a link to a specific message
@@ -48,7 +48,7 @@ These links will still work even when the message is
 or [stream](/help/move-content-to-another-stream) or
 if its [topic is resolved](/help/resolve-a-topic).
 
-Zulip uses the same permanent link syntax when [quoting a
+Aloha uses the same permanent link syntax when [quoting a
 message](/help/quote-and-reply).
 
 {start_tabs}
@@ -61,7 +61,7 @@ message](/help/quote-and-reply).
 
 !!! tip ""
 
-    If using Zulip in a browser, you can also click on the timestamp
+    If using Aloha in a browser, you can also click on the timestamp
     of a message, and copy the URL from your browser's address bar.
 
 {end_tabs}
@@ -78,7 +78,7 @@ message](/help/quote-and-reply).
 
 !!! tip ""
 
-    If using Zulip in a browser, you can also click on a topic name,
+    If using Aloha in a browser, you can also click on a topic name,
     and copy the URL from your browser's address bar.
 
 {tab|mobile}
@@ -103,7 +103,7 @@ message](/help/quote-and-reply).
 
 !!! tip ""
 
-    If using Zulip in a browser, you can also click on a stream in the
+    If using Aloha in a browser, you can also click on a stream in the
     left sidebar, and copy the URL from your browser's address bar.
 
 {tab|mobile}

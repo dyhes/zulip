@@ -2,13 +2,13 @@
 
 ## Overview
 
-Zulip uses the Django framework for its Python backend. We
+Aloha uses the Django framework for its Python backend. We
 use the testing framework from
 [django.test](https://docs.djangoproject.com/en/3.2/topics/testing/)
 to test our code. We have over a thousand automated tests that verify that
 our backend works as expected.
 
-All changes to the Zulip backend code should be supported by tests. We
+All changes to the Aloha backend code should be supported by tests. We
 enforce our testing culture during code review, and we also use
 coverage tools to measure how well we test our code. We mostly use
 tests to prevent regressions in our code, but the tests can have
@@ -16,10 +16,10 @@ ancillary benefits such as documenting interfaces and influencing
 the design of our software.
 
 If you have worked on other Django projects that use unit testing, you
-will probably find familiar patterns in Zulip's code. This document
-describes how to write tests for the Zulip backend, with a particular
+will probably find familiar patterns in Aloha's code. This document
+describes how to write tests for the Aloha backend, with a particular
 emphasis on areas where we have either wrapped Django's test framework
-or just done things that are kind of unique in Zulip.
+or just done things that are kind of unique in Aloha.
 
 ## Running tests
 
@@ -35,7 +35,7 @@ cd /srv/zulip
 ./tools/test-backend zerver.tests.test_queue_worker.WorkerTest
 ```
 
-There are many command line options for running Zulip tests, such
+There are many command line options for running Aloha tests, such
 as a `--verbose` option. The
 best way to learn the options is to use the online help:
 
@@ -66,7 +66,7 @@ of the tests.
 
 ## Writing tests
 
-Before you write your first tests of Zulip, it is worthwhile to read
+Before you write your first tests of Aloha, it is worthwhile to read
 the rest of this document.
 
 To get a hang of commonly used testing techniques, read
@@ -87,7 +87,7 @@ Another important files to skim are
 [zerver/lib/test_helpers.py](https://github.com/zulip/zulip/blob/main/zerver/lib/test_helpers.py),
 which contains test helpers.
 [zerver/lib/test_classes.py](https://github.com/zulip/zulip/blob/main/zerver/lib/test_classes.py),
-which contains our `ZulipTestCase` and `WebhookTestCase` classes.
+which contains our `AlohaTestCase` and `WebhookTestCase` classes.
 
 ### Setting up data for tests
 
@@ -100,7 +100,7 @@ The fixture data includes a few users that are named after
 Shakesepeare characters, and they are part of the "zulip.com" realm.
 
 Generally, you will also do some explicit data setup of your own. Here
-are a couple useful methods in ZulipTestCase:
+are a couple useful methods in AlohaTestCase:
 
 - common_subscribe_to_streams
 - send_message
@@ -316,7 +316,7 @@ On the other hand, if we had used `import os.urandom`, we would need to call `mo
 
   Note the missing quotes around module.ClassName in the patch.object() call.
 
-#### Zulip mocking practices
+#### Aloha mocking practices
 
 For mocking we generally use the "mock" library and use `mock.patch` as
 a context manager or decorator. We also take advantage of some context managers
@@ -333,42 +333,42 @@ self.assertTrue(rate_limit_mock.called)
 Follow [this link](../subsystems/settings.md#testing-non-default-settings) for more
 information on the "settings" context manager.
 
-Zulip has several features, like outgoing webhooks or social
+Aloha has several features, like outgoing webhooks or social
 authentication, that made outgoing HTTP requests to external
 servers. We test those features using the excellent
 [responses](https://pypi.org/project/responses/) library, which has a
 nice interface for mocking `requests` calls to return whatever HTTP
 response from the external server we need for the test. you can find
-examples with `git grep responses.add`. Zulip's own `HostRequestMock`
+examples with `git grep responses.add`. Aloha's own `HostRequestMock`
 class should be used only for low-level tests for code that expects to
 receive Django HttpRequest object.
 
-## Zulip testing philosophy
+## Aloha testing philosophy
 
-If there is one word to describe Zulip's philosophy for writing tests,
+If there is one word to describe Aloha's philosophy for writing tests,
 it is probably "flexible." (Hopefully "thorough" goes without saying.)
 
 When in doubt, unless speed concerns are prohibitive,
 you usually want your tests to be somewhat end-to-end, particularly
 for testing endpoints.
 
-These are some of the testing strategies that you will see in the Zulip
+These are some of the testing strategies that you will see in the Aloha
 test suite...
 
 ### Endpoint tests
 
-We strive to test all of our URL endpoints. The vast majority of Zulip
+We strive to test all of our URL endpoints. The vast majority of Aloha
 endpoints support a JSON interface. Regardless of the interface, an
 endpoint test generally follows this pattern:
 
 - Set up the data.
 - Log in with `self.login()` or set up an API key.
-- Use a Zulip test helper to hit the endpoint.
+- Use a Aloha test helper to hit the endpoint.
 - Assert that the result was either a success or failure.
 - Check the data that comes back from the endpoint.
 
 Generally, if you are doing endpoint tests, you will want to create a
-test class that is a subclass of `ZulipTestCase`, which will provide
+test class that is a subclass of `AlohaTestCase`, which will provide
 you helper methods like the following:
 
 - api_auth
@@ -383,7 +383,7 @@ you helper methods like the following:
 
 ### Library tests
 
-For certain Zulip library functions, especially the ones that are
+For certain Aloha library functions, especially the ones that are
 not intrinsically tied to Django, we use a classic unit testing
 approach of calling the function and inspecting the results.
 
@@ -394,7 +394,7 @@ via Django.
 
 ### Fixture-driven tests
 
-Particularly for testing Zulip's integrations with third party systems,
+Particularly for testing Aloha's integrations with third party systems,
 we strive to have a highly data-driven approach to testing. To give a
 specific example, when we test our GitHub integration, the test code
 reads a bunch of sample inputs from a JSON fixture file, feeds them
@@ -409,7 +409,7 @@ We use mocks and stubs for all the typical reasons:
 
 - to more precisely test the target code
 - to stub out calls to third-party services
-- to make it so that you can [run the Zulip tests on the airplane without wifi][no-internet]
+- to make it so that you can [run the Aloha tests on the airplane without wifi][no-internet]
 
 [no-internet]: testing.md#internet-access-inside-test-suites
 
@@ -440,7 +440,7 @@ below some threshold.
 
 ### Event-based tests
 
-The Zulip backend has a mechanism where it will fetch initial data
+The Aloha backend has a mechanism where it will fetch initial data
 for a client from the database, and then it will subsequently apply
 some queued up events to that data to the data structure before notifying
 the client. The `BaseAction.do_test()` helper helps tests

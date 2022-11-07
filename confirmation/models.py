@@ -217,7 +217,7 @@ _properties = {
 def one_click_unsubscribe_link(user_profile: UserProfile, email_type: str) -> str:
     """
     Generate a unique link that a logged-out user can visit to unsubscribe from
-    Zulip e-mails without having to first log in.
+    Aloha e-mails without having to first log in.
     """
     return create_confirmation_link(
         user_profile, Confirmation.UNSUBSCRIBE, url_args={"email_type": email_type}

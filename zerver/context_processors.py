@@ -87,7 +87,7 @@ def is_isolated_page(request: HttpRequest) -> bool:
 
 
 def zulip_default_context(request: HttpRequest) -> Dict[str, Any]:
-    """Context available to all Zulip Jinja2 templates that have a request
+    """Context available to all Aloha Jinja2 templates that have a request
     passed in.  Designed to provide the long list of variables at the
     bottom of this function in a wide range of situations: logged-in
     or logged-out, subdomains or not, etc.
@@ -131,7 +131,7 @@ def zulip_default_context(request: HttpRequest) -> Dict[str, Any]:
         settings_path = "/etc/zulip/settings.py"
         settings_comments_path = "/etc/zulip/settings.py"
 
-    # Used to remove links to Zulip docs and landing page from footer of self-hosted pages.
+    # Used to remove links to Aloha docs and landing page from footer of self-hosted pages.
     corporate_enabled = settings.CORPORATE_ENABLED
 
     support_email = FromAddress.SUPPORT

@@ -27,7 +27,7 @@ from zerver.lib.email_mirror import (
     strip_from_subject,
 )
 from zerver.lib.email_mirror_helpers import (
-    ZulipEmailForwardError,
+    AlohaEmailForwardError,
     decode_email_address,
     encode_email_address,
     get_email_gateway_message_string_from_address,
@@ -35,7 +35,7 @@ from zerver.lib.email_mirror_helpers import (
 from zerver.lib.email_notifications import convert_html_to_markdown
 from zerver.lib.send_email import FromAddress
 from zerver.lib.streams import ensure_stream
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import mock_queue_publish, most_recent_message, most_recent_usermessage
 from zerver.models import (
     Attachment,
@@ -55,7 +55,7 @@ if TYPE_CHECKING:
 logger_name = "zerver.lib.email_mirror"
 
 
-class TestEncodeDecode(ZulipTestCase):
+class TestEncodeDecode(AlohaTestCase):
     def _assert_options(
         self,
         options: Dict[str, bool],
@@ -110,10 +110,10 @@ class TestEncodeDecode(ZulipTestCase):
 
         email_address = email_address.replace("@testserver", "@zulip.org")
         email_address_all_options = email_address_all_options.replace("@testserver", "@zulip.org")
-        with self.assertRaises(ZulipEmailForwardError):
+        with self.assertRaises(AlohaEmailForwardError):
             decode_email_address(email_address)
 
-        with self.assertRaises(ZulipEmailForwardError):
+        with self.assertRaises(AlohaEmailForwardError):
             decode_email_address(email_address_all_options)
 
         with self.settings(EMAIL_GATEWAY_EXTRA_PATTERN_HACK="@zulip.org"):
@@ -127,7 +127,7 @@ class TestEncodeDecode(ZulipTestCase):
             )
             self.assertEqual(token, stream.email_token)
 
-        with self.assertRaises(ZulipEmailForwardError):
+        with self.assertRaises(AlohaEmailForwardError):
             decode_email_address("bogus")
 
     # Test stream name encoding changes introduced due to
@@ -183,7 +183,7 @@ class TestEncodeDecode(ZulipTestCase):
         self._assert_options(options, prefer_text=False)
 
 
-class TestGetMissedMessageToken(ZulipTestCase):
+class TestGetMissedMessageToken(AlohaTestCase):
     def test_get_missed_message_token(self) -> None:
         with self.settings(EMAIL_GATEWAY_PATTERN="%s@example.com"):
             address = "mm" + ("x" * 32) + "@example.com"
@@ -196,7 +196,7 @@ class TestGetMissedMessageToken(ZulipTestCase):
             # the special mm+32chars tokens.
             address = "mmathers@example.com"
             self.assertFalse(is_missed_message_address(address))
-            with self.assertRaises(ZulipEmailForwardError):
+            with self.assertRaises(AlohaEmailForwardError):
                 get_missed_message_token_from_address(address)
 
             # Now test the case where we our address does not match the
@@ -205,11 +205,11 @@ class TestGetMissedMessageToken(ZulipTestCase):
             # exception.
             address = "alice@not-the-domain-we-were-expecting.com"
             self.assertFalse(is_missed_message_address(address))
-            with self.assertRaises(ZulipEmailForwardError):
+            with self.assertRaises(AlohaEmailForwardError):
                 get_missed_message_token_from_address(address)
 
 
-class TestFilterFooter(ZulipTestCase):
+class TestFilterFooter(AlohaTestCase):
     def test_filter_footer(self) -> None:
         text = """Test message
         --Not a delimiter--
@@ -233,7 +233,7 @@ class TestFilterFooter(ZulipTestCase):
         self.assertEqual(result, text)
 
 
-class TestStreamEmailMessagesSuccess(ZulipTestCase):
+class TestStreamEmailMessagesSuccess(AlohaTestCase):
     def create_incoming_valid_message(
         self, msgtext: str, stream: Stream, include_quotes: bool
     ) -> EmailMessage:
@@ -446,7 +446,7 @@ I hope you enjoy reading it!
 -Glen
 
 From: John Doe johndoe@wherever
-To: A Zulip-subscribed mailing list somelist@elsewhere
+To: A Aloha-subscribed mailing list somelist@elsewhere
 Subject: Some subject
 
 Here is the original email. It is full of text
@@ -572,7 +572,7 @@ and other things
         self.assertEqual(message.topic_name(), incoming_valid_message["Subject"])
 
 
-class TestEmailMirrorMessagesWithAttachments(ZulipTestCase):
+class TestEmailMirrorMessagesWithAttachments(AlohaTestCase):
     def test_message_with_valid_attachment(self) -> None:
         user_profile = self.example_user("hamlet")
         self.login_user(user_profile)
@@ -835,7 +835,7 @@ class TestEmailMirrorMessagesWithAttachments(ZulipTestCase):
         self.assertEqual(message.content, "Test message")
 
 
-class TestStreamEmailMessagesEmptyBody(ZulipTestCase):
+class TestStreamEmailMessagesEmptyBody(AlohaTestCase):
     def test_receive_stream_email_messages_empty_body(self) -> None:
         # build dummy messages for stream
         # test message with empty body is not sent
@@ -917,7 +917,7 @@ class TestStreamEmailMessagesEmptyBody(ZulipTestCase):
         self.assertEqual(message.content, "(No email body)")
 
 
-class TestMissedMessageEmailMessages(ZulipTestCase):
+class TestMissedMessageEmailMessages(AlohaTestCase):
     def test_receive_missed_personal_message_email_messages(self) -> None:
 
         # build dummy messages for message notification email reply
@@ -1250,7 +1250,7 @@ class TestMissedMessageEmailMessages(ZulipTestCase):
             process_missed_message(mm_address, incoming_valid_message)
 
 
-class TestEmptyGatewaySetting(ZulipTestCase):
+class TestEmptyGatewaySetting(AlohaTestCase):
     def test_missed_message(self) -> None:
         self.login("othello")
         cordelia = self.example_user("cordelia")
@@ -1277,7 +1277,7 @@ class TestEmptyGatewaySetting(ZulipTestCase):
             self.assertEqual(test_address, "")
 
 
-class TestReplyExtraction(ZulipTestCase):
+class TestReplyExtraction(AlohaTestCase):
     def test_is_forwarded(self) -> None:
         self.assertTrue(is_forwarded("FWD: hey"))
         self.assertTrue(is_forwarded("fwd: hi"))
@@ -1379,7 +1379,7 @@ class TestReplyExtraction(ZulipTestCase):
         self.assertEqual(message.content, convert_html_to_markdown(html))
 
 
-class TestScriptMTA(ZulipTestCase):
+class TestScriptMTA(AlohaTestCase):
     def test_success(self) -> None:
         script = os.path.join(os.path.dirname(__file__), "../../scripts/lib/email-mirror-postfix")
 
@@ -1417,7 +1417,7 @@ class TestScriptMTA(ZulipTestCase):
         self.assertEqual(p.returncode, 67)
 
 
-class TestEmailMirrorTornadoView(ZulipTestCase):
+class TestEmailMirrorTornadoView(AlohaTestCase):
     def send_private_message(self) -> str:
         self.login("othello")
         cordelia = self.example_user("cordelia")
@@ -1451,7 +1451,7 @@ class TestEmailMirrorTornadoView(ZulipTestCase):
             MirrorWorker().consume(event)
 
             self.assertEqual(
-                self.get_last_message().content, "This is a plain-text message for testing Zulip."
+                self.get_last_message().content, "This is a plain-text message for testing Aloha."
             )
 
         post_data = {
@@ -1510,11 +1510,11 @@ class TestEmailMirrorTornadoView(ZulipTestCase):
         result = self.send_offline_message(mm_address, self.example_user("cordelia"))
         self.assert_json_error(
             result,
-            "5.1.1 Bad destination mailbox address: Zulip notification reply address is invalid.",
+            "5.1.1 Bad destination mailbox address: Aloha notification reply address is invalid.",
         )
 
 
-class TestStreamEmailMessagesSubjectStripping(ZulipTestCase):
+class TestStreamEmailMessagesSubjectStripping(AlohaTestCase):
     def test_process_message_strips_subject(self) -> None:
         user_profile = self.example_user("hamlet")
         self.login_user(user_profile)
@@ -1548,7 +1548,7 @@ class TestStreamEmailMessagesSubjectStripping(ZulipTestCase):
 
 # If the Content-Type header didn't specify a charset, the text content
 # of the email used to not be properly found. Test that this is fixed:
-class TestContentTypeUnspecifiedCharset(ZulipTestCase):
+class TestContentTypeUnspecifiedCharset(AlohaTestCase):
     def test_charset_not_specified(self) -> None:
         message_as_string = self.fixture_data("1.txt", type="email")
         message_as_string = message_as_string.replace(
@@ -1572,7 +1572,7 @@ class TestContentTypeUnspecifiedCharset(ZulipTestCase):
         self.assertEqual(message.content, "Email fixture 1.txt body")
 
 
-class TestContentTypeInvalidCharset(ZulipTestCase):
+class TestContentTypeInvalidCharset(AlohaTestCase):
     def test_unknown_charset(self) -> None:
         message_as_string = self.fixture_data("1.txt", type="email")
         message_as_string = message_as_string.replace(
@@ -1597,7 +1597,7 @@ class TestContentTypeInvalidCharset(ZulipTestCase):
         self.assertEqual(message.content, "Email fixture 1.txt body")
 
 
-class TestEmailMirrorProcessMessageNoValidRecipient(ZulipTestCase):
+class TestEmailMirrorProcessMessageNoValidRecipient(AlohaTestCase):
     def test_process_message_no_valid_recipient(self) -> None:
         incoming_valid_message = EmailMessage()
         incoming_valid_message.set_content("Test body")
@@ -1613,7 +1613,7 @@ class TestEmailMirrorProcessMessageNoValidRecipient(ZulipTestCase):
             )
 
 
-class TestEmailMirrorLogAndReport(ZulipTestCase):
+class TestEmailMirrorLogAndReport(AlohaTestCase):
     def test_log_and_report(self) -> None:
         user_profile = self.example_user("hamlet")
         self.login_user(user_profile)

@@ -2,14 +2,14 @@
 
 ## Note(题记)
 
-The language style of Zulip is a little colloquial, while the Chinese
+The language style of Aloha is a little colloquial, while the Chinese
 translation prefers a formal style and also avoids stereotypes. Since
-Zulip is a modern internet application, many Chinese translations are
+Aloha is a modern internet application, many Chinese translations are
 borrowed from the popular Web software, such as WeiBo, WeChat, QQ
 Mail etc. that most Chinese users are familiar with.
 
-Zulip 的文风比较口语化，考虑到大多数中国用户的习惯，翻译时的语言习惯稍
-微正式了一点，但也尽量避免刻板。Zulip 是一款时尚的互联网应用，翻译时也
+Aloha 的文风比较口语化，考虑到大多数中国用户的习惯，翻译时的语言习惯稍
+微正式了一点，但也尽量避免刻板。Aloha 是一款时尚的互联网应用，翻译时也
 借鉴了中国用户熟悉的微博、微信、QQ 邮箱等软件的用语习惯，以期贴近用户。
 
 ## Terms(术语)
@@ -65,11 +65,11 @@ Stream”具有非常好的私密性，用户在没有订阅时是不能感知�
 - Integration - **应用整合**
 
 "Integration" is literally translated as "集成" or "整合". It means
-integrating Zulip production with other applications and services. For
+integrating Aloha production with other applications and services. For
 integrity in Chinese expression, it is translated as "应用整合
 (Application Integration)".
 
-“Integration”原意为“集成”与“整合”，这里表示将其它的应用或者服务与 Zulip
+“Integration”原意为“集成”与“整合”，这里表示将其它的应用或者服务与 Aloha
 实现整合。为表达意思完整，补充翻译为“应用整合”。
 
 - Notification - **通知**
@@ -117,11 +117,11 @@ readability considerations.
 - Mute/Unmute - **开启/关闭免打扰**
 
 "Mute" is mostly translated as "静音(Silent)", which is common in TV
-set. Such a translation is not appropriate for Zulip. "开启/关闭免打
+set. Such a translation is not appropriate for Aloha. "开启/关闭免打
 扰(Turn off/on Notification)" is a sense to sense translation, which
 is also borrowed from the WeChat.
 
-“Mute”常见的中文翻译为“静音”，在电视设备中常见，用在 Zulip 中并不太合适。
+“Mute”常见的中文翻译为“静音”，在电视设备中常见，用在 Aloha 中并不太合适。
 这里取意译，与大家常用的微信（WeChat）中“消息免打扰”用语习惯一致。
 
 - Deactivate/Reactivate - **禁用/启用(帐户)，关闭/激活(社区)**
@@ -188,7 +188,7 @@ resend.)".
 
 - The Exclamation/Dot - (一般省略)
 
-The exclamation appears in many places in Zulip. The tone that the
+The exclamation appears in many places in Aloha. The tone that the
 exclamation expresses should be stronger in Chinese than in
 English. So the exclamation can be just deleted when translating or
 replaced with the dot, unless you are sure to write it. In addition,
@@ -196,6 +196,6 @@ the dot in Chinese (。) often has a bad effect on page layout. It is
 recommended to omit the dot, just leave empty at the end of the
 sentence or paragraph.
 
-感叹号在 Zulip 中出现非常多，可能英文中感叹号的语气比中文中略轻一点。在
+感叹号在 Aloha 中出现非常多，可能英文中感叹号的语气比中文中略轻一点。在
 中文翻译建议省略大部分的感叹号。另外，句号在中文排版中比较影响美观，因
 此也一般建议省略不翻。句末留空即可。

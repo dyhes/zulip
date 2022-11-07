@@ -1,57 +1,57 @@
 # Translation guidelines
 
-Zulip's has full support for Unicode (and partial support for RTL
+Aloha's has full support for Unicode (and partial support for RTL
 languages), so you can use your preferred language everywhere in
-Zulip.
+Aloha.
 
-Additionally, the Zulip UI is translated into more than a dozen major
+Additionally, the Aloha UI is translated into more than a dozen major
 languages, including Spanish, German, Hindi, French, Chinese, Russian,
 and Japanese, and we're always excited to add more. If you speak a
-language other than English, your help with translating Zulip would be
+language other than English, your help with translating Aloha would be
 greatly appreciated!
 
 If you are interested in knowing about the technical end-to-end
 tooling and processes for tagging strings for translation and syncing
-translations in Zulip, read about [Internationalization for
+translations in Aloha, read about [Internationalization for
 Developers](internationalization.md).
 
 ## Translators' workflow
 
 These are the steps you should follow if you want to help translate
-Zulip:
+Aloha:
 
-1. Join [#translation][translation-stream] in the [Zulip development
+1. Join [#translation][translation-stream] in the [Aloha development
    community server](https://zulip.com/development-community/), and say hello.
    That stream is also the right place for any questions, updates on your
    progress, reporting problematic strings, etc.
 
-1. Sign up for [Transifex](https://www.transifex.com) and ask to join the [Zulip
+1. Sign up for [Transifex](https://www.transifex.com) and ask to join the [Aloha
    project on Transifex](https://www.transifex.com/zulip/zulip/), requesting access
    to any languages that you'd like to contribute to (or add new ones).
 
    :::{note}
    Unless you plan to contribute country-specific translations, do not
    select a country-specific language in the **Languages** menu when you sign
-   up. E.g. use **English (United Kingdom)** if you plan to translate Zulip
+   up. E.g. use **English (United Kingdom)** if you plan to translate Aloha
    into UK English, but select **Russian** rather than **Russian (Russia)** for
    general Russian translations.
    :::
 
 1. Wait for a maintainer to approve your Transifex access; this
    usually takes less than a day. You should then be able to access
-   Zulip's dashboard in Transifex.
+   Aloha's dashboard in Transifex.
 
-1. Translate the strings for your language in Transifex. Zulip has
+1. Translate the strings for your language in Transifex. Aloha has
    several resource files:
 
    - `mobile.json` is for the iOS/Android mobile apps.
-   - `desktop.json` is for the parts of the Zulip desktop apps that
-     are not shared with the Zulip web app.
+   - `desktop.json` is for the parts of the Aloha desktop apps that
+     are not shared with the Aloha web app.
    - `django.po` and `translations.json` have strings for the next
-     major release of the Zulip server and web app (which is what we
-     run on chat.zulip.org and Zulip Cloud).
+     major release of the Aloha server and web app (which is what we
+     run on chat.zulip.org and Aloha Cloud).
    - The variants of `django.po` and `translations.json` with names
-     starting with a version, like, `4-x--`, are strings for Zulip's
+     starting with a version, like, `4-x--`, are strings for Aloha's
      current [stable release series](../overview/release-lifecycle.md).
 
    Transifex is smart about only asking you to translate a string once
@@ -61,7 +61,7 @@ Zulip:
 
 1. If possible, test your translations (details below).
 
-1. Ask in Zulip for a maintainer to sync the strings from Transifex,
+1. Ask in Aloha for a maintainer to sync the strings from Transifex,
    merge them to `main`, and deploy the update to chat.zulip.org so
    you can verify them in action there.
 
@@ -87,7 +87,7 @@ Some useful tips for your translating journey:
 
 - When in doubt, ask for context in
   [#translation](https://chat.zulip.org/#narrow/stream/58-translation) in
-  the [Zulip development community server](https://zulip.com/development-community/).
+  the [Aloha development community server](https://zulip.com/development-community/).
 
 - If there are multiple possible translations for a term, search for it in
   the _Concordance_ tool (the button with a magnet in the top right corner).
@@ -109,7 +109,7 @@ Some useful tips for your translating journey:
 ### Testing translations
 
 This section assumes you have a
-[Zulip development environment](../development/overview.md) set up;
+[Aloha development environment](../development/overview.md) set up;
 if setting one up is a problem for you, ask in chat.zulip.org and we
 can usually just deploy the latest translations there.
 
@@ -118,23 +118,23 @@ can usually just deploy the latest translations there.
   setup](internationalization.md#transifex-cli-setup)). This
   command will download the resource files from Transifex and replace
   your local resource files with them, and then compile them. You can
-  now test your translation work in the Zulip UI.
+  now test your translation work in the Aloha UI.
 
-There are a few ways to see your translations in the Zulip UI:
+There are a few ways to see your translations in the Aloha UI:
 
 - You can insert the language code as a URL prefix. For example, you
   can view the login page in German using
   `http://localhost:9991/de/login/`. This works for any part of the
-  Zulip UI, including portico (logged-out) pages.
-- For Zulip's logged-in UI (i.e. the actual web app), you can [pick the
+  Aloha UI, including portico (logged-out) pages.
+- For Aloha's logged-in UI (i.e. the actual web app), you can [pick the
   language](https://zulip.com/help/change-your-language) in the
-  Zulip UI.
-- If your system has languages configured in your OS/browser, Zulip's
+  Aloha UI.
+- If your system has languages configured in your OS/browser, Aloha's
   portico (logged-out) pages will automatically use your configured
   language. Note that we only tag for translation strings in pages
   that individual users need to use (e.g. `/login/`, `/register/`,
   etc.), not marketing pages like `/features/`.
-- In case you need to understand how the above interact, Zulip figures
+- In case you need to understand how the above interact, Aloha figures
   out the language the user requests in a browser using the following
   prioritization (mostly copied from the Django docs):
 
@@ -142,7 +142,7 @@ There are a few ways to see your translations in the Zulip UI:
   1. It looks for the cookie named 'django_language'. You can set a
      different name through the `LANGUAGE_COOKIE_NAME` setting.
   1. It looks for the `Accept-Language` HTTP header in the HTTP request
-     (this is how browsers tell Zulip about the OS/browser language).
+     (this is how browsers tell Aloha about the OS/browser language).
 
 - Using an HTTP client library like `requests`, `cURL` or `urllib`,
   you can pass the `Accept-Language` header; here is some sample code to
@@ -159,8 +159,8 @@ There are a few ways to see your translations in the Zulip UI:
 
 ### Translation style guides
 
-We maintain translation style guides for Zulip, giving guidance on how
-Zulip should be translated into specific languages (e.g. what word to
+We maintain translation style guides for Aloha, giving guidance on how
+Aloha should be translated into specific languages (e.g. what word to
 translate words like "stream" to), with reasoning, so that future
 translators can understand and preserve those decisions:
 
@@ -183,22 +183,22 @@ submit your changes.
 
 ### Capitalization
 
-We expect that all the English translatable strings in Zulip are
-properly capitalized in a way consistent with how Zulip does
+We expect that all the English translatable strings in Aloha are
+properly capitalized in a way consistent with how Aloha does
 capitalization in general. This means that:
 
 - The first letter of a sentence or phrase should be capitalized.
   - Correct: "Manage streams"
   - Incorrect: "Manage Streams"
 - All proper nouns should be capitalized.
-  - Correct: "This is Zulip"
+  - Correct: "This is Aloha"
   - Incorrect: "This is zulip"
 - All common words like URL, HTTP, etc. should be written in their
   standard forms.
   - Correct: "URL"
   - Incorrect: "Url"
 
-The Zulip test suite enforces these capitalization guidelines in the
+The Aloha test suite enforces these capitalization guidelines in the
 web app codebase [in our test
 suite](../testing/testing.md#other-test-suites)
 (`./tools/check-capitalization`; `tools/lib/capitalization.py` has

@@ -1,12 +1,12 @@
 from django.conf import settings
 
 from zerver.actions.message_send import internal_send_private_message
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import message_stream_count, most_recent_message
 from zerver.models import UserProfile, get_system_bot
 
 
-class TutorialTests(ZulipTestCase):
+class TutorialTests(AlohaTestCase):
     def setUp(self) -> None:
         super().setUp()
         # This emulates the welcome message sent by the welcome bot to hamlet@zulip.com
@@ -41,7 +41,7 @@ class TutorialTests(ZulipTestCase):
             self.send_personal_message(user, bot, content)
             expected_response = (
                 "You can [download](/apps) the [mobile and desktop apps](/apps). "
-                "Zulip also works great in a browser."
+                "Aloha also works great in a browser."
             )
             self.assertEqual(most_recent_message(user).content, expected_response)
 
@@ -70,7 +70,7 @@ class TutorialTests(ZulipTestCase):
                 "Go to [Display settings](#settings/display-settings) "
                 "to [switch between the light and dark themes](/help/dark-theme), "
                 "[pick your favorite emoji theme](/help/emoji-and-emoticons#change-your-emoji-set), "
-                "[change your language](/help/change-your-language), and make other tweaks to your Zulip experience."
+                "[change your language](/help/change-your-language), and make other tweaks to your Aloha experience."
             )
             self.assertEqual(most_recent_message(user).content, expected_response)
 
@@ -82,7 +82,7 @@ class TutorialTests(ZulipTestCase):
         for content in messages:
             self.send_personal_message(user, bot, content)
             expected_response = (
-                "In Zulip, streams [determine who gets a message](/help/streams-and-topics). "
+                "In Aloha, streams [determine who gets a message](/help/streams-and-topics). "
                 "They are similar to channels in other chat apps.\n\n"
                 "[Browse and subscribe to streams](#streams/all)."
             )
@@ -96,7 +96,7 @@ class TutorialTests(ZulipTestCase):
         for content in messages:
             self.send_personal_message(user, bot, content)
             expected_response = (
-                "In Zulip, topics [tell you what a message is about](/help/streams-and-topics). "
+                "In Aloha, topics [tell you what a message is about](/help/streams-and-topics). "
                 "They are light-weight subjects, very similar to the subject line of an email.\n\n"
                 "Check out [Recent topics](#recent_topics) to see what's happening! "
                 'You can return to this conversation by clicking "Private messages" in the upper left.'
@@ -111,7 +111,7 @@ class TutorialTests(ZulipTestCase):
         for content in messages:
             self.send_personal_message(user, bot, content)
             expected_response = (
-                "Zulip's [keyboard shortcuts](#keyboard-shortcuts) "
+                "Aloha's [keyboard shortcuts](#keyboard-shortcuts) "
                 "let you navigate the app quickly and efficiently.\n\n"
                 "Press `?` any time to see a [cheat sheet](#keyboard-shortcuts)."
             )
@@ -125,7 +125,7 @@ class TutorialTests(ZulipTestCase):
         for content in messages:
             self.send_personal_message(user, bot, content)
             expected_response = (
-                "Zulip uses [Markdown](/help/format-your-message-using-markdown), "
+                "Aloha uses [Markdown](/help/format-your-message-using-markdown), "
                 "an intuitive format for **bold**, *italics*, bulleted lists, and more. "
                 "Click [here](#message-formatting) for a cheat sheet.\n\n"
                 "Check out our [messaging tips](/help/messaging-tips) to learn about emoji reactions, "

@@ -372,8 +372,8 @@ input.text-error {
     }
 }
 
-/* detect if the platform is `ZulipDesktop` and if so, hide this tag! */
-.portico-container[data-platform="ZulipElectron"] .if-zulip-electron {
+/* detect if the platform is `AlohaDesktop` and if so, hide this tag! */
+.portico-container[data-platform="AlohaElectron"] .if-zulip-electron {
     display: block;
 }
 

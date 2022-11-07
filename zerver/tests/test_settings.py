@@ -9,7 +9,7 @@ from django.test import override_settings
 
 from zerver.lib.initial_password import initial_password
 from zerver.lib.rate_limiter import add_ratelimit_rule, remove_ratelimit_rule
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import get_test_image_file
 from zerver.lib.users import get_all_api_keys
 from zerver.models import (
@@ -24,7 +24,7 @@ if TYPE_CHECKING:
     from django.test.client import _MonkeyPatchedWSGIResponse as TestHttpResponse
 
 
-class ChangeSettingsTest(ZulipTestCase):
+class ChangeSettingsTest(AlohaTestCase):
     # TODO: requires method consolidation, right now, there's no alternative
     # for check_for_toggle_param for PATCH.
     def check_for_toggle_param_patch(self, pattern: str, param: str) -> None:
@@ -289,9 +289,9 @@ class ChangeSettingsTest(ZulipTestCase):
 
     @override_settings(
         AUTHENTICATION_BACKENDS=(
-            "zproject.backends.ZulipLDAPAuthBackend",
+            "zproject.backends.AlohaLDAPAuthBackend",
             "zproject.backends.EmailAuthBackend",
-            "zproject.backends.ZulipDummyBackend",
+            "zproject.backends.AlohaDummyBackend",
         )
     )
     def test_change_password_ldap_backend(self) -> None:
@@ -310,7 +310,7 @@ class ChangeSettingsTest(ZulipTestCase):
                     new_password="ignored",
                 ),
             )
-            self.assert_json_error(result, "Your Zulip password is managed in LDAP")
+            self.assert_json_error(result, "Your Aloha password is managed in LDAP")
 
             result = self.client_patch(
                 "/json/settings",
@@ -319,7 +319,7 @@ class ChangeSettingsTest(ZulipTestCase):
                     new_password="ignored",
                 ),
             )
-            self.assert_json_error(result, "Your Zulip password is managed in LDAP")
+            self.assert_json_error(result, "Your Aloha password is managed in LDAP")
 
         with self.settings(
             LDAP_APPEND_DOMAIN="example.com", AUTH_LDAP_USER_ATTR_MAP=ldap_user_attr_map
@@ -335,7 +335,7 @@ class ChangeSettingsTest(ZulipTestCase):
             self.assertEqual(
                 debug_log.output,
                 [
-                    "DEBUG:zulip.ldap:ZulipLDAPAuthBackend: Email hamlet@zulip.com does not match LDAP domain example.com."
+                    "DEBUG:zulip.ldap:AlohaLDAPAuthBackend: Email hamlet@zulip.com does not match LDAP domain example.com."
                 ],
             )
 
@@ -347,7 +347,7 @@ class ChangeSettingsTest(ZulipTestCase):
                     new_password="ignored",
                 ),
             )
-            self.assert_json_error(result, "Your Zulip password is managed in LDAP")
+            self.assert_json_error(result, "Your Aloha password is managed in LDAP")
 
     def do_test_change_user_setting(self, setting_name: str) -> None:
 
@@ -492,7 +492,7 @@ class ChangeSettingsTest(ZulipTestCase):
         self.assertEqual(hamlet.enable_stream_desktop_notifications, True)
 
 
-class UserChangesTest(ZulipTestCase):
+class UserChangesTest(AlohaTestCase):
     def test_update_api_key(self) -> None:
         user = self.example_user("hamlet")
         email = user.email
@@ -529,7 +529,7 @@ class UserChangesTest(ZulipTestCase):
             self.assertEqual(get_user_profile_by_api_key(api_key).email, email)
 
 
-class UserDraftSettingsTests(ZulipTestCase):
+class UserDraftSettingsTests(AlohaTestCase):
     def test_enable_drafts_syncing(self) -> None:
         hamlet = self.example_user("hamlet")
         hamlet.enable_drafts_synchronization = False
@@ -561,7 +561,7 @@ class UserDraftSettingsTests(ZulipTestCase):
                 "type": "private",
                 "to": [],
                 "topic": "",
-                "content": "What if made it possible to sync drafts in Zulip?",
+                "content": "What if made it possible to sync drafts in Aloha?",
                 "timestamp": 1595479020,
             },
         ]

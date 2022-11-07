@@ -1,6 +1,6 @@
 # Queue processors
 
-Zulip uses RabbitMQ to manage a system of internal queues. These are
+Aloha uses RabbitMQ to manage a system of internal queues. These are
 used for a variety of purposes:
 
 - Asynchronously doing expensive operations like sending email
@@ -13,7 +13,7 @@ used for a variety of purposes:
   don't have any immediate runtime effect.
 
 - Communicating events to push to clients (browsers, etc.) from the
-  main Zulip Django application process to the Tornado-based events
+  main Aloha Django application process to the Tornado-based events
   system. Example events might be that a new message was sent, a user
   has changed their subscriptions, etc.
 
@@ -24,7 +24,7 @@ used for a variety of purposes:
   queries in a batched fashion.
 
 Needless to say, the RabbitMQ-based queuing system is an important
-part of the overall Zulip architecture, since it's in critical code
+part of the overall Aloha architecture, since it's in critical code
 paths for everything from signing up for account, to rendering
 messages, to delivering updates to clients.
 
@@ -38,7 +38,7 @@ To add a new queue processor:
 - Define the processor in `zerver/worker/queue_processors.py` using
   the `@assign_queue` decorator; it's pretty easy to get the template
   for an existing similar queue processor. This suffices to test your
-  queue worker in the Zulip development environment
+  queue worker in the Aloha development environment
   (`tools/run-dev.py` will automatically restart the queue processors
   and start running your new queue processor code). You can also run
   a single queue processor manually using e.g.
@@ -61,7 +61,7 @@ You can publish events to a RabbitMQ queue using the
 `queue_json_publish` function defined in `zerver/lib/queue.py`.
 
 An interesting challenge with queue processors is what should happen
-when queued events in Zulip's backend tests. Our current solution is
+when queued events in Aloha's backend tests. Our current solution is
 that in the tests, `queue_json_publish` will (by default) simple call
 the `consume` method for the relevant queue processor. However,
 `queue_json_publish` also supports being passed a function that should

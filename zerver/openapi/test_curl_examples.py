@@ -1,8 +1,8 @@
-# Zulip's OpenAPI-based API documentation system is documented at
+# Aloha's OpenAPI-based API documentation system is documented at
 #   https://zulip.readthedocs.io/en/latest/documentation/api.html
 #
 # This file contains the top-level logic for testing the cURL examples
-# in Zulip's API documentation; the details are in
+# in Aloha's API documentation; the details are in
 # zerver.openapi.curl_param_value_generators.
 
 import html

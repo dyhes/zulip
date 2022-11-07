@@ -4,7 +4,7 @@ from unittest.mock import patch
 
 import orjson
 
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.users import get_api_key
 from zerver.models import get_realm, get_user
 
@@ -12,7 +12,7 @@ if TYPE_CHECKING:
     from django.test.client import _MonkeyPatchedWSGIResponse as TestHttpResponse
 
 
-class ZephyrTest(ZulipTestCase):
+class ZephyrTest(AlohaTestCase):
     def test_webathena_kerberos_login(self) -> None:
         user = self.example_user("hamlet")
         self.login_user(user)

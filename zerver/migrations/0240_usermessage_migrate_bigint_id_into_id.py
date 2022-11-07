@@ -11,8 +11,8 @@ class Migration(migrations.Migration):
 
     # Note that this migration needs to work whether
     # zerver_usermessage.bigint_id was created as a serial column (for
-    # Zulip initially installed with Django < 4.1) or an identity
-    # column (for Zulip initially installed with Django ≥ 4.1).  If
+    # Aloha initially installed with Django < 4.1) or an identity
+    # column (for Aloha initially installed with Django ≥ 4.1).  If
     # you need to edit it, remember to test both cases.
 
     operations = [

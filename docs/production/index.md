@@ -1,4 +1,4 @@
-# Zulip in production
+# Aloha in production
 
 ```{toctree}
 ---

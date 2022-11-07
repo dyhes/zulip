@@ -1,42 +1,42 @@
 # Incoming webhook integrations
 
-An incoming webhook allows a third-party service to push data to Zulip when
+An incoming webhook allows a third-party service to push data to Aloha when
 something happens.  There's several ways to do an incoming webhook in
-Zulip:
+Aloha:
 
 * Use our [REST API](/api/rest) endpoint for [sending
   messages](/api/send-message).  This works great for internal tools
   or cases where the third-party tool wants to control the formatting
-  of the messages in Zulip.
+  of the messages in Aloha.
 * Use one of our supported [integration
   frameworks](/integrations/meta-integration), such as the
   [Slack-compatible incoming webhook](/integrations/doc/slack_incoming),
   [Zapier integration](/integrations/docs/zapier), or
   [IFTTT integration](/integrations/doc/ifttt).
 * Adding an incoming webhook integration (detailed on this page),
-  where all the logic for formatting the Zulip messages lives in the
-  Zulip server.  This is how most of [Zulip's official
-  integrations](/integrations) work, because they enable Zulip to
+  where all the logic for formatting the Aloha messages lives in the
+  Aloha server.  This is how most of [Aloha's official
+  integrations](/integrations) work, because they enable Aloha to
   support third-party services that just have an "outgoing webhook"
   feature (without the third party needing to do any work specific to
-  Zulip).
+  Aloha).
 
 In an incoming webhook integration, the third-party service's
 "outgoing webhook" feature sends an `HTTP POST`s to a special URL when
-it has something for you, and then the Zulip "incoming webhook"
+it has something for you, and then the Aloha "incoming webhook"
 integration handles that incoming data to format and send a message in
-Zulip.
+Aloha.
 
-New official Zulip webhook integrations can take just a few hours to
+New official Aloha webhook integrations can take just a few hours to
 write, including tests and documentation, if you use the right
 process.
 
 ## Quick guide
 
 * Set up the
-  [Zulip development environment](https://zulip.readthedocs.io/en/latest/development/overview.html).
+  [Aloha development environment](https://zulip.readthedocs.io/en/latest/development/overview.html).
 
-* Use [Zulip's JSON integration](/integrations/doc/json),
+* Use [Aloha's JSON integration](/integrations/doc/json),
   <https://webhook.site/>, or a similar site to capture an example
   webhook payload from the third-party service. Create a
   `zerver/webhooks/<mywebhook>/fixtures/` directory, and add the
@@ -64,7 +64,7 @@ process.
   service will make, and add tests for them; usually this part of the
   process is pretty fast.
 
-* Document the integration (required for getting it merged into Zulip). You
+* Document the integration (required for getting it merged into Aloha). You
   can template off an existing guide, like
   [this one](https://raw.githubusercontent.com/zulip/zulip/main/zerver/webhooks/github/doc.md).
   This should not take more than 15 minutes, even if you don't speak English
@@ -124,7 +124,7 @@ below are for a webhook named `MyWebHook`.
 
 ## General advice
 
-* Consider using our Zulip markup to make the output from your
+* Consider using our Aloha markup to make the output from your
   integration especially attractive or useful (e.g.  emoji, Markdown
   emphasis or @-mentions).
 
@@ -136,7 +136,7 @@ below are for a webhook named `MyWebHook`.
 
 * Integrations that don't match a team's workflow can often be
   uselessly spammy.  Give careful thought to providing options for
-  triggering Zulip messages only for certain message types, certain
+  triggering Aloha messages only for certain message types, certain
   projects, or sending different messages to different streams/topics,
   to make it easy for teams to configure the integration to support
   their workflow.
@@ -151,7 +151,7 @@ below are for a webhook named `MyWebHook`.
 
 * A helpful tool for testing your integration is
   [UltraHook](http://www.ultrahook.com/), which allows you to receive webhook
-  calls via your local Zulip development environment. This enables you to do end-to-end
+  calls via your local Aloha development environment. This enables you to do end-to-end
   testing with live data from the service you're integrating and can help you
   spot why something isn't working or if the service is using custom HTTP
   headers.

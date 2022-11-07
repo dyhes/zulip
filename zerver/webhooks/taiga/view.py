@@ -1,4 +1,4 @@
-"""Taiga integration for Zulip.
+"""Taiga integration for Aloha.
 
 Tips for notification output:
 

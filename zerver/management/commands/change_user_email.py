@@ -2,10 +2,10 @@ from argparse import ArgumentParser
 from typing import Any
 
 from zerver.actions.user_settings import do_change_user_delivery_email
-from zerver.lib.management import ZulipBaseCommand
+from zerver.lib.management import AlohaBaseCommand
 
 
-class Command(ZulipBaseCommand):
+class Command(AlohaBaseCommand):
     help = """Change the email address for a user."""
 
     def add_arguments(self, parser: ArgumentParser) -> None:

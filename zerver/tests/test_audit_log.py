@@ -58,7 +58,7 @@ from zerver.lib.emoji import get_emoji_file_name, get_emoji_url
 from zerver.lib.message import get_last_message_id
 from zerver.lib.stream_traffic import get_streams_traffic
 from zerver.lib.streams import create_stream_if_needed
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import get_test_image_file
 from zerver.lib.types import LinkifierDict, RealmPlaygroundDict
 from zerver.lib.utils import assert_is_not_none
@@ -80,7 +80,7 @@ from zerver.models import (
 )
 
 
-class TestRealmAuditLog(ZulipTestCase):
+class TestRealmAuditLog(AlohaTestCase):
     def check_role_count_schema(self, role_counts: Dict[str, Any]) -> None:
         for key in [
             UserProfile.ROLE_REALM_ADMINISTRATOR,

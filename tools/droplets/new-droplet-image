@@ -35,7 +35,7 @@ true >.ssh/authorized_keys
 chmod 600 .ssh/authorized_keys
 
 (
-    # Set up Zulip
+    # Set up Aloha
     git clone https://github.com/zulip/zulip
     cd zulip
     git remote rename origin upstream

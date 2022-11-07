@@ -22,18 +22,18 @@ from zerver.lib.rate_limiter import (
     get_tor_ips,
     remove_ratelimit_rule,
 )
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.zephyr import compute_mit_user_fullname
 from zerver.models import PushDeviceToken, UserProfile
 
 if settings.ZILENCER_ENABLED:
-    from zilencer.models import RateLimitedRemoteZulipServer, RemoteZulipServer
+    from zilencer.models import RateLimitedRemoteAlohaServer, RemoteAlohaServer
 
 if TYPE_CHECKING:
     from django.test.client import _MonkeyPatchedWSGIResponse as TestHttpResponse
 
 
-class MITNameTest(ZulipTestCase):
+class MITNameTest(AlohaTestCase):
     def test_valid_hesiod(self) -> None:
         with mock.patch(
             "DNS.dnslookup",
@@ -88,7 +88,7 @@ def rate_limit_rule(range_seconds: int, num_requests: int, domain: str) -> Itera
         remove_ratelimit_rule(range_seconds, num_requests, domain=domain)
 
 
-class RateLimitTests(ZulipTestCase):
+class RateLimitTests(AlohaTestCase):
     def setUp(self) -> None:
         super().setUp()
 
@@ -414,7 +414,7 @@ class RateLimitTests(ZulipTestCase):
     @rate_limit_rule(1, 5, domain="api_by_remote_server")
     def test_hit_ratelimits_as_remote_server(self) -> None:
         server_uuid = str(uuid.uuid4())
-        server = RemoteZulipServer(
+        server = RemoteAlohaServer(
             uuid=server_uuid,
             api_key="magic_secret_api_key",
             hostname="demo.example.com",
@@ -429,13 +429,13 @@ class RateLimitTests(ZulipTestCase):
             original_default_subdomain = self.DEFAULT_SUBDOMAIN
             self.DEFAULT_SUBDOMAIN = ""
 
-            RateLimitedRemoteZulipServer(server).clear_history()
+            RateLimitedRemoteAlohaServer(server).clear_history()
             with self.assertLogs("zilencer.auth", level="WARNING") as m:
                 self.do_test_hit_ratelimits(lambda: self.uuid_post(server_uuid, endpoint, payload))
             self.assertEqual(
                 m.output,
                 [
-                    f"WARNING:zilencer.auth:Remote server <RemoteZulipServer demo.example.com {server_uuid[:12]}> exceeded rate limits on domain api_by_remote_server"
+                    f"WARNING:zilencer.auth:Remote server <RemoteAlohaServer demo.example.com {server_uuid[:12]}> exceeded rate limits on domain api_by_remote_server"
                 ],
             )
         finally:

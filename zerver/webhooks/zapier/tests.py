@@ -24,7 +24,7 @@ class ZapierHookTests(WebhookTestCase):
         self.check_webhook("weather_update", expected_topic, expected_message)
 
 
-class ZapierZulipAppTests(WebhookTestCase):
+class ZapierAlohaAppTests(WebhookTestCase):
     STREAM_NAME = "zapier"
     URL_TEMPLATE = "/api/v1/external/zapier?api_key={api_key}&stream={stream}"
     WEBHOOK_DIR_NAME = "zapier"
@@ -33,6 +33,6 @@ class ZapierZulipAppTests(WebhookTestCase):
         payload = self.get_body("zapier_zulip_app_auth")
         result = self.client_post(self.url, payload, content_type="application/json")
         json_result = self.assert_json_success(result)
-        self.assertEqual(json_result["full_name"], "Zulip Webhook Bot")
+        self.assertEqual(json_result["full_name"], "Aloha Webhook Bot")
         self.assertEqual(json_result["email"], "webhook-bot@zulip.com")
         self.assertIn("id", json_result)

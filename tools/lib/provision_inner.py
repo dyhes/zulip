@@ -365,7 +365,7 @@ def main(options: argparse.Namespace) -> int:
         f.write(".".join(map(str, PROVISION_VERSION)) + "\n")
 
     print()
-    print(OKBLUE + "Zulip development environment setup succeeded!" + ENDC)
+    print(OKBLUE + "Aloha development environment setup succeeded!" + ENDC)
     return 0
 
 

@@ -4,11 +4,11 @@ from typing import Any, Dict, List, Optional
 
 import orjson
 
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.models import Draft
 
 
-class DraftCreationTests(ZulipTestCase):
+class DraftCreationTests(AlohaTestCase):
     def create_and_check_drafts_for_success(
         self,
         draft_dicts: List[Dict[str, Any]],
@@ -78,7 +78,7 @@ class DraftCreationTests(ZulipTestCase):
                 "type": "private",
                 "to": [zoe.id],
                 "topic": "This topic should be ignored.",
-                "content": "What if we made it possible to sync drafts in Zulip?",
+                "content": "What if we made it possible to sync drafts in Aloha?",
                 "timestamp": 1595479019,
             }
         ]
@@ -87,7 +87,7 @@ class DraftCreationTests(ZulipTestCase):
                 "type": "private",
                 "to": [zoe.id],
                 "topic": "",  # For private messages the topic should be ignored.
-                "content": "What if we made it possible to sync drafts in Zulip?",
+                "content": "What if we made it possible to sync drafts in Aloha?",
                 "timestamp": 1595479019,
             }
         ]
@@ -101,7 +101,7 @@ class DraftCreationTests(ZulipTestCase):
                 "type": "private",
                 "to": [zoe.id, othello.id],
                 "topic": "This topic should be ignored.",
-                "content": "What if we made it possible to sync drafts in Zulip?",
+                "content": "What if we made it possible to sync drafts in Aloha?",
                 "timestamp": 1595479019,
             }
         ]
@@ -110,7 +110,7 @@ class DraftCreationTests(ZulipTestCase):
                 "type": "private",
                 "to": [zoe.id, othello.id],
                 "topic": "",  # For private messages the topic should be ignored.
-                "content": "What if we made it possible to sync drafts in Zulip?",
+                "content": "What if we made it possible to sync drafts in Aloha?",
                 "timestamp": 1595479019,
             }
         ]
@@ -134,14 +134,14 @@ class DraftCreationTests(ZulipTestCase):
                 "type": "private",
                 "to": [zoe.id],
                 "topic": "",
-                "content": "What if we made it possible to sync drafts in Zulip?",
+                "content": "What if we made it possible to sync drafts in Aloha?",
                 "timestamp": 1595479020,
             },  # Private message draft
             {
                 "type": "private",
                 "to": [zoe.id, othello.id],
                 "topic": "",
-                "content": "What if we made it possible to sync drafts in Zulip?",
+                "content": "What if we made it possible to sync drafts in Aloha?",
                 "timestamp": 1595479021,
             },  # Private group message draft
         ]
@@ -273,7 +273,7 @@ class DraftCreationTests(ZulipTestCase):
                 "type": "private",
                 "to": [99999999999999],  # Hopefully, this doesn't exist either.
                 "topic": "This topic should be ignored.",
-                "content": "What if we made it possible to sync drafts in Zulip?",
+                "content": "What if we made it possible to sync drafts in Aloha?",
                 "timestamp": 1595479019,
             }
         ]
@@ -303,7 +303,7 @@ class DraftCreationTests(ZulipTestCase):
         self.create_and_check_drafts_for_error(draft_dicts, "Topic must not contain null bytes")
 
 
-class DraftEditTests(ZulipTestCase):
+class DraftEditTests(AlohaTestCase):
     def test_require_enable_drafts_synchronization(self) -> None:
         hamlet = self.example_user("hamlet")
         hamlet.enable_drafts_synchronization = False
@@ -407,7 +407,7 @@ class DraftEditTests(ZulipTestCase):
         self.assertEqual(existing_draft_dict, draft_dict)
 
 
-class DraftDeleteTests(ZulipTestCase):
+class DraftDeleteTests(AlohaTestCase):
     def test_require_enable_drafts_synchronization(self) -> None:
         hamlet = self.example_user("hamlet")
         hamlet.enable_drafts_synchronization = False
@@ -497,7 +497,7 @@ class DraftDeleteTests(ZulipTestCase):
         self.assertEqual(existing_draft_dict, draft_dict)
 
 
-class DraftFetchTest(ZulipTestCase):
+class DraftFetchTest(AlohaTestCase):
     def test_require_enable_drafts_synchronization(self) -> None:
         hamlet = self.example_user("hamlet")
         hamlet.enable_drafts_synchronization = False
@@ -524,14 +524,14 @@ class DraftFetchTest(ZulipTestCase):
                 "type": "private",
                 "to": [zoe.id, othello.id],
                 "topic": "",
-                "content": "What if made it possible to sync drafts in Zulip?",
+                "content": "What if made it possible to sync drafts in Aloha?",
                 "timestamp": 15954790198,
             },
             {
                 "type": "private",
                 "to": [zoe.id],
                 "topic": "",
-                "content": "What if made it possible to sync drafts in Zulip?",
+                "content": "What if made it possible to sync drafts in Aloha?",
                 "timestamp": 15954790199,
             },
         ]

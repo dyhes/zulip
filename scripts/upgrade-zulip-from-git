@@ -16,7 +16,7 @@ failed=${PIPESTATUS[0]}
 
 if [ "$failed" -ne 0 ]; then
     echo -e '\033[0;31m'
-    echo "Zulip upgrade failed (exit code $failed)!"
+    echo "Aloha upgrade failed (exit code $failed)!"
     echo
     echo -n "The upgrade process is designed to be idempotent, so you can retry "
     echo -n "after resolving whatever issue caused the failure (there should be a traceback above). "

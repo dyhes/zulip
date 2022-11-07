@@ -2,11 +2,11 @@ from unittest.mock import MagicMock, patch
 
 import orjson
 
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.models import Message, Stream, get_realm, get_user
 
 
-class TestIntegrationsDevPanel(ZulipTestCase):
+class TestIntegrationsDevPanel(AlohaTestCase):
 
     zulip_realm = get_realm("zulip")
 

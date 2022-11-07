@@ -16,11 +16,11 @@ from zerver.lib.sessions import (
     set_expirable_session_var,
     user_sessions,
 )
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.models import Realm, UserProfile, get_realm
 
 
-class TestSessions(ZulipTestCase):
+class TestSessions(AlohaTestCase):
     def do_test_session(
         self, user: UserProfile, action: Callable[[], Any], realm: Realm, expected_result: bool
     ) -> None:
@@ -126,7 +126,7 @@ class TestSessions(ZulipTestCase):
         self.assertTrue('is_spectator":true' in str(result.content))
 
 
-class TestExpirableSessionVars(ZulipTestCase):
+class TestExpirableSessionVars(AlohaTestCase):
     def setUp(self) -> None:
         self.session = self.client.session
         super().setUp()

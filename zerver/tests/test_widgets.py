@@ -4,7 +4,7 @@ from typing import TYPE_CHECKING, Any, Dict
 import orjson
 from django.core.exceptions import ValidationError
 
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.validator import check_widget_content
 from zerver.lib.widget import get_widget_data, get_widget_type
 from zerver.models import SubMessage, UserProfile
@@ -13,7 +13,7 @@ if TYPE_CHECKING:
     from django.test.client import _MonkeyPatchedWSGIResponse as TestHttpResponse
 
 
-class WidgetContentTestCase(ZulipTestCase):
+class WidgetContentTestCase(AlohaTestCase):
     def test_validation(self) -> None:
         def assert_error(obj: object, msg: str) -> None:
             with self.assertRaisesRegex(ValidationError, re.escape(msg)):

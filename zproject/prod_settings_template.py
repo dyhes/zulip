@@ -3,13 +3,13 @@ from typing import Any, Dict, Tuple
 from .config import get_secret
 
 ################################################################
-## Zulip Server settings.
+## Aloha Server settings.
 ##
-## This file controls settings that affect the whole Zulip server.
+## This file controls settings that affect the whole Aloha server.
 ## See our documentation at:
 ##   https://zulip.readthedocs.io/en/latest/production/settings.html
 ##
-## For developer documentation on the Zulip settings system, see:
+## For developer documentation on the Aloha settings system, see:
 ##   https://zulip.readthedocs.io/en/latest/subsystems/settings.html
 ##
 ## Remember to restart the server after making changes here!
@@ -22,16 +22,16 @@ from .config import get_secret
 ## These settings MUST be set in production. In a development environment,
 ## sensible default values will be used.
 
-## The email address for the person or team who maintains the Zulip
+## The email address for the person or team who maintains the Aloha
 ## installation. Note that this is a public-facing email address; it may
 ## appear on 404 pages, is used as the sender's address for many automated
 ## emails, and is advertised as a support address. An email address like
 ## support@example.com is totally reasonable, as is admin@example.com.
 ## Do not put a display name; e.g. "support@example.com", not
-## "Zulip Support <support@example.com>".
+## "Aloha Support <support@example.com>".
 ZULIP_ADMINISTRATOR = "zulip-admin@example.com"
 
-## The user-accessible Zulip hostname for this installation, e.g.
+## The user-accessible Aloha hostname for this installation, e.g.
 ## zulip.example.com.  This should match what users will put in their
 ## web browser.  If you want to allow multiple hostnames, add the rest
 ## to ALLOWED_HOSTS.
@@ -42,11 +42,11 @@ EXTERNAL_HOST = "zulip.example.com"
 
 ## Alternative hostnames.  A comma-separated list of strings
 ## representing the host/domain names that your users can enter in
-## their browsers to access Zulip.  This is a security measure; for
+## their browsers to access Aloha.  This is a security measure; for
 ## details, see the Django documentation:
 ## https://docs.djangoproject.com/en/3.2/ref/settings/#allowed-hosts
 ##
-## Zulip automatically adds to this list "localhost", "127.0.0.1", and
+## Aloha automatically adds to this list "localhost", "127.0.0.1", and
 ## patterns representing EXTERNAL_HOST and subdomains of it.  If you are
 ## accessing your server by other hostnames, list them here.
 ##
@@ -54,7 +54,7 @@ EXTERNAL_HOST = "zulip.example.com"
 # ALLOWED_HOSTS = ["zulip-alias.example.com", "192.0.2.1"]
 
 ## If EXTERNAL_HOST is not a valid domain name (e.g. an IP address),
-## set FAKE_EMAIL_DOMAIN below to a domain that Zulip can use when
+## set FAKE_EMAIL_DOMAIN below to a domain that Aloha can use when
 ## generating (fake) email addresses for bots, dummy users, etc.
 # FAKE_EMAIL_DOMAIN = "fake-domain.example.com"
 
@@ -62,13 +62,13 @@ EXTERNAL_HOST = "zulip.example.com"
 ################
 ## Outgoing email (SMTP) settings.
 ##
-## Zulip needs to be able to send email (that is, use SMTP) so it can
+## Aloha needs to be able to send email (that is, use SMTP) so it can
 ## confirm new users' email addresses and send notifications.
 ##
 ## If you don't already have an SMTP provider, free ones are available.
 ##
 ## For more details, including a list of free SMTP providers and
-## advice for troubleshooting, see the Zulip documentation:
+## advice for troubleshooting, see the Aloha documentation:
 ##   https://zulip.readthedocs.io/en/latest/production/email.html
 
 ## EMAIL_HOST and EMAIL_HOST_USER are generally required.
@@ -110,7 +110,7 @@ EXTERNAL_HOST = "zulip.example.com"
 ################
 ## Email gateway integration.
 ##
-## The email gateway integration supports sending messages into Zulip
+## The email gateway integration supports sending messages into Aloha
 ## by sending an email.
 ## For details, see the documentation:
 ##   https://zulip.readthedocs.io/en/latest/production/email-gateway.html
@@ -147,14 +147,14 @@ AUTHENTICATION_BACKENDS: Tuple[str, ...] = (
     # "zproject.backends.AzureADAuthBackend",  # Microsoft Azure Active Directory auth, setup below
     # "zproject.backends.AppleAuthBackend",  # Apple auth, setup below
     # "zproject.backends.SAMLAuthBackend",  # SAML, setup below
-    # "zproject.backends.ZulipLDAPAuthBackend",  # LDAP, setup below
-    # "zproject.backends.ZulipRemoteUserBackend",  # Local SSO, setup docs on readthedocs
+    # "zproject.backends.AlohaLDAPAuthBackend",  # LDAP, setup below
+    # "zproject.backends.AlohaRemoteUserBackend",  # Local SSO, setup docs on readthedocs
     # "zproject.backends.GenericOpenIdConnectBackend",  # Generic OIDC integration, setup below
 )
 
 ## LDAP integration.
 ##
-## Zulip supports retrieving information about users via LDAP, and
+## Aloha supports retrieving information about users via LDAP, and
 ## optionally using LDAP as an authentication mechanism.
 
 import ldap
@@ -162,15 +162,15 @@ from django_auth_ldap.config import GroupOfNamesType, LDAPGroupQuery, LDAPSearch
 
 ## Connecting to the LDAP server.
 ##
-## For detailed instructions, see the Zulip documentation:
+## For detailed instructions, see the Aloha documentation:
 ##   https://zulip.readthedocs.io/en/latest/production/authentication-methods.html#ldap
 
-## The LDAP server to connect to.  Setting this enables Zulip
+## The LDAP server to connect to.  Setting this enables Aloha
 ## automatically fetching each new user's name from LDAP.
 # AUTH_LDAP_SERVER_URI = "ldaps://ldap.example.com"
 
 ## The DN of the user to bind as (i.e., authenticate as) in order to
-## query LDAP.  If unset, Zulip does an anonymous bind.
+## query LDAP.  If unset, Aloha does an anonymous bind.
 # AUTH_LDAP_BIND_DN = ""
 
 ## Passwords and secrets are not stored in this file.  The password
@@ -178,17 +178,17 @@ from django_auth_ldap.config import GroupOfNamesType, LDAPGroupQuery, LDAPSearch
 ## In that file, set `auth_ldap_bind_password`.  For example:
 # auth_ldap_bind_password = abcd1234
 
-## Mapping user info from LDAP to Zulip.
+## Mapping user info from LDAP to Aloha.
 ##
-## For detailed instructions, see the Zulip documentation:
+## For detailed instructions, see the Aloha documentation:
 ##   https://zulip.readthedocs.io/en/latest/production/authentication-methods.html#ldap
 
 ## The LDAP search query to find a given user.
 ##
 ## The arguments to `LDAPSearch` are (base DN, scope, filter).  In the
-## filter, the string `%(user)s` is a Python placeholder.  The Zulip
-## server will replace this with the user's Zulip username, i.e. the
-## name they type into the Zulip login form.
+## filter, the string `%(user)s` is a Python placeholder.  The Aloha
+## server will replace this with the user's Aloha username, i.e. the
+## name they type into the Aloha login form.
 ##
 ## For more details and alternatives, see the documentation linked above.
 AUTH_LDAP_USER_SEARCH = LDAPSearch(
@@ -196,7 +196,7 @@ AUTH_LDAP_USER_SEARCH = LDAPSearch(
 )
 
 ## Configuration to look up a user's LDAP data given their email address
-## (for Zulip reverse mapping).  If users log in as e.g. "sam" when
+## (for Aloha reverse mapping).  If users log in as e.g. "sam" when
 ## their email address is "sam@example.com", set LDAP_APPEND_DOMAIN to
 ## "example.com".  Otherwise, leave LDAP_APPEND_DOMAIN=None and set
 ## AUTH_LDAP_REVERSE_EMAIL_SEARCH and AUTH_LDAP_USERNAME_ATTR below.
@@ -214,20 +214,20 @@ AUTH_LDAP_USER_SEARCH = LDAPSearch(
 # AUTH_LDAP_REVERSE_EMAIL_SEARCH = LDAPSearch("ou=users,dc=example,dc=com",
 #                                             ldap.SCOPE_SUBTREE, "(email=%(email)s)")
 
-## AUTH_LDAP_USERNAME_ATTR should be the Zulip username attribute
+## AUTH_LDAP_USERNAME_ATTR should be the Aloha username attribute
 ## (defined in AUTH_LDAP_USER_SEARCH).
 # AUTH_LDAP_USERNAME_ATTR = "uid"
 
-## This map defines how to populate attributes of a Zulip user from LDAP.
+## This map defines how to populate attributes of a Aloha user from LDAP.
 ##
-## The format is `zulip_name: ldap_name`; each entry maps a Zulip
+## The format is `zulip_name: ldap_name`; each entry maps a Aloha
 ## concept (on the left) to the LDAP attribute name (on the right) your
 ## LDAP database uses for the same concept.
 AUTH_LDAP_USER_ATTR_MAP = {
     ## full_name is required; common values include "cn" or "displayName".
     ## If names are encoded in your LDAP directory as first and last
     ## name, you can instead specify first_name and last_name, and
-    ## Zulip will combine those to construct a full_name automatically.
+    ## Aloha will combine those to construct a full_name automatically.
     "full_name": "cn",
     # "first_name": "fn",
     # "last_name": "ln",
@@ -235,7 +235,7 @@ AUTH_LDAP_USER_ATTR_MAP = {
     ## Profile pictures can be pulled from the LDAP "thumbnailPhoto"/"jpegPhoto" field.
     # "avatar": "thumbnailPhoto",
     ##
-    ## This line is for having Zulip to automatically deactivate users
+    ## This line is for having Aloha to automatically deactivate users
     ## who are disabled in LDAP/Active Directory (and reactivate users who are not).
     ## See docs for usage details and precise semantics.
     # "userAccountControl": "userAccountControl",
@@ -271,7 +271,7 @@ AUTH_LDAP_USER_ATTR_MAP = {
 ##
 ## (1) Visit https://console.developers.google.com/ , navigate to
 ## "APIs & Services" > "Credentials", and create a "Project" which will
-## correspond to your Zulip instance.
+## correspond to your Aloha instance.
 ##
 ## (2) Go to "Oauth consent screen" and create a consent screen,
 ## authorizing your domain and enabling the .../auth/userinfo.email,
@@ -332,14 +332,14 @@ AUTH_LDAP_USER_ATTR_MAP = {
 
 ## (3) Optionally, you can configure the GitHub integration to only
 ## allow members of a particular GitHub team or organization to log
-## into your Zulip server through GitHub authentication.  To enable
+## into your Aloha server through GitHub authentication.  To enable
 ## this, set one of the two parameters below:
 # SOCIAL_AUTH_GITHUB_TEAM_ID = "<your team id>"
 # SOCIAL_AUTH_GITHUB_ORG_NAME = "<your org name>"
 
-## (4) If you are serving multiple Zulip organizations on different
+## (4) If you are serving multiple Aloha organizations on different
 ## subdomains, you need to set SOCIAL_AUTH_SUBDOMAIN.  You can set it
-## to any subdomain on which you do not plan to host a Zulip
+## to any subdomain on which you do not plan to host a Aloha
 ## organization.  The default recommendation, `auth`, is a reserved
 ## subdomain; if you're using this setting, the "Callback URL" should be e.g.:
 ##   https://auth.zulip.example.com/complete/github/
@@ -356,7 +356,7 @@ SOCIAL_AUTH_OIDC_ENABLED_IDPS: Dict[str, Any] = {
     ## This field (example: "idp_name") may appear in URLs during
     ## authentication, but is otherwise not user-visible.
     "idp_name": {
-        ## The base path to the provider's OIDC API. Zulip fetches the
+        ## The base path to the provider's OIDC API. Aloha fetches the
         ## IdP's configuration from the discovery endpoint, which will be
         ## "{oidc_url}/.well-known/openid-configuration".
         "oidc_url": "https://example.com/api/openid",
@@ -371,7 +371,7 @@ SOCIAL_AUTH_OIDC_ENABLED_IDPS: Dict[str, Any] = {
         "secret": get_secret("social_auth_oidc_secret"),
         ## Determines whether "Log in with OIDC" will automatically
         ## register a new account if one does not already exist. By
-        ## default, Zulip asks the user whether they want to create an
+        ## default, Aloha asks the user whether they want to create an
         ## account or try to log in again using another method.
         # "auto_signup": False,
     }
@@ -393,7 +393,7 @@ SOCIAL_AUTH_OIDC_ENABLED_IDPS: Dict[str, Any] = {
 ## You will need to modify these SAML settings:
 SOCIAL_AUTH_SAML_ORG_INFO = {
     "en-US": {
-        "displayname": "Example, Inc. Zulip",
+        "displayname": "Example, Inc. Aloha",
         "name": "zulip",
         "url": "{}{}".format("https://", EXTERNAL_HOST),
     },
@@ -445,7 +445,7 @@ SOCIAL_AUTH_SAML_ENABLED_IDPS: Dict[str, Any] = {
         ##
         ## Determines whether "Log in with SAML" will automatically
         ## register a new account if one does not already exist. By
-        ## default, Zulip asks the user whether they want to create an
+        ## default, Aloha asks the user whether they want to create an
         ## account or try to log in again using another method.
         # "auto_signup": False,
     },
@@ -458,7 +458,7 @@ SOCIAL_AUTH_SAML_SECURITY_CONFIG: Dict[str, Any] = {
     ## set this to True to enable signing of SAMLRequests using the
     ## private key.
     "authnRequestsSigned": False,
-    ## If you'd like the Zulip server to request that the IdP limit user identity
+    ## If you'd like the Aloha server to request that the IdP limit user identity
     ## verification to a specific set of authentication contexts, you can do this
     ## by changing the requestedAuthnContext parameter to a list of specific
     ## Authentication Context Classes that you want to include in the AuthnContext. E.g.:
@@ -527,7 +527,7 @@ SOCIAL_AUTH_SAML_SUPPORT_CONTACT = {
 ########
 ## SSO via REMOTE_USER.
 ##
-## If you are using the ZulipRemoteUserBackend authentication backend,
+## If you are using the AlohaRemoteUserBackend authentication backend,
 ## and REMOTE_USER does not already include a domain, set this to your
 ## domain (e.g. if REMOTE_USER is "username" and the corresponding
 ## email address is "username@example.com", set SSO_APPEND_DOMAIN =
@@ -553,8 +553,8 @@ SOCIAL_AUTH_SAML_SUPPORT_CONTACT = {
 ########
 ## RabbitMQ configuration.
 ##
-## By default, Zulip connects to RabbitMQ running locally on the machine,
-## but Zulip also supports connecting to RabbitMQ over the network;
+## By default, Aloha connects to RabbitMQ running locally on the machine,
+## but Aloha also supports connecting to RabbitMQ over the network;
 ## to use a remote RabbitMQ instance, set RABBITMQ_HOST to the hostname here.
 # RABBITMQ_HOST = "127.0.0.1"
 ## To use another RabbitMQ user than the default "zulip", set RABBITMQ_USERNAME here.
@@ -563,20 +563,20 @@ SOCIAL_AUTH_SAML_SUPPORT_CONTACT = {
 ########
 ## Redis configuration.
 ##
-## By default, Zulip connects to Redis running locally on the machine,
-## but Zulip also supports connecting to Redis over the network;
+## By default, Aloha connects to Redis running locally on the machine,
+## but Aloha also supports connecting to Redis over the network;
 ## to use a remote Redis instance, set REDIS_HOST here.
 # REDIS_HOST = "127.0.0.1"
 ## For a different Redis port set the REDIS_PORT here.
 # REDIS_PORT = 6379
-## If you set redis_password in zulip-secrets.conf, Zulip will use that password
+## If you set redis_password in zulip-secrets.conf, Aloha will use that password
 ## to connect to the Redis server.
 
 ########
 ## Memcached configuration.
 ##
-## By default, Zulip connects to memcached running locally on the machine,
-## but Zulip also supports connecting to memcached over the network;
+## By default, Aloha connects to memcached running locally on the machine,
+## but Aloha also supports connecting to memcached over the network;
 ## to use a remote Memcached instance, set MEMCACHED_LOCATION here.
 ## Format HOST:PORT
 # MEMCACHED_LOCATION = 127.0.0.1:11211
@@ -591,12 +591,12 @@ SOCIAL_AUTH_SAML_SUPPORT_CONTACT = {
 ########
 ## Image and URL previews.
 ##
-## Controls whether or not Zulip will provide inline image preview when
+## Controls whether or not Aloha will provide inline image preview when
 ## a link to an image is referenced in a message.  Note: this feature
 ## can also be disabled in a realm's organization settings.
 # INLINE_IMAGE_PREVIEW = True
 
-## Controls whether or not Zulip will provide inline previews of
+## Controls whether or not Aloha will provide inline previews of
 ## websites that are referenced in links in messages.  Note: this feature
 ## can also be disabled in a realm's organization settings.
 # INLINE_URL_EMBED_PREVIEW = True
@@ -604,8 +604,8 @@ SOCIAL_AUTH_SAML_SUPPORT_CONTACT = {
 ########
 ## Twitter previews.
 ##
-## Zulip supports showing inline Tweet previews when a tweet is linked
-## to in a message.  To support this, Zulip must have access to the
+## Aloha supports showing inline Tweet previews when a tweet is linked
+## to in a message.  To support this, Aloha must have access to the
 ## Twitter API via OAuth.  To obtain the various access tokens needed
 ## below, you must register a new application under your Twitter
 ## account by doing the following:
@@ -669,7 +669,7 @@ SOCIAL_AUTH_SAML_SUPPORT_CONTACT = {
 # OUTGOING_WEBHOOK_TIMEOUT_SECONDS = 10
 
 ## Support for mobile push notifications.  Setting controls whether
-## push notifications will be forwarded through a Zulip push
+## push notifications will be forwarded through a Aloha push
 ## notification bouncer server to the mobile apps.  See
 ## https://zulip.readthedocs.io/en/latest/production/mobile-push-notifications.html
 ## for information on how to sign up for and configure this.
@@ -681,14 +681,14 @@ SOCIAL_AUTH_SAML_SUPPORT_CONTACT = {
 ## notification encryption feature.
 # PUSH_NOTIFICATION_REDACT_CONTENT = False
 
-## Whether to submit basic usage statistics to help the Zulip core team.  Details at
+## Whether to submit basic usage statistics to help the Aloha core team.  Details at
 ##
 ##   https://zulip.readthedocs.io/en/latest/production/mobile-push-notifications.html
 ##
 ## Defaults to True if and only if the Mobile Push Notifications Service is enabled.
 # SUBMIT_USAGE_STATISTICS = True
 
-## Whether to lightly advertise sponsoring Zulip in the gear menu.
+## Whether to lightly advertise sponsoring Aloha in the gear menu.
 # PROMOTE_SPONSORING_ZULIP = True
 
 ## Controls whether session cookies expire when the browser closes
@@ -702,21 +702,21 @@ SESSION_COOKIE_AGE = 60 * 60 * 24 * 7 * 2  # 2 weeks
 # PASSWORD_MIN_LENGTH = 6
 # PASSWORD_MIN_GUESSES = 10000
 
-## Controls whether Zulip sends "new login" email notifications.
+## Controls whether Aloha sends "new login" email notifications.
 # SEND_LOGIN_EMAILS = True
 
-## Controls whether or not Zulip will parse links starting with
+## Controls whether or not Aloha will parse links starting with
 ## "file:///" as a hyperlink (useful if you have e.g. an NFS share).
 ENABLE_FILE_LINKS = False
 
 ## By default, files uploaded by users and profile pictures are stored
-## directly on the Zulip server.  You can configure files being instead
+## directly on the Aloha server.  You can configure files being instead
 ## stored in Amazon S3 or another scalable data store here.  See docs at:
 ##
 ##   https://zulip.readthedocs.io/en/latest/production/upload-backends.html
 ##
 ## If you change LOCAL_UPLOADS_DIR to a different path, you will also
-## need to manually edit Zulip's nginx configuration to use the new
+## need to manually edit Aloha's nginx configuration to use the new
 ## path.  For that reason, we recommend replacing /home/zulip/uploads
 ## with a symlink instead of changing LOCAL_UPLOADS_DIR.
 LOCAL_UPLOADS_DIR = "/home/zulip/uploads"
@@ -754,14 +754,14 @@ ENABLE_GRAVATAR = True
 # DEFAULT_AVATAR_URI = "/local-static/default-avatar.png"
 
 ## The default CAMO_URI of "/external_content/" is served by the camo
-## setup in the default Zulip nginx configuration.  Setting CAMO_URI
+## setup in the default Aloha nginx configuration.  Setting CAMO_URI
 ## to "" will disable the Camo integration.
 CAMO_URI = "/external_content/"
 
 ## Controls the tutorial popups for new users.
 # TUTORIAL_ENABLED = True
 
-## Controls whether Zulip will rate-limit user requests.
+## Controls whether Aloha will rate-limit user requests.
 # RATE_LIMITING = True
 
 ## Fetch TOR exit node list every hour, and group all TOR exit nodes
@@ -769,7 +769,7 @@ CAMO_URI = "/external_content/"
 # RATE_LIMIT_TOR_TOGETHER = False
 
 ## Configuration for Terms of Service and Privacy Policy for the
-## server.  If unset, Zulip will never prompt users to accept Terms of
+## server.  If unset, Aloha will never prompt users to accept Terms of
 ## Service.  Users will be prompted to accept the terms during account
 ## registration, and during login if this value has changed.
 # TERMS_OF_SERVICE_VERSION = "1.0"

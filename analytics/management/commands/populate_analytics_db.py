@@ -256,13 +256,13 @@ class Command(BaseCommand):
 
         website, created = Client.objects.get_or_create(name="website")
         old_desktop, created = Client.objects.get_or_create(name="desktop app Linux 0.3.7")
-        android, created = Client.objects.get_or_create(name="ZulipAndroid")
-        iOS, created = Client.objects.get_or_create(name="ZulipiOS")
-        react_native, created = Client.objects.get_or_create(name="ZulipMobile")
+        android, created = Client.objects.get_or_create(name="AlohaAndroid")
+        iOS, created = Client.objects.get_or_create(name="AlohaiOS")
+        react_native, created = Client.objects.get_or_create(name="AlohaMobile")
         API, created = Client.objects.get_or_create(name="API: Python")
         zephyr_mirror, created = Client.objects.get_or_create(name="zephyr_mirror")
         unused, created = Client.objects.get_or_create(name="unused")
-        long_webhook, created = Client.objects.get_or_create(name="ZulipLooooooooooongNameWebhook")
+        long_webhook, created = Client.objects.get_or_create(name="AlohaLooooooooooongNameWebhook")
 
         stat = COUNT_STATS["messages_sent:client:day"]
         user_data = {

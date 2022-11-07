@@ -2,11 +2,11 @@ from typing import Any
 from unittest import mock
 
 from zerver.lib.attachments import user_attachments
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.models import Attachment
 
 
-class AttachmentsTests(ZulipTestCase):
+class AttachmentsTests(AlohaTestCase):
     def setUp(self) -> None:
         super().setUp()
         user_profile = self.example_user("cordelia")

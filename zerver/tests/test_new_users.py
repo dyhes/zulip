@@ -12,7 +12,7 @@ from zerver.actions.create_user import notify_new_user
 from zerver.actions.user_settings import do_change_user_setting
 from zerver.lib.initial_password import initial_password
 from zerver.lib.streams import create_stream_if_needed
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.models import Message, Realm, Recipient, Stream, UserProfile, get_realm
 from zerver.signals import JUST_CREATED_THRESHOLD, get_device_browser, get_device_os
 
@@ -22,7 +22,7 @@ else:  # nocoverage
     import zoneinfo
 
 
-class SendLoginEmailTest(ZulipTestCase):
+class SendLoginEmailTest(AlohaTestCase):
     """
     Uses django's user_logged_in signal to send emails on new login.
 
@@ -91,7 +91,7 @@ class SendLoginEmailTest(ZulipTestCase):
             self.register("test@zulip.com", "test")
 
             # Verify that there's just 1 email for new user registration.
-            self.assertEqual(mail.outbox[0].subject, "Activate your Zulip account")
+            self.assertEqual(mail.outbox[0].subject, "Activate your Aloha account")
             self.assert_length(mail.outbox, 1)
 
     def test_without_path_info_dont_send_login_emails_for_new_user_registration_logins(
@@ -127,7 +127,7 @@ class SendLoginEmailTest(ZulipTestCase):
         self.assert_length(mail.outbox, 1)
 
 
-class TestBrowserAndOsUserAgentStrings(ZulipTestCase):
+class TestBrowserAndOsUserAgentStrings(AlohaTestCase):
     def setUp(self) -> None:
         super().setUp()
         self.user_agents = [
@@ -192,14 +192,14 @@ class TestBrowserAndOsUserAgentStrings(ZulipTestCase):
                 "Safari",
                 "macOS",
             ),
-            ("ZulipAndroid/1.0", "Zulip", "Android"),
-            ("ZulipMobile/1.0.12 (Android 7.1.1)", "Zulip", "Android"),
-            ("ZulipMobile/0.7.1.1 (iOS 10.3.1)", "Zulip", "iOS"),
+            ("AlohaAndroid/1.0", "Aloha", "Android"),
+            ("AlohaMobile/1.0.12 (Android 7.1.1)", "Aloha", "Android"),
+            ("AlohaMobile/0.7.1.1 (iOS 10.3.1)", "Aloha", "iOS"),
             (
-                "ZulipElectron/1.1.0-beta Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                + "AppleWebKit/537.36 (KHTML, like Gecko) Zulip/1.1.0-beta "
+                "AlohaElectron/1.1.0-beta Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                + "AppleWebKit/537.36 (KHTML, like Gecko) Aloha/1.1.0-beta "
                 + "Chrome/56.0.2924.87 Electron/1.6.8 Safari/537.36",
-                "Zulip",
+                "Aloha",
                 "Windows",
             ),
             (
@@ -244,7 +244,7 @@ class TestBrowserAndOsUserAgentStrings(ZulipTestCase):
             self.assertEqual(device_os, user_agent[2])
 
 
-class TestNotifyNewUser(ZulipTestCase):
+class TestNotifyNewUser(AlohaTestCase):
     def get_message_count(self) -> int:
         return Message.objects.all().count()
 
@@ -262,7 +262,7 @@ class TestNotifyNewUser(ZulipTestCase):
         actual_stream = Stream.objects.get(id=message.recipient.type_id)
         self.assertEqual(actual_stream.name, Realm.INITIAL_PRIVATE_STREAM_NAME)
         self.assertIn(
-            f"@_**Cordelia, Lear's daughter|{new_user.id}** just signed up for Zulip.",
+            f"@_**Cordelia, Lear's daughter|{new_user.id}** just signed up for Aloha.",
             message.content,
         )
         message = self.get_last_message()
@@ -270,7 +270,7 @@ class TestNotifyNewUser(ZulipTestCase):
         actual_stream = Stream.objects.get(id=message.recipient.type_id)
         self.assertEqual(actual_stream.name, "signups")
         self.assertIn(
-            f"Cordelia, Lear's daughter <`{new_user.email}`> just signed up for Zulip. (total:",
+            f"Cordelia, Lear's daughter <`{new_user.email}`> just signed up for Aloha. (total:",
             message.content,
         )
 
@@ -282,7 +282,7 @@ class TestNotifyNewUser(ZulipTestCase):
         actual_stream = Stream.objects.get(id=message.recipient.type_id)
         self.assertEqual(actual_stream.name, Realm.INITIAL_PRIVATE_STREAM_NAME)
         self.assertIn(
-            f"@_**Cordelia, Lear's daughter|{new_user.id}** just signed up for Zulip.",
+            f"@_**Cordelia, Lear's daughter|{new_user.id}** just signed up for Aloha.",
             message.content,
         )
         realm.signup_notifications_stream = None
@@ -318,7 +318,7 @@ class TestNotifyNewUser(ZulipTestCase):
             actual_stream = Stream.objects.get(id=message.recipient.type_id)
             self.assertEqual(actual_stream, realm.signup_notifications_stream)
             self.assertIn(
-                f"@_**new user {user_no}|{new_user.id}** just signed up for Zulip.",
+                f"@_**new user {user_no}|{new_user.id}** just signed up for Aloha.",
                 message.content,
             )
             for string_present in strings_present:
@@ -334,26 +334,26 @@ class TestNotifyNewUser(ZulipTestCase):
         )
         create_new_user_and_verify_strings_in_notification_message(
             strings_present=[
-                "Your organization has only three Zulip licenses remaining",
+                "Your organization has only three Aloha licenses remaining",
                 "to allow more than three users to",
             ],
         )
         create_new_user_and_verify_strings_in_notification_message(
             strings_present=[
-                "Your organization has only two Zulip licenses remaining",
+                "Your organization has only two Aloha licenses remaining",
                 "to allow more than two users to",
             ],
         )
 
         create_new_user_and_verify_strings_in_notification_message(
             strings_present=[
-                "Your organization has only one Zulip license remaining",
+                "Your organization has only one Aloha license remaining",
                 "to allow more than one user to",
             ],
         )
         create_new_user_and_verify_strings_in_notification_message(
             strings_present=[
-                "Your organization has no Zulip licenses remaining",
+                "Your organization has no Aloha licenses remaining",
                 "to allow new users to",
             ]
         )

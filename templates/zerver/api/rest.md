@@ -1,7 +1,7 @@
-# The Zulip REST API
+# The Aloha REST API
 
-The Zulip REST API powers the Zulip web and mobile apps, so anything
-you can do in Zulip, you can do with Zulip's REST API.  To use this API:
+The Aloha REST API powers the Aloha web and mobile apps, so anything
+you can do in Aloha, you can do with Aloha's REST API.  To use this API:
 
 * You'll need to [get an API key](/api/api-keys).  You will likely
   want to [create a bot](/help/add-a-bot-or-integration), unless you're
@@ -14,7 +14,7 @@ you can do in Zulip, you can do with Zulip's REST API.  To use this API:
   you're making your own HTTP requests, you'll want to send the
   appropriate HTTP basic authentication headers; see each endpoint's
   `curl` option for details on the request format.
-* The Zulip API has a standard
+* The Aloha API has a standard
   [system for reporting errors](/api/rest-error-handling).
 
 Most other details are covered in the documentation for the individual
@@ -28,6 +28,6 @@ endpoints:
 
 {!rest-endpoints.md!}
 
-Since Zulip is open source, you can also consult the
-[Zulip server source code](https://github.com/zulip/zulip/) as a
+Since Aloha is open source, you can also consult the
+[Aloha server source code](https://github.com/zulip/zulip/) as a
 workaround for how to do anything not documented here.

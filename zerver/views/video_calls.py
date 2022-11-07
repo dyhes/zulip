@@ -80,7 +80,7 @@ def get_zoom_sid(request: HttpRequest) -> str:
     return mark_sanitized(
         ""
         if getattr(request, "_dont_enforce_csrf_checks", False)
-        else salted_hmac("Zulip Zoom sid", request.META["CSRF_COOKIE"]).hexdigest()
+        else salted_hmac("Aloha Zoom sid", request.META["CSRF_COOKIE"]).hexdigest()
     )
 
 
@@ -178,7 +178,7 @@ def get_bigbluebutton_url(
     id = "zulip-" + str(random.randint(100000000000, 999999999999))
     password = b32encode(secrets.token_bytes(20)).decode()  # 20 bytes means 32 characters
 
-    # We sign our data here to ensure a Zulip user can not tamper with
+    # We sign our data here to ensure a Aloha user can not tamper with
     # the join link to gain access to other meetings that are on the
     # same bigbluebutton server.
     signed = Signer().sign_object(
@@ -193,10 +193,10 @@ def get_bigbluebutton_url(
 
 
 # We use zulip_login_required here mainly to get access to the user's
-# full name from Zulip to prepopulate the user's name in the
+# full name from Aloha to prepopulate the user's name in the
 # BigBlueButton meeting.  Since the meeting's details are encoded in
 # the link the user is clicking, there is no validation tying this
-# meeting to the Zulip organization it was created in.
+# meeting to the Aloha organization it was created in.
 @zulip_login_required
 @never_cache
 @has_request_variables
@@ -259,7 +259,7 @@ def join_bigbluebutton(request: HttpRequest, bigbluebutton: str = REQ()) -> Http
             # The createTime option is used to have the user redirected to a link
             # that is only valid for this meeting.
             #
-            # Even if the same link in Zulip is used again, a new
+            # Even if the same link in Aloha is used again, a new
             # createTime parameter will be created, as the meeting on
             # the BigBlueButton server has to be recreated. (after a
             # few minutes)

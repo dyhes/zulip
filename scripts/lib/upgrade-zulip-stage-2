@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 #
 # This script contains the actual logic for upgrading from an old
-# version of Zulip to the new version.  upgrade-zulip-stage-2 is
-# always run from the new version of Zulip, so any bug fixes take
+# version of Aloha to the new version.  upgrade-zulip-stage-2 is
+# always run from the new version of Aloha, so any bug fixes take
 # effect on the very next upgrade.
 import argparse
 import glob
@@ -179,11 +179,11 @@ def shutdown_server() -> None:
     global IS_SERVER_UP
 
     if minimal_change:
-        logging.info("Upgrade would require shutting down Zulip -- aborting!")
+        logging.info("Upgrade would require shutting down Aloha -- aborting!")
         sys.exit(1)
 
     if IS_SERVER_UP:
-        logging.info("Stopping Zulip...")
+        logging.info("Stopping Aloha...")
         subprocess.check_call(["./scripts/stop-server"], preexec_fn=su_to_zulip)
         IS_SERVER_UP = False
 
@@ -347,10 +347,10 @@ elif args.from_git:
         logging.error("Failed to build static assets.")
         if IS_SERVER_UP:
             logging.error("Usually the cause is insufficient free RAM to run webpack.")
-            logging.error("Try stopping the Zulip server (scripts/stop-server) and trying again.")
+            logging.error("Try stopping the Aloha server (scripts/stop-server) and trying again.")
         sys.exit(1)
 
-    logging.info("Caching Zulip Git version...")
+    logging.info("Caching Aloha Git version...")
     subprocess.check_call(["./tools/cache-zulip-git-version"], preexec_fn=su_to_zulip)
 else:
     # Since this doesn't do any actual work, it's likely safe to have
@@ -425,7 +425,7 @@ if args.skip_restart:
 else:
     # NOTE: Here begins the most likely critical period, where we may be
     # shutting down the server; we should strive to minimize the number of
-    # steps that happen between here and the "Restarting Zulip" line
+    # steps that happen between here and the "Restarting Aloha" line
     # below.
 
     if rabbitmq_dist_listen:
@@ -464,7 +464,7 @@ else:
             ["./manage.py", "migrate", "--noinput", "--skip-checks"], preexec_fn=su_to_zulip
         )
 
-    logging.info("Restarting Zulip...")
+    logging.info("Restarting Aloha...")
     start_args = []
     if migrations_needed:
         start_args.append("--fill-cache")

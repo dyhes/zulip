@@ -1,11 +1,11 @@
 from argparse import ArgumentParser
 from typing import Any
 
-from zerver.lib.management import ZulipBaseCommand
+from zerver.lib.management import AlohaBaseCommand
 from zerver.lib.streams import create_stream_if_needed
 
 
-class Command(ZulipBaseCommand):
+class Command(AlohaBaseCommand):
     help = """Create a stream, and subscribe all active users (excluding bots).
 
 This should be used for TESTING only, unless you understand the limitations of

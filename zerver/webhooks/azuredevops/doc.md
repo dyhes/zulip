@@ -1,4 +1,4 @@
-Get Azure Devops notifications in Zulip!
+Get Azure Devops notifications in Aloha!
 
 1. {!create-stream.md!}
 

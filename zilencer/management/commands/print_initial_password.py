@@ -2,11 +2,11 @@ from argparse import ArgumentParser
 from typing import Any
 
 from zerver.lib.initial_password import initial_password
-from zerver.lib.management import ZulipBaseCommand
+from zerver.lib.management import AlohaBaseCommand
 from zerver.lib.users import get_api_key
 
 
-class Command(ZulipBaseCommand):
+class Command(AlohaBaseCommand):
     help = "Print the initial password and API key for accounts as created by populate_db"
 
     fmt = "%-30s %-16s  %-32s"

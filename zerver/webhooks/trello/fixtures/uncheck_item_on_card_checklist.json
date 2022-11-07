@@ -1,7 +1,7 @@
 {
     "model":{
         "id":"597958d15c95392f2830e9f5",
-        "name":"Zulip",
+        "name":"Aloha",
         "desc":"",
         "descData":null,
         "closed":false,
@@ -66,7 +66,7 @@
             },
             "board":{
                 "shortLink":"l9NqJcCd",
-                "name":"Zulip",
+                "name":"Aloha",
                 "id":"597958d15c95392f2830e9f5"
             }
         },

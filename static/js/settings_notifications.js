@@ -200,7 +200,7 @@ export function set_up(settings_panel) {
     // organization-level defaults.
     $container.find(".send_test_notification").on("click", () => {
         notifications.send_test_notification(
-            $t({defaultMessage: "This is what a Zulip notification looks like."}),
+            $t({defaultMessage: "This is what a Aloha notification looks like."}),
         );
     });
 

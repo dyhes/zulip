@@ -294,11 +294,11 @@ def fix_message_rendered_content(
 ) -> None:
     """
     This function sets the rendered_content of all the messages
-    after the messages have been imported from a non-Zulip platform.
+    after the messages have been imported from a non-Aloha platform.
     """
     for message in messages:
         if message["rendered_content"] is not None:
-            # For Zulip->Zulip imports, we use the original rendered
+            # For Aloha->Aloha imports, we use the original rendered
             # Markdown; this avoids issues where e.g. a mention can no
             # longer render properly because a user has changed their
             # name.
@@ -714,7 +714,7 @@ def fix_subscriptions_is_user_active_column(
 
 def process_avatars(record: Dict[str, Any]) -> None:
     # We need to re-import upload_backend here, because in the
-    # import-export unit tests, the Zulip settings are overridden for
+    # import-export unit tests, the Aloha settings are overridden for
     # specific tests to control the choice of upload backend, and this
     # reimport ensures that we use the right choice for the current
     # test. Outside the test suite, settings never change after the
@@ -856,7 +856,7 @@ def import_uploads(
                 metadata["orig_last_modified"] = str(record["last_modified"])
             metadata["realm_id"] = str(record["realm_id"])
 
-            # Zulip exports will always have a content-type, but third-party exports might not.
+            # Aloha exports will always have a content-type, but third-party exports might not.
             content_type = record.get("content_type")
             if content_type is None:
                 content_type = guess_type(record["s3_path"])[0]
@@ -975,7 +975,7 @@ def do_import_realm(import_dir: Path, subdomain: str, processes: int = 1) -> Rea
         re_map_foreign_keys(data, "zerver_usergroup", "realm", related_table="realm")
         bulk_import_model(data, UserGroup)
 
-    # We expect Zulip server exports to contain these system groups,
+    # We expect Aloha server exports to contain these system groups,
     # this logic here is needed to handle the imports from other services.
     role_system_groups_dict: Optional[Dict[int, UserGroup]] = None
     if "zerver_usergroup" not in data:
@@ -991,7 +991,7 @@ def do_import_realm(import_dir: Path, subdomain: str, processes: int = 1) -> Rea
         re_map_foreign_keys(
             data, "zerver_stream", "can_remove_subscribers_group", related_table="usergroup"
         )
-    # Handle rendering of stream descriptions for import from non-Zulip
+    # Handle rendering of stream descriptions for import from non-Aloha
     for stream in data["zerver_stream"]:
         stream["rendered_description"] = render_stream_description(stream["description"])
     bulk_import_model(data, Stream)
@@ -1038,10 +1038,10 @@ def do_import_realm(import_dir: Path, subdomain: str, processes: int = 1) -> Rea
     for user_profile_dict in data["zerver_userprofile"]:
         user_profile_dict["password"] = None
         user_profile_dict["api_key"] = generate_api_key()
-        # Since Zulip doesn't use these permissions, drop them
+        # Since Aloha doesn't use these permissions, drop them
         del user_profile_dict["user_permissions"]
         del user_profile_dict["groups"]
-        # The short_name field is obsolete in Zulip, but it's
+        # The short_name field is obsolete in Aloha, but it's
         # convenient for third party exports to populate it.
         if "short_name" in user_profile_dict:
             del user_profile_dict["short_name"]
@@ -1215,7 +1215,7 @@ def do_import_realm(import_dir: Path, subdomain: str, processes: int = 1) -> Rea
         update_model_ids(GroupGroupMembership, data, "groupgroupmembership")
         bulk_import_model(data, GroupGroupMembership)
 
-    # We expect Zulip server exports to contain UserGroupMembership objects
+    # We expect Aloha server exports to contain UserGroupMembership objects
     # for system groups, this logic here is needed to handle the imports from
     # other services.
     if role_system_groups_dict is not None:
@@ -1297,7 +1297,7 @@ def do_import_realm(import_dir: Path, subdomain: str, processes: int = 1) -> Rea
 
     # We need to have this check as the emoji files are only present in the data
     # importer from Slack
-    # For Zulip export, this doesn't exist
+    # For Aloha export, this doesn't exist
     if os.path.exists(os.path.join(import_dir, "emoji")):
         import_uploads(
             realm,
@@ -1420,7 +1420,7 @@ def get_incoming_message_ids(import_dir: Path, sort_by_date: bool) -> List[int]:
         for row in data["zerver_message"]:
             # We truncate date_sent to int to theoretically
             # save memory and speed up the sort.  For
-            # Zulip-to-Zulip imports, the
+            # Aloha-to-Aloha imports, the
             # message_id will generally be a good tiebreaker.
             # If we occasionally mis-order the ids for two
             # messages from the same second, it's not the

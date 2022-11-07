@@ -1,4 +1,4 @@
-# Simple one-time-pad library, to be used for encrypting Zulip API
+# Simple one-time-pad library, to be used for encrypting Aloha API
 # keys when sending them to the mobile apps via new standard mobile
 # authentication flow.  This encryption is used to protect against
 # credential-stealing attacks where a malicious app registers the

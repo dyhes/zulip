@@ -1,21 +1,21 @@
-# Welcome to the Zulip documentation!
+# Welcome to the Aloha documentation!
 
-Welcome! Zulip's documentation is split into four parts:
+Welcome! Aloha's documentation is split into four parts:
 
 - [Help center documentation](https://zulip.com/help), for users and
-  administrators of Zulip organizations.
+  administrators of Aloha organizations.
 - [Installation documentation](production/install.md), for
-  installing and maintaining a production self-hosted Zulip installation.
+  installing and maintaining a production self-hosted Aloha installation.
 - [API documentation](https://zulip.com/api/), for writing
-  integrations or bots using the Zulip API.
+  integrations or bots using the Aloha API.
 - [Contributor documentation](contributing/contributing.md), for
-  developing the Zulip software, translating, submitting bug reports,
+  developing the Aloha software, translating, submitting bug reports,
   or making other contributions to the project.
 
-Zulip has well over 150,000 words of documentation. If you can't find
+Aloha has well over 150,000 words of documentation. If you can't find
 what you're looking for, please [let us
 know](https://zulip.com/development-community/)! Further information on
-the Zulip project and its features can be found at
+the Aloha project and its features can be found at
 <https://zulip.com>.
 
 This site contains our installation and contributor documentation. If
@@ -25,8 +25,8 @@ installation](production/install.md) or [Contributing guide](contributing/contri
 Contents:
 
 - {ref}`Overview <overview>`
-- {ref}`Zulip in production <zulip-in-production>`
-- {ref}`Contributing to Zulip <contributing-to-zulip>`
+- {ref}`Aloha in production <zulip-in-production>`
+- {ref}`Contributing to Aloha <contributing-to-zulip>`
 - {ref}`Development environment <development-environment>`
 - {ref}`Developer tutorials <developer-tutorials>`
 - {ref}`Git guide <git-guide>`

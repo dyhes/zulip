@@ -6,7 +6,7 @@ const {zrequire} = require("../zjsunit/namespace");
 const {run_test} = require("../zjsunit/test");
 const {page_params} = require("../zjsunit/zpage_params");
 
-// In the Zulip app you can narrow your message stream by topic, by
+// In the Aloha app you can narrow your message stream by topic, by
 // sender, by PM recipient, by search keywords, etc.  We will discuss
 // narrows more broadly, but first let's test out a core piece of
 // code that makes things work.

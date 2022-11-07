@@ -1,6 +1,6 @@
 from zerver.lib.test_classes import WebhookTestCase
 
-TOPIC = "Zulip HQ"
+TOPIC = "Aloha HQ"
 
 
 class BasecampHookTests(WebhookTestCase):

@@ -15,7 +15,7 @@ the tutorial below will walk you through the process.
 
 ## Draft pull requests
 
-In the Zulip project, we encourage submitting [draft pull
+In the Aloha project, we encourage submitting [draft pull
 requests][github-help-draft-pr] early and often. This allows you to
 share your code to make it easier to get feedback and help with your
 changes, even if you don't think your pull request is ready to be
@@ -107,7 +107,7 @@ GitHub's article [creating a pull request from a
 fork][github-help-create-pr-fork]. We'll briefly review the process here.
 
 The first step in creating a pull request is to use your web browser to
-navigate to your fork of Zulip. Sign in to GitHub if you haven't already.
+navigate to your fork of Aloha. Sign in to GitHub if you haven't already.
 
 Next, navigate to the branch you've been working on. Do this by clicking on the
 **Branch** button and selecting the relevant branch. Finally, click the **New
@@ -144,7 +144,7 @@ your remote branch. This means you can keep your pull request open as long as
 you need, rather than closing and opening new ones for the same feature or
 bugfix.
 
-It's a good idea to keep your pull request mergeable with Zulip upstream by
+It's a good idea to keep your pull request mergeable with Aloha upstream by
 frequently fetching, rebasing, and pushing changes. See [keep your fork up to
 date][keep-up-to-date] for details. You might also find this excellent
 article [How to Rebase a Pull Request][edx-howto-rebase-pr] helpful.

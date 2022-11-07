@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-# Make sure the Zulip dev virtualenv exists, and operate within it.
+# Make sure the Aloha dev virtualenv exists, and operate within it.
 if [ ! -d /srv/zulip-py3-venv ]; then
     ./tools/setup/setup_venvs.py
 fi

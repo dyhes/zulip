@@ -1,10 +1,10 @@
 # Configure default view
 
-The default view in Zulip is the view you reach after logging in
-to the Zulip web app. You can also navigate to the default view via
+The default view in Aloha is the view you reach after logging in
+to the Aloha web app. You can also navigate to the default view via
 keyboard shortcuts.
 
-The default views available in Zulip are
+The default views available in Aloha are
 [Recent topics](/help/recent-topics) and
 [All messages](/help/reading-strategies#all-messages). See
 [Reading strategies](/help/reading-strategies) for recommendations
@@ -34,7 +34,7 @@ organization settings:
 1. Under **Advanced**, click on the **Default view** dropdown
    and select a view.
 
-1. To see your changes in action, open a new Zulip tab, or use a keyboard
+1. To see your changes in action, open a new Aloha tab, or use a keyboard
    shortcut twice to exit the settings and navigate to your default view
    (<kbd>Ctrl</kbd> + <kbd>[</kbd> or <kbd>Esc</kbd> if enabled).
 
@@ -44,12 +44,12 @@ organization settings:
 
 ## Set whether <kbd>Esc</kbd> navigates to the default view
 
-Zulip has a number of [keyboard shortcuts](/help/keyboard-shortcuts)
+Aloha has a number of [keyboard shortcuts](/help/keyboard-shortcuts)
 designed to enhance the user experience in the app.
 
 By default, the <kbd>Esc</kbd> key shortcut will ultimately navigate to
 your default view. You can disable this key binding if you would prefer.
-This will not disable other <kbd>Esc</kbd> key shortcuts used in Zulip,
+This will not disable other <kbd>Esc</kbd> key shortcuts used in Aloha,
 and will not affect the behavior of the <kbd>Ctrl</kbd> + <kbd>[</kbd>
 shortcut.
 

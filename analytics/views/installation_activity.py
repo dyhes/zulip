@@ -51,7 +51,7 @@ def get_realm_day_counts() -> Dict[str, Dict[str, str]]:
         and
             date_sent > now()::date - interval '8 day'
         and
-            c.name not in ('zephyr_mirror', 'ZulipMonitoring')
+            c.name not in ('zephyr_mirror', 'AlohaMonitoring')
         group by
             r.string_id,
             age
@@ -407,7 +407,7 @@ def ad_hoc_queries() -> List[Dict[str, str]]:
 
     ###
 
-    for mobile_type in ["Android", "ZulipiOS"]:
+    for mobile_type in ["Android", "AlohaiOS"]:
         title = f"{mobile_type} usage"
 
         query: Composable = SQL(
@@ -494,8 +494,8 @@ def ad_hoc_queries() -> List[Dict[str, str]]:
         join zerver_realm realm on realm.id = up.realm_id
         where
             (query in ('send_message_backend', '/api/v1/send_message')
-            and client.name not in ('Android', 'ZulipiOS')
-            and client.name not like 'test: Zulip%%'
+            and client.name not in ('Android', 'AlohaiOS')
+            and client.name not like 'test: Aloha%%'
             )
         or
             query like '%%external%%'
@@ -534,8 +534,8 @@ def ad_hoc_queries() -> List[Dict[str, str]]:
         join zerver_realm realm on realm.id = up.realm_id
         where
             (query in ('send_message_backend', '/api/v1/send_message')
-            and client.name not in ('Android', 'ZulipiOS')
-            and client.name not like 'test: Zulip%%'
+            and client.name not in ('Android', 'AlohaiOS')
+            and client.name not like 'test: Aloha%%'
             )
         or
             query like '%%external%%'
@@ -554,7 +554,7 @@ def ad_hoc_queries() -> List[Dict[str, str]]:
 
     pages.append(get_page(query, cols, title))
 
-    title = "Remote Zulip servers"
+    title = "Remote Aloha servers"
 
     query = SQL(
         """

@@ -18,5 +18,5 @@ def main(args: argparse.Namespace) -> None:
 
 
 if __name__ == "__main__":
-    args = parse_cache_script_args("This script cleans unused Zulip caches.")
+    args = parse_cache_script_args("This script cleans unused Aloha caches.")
     main(args)

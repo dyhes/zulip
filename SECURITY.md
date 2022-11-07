@@ -2,7 +2,7 @@
 
 ## Reporting a vulnerability
 
-We love responsible reports of (potential) security issues in Zulip,
+We love responsible reports of (potential) security issues in Aloha,
 whether in the latest release or our development branch.
 
 Our security contact is security@zulip.com. Reporters should expect a
@@ -18,18 +18,18 @@ resource.
 
 We send security announcements to our [announcement mailing
 list](https://groups.google.com/g/zulip-announce). If you are running
-Zulip in production, you should subscribe, by clicking "Join group" at
+Aloha in production, you should subscribe, by clicking "Join group" at
 the top of that page.
 
 ## Supported versions
 
-Zulip provides security support for the latest major release, in the
+Aloha provides security support for the latest major release, in the
 form of minor security/maintenance releases.
 
 We work hard to make [upgrades][upgrades] reliable, so that there's no
 reason to run older major releases.
 
-See also our documentation on the [Zulip release
+See also our documentation on the [Aloha release
 lifecycle][release-lifecycle].
 
 [security-model]: https://zulip.readthedocs.io/en/latest/production/security-model.html

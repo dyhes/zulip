@@ -2,8 +2,8 @@
 
 {!admin-only.md!}
 
-Zulip supports using SAML authentication for single sign-on, both for Zulip
-Cloud and self-hosted Zulip servers.
+Aloha supports using SAML authentication for single sign-on, both for Aloha
+Cloud and self-hosted Aloha servers.
 
 This page describes how to configure SAML authentication with several common providers:
 
@@ -14,14 +14,14 @@ This page describes how to configure SAML authentication with several common pro
 
 Other SAML providers are supported as well.
 
-If you are [self-hosting](/self-hosting/) Zulip, please follow the detailed setup instructions in
+If you are [self-hosting](/self-hosting/) Aloha, please follow the detailed setup instructions in
 the [SAML configuration for self-hosting][saml-readthedocs]. The documentation
 on this page may be a useful reference for how to set up specific SAML
 providers.
 
 !!! warn ""
-    Zulip Cloud customers who wish to use SAML authentication must upgrade to
-    the Zulip Cloud Plus plan. Contact
+    Aloha Cloud customers who wish to use SAML authentication must upgrade to
+    the Aloha Cloud Plus plan. Contact
     [support@zulip.com](mailto:support@zulip.com) for plan benefits and pricing.
 
 ## Configure SAML
@@ -44,7 +44,7 @@ providers.
          * `last_name` to `user.lastName`
 
 1. Assign the appropriate accounts in the **Assignments** tab. These are the users
-   that will be able to log in to your Zulip organization.
+   that will be able to log in to your Aloha organization.
 
 1. {!send-us-info.md!}
 
@@ -63,7 +63,7 @@ providers.
 
 1. Search for the **SAML Custom Connector (Advanced)** app and select it.
 
-1. Set a name and logo and click **Save**. This doesn't affect anything in Zulip,
+1. Set a name and logo and click **Save**. This doesn't affect anything in Aloha,
    but will be shown on your OneLogin **Applications** page.
 
 1. In the **Configuration** section, specify the following fields. Leave the
@@ -97,7 +97,7 @@ providers.
 1. From your AzureAD Dashboard, navigate to **Enterprise applications**,
    click **New application**, followed by **Create your own application**.
 
-1. Enter a name (e.g., `Zulip Cloud`) for the new AzureAD application,
+1. Enter a name (e.g., `Aloha Cloud`) for the new AzureAD application,
    choose **Integrate any other application you don't find in the
    gallery (Non-gallery)**, and click **Create**.
 
@@ -143,7 +143,7 @@ providers.
 
 1. Make sure your Keycloak server is up and running.
 
-1. In Keycloak, register a new Client for your Zulip organization:
+1. In Keycloak, register a new Client for your Aloha organization:
     * **Client-ID**: `https://zulipchat.com`
     * **Client Protocol**: `saml`
     * **Client SAML Endpoint**: *(empty)*
@@ -190,6 +190,6 @@ providers.
 
 * [SAML configuration for self-hosting][saml-readthedocs]
 * [SCIM provisioning](/help/scim)
-* [Getting your organization started with Zulip](/help/getting-your-organization-started-with-zulip)
+* [Getting your organization started with Aloha](/help/getting-your-organization-started-with-zulip)
 
 [saml-readthedocs]: https://zulip.readthedocs.io/en/stable/production/authentication-methods.html#saml

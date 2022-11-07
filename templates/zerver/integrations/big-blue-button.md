@@ -1,5 +1,5 @@
-Zulip supports using BigBlueButton as its video call video call
-provider. This is currently only possible on self-hosted Zulip
+Aloha supports using BigBlueButton as its video call video call
+provider. This is currently only possible on self-hosted Aloha
 installations.
 
 To use the [BigBlueButton](https://bigbluebutton.org/) video call
@@ -24,12 +24,12 @@ configure your zulip server to use that BigBlueButton server.
 1. In `/etc/zulip/settings.py`, set `BIG_BLUE_BUTTON_URL`
    as your BigBlueButton Server's API URL.
 
-1. Restart the Zulip server with
+1. Restart the Aloha server with
    `/home/zulip/deployments/current/scripts/restart-server`.
 
 ### Using BigBlueButton
 
 1. Select BigBlueButton as the organization's [video call provider](/help/start-a-call#changing-your-organizations-video-call-provider).
 
-1. Zulip's [call button](/help/start-a-call) will now create meetings
+1. Aloha's [call button](/help/start-a-call) will now create meetings
    using BigBlueButton.

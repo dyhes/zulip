@@ -5,12 +5,12 @@ from django.contrib.auth.tokens import default_token_generator
 from django.core.management.base import CommandError
 
 from zerver.forms import generate_password_reset_url
-from zerver.lib.management import ZulipBaseCommand
+from zerver.lib.management import AlohaBaseCommand
 from zerver.lib.send_email import FromAddress, send_email
 from zerver.models import UserProfile
 
 
-class Command(ZulipBaseCommand):
+class Command(AlohaBaseCommand):
     help = """Send email to specified email address."""
 
     def add_arguments(self, parser: ArgumentParser) -> None:

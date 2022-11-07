@@ -1,6 +1,6 @@
 # Edit a bot
 
-Zulip lets you edit the properties of any bot for which you are the owner.
+Aloha lets you edit the properties of any bot for which you are the owner.
 Organization [administrators](/help/roles-and-permissions) can also edit any
 active bot in the organization.
 

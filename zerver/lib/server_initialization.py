@@ -33,8 +33,8 @@ def create_internal_realm() -> None:
     # avoids an extra database write for the first HTTP request in
     # most tests.
     get_client("website")
-    get_client("ZulipMobile")
-    get_client("ZulipElectron")
+    get_client("AlohaMobile")
+    get_client("AlohaElectron")
 
     internal_bots = [
         (bot["name"], bot["email_template"] % (settings.INTERNAL_BOT_DOMAIN,))

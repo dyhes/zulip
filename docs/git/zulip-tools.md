@@ -1,7 +1,7 @@
-# Zulip-specific tools
+# Aloha-specific tools
 
 This article documents several useful tools that can save you a lot of
-time when working with Git on the Zulip project.
+time when working with Git on the Aloha project.
 
 ## Set up Git repo script
 
@@ -9,7 +9,7 @@ time when working with Git on the Zulip project.
 [zulip/zulip][github-zulip-zulip] you'll find a bash script
 `setup-git-repo`. This script installs a pre-commit hook, which will
 run each time you `git commit` to automatically run
-[Zulip's linter suite](../testing/linters.md) on just the files that
+[Aloha's linter suite](../testing/linters.md) on just the files that
 the commit modifies (which is really fast!). The hook passes no matter
 the result of the linter, but you should still pay attention to any
 notices or warnings it displays.
@@ -29,7 +29,7 @@ $ ls -l .git/hooks
 pre-commit -> ../../tools/pre-commit
 ```
 
-## Configure continuous integration for your Zulip fork
+## Configure continuous integration for your Aloha fork
 
 You might also wish to [configure continuous integration for your fork][zulip-git-guide-ci].
 
@@ -118,7 +118,7 @@ HEAD is now at 5a1e982 tools: Update clean-branches to clean review branches.
 ## Push to a pull request
 
 `tools/push-to-pull-request` is primarily useful for maintainers who
-are merging other users' commits into a Zulip repository. After doing
+are merging other users' commits into a Aloha repository. After doing
 `reset-to-pull-request` or `fetch-pull-request` and making some
 changes, you can push a branch back to a pull request with e.g.
 `tools/push-to-pull-request 1234`. This is useful for a few things:

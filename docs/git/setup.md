@@ -26,11 +26,11 @@ We also highly recommend the following:
   [aliases][gitbook-aliases] for commands you'll use often. We
   recommend using your full name (not just your first name), since
   that's what we'll use to give credit to your work in places like the
-  Zulip release notes.
+  Aloha release notes.
 - Install the command auto-completion and/or git-prompt plugins available for
   [Bash][gitbook-other-envs-bash] and [Zsh][gitbook-other-envs-zsh].
 
-If you are installing the Zulip development environment, now you are ready to
+If you are installing the Aloha development environment, now you are ready to
 continue with [Step 1: Install prerequisites](../development/setup-recommended.md#step-1-install-prerequisites).
 
 ## Get a graphical client

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Checks for any Zulip queue workers that are leaking memory and thus have a high vsize
+# Checks for any Aloha queue workers that are leaking memory and thus have a high vsize
 datafile=$(mktemp)
 
 # We expect other Nagios checks to monitor for whether no queue

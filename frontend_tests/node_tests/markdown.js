@@ -506,7 +506,7 @@ test("marked", () => {
                 '<p><span aria-label="smile" class="emoji emoji-1f642" role="img" title="smile">:smile:</span></p>',
             translate_emoticons: true,
         },
-        // Test HTML escaping in custom Zulip rules
+        // Test HTML escaping in custom Aloha rules
         {
             input: "@**<h1>The Rogue One</h1>**",
             expected: "<p>@**&lt;h1&gt;The Rogue One&lt;/h1&gt;**</p>",

@@ -232,7 +232,7 @@ def fetch_initial_state_data(
         # currently active setting, not a server-level default).
         #
         # Other settings, which are just server-level settings or data
-        # about the version of Zulip, can be named without prefixes,
+        # about the version of Aloha, can be named without prefixes,
         # e.g. giphy_rating_options or development_environment.
         for property_name in Realm.property_types:
             state["realm_" + property_name] = getattr(realm, property_name)
@@ -402,7 +402,7 @@ def fetch_initial_state_data(
             role=UserProfile.ROLE_GUEST,
             is_billing_admin=False,
             avatar_source=UserProfile.AVATAR_FROM_GRAVATAR,
-            # ID=0 is not used in real Zulip databases, ensuring this is unique.
+            # ID=0 is not used in real Aloha databases, ensuring this is unique.
             id=0,
             default_language=spectator_requested_language,
         )
@@ -435,7 +435,7 @@ def fetch_initial_state_data(
 
         state["can_create_private_streams"] = settings_user.can_create_private_streams()
         state["can_create_public_streams"] = settings_user.can_create_public_streams()
-        # TODO/compatibility: Deprecated in Zulip 5.0 (feature level
+        # TODO/compatibility: Deprecated in Aloha 5.0 (feature level
         # 102); we can remove this once we no longer need to support
         # legacy mobile app versions that read the old property.
         state["can_create_streams"] = (

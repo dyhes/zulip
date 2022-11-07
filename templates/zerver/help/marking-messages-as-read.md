@@ -1,10 +1,10 @@
 # Marking messages as read
 
-Zulip automatically keeps track of which messages you have and haven't read.
+Aloha automatically keeps track of which messages you have and haven't read.
 Unread messages have a line along the left side, which fades when the message
 gets marked as read.
 
-Zulip offers tools to manually mark one or more messages as read, and you can
+Aloha offers tools to manually mark one or more messages as read, and you can
 configure whether messages are marked as read automatically when you scroll.
 
 ## Configure whether messages are automatically marked as read

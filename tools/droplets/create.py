@@ -1,4 +1,4 @@
-# Creates a Zulip remote development environment droplet or
+# Creates a Aloha remote development environment droplet or
 # a production droplet in DigitalOcean.
 #
 # Particularly useful for sprints/hackathons, interns, and other
@@ -7,7 +7,7 @@
 # Requires python-digitalocean library:
 # https://github.com/koalalorenzo/python-digitalocean
 #
-# Also requires DigitalOcean team membership for Zulip and API token:
+# Also requires DigitalOcean team membership for Aloha and API token:
 # https://cloud.digitalocean.com/settings/api/tokens
 #
 # Copy conf.ini-template to conf.ini and populate with your API token.
@@ -25,9 +25,9 @@ from typing import Any, Dict, List, Tuple
 import digitalocean
 import requests
 
-parser = argparse.ArgumentParser(description="Create a Zulip development VM DigitalOcean droplet.")
+parser = argparse.ArgumentParser(description="Create a Aloha development VM DigitalOcean droplet.")
 parser.add_argument(
-    "username", help="GitHub username for whom you want to create a Zulip dev droplet"
+    "username", help="GitHub username for whom you want to create a Aloha dev droplet"
 )
 parser.add_argument("--tags", nargs="+", default=[])
 parser.add_argument("-f", "--recreate", action="store_true")
@@ -257,7 +257,7 @@ COMPLETE! Droplet for GitHub user {0} is available at {1}.
 Instructions for use are below. (copy and paste to the user)
 
 ------
-Your remote Zulip dev server has been created!
+Your remote Aloha dev server has been created!
 
 - Connect to your server by running
   `ssh zulipdev@{1}` on the command line
@@ -265,7 +265,7 @@ Your remote Zulip dev server has been created!
 - There is no password; your account is configured to use your SSH keys.
 - Once you log in, you should see `(zulip-py3-venv) ~$`.
 - To start the dev server, `cd zulip` and then run `./tools/run-dev.py`.
-- While the dev server is running, you can see the Zulip server in your browser at
+- While the dev server is running, you can see the Aloha server in your browser at
   http://{1}:9991.
 """.format(
             username, droplet_domain_name
@@ -276,11 +276,11 @@ Your remote Zulip dev server has been created!
         "See [Developing remotely](https://zulip.readthedocs.io/en/latest/development/remote.html) "
         "for tips on using the remote dev instance and "
         "[Git & GitHub guide](https://zulip.readthedocs.io/en/latest/git/index.html) "
-        "to learn how to use Git with Zulip.\n"
+        "to learn how to use Git with Aloha.\n"
     )
     print(
         "Note that this droplet will automatically be deleted after a month of inactivity. "
-        "If you are leaving Zulip for more than a few weeks, we recommend pushing all of your "
+        "If you are leaving Aloha for more than a few weeks, we recommend pushing all of your "
         "active branches to GitHub."
     )
     print("------")
@@ -313,7 +313,7 @@ def get_zulip_oneclick_app_slug(api_token: str) -> str:
     for one_click in one_clicks:
         if one_click["slug"].startswith("kandralabs"):
             return one_click["slug"]
-    raise Exception("Unable to find Zulip One-click app slug")
+    raise Exception("Unable to find Aloha One-click app slug")
 
 
 if __name__ == "__main__":
@@ -329,7 +329,7 @@ if __name__ == "__main__":
     if args.production:
         print(f"Creating production droplet for GitHub user {username}...")
     else:
-        print(f"Creating Zulip developer environment for GitHub user {username}...")
+        print(f"Creating Aloha developer environment for GitHub user {username}...")
 
     config = get_config()
     api_token = config["digitalocean"]["api_token"]

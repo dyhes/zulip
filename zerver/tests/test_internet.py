@@ -1,10 +1,10 @@
 import requests
 import responses
 
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 
 
-class ResponsesTest(ZulipTestCase):
+class ResponsesTest(AlohaTestCase):
     def test_responses(self) -> None:
         # With our test setup, accessing the internet should be blocked.
         with self.assertRaises(Exception):

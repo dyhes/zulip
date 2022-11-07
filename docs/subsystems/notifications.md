@@ -1,7 +1,7 @@
-# Notifications in Zulip
+# Notifications in Aloha
 
 This is a design document aiming to provide context for developers
-working on Zulip's email notifications and mobile push notifications
+working on Aloha's email notifications and mobile push notifications
 code paths. We recommend first becoming familiar with [sending
 messages](sending-messages.md); this document expands on
 the details of the email/mobile push notifications code path.
@@ -37,7 +37,7 @@ as follows:
     in the main event dictionary.
   - The `presence_idle_user_ids` set, containing the subset of
     recipient users who can potentially receive notifications, but have not
-    interacted with a Zulip client in the last few minutes. (Users who
+    interacted with a Aloha client in the last few minutes. (Users who
     have generally will not receive a notification unless the
     `enable_online_push_notifications` flag is enabled). This data
     structure ignores users for whom the message is not notifiable,
@@ -52,8 +52,8 @@ as follows:
   logic not present when processing normal events, both for details
   like splicing `flags` to customize event payloads per-user, as well.
   - The Tornado system determines whether the user is "offline/idle".
-    Zulip's email notifications are designed to not fire when the user
-    is actively using Zulip to avoid spam, and this is where those
+    Aloha's email notifications are designed to not fire when the user
+    is actively using Aloha to avoid spam, and this is where those
     checks are implemented.
   - Users in `presence_idle_user_ids` are always considered idle:
     the variable name means "users who are idle because of
@@ -64,7 +64,7 @@ as follows:
     if a user was present 1 minute before a message was sent, and then
     closed their laptop, the user will not be in
     `presence_idle_user_ids` (because it takes a
-    [few minutes](presence.md) of being idle for Zulip
+    [few minutes](presence.md) of being idle for Aloha
     clients to declare to the server that the user is actually idle),
     and so without an additional mechanism, messages sent shortly after
     a user leaves would never trigger a notification (!).
@@ -72,7 +72,7 @@ as follows:
     `receiver_is_off_zulip` returns `True`, which checks whether the user has any
     current events system clients registered to receive `message`
     events. This check is done immediately (handling soft disconnects,
-    where E.g. the user closes their last Zulip tab and we get the
+    where E.g. the user closes their last Aloha tab and we get the
     `DELETE /events/{queue_id}` request).
   - The `receiver_is_off_zulip` check is effectively repeated when
     event queues are garbage-collected (in `missedmessage_hook`) by
@@ -121,7 +121,7 @@ as follows:
     messages into a single email. These features are unnecessary
     for mobile push notifications, because we can live-update those
     details with a future notification, whereas emails cannot be readily
-    updated once sent. Zulip's email notifications are styled similarly
+    updated once sent. Aloha's email notifications are styled similarly
     to GitHub's email notifications, with a clean, simple design that
     makes replying from an email client possible (using the [incoming
     email integration](../production/email-gateway.md)).
@@ -140,7 +140,7 @@ structure of the system, when thinking about changes to it:
 - **Bulk database queries** are much more efficient for checking
   details from the database like "which users receiving this message
   are online".
-- **Thousands of users**. Zulip supports thousands of users, and we
+- **Thousands of users**. Aloha supports thousands of users, and we
   want to avoid `send_event()` pushing large amounts of per-user data
   to Tornado via RabbitMQ for scalability reasons.
 - **Tornado doesn't do database queries**. Because the Tornado system
@@ -154,10 +154,10 @@ structure of the system, when thinking about changes to it:
   expect to only expand with time, with upcoming features like
   following a topic (to get notifications for messages only within
   that topic in a stream). There are a lot of different workflows
-  possible with Zulip's threading, and it's important to make it easy
-  for users to set up Zulip's notification to fit as many of those
+  possible with Aloha's threading, and it's important to make it easy
+  for users to set up Aloha's notification to fit as many of those
   workflows as possible.
-- **Message editing**. Zulip supports editing messages, and that
+- **Message editing**. Aloha supports editing messages, and that
   interacts with notifications in ways that require careful handling:
   Notifications should have
   the latest edited content (users often fix typos 30 seconds after

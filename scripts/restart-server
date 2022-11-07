@@ -75,7 +75,7 @@ if has_application_server():
 
     if has_application_server(once=True):
         # These used to be included in "zulip-workers:*"; since we may
-        # be restarting an older version of Zulip, which has not
+        # be restarting an older version of Aloha, which has not
         # applied puppet to reload the new list of processes, only
         # stop them if they currently exist according to
         # `supervisorctl`.
@@ -139,7 +139,7 @@ if has_application_server():
     # minimize downtime of the tornado service caused by too many Python
     # processes restarting at the same time, resulting in each receiving
     # insufficient priority.  This is important, because Tornado is the
-    # main source of user-visible downtime when we restart a Zulip server.
+    # main source of user-visible downtime when we restart a Aloha server.
     # We do this before restarting Django, in case there are new event
     # types which it will need to know how to deal with.
     if action == "restart" and args.skip_tornado:
@@ -194,7 +194,7 @@ if (action == "start" or args.less_graceful) and len(workers) > 0:
     subprocess.check_call(["supervisorctl", "start", *workers])
 
 logging.info("Done!")
-print(OKGREEN + f"Zulip {action}ed successfully!" + ENDC)
+print(OKGREEN + f"Aloha {action}ed successfully!" + ENDC)
 
 if change_symlink and "PWD" in os.environ:
     for symlink in [last_symlink, current_symlink]:

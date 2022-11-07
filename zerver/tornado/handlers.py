@@ -179,7 +179,7 @@ class AsyncDjangoHandler(tornado.web.RequestHandler):
                 # long-polling, we just need to write the HTTP
                 # response that Django prepared for us via Tornado.
 
-                # Mark this handler ID as finished for Zulip's own tracking.
+                # Mark this handler ID as finished for Aloha's own tracking.
                 clear_handler_by_id(self.handler_id)
 
                 assert isinstance(response, HttpResponse)
@@ -254,7 +254,7 @@ class AsyncDjangoHandler(tornado.web.RequestHandler):
         # rest_dispatch to return the response immediately before
         # doing any work.  This arrangement allows Django's full
         # request/middleware system to run unmodified while avoiding
-        # running expensive things like Zulip's authentication code a
+        # running expensive things like Aloha's authentication code a
         # second time.
         request_notes.saved_response = json_response(
             res_type=result_dict["result"], data=result_dict, status=self.get_status()

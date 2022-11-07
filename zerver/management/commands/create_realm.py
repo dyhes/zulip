@@ -5,13 +5,13 @@ from django.core.management.base import CommandError
 
 from zerver.actions.create_realm import do_create_realm
 from zerver.actions.create_user import do_create_user
-from zerver.lib.management import ZulipBaseCommand
+from zerver.lib.management import AlohaBaseCommand
 from zerver.models import UserProfile
 
 
-class Command(ZulipBaseCommand):
+class Command(AlohaBaseCommand):
     help = """\
-Create a new Zulip organization (realm) via the command line.
+Create a new Aloha organization (realm) via the command line.
 
 We recommend `./manage.py generate_realm_creation_link` for most
 users, for several reasons:
@@ -23,7 +23,7 @@ users, for several reasons:
 This management command is available as an alternative for situations
 where one wants to script the realm creation process.
 
-Since every Zulip realm must have an owner, this command creates the
+Since every Aloha realm must have an owner, this command creates the
 initial organization owner user for the new realm, using the same
 workflow as `./manage.py create_user`.
 """

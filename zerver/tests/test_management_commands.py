@@ -15,8 +15,8 @@ from django.utils.timezone import now as timezone_now
 from confirmation.models import RealmCreationKey, generate_realm_creation_url
 from zerver.actions.create_user import do_create_user
 from zerver.actions.reactions import do_add_reaction
-from zerver.lib.management import ZulipBaseCommand, check_config
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.management import AlohaBaseCommand, check_config
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import most_recent_message, stdout_suppressed
 from zerver.models import (
     Message,
@@ -30,7 +30,7 @@ from zerver.models import (
 )
 
 
-class TestCheckConfig(ZulipTestCase):
+class TestCheckConfig(AlohaTestCase):
     def test_check_config(self) -> None:
         check_config()
         with self.settings(REQUIRED_SETTINGS=[("asdf", "not asdf")]):
@@ -45,14 +45,14 @@ class TestCheckConfig(ZulipTestCase):
             call_command("send_test_email", "test@example.com")
 
 
-class TestZulipBaseCommand(ZulipTestCase):
+class TestAlohaBaseCommand(AlohaTestCase):
     def setUp(self) -> None:
         super().setUp()
         self.zulip_realm = get_realm("zulip")
-        self.command = ZulipBaseCommand()
+        self.command = AlohaBaseCommand()
 
     def test_get_client(self) -> None:
-        self.assertEqual(self.command.get_client().name, "ZulipServer")
+        self.assertEqual(self.command.get_client().name, "AlohaServer")
 
     def test_get_realm(self) -> None:
         self.assertEqual(self.command.get_realm(dict(realm_id="zulip")), self.zulip_realm)
@@ -198,7 +198,7 @@ class TestZulipBaseCommand(ZulipTestCase):
         self.assertEqual(user_profiles, expected_user_profiles)
 
 
-class TestCommandsCanStart(ZulipTestCase):
+class TestCommandsCanStart(AlohaTestCase):
     def setUp(self) -> None:
         super().setUp()
         self.commands = [
@@ -220,7 +220,7 @@ class TestCommandsCanStart(ZulipTestCase):
         settings.RUNNING_INSIDE_TORNADO = False
 
 
-class TestSendWebhookFixtureMessage(ZulipTestCase):
+class TestSendWebhookFixtureMessage(AlohaTestCase):
     COMMAND_NAME = "send_webhook_fixture_message"
 
     def setUp(self) -> None:
@@ -284,7 +284,7 @@ class TestSendWebhookFixtureMessage(ZulipTestCase):
         )
 
 
-class TestGenerateRealmCreationLink(ZulipTestCase):
+class TestGenerateRealmCreationLink(AlohaTestCase):
     COMMAND_NAME = "generate_realm_creation_link"
 
     @override_settings(OPEN_REALM_CREATION=False)
@@ -294,7 +294,7 @@ class TestGenerateRealmCreationLink(ZulipTestCase):
 
         # Get realm creation page
         result = self.client_get(generated_link)
-        self.assert_in_success_response(["Create a new Zulip organization"], result)
+        self.assert_in_success_response(["Create a new Aloha organization"], result)
 
         # Enter email
         with self.assertRaises(Realm.DoesNotExist):
@@ -357,7 +357,7 @@ class TestGenerateRealmCreationLink(ZulipTestCase):
 
 
 @skipUnless(settings.ZILENCER_ENABLED, "requires zilencer")
-class TestCalculateFirstVisibleMessageID(ZulipTestCase):
+class TestCalculateFirstVisibleMessageID(AlohaTestCase):
     COMMAND_NAME = "calculate_first_visible_message_id"
 
     def test_check_if_command_calls_maybe_update_first_visible_message_id(self) -> None:
@@ -372,7 +372,7 @@ class TestCalculateFirstVisibleMessageID(ZulipTestCase):
         m.assert_has_calls(calls, any_order=True)
 
 
-class TestPasswordRestEmail(ZulipTestCase):
+class TestPasswordRestEmail(AlohaTestCase):
     COMMAND_NAME = "send_password_reset_email"
 
     def test_if_command_sends_password_reset_email(self) -> None:
@@ -382,12 +382,12 @@ class TestPasswordRestEmail(ZulipTestCase):
         self.assertEqual(self.email_envelope_from(outbox[0]), settings.NOREPLY_EMAIL_ADDRESS)
         self.assertRegex(
             self.email_display_from(outbox[0]),
-            rf"^Zulip Account Security <{self.TOKENIZED_NOREPLY_REGEX}>\Z",
+            rf"^Aloha Account Security <{self.TOKENIZED_NOREPLY_REGEX}>\Z",
         )
         self.assertIn("reset your password", outbox[0].body)
 
 
-class TestRealmReactivationEmail(ZulipTestCase):
+class TestRealmReactivationEmail(AlohaTestCase):
     COMMAND_NAME = "send_realm_reactivation_email"
 
     def test_if_realm_not_deactivated(self) -> None:
@@ -396,7 +396,7 @@ class TestRealmReactivationEmail(ZulipTestCase):
             call_command(self.COMMAND_NAME, "--realm=zulip")
 
 
-class TestSendToEmailMirror(ZulipTestCase):
+class TestSendToEmailMirror(AlohaTestCase):
     COMMAND_NAME = "send_to_email_mirror"
 
     def test_sending_a_fixture(self) -> None:
@@ -455,7 +455,7 @@ class TestSendToEmailMirror(ZulipTestCase):
         self.assertEqual(message.recipient.type_id, stream_id)
 
 
-class TestConvertMattermostData(ZulipTestCase):
+class TestConvertMattermostData(AlohaTestCase):
     COMMAND_NAME = "convert_mattermost_data"
 
     def test_if_command_calls_do_convert_data(self) -> None:
@@ -475,7 +475,7 @@ class TestConvertMattermostData(ZulipTestCase):
 
 
 @skipUnless(settings.ZILENCER_ENABLED, "requires zilencer")
-class TestInvoicePlans(ZulipTestCase):
+class TestInvoicePlans(AlohaTestCase):
     COMMAND_NAME = "invoice_plans"
 
     def test_if_command_calls_invoice_plans_as_needed(self) -> None:
@@ -486,7 +486,7 @@ class TestInvoicePlans(ZulipTestCase):
 
 
 @skipUnless(settings.ZILENCER_ENABLED, "requires zilencer")
-class TestDowngradeSmallRealmsBehindOnPayments(ZulipTestCase):
+class TestDowngradeSmallRealmsBehindOnPayments(AlohaTestCase):
     COMMAND_NAME = "downgrade_small_realms_behind_on_payments"
 
     def test_if_command_calls_downgrade_small_realms_behind_on_payments_as_needed(self) -> None:
@@ -498,7 +498,7 @@ class TestDowngradeSmallRealmsBehindOnPayments(ZulipTestCase):
         m.assert_called_once()
 
 
-class TestExport(ZulipTestCase):
+class TestExport(AlohaTestCase):
     COMMAND_NAME = "export"
 
     def test_command_with_consented_message_id(self) -> None:
@@ -586,7 +586,7 @@ class TestExport(ZulipTestCase):
         )
 
 
-class TestSendCustomEmail(ZulipTestCase):
+class TestSendCustomEmail(AlohaTestCase):
     COMMAND_NAME = "send_custom_email"
 
     def test_custom_email_with_dry_run(self) -> None:

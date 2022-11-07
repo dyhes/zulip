@@ -42,7 +42,7 @@ def add_api_uri_context(context: Dict[str, Any], request: HttpRequest) -> None:
         display_subdomain = subdomain
         html_settings_links = True
     else:
-        display_subdomain = "yourZulipDomain"
+        display_subdomain = "yourAlohaDomain"
         html_settings_links = False
 
     display_host = Realm.host_for_subdomain(display_subdomain)
@@ -57,10 +57,10 @@ def add_api_uri_context(context: Dict[str, Any], request: HttpRequest) -> None:
 
     context["html_settings_links"] = html_settings_links
     if html_settings_links:
-        settings_html = '<a href="/#settings">Zulip settings page</a>'
+        settings_html = '<a href="/#settings">Aloha settings page</a>'
         subscriptions_html = '<a target="_blank" href="/#streams">streams page</a>'
     else:
-        settings_html = "Zulip settings page"
+        settings_html = "Aloha settings page"
         subscriptions_html = "streams page"
     context["settings_html"] = settings_html
     context["subscriptions_html"] = subscriptions_html
@@ -170,21 +170,21 @@ class MarkdownDirectoryView(ApiURLView):
             context["doc_root_title"] = "Help center"
             sidebar_article = self.get_path("include/sidebar_index")
             sidebar_index = sidebar_article.article_path
-            title_base = "Zulip help center"
+            title_base = "Aloha help center"
         elif self.path_template == f"{settings.POLICIES_DIRECTORY}/%s.md":
             context["page_is_policy_center"] = True
             context["doc_root"] = "/policies/"
             context["doc_root_title"] = "Terms and policies"
             sidebar_article = self.get_path("sidebar_index")
             sidebar_index = sidebar_article.article_path
-            title_base = "Zulip terms and policies"
+            title_base = "Aloha terms and policies"
         else:
             context["page_is_api_center"] = True
             context["doc_root"] = "/api/"
             context["doc_root_title"] = "API documentation"
             sidebar_article = self.get_path("sidebar_index")
             sidebar_index = sidebar_article.article_path
-            title_base = "Zulip API documentation"
+            title_base = "Aloha API documentation"
 
         # The following is a somewhat hacky approach to extract titles from articles.
         endpoint_name = None
@@ -263,26 +263,26 @@ def add_integrations_context(context: Dict[str, Any]) -> None:
 def add_integrations_open_graph_context(context: Dict[str, Any], request: HttpRequest) -> None:
     path_name = request.path.rstrip("/").split("/")[-1]
     description = (
-        "Zulip comes with over a hundred native integrations out of the box, "
+        "Aloha comes with over a hundred native integrations out of the box, "
         "and integrates with Zapier and IFTTT to provide hundreds more. "
-        "Connect the apps you use every day to Zulip."
+        "Connect the apps you use every day to Aloha."
     )
 
     if path_name in INTEGRATIONS:
         integration = INTEGRATIONS[path_name]
-        context["PAGE_TITLE"] = f"{integration.display_name} | Zulip integrations"
+        context["PAGE_TITLE"] = f"{integration.display_name} | Aloha integrations"
         context["PAGE_DESCRIPTION"] = description
 
     elif path_name in CATEGORIES:
         category = CATEGORIES[path_name]
         if path_name in META_CATEGORY:
-            context["PAGE_TITLE"] = f"{category} | Zulip integrations"
+            context["PAGE_TITLE"] = f"{category} | Aloha integrations"
         else:
-            context["PAGE_TITLE"] = f"{category} tools | Zulip integrations"
+            context["PAGE_TITLE"] = f"{category} tools | Aloha integrations"
         context["PAGE_DESCRIPTION"] = description
 
     elif path_name == "integrations":
-        context["PAGE_TITLE"] = "Zulip integrations"
+        context["PAGE_TITLE"] = "Aloha integrations"
         context["PAGE_DESCRIPTION"] = description
 
 

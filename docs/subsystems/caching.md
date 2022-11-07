@@ -1,6 +1,6 @@
-# Caching in Zulip
+# Caching in Aloha
 
-Like any product with good performance characteristics, Zulip makes
+Like any product with good performance characteristics, Aloha makes
 extensive use of caching. This article talks about our caching
 strategy, focusing on how we use `memcached` (since it's the thing
 people generally think about when they ask about how a server does
@@ -8,8 +8,8 @@ caching).
 
 ## Backend caching with memcached
 
-On the backend, Zulip uses `memcached`, a popular key-value store, for
-caching. Our `memcached` caching helps let us optimize Zulip's
+On the backend, Aloha uses `memcached`, a popular key-value store, for
+caching. Our `memcached` caching helps let us optimize Aloha's
 performance and scalability, since most requests don't need to talk to
 the database (which, even for a trivial query with everything on the
 same machine, usually takes 3-10x as long as a memcached fetch).
@@ -28,18 +28,18 @@ an extra and difficult-to-guess step to reproduce (namely, putting the
 wrong data into the cache).
 
 So we've designed our backend to ensure that if we write a small
-amount of Zulip's core caching code correctly, then the code most developers
+amount of Aloha's core caching code correctly, then the code most developers
 naturally write will both benefit from caching and not create any cache
 consistency problems.
 
 The overall result of this design is that in the vast majority of
-Zulip's Django codebase, all one needs to do is call the standard
+Aloha's Django codebase, all one needs to do is call the standard
 accessor functions for data (like `get_user` or `get_stream` to fetch
 user and stream objects, or for view code, functions like
 `access_stream_by_id`, which checks permissions), and everything will
 work great. The data fetches automatically benefit from `memcached`
 caching, since those accessor methods have already been written to
-transparently use Zulip's memcached caching system, and the developer
+transparently use Aloha's memcached caching system, and the developer
 doesn't need to worry about whether the data returned is up-to-date:
 it is. In the following sections, we'll talk about how we make this
 work.
@@ -51,7 +51,7 @@ also generally take care of details you might not think about
 It's amazing how slightly tricky logic that's duplicated in several
 places invariably ends up buggy in some of those places, and in
 aggregate we call these accessor functions hundreds of times in
-Zulip. But the caching is certainly a nice bonus.
+Aloha. But the caching is certainly a nice bonus.
 
 ### The core implementation
 
@@ -95,7 +95,7 @@ This decorator implements a pretty classic caching paradigm:
   `KEY_PREFIX` is rotated every time we deploy to production; see
   below for details.
 
-We use this decorator in more than 30 places in Zulip, and it saves a
+We use this decorator in more than 30 places in Aloha, and it saves a
 huge amount of otherwise very self-similar caching code.
 
 ### Cautions
@@ -140,12 +140,12 @@ post_save.connect(flush_user_profile, sender=UserProfile)
 
 Once this `post_save` hook is registered, whenever one calls
 `user_profile.save(...)` with a UserProfile object in our Django
-project, Django will call the `flush_user_profile` function. Zulip is
+project, Django will call the `flush_user_profile` function. Aloha is
 systematic about using the standard Django `.save()` function for
 modifying `user_profile` objects (and passing the `update_fields`
 argument to `.save()` consistently, which encodes which fields on an
 object changed). This means that all we have to do is write those
-cache-flushing functions correctly, and people writing Zulip code
+cache-flushing functions correctly, and people writing Aloha code
 won't need to think about (or even know about!) the caching.
 
 Each of those flush functions basically just computes the list of
@@ -169,15 +169,15 @@ the main thing that requires care is making sure we remember to reason
 about that when changing cache semantics.
 
 But the overall benefit of this cache system is that almost all the
-code in Zulip just needs to modify Django model objects and call
+code in Aloha just needs to modify Django model objects and call
 `.save()`, and the caching system will do the right thing.
 
 ### Production deployments and database migrations
 
-When upgrading a Zulip server, it's important to avoid having one
+When upgrading a Aloha server, it's important to avoid having one
 version of the code interact with cached objects from another version
-that has a different data layout. In Zulip, we avoid this through
-some clever caching strategies. Each "deployment directory" for Zulip
+that has a different data layout. In Aloha, we avoid this through
+some clever caching strategies. Each "deployment directory" for Aloha
 in production has inside it a `var/remote_cache_prefix` file,
 containing a cache prefix (`KEY_PREFIX` in the code) that is
 automatically appended to the start of any cache keys accessed by that
@@ -189,9 +189,9 @@ from inconsistent versions of the source code / data formats in the cache.
 
 ### Automated testing and memcached
 
-For Zulip's `test-backend` unit tests, we use the same strategy. In
+For Aloha's `test-backend` unit tests, we use the same strategy. In
 particular, we just edit `KEY_PREFIX` before each unit test; this
-means each of the thousands of test cases in Zulip has its own
+means each of the thousands of test cases in Aloha has its own
 independent memcached key namespace on each run of the unit tests. As
 a result, we never have to worry about memcached caching causing
 problems across multiple tests.
@@ -206,7 +206,7 @@ having to consider the possibility that memcached is somehow confusing
 the situation.
 
 Further, this `KEY_PREFIX` model means that running the backend tests
-won't potentially conflict with whatever you're doing in a Zulip
+won't potentially conflict with whatever you're doing in a Aloha
 development environment on the same machine, which also saves a ton of
 time when debugging, since developers don't need to think about things
 like whether some test changed Hamlet's email address and that's why
@@ -218,7 +218,7 @@ test run).
 
 ### Manual testing and memcached
 
-Zulip's development environment will automatically flush (delete all
+Aloha's development environment will automatically flush (delete all
 keys in) `memcached` when provisioning and when starting `run-dev.py`.
 You can run the server with that behavior disabled using
 `tools/run-dev.py --no-clear-memcached`.
@@ -235,8 +235,8 @@ objects to minimize data transfer between Django and memcached).
 
 ## In-process caching in Django
 
-We generally try to avoid in-process backend caching in Zulip's Django
-codebase, because every Zulip production installation involves
+We generally try to avoid in-process backend caching in Aloha's Django
+codebase, because every Aloha production installation involves
 multiple servers. We do have a few, however:
 
 - `per_request_display_recipient_cache`: A cache flushed at the start
@@ -245,17 +245,17 @@ multiple servers. We do have a few, however:
   for each message in the `GET /messages` codebase.
 - Caches of various data, like the `SourceMap` object, that are
   expensive to construct, not needed for most requests, and don't
-  change once a Zulip server has been deployed in production.
+  change once a Aloha server has been deployed in production.
 
 ## Browser caching of state
 
-Zulip makes extensive use of caching of data in the browser and mobile
+Aloha makes extensive use of caching of data in the browser and mobile
 apps; details like which users exist, with metadata like names and
 avatars, similar details for streams, recent message history, etc.
 
 This data is fetched in the `/register` endpoint (or `page_params`
 for the web app), and kept correct over time. The key to keeping these
-state up to date is Zulip's
+state up to date is Aloha's
 [real-time events system](events-system.md), which
 allows the server to notify clients whenever state that might be
 cached by clients is changed. Clients are responsible for handling

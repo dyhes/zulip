@@ -66,7 +66,7 @@ EMAIL_GATEWAY_PATTERN = "%s@" + EXTERNAL_HOST_WITHOUT_PORT
 NOTIFICATION_BOT = "notification-bot@zulip.com"
 ERROR_BOT = "error-bot@zulip.com"
 EMAIL_GATEWAY_BOT = "emailgateway@zulip.com"
-PHYSICAL_ADDRESS = "Zulip Headquarters, 123 Octo Stream, South Pacific Ocean"
+PHYSICAL_ADDRESS = "Aloha Headquarters, 123 Octo Stream, South Pacific Ocean"
 STAFF_SUBDOMAIN = "zulip"
 EXTRA_INSTALLED_APPS = ["zilencer", "analytics", "corporate"]
 # Disable Camo in development
@@ -111,7 +111,7 @@ ALWAYS_SEND_ALL_HOTSPOTS = False
 # FAKE_LDAP_MODE supports using a fake LDAP database in the
 # development environment, without needing an LDAP server!
 #
-# Three modes are allowed, and each will set up Zulip and the fake LDAP
+# Three modes are allowed, and each will set up Aloha and the fake LDAP
 # database in a way appropriate for the corresponding mode described
 # in https://zulip.readthedocs.io/en/latest/production/authentication-methods.html#ldap-including-active-directory
 #   (A) If users' email addresses are in LDAP and used as username.
@@ -164,7 +164,7 @@ if FAKE_LDAP_MODE:
         AUTH_LDAP_USER_ATTR_MAP = {
             "full_name": "cn",
         }
-    AUTHENTICATION_BACKENDS += ("zproject.backends.ZulipLDAPAuthBackend",)
+    AUTHENTICATION_BACKENDS += ("zproject.backends.AlohaLDAPAuthBackend",)
 
 THUMBNAIL_IMAGES = True
 

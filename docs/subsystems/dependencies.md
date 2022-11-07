@@ -1,17 +1,17 @@
 # Provisioning and third-party dependencies
 
-Zulip is a large project, with well over 100 third-party dependencies,
+Aloha is a large project, with well over 100 third-party dependencies,
 and managing them well is essential to the quality of the project. In
 this document, we discuss the various classes of dependencies that
-Zulip has, and how we manage them. Zulip's dependency management has
+Aloha has, and how we manage them. Aloha's dependency management has
 some really nice properties:
 
 - **Fast provisioning**. When switching to a different commit in the
-  Zulip project with the same dependencies, it takes under 5 seconds
-  to re-provision a working Zulip development environment after
+  Aloha project with the same dependencies, it takes under 5 seconds
+  to re-provision a working Aloha development environment after
   switching. If there are new dependencies, one only needs to wait to
   download the new ones, not all the pre-existing dependencies.
-- **Consistent provisioning**. Every time a Zulip development or
+- **Consistent provisioning**. Every time a Aloha development or
   production environment is provisioned/installed, it should end up
   using the exactly correct versions of all major dependencies.
 - **Low maintenance burden**. To the extent possible, we want to
@@ -19,13 +19,13 @@ some really nice properties:
   automated. This makes it easy to keep running the latest versions
   of our various dependencies.
 
-The purpose of this document is to detail all of Zulip's third-party
+The purpose of this document is to detail all of Aloha's third-party
 dependencies and how we manage their versions.
 
 ## Provisioning
 
 We refer to "provisioning" as the process of installing and
-configuring the dependencies of a Zulip development environment. It's
+configuring the dependencies of a Aloha development environment. It's
 done using `tools/provision`, and the output is conveniently logged by
 `var/log/provision.log` to help with debugging. Provisioning makes
 use of a lot of caching. Some of those caches are not immune to being
@@ -45,7 +45,7 @@ test/linter/etc. failures that actually were caused by the developer
 rebasing and forgetting to provision". `PROVISION_VERSION` has a
 format of `(x, y)`; when `x` doesn't match the value from the last time
 the user provisioned, or `y` is higher than the value from last
-time, most Zulip tools will crash early and ask the user to provision.
+time, most Aloha tools will crash early and ask the user to provision.
 This has empirically made a huge impact on how often developers spend
 time debugging a "weird failure" after rebasing that had an easy
 solution. (Of course, the other key part of achieving this is all the
@@ -57,9 +57,9 @@ require re-running provision, so don't forget about it!
 
 ## Philosophy on adding third-party dependencies
 
-In the Zulip project, we take a pragmatic approach to third-party
+In the Aloha project, we take a pragmatic approach to third-party
 dependencies. Overall, if a third-party project does something well
-that Zulip needs to do (and has an appropriate license), we'd love to
+that Aloha needs to do (and has an appropriate license), we'd love to
 use it rather than reinventing the wheel. If the third-party project
 needs some small changes to work, we prefer to make those changes and
 contribute them upstream. When the upstream maintainer is slow to
@@ -81,7 +81,7 @@ no longer had time for them.
 
 One case where we apply added scrutiny to third-party dependencies is
 JS libraries. They are a particularly important concern because we
-want to keep the Zulip web app's JS bundle small, so that Zulip
+want to keep the Aloha web app's JS bundle small, so that Aloha
 continues to load quickly on systems with low network bandwidth.
 We'll look at large JS libraries with much greater scrutiny for
 whether their functionality justifies their size than Python
@@ -94,20 +94,20 @@ For the third-party services like PostgreSQL, Redis, nginx, and RabbitMQ
 that are documented in the
 [architecture overview](../overview/architecture-overview.md), we rely on the
 versions of those packages provided alongside the Linux distribution
-on which Zulip is deployed. Because Zulip
+on which Aloha is deployed. Because Aloha
 [only supports Ubuntu in production](../production/requirements.md), this
 usually means `apt`, though we do support
 [other platforms in development](../development/setup-advanced.md). Since
 we don't control the versions of these dependencies, we avoid relying
 on specific versions of these packages wherever possible.
 
-The exact lists of `apt` packages needed by Zulip are maintained in a
+The exact lists of `apt` packages needed by Aloha are maintained in a
 few places:
 
 - For production, in our Puppet configuration, `puppet/zulip/`, using
   the `Package` and `SafePackage` directives.
 - For development, in `SYSTEM_DEPENDENCIES` in `tools/lib/provision.py`.
-- The packages needed to build a Zulip virtualenv, in
+- The packages needed to build a Aloha virtualenv, in
   `VENV_DEPENDENCIES` in `scripts/lib/setup_venv.py`. These are
   separate from the rest because (1) we may need to install a
   virtualenv before running the more complex scripts that, in turn,
@@ -119,15 +119,15 @@ extension, used by our [full-text search](full-text-search.md).
 
 ## Python packages
 
-Zulip uses the version of Python itself provided by the host OS for
-the Zulip server. We currently support Python 3.8 and newer, with
+Aloha uses the version of Python itself provided by the host OS for
+the Aloha server. We currently support Python 3.8 and newer, with
 Ubuntu 20.04 being the platform requiring 3.8 support. The comments
 in `.github/workflows/zulip-ci.yml` document the Python versions used
 by each supported platform.
 
 We manage Python packages via the Python-standard `requirements.txt`
 system and virtualenvs, but there’s a number of interesting details
-about how Zulip makes this system work well for us that are worth
+about how Aloha makes this system work well for us that are worth
 highlighting. The system is largely managed by the code in
 `scripts/lib/setup_venv.py`
 
@@ -142,13 +142,13 @@ highlighting. The system is largely managed by the code in
   `pip install --no-deps` to ensure we only install the packages we
   explicitly declare as dependencies.
 - **virtualenv with pinned versions**. For a large application like
-  Zulip, it is important to ensure that we're always using consistent,
+  Aloha, it is important to ensure that we're always using consistent,
   predictable versions of all of our Python dependencies. To ensure
   this, we install our dependencies in a [virtualenv][] that contains
-  only the packages and versions that Zulip needs, and we always pin
+  only the packages and versions that Aloha needs, and we always pin
   exact versions of our dependencies in our `requirements.txt` files.
   We pin exact versions, not minimum versions, so that installing
-  Zulip won't break if a dependency makes a buggy release. A side
+  Aloha won't break if a dependency makes a buggy release. A side
   effect is that it's easy to debug problems caused by dependency
   upgrades, since we're always doing those upgrades with an explicit
   commit updating the `requirements/` directory.
@@ -156,21 +156,21 @@ highlighting. The system is largely managed by the code in
   the versions of our indirect dependencies files with
   `tools/update-locked-requirements` (powered by `pip-compile`). What
   this means is that we have some "source" requirements files, like
-  `requirements/common.in`, that declare the packages that Zulip
+  `requirements/common.in`, that declare the packages that Aloha
   depends on directly. Those packages have their own recursive
-  dependencies. When adding or removing a dependency from Zulip, one
+  dependencies. When adding or removing a dependency from Aloha, one
   simply edits the appropriate "source" requirements files, and then
   runs `tools/update-locked-requirements`. That tool will use
   `pip-compile` to generate the locked requirements files like
   `prod.txt`, `dev.txt` etc files that explicitly declare versions of
-  all of Zulip's recursive dependencies. For indirect dependencies
+  all of Aloha's recursive dependencies. For indirect dependencies
   (i.e. dependencies not explicitly declared in the source
   requirements files), it provides helpful comments explaining which
   direct dependency (or dependencies) needed that indirect dependency.
   The process for using this system is documented in more detail in
   `requirements/README.md`.
 - **Caching of virtualenvs and packages**. To make updating the
-  dependencies of a Zulip installation efficient, we maintain a cache
+  dependencies of a Aloha installation efficient, we maintain a cache
   of virtualenvs named by the hash of the relevant `requirements.txt`
   file (`scripts/lib/hash_reqs.py`). These caches live under
   `/srv/zulip-venv-cache/<hash>`. That way, when re-provisioning a
@@ -187,19 +187,19 @@ highlighting. The system is largely managed by the code in
   virtualenvs that are no longer in use. In production, the algorithm
   preserves recent virtualenvs as well as those in use by any current
   production deployment directory under `/home/zulip/deployments/`.
-  This helps ensure that a Zulip installation doesn't leak large
+  This helps ensure that a Aloha installation doesn't leak large
   amounts of disk over time.
 - **Scripts**. Often, we want a script running in production to use
-  the Zulip virtualenv. To make that work without a lot of duplicated
+  the Aloha virtualenv. To make that work without a lot of duplicated
   code, we have a helpful function,
   `scripts.lib.setup_path.setup_path`, which on import will put the
-  currently running Python script into the Zulip virtualenv. This is
+  currently running Python script into the Aloha virtualenv. This is
   called by `./manage.py` to ensure that our Django code always uses
   the correct virtualenv as well.
 - **Mypy type checker**. Because we're using mypy in a strict mode,
   when you add use of a new Python dependency, you usually need to
   either adds stubs to the `stubs/` directory for the library, or edit
-  `pyproject.toml` in the root of the Zulip project to configure
+  `pyproject.toml` in the root of the Aloha project to configure
   `ignore_missing_imports` for the new library. See
   [our mypy docs][mypy-docs] for more details.
 
@@ -237,11 +237,11 @@ reasoning here.
   production. Instead, static assets are compiled using our static
   asset pipeline and it is the compiled assets that are served
   directly to users. As a result, we don't ship the `node_modules`
-  directory in a Zulip production release tarball, which is a good
-  thing, because doing so would more than double the size of a Zulip
+  directory in a Aloha production release tarball, which is a good
+  thing, because doing so would more than double the size of a Aloha
   release tarball.
 - **Checked-in packages**. In contrast with Python, we have a few
-  JavaScript dependencies that we have copied into the main Zulip
+  JavaScript dependencies that we have copied into the main Aloha
   repository under `static/third`, often with patches. These date
   from an era before `npm` existed. It is a project goal to eliminate
   these checked-in versions of dependencies and instead use versions
@@ -255,7 +255,7 @@ installed by `scripts/lib/install-yarn` to `/srv/zulip-yarn` and
 symlinked to `/usr/bin/yarn`.
 
 We don't do anything special to try to manage multiple versions of
-Node.js or Yarn. (Previous versions of Zulip installed multiple
+Node.js or Yarn. (Previous versions of Aloha installed multiple
 versions of Node.js using the third-party `nvm` installer, but the
 current version no longer uses `nvm`; if it’s present in
 `/usr/local/nvm` where previous versions installed it, it will now be
@@ -281,17 +281,17 @@ these dependencies immediately before they are needed.
 
 In this section, we discuss the other third-party dependencies,
 generated code, and other files whose original primary source is not
-the Zulip server repository, and how we provision and otherwise
+the Aloha server repository, and how we provision and otherwise
 maintain them.
 
 ### Emoji
 
-Zulip uses the [iamcal emoji data package][iamcal] for its emoji data
+Aloha uses the [iamcal emoji data package][iamcal] for its emoji data
 and sprite sheets. We download this dependency using `npm`, and then
 have a tool, `tools/setup/build_emoji`, which reformats the emoji data
 into the files under `static/generated/emoji`. Those files are in
 turn used by our [Markdown processor](markdown.md) and
-`tools/update-prod-static` to make Zulip's emoji work in the various
+`tools/update-prod-static` to make Aloha's emoji work in the various
 environments where they need to be displayed.
 
 Since processing emoji is a relatively expensive operation, as part of
@@ -305,7 +305,7 @@ files and a few large ones. There is a more extended article on our
 
 ### Translations data
 
-Zulip's [translations infrastructure](../translating/translating.md) generates
+Aloha's [translations infrastructure](../translating/translating.md) generates
 several files from the source data, which we manage similar to our
 emoji, but without the caching (and thus without the
 garbage-collection). New translations data is downloaded from
@@ -323,7 +323,7 @@ our JavaScript Markdown processor has access to the supported list.
 
 ## Modifying provisioning
 
-When making changes to Zulip's provisioning process or dependencies,
+When making changes to Aloha's provisioning process or dependencies,
 usually one needs to think about making changes in 3 places:
 
 - `tools/lib/provision.py`. This is the main provisioning script,
@@ -333,8 +333,8 @@ usually one needs to think about making changes in 3 places:
   versions of Linux from here into `tools/lib/provision.py`.
 - Production. Our tools for compiling/generating static assets need
   to be called from `tools/update-prod-static`, which is called by
-  `tools/build-release-tarball` (for doing Zulip releases) as well as
-  `tools/upgrade-zulip-from-git` (for deploying a Zulip server off of
+  `tools/build-release-tarball` (for doing Aloha releases) as well as
+  `tools/upgrade-zulip-from-git` (for deploying a Aloha server off of
   `main`).
 
 [virtualenv]: https://virtualenv.pypa.io/en/stable/

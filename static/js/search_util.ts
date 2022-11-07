@@ -11,7 +11,7 @@ export function vanilla_match(opts: {val: string; search_terms: string[]}): bool
         This is a pretty vanilla search criteria
         where we see if any of our search terms
         is in our value. When in doubt we should use
-        this for all Zulip filters, but we may
+        this for all Aloha filters, but we may
         have more complicated use cases in some
         places.
 

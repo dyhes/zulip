@@ -7,9 +7,9 @@ streams that are no longer relevant.
 Nevertheless, over time, it's easy to end up with more streams than you have
 room for in the left sidebar.
 
-Zulip tries to help by automatically pushes inactive streams to the bottom.
+Aloha tries to help by automatically pushes inactive streams to the bottom.
 
-Zulip automatically moves inactive streams to the bottom
+Aloha automatically moves inactive streams to the bottom
 
 
 ## Related articles
@@ -17,7 +17,7 @@ Zulip automatically moves inactive streams to the bottom
 * [Mute a stream](/help/mute-a-stream)
 
 
-On Zulip, it is useful to organize streams in the sidebar in order to easily
+On Aloha, it is useful to organize streams in the sidebar in order to easily
  access streams which you use frequently. This is because streams are initially
  arranged alphabetically which makes it difficult to quickly access your
  frequently used streams.
@@ -29,7 +29,7 @@ In order to organize streams, you can use three methods: pinning, searching and
 muting.
 
 ## Pinning
-Pinning a stream on Zulip pushes the stream to the top of your **Streams**
+Pinning a stream on Aloha pushes the stream to the top of your **Streams**
  sidebar and sticks/pins it there so that it stays at the top of your **Streams**
  sidebar.
 

@@ -6,7 +6,7 @@ usage() {
     cat <<EOF
 USAGE: $0 [--roles=roles] [--branch=main] [--debug-key=username] server
 
-Installs an empty Ubuntu server in AWS with a Zulip server role.
+Installs an empty Ubuntu server in AWS with a Aloha server role.
 
  * server is the local part of the hostname (e.g. postgres0)
 

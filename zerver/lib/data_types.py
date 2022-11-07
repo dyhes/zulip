@@ -1,6 +1,6 @@
 """This module sets up type classes like DictType and ListType that
 define types for arbitrary objects.  The main use case is to specify
-the types of Zulip events that come from send_event calls for
+the types of Aloha events that come from send_event calls for
 verification in test_events.py; in most other code paths we'll want to
 use a TypedDict.
 
@@ -249,7 +249,7 @@ def event_dict_type(
     This is just a tiny wrapper on DictType, but it provides
     some minor benefits:
 
-        - mark clearly that the schema is for a Zulip event
+        - mark clearly that the schema is for a Aloha event
         - make sure there's a type field
         - add id field automatically
         - sanity check that we have no duplicate keys

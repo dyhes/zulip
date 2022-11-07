@@ -2,7 +2,7 @@ To reply to an existing thread:
 
 {start_tabs}
 
-1. Click the **Message...** button at the bottom of the Zulip window.
+1. Click the **Message...** button at the bottom of the Aloha window.
 
 {!compose-and-send-message.md!}
 

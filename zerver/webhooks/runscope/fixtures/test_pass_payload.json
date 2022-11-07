@@ -6,7 +6,7 @@
    "agent":null,
    "team_id":"541c9408-2d06-4fa2-a453-eb595d32f20d",
    "result":"pass",
-   "team_name":"Zulip",
+   "team_name":"Aloha",
    "started_at":1514527121.931801,
    "agent_expired":null,
    "environment_uuid":"e6a5d189-4179-4854-b3d2-43cc44028d41",
@@ -16,7 +16,7 @@
    "bucket_key":"pmsim6ddzfaw",
    "region_name":"US Virginia - None",
    "bucket_name":"Wooly Snow",
-   "test_name":"Zulip Integration",
+   "test_name":"Aloha Integration",
    "test_id":"2ed4267a-6338-44ff-9d5e-400465080ab5",
    "region":"us1",
    "initial_variables":{

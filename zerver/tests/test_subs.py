@@ -67,7 +67,7 @@ from zerver.lib.subscription_info import (
     gather_subscriptions_helper,
     validate_user_access_to_subscribers_helper,
 )
-from zerver.lib.test_classes import ZulipTestCase, get_topic_messages
+from zerver.lib.test_classes import AlohaTestCase, get_topic_messages
 from zerver.lib.test_helpers import (
     HostRequestMock,
     cache_tries_captured,
@@ -113,7 +113,7 @@ if TYPE_CHECKING:
     from django.test.client import _MonkeyPatchedWSGIResponse as TestHttpResponse
 
 
-class TestMiscStuff(ZulipTestCase):
+class TestMiscStuff(AlohaTestCase):
     def test_test_helper(self) -> None:
         cordelia = self.example_user("cordelia")
         s = self.subscribed_stream_name_list(cordelia)
@@ -242,7 +242,7 @@ class TestMiscStuff(ZulipTestCase):
         )
 
 
-class TestCreateStreams(ZulipTestCase):
+class TestCreateStreams(AlohaTestCase):
     def test_creating_streams(self) -> None:
         stream_names = ["new1", "new2", "new3"]
         stream_descriptions = ["des1", "des2", "des3"]
@@ -390,7 +390,7 @@ class TestCreateStreams(ZulipTestCase):
         # convenience.
         reset_emails_in_zulip_realm()
 
-        realm = Realm.objects.get(name="Zulip Dev")
+        realm = Realm.objects.get(name="Aloha Dev")
         iago = self.example_user("iago")
         hamlet = self.example_user("hamlet")
         cordelia = self.example_user("cordelia")
@@ -468,7 +468,7 @@ class TestCreateStreams(ZulipTestCase):
         self.assert_length(iago_unread_messages, 0)
 
 
-class RecipientTest(ZulipTestCase):
+class RecipientTest(AlohaTestCase):
     def test_recipient(self) -> None:
         realm = get_realm("zulip")
         stream = get_stream("Verona", realm)
@@ -479,7 +479,7 @@ class RecipientTest(ZulipTestCase):
         self.assertEqual(str(recipient), f"<Recipient: Verona ({stream.id}, {Recipient.STREAM})>")
 
 
-class StreamAdminTest(ZulipTestCase):
+class StreamAdminTest(AlohaTestCase):
     def test_make_stream_public(self) -> None:
         user_profile = self.example_user("hamlet")
         self.login_user(user_profile)
@@ -1098,7 +1098,7 @@ class StreamAdminTest(ZulipTestCase):
         # is_zephyr_mirror_realm, and don't allow changing stream
         # permissions in such realms.  So changing the
         # history_public_to_subscribers property of a public stream is
-        # not possible in Zulip today
+        # not possible in Aloha today
         user_profile = self.example_user("hamlet")
         self.login_user(user_profile)
         realm = user_profile.realm
@@ -1869,7 +1869,7 @@ class StreamAdminTest(ZulipTestCase):
         result = self.client_patch(
             f"/json/streams/{stream.id}", {"message_retention_days": orjson.dumps(2).decode()}
         )
-        self.assert_json_error(result, "Available on Zulip Cloud Standard. Upgrade to access.")
+        self.assert_json_error(result, "Available on Aloha Cloud Standard. Upgrade to access.")
 
         do_change_realm_plan_type(realm, Realm.PLAN_TYPE_SELF_HOSTED, acting_user=None)
         events: List[Mapping[str, Any]] = []
@@ -2039,7 +2039,7 @@ class StreamAdminTest(ZulipTestCase):
 
         do_change_realm_plan_type(realm, Realm.PLAN_TYPE_LIMITED, acting_user=admin)
         with self.assertRaisesRegex(
-            JsonableError, "Available on Zulip Cloud Standard. Upgrade to access."
+            JsonableError, "Available on Aloha Cloud Standard. Upgrade to access."
         ):
             list_to_streams(streams_raw, owner, autocreate=True)
 
@@ -2491,7 +2491,7 @@ class StreamAdminTest(ZulipTestCase):
         )
 
 
-class DefaultStreamTest(ZulipTestCase):
+class DefaultStreamTest(AlohaTestCase):
     def get_default_stream_names(self, realm: Realm) -> Set[str]:
         streams = get_default_streams_for_realm(realm.id)
         stream_names = [s.name for s in streams]
@@ -2581,7 +2581,7 @@ class DefaultStreamTest(ZulipTestCase):
         self.assertEqual(set(stream_names), set(expected_stream_names))
 
 
-class DefaultStreamGroupTest(ZulipTestCase):
+class DefaultStreamGroupTest(AlohaTestCase):
     def test_create_update_and_remove_default_stream_group(self) -> None:
         realm = get_realm("zulip")
 
@@ -2908,7 +2908,7 @@ class DefaultStreamGroupTest(ZulipTestCase):
             lookup_default_stream_groups(["invalid-name"], realm)
 
 
-class SubscriptionPropertiesTest(ZulipTestCase):
+class SubscriptionPropertiesTest(AlohaTestCase):
     def test_set_stream_color(self) -> None:
         """
         A POST request to /api/v1/users/me/subscriptions/properties with stream_id and
@@ -3363,7 +3363,7 @@ class SubscriptionPropertiesTest(ZulipTestCase):
         self.assertEqual(result["ignored_parameters_unsupported"], ["invalid_parameter"])
 
 
-class SubscriptionRestApiTest(ZulipTestCase):
+class SubscriptionRestApiTest(AlohaTestCase):
     def test_basic_add_delete(self) -> None:
         user = self.example_user("hamlet")
         self.login_user(user)
@@ -3559,7 +3559,7 @@ class SubscriptionRestApiTest(ZulipTestCase):
         self.assertEqual(user_profile.full_name, "Hamlet")
 
 
-class SubscriptionAPITest(ZulipTestCase):
+class SubscriptionAPITest(AlohaTestCase):
     def setUp(self) -> None:
         """
         All tests will be logged in as hamlet. Also save various useful values
@@ -5136,7 +5136,7 @@ class SubscriptionAPITest(ZulipTestCase):
         self.assert_length(queries, 45)
 
 
-class GetStreamsTest(ZulipTestCase):
+class GetStreamsTest(AlohaTestCase):
     def test_streams_api_for_bot_owners(self) -> None:
         hamlet = self.example_user("hamlet")
         test_bot = self.create_test_bot("foo", hamlet)
@@ -5328,7 +5328,7 @@ class GetStreamsTest(ZulipTestCase):
         self.assertEqual(json["stream"]["stream_id"], private_stream.id)
 
 
-class StreamIdTest(ZulipTestCase):
+class StreamIdTest(AlohaTestCase):
     def test_get_stream_id(self) -> None:
         user = self.example_user("hamlet")
         self.login_user(user)
@@ -5344,7 +5344,7 @@ class StreamIdTest(ZulipTestCase):
         self.assert_json_error(result, "Invalid stream name 'wrongname'")
 
 
-class InviteOnlyStreamTest(ZulipTestCase):
+class InviteOnlyStreamTest(AlohaTestCase):
     def test_must_be_subbed_to_send(self) -> None:
         """
         If you try to send a message to an invite-only stream to which
@@ -5433,7 +5433,7 @@ class InviteOnlyStreamTest(ZulipTestCase):
         self.assertTrue(hamlet.id in json["subscribers"])
 
 
-class GetSubscribersTest(ZulipTestCase):
+class GetSubscribersTest(AlohaTestCase):
     def setUp(self) -> None:
         super().setUp()
         self.user_profile = self.example_user("hamlet")
@@ -5948,7 +5948,7 @@ class GetSubscribersTest(ZulipTestCase):
         self.make_successful_subscriber_request(stream_name)
 
 
-class AccessStreamTest(ZulipTestCase):
+class AccessStreamTest(AlohaTestCase):
     def test_access_stream(self) -> None:
         """
         A comprehensive security test for the access_stream_by_* API functions.
@@ -6057,7 +6057,7 @@ class AccessStreamTest(ZulipTestCase):
         self.assertEqual(stream.id, stream_ret.id)
 
 
-class StreamTrafficTest(ZulipTestCase):
+class StreamTrafficTest(AlohaTestCase):
     def test_average_weekly_stream_traffic_calculation(self) -> None:
         # No traffic data for the stream
         self.assertEqual(
@@ -6097,7 +6097,7 @@ class StreamTrafficTest(ZulipTestCase):
         self.assertEqual(120, round_to_2_significant_digits(116))
 
 
-class NoRecipientIDsTest(ZulipTestCase):
+class NoRecipientIDsTest(AlohaTestCase):
     def test_no_recipient_ids(self) -> None:
         user_profile = self.example_user("cordelia")
 

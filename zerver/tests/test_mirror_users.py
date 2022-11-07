@@ -6,13 +6,13 @@ from django.utils.timezone import now as timezone_now
 
 from zerver.actions.message_send import create_mirror_user_if_needed
 from zerver.lib.create_user import create_user_profile
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import reset_emails_in_zulip_realm
 from zerver.models import UserProfile, get_client, get_realm, get_user
 from zerver.views.message_send import InvalidMirrorInput, create_mirrored_message_users
 
 
-class MirroredMessageUsersTest(ZulipTestCase):
+class MirroredMessageUsersTest(AlohaTestCase):
     def test_invalid_client(self) -> None:
         user = self.example_user("hamlet")
         sender = user

@@ -123,7 +123,7 @@ async function test_restore_message_draft(page: Page): Promise<void> {
     });
     assert.strictEqual(
         await common.get_text_from_selector(page, "title"),
-        "#all > tests - Zulip Dev - Zulip",
+        "#all > tests - Aloha Dev - Aloha",
         "Didn't narrow to the right topic.",
     );
 }
@@ -178,7 +178,7 @@ async function test_restore_private_message_draft(page: Page): Promise<void> {
     await common.pm_recipient.expect(page, `${cordelia_internal_email},${hamlet_internal_email}`);
     assert.strictEqual(
         await common.get_text_from_selector(page, "title"),
-        "Cordelia, Lear's daughter, King Hamlet - Zulip Dev - Zulip",
+        "Cordelia, Lear's daughter, King Hamlet - Aloha Dev - Aloha",
         "Didn't narrow to the private messages with cordelia and hamlet",
     );
     await page.click("#compose_close");

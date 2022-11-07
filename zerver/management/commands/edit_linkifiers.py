@@ -5,11 +5,11 @@ from typing import Any
 from django.core.management.base import CommandError
 
 from zerver.actions.realm_linkifiers import do_add_linkifier, do_remove_linkifier
-from zerver.lib.management import ZulipBaseCommand
+from zerver.lib.management import AlohaBaseCommand
 from zerver.models import linkifiers_for_realm
 
 
-class Command(ZulipBaseCommand):
+class Command(AlohaBaseCommand):
     help = """Create a link filter rule for the specified realm.
 
 NOTE: Regexes must be simple enough that they can be easily translated to JavaScript

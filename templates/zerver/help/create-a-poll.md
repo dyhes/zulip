@@ -1,6 +1,6 @@
 # Create a poll
 
-Zulip natively supports creating and editing lightweight polls.
+Aloha natively supports creating and editing lightweight polls.
 
 To create a poll, send a message like
 ```

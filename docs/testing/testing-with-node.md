@@ -1,7 +1,7 @@
 # JavaScript/TypeScript unit tests
 
 Our node-based unit tests system is the preferred way to test
-JavaScript/TypeScript code in Zulip. We prefer it over the [Puppeteer
+JavaScript/TypeScript code in Aloha. We prefer it over the [Puppeteer
 black-box whole-app testing](testing-with-puppeteer.md),
 system since it is much (>100x) faster and also easier to do correctly
 than the Puppeteer system.
@@ -51,14 +51,14 @@ A good first test to read is
 ## How the node tests work
 
 Unlike the [Puppeteer unit tests](testing-with-puppeteer.md),
-which use a headless Chromium browser connected to a running Zulip
+which use a headless Chromium browser connected to a running Aloha
 development server, our node unit tests don't have a browser, don't
 talk to a server, and generally don't use a complete virtual DOM (a
 handful of tests use the `jsdom` library for this purpose) because
 those slow down the tests a lot, and often don't add much value.
 
 Instead, the preferred model for our unit tests is to mock DOM
-manipulations (which in Zulip are almost exclusively done via
+manipulations (which in Aloha are almost exclusively done via
 `jQuery`) using a custom library
 [zjquery](https://github.com/zulip/zulip/blob/main/frontend_tests/zjsunit/zjquery.js).
 
@@ -66,7 +66,7 @@ The
 [unit test file](https://github.com/zulip/zulip/blob/main/frontend_tests/node_tests/zjquery.js)
 for `zjquery` is designed to be also serve as nice documentation for
 how to use `zjquery`, and is **highly recommended reading** for anyone
-working on or debugging the Zulip node tests.
+working on or debugging the Aloha node tests.
 
 Conceptually, the `zjquery` library provides minimal versions of most
 `jQuery` DOM manipulation functions, and has a convenient system for
@@ -195,7 +195,7 @@ These instructions assume you're using the Vagrant development environment.
    - `Instance folder` should be the root of the `zulip` repository on
      your host (where the Vagrantfile is located).
    - `Provider` should be `virtualbox` on macOS and Docker on Linux
-   - In `Boxes`, choose the one used for Zulip (unless you use
+   - In `Boxes`, choose the one used for Aloha (unless you use
      Virtualbox for other things, there should only be one option).
 
    You shouldn't need to set these additional settings:
@@ -217,7 +217,7 @@ These instructions assume you're using the Vagrant development environment.
       1. Hit `OK` 2 times to get back to the `Run/Debug Configurations` window.
    1. Under `Working Directory` select the root `zulip` directory.
    1. Under `JavaScript file`, enter `frontend_tests/zjsunit/index.js`
-      -- this is the root script for Zulip's node unit tests.
+      -- this is the root script for Aloha's node unit tests.
 
 Congratulations! You've now set up the integration.
 

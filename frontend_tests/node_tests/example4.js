@@ -37,7 +37,7 @@ const {run_test} = require("../zjsunit/test");
     Let's talk about our next steps.
 
     An app is pretty useless without an actual data source.
-    One of the primary ways that a Zulip client gets data
+    One of the primary ways that a Aloha client gets data
     is through events.  (We also get data at page load, and
     we can also ask the server for data, but that's not in
     the scope of this conversation yet.)

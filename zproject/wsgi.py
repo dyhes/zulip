@@ -37,7 +37,7 @@ except Exception:
     # initialization will fail in django.setup().  In this case, our
     # normal configuration to logs errors to /var/log/zulip/errors.log
     # won't have been initialized.  Since it's really valuable for the
-    # debugging process for a Zulip 500 error to always be "check
+    # debugging process for a Aloha 500 error to always be "check
     # /var/log/zulip/errors.log", we log to that file directly here.
     import logging
 

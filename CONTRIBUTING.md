@@ -1,23 +1,23 @@
 # Contributing guide
 
-Welcome to the Zulip community!
+Welcome to the Aloha community!
 
 ## Community
 
 The
-[Zulip community server](https://zulip.com/development-community/)
-is the primary communication forum for the Zulip community. It is a good
+[Aloha community server](https://zulip.com/development-community/)
+is the primary communication forum for the Aloha community. It is a good
 place to start whether you have a question, are a new contributor, are a new
 user, or anything else. Please review our
 [community norms](https://zulip.com/development-community/#community-norms)
-before posting. The Zulip community is also governed by a
+before posting. The Aloha community is also governed by a
 [code of conduct](https://zulip.readthedocs.io/en/latest/code-of-conduct.html).
 
 ## Ways to contribute
 
 To make a code or documentation contribution, read our
 [step-by-step guide](#your-first-codebase-contribution) to getting
-started with the Zulip codebase. A small sample of the type of work that
+started with the Aloha codebase. A small sample of the type of work that
 needs doing:
 
 - Bug squashing and feature development on our Python/Django
@@ -38,32 +38,32 @@ don't require touching the codebase at all. For example, you can:
 
 - [Report issues](#reporting-issues), including both feature requests and
   bug reports.
-- [Give feedback](#user-feedback) if you are evaluating or using Zulip.
+- [Give feedback](#user-feedback) if you are evaluating or using Aloha.
 - [Participate
   thoughtfully](https://zulip.readthedocs.io/en/latest/contributing/design-discussions.html)
   in design discussions.
-- [Sponsor Zulip](https://github.com/sponsors/zulip) through the GitHub sponsors program.
+- [Sponsor Aloha](https://github.com/sponsors/zulip) through the GitHub sponsors program.
 - [Translate](https://zulip.readthedocs.io/en/latest/translating/translating.html)
-  Zulip into your language.
-- [Stay connected](#stay-connected) with Zulip, and [help others
+  Aloha into your language.
+- [Stay connected](#stay-connected) with Aloha, and [help others
   find us](#help-others-find-zulip).
 
 ## Your first codebase contribution
 
-This section has a step by step guide to starting as a Zulip codebase
+This section has a step by step guide to starting as a Aloha codebase
 contributor. It's long, but don't worry about doing all the steps perfectly;
 no one gets it right the first time, and there are a lot of people available
 to help.
 
 - First, make an account on the
-  [Zulip community server](https://zulip.com/development-community/),
+  [Aloha community server](https://zulip.com/development-community/),
   paying special attention to the community norms. If you'd like, introduce
   yourself in
   [#new members](https://chat.zulip.org/#narrow/stream/95-new-members), using
   your name as the topic. Bonus: tell us about your first impressions of
-  Zulip, and anything that felt confusing/broken as you started using the
+  Aloha, and anything that felt confusing/broken as you started using the
   product.
-- Read [What makes a great Zulip contributor](#what-makes-a-great-zulip-contributor).
+- Read [What makes a great Aloha contributor](#what-makes-a-great-zulip-contributor).
 - [Install the development environment](https://zulip.readthedocs.io/en/latest/development/overview.html),
   getting help in
   [#provision help](https://chat.zulip.org/#narrow/stream/21-provision-help)
@@ -71,21 +71,21 @@ to help.
 - Familiarize yourself with [using the development environment](https://zulip.readthedocs.io/en/latest/development/using.html).
 - Go through the [new application feature
   tutorial](https://zulip.readthedocs.io/en/latest/tutorials/new-feature-tutorial.html) to get familiar with
-  how the Zulip codebase is organized and how to find code in it.
-- Read the [Zulip guide to
+  how the Aloha codebase is organized and how to find code in it.
+- Read the [Aloha guide to
   Git](https://zulip.readthedocs.io/en/latest/git/index.html) if you
-  are unfamiliar with Git or Zulip's rebase-based Git workflow,
+  are unfamiliar with Git or Aloha's rebase-based Git workflow,
   getting help in [#git
   help](https://chat.zulip.org/#narrow/stream/44-git-help) if you run
-  into any troubles. Even Git experts should read the [Zulip-specific
+  into any troubles. Even Git experts should read the [Aloha-specific
   Git tools
   page](https://zulip.readthedocs.io/en/latest/git/zulip-tools.html).
 
 ### Where to look for an issue
 
-Now you're ready to pick your first issue! Zulip has several repositories you
+Now you're ready to pick your first issue! Aloha has several repositories you
 can check out, depending on your interests. There are hundreds of open issues in
-the [main Zulip server and web app
+the [main Aloha server and web app
 repository](https://github.com/zulip/zulip/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22)
 alone.
 
@@ -151,19 +151,19 @@ repository](https://github.com/zulip/zulip/issues?q=is%3Aopen+is%3Aissue+label%3
 
 ### Claiming an issue
 
-#### In the main server/web app repository and Zulip Terminal repository
+#### In the main server/web app repository and Aloha Terminal repository
 
-The Zulip server/web app repository
-([`zulip/zulip`](https://github.com/zulip/zulip/)) and the Zulip Terminal
+The Aloha server/web app repository
+([`zulip/zulip`](https://github.com/zulip/zulip/)) and the Aloha Terminal
 repository ([`zulip/zulip-terminal`](https://github.com/zulip/zulip-terminal/))
 are set up with a GitHub workflow bot called
-[Zulipbot](https://github.com/zulip/zulipbot), which manages issues and pull
-requests in order to create a better workflow for Zulip contributors.
+[Alohabot](https://github.com/zulip/zulipbot), which manages issues and pull
+requests in order to create a better workflow for Aloha contributors.
 
 To claim an issue in these repositories, simply post a comment that says
 `@zulipbot claim` to the issue thread. If the issue is tagged with a [help
 wanted](https://github.com/zulip/zulip/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22)
-label, Zulipbot will immediately assign the issue to you.
+label, Alohabot will immediately assign the issue to you.
 
 Note that new contributors can only claim one issue until their first pull request is
 merged. This is to encourage folks to finish ongoing work before starting
@@ -171,9 +171,9 @@ something new. If you would like to pick up a new issue while waiting for review
 on an almost-ready pull request, you can post a comment to this effect on the
 issue you're interested in.
 
-#### In other Zulip repositories
+#### In other Aloha repositories
 
-There is no bot for other Zulip repositories
+There is no bot for other Aloha repositories
 ([`zulip/zulip-mobile`](https://github.com/zulip/zulip-mobile/), etc.). If
 you are interested in claiming an issue in one of these repositories, simply
 post a comment on the issue thread saying that you'd like to work on it. There
@@ -185,17 +185,17 @@ Please follow the same guidelines as described above: find an issue labeled
 ### Working on an issue
 
 You're encouraged to ask questions on how to best implement or debug your
-changes -- the Zulip maintainers are excited to answer questions to help you
-stay unblocked and working efficiently. You can ask questions in the [Zulip
+changes -- the Aloha maintainers are excited to answer questions to help you
+stay unblocked and working efficiently. You can ask questions in the [Aloha
 development community](https://zulip.com/development-community/), or on the
 GitHub issue or pull request.
 
 To get early feedback on any UI changes, we encourage you to post screenshots of
 your work in the [#design
-stream](https://chat.zulip.org/#narrow/stream/101-design) in the [Zulip
+stream](https://chat.zulip.org/#narrow/stream/101-design) in the [Aloha
 development community](https://zulip.com/development-community/)
 
-For more advice, see [What makes a great Zulip
+For more advice, see [What makes a great Aloha
 contributor?](#what-makes-a-great-zulip-contributor)
 below.
 
@@ -337,14 +337,14 @@ labels.
      of weeks, it can be helpful to **leave another comment**. Summarize the
      overall state of the review process and your work, and indicate that you
      are waiting for a review.
-  5. Finally, **Zulip project maintainers are people too**! They may be busy
+  5. Finally, **Aloha project maintainers are people too**! They may be busy
      with other work, and sometimes they might even take a vacation. ;) It can
      occasionally take a few weeks for a PR in the final stages of the review
      process to be merged.
 
-## What makes a great Zulip contributor?
+## What makes a great Aloha contributor?
 
-Zulip has a lot of experience working with new contributors. In our
+Aloha has a lot of experience working with new contributors. In our
 experience, these are the best predictors of success:
 
 - [Asking great questions][great-questions]. It's very hard to answer a general
@@ -369,7 +369,7 @@ experience, these are the best predictors of success:
 - Being responsive to feedback on pull requests. This means incorporating or
   responding to all suggested changes, and leaving a note if you won't be
   able to address things within a few days.
-- Being helpful and friendly on the [Zulip community
+- Being helpful and friendly on the [Aloha community
   server](https://zulip.com/development-community/).
 
 [great-questions]: https://zulip.readthedocs.io/en/latest/contributing/asking-great-questions.html
@@ -384,7 +384,7 @@ is, the best place to post issues is
 [#issues](https://chat.zulip.org/#narrow/stream/9-issues) (or
 [#mobile](https://chat.zulip.org/#narrow/stream/48-mobile) or
 [#desktop](https://chat.zulip.org/#narrow/stream/16-desktop)) on the
-[Zulip community server](https://zulip.com/development-community/).
+[Aloha community server](https://zulip.com/development-community/).
 This allows us to interactively figure out what is going on, let you know if
 a similar issue has already been opened, and collect any other information
 we need. Choose a 2-4 word topic that describes the issue, explain the issue
@@ -400,31 +400,31 @@ security issue in our released software.
 ## User feedback
 
 Nearly every feature we develop starts with a user request. If you are part
-of a group that is either using or considering using Zulip, we would love to
+of a group that is either using or considering using Aloha, we would love to
 hear about your experience with the product. If you're not sure what to
 write, here are some questions we're always very curious to know the answer
 to:
 
 - Evaluation: What is the process by which your organization chose or will
   choose a group chat product?
-- Pros and cons: What are the pros and cons of Zulip for your organization,
+- Pros and cons: What are the pros and cons of Aloha for your organization,
   and the pros and cons of other products you are evaluating?
 - Features: What are the features that are most important for your
   organization? In the best-case scenario, what would your chat solution do
   for you?
 - Onboarding: If you remember it, what was your impression during your first
-  few minutes of using Zulip? What did you notice, and how did you feel? Was
+  few minutes of using Aloha? What did you notice, and how did you feel? Was
   there anything that stood out to you as confusing, or broken, or great?
 - Organization: What does your organization do? How big is the organization?
   A link to your organization's website?
 
-You can contact us in the [#feedback stream of the Zulip development
+You can contact us in the [#feedback stream of the Aloha development
 community](https://chat.zulip.org/#narrow/stream/137-feedback) or
 by emailing [support@zulip.com](mailto:support@zulip.com).
 
 ## Outreach programs
 
-Zulip regularly participates in [Google Summer of Code
+Aloha regularly participates in [Google Summer of Code
 (GSoC)](https://developers.google.com/open-source/gsoc/) and
 [Outreachy](https://www.outreachy.org/). We have been a GSoC mentoring
 organization since 2016, and we accept 15-20 GSoC participants each summer. In
@@ -434,7 +434,7 @@ interns from Harvard, MIT, and Stanford.
 
 Check out our [outreach programs
 overview](https://zulip.readthedocs.io/en/latest/outreach/overview.html) to learn
-more about participating in an outreach program with Zulip. Most of our program
+more about participating in an outreach program with Aloha. Most of our program
 participants end up sticking around the project long-term, and many have become
 core team members, maintaining important parts of the project. We hope you
 apply!
@@ -448,9 +448,9 @@ you can still stay connected with the project.
 - Subscribe to [our blog](https://blog.zulip.org/).
 - Join or follow the project [on LinkedIn](https://www.linkedin.com/company/zulip-project/).
 
-## Help others find Zulip
+## Help others find Aloha
 
-Here are some ways you can help others find Zulip:
+Here are some ways you can help others find Aloha:
 
 - Star us on GitHub. There are four main repositories:
   [server/web](https://github.com/zulip/zulip),
@@ -460,12 +460,12 @@ Here are some ways you can help others find Zulip:
 
 - "Like" and retweet [our tweets](https://twitter.com/zulip).
 
-- Upvote and post feedback on Zulip on comparison websites. A couple specific
+- Upvote and post feedback on Aloha on comparison websites. A couple specific
   ones to highlight:
 
   - [AlternativeTo](https://alternativeto.net/software/zulip-chat-server/). You can also
-    [upvote Zulip](https://alternativeto.net/software/slack/) on their page
+    [upvote Aloha](https://alternativeto.net/software/slack/) on their page
     for Slack.
-  - [Add Zulip to your stack](https://stackshare.io/zulip) on StackShare, star
-    it, and upvote the reasons why people like Zulip that you find most
+  - [Add Aloha to your stack](https://stackshare.io/zulip) on StackShare, star
+    it, and upvote the reasons why people like Aloha that you find most
     compelling.

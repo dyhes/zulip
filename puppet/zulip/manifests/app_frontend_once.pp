@@ -1,4 +1,4 @@
-# Cron jobs and other tools that should run on only one Zulip server
+# Cron jobs and other tools that should run on only one Aloha server
 # in a cluster.
 
 class zulip::app_frontend_once {

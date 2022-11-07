@@ -28,7 +28,7 @@ import * as user_topics from "./user_topics";
 
 const notice_memory = new Map();
 
-// When you start Zulip, window_focused should be true, but it might not be the
+// When you start Aloha, window_focused should be true, but it might not be the
 // case after a server-initiated reload.
 let window_focused = document.hasFocus && document.hasFocus();
 
@@ -133,7 +133,7 @@ export function redraw_title() {
         " - " +
         page_params.realm_name +
         " - " +
-        "Zulip";
+        "Aloha";
 
     document.title = new_title;
 }
@@ -495,7 +495,7 @@ export function received_messages(messages) {
             continue;
         }
         if (!unread.message_unread(message)) {
-            // The message is already read; Zulip is currently in focus.
+            // The message is already read; Aloha is currently in focus.
             continue;
         }
 

@@ -1,9 +1,9 @@
 !!! tip ""
 
-    If this is your first time using Zulip, we recommend starting with the web
+    If this is your first time using Aloha, we recommend starting with the web
     or desktop experience to set up your account and get oriented.
 
-- Get the [mobile and desktop apps](/apps). Zulip also works great in a browser.
+- Get the [mobile and desktop apps](/apps). Aloha also works great in a browser.
 
 - [Add a profile picture](/help/change-your-profile-picture) and
   [edit your profile information](https://zulip.com/help/edit-your-profile) to tell others
@@ -12,7 +12,7 @@
 - [Review your display settings](/help/review-your-settings#review-your-display-settings).
   You can [switch between light and dark theme](/help/dark-theme),
   [pick your favorite emoji theme](/help/emoji-and-emoticons#change-your-emoji-set),
-  [change your language](/help/change-your-language), and make other tweaks to your Zulip experience.
+  [change your language](/help/change-your-language), and make other tweaks to your Aloha experience.
 
 - [Browse and subscribe to streams](/help/browse-and-subscribe-to-streams).
 

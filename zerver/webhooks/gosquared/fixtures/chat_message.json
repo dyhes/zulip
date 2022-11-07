@@ -27,13 +27,13 @@
                 "timestamp":1541627296072,
                 "message":{
                     "session":{
-                        "title":"Zulip Chat",
+                        "title":"Aloha Chat",
                         "href":"https:\/\/www.zulipchat.com\/"
                     },
                     "data":{
 
                     },
-                    "content":"Zulip is awesome!",
+                    "content":"Aloha is awesome!",
                     "id":"984fde4-86fd-2345-sldk-2sdkfksldff",
                     "from":"client",
                     "type":"message",
@@ -56,21 +56,21 @@
             }
         ],
         "avatar":"",
-        "id":"Zulip Chat: cslkjfd09347kjldf098342",
+        "id":"Aloha Chat: cslkjfd09347kjldf098342",
         "email":"",
         "name":"",
         "deleted":false
     },
     "message":{
         "session":{
-            "title":"Zulip Chat",
+            "title":"Aloha Chat",
             "href":"https:\/\/www.zulipchat.com\/"
         },
-        "person_id":"Zulip Chat: cslkjfd09347kjldf098342",
+        "person_id":"Aloha Chat: cslkjfd09347kjldf098342",
         "data":{
 
         },
-        "content":"Zulip is awesome!",
+        "content":"Aloha is awesome!",
         "id":"984fde4-86fd-2345-sldk-2sdkfksldff",
         "from":"client",
         "type":"message",

@@ -403,7 +403,7 @@ v1_api_and_json_patterns = [
         "users/me/tutorial_status",
         POST=(
             set_tutorial_status,
-            # This is a relic of an old Zulip tutorial model and
+            # This is a relic of an old Aloha tutorial model and
             # should be deleted.
             {"intentionally_undocumented"},
         ),

@@ -9,7 +9,7 @@ from zerver.actions.streams import do_rename_stream
 from zerver.decorator import webhook_view
 from zerver.lib.exceptions import InvalidJSONError, JsonableError
 from zerver.lib.send_email import FromAddress
-from zerver.lib.test_classes import WebhookTestCase, ZulipTestCase
+from zerver.lib.test_classes import WebhookTestCase, AlohaTestCase
 from zerver.lib.test_helpers import HostRequestMock
 from zerver.lib.users import get_api_key
 from zerver.lib.webhooks.common import (
@@ -23,7 +23,7 @@ from zerver.lib.webhooks.common import (
 from zerver.models import UserProfile, get_realm, get_user
 
 
-class WebhooksCommonTestCase(ZulipTestCase):
+class WebhooksCommonTestCase(AlohaTestCase):
     def test_webhook_http_header_header_exists(self) -> None:
         webhook_bot = get_user("webhook-bot@zulip.com", get_realm("zulip"))
         request = HostRequestMock()

@@ -9,7 +9,7 @@ can instead prevent users from changing their name. Organization
 administrators can always [change anyone's name](/help/change-a-users-name).
 
 This setting is especially useful if user names are managed via an external
-source, and synced into Zulip via the [Zulip API](/api) or another method.
+source, and synced into Aloha via the [Aloha API](/api) or another method.
 
 {start_tabs}
 

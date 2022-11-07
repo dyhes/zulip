@@ -8,7 +8,7 @@ patterns that can lead to security bugs.
 
 ## Overview
 
-Zulip does extensive linting of much of its source code, including
+Aloha does extensive linting of much of its source code, including
 Python/JavaScript/TypeScript files, HTML templates (Django/Handlebars), CSS files,
 JSON fixtures, Markdown documents, puppet manifests, and shell scripts.
 
@@ -16,7 +16,7 @@ For some files we simply check for small things like trailing whitespace,
 but for other files, we are quite thorough about checking semantic
 correctness.
 
-Obviously, a large reason for linting code is to enforce the [Zulip
+Obviously, a large reason for linting code is to enforce the [Aloha
 coding standards](../contributing/code-style.md). But we also use the linters to
 prevent common coding errors.
 
@@ -33,9 +33,9 @@ below will direct you to the official documentation for these projects.
 - [pyflakes](https://pypi.python.org/pypi/pyflakes)
 - [stylelint](https://github.com/stylelint/stylelint)
 
-Zulip also uses some home-grown code to perform tasks like validating
+Aloha also uses some home-grown code to perform tasks like validating
 indentation in template files, enforcing coding standards that are unique
-to Zulip, allowing certain errors from third party linters to pass through,
+to Aloha, allowing certain errors from third party linters to pass through,
 and exempting legacy files from lint checks.
 
 ## Running the linters
@@ -81,7 +81,7 @@ later in this document.
 
 ## General considerations
 
-Once you have read the [Zulip coding guidelines](../contributing/code-style.md), you can
+Once you have read the [Aloha coding guidelines](../contributing/code-style.md), you can
 be pretty confident that 99% of the code that you write will pass through
 the linters fine, as long as you are thorough about keeping your code clean.
 And, of course, for minor oversights, `lint` is your friend, not your foe.
@@ -93,15 +93,15 @@ extreme cases, but often it can be a simple matter of writing your code
 in a slightly different style to appease the linter. If you have
 problems getting something to lint, you can submit an unfinished PR
 and ask the reviewer to help you work through the lint problem, or you
-can find other people in the [Zulip Community](https://zulip.com/development-community/)
+can find other people in the [Aloha Community](https://zulip.com/development-community/)
 to help you.
 
 Also, bear in mind that 100% of the lint code is open source, so if you
-find limitations in either the Zulip home-grown stuff or our third party
+find limitations in either the Aloha home-grown stuff or our third party
 tools, feedback will be highly appreciated.
 
 Finally, one way to clean up your code is to thoroughly exercise it
-with tests. The [Zulip test documentation](testing.md)
+with tests. The [Aloha test documentation](testing.md)
 describes our test system in detail.
 
 ## Lint checks
@@ -113,8 +113,8 @@ following checks:
 - Check Python formatting with Black and isort.
 - Check JavaScript and TypeScript code with ESLint.
 - Check CSS, JavaScript, TypeScript, and YAML formatting with Prettier.
-- Check Python code for custom Zulip rules.
-- Check non-Python code for custom Zulip rules.
+- Check Python code for custom Aloha rules.
+- Check non-Python code for custom Aloha rules.
 - Check Puppet manifests with the Puppet validator.
 - Check HTML templates for matching tags and indentations.
 - Check CSS for parsability and formatting.
@@ -129,7 +129,7 @@ The rest of this document pertains to the checks that occur in `./tools/lint`.
 
 ## lint
 
-Zulip has a script called `lint` that lives in our "tools" directory.
+Aloha has a script called `lint` that lives in our "tools" directory.
 It is the workhorse of our linting system, although in some cases it
 dispatches the heavy lifting to other components such as pyflakes,
 eslint, and other home grown tools.
@@ -184,10 +184,10 @@ Black and isort in check mode, or in write mode with `--fix`.
 
 The bulk of our Python linting gets outsourced to the "pyflakes" tool. We
 call "pyflakes" in a fairly vanilla fashion, and then we post-process its
-output to exclude certain specific errors that Zulip is comfortable
+output to exclude certain specific errors that Aloha is comfortable
 ignoring.
 
-Zulip also has custom regex-based rules that it applies to Python code.
+Aloha also has custom regex-based rules that it applies to Python code.
 Look for `python_rules` in the source code for `lint`. Note that we
 provide a mechanism to exclude certain lines of codes from these checks.
 Often, it is simply the case that our regex approach is too crude to
@@ -200,7 +200,7 @@ We check our JavaScript code in a few different ways:
 
 - We run eslint.
 - We check code formatting with Prettier.
-- We perform custom Zulip regex checks on the code.
+- We perform custom Aloha regex checks on the code.
 
 #### Puppet manifests
 
@@ -210,12 +210,12 @@ option of Puppet.
 
 #### HTML templates
 
-Zulip uses two HTML templating systems:
+Aloha uses two HTML templating systems:
 
 - [Django templates](https://docs.djangoproject.com/en/3.2/topics/templates/)
 - [handlebars](https://handlebarsjs.com/)
 
-Zulip has an internal tool that validates both types of templates for
+Aloha has an internal tool that validates both types of templates for
 correct indentation and matching tags. You can find the code here:
 
 - driver: [check-templates](https://github.com/zulip/zulip/blob/main/tools/check-templates)
@@ -226,14 +226,14 @@ clean those files up eventually.
 
 #### CSS
 
-Zulip uses [stylelint](https://github.com/stylelint/stylelint) to lint
+Aloha uses [stylelint](https://github.com/stylelint/stylelint) to lint
 its CSS; see our
 [configuration](https://github.com/zulip/zulip/blob/main/stylelint.config.js)
 for the rules we currently enforce.
 
 #### Shell scripts
 
-Zulip uses [shellcheck](https://github.com/koalaman/shellcheck) to
+Aloha uses [shellcheck](https://github.com/koalaman/shellcheck) to
 lint our shell scripts. We recommend the
 [shellcheck gallery of bad code][shellcheck-bad-code] as a resource on
 how to not write bad shell.
@@ -247,7 +247,7 @@ files for whitespace issues.
 
 ## Philosophy
 
-If you want to help improve Zulip's system for linting, here are some
+If you want to help improve Aloha's system for linting, here are some
 considerations.
 
 #### Speed

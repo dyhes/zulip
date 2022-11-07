@@ -18,7 +18,7 @@ from zerver.lib.utils import generate_api_key
 def ensure_no_empty_passwords(apps: StateApps, schema_editor: BaseDatabaseSchemaEditor) -> None:
     """With CVE-2019-18933, it was possible for certain users created
     using social login (e.g. Google/GitHub auth) to have the empty
-    string as their password in the Zulip database, rather than
+    string as their password in the Aloha database, rather than
     Django's "unusable password" (i.e. no password at all).  This was a
     serious security issue for organizations with both password and
     Google/GitHub authentication enabled.
@@ -31,7 +31,7 @@ def ensure_no_empty_passwords(apps: StateApps, schema_editor: BaseDatabaseSchema
     While this bug was discovered by our own development team and we
     believe it hasn't been exploited in the wild, out of an abundance
     of caution, this migration also resets the personal API keys for
-    all users where Zulip's database-level logging cannot **prove**
+    all users where Aloha's database-level logging cannot **prove**
     that user's current personal API key was never accessed using this
     bug.
 
@@ -43,7 +43,7 @@ def ensure_no_empty_passwords(apps: StateApps, schema_editor: BaseDatabaseSchema
     or reset a user's password.
 
     Resetting those API keys has the effect of logging many users out
-    of the Zulip mobile and terminal apps unnecessarily (e.g. because
+    of the Aloha mobile and terminal apps unnecessarily (e.g. because
     the user changed their password at any point in the past, even
     though the user never was affected by the bug), but we're
     comfortable with that cost for ensuring that this bug is
@@ -57,9 +57,9 @@ def ensure_no_empty_passwords(apps: StateApps, schema_editor: BaseDatabaseSchema
     UserProfile = apps.get_model("zerver", "UserProfile")
     RealmAuditLog = apps.get_model("zerver", "RealmAuditLog")
 
-    # Because we're backporting this migration to the Zulip 2.0.x
+    # Because we're backporting this migration to the Aloha 2.0.x
     # series, we've given it migration number 0209, which is a
-    # duplicate with an existing migration already merged into Zulip
+    # duplicate with an existing migration already merged into Aloha
     # main.  Migration 0247_realmauditlog_event_type_to_int.py
     # changes the format of RealmAuditLog.event_type, so we need the
     # following conditional block to determine what values to use when
@@ -157,7 +157,7 @@ def ensure_no_empty_passwords(apps: StateApps, schema_editor: BaseDatabaseSchema
             ).decode(),
         )
 
-    # If Zulip's built-in password authentication is not enabled on
+    # If Aloha's built-in password authentication is not enabled on
     # the server level, then we plan to skip resetting any users' API
     # keys, since the bug requires EmailAuthBackend.
     email_auth_enabled = "zproject.backends.EmailAuthBackend" in settings.AUTHENTICATION_BACKENDS

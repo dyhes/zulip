@@ -7,7 +7,7 @@ party issue trackers, like GitHub, Salesforce, Zendesk, and others.
 For instance, you can add a linkifier that automatically turns `#2468`
 into a link to `https://github.com/zulip/zulip/issues/2468`.
 
-If the pattern appears in a message topic, Zulip adds a little button to the
+If the pattern appears in a message topic, Aloha adds a little button to the
 right of the topic that links to the appropriate URL.
 
 ### Add a custom linkifier

@@ -2,7 +2,7 @@
 
 # This hook runs gitlint on your commit message.
 
-# If your machine contains a provisioned Zulip development environment, the
+# If your machine contains a provisioned Aloha development environment, the
 # linter will be invoked through `vagrant ssh`.
 
 # Do not invoke gitlint if commit message is empty
@@ -15,7 +15,7 @@ if grep -q '^[^#]' "$1"; then
             ! eval "$lint_cmd"
         fi <"$1"
     then
-        echo "WARNING: Your commit message does not match Zulip's style guide."
+        echo "WARNING: Your commit message does not match Aloha's style guide."
     fi
 fi
 

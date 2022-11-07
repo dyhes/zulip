@@ -2,10 +2,10 @@ from typing import Any
 
 from django.db import connection
 
-from zerver.lib.management import ZulipBaseCommand
+from zerver.lib.management import AlohaBaseCommand
 
 
-class Command(ZulipBaseCommand):
+class Command(AlohaBaseCommand):
     def handle(self, *args: Any, **kwargs: str) -> None:
         with connection.cursor() as cursor:
             cursor.execute(

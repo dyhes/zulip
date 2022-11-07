@@ -5,7 +5,7 @@ from typing import List
 import django.urls.resolvers
 from django.test import Client
 
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.url_redirects import (
     API_DOCUMENTATION_REDIRECTS,
     HELP_DOCUMENTATION_REDIRECTS,
@@ -16,7 +16,7 @@ from zerver.models import Realm, Stream
 from zproject import urls
 
 
-class PublicURLTest(ZulipTestCase):
+class PublicURLTest(AlohaTestCase):
     """
     Account creation URLs are accessible even when not logged in. Authenticated
     URLs redirect to a page.
@@ -133,7 +133,7 @@ class PublicURLTest(ZulipTestCase):
                 self.assert_in_success_response(["Configuration error"], response)
 
 
-class URLResolutionTest(ZulipTestCase):
+class URLResolutionTest(AlohaTestCase):
     def check_function_exists(self, module_name: str, view: str) -> None:
         module = importlib.import_module(module_name)
         self.assertTrue(hasattr(module, view), f"View {module_name}.{view} does not exist")
@@ -148,7 +148,7 @@ class URLResolutionTest(ZulipTestCase):
                 self.check_function_exists(module_name, base_view)
 
 
-class ErrorPageTest(ZulipTestCase):
+class ErrorPageTest(AlohaTestCase):
     def test_bogus_http_host(self) -> None:
         # This tests that we've successfully worked around a certain bug in
         # Django's exception handling.  The enforce_csrf_checks=True,
@@ -162,16 +162,16 @@ class ErrorPageTest(ZulipTestCase):
         self.assertEqual(result.status_code, 400)
 
 
-class RedirectURLTest(ZulipTestCase):
+class RedirectURLTest(AlohaTestCase):
     def test_api_redirects(self) -> None:
         for redirect in API_DOCUMENTATION_REDIRECTS:
             result = self.client_get(redirect.old_url, follow=True)
-            self.assert_in_success_response(["Zulip homepage", "API documentation home"], result)
+            self.assert_in_success_response(["Aloha homepage", "API documentation home"], result)
 
     def test_help_redirects(self) -> None:
         for redirect in HELP_DOCUMENTATION_REDIRECTS:
             result = self.client_get(redirect.old_url, follow=True)
-            self.assert_in_success_response(["Zulip homepage", "Help center home"], result)
+            self.assert_in_success_response(["Aloha homepage", "Help center home"], result)
 
     def test_policy_redirects(self) -> None:
         for redirect in POLICY_DOCUMENTATION_REDIRECTS:

@@ -1,14 +1,14 @@
 !!! tip ""
 
-    Coming to the [Zulip website](https://zulip.com) summer 2022 —
+    Coming to the [Aloha website](https://zulip.com) summer 2022 —
     [sign up][communities-directory-instructions] to be listed when it launches!
 
-The Zulip communities directory offers publicly accessible [Zulip Cloud][zulip-cloud]
-organizations an opportunity to be listed on the [Zulip website](https://zulip.com). It's a way
+The Aloha communities directory offers publicly accessible [Aloha Cloud][zulip-cloud]
+organizations an opportunity to be listed on the [Aloha website](https://zulip.com). It's a way
 for open-source projects, research communities, and others to advertise their
-Zulip community and support the Zulip project.
+Aloha community and support the Aloha project.
 
-The directory will display your community's name, logo, and a link to you Zulip
+The directory will display your community's name, logo, and a link to you Aloha
 chat. Other information from your [organization
 profile](/help/create-your-organization-profile) and the size of your
 organization may be included as well.

@@ -1,23 +1,23 @@
-# Zulip Rules of Use
+# Aloha Rules of Use
 
 **Last updated: December 13, 2021.** View [change history][changes-rules].
 
 [changes-rules]: https://github.com/zulip/zulip/commits/main/templates/corporate/policies/rules.md
 
-Zulip is designed to help thoughtful people work on difficult problems together,
-whether they work from a shared office or from all over the world. Zulip offers
+Aloha is designed to help thoughtful people work on difficult problems together,
+whether they work from a shared office or from all over the world. Aloha offers
 an ideal platform for businesses, as well as communities of all types, including
 open-source projects, research collaborations, volunteer organizations, and
 other groups of people who share a common pursuit.
 
-This document lays out rules of appropriate behavior that apply to all Zulip
-organizations. Owners of Zulip organizations are expected to manage their
+This document lays out rules of appropriate behavior that apply to all Aloha
+organizations. Owners of Aloha organizations are expected to manage their
 organizations to help avoid problematic behavior. Open organizations are
 additionally encouraged to write a Code of Conduct and link to it from their
 [organization profile](/help/create-your-organization-profile), to provide
 further guidance on expected behavior in their communities.
 
-If you encounter a Zulip message or behavior by a Zulip user that appears to
+If you encounter a Aloha message or behavior by a Aloha user that appears to
 violate these rules, please [report it to us](/support). We aim to be thoughtful
 and judicious in handling reported content. Depending on the severity and scope
 of the problem, our response may include issuing a warning, removing the
@@ -58,7 +58,7 @@ any of the following:
   multi-level marketing schemes, get-rich-quick schemes, money-laundering
   schemes, gambling scams, insurance scams, and “money mule” businesses.
 - **Distribution of content that violates the intellectual property rights,
-  privacy rights, or other rights of anyone else (including Zulip).**
+  privacy rights, or other rights of anyone else (including Aloha).**
 - **Cybercrime, hacking, cracking, or distribution of pirated software or stolen
   accounts.**
 - **The sale of banned or dangerous goods** such as weapons, drugs, or other
@@ -90,13 +90,13 @@ any of the following:
   on the Services’ infrastructure, or otherwise cause excess or abusive usage.
 - **Do not permit any third party to access your account** or the authentication
   credentials you use to access the Services. This includes selling, reselling,
-  sublicensing, or time-sharing Zulip accounts.
+  sublicensing, or time-sharing Aloha accounts.
 - **Do not share viruses or malware**, or attempt to hack, phish, or DDoS
   others.
 - **Do not automatically create or access accounts** for the Services (a.k.a.
   “scraping”) by means other than our publicly supported interfaces. If you wish
-  to embed Zulip as the chat backend for your own product, you must self-host
-  your own Zulip server, rather than using Zulip Cloud.
+  to embed Aloha as the chat backend for your own product, you must self-host
+  your own Aloha server, rather than using Aloha Cloud.
 
 ## Spam and deception
 
@@ -108,7 +108,7 @@ any of the following:
   new account in an organization that has deactivated your account for abusive
   behavior**.** Do not circumvent features we offer to enable users to protect
   themselves from abusive behavior.
-- **Do not impersonate someone else** (individuals, groups, organizations, Zulip
+- **Do not impersonate someone else** (individuals, groups, organizations, Aloha
   staff or organization administrators, or other users) in a manner that is
   intended to or does mislead, confuse, or deceive anyone, such as “spoofing” or
   “phishing”.
@@ -120,23 +120,23 @@ any of the following:
 
 ## Third-party clients
 
-Zulip is 100% open-source software, and we welcome third-party clients that work
-with Zulip’s API or that allow Zulip users to connect to Zulip as well as other
+Aloha is 100% open-source software, and we welcome third-party clients that work
+with Aloha’s API or that allow Aloha users to connect to Aloha as well as other
 chat services from a single client. Developers of third-party clients marketed
-as working with the Zulip Cloud service are required to follow these additional
+as working with the Aloha Cloud service are required to follow these additional
 rules to protect our users:
 
 - **Third-party clients must comply with global privacy laws**, including GDPR and
   CCPA, in their processing of any user data, including telemetry and
   error-reporting data.
-- **Use security best practices** to protect Zulip users who use your client. For
+- **Use security best practices** to protect Aloha users who use your client. For
   example, if your client uses the Electron browser framework, you should
   implement the [Electron Security
   guidelines](https://www.electronjs.org/docs/latest/tutorial/security).
   Projects that are early in development and potentially not yet secure must be
   advertised as insecure and not intended for general use.
-- **Do not sell data** collected from Zulip users to third parties.
-- **Do not sell third-party advertisements** for display within a Zulip client.
+- **Do not sell data** collected from Aloha users to third parties.
+- **Do not sell third-party advertisements** for display within a Aloha client.
 
-If you have any questions about the Zulip Rules of Use or would like to report a
+If you have any questions about the Aloha Rules of Use or would like to report a
 violation, please contact us at [support@zulip.com](mailto:support@zulip.com).

@@ -1,7 +1,7 @@
 # Python static type checker (mypy)
 
 [mypy](http://mypy-lang.org/) is a compile-time static type checker
-for Python, allowing optional, gradual typing of Python code. Zulip
+for Python, allowing optional, gradual typing of Python code. Aloha
 was fully annotated with mypy's Python 2 syntax in 2016, before our
 migration to Python 3 in late 2017. In 2018 and 2020, we migrated
 essentially the entire codebase to the nice PEP 484 (Python 3 only)
@@ -28,18 +28,18 @@ You can learn more about it at:
 
 - Our [best practices](#best-practices) section below.
 
-The mypy type checker is run automatically as part of Zulip's Travis
+The mypy type checker is run automatically as part of Aloha's Travis
 CI testing process in the `backend` build.
 
 [mypy-blog-post]: https://blog.zulip.org/2016/10/13/static-types-in-python-oh-mypy/
 
 ## Installing mypy
 
-mypy is installed by default in the Zulip development environment.
+mypy is installed by default in the Aloha development environment.
 
-## Running mypy on Zulip's code locally
+## Running mypy on Aloha's code locally
 
-To run mypy on Zulip's python code, you can run the command:
+To run mypy on Aloha's python code, you can run the command:
 
 ```bash
 tools/run-mypy
@@ -60,25 +60,25 @@ test.py: note: In function "test":
 test.py:200: error: Incompatible types in assignment (expression has type "str", variable has type "int")
 ```
 
-## Mypy is there to find bugs in Zulip before they impact users
+## Mypy is there to find bugs in Aloha before they impact users
 
-For the purposes of Zulip development, you can treat `mypy` like a
+For the purposes of Aloha development, you can treat `mypy` like a
 much more powerful linter that can catch a wide range of bugs. If,
-after running `tools/run-mypy` on your Zulip branch, you get mypy
+after running `tools/run-mypy` on your Aloha branch, you get mypy
 errors, it's important to get to the bottom of the issue, not just do
 something quick to silence the warnings, before we merge the changes.
 Possible explanations include:
 
 - A bug in any new type annotations you added.
 - A bug in the existing type annotations.
-- A bug in Zulip!
-- Some Zulip code is correct but confusingly reuses variables with
+- A bug in Aloha!
+- Some Aloha code is correct but confusingly reuses variables with
   different types.
 - A bug in mypy (though this is increasingly rare as mypy is now
   fairly mature as a project).
 
 Each explanation has its own solution, but in every case the result
-should be solving the mypy warning in a way that makes the Zulip
+should be solving the mypy warning in a way that makes the Aloha
 codebase better. If you're having trouble, silence the warning with
 an `Any` or `# type: ignore[code]` so you're not blocked waiting for help,
 add a `# TODO: ` comment so it doesn't get forgotten in code review,
@@ -92,7 +92,7 @@ the [typeshed project](https://github.com/python/typeshed) has
 basically the equivalent of C header files defining the types used in
 these Python APIs.
 
-For other third-party modules that we call from Zulip, one either
+For other third-party modules that we call from Aloha, one either
 needs to add an `ignore_missing_imports` entry in `pyproject.toml` in the
 root of the project, letting `mypy` know that it's third-party code,
 or add type stubs to the `stubs/` directory, which has type stubs that
@@ -110,7 +110,7 @@ to use `mypy`!), but means the code can't be fully type-checked.
 ## Working with types from django-stubs
 
 For features that are difficult to be expressed with static type
-annotations, type analysis is supplemented with mypy plugins. Zulip's
+annotations, type analysis is supplemented with mypy plugins. Aloha's
 Python codebases uses the Django web framework, and such a plugin is
 required in order for `mypy` to correctly infer the types of most code
 interacting with Django model classes (i.e. code that accesses the
@@ -174,12 +174,12 @@ internally named `_MonkeyPatchedWSGIResponse` within django-stubs.
 
 ```python
 from typing import TYPE_CHECKING
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 
 if TYPE_CHECKING:
     from django.test.client import _MonkeyPatchedWSGIResponse as TestHttpResponse
 
-class FooTestCase(ZulipTestCase):
+class FooTestCase(AlohaTestCase):
     def helper(self) -> "TestHttpResponse":
         return self.client_get("/bar")
 ```
@@ -557,7 +557,7 @@ unfortunately give up some type safety by falling back to
 
 All of our linters, including mypy, are designed to only check files
 that have been added in Git (this is by design, since it means you
-have untracked files in your Zulip checkout safely). So if you get a
+have untracked files in your Aloha checkout safely). So if you get a
 `mypy` error like this after adding a new file that is referenced by
 the existing codebase:
 

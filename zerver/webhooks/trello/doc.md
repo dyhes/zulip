@@ -1,9 +1,9 @@
 !!! tip ""
 
     Note that [Zapier][1] is usually a simpler way to
-    integrate Trello with Zulip.
+    integrate Trello with Aloha.
 
-Get Zulip notifications from your Trello boards!
+Get Aloha notifications from your Trello boards!
 
 [1]: ./zapier
 

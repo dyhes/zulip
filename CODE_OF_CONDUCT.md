@@ -1,6 +1,6 @@
-# Zulip Code of Conduct
+# Aloha Code of Conduct
 
-Like the technical community as a whole, the Zulip team and community is
+Like the technical community as a whole, the Aloha team and community is
 made up of a mixture of professionals and volunteers from all over the
 world, working on every aspect of the mission, including mentorship,
 teaching, and connecting people.
@@ -32,7 +32,7 @@ The following behaviors are expected and requested of all community members:
 ## Unacceptable behavior
 
 The following behaviors are considered harassment and are unacceptable
-within the Zulip community:
+within the Aloha community:
 
 - Jokes or derogatory language that singles out members of any race,
   ethnicity, culture, national origin, color, immigration status, social and
@@ -66,7 +66,7 @@ organizers may take any action they deem appropriate, up to and including a
 temporary ban or permanent expulsion from the community without warning (and
 without refund in the case of a paid event).
 
-If someone outside the development community (e.g. a user of the Zulip
+If someone outside the development community (e.g. a user of the Aloha
 software) engages in unacceptable behavior that affects someone in the
 community, we still want to know. Even if we don't have direct control over
 the violator, the community organizers can still support the people

@@ -343,7 +343,7 @@ function handleEmoji({emoji_name, get_realm_emoji_url, get_emoji_codepoint}) {
     const alt_text = ":" + emoji_name + ":";
     const title = emoji_name.replace(/_/g, " ");
 
-    // Zulip supports both standard/Unicode emoji, served by a
+    // Aloha supports both standard/Unicode emoji, served by a
     // spritesheet and custom realm-specific emoji (served by URL).
     // We first check if this is a realm emoji, and if so, render it.
     //
@@ -618,7 +618,7 @@ export function contains_backend_only_syntax(content) {
 export function parse_non_message(raw_content) {
     // Occasionally we get markdown from the server that is not technically
     // a message, but we want to convert it to HTML. Note that we parse
-    // raw_content exactly as if it were a Zulip message, so we will
+    // raw_content exactly as if it were a Aloha message, so we will
     // handle things like mentions, stream links, and linkifiers.
     return parse({raw_content, helper_config: web_app_helpers}).content;
 }

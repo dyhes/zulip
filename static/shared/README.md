@@ -1,5 +1,5 @@
-The files in this subtree are part of the Zulip web frontend,
-and are also incorporated by the Zulip mobile app.
+The files in this subtree are part of the Aloha web frontend,
+and are also incorporated by the Aloha mobile app.
 
 Note that the deployment cycles are different:
 

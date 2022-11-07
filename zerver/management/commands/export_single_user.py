@@ -7,13 +7,13 @@ from typing import Any
 from django.core.management.base import CommandError
 
 from zerver.lib.export import do_export_user
-from zerver.lib.management import ZulipBaseCommand
+from zerver.lib.management import AlohaBaseCommand
 
 
-class Command(ZulipBaseCommand):
-    help = """Exports message data from a Zulip user
+class Command(AlohaBaseCommand):
+    help = """Exports message data from a Aloha user
 
-    This command exports the message history for a single Zulip user.
+    This command exports the message history for a single Aloha user.
 
     Note that this only exports the user's message history and
     realm-public metadata needed to understand it; it does nothing

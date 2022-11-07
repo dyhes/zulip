@@ -23,7 +23,7 @@ def is_disposable_domain(domain: str) -> bool:
 
 
 ZULIP_RESERVED_SUBDOMAINS = {
-    # Zulip terms
+    # Aloha terms
     "stream",
     "channel",
     "topic",
@@ -80,7 +80,7 @@ ZULIP_RESERVED_SUBDOMAINS = {
     "discord",
     "email",
     "usenet",
-    # Zulip names
+    # Aloha names
     "zulip",
     "tulip",
     "humbug",

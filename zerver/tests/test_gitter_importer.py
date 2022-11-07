@@ -8,12 +8,12 @@ import orjson
 
 from zerver.data_import.gitter import do_convert_data, get_usermentions
 from zerver.lib.import_realm import do_import_realm
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.models import Message, Realm, UserProfile, get_realm
 from zproject.backends import GitHubAuthBackend, auth_enabled_helper, github_auth_enabled
 
 
-class GitterImporter(ZulipTestCase):
+class GitterImporter(AlohaTestCase):
     @mock.patch("zerver.data_import.gitter.process_avatars", return_value=[])
     def test_gitter_import_data_conversion(self, mock_process_avatars: mock.Mock) -> None:
         output_dir = self.make_import_output_dir("gitter")

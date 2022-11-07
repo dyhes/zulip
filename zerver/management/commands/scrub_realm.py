@@ -2,10 +2,10 @@ from argparse import ArgumentParser
 from typing import Any
 
 from zerver.actions.realm_settings import do_scrub_realm
-from zerver.lib.management import ZulipBaseCommand
+from zerver.lib.management import AlohaBaseCommand
 
 
-class Command(ZulipBaseCommand):
+class Command(AlohaBaseCommand):
     help = """Script to scrub a deactivated realm."""
 
     def add_arguments(self, parser: ArgumentParser) -> None:

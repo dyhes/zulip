@@ -46,7 +46,7 @@ from zerver.forms import (
     AuthenticationTokenForm,
     HomepageForm,
     OurAuthenticationForm,
-    ZulipPasswordResetForm,
+    AlohaPasswordResetForm,
 )
 from zerver.lib.exceptions import (
     AuthenticationFailedError,
@@ -88,9 +88,9 @@ from zproject.backends import (
     ExternalAuthResult,
     GenericOpenIdConnectBackend,
     SAMLAuthBackend,
-    ZulipLDAPAuthBackend,
-    ZulipLDAPConfigurationError,
-    ZulipRemoteUserBackend,
+    AlohaLDAPAuthBackend,
+    AlohaLDAPConfigurationError,
+    AlohaRemoteUserBackend,
     auth_enabled_helper,
     dev_auth_enabled,
     ldap_auth_enabled,
@@ -153,7 +153,7 @@ def maybe_send_to_registration(
 ) -> HttpResponse:
     """Given a successful authentication for an email address (i.e. we've
     confirmed the user controls the email address) that does not
-    currently have a Zulip account in the target realm, send them to
+    currently have a Aloha account in the target realm, send them to
     the registration flow or the "continue to registration" flow,
     depending on is_signup, whether the email address can join the
     organization (checked in HomepageForm), and similar details.
@@ -282,7 +282,7 @@ def maybe_send_to_registration(
 
 def register_remote_user(request: HttpRequest, result: ExternalAuthResult) -> HttpResponse:
     # We have verified the user controls an email address, but
-    # there's no associated Zulip user account.  Consider sending
+    # there's no associated Aloha user account.  Consider sending
     # the request to registration.
     kwargs: Dict[str, Any] = dict(result.data_dict)
     # maybe_send_to_registration doesn't take these arguments, so delete them.
@@ -297,19 +297,19 @@ def register_remote_user(request: HttpRequest, result: ExternalAuthResult) -> Ht
 def login_or_register_remote_user(request: HttpRequest, result: ExternalAuthResult) -> HttpResponse:
     """Given a successful authentication showing the user controls given
     email address (email) and potentially a UserProfile
-    object (if the user already has a Zulip account), redirect the
+    object (if the user already has a Aloha account), redirect the
     browser to the appropriate place:
 
-    * The logged-in app if the user already has a Zulip account and is
+    * The logged-in app if the user already has a Aloha account and is
       trying to log in, potentially to an initial narrow or page that had been
       saved in the `redirect_to` parameter.
     * The registration form if is_signup was set (i.e. the user is
-      trying to create a Zulip account)
+      trying to create a Aloha account)
     * A special `confirm_continue_registration.html` "do you want to
       register or try another account" if the user doesn't have a
-      Zulip account but is_signup is False (i.e. the user tried to log in
+      Aloha account but is_signup is False (i.e. the user tried to log in
       and then did social authentication selecting an email address that does
-      not have a Zulip account in this organization).
+      not have a Aloha account in this organization).
     * A zulip:// URL to send control back to the mobile or desktop apps if they
       are doing authentication using the mobile_flow_otp or desktop_flow_otp flow.
     """
@@ -425,7 +425,7 @@ def remote_user_sso(
     except Realm.DoesNotExist:
         realm = None
 
-    if not auth_enabled_helper([ZulipRemoteUserBackend.auth_backend_name], realm):
+    if not auth_enabled_helper([AlohaRemoteUserBackend.auth_backend_name], realm):
         return config_error(request, "remote_user_backend_disabled")
 
     try:
@@ -563,7 +563,7 @@ def handle_desktop_flow(
         request: HttpRequest, /, *args: ParamT.args, **kwargs: ParamT.kwargs
     ) -> HttpResponse:
         user_agent = parse_user_agent(request.headers.get("User-Agent", "Missing User-Agent"))
-        if user_agent["name"] == "ZulipElectron":
+        if user_agent["name"] == "AlohaElectron":
             return render(request, "zerver/desktop_login.html")
 
         return func(request, *args, **kwargs)
@@ -678,7 +678,7 @@ def redirect_and_log_into_subdomain(result: ExternalAuthResult) -> HttpResponse:
 
 
 def redirect_to_misconfigured_ldap_notice(request: HttpRequest, error_type: int) -> HttpResponse:
-    if error_type == ZulipLDAPAuthBackend.REALM_IS_NONE_ERROR:
+    if error_type == AlohaLDAPAuthBackend.REALM_IS_NONE_ERROR:
         return config_error(request, "ldap")
     else:
         raise AssertionError("Invalid error type")
@@ -774,7 +774,7 @@ def login_page(
     if settings.SOCIAL_AUTH_SUBDOMAIN == get_subdomain(request):
         return social_auth_subdomain_login_page(request)
 
-    # To support previewing the Zulip login pages, we have a special option
+    # To support previewing the Aloha login pages, we have a special option
     # that disables the default behavior of redirecting logged-in users to the
     # logged-in app.
     is_preview = "preview" in request.GET
@@ -821,7 +821,7 @@ def login_page(
         template_response = DjangoLoginView.as_view(
             authentication_form=OurAuthenticationForm, extra_context=extra_context, **kwargs
         )(request)
-    except ZulipLDAPConfigurationError as e:
+    except AlohaLDAPConfigurationError as e:
         assert len(e.args) > 1
         return redirect_to_misconfigured_ldap_notice(request, e.args[1])
 
@@ -959,7 +959,7 @@ def get_auth_backends_data(request: HttpRequest) -> Dict[str, Any]:
 
 def check_server_incompatibility(request: HttpRequest) -> bool:
     user_agent = parse_user_agent(request.headers.get("User-Agent", "Missing User-Agent"))
-    return user_agent["name"] == "ZulipInvalid"
+    return user_agent["name"] == "AlohaInvalid"
 
 
 @require_safe
@@ -1027,7 +1027,7 @@ def password_reset(request: HttpRequest) -> HttpResponse:
     try:
         response = DjangoPasswordResetView.as_view(
             template_name="zerver/reset.html",
-            form_class=ZulipPasswordResetForm,
+            form_class=AlohaPasswordResetForm,
             success_url="/accounts/password/reset/done/",
         )(request)
     except RateLimited as e:

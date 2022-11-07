@@ -6,12 +6,12 @@ from django.conf import settings
 from django.core.management.base import CommandError, CommandParser
 from django.test import Client
 
-from zerver.lib.management import ZulipBaseCommand
+from zerver.lib.management import AlohaBaseCommand
 from zerver.lib.webhooks.common import standardize_headers
 from zerver.models import get_realm
 
 
-class Command(ZulipBaseCommand):
+class Command(AlohaBaseCommand):
     help = """
 Create webhook message based on given fixture
 Example:
@@ -32,17 +32,17 @@ approach shown above.
 
     def add_arguments(self, parser: CommandParser) -> None:
         parser.add_argument(
-            "-f", "--fixture", help="The path to the fixture you'd like to send " "into Zulip"
+            "-f", "--fixture", help="The path to the fixture you'd like to send " "into Aloha"
         )
 
         parser.add_argument(
-            "-u", "--url", help="The URL on your Zulip server that you want to post the fixture to"
+            "-u", "--url", help="The URL on your Aloha server that you want to post the fixture to"
         )
 
         parser.add_argument(
             "-H",
             "--custom-headers",
-            help="The headers you want to provide along with your mock request to Zulip.",
+            help="The headers you want to provide along with your mock request to Aloha.",
         )
 
         self.add_realm_args(

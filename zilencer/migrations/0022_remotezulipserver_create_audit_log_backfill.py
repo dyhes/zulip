@@ -6,27 +6,27 @@ from django.db.migrations.state import StateApps
 def backfill_remote_zulip_server_creation_log_events(
     apps: StateApps, schema_editor: BaseDatabaseSchemaEditor
 ) -> None:
-    RemoteZulipServer = apps.get_model("zilencer", "RemoteZulipServer")
-    RemoteZulipServerAuditLog = apps.get_model("zilencer", "RemoteZulipServerAuditLog")
-    RemoteZulipServerAuditLog.REMOTE_SERVER_CREATED = 10215
+    RemoteAlohaServer = apps.get_model("zilencer", "RemoteAlohaServer")
+    RemoteAlohaServerAuditLog = apps.get_model("zilencer", "RemoteAlohaServerAuditLog")
+    RemoteAlohaServerAuditLog.REMOTE_SERVER_CREATED = 10215
 
     objects_to_create = []
-    for remote_server in RemoteZulipServer.objects.all():
-        entry = RemoteZulipServerAuditLog(
+    for remote_server in RemoteAlohaServer.objects.all():
+        entry = RemoteAlohaServerAuditLog(
             server=remote_server,
-            event_type=RemoteZulipServerAuditLog.REMOTE_SERVER_CREATED,
+            event_type=RemoteAlohaServerAuditLog.REMOTE_SERVER_CREATED,
             event_time=remote_server.last_updated,
             backfilled=True,
         )
         objects_to_create.append(entry)
-    RemoteZulipServerAuditLog.objects.bulk_create(objects_to_create)
+    RemoteAlohaServerAuditLog.objects.bulk_create(objects_to_create)
 
 
 def reverse_code(apps: StateApps, schema_editor: BaseDatabaseSchemaEditor) -> None:
-    RemoteZulipServerAuditLog = apps.get_model("zilencer", "RemoteZulipServerAuditLog")
-    RemoteZulipServerAuditLog.REMOTE_SERVER_CREATED = 10215
-    RemoteZulipServerAuditLog.objects.filter(
-        event_type=RemoteZulipServerAuditLog.REMOTE_SERVER_CREATED, backfilled=True
+    RemoteAlohaServerAuditLog = apps.get_model("zilencer", "RemoteAlohaServerAuditLog")
+    RemoteAlohaServerAuditLog.REMOTE_SERVER_CREATED = 10215
+    RemoteAlohaServerAuditLog.objects.filter(
+        event_type=RemoteAlohaServerAuditLog.REMOTE_SERVER_CREATED, backfilled=True
     ).delete()
 
 

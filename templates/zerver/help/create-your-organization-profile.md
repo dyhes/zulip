@@ -8,11 +8,11 @@
 
 {!edit-organization-profile.md!}
 
-## Zulip communities directory
+## Aloha communities directory
 
 {!communities-directory-intro.md!}
 
-### Change whether your organization may be listed in the Zulip communities directory
+### Change whether your organization may be listed in the Aloha communities directory
 
 {!communities-directory-instructions.md!}
 
@@ -28,4 +28,4 @@ For more details, see [Communities directory](/help/communities-directory).
 * [Customize organization settings](/help/customize-organization-settings)
 * [Create streams](/help/create-streams)
 * [Communities directory](/help/communities-directory)
-* [Getting started with Zulip](/help/getting-started-with-zulip)
+* [Getting started with Aloha](/help/getting-started-with-zulip)

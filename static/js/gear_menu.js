@@ -30,12 +30,12 @@ link:  Help center
 info:  Keyboard shortcuts
 info:  Message formatting
 info:  Search operators
-hash:  About Zulip
+hash:  About Aloha
 ---
 link:  Desktop & mobile apps
 link:  Integrations
 link:  API documentation
-link:  Sponsor Zulip
+link:  Sponsor Aloha
 link:  Plans and pricing
 ---
 hash:   Invite users
@@ -104,29 +104,29 @@ export function version_display_string() {
 
     if (page_params.zulip_version.endsWith("-dev+git")) {
         // The development environment uses this version string format.
-        return $t({defaultMessage: "Zulip Server dev environment"});
+        return $t({defaultMessage: "Aloha Server dev environment"});
     }
 
     if (is_fork) {
-        // For forks, we want to describe the Zulip version this was
+        // For forks, we want to describe the Aloha version this was
         // forked from, and that it was modified.
         const display_version = page_params.zulip_merge_base
             .replace(/\+git.*/, "")
             .replace(/-dev.*/, "-dev");
-        return $t({defaultMessage: "Zulip Server {display_version} (modified)"}, {display_version});
+        return $t({defaultMessage: "Aloha Server {display_version} (modified)"}, {display_version});
     }
 
     // The below cases are all for official versions; either a
-    // release, or Git commit from one of Zulip's official branches.
+    // release, or Git commit from one of Aloha's official branches.
 
     if (version.includes("+git")) {
-        // A version from a Zulip official maintenance branch such as 5.x.
+        // A version from a Aloha official maintenance branch such as 5.x.
         const display_version = version.replace(/\+git.*/, "");
-        return $t({defaultMessage: "Zulip Server {display_version} (patched)"}, {display_version});
+        return $t({defaultMessage: "Aloha Server {display_version} (patched)"}, {display_version});
     }
 
     const display_version = version.replace(/\+git.*/, "").replace(/-dev.*/, "-dev");
-    return $t({defaultMessage: "Zulip Server {display_version}"}, {display_version});
+    return $t({defaultMessage: "Aloha Server {display_version}"}, {display_version});
 }
 
 export function initialize() {
@@ -141,7 +141,7 @@ export function initialize() {
         is_plan_standard_sponsored_for_free: page_params.realm_plan_type === 4,
         is_business_org: page_params.realm_org_type === 10,
         is_education_org: page_params.realm_org_type === 30 || page_params.realm_org_type === 35,
-        standard_plan_name: "Zulip Cloud Standard",
+        standard_plan_name: "Aloha Cloud Standard",
         server_needs_upgrade: page_params.server_needs_upgrade,
         version_display_string: version_display_string(),
         apps_page_url: page_params.apps_page_url,

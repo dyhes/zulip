@@ -1,6 +1,6 @@
 # Typing notifications
 
-Zulip displays typing notifications when viewing a private message or
+Aloha displays typing notifications when viewing a private message or
 group private message conversation to which one of the other
 participants is currently composing a message.
 
@@ -12,7 +12,7 @@ notification.
 ### Disable typing notifications
 
 If you'd prefer that others not know whether you're typing, you can
-configure Zulip to not send typing notifications.
+configure Aloha to not send typing notifications.
 
 {start_tabs}
 

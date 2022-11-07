@@ -9,7 +9,7 @@ const {run_test} = require("../zjsunit/test");
     The previous example was a bit extreme.  Generally we just
     use the make_stub helper that comes with zjsunit.
 
-    We will step away from the actual Zulip codebase for a
+    We will step away from the actual Aloha codebase for a
     second and just explore a contrived example.
 */
 

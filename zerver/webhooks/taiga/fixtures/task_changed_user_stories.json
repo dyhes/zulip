@@ -19,7 +19,7 @@
         "external_reference":null,
         "project":{
             "id":229096,
-            "name":"Zulip",
+            "name":"Aloha",
             "logo_big_url":null,
             "permalink":"https://tree.taiga.io/project/eeshangarg-zulip"
         },
@@ -76,7 +76,7 @@
             "team_requirement":false,
             "project":{
                 "id":229096,
-                "name":"Zulip",
+                "name":"Aloha",
                 "logo_big_url":null,
                 "permalink":"https://tree.taiga.io/project/eeshangarg-zulip"
             },
@@ -91,7 +91,7 @@
                 "closed":false,
                 "project":{
                     "id":229096,
-                    "name":"Zulip",
+                    "name":"Aloha",
                     "logo_big_url":null,
                     "permalink":"https://tree.taiga.io/project/eeshangarg-zulip"
                 },
@@ -145,7 +145,7 @@
             "closed":false,
             "project":{
                 "id":229096,
-                "name":"Zulip",
+                "name":"Aloha",
                 "logo_big_url":null,
                 "permalink":"https://tree.taiga.io/project/eeshangarg-zulip"
             },

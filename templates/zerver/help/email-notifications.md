@@ -2,29 +2,29 @@
 
 ## Message notification emails
 
-Zulip can be configured to send message notification emails for [PMs
+Aloha can be configured to send message notification emails for [PMs
 and mentions](/help/pm-mention-alert-notifications), as well as
 [stream messages](/help/stream-notifications).
 
-You can [respond to Zulip messages directly][reply-from-email] by
+You can [respond to Aloha messages directly][reply-from-email] by
 replying to message notification emails, unless you are connecting to
-a self-hosted Zulip server whose system administrator has not
+a self-hosted Aloha server whose system administrator has not
 configured the [incoming email gateway][incoming-email-gateway].
 
 [incoming-email-gateway]: https://zulip.readthedocs.io/en/latest/production/email-gateway.html
 
 ### Delay before sending emails
 
-To reduce the number of emails you receive, Zulip
+To reduce the number of emails you receive, Aloha
 delays sending message notification emails for a configurable period
 of time (default: 2 minutes).  The delay
 helps in a few ways:
 
-* No email is sent if you return to Zulip and read the message before
+* No email is sent if you return to Aloha and read the message before
   the email would go out.
 * Edits made by the sender soon after sending a message will be
   reflected in the email.
-* Multiple messages in the same Zulip conversation are combined into
+* Multiple messages in the same Aloha conversation are combined into
   a single email. (Different conversations will always be
   in separate emails, so that you can
   [respond directly from your email][reply-from-email]).
@@ -45,7 +45,7 @@ To configure the delay for message notification emails:
 
 ### Include organization name in subject line
 
-If you belong to multiple Zulip organizations, it can be helpful to have the
+If you belong to multiple Aloha organizations, it can be helpful to have the
 name of the organization in the subject line of your message notification emails.
 
 {start_tabs}
@@ -61,7 +61,7 @@ name of the organization in the subject line of your message notification emails
 ### Hide message content
 
 For security or compliance reasons, you may want to hide the content of your
-Zulip messages from your email. Organization admins can do this at an
+Aloha messages from your email. Organization admins can do this at an
 [organization-wide level](/help/hide-message-content-in-emails), but you can
 also do this just for the messages you receive.
 
@@ -79,12 +79,12 @@ being sent through your email.
 
 ## New login emails
 
-By default, Zulip sends an email whenever you log in to Zulip. These emails
+By default, Aloha sends an email whenever you log in to Aloha. These emails
 help you protect your account; if you see a login email at a time or from a
 device you don't recognize, you should
 [change your password](/help/change-your-password) right away.
 
-In typical usage, these emails are sent infrequently, since all Zulip apps
+In typical usage, these emails are sent infrequently, since all Aloha apps
 (web, mobile, desktop, and terminal) keep you logged in to any organization
 you've interacted with in the last 1-2 weeks.
 
@@ -105,8 +105,8 @@ feel excessive.
 
 ## Low-traffic newsletter
 
-Zulip sends out a low-traffic newsletter (expect 2-4 emails a year)
-announcing major changes in Zulip.
+Aloha sends out a low-traffic newsletter (expect 2-4 emails a year)
+announcing major changes in Aloha.
 
 ### Managing your newsletter subscription
 
@@ -115,13 +115,13 @@ announcing major changes in Zulip.
 {settings_tab|notifications}
 
 1. Under **Other emails**, toggle
-   **Send me Zulip's low-traffic newsletter (a few emails a year)**.
+   **Send me Aloha's low-traffic newsletter (a few emails a year)**.
 
 {end_tabs}
 
 ## Related articles
 
-* [Using Zulip via email](/help/using-zulip-via-email)
+* [Using Aloha via email](/help/using-zulip-via-email)
 * [Message a stream by email](/help/message-a-stream-by-email)
 * [Stream notifications](/help/stream-notifications)
 * [Hide message content in emails (for organizations)](/help/hide-message-content-in-emails)

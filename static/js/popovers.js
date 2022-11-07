@@ -1105,7 +1105,7 @@ export function register_click_handlers() {
     });
 
     /* These click handlers are implemented as just deep links to the
-     * relevant part of the Zulip UI, so we don't want preventDefault,
+     * relevant part of the Aloha UI, so we don't want preventDefault,
      * but we do want to close the modal when you click them. */
 
     $("body").on("click", ".invisible_mode_turn_on", (e) => {

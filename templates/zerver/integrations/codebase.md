@@ -1,4 +1,4 @@
-Get Codebase notifications in Zulip!
+Get Codebase notifications in Aloha!
 
 1. First, create the streams you’d like to use for Codebase notifications. There
    will be two types of messages: commit-related updates and issue-related

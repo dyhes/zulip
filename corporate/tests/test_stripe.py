@@ -86,7 +86,7 @@ from corporate.models import (
     LicenseLedger,
     PaymentIntent,
     Session,
-    ZulipSponsorshipRequest,
+    AlohaSponsorshipRequest,
     get_current_plan_by_customer,
     get_current_plan_by_realm,
     get_customer_by_realm,
@@ -99,7 +99,7 @@ from zerver.actions.create_user import (
 )
 from zerver.actions.realm_settings import do_deactivate_realm, do_reactivate_realm
 from zerver.actions.users import do_deactivate_user
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.timestamp import datetime_to_timestamp, timestamp_to_datetime
 from zerver.lib.utils import assert_is_not_none
 from zerver.models import (
@@ -111,7 +111,7 @@ from zerver.models import (
     get_realm,
     get_system_bot,
 )
-from zilencer.models import RemoteZulipServer, RemoteZulipServerAuditLog
+from zilencer.models import RemoteAlohaServer, RemoteAlohaServerAuditLog
 
 if TYPE_CHECKING:
     from django.test.client import _MonkeyPatchedWSGIResponse as TestHttpResponse
@@ -383,7 +383,7 @@ def mock_stripe(
     return _mock_stripe
 
 
-class StripeTestCase(ZulipTestCase):
+class StripeTestCase(AlohaTestCase):
     def setUp(self) -> None:
         super().setUp()
         realm = get_realm("zulip")
@@ -727,7 +727,7 @@ class StripeTest(StripeTestCase):
             assert_is_not_none(Customer.objects.get(realm=user.realm).stripe_customer_id)
         )
         self.assertTrue(stripe_customer_has_credit_card_as_default_payment_method(stripe_customer))
-        self.assertEqual(stripe_customer.description, "zulip (Zulip Dev)")
+        self.assertEqual(stripe_customer.description, "zulip (Aloha Dev)")
         self.assertEqual(stripe_customer.discount, None)
         self.assertEqual(stripe_customer.email, user.delivery_email)
         metadata_dict = dict(stripe_customer.metadata)
@@ -742,10 +742,10 @@ class StripeTest(StripeTestCase):
         self.assertEqual(charge.amount, 8000 * self.seat_count)
         # TODO: fix Decimal
         self.assertEqual(
-            charge.description, f"Upgrade to Zulip Cloud Standard, $80.0 x {self.seat_count}"
+            charge.description, f"Upgrade to Aloha Cloud Standard, $80.0 x {self.seat_count}"
         )
         self.assertEqual(charge.receipt_email, user.delivery_email)
-        self.assertEqual(charge.statement_descriptor, "Zulip Cloud Standard")
+        self.assertEqual(charge.statement_descriptor, "Aloha Cloud Standard")
         # Check Invoices in Stripe
         [invoice] = stripe.Invoice.list(customer=stripe_customer.id)
         self.assertIsNotNone(invoice.status_transitions.finalized_at)
@@ -765,7 +765,7 @@ class StripeTest(StripeTestCase):
         [item0, item1] = invoice.lines
         line_item_params = {
             "amount": 8000 * self.seat_count,
-            "description": "Zulip Cloud Standard",
+            "description": "Aloha Cloud Standard",
             "discountable": False,
             "period": {
                 "end": datetime_to_timestamp(self.next_year),
@@ -791,7 +791,7 @@ class StripeTest(StripeTestCase):
         for key, value in line_item_params.items():
             self.assertEqual(item1.get(key), value)
 
-        # Check that we correctly populated Customer, CustomerPlan, and LicenseLedger in Zulip
+        # Check that we correctly populated Customer, CustomerPlan, and LicenseLedger in Aloha
         customer = Customer.objects.get(stripe_customer_id=stripe_customer.id, realm=user.realm)
         plan = CustomerPlan.objects.get(
             customer=customer,
@@ -855,11 +855,11 @@ class StripeTest(StripeTestCase):
             response = self.client_get("/billing/")
         self.assert_not_in_success_response(["Pay annually"], response)
         for substring in [
-            "Zulip Cloud Standard",
+            "Aloha Cloud Standard",
             str(self.seat_count),
             "You are using",
             f"{self.seat_count} of {self.seat_count} licenses",
-            "Licenses are automatically managed by Zulip; when you add",
+            "Licenses are automatically managed by Aloha; when you add",
             "Your plan will renew on",
             "January 2, 2013",
             f"${80 * self.seat_count}.00",
@@ -909,7 +909,7 @@ class StripeTest(StripeTestCase):
             "attempt_count": 0,
             "auto_advance": True,
             "collection_method": "send_invoice",
-            "statement_descriptor": "Zulip Cloud Standard",
+            "statement_descriptor": "Aloha Cloud Standard",
             "status": "open",
             "total": 8000 * 123,
         }
@@ -919,7 +919,7 @@ class StripeTest(StripeTestCase):
         [item] = invoice.lines
         line_item_params = {
             "amount": 8000 * 123,
-            "description": "Zulip Cloud Standard",
+            "description": "Aloha Cloud Standard",
             "discountable": False,
             "period": {
                 "end": datetime_to_timestamp(self.next_year),
@@ -932,7 +932,7 @@ class StripeTest(StripeTestCase):
         for key, value in line_item_params.items():
             self.assertEqual(item.get(key), value)
 
-        # Check that we correctly populated Customer, CustomerPlan and LicenseLedger in Zulip
+        # Check that we correctly populated Customer, CustomerPlan and LicenseLedger in Aloha
         customer = Customer.objects.get(stripe_customer_id=stripe_customer.id, realm=user.realm)
         plan = CustomerPlan.objects.get(
             customer=customer,
@@ -996,7 +996,7 @@ class StripeTest(StripeTestCase):
             response = self.client_get("/billing/")
         self.assert_not_in_success_response(["Pay annually", "Update card"], response)
         for substring in [
-            "Zulip Cloud Standard",
+            "Aloha Cloud Standard",
             str(123),
             "You are using",
             f"{self.seat_count} of {123} licenses",
@@ -1045,7 +1045,7 @@ class StripeTest(StripeTestCase):
             self.assertTrue(
                 stripe_customer_has_credit_card_as_default_payment_method(stripe_customer)
             )
-            self.assertEqual(stripe_customer.description, "zulip (Zulip Dev)")
+            self.assertEqual(stripe_customer.description, "zulip (Aloha Dev)")
             self.assertEqual(stripe_customer.discount, None)
             self.assertEqual(stripe_customer.email, user.delivery_email)
             metadata_dict = dict(stripe_customer.metadata)
@@ -1119,7 +1119,7 @@ class StripeTest(StripeTestCase):
                 response = self.client_get("/billing/")
             self.assert_not_in_success_response(["Pay annually"], response)
             for substring in [
-                "Zulip Cloud Standard",
+                "Aloha Cloud Standard",
                 "Free Trial",
                 str(self.seat_count),
                 "You are using",
@@ -1132,11 +1132,11 @@ class StripeTest(StripeTestCase):
                 "Update card",
             ]:
                 self.assert_in_response(substring, response)
-            self.assert_not_in_success_response(["Go to your Zulip organization"], response)
+            self.assert_not_in_success_response(["Go to your Aloha organization"], response)
 
             with patch("corporate.views.billing_page.timezone_now", return_value=self.now):
                 response = self.client_get("/billing/", {"onboarding": "true"})
-                self.assert_in_success_response(["Go to your Zulip organization"], response)
+                self.assert_in_success_response(["Go to your Aloha organization"], response)
 
             with patch("corporate.lib.stripe.get_latest_seat_count", return_value=12):
                 update_license_ledger_if_needed(realm, self.now)
@@ -1186,7 +1186,7 @@ class StripeTest(StripeTestCase):
             [invoice_item] = invoice.get("lines")
             invoice_item_params = {
                 "amount": 15 * 80 * 100,
-                "description": "Zulip Cloud Standard - renewal",
+                "description": "Aloha Cloud Standard - renewal",
                 "plan": None,
                 "quantity": 15,
                 "subscription": None,
@@ -1263,7 +1263,7 @@ class StripeTest(StripeTestCase):
             self.assertTrue(
                 stripe_customer_has_credit_card_as_default_payment_method(stripe_customer)
             )
-            self.assertEqual(stripe_customer.description, "zulip (Zulip Dev)")
+            self.assertEqual(stripe_customer.description, "zulip (Aloha Dev)")
             self.assertEqual(stripe_customer.discount, None)
             self.assertEqual(stripe_customer.email, user.delivery_email)
             metadata_dict = dict(stripe_customer.metadata)
@@ -1385,7 +1385,7 @@ class StripeTest(StripeTestCase):
                 response = self.client_get("/billing/")
             self.assert_not_in_success_response(["Pay annually"], response)
             for substring in [
-                "Zulip Cloud Standard",
+                "Aloha Cloud Standard",
                 "Free Trial",
                 str(self.seat_count),
                 "You are using",
@@ -1430,7 +1430,7 @@ class StripeTest(StripeTestCase):
             [invoice_item] = invoice.get("lines")
             invoice_item_params = {
                 "amount": 123 * 80 * 100,
-                "description": "Zulip Cloud Standard - renewal",
+                "description": "Aloha Cloud Standard - renewal",
                 "plan": None,
                 "quantity": 123,
                 "subscription": None,
@@ -2231,7 +2231,7 @@ class StripeTest(StripeTestCase):
             self.assertEqual(message.subject, "Support request for zulip")
             self.assertEqual(message.reply_to, ["hamlet@zulip.com"])
             self.assertEqual(self.email_envelope_from(message), settings.NOREPLY_EMAIL_ADDRESS)
-            self.assertIn("Zulip Support <noreply-", self.email_display_from(message))
+            self.assertIn("Aloha Support <noreply-", self.email_display_from(message))
             self.assertIn("Requested by: King Hamlet (Member)", message.body)
             self.assertIn(
                 "Support URL: http://zulip.testserver/activity/support?q=zulip", message.body
@@ -2253,7 +2253,7 @@ class StripeTest(StripeTestCase):
         response = self.client_post("/json/billing/sponsorship", data)
         self.assert_json_success(response)
 
-        sponsorship_request = ZulipSponsorshipRequest.objects.filter(
+        sponsorship_request = AlohaSponsorshipRequest.objects.filter(
             realm=user.realm, requested_by=user
         ).first()
         assert sponsorship_request is not None
@@ -2277,7 +2277,7 @@ class StripeTest(StripeTestCase):
             self.assertEqual(message.subject, "Sponsorship request (Open-source project) for zulip")
             self.assertEqual(message.reply_to, ["hamlet@zulip.com"])
             self.assertEqual(self.email_envelope_from(message), settings.NOREPLY_EMAIL_ADDRESS)
-            self.assertIn("Zulip sponsorship <noreply-", self.email_display_from(message))
+            self.assertIn("Aloha sponsorship <noreply-", self.email_display_from(message))
             self.assertIn("Requested by: King Hamlet (Member)", message.body)
             self.assertIn(
                 "Support URL: http://zulip.testserver/activity/support?q=zulip", message.body
@@ -2307,7 +2307,7 @@ class StripeTest(StripeTestCase):
         self.login_user(self.example_user("hamlet"))
         response = self.client_get("/billing/")
         self.assert_in_success_response(
-            ["Your organization is fully sponsored and is on the <b>Zulip Cloud Standard</b>"],
+            ["Your organization is fully sponsored and is on the <b>Aloha Cloud Standard</b>"],
             response,
         )
 
@@ -2532,7 +2532,7 @@ class StripeTest(StripeTestCase):
         realm = get_realm("zulip")
         self.assertEqual(realm.plan_type, Realm.PLAN_TYPE_STANDARD_FREE)
 
-        expected_message = "Your organization's request for sponsored hosting has been approved! :tada:.\nYou have been upgraded to Zulip Cloud Standard, free of charge."
+        expected_message = "Your organization's request for sponsored hosting has been approved! :tada:.\nYou have been upgraded to Aloha Cloud Standard, free of charge."
         sender = get_system_bot(settings.NOTIFICATION_BOT, user.realm_id)
         recipient_id = self.example_user("desdemona").recipient_id
         message = Message.objects.filter(sender=sender.id).first()
@@ -2720,7 +2720,7 @@ class StripeTest(StripeTestCase):
                 response = self.client_get("/billing/")
                 self.assert_in_success_response(
                     [
-                        "Your plan will be downgraded to <strong>Zulip Limited</strong> on "
+                        "Your plan will be downgraded to <strong>Aloha Limited</strong> on "
                         "<strong>January 2, 2013</strong>",
                         "You plan is scheduled for downgrade on <strong>January 2, 2013</strong>",
                         "Cancel downgrade",
@@ -2908,7 +2908,7 @@ class StripeTest(StripeTestCase):
 
         annual_plan_invoice_item_params = {
             "amount": 20 * 80 * 100,
-            "description": "Zulip Cloud Standard - renewal",
+            "description": "Aloha Cloud Standard - renewal",
             "plan": None,
             "quantity": 20,
             "subscription": None,
@@ -2969,7 +2969,7 @@ class StripeTest(StripeTestCase):
         [invoice_item] = invoice0.get("lines")
         annual_plan_invoice_item_params = {
             "amount": 30 * 80 * 100,
-            "description": "Zulip Cloud Standard - renewal",
+            "description": "Aloha Cloud Standard - renewal",
             "plan": None,
             "quantity": 30,
             "subscription": None,
@@ -3058,7 +3058,7 @@ class StripeTest(StripeTestCase):
         [invoice_item] = invoice0.get("lines")
         annual_plan_invoice_item_params = {
             "amount": num_licenses * 80 * 100,
-            "description": "Zulip Cloud Standard - renewal",
+            "description": "Aloha Cloud Standard - renewal",
             "plan": None,
             "quantity": num_licenses,
             "subscription": None,
@@ -3082,7 +3082,7 @@ class StripeTest(StripeTestCase):
         [invoice_item] = invoice0.get("lines")
         annual_plan_invoice_item_params = {
             "amount": num_licenses * 80 * 100,
-            "description": "Zulip Cloud Standard - renewal",
+            "description": "Aloha Cloud Standard - renewal",
             "plan": None,
             "quantity": num_licenses,
             "subscription": None,
@@ -3194,7 +3194,7 @@ class StripeTest(StripeTestCase):
             self.login_user(user)
             response = self.client_get("/billing/")
             self.assert_in_success_response(
-                ["Your organization is on the <b>Zulip Free</b>"], response
+                ["Your organization is on the <b>Aloha Free</b>"], response
             )
 
             # The extra users added in the final month are not charged
@@ -3241,7 +3241,7 @@ class StripeTest(StripeTestCase):
         invoice_plans_as_needed(self.next_year)
 
         response = self.client_get("/billing/")
-        self.assert_in_success_response(["Your organization is on the <b>Zulip Free</b>"], response)
+        self.assert_in_success_response(["Your organization is on the <b>Aloha Free</b>"], response)
 
         with patch("corporate.lib.stripe.timezone_now", return_value=self.next_year):
             self.local_upgrade(self.seat_count, True, CustomerPlan.ANNUAL, True, False)
@@ -3311,7 +3311,7 @@ class StripeTest(StripeTestCase):
             "attempt_count": 0,
             "auto_advance": True,
             "collection_method": "send_invoice",
-            "statement_descriptor": "Zulip Cloud Standard",
+            "statement_descriptor": "Aloha Cloud Standard",
             "status": "open",
             "total": (8000 * 150 + 8000 * 50),
         }
@@ -3320,7 +3320,7 @@ class StripeTest(StripeTestCase):
         [renewal_item, extra_license_item] = invoice.lines
         line_item_params = {
             "amount": 8000 * 150,
-            "description": "Zulip Cloud Standard - renewal",
+            "description": "Aloha Cloud Standard - renewal",
             "discountable": False,
             "period": {
                 "end": datetime_to_timestamp(self.next_year + timedelta(days=365)),
@@ -3361,7 +3361,7 @@ class StripeTest(StripeTestCase):
             "attempt_count": 0,
             "auto_advance": True,
             "collection_method": "send_invoice",
-            "statement_descriptor": "Zulip Cloud Standard",
+            "statement_descriptor": "Aloha Cloud Standard",
             "status": "open",
             "total": 8000 * 120,
         }
@@ -3370,7 +3370,7 @@ class StripeTest(StripeTestCase):
         [renewal_item] = invoice.lines
         line_item_params = {
             "amount": 8000 * 120,
-            "description": "Zulip Cloud Standard - renewal",
+            "description": "Aloha Cloud Standard - renewal",
             "discountable": False,
             "period": {
                 "end": datetime_to_timestamp(self.next_year + timedelta(days=2 * 365)),
@@ -3496,7 +3496,7 @@ class StripeTest(StripeTestCase):
 
         self.login_user(user)
         response = self.client_get("/billing/")
-        self.assert_in_success_response(["Your organization is on the <b>Zulip Free</b>"], response)
+        self.assert_in_success_response(["Your organization is on the <b>Aloha Free</b>"], response)
 
         # The extra users added in the final month are not charged
         with patch("corporate.lib.stripe.invoice_plan") as mocked:
@@ -3520,7 +3520,7 @@ class StripeTest(StripeTestCase):
 
         self.login_user(user)
         response = self.client_get("/billing/")
-        self.assert_in_success_response(["Your organization is on the <b>Zulip Free</b>"], response)
+        self.assert_in_success_response(["Your organization is on the <b>Aloha Free</b>"], response)
 
         with patch("corporate.lib.stripe.timezone_now", return_value=self.now):
             self.local_upgrade(self.seat_count, True, CustomerPlan.ANNUAL, True, False)
@@ -3554,7 +3554,7 @@ class StripeTest(StripeTestCase):
         stripe.InvoiceItem.create(
             currency="usd",
             customer=zulip_customer.stripe_customer_id,
-            description="Zulip Cloud Standard upgrade",
+            description="Aloha Cloud Standard upgrade",
             discountable=False,
             unit_amount=800,
             quantity=8,
@@ -3564,7 +3564,7 @@ class StripeTest(StripeTestCase):
             collection_method="send_invoice",
             customer=zulip_customer.stripe_customer_id,
             days_until_due=30,
-            statement_descriptor="Zulip Cloud Standard",
+            statement_descriptor="Aloha Cloud Standard",
         )
         stripe.Invoice.finalize_invoice(stripe_invoice)
 
@@ -3572,7 +3572,7 @@ class StripeTest(StripeTestCase):
         stripe.InvoiceItem.create(
             currency="usd",
             customer=lear_customer.stripe_customer_id,
-            description="Zulip Cloud Standard upgrade",
+            description="Aloha Cloud Standard upgrade",
             discountable=False,
             unit_amount=800,
             quantity=8,
@@ -3582,7 +3582,7 @@ class StripeTest(StripeTestCase):
             collection_method="send_invoice",
             customer=lear_customer.stripe_customer_id,
             days_until_due=30,
-            statement_descriptor="Zulip Cloud Standard",
+            statement_descriptor="Aloha Cloud Standard",
         )
         stripe.Invoice.finalize_invoice(stripe_invoice)
 
@@ -3613,7 +3613,7 @@ class StripeTest(StripeTestCase):
                 amount=10000,
                 currency="usd",
                 customer=customer.stripe_customer_id,
-                description="Zulip Cloud Standard",
+                description="Aloha Cloud Standard",
                 discountable=False,
             )
             invoice = stripe.Invoice.create(
@@ -3621,7 +3621,7 @@ class StripeTest(StripeTestCase):
                 collection_method="send_invoice",
                 customer=customer.stripe_customer_id,
                 days_until_due=DEFAULT_INVOICE_DAYS_UNTIL_DUE,
-                statement_descriptor="Zulip Cloud Standard",
+                statement_descriptor="Aloha Cloud Standard",
             )
             stripe.Invoice.finalize_invoice(invoice)
             invoices.append(invoice)
@@ -3879,7 +3879,7 @@ class StripeTest(StripeTestCase):
         self.assertTrue(customer_has_credit_card_as_default_payment_method(customer))
 
 
-class StripeWebhookEndpointTest(ZulipTestCase):
+class StripeWebhookEndpointTest(AlohaTestCase):
     def test_stripe_webhook_with_invalid_data(self) -> None:
         result = self.client_post(
             "/stripe/webhook/",
@@ -4190,7 +4190,7 @@ class RequiresBillingAccessTest(StripeTestCase):
         )
 
 
-class BillingHelpersTest(ZulipTestCase):
+class BillingHelpersTest(AlohaTestCase):
     def test_next_month(self) -> None:
         anchor = datetime(2019, 12, 31, 1, 2, 3, tzinfo=timezone.utc)
         period_boundaries = [
@@ -4463,31 +4463,31 @@ class BillingHelpersTest(ZulipTestCase):
 
     def test_change_remote_server_plan_type(self) -> None:
         server_uuid = str(uuid.uuid4())
-        remote_server = RemoteZulipServer.objects.create(
+        remote_server = RemoteAlohaServer.objects.create(
             uuid=server_uuid,
             api_key="magic_secret_api_key",
             hostname="demo.example.com",
             contact_email="email@example.com",
         )
-        self.assertEqual(remote_server.plan_type, RemoteZulipServer.PLAN_TYPE_SELF_HOSTED)
+        self.assertEqual(remote_server.plan_type, RemoteAlohaServer.PLAN_TYPE_SELF_HOSTED)
 
-        do_change_remote_server_plan_type(remote_server, RemoteZulipServer.PLAN_TYPE_STANDARD)
+        do_change_remote_server_plan_type(remote_server, RemoteAlohaServer.PLAN_TYPE_STANDARD)
 
-        remote_server = RemoteZulipServer.objects.get(uuid=server_uuid)
-        remote_realm_audit_log = RemoteZulipServerAuditLog.objects.filter(
+        remote_server = RemoteAlohaServer.objects.get(uuid=server_uuid)
+        remote_realm_audit_log = RemoteAlohaServerAuditLog.objects.filter(
             event_type=RealmAuditLog.REMOTE_SERVER_PLAN_TYPE_CHANGED
         ).last()
         assert remote_realm_audit_log is not None
         expected_extra_data = {
-            "old_value": RemoteZulipServer.PLAN_TYPE_SELF_HOSTED,
-            "new_value": RemoteZulipServer.PLAN_TYPE_STANDARD,
+            "old_value": RemoteAlohaServer.PLAN_TYPE_SELF_HOSTED,
+            "new_value": RemoteAlohaServer.PLAN_TYPE_STANDARD,
         }
         self.assertEqual(remote_realm_audit_log.extra_data, str(expected_extra_data))
-        self.assertEqual(remote_server.plan_type, RemoteZulipServer.PLAN_TYPE_STANDARD)
+        self.assertEqual(remote_server.plan_type, RemoteAlohaServer.PLAN_TYPE_STANDARD)
 
     def test_deactivate_remote_server(self) -> None:
         server_uuid = str(uuid.uuid4())
-        remote_server = RemoteZulipServer.objects.create(
+        remote_server = RemoteAlohaServer.objects.create(
             uuid=server_uuid,
             api_key="magic_secret_api_key",
             hostname="demo.example.com",
@@ -4497,8 +4497,8 @@ class BillingHelpersTest(ZulipTestCase):
 
         do_deactivate_remote_server(remote_server)
 
-        remote_server = RemoteZulipServer.objects.get(uuid=server_uuid)
-        remote_realm_audit_log = RemoteZulipServerAuditLog.objects.filter(
+        remote_server = RemoteAlohaServer.objects.get(uuid=server_uuid)
+        remote_realm_audit_log = RemoteAlohaServerAuditLog.objects.filter(
             event_type=RealmAuditLog.REMOTE_SERVER_DEACTIVATED
         ).last()
         assert remote_realm_audit_log is not None
@@ -4765,7 +4765,7 @@ class InvoiceTest(StripeTestCase):
             self.assertEqual(item0.get(key), value)
         line_item_params = {
             "amount": 8000 * (self.seat_count + 1),
-            "description": "Zulip Cloud Standard - renewal",
+            "description": "Aloha Cloud Standard - renewal",
             "discountable": False,
             "period": {
                 "start": datetime_to_timestamp(self.now + timedelta(days=366)),
@@ -4808,7 +4808,7 @@ class InvoiceTest(StripeTestCase):
         [item] = invoice0.lines
         line_item_params = {
             "amount": 100,
-            "description": "Zulip Cloud Standard - renewal",
+            "description": "Aloha Cloud Standard - renewal",
             "discountable": False,
             "period": {
                 "start": datetime_to_timestamp(self.next_year),
@@ -4849,7 +4849,7 @@ class InvoiceTest(StripeTestCase):
         self.assertEqual(plan.next_invoice_date, self.next_month + timedelta(days=29))
 
 
-class TestTestClasses(ZulipTestCase):
+class TestTestClasses(AlohaTestCase):
     def test_subscribe_realm_to_manual_license_management_plan(self) -> None:
         realm = get_realm("zulip")
         plan, ledger = self.subscribe_realm_to_manual_license_management_plan(

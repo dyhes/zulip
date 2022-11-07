@@ -4,4 +4,4 @@ Subject: Testing email mirror
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-This is a plain-text message for testing Zulip.
+This is a plain-text message for testing Aloha.

@@ -86,7 +86,7 @@ class EditHistoryEvent(TypedDict, total=False):
     # user_id is null for precisely those edit history events
     # predating March 2017, when we started tracking the person who
     # made edits, which is still years after the introduction of topic
-    # editing support in Zulip.
+    # editing support in Aloha.
     user_id: Optional[int]
     timestamp: int
     prev_stream: int
@@ -220,7 +220,7 @@ class NeverSubscribedStreamDict(TypedDict):
 
 
 class APIStreamDict(TypedDict):
-    """Stream information provided to Zulip clients as a dictionary via API.
+    """Stream information provided to Aloha clients as a dictionary via API.
     It should contain all the fields specified in `zerver.models.Stream.API_FIELDS`
     with few exceptions and possible additional fields.
     """

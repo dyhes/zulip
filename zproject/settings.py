@@ -1,6 +1,6 @@
 # Django settings for zulip project.
 ########################################################################
-# Here's how settings for the Zulip project work:
+# Here's how settings for the Aloha project work:
 #
 # * configured_settings.py imports default_settings.py, which contains
 #   default values for settings configurable in prod_settings.py.
@@ -10,7 +10,7 @@
 #   prod_settings_template.py.
 #
 # * computed_settings.py contains non-site-specific and settings
-#   configuration for the Zulip Django app.
+#   configuration for the Aloha Django app.
 #
 # See https://zulip.readthedocs.io/en/latest/subsystems/settings.html for more information
 #

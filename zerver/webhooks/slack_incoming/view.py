@@ -162,7 +162,7 @@ def check_text_block(plain_text_only: bool = False) -> Validator[str]:
 
 def render_block_element(element: WildValue) -> str:
     # https://api.slack.com/reference/block-kit/block-elements
-    # Zulip doesn't support interactive elements, so we only render images here
+    # Aloha doesn't support interactive elements, so we only render images here
     element_type = element["type"].tame(check_string)
     if element_type == "image":
         image_url = element["image_url"].tame(check_url)
@@ -223,9 +223,9 @@ def replace_links(text: str) -> str:
 
 
 def replace_formatting(text: str) -> str:
-    # Slack uses *text* for bold, whereas Zulip interprets that as italics
+    # Slack uses *text* for bold, whereas Aloha interprets that as italics
     text = re.sub(r"([^\w])\*(?!\s+)([^\*^\n]+)(?<!\s)\*([^\w])", r"\1**\2**\3", text)
 
-    # Slack uses _text_ for emphasis, whereas Zulip interprets that as nothing
+    # Slack uses _text_ for emphasis, whereas Aloha interprets that as nothing
     text = re.sub(r"([^\w])[_](?!\s+)([^\_\^\n]+)(?<!\s)[_]([^\w])", r"\1*\2*\3", text)
     return text

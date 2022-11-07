@@ -151,7 +151,7 @@ def get_postgres_pwent() -> pwd.struct_passwd:
 
 def su_to_zulip(save_suid: bool = False) -> None:
     """Warning: su_to_zulip assumes that the zulip checkout is owned by
-    the zulip user (or whatever normal user is running the Zulip
+    the zulip user (or whatever normal user is running the Aloha
     installation).  It should never be run from the installer or other
     production contexts before /home/zulip/deployments/current is
     created."""

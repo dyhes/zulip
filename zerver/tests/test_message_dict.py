@@ -6,7 +6,7 @@ from django.utils.timezone import now as timezone_now
 from zerver.lib.cache import cache_delete, to_dict_cache_key_id
 from zerver.lib.markdown import version as markdown_version
 from zerver.lib.message import MessageDict, messages_for_ids, sew_messages_and_reactions
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import make_client, queries_captured
 from zerver.lib.topic import TOPIC_LINKS
 from zerver.lib.types import DisplayRecipientT, UserDisplayRecipient
@@ -25,7 +25,7 @@ from zerver.models import (
 )
 
 
-class MessageDictTest(ZulipTestCase):
+class MessageDictTest(AlohaTestCase):
     def test_both_codepaths(self) -> None:
         """
         We have two different codepaths that
@@ -240,7 +240,7 @@ class MessageDictTest(ZulipTestCase):
         row = MessageDict.get_raw_db_rows([message.id])[0]
         dct = MessageDict.build_dict_from_raw_db_row(row)
         error_content = (
-            "<p>[Zulip note: Sorry, we could not understand the formatting of your message]</p>"
+            "<p>[Aloha note: Sorry, we could not understand the formatting of your message]</p>"
         )
         self.assertEqual(dct["rendered_content"], error_content)
 
@@ -336,7 +336,7 @@ class MessageDictTest(ZulipTestCase):
         self.assert_json_error(result, "Invalid anchor")
 
 
-class MessageHydrationTest(ZulipTestCase):
+class MessageHydrationTest(AlohaTestCase):
     def test_hydrate_stream_recipient_info(self) -> None:
         realm = get_realm("zulip")
         cordelia = self.example_user("cordelia")
@@ -487,7 +487,7 @@ class MessageHydrationTest(ZulipTestCase):
         self.assertEqual(cordelia_display_recipient["email"], cordelia_new_email)
 
 
-class TestMessageForIdsDisplayRecipientFetching(ZulipTestCase):
+class TestMessageForIdsDisplayRecipientFetching(AlohaTestCase):
     def _verify_display_recipient(
         self,
         display_recipient: DisplayRecipientT,
@@ -621,7 +621,7 @@ class TestMessageForIdsDisplayRecipientFetching(ZulipTestCase):
         self._verify_display_recipient(messages[5]["display_recipient"], [cordelia, othello])
 
 
-class SewMessageAndReactionTest(ZulipTestCase):
+class SewMessageAndReactionTest(AlohaTestCase):
     def test_sew_messages_and_reaction(self) -> None:
         sender = self.example_user("othello")
         receiver = self.example_user("hamlet")

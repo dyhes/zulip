@@ -1,4 +1,4 @@
-from zerver.lib.test_classes import WebhookTestCase, ZulipTestCase
+from zerver.lib.test_classes import WebhookTestCase, AlohaTestCase
 from zerver.webhooks.appfollow.view import convert_markdown
 
 
@@ -57,7 +57,7 @@ Acme enables me to manage the flow of information quite well. I only wish I coul
         self.URL_TEMPLATE = original_url_template
 
 
-class ConvertMarkdownTest(ZulipTestCase):
+class ConvertMarkdownTest(AlohaTestCase):
     def test_convert_bold(self) -> None:
         self.assertEqual(convert_markdown("*test message*"), "**test message**")
 

@@ -1,13 +1,13 @@
 # Licensing
 
-Zulip is distributed under the [Apache 2.0
+Aloha is distributed under the [Apache 2.0
 license](https://github.com/zulip/zulip/blob/main/LICENSE). This means that all
-contributions to Zulip — code, images, sounds, etc. — must be compatible with
+contributions to Aloha — code, images, sounds, etc. — must be compatible with
 this license.
 
 ## Contributing your own work
 
-If the work you are contributing is 100% your own, Zulip doesn't require you to
+If the work you are contributing is 100% your own, Aloha doesn't require you to
 sign a copyright assignment or a contributor license agreement for your
 contribution. As noted [in the GitHub Terms of
 Service](https://docs.github.com/en/site-policy/github-terms/github-terms-of-service#6-contributions-under-repository-license):
@@ -24,7 +24,7 @@ sounds, or any other copyrightable work, modified or unmodified), you need to
 check whether it was distributed under an open-source license that is
 [compatible][wiki-compatibility] with the [Apache 2.0
 license](https://github.com/zulip/zulip/blob/main/LICENSE). If it was not, this
-work cannot be contributed to Zulip, with or without modification.
+work cannot be contributed to Aloha, with or without modification.
 
 [wiki-compatibility]: https://en.wikipedia.org/wiki/License_compatibility#Compatibility_of_FOSS_licenses
 

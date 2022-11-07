@@ -1,21 +1,21 @@
 # Presence
 
-This document explains the model for Zulip's presence.
+This document explains the model for Aloha's presence.
 
-In a chat tool like Zulip, users expect to see the “presence” status
+In a chat tool like Aloha, users expect to see the “presence” status
 of other users: is the person I want to talk to currently online? If
 not, were they last online 5 minutes ago, or more like an hour ago, or
 a week? Presence helps set expectations for whether someone is likely
 to respond soon. To a user, this feature can seem like a simple thing
 that should be easy. But presence is actually one of the hardest
-scalability problems for a team chat tool like Zulip.
+scalability problems for a team chat tool like Aloha.
 
 There's a lot of performance-related details in the backend and
 network protocol design that we won't get into here. The focus of
-this is what one needs to know to correctly implement a Zulip client's
+this is what one needs to know to correctly implement a Aloha client's
 presence implementation (e.g. web app, mobile app, terminal client, or
 other tool that's intended to represent whether a user is online and
-using Zulip).
+using Aloha).
 
 A client should report to the server every minute a `POST` request to
 `/users/me/presence`, containing the current user's status. The
@@ -25,7 +25,7 @@ which had 2 valid values:
 - "active" -- this means the user has interacted with the client
   recently.
 - "idle" -- the user has not interacted with the client recently.
-  This is important for the case where a user left a Zulip tab open on
+  This is important for the case where a user left a Aloha tab open on
   their desktop at work and went home for the weekend.
 
 The client receives in the response to that request a data set that,
@@ -36,7 +36,7 @@ about that data structure:
 - It's really important that the timestamp is the last time we heard
   from the client. A client can only interpret the status to display
   about another user by doing a simple computation using the (status,
-  timestamp) pair. E.g. a user who last used Zulip 1 week ago will
+  timestamp) pair. E.g. a user who last used Aloha 1 week ago will
   have a timestamp of 1 week ago and a status of "active". Why?
   Because this correctly handles the race conditions. For example, if
   the threshold for displaying a user as "offline" was 5 minutes

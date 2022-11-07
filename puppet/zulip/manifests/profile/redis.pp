@@ -25,7 +25,7 @@ class zulip::profile::redis {
   exec { 'redis':
     unless  => "/bin/grep -Fxqe '${line}' '${file}'",
     path    => '/bin',
-    command => "bash -c \"(/bin/echo; /bin/echo '# Include Zulip-specific configuration'; /bin/echo '${line}') >> '${file}'\"",
+    command => "bash -c \"(/bin/echo; /bin/echo '# Include Aloha-specific configuration'; /bin/echo '${line}') >> '${file}'\"",
     require => [Package[$redis],
                 File[$zulip_redisconf],
                 Exec['rediscleanup-zuli-redis']],
@@ -41,7 +41,7 @@ class zulip::profile::redis {
       mv ${legacy_wrong_filename} ${zulip_redisconf}
       perl -0777 -pe '
         if (m|^\\Q${line}\\E\$|m) {
-          s|^\\n?(:?# Include Zulip-specific configuration\\n)?include \\Q${legacy_wrong_filename}\\E\\n||m;
+          s|^\\n?(:?# Include Aloha-specific configuration\\n)?include \\Q${legacy_wrong_filename}\\E\\n||m;
         } else {
           s|^include \\Q${legacy_wrong_filename}\\E\$|${line}|m;
         }

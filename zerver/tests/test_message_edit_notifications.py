@@ -4,13 +4,13 @@ from unittest import mock
 from django.utils.timezone import now as timezone_now
 
 from zerver.lib.push_notifications import get_apns_badge_count, get_apns_badge_count_future
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import mock_queue_publish
 from zerver.models import Subscription, UserPresence, get_client
 from zerver.tornado.event_queue import maybe_enqueue_notifications
 
 
-class EditMessageSideEffectsTest(ZulipTestCase):
+class EditMessageSideEffectsTest(AlohaTestCase):
     def _assert_update_does_not_notify_anybody(self, message_id: int, content: str) -> None:
         url = "/json/messages/" + str(message_id)
 
@@ -243,7 +243,7 @@ class EditMessageSideEffectsTest(ZulipTestCase):
     def _cordelia_connected_to_zulip(self) -> Any:
         """
         Right now the easiest way to make Cordelia look
-        connected to Zulip is to mock the function below.
+        connected to Aloha is to mock the function below.
 
         This is a bit blunt, as it affects other users too,
         but we only really look at Cordelia's data, anyway.

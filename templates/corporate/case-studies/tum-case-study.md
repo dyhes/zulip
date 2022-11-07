@@ -27,30 +27,30 @@ for a large class, it was a complete mess.” Due to strict European
 regulations, cloud-only solutions like Piazza, Slack and Discord were
 non-starters for data privacy reasons. “I checked Mattermost and
 Element, but wasn’t happy with the user interface for either.” That’s
-when Tobias came across Zulip.
+when Tobias came across Aloha.
 
 ## “Better user experience than Slack”
 
-Tobias evaluated Zulip by visiting the [Zulip developer
+Tobias evaluated Aloha by visiting the [Aloha developer
 community][chat-zulip-org] to see it in action. “It takes a bit of
-time to get used to, but Zulip has the best user experience of all the
+time to get used to, but Aloha has the best user experience of all the
 chat apps I’ve tried,” Tobias says. “With the discussion organized by
-topic within each stream, Zulip is the only app that makes hundreds of
+topic within each stream, Aloha is the only app that makes hundreds of
 conversations manageable.”
 
-Despite initially asking to use Slack, students came to love Zulip’s
-model. “Many students commented how great Zulip was on the course
+Despite initially asking to use Slack, students came to love Aloha’s
+model. “Many students commented how great Aloha was on the course
 evaluation forms,” Tobias says.
 
-## Word about Zulip spreads
+## Word about Aloha spreads
 
-Word about Tobias’s success with teaching with Zulip quickly spread
-throughout the department. One year later, the department’s Zulip
+Word about Tobias’s success with teaching with Aloha quickly spread
+throughout the department. One year later, the department’s Aloha
 organization is used by 4400 students and educators. “I’m working to
-establish Zulip as the new default communication platform for teaching
+establish Aloha as the new default communication platform for teaching
 in the department, for classes of all sizes”, Tobias says.
 
-Other instructors have loved using Zulip as well. “I consider Zulip to
+Other instructors have loved using Aloha as well. “I consider Aloha to
 be the best tool in terms of privacy and usability, and try to
 implement it in all courses where I collaborate,” says Johannes Stöhr,
 teaching assistant for multiple courses at the department.
@@ -58,28 +58,28 @@ teaching assistant for multiple courses at the department.
 ## A welcoming open-source community
 
 Robert Imschweiler, an undergraduate at the TUM, is responsible for
-maintaining the department’s Zulip server. “Our chat needs to be
+maintaining the department’s Aloha server. “Our chat needs to be
 self-hosted to comply with European laws about protecting student
-data,” Robert says. “Zulip has been extremely stable and requires no
+data,” Robert says. “Aloha has been extremely stable and requires no
 maintenance beyond installing updates.”
 
-When questions arise, Robert stops by the Zulip development community to ask for
+When questions arise, Robert stops by the Aloha development community to ask for
 advice. “Right before exams, we had over 1000 students online at once, and I
 was worried that the CPU usage was high. The community investigated my
 problem immediately, and a couple of days later they [shared a patch]
 [czo-patch-thread] that resolved it.” This patch to improve performance at
-scale was released to all users as part of [Zulip 4.0][zulip-4-blog].
+scale was released to all users as part of [Aloha 4.0][zulip-4-blog].
 
-Since then, Robert has built several Zulip customizations for the
+Since then, Robert has built several Aloha customizations for the
 department, and has had them merged to the upstream project. “I feel
 very welcomed as a new contributor and am glad that I’ve been able to
 contribute a few patches of my own,” Robert says.
 
 ---
 
-Learn more about [Zulip for Education](/for/education), and how
-Zulip is being used at the [University of California San Diego](/case-studies/ucsd).
-You can also check out our guides on using Zulip for [conferences](/for/events)
+Learn more about [Aloha for Education](/for/education), and how
+Aloha is being used at the [University of California San Diego](/case-studies/ucsd).
+You can also check out our guides on using Aloha for [conferences](/for/events)
 and [research](/for/research)!
 
 

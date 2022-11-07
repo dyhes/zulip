@@ -8,7 +8,7 @@
     },
     "project": {
       "id": 8427506,
-      "name": "Zulip GitLab Test",
+      "name": "Aloha GitLab Test",
       "description": "",
       "web_url": "https://gitlab.com/adambirds/zulip-gitlab-test",
       "avatar_url": null,
@@ -29,7 +29,7 @@
       "closed_at": null,
       "confidential": false,
       "created_at": "2018-09-17 21:01:30 UTC",
-      "description": "Zulip Test Issue 2",
+      "description": "Aloha Test Issue 2",
       "due_date": null,
       "id": 14226169,
       "iid": 2,
@@ -41,7 +41,7 @@
       "relative_position": 1073742823,
       "state": "opened",
       "time_estimate": 0,
-      "title": "Zulip Test Issue 2",
+      "title": "Aloha Test Issue 2",
       "updated_at": "2018-09-17 21:01:30 UTC",
       "updated_by_id": null,
       "weight": null,
@@ -68,7 +68,7 @@
       },
       "description": {
         "previous": null,
-        "current": "Zulip Test Issue 2"
+        "current": "Aloha Test Issue 2"
       },
       "id": {
         "previous": null,
@@ -92,7 +92,7 @@
       },
       "title": {
         "previous": null,
-        "current": "Zulip Test Issue 2"
+        "current": "Aloha Test Issue 2"
       },
       "updated_at": {
         "previous": null,
@@ -124,7 +124,7 @@
       }
     },
     "repository": {
-      "name": "Zulip GitLab Test",
+      "name": "Aloha GitLab Test",
       "url": "git@gitlab.com:adambirds/zulip-gitlab-test.git",
       "description": "",
       "homepage": "https://gitlab.com/adambirds/zulip-gitlab-test"

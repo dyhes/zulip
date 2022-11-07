@@ -24,7 +24,7 @@ def sha256_contents(f: IO[bytes]) -> str:
     return sha256_hash.hexdigest()
 
 
-parser = argparse.ArgumentParser(description="Upload a Zulip release")
+parser = argparse.ArgumentParser(description="Upload a Aloha release")
 parser.add_argument(
     dest="filename",
     help="Tarball to upload",

@@ -6,13 +6,13 @@ from zerver.actions.realm_emoji import check_add_realm_emoji
 from zerver.actions.realm_settings import do_set_realm_property
 from zerver.actions.users import do_change_user_role
 from zerver.lib.exceptions import JsonableError
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import get_test_image_file
 from zerver.lib.upload import BadImageError
 from zerver.models import Realm, RealmEmoji, UserProfile, get_realm
 
 
-class RealmEmojiTest(ZulipTestCase):
+class RealmEmojiTest(AlohaTestCase):
     def create_test_emoji(self, name: str, author: UserProfile) -> RealmEmoji:
         with get_test_image_file("img.png") as img_file:
             realm_emoji = check_add_realm_emoji(

@@ -13,7 +13,7 @@ from zerver.lib.outgoing_webhook import (
     SlackOutgoingWebhookService,
     do_rest_call,
 )
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.topic import TOPIC_NAME
 from zerver.lib.url_encoding import near_message_url
 from zerver.lib.users import add_service
@@ -39,7 +39,7 @@ def connection_error(final_url: Any, **request_kwargs: Any) -> Any:
     raise requests.exceptions.ConnectionError()
 
 
-class DoRestCallTests(ZulipTestCase):
+class DoRestCallTests(AlohaTestCase):
     def mock_event(self, bot_user: UserProfile) -> Dict[str, Any]:
         return {
             # In the tests there is no active queue processor, so retries don't get processed.
@@ -217,7 +217,7 @@ The webhook got a response with status code *400*.""",
 
             mock_send.assert_called_once()
             prepared_request = mock_send.call_args[0][0]
-            user_agent = "ZulipOutgoingWebhook/" + ZULIP_VERSION
+            user_agent = "AlohaOutgoingWebhook/" + ZULIP_VERSION
             headers = {
                 "Content-Type": "application/json",
                 "User-Agent": user_agent,
@@ -307,7 +307,7 @@ I'm a generic exception :(
             self.assertEqual(
                 bot_owner_notification.content,
                 """[A message](http://zulip.testserver/#narrow/stream/999-Verona/topic/Foo/near/) to your bot @_**Outgoing Webhook** triggered an outgoing webhook.
-The outgoing webhook server attempted to send a message in Zulip, but that request resulted in the following error:
+The outgoing webhook server attempted to send a message in Aloha, but that request resulted in the following error:
 > Widgets: API programmer sent invalid JSON content\nThe response contains the following payload:\n```\n'{"content": "whatever", "widget_content": "test"}'\n```""",
             )
         assert bot_user.bot_owner is not None
@@ -334,7 +334,7 @@ The outgoing webhook server attempted to send a message in Zulip, but that reque
             self.assertEqual(
                 bot_owner_notification.content,
                 """[A message](http://zulip.testserver/#narrow/stream/999-Verona/topic/Foo/near/) to your bot @_**Outgoing Webhook** triggered an outgoing webhook.
-The outgoing webhook server attempted to send a message in Zulip, but that request resulted in the following error:
+The outgoing webhook server attempted to send a message in Aloha, but that request resulted in the following error:
 > Invalid response format\nThe response contains the following payload:\n```\n'true'\n```""",
             )
         assert bot_user.bot_owner is not None
@@ -363,14 +363,14 @@ The outgoing webhook server attempted to send a message in Zulip, but that reque
             self.assertEqual(
                 bot_owner_notification.content,
                 """[A message](http://zulip.testserver/#narrow/stream/999-Verona/topic/Foo/near/) to your bot @_**Outgoing Webhook** triggered an outgoing webhook.
-The outgoing webhook server attempted to send a message in Zulip, but that request resulted in the following error:
+The outgoing webhook server attempted to send a message in Aloha, but that request resulted in the following error:
 > Invalid JSON in response\nThe response contains the following payload:\n```\n"this isn't valid json"\n```""",
             )
         assert bot_user.bot_owner is not None
         self.assertEqual(bot_owner_notification.recipient_id, bot_user.bot_owner.recipient_id)
 
 
-class TestOutgoingWebhookMessaging(ZulipTestCase):
+class TestOutgoingWebhookMessaging(AlohaTestCase):
     def create_outgoing_bot(self, bot_owner: UserProfile) -> UserProfile:
         return self.create_test_bot(
             "outgoing-webhook",

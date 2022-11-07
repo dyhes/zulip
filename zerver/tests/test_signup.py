@@ -73,7 +73,7 @@ from zerver.lib.send_email import (
 from zerver.lib.stream_subscription import get_stream_subscriptions_for_user
 from zerver.lib.streams import create_stream_if_needed
 from zerver.lib.subdomains import is_root_domain_available
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import (
     HostRequestMock,
     avatar_disk_path,
@@ -120,7 +120,7 @@ if TYPE_CHECKING:
     from django.test.client import _MonkeyPatchedWSGIResponse as TestHttpResponse
 
 
-class RedirectAndLogIntoSubdomainTestCase(ZulipTestCase):
+class RedirectAndLogIntoSubdomainTestCase(AlohaTestCase):
     def test_data(self) -> None:
         realm = get_realm("zulip")
         user_profile = self.example_user("hamlet")
@@ -174,7 +174,7 @@ class RedirectAndLogIntoSubdomainTestCase(ZulipTestCase):
         )
 
 
-class DeactivationNoticeTestCase(ZulipTestCase):
+class DeactivationNoticeTestCase(AlohaTestCase):
     def test_redirection_for_deactivated_realm(self) -> None:
         realm = get_realm("zulip")
         realm.deactivated = True
@@ -200,7 +200,7 @@ class DeactivationNoticeTestCase(ZulipTestCase):
 
         result = self.client_get("/login/", follow=True)
         self.assertEqual(result.redirect_chain[-1], ("/accounts/deactivated/", 302))
-        self.assertIn("Zulip Dev, has been deactivated.", result.content.decode())
+        self.assertIn("Aloha Dev, has been deactivated.", result.content.decode())
         self.assertNotIn("It has moved to", result.content.decode())
 
     def test_deactivation_notice_when_deactivated_and_deactivated_redirect_is_set(self) -> None:
@@ -259,7 +259,7 @@ class DeactivationNoticeTestCase(ZulipTestCase):
         )
 
 
-class AddNewUserHistoryTest(ZulipTestCase):
+class AddNewUserHistoryTest(AlohaTestCase):
     def test_add_new_user_history_race(self) -> None:
         """Sends a message during user creation"""
         # Create a user who hasn't had historical messages added
@@ -366,13 +366,13 @@ class AddNewUserHistoryTest(ZulipTestCase):
             )
 
 
-class InitialPasswordTest(ZulipTestCase):
+class InitialPasswordTest(AlohaTestCase):
     def test_none_initial_password_salt(self) -> None:
         with self.settings(INITIAL_PASSWORD_SALT=None):
             self.assertIsNone(initial_password("test@test.com"))
 
 
-class PasswordResetTest(ZulipTestCase):
+class PasswordResetTest(AlohaTestCase):
     """
     Log in, reset password, log out, log in with new password.
     """
@@ -385,7 +385,7 @@ class PasswordResetTest(ZulipTestCase):
         # The email might be sent in different languages for i18n testing
         self.assertRegex(
             self.email_display_from(message),
-            rf'^{_("Zulip Account Security")} <{self.TOKENIZED_NOREPLY_REGEX}>\Z',
+            rf'^{_("Aloha Account Security")} <{self.TOKENIZED_NOREPLY_REGEX}>\Z',
         )
         self.assertIn(f"{subdomain}.testserver", message.extra_headers["List-Id"])
 
@@ -691,7 +691,7 @@ class PasswordResetTest(ZulipTestCase):
 
         # check the redirect link telling you to check mail for password reset link
         self.assertEqual(result.status_code, 404)
-        self.assert_in_response("There is no Zulip organization hosted at this subdomain.", result)
+        self.assert_in_response("There is no Aloha organization hosted at this subdomain.", result)
 
         from django.core.mail import outbox
 
@@ -699,8 +699,8 @@ class PasswordResetTest(ZulipTestCase):
 
     @override_settings(
         AUTHENTICATION_BACKENDS=(
-            "zproject.backends.ZulipLDAPAuthBackend",
-            "zproject.backends.ZulipDummyBackend",
+            "zproject.backends.AlohaLDAPAuthBackend",
+            "zproject.backends.AlohaDummyBackend",
         )
     )
     def test_ldap_auth_only(self) -> None:
@@ -728,9 +728,9 @@ class PasswordResetTest(ZulipTestCase):
 
     @override_settings(
         AUTHENTICATION_BACKENDS=(
-            "zproject.backends.ZulipLDAPAuthBackend",
+            "zproject.backends.AlohaLDAPAuthBackend",
             "zproject.backends.EmailAuthBackend",
-            "zproject.backends.ZulipDummyBackend",
+            "zproject.backends.AlohaDummyBackend",
         )
     )
     def test_ldap_and_email_auth(self) -> None:
@@ -790,7 +790,7 @@ class PasswordResetTest(ZulipTestCase):
             self.assertTrue(result["Location"].endswith("/accounts/password/reset/done/"))
 
 
-class LoginTest(ZulipTestCase):
+class LoginTest(AlohaTestCase):
     """
     Logging in, registration, and logging out.
     """
@@ -900,7 +900,7 @@ class LoginTest(ZulipTestCase):
     def test_login_invalid_subdomain(self) -> None:
         result = self.login_with_return(self.example_email("hamlet"), "xxx", subdomain="invalid")
         self.assertEqual(result.status_code, 404)
-        self.assert_in_response("There is no Zulip organization hosted at this subdomain.", result)
+        self.assert_in_response("There is no Aloha organization hosted at this subdomain.", result)
         self.assert_logged_in_user_id(None)
 
     def test_register(self) -> None:
@@ -1090,7 +1090,7 @@ https://www.google.com/images/srpr/logo4w.png</a></p>"""
         self.assertEqual(response.status_code, 200)
 
 
-class InviteUserBase(ZulipTestCase):
+class InviteUserBase(AlohaTestCase):
     def check_sent_emails(self, correct_recipients: List[str]) -> None:
         from django.core.mail import outbox
 
@@ -1100,14 +1100,14 @@ class InviteUserBase(ZulipTestCase):
         if len(outbox) == 0:
             return
 
-        self.assertIn("Zulip", self.email_display_from(outbox[0]))
+        self.assertIn("Aloha", self.email_display_from(outbox[0]))
 
         self.assertEqual(self.email_envelope_from(outbox[0]), settings.NOREPLY_EMAIL_ADDRESS)
         self.assertRegex(
             self.email_display_from(outbox[0]), rf" <{self.TOKENIZED_NOREPLY_REGEX}>\Z"
         )
 
-        self.assertEqual(outbox[0].extra_headers["List-Id"], "Zulip Dev <zulip.testserver>")
+        self.assertEqual(outbox[0].extra_headers["List-Id"], "Aloha Dev <zulip.testserver>")
 
     def invite(
         self,
@@ -1118,7 +1118,7 @@ class InviteUserBase(ZulipTestCase):
         invite_as: int = PreregistrationUser.INVITE_AS["MEMBER"],
     ) -> "TestHttpResponse":
         """
-        Invites the specified users to Zulip with the specified streams.
+        Invites the specified users to Aloha with the specified streams.
 
         users should be a string containing the users to invite, comma or
             newline separated.
@@ -1291,7 +1291,7 @@ class InviteUserTest(InviteUserBase):
             invitee_emails = self.nonreg_email("bob") + "," + self.nonreg_email("alice")
             result = self.invite(invitee_emails, ["Denmark"])
         self.assert_json_error_contains(
-            result, "Your organization does not have enough unused Zulip licenses to invite 2 users"
+            result, "Your organization does not have enough unused Aloha licenses to invite 2 users"
         )
 
         ledger.licenses = get_latest_seat_count(user.realm)
@@ -1299,7 +1299,7 @@ class InviteUserTest(InviteUserBase):
         with self.settings(BILLING_ENABLED=True):
             result = self.invite(self.nonreg_email("bob"), ["Denmark"])
         self.assert_json_error_contains(
-            result, "All Zulip licenses for this organization are currently in use"
+            result, "All Aloha licenses for this organization are currently in use"
         )
 
         with self.settings(BILLING_ENABLED=True):
@@ -1321,7 +1321,7 @@ class InviteUserTest(InviteUserBase):
         result = self.invite(invitee_emails, ["Denmark"])
         self.assert_json_error(
             result,
-            "Some of those addresses are already using Zulip,"
+            "Some of those addresses are already using Aloha,"
             + " so we didn't send them an invitation."
             + " We did send invitations to everyone else!",
         )
@@ -1333,7 +1333,7 @@ class InviteUserTest(InviteUserBase):
         data from something like Zephyr or IRC.
 
         We want users to eventually just sign up or
-        register for Zulip, in which case we will just
+        register for Aloha, in which case we will just
         fully "activate" the account.
 
         Here we test that you can invite a person who
@@ -1702,7 +1702,7 @@ class InviteUserTest(InviteUserBase):
         )
 
         self.assertEqual(invitee_msg.sender.email, "welcome-bot@zulip.com")
-        self.assertTrue(invitee_msg.content.startswith("Hello, and welcome to Zulip!"))
+        self.assertTrue(invitee_msg.content.startswith("Hello, and welcome to Aloha!"))
         self.assertNotIn("demo organization", invitee_msg.content)
 
     def test_multi_user_invite(self) -> None:
@@ -1750,7 +1750,7 @@ earl-test@zulip.com""",
         invitee_emails = ", ".join(str(i) for i in range(get_realm("zulip").max_invites - 1))
         self.assert_json_error(
             self.invite(invitee_emails, ["Denmark"]),
-            "To protect users, Zulip limits the number of invitations you can send in one day. Because you have reached the limit, no invitations were sent.",
+            "To protect users, Aloha limits the number of invitations you can send in one day. Because you have reached the limit, no invitations were sent.",
         )
 
     def test_missing_or_invalid_params(self) -> None:
@@ -1802,7 +1802,7 @@ earl-test@zulip.com""",
 
     def test_invite_existing_user(self) -> None:
         """
-        If you invite an address already using Zulip, no invitation is sent.
+        If you invite an address already using Aloha, no invitation is sent.
         """
         self.login("hamlet")
 
@@ -1821,7 +1821,7 @@ earl-test@zulip.com""",
 
     def test_invite_links_in_name(self) -> None:
         """
-        If you invite an address already using Zulip, no invitation is sent.
+        If you invite an address already using Aloha, no invitation is sent.
         """
         hamlet = self.example_user("hamlet")
         self.login_user(hamlet)
@@ -1837,7 +1837,7 @@ earl-test@zulip.com""",
         assert isinstance(outbox[0].alternatives[0][0], str)
         body = self.normalize_string(outbox[0].alternatives[0][0])
 
-        # Verify that one can't get Zulip to send invitation emails
+        # Verify that one can't get Aloha to send invitation emails
         # that third-party products will linkify using the full_name
         # field, because we've included that field inside the mailto:
         # link for the sender.
@@ -1861,7 +1861,7 @@ earl-test@zulip.com""",
         invitee_emails = "\n".join(existing + new)
         self.assert_json_error(
             self.invite(invitee_emails, ["Denmark"]),
-            "Some of those addresses are already using Zulip, \
+            "Some of those addresses are already using Aloha, \
 so we didn't send them an invitation. We did send invitations to everyone else!",
         )
 
@@ -2004,7 +2004,7 @@ so we didn't send them an invitation. We did send invitations to everyone else!"
         result = self.submit_reg_form_for_user(external_address, "password")
         self.assertEqual(result.status_code, 200)
         self.assert_in_response(
-            "Zulip Dev, does not allow signups using emails\n        that contains +", result
+            "Aloha Dev, does not allow signups using emails\n        that contains +", result
         )
 
     def test_invalid_email_check_after_confirming_email(self) -> None:
@@ -2394,7 +2394,7 @@ so we didn't send them an invitation. We did send invitations to everyone else!"
         self.client_post(url, {"key": registration_key, "from_confirmation": 1, "full_name": "bob"})
         response = self.submit_reg_form_for_user(email, "password", key=registration_key)
         self.assert_in_success_response(
-            ["New members cannot join this organization because all Zulip licenses are"], response
+            ["New members cannot join this organization because all Aloha licenses are"], response
         )
 
         guest_prereg_user = PreregistrationUser.objects.create(
@@ -2925,7 +2925,7 @@ class InvitationsTestCase(InviteUserBase):
         self.assertEqual(user.delivery_email, email)
 
 
-class InviteeEmailsParserTests(ZulipTestCase):
+class InviteeEmailsParserTests(AlohaTestCase):
     def setUp(self) -> None:
         super().setUp()
         self.email1 = "email1@zulip.com"
@@ -2955,7 +2955,7 @@ class InviteeEmailsParserTests(ZulipTestCase):
         self.assertEqual(get_invitee_emails_set(emails_raw), expected_set)
 
 
-class MultiuseInviteTest(ZulipTestCase):
+class MultiuseInviteTest(AlohaTestCase):
     def setUp(self) -> None:
         super().setUp()
         self.realm = get_realm("zulip")
@@ -3172,7 +3172,7 @@ class MultiuseInviteTest(ZulipTestCase):
         self.assert_json_error(result, "Invalid stream ID 54321. No invites were sent.")
 
 
-class EmailUnsubscribeTests(ZulipTestCase):
+class EmailUnsubscribeTests(AlohaTestCase):
     def test_error_unsubscribe(self) -> None:
 
         # An invalid unsubscribe token "test123" produces an error.
@@ -3320,7 +3320,7 @@ class EmailUnsubscribeTests(ZulipTestCase):
         self.assertFalse(user_profile.enable_marketing_emails)
 
 
-class RealmCreationTest(ZulipTestCase):
+class RealmCreationTest(AlohaTestCase):
     @override_settings(OPEN_REALM_CREATION=True)
     def check_able_to_create_realm(self, email: str, password: str = "test") -> None:
         internal_realm = get_realm(settings.SYSTEM_BOT_REALM)
@@ -3343,8 +3343,8 @@ class RealmCreationTest(ZulipTestCase):
         # confirmation link and visit it
         confirmation_url = self.get_confirmation_url_from_outbox(
             email,
-            email_subject_contains="Create your Zulip organization",
-            email_body_contains="You have requested a new Zulip organization",
+            email_subject_contains="Create your Aloha organization",
+            email_body_contains="You have requested a new Aloha organization",
         )
         result = self.client_get(confirmation_url)
         self.assertEqual(result.status_code, 200)
@@ -3405,7 +3405,7 @@ class RealmCreationTest(ZulipTestCase):
     def test_create_realm_existing_email(self) -> None:
         self.check_able_to_create_realm("hamlet@zulip.com")
 
-    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",))
+    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",))
     def test_create_realm_ldap_email(self) -> None:
         self.init_default_ldap_database()
 
@@ -3644,7 +3644,7 @@ class RealmCreationTest(ZulipTestCase):
         welcome_msg = Message.objects.filter(
             sender__email="welcome-bot@zulip.com", recipient__type=Recipient.PERSONAL
         ).latest("id")
-        self.assertTrue(welcome_msg.content.startswith("Hello, and welcome to Zulip!"))
+        self.assertTrue(welcome_msg.content.startswith("Hello, and welcome to Aloha!"))
         self.assertNotIn("demo organization", welcome_msg.content)
 
     @override_settings(OPEN_REALM_CREATION=True)
@@ -3680,7 +3680,7 @@ class RealmCreationTest(ZulipTestCase):
         welcome_msg = Message.objects.filter(
             sender__email="welcome-bot@zulip.com", recipient__type=Recipient.PERSONAL
         ).latest("id")
-        self.assertTrue(welcome_msg.content.startswith("Hello, and welcome to Zulip!"))
+        self.assertTrue(welcome_msg.content.startswith("Hello, and welcome to Aloha!"))
         self.assertIn("demo organization", welcome_msg.content)
 
     @override_settings(OPEN_REALM_CREATION=True, FREE_TRIAL_DAYS=30)
@@ -4252,7 +4252,7 @@ class UserSignUpTest(InviteUserBase):
 
         from django.core.mail import outbox
 
-        self.assertEqual(outbox[0].extra_headers["List-Id"], "Zulip Dev <zulip.testserver>")
+        self.assertEqual(outbox[0].extra_headers["List-Id"], "Aloha Dev <zulip.testserver>")
 
     def test_signup_with_full_name(self) -> None:
         """
@@ -4454,7 +4454,7 @@ class UserSignUpTest(InviteUserBase):
         subdomain = "lear"
         realm = get_realm("lear")
 
-        # Make an account in the Zulip realm, but we're not copying from there.
+        # Make an account in the Aloha realm, but we're not copying from there.
         hamlet_in_zulip.left_side_userlist = True
         hamlet_in_zulip.default_language = "de"
         hamlet_in_zulip.emojiset = "twitter"
@@ -4522,8 +4522,8 @@ class UserSignUpTest(InviteUserBase):
         )
         self.assert_in_success_response(
             [
-                "Import settings from existing Zulip account",
-                "selected >\n                            Zulip Dev",
+                "Import settings from existing Aloha account",
+                "selected >\n                            Aloha Dev",
                 "We just need you to do one last thing.",
             ],
             result,
@@ -4621,7 +4621,7 @@ class UserSignUpTest(InviteUserBase):
         self.assert_in_success_response(
             [
                 "Subdomain unavailable. Please choose a different one.",
-                "Zulip Dev\n",
+                "Aloha Dev\n",
                 'value="test"',
                 'name="realm_name"',
             ],
@@ -4660,13 +4660,13 @@ class UserSignUpTest(InviteUserBase):
         with self.settings(BILLING_ENABLED=True):
             form = HomepageForm({"email": self.nonreg_email("test")}, realm=realm)
             self.assertIn(
-                "New members cannot join this organization because all Zulip licenses",
+                "New members cannot join this organization because all Aloha licenses",
                 form.errors["email"][0],
             )
             last_message = Message.objects.last()
             assert last_message is not None
             self.assertIn(
-                f"A new member ({self.nonreg_email('test')}) was unable to join your organization because all Zulip",
+                f"A new member ({self.nonreg_email('test')}) was unable to join your organization because all Aloha",
                 last_message.content,
             )
             self.assertEqual(last_message.recipient.type_id, denmark_stream.id)
@@ -4676,7 +4676,7 @@ class UserSignUpTest(InviteUserBase):
         with self.settings(BILLING_ENABLED=True):
             form = HomepageForm({"email": self.nonreg_email("test")}, realm=realm)
             self.assertIn(
-                "New members cannot join this organization because all Zulip licenses",
+                "New members cannot join this organization because all Aloha licenses",
                 form.errors["email"][0],
             )
 
@@ -4737,12 +4737,12 @@ class UserSignUpTest(InviteUserBase):
 
     def test_access_signup_page_in_root_domain_without_realm(self) -> None:
         result = self.client_get("/register", subdomain="", follow=True)
-        self.assert_in_success_response(["Find your Zulip accounts"], result)
+        self.assert_in_success_response(["Find your Aloha accounts"], result)
 
     @override_settings(
         AUTHENTICATION_BACKENDS=(
-            "zproject.backends.ZulipLDAPAuthBackend",
-            "zproject.backends.ZulipDummyBackend",
+            "zproject.backends.AlohaLDAPAuthBackend",
+            "zproject.backends.AlohaDummyBackend",
         )
     )
     def test_ldap_registration_from_confirmation(self) -> None:
@@ -4808,7 +4808,7 @@ class UserSignUpTest(InviteUserBase):
 
             # Test the TypeError exception handler
             with patch(
-                "zproject.backends.ZulipLDAPAuthBackendBase.get_mapped_name", side_effect=TypeError
+                "zproject.backends.AlohaLDAPAuthBackendBase.get_mapped_name", side_effect=TypeError
             ):
                 result = self.submit_reg_form_for_user(
                     email,
@@ -4824,8 +4824,8 @@ class UserSignUpTest(InviteUserBase):
     @override_settings(
         AUTHENTICATION_BACKENDS=(
             "zproject.backends.EmailAuthBackend",
-            "zproject.backends.ZulipLDAPUserPopulator",
-            "zproject.backends.ZulipDummyBackend",
+            "zproject.backends.AlohaLDAPUserPopulator",
+            "zproject.backends.AlohaDummyBackend",
         )
     )
     def test_ldap_populate_only_registration_from_confirmation(self) -> None:
@@ -4897,8 +4897,8 @@ class UserSignUpTest(InviteUserBase):
 
     @override_settings(
         AUTHENTICATION_BACKENDS=(
-            "zproject.backends.ZulipLDAPAuthBackend",
-            "zproject.backends.ZulipDummyBackend",
+            "zproject.backends.AlohaLDAPAuthBackend",
+            "zproject.backends.AlohaDummyBackend",
         )
     )
     def test_ldap_registration_end_to_end(self) -> None:
@@ -4966,8 +4966,8 @@ class UserSignUpTest(InviteUserBase):
 
     @override_settings(
         AUTHENTICATION_BACKENDS=(
-            "zproject.backends.ZulipLDAPAuthBackend",
-            "zproject.backends.ZulipDummyBackend",
+            "zproject.backends.AlohaLDAPAuthBackend",
+            "zproject.backends.AlohaDummyBackend",
         )
     )
     def test_ldap_split_full_name_mapping(self) -> None:
@@ -5014,8 +5014,8 @@ class UserSignUpTest(InviteUserBase):
 
     @override_settings(
         AUTHENTICATION_BACKENDS=(
-            "zproject.backends.ZulipLDAPAuthBackend",
-            "zproject.backends.ZulipDummyBackend",
+            "zproject.backends.AlohaLDAPAuthBackend",
+            "zproject.backends.AlohaDummyBackend",
         )
     )
     def test_ldap_auto_registration_on_login(self) -> None:
@@ -5058,7 +5058,7 @@ class UserSignUpTest(InviteUserBase):
             )
             self.assertEqual(phone_number_field_value.value, "a-new-number")
 
-    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",))
+    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",))
     def test_ldap_auto_registration_on_login_invalid_email_in_directory(self) -> None:
         password = self.ldap_password("newuser_with_email")
         username = "newuser_with_email"
@@ -5080,7 +5080,7 @@ class UserSignUpTest(InviteUserBase):
                 ["WARNING:zulip.auth.ldap:thisisnotavalidemail is not a valid email address."],
             )
 
-    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",))
+    @override_settings(AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",))
     def test_ldap_registration_multiple_realms(self) -> None:
         password = self.ldap_password("newuser")
         email = "newuser@zulip.com"
@@ -5111,8 +5111,8 @@ class UserSignUpTest(InviteUserBase):
 
     @override_settings(
         AUTHENTICATION_BACKENDS=(
-            "zproject.backends.ZulipLDAPAuthBackend",
-            "zproject.backends.ZulipDummyBackend",
+            "zproject.backends.AlohaLDAPAuthBackend",
+            "zproject.backends.AlohaDummyBackend",
         )
     )
     def test_ldap_registration_when_names_changes_are_disabled(self) -> None:
@@ -5161,9 +5161,9 @@ class UserSignUpTest(InviteUserBase):
 
     @override_settings(
         AUTHENTICATION_BACKENDS=(
-            "zproject.backends.ZulipLDAPAuthBackend",
+            "zproject.backends.AlohaLDAPAuthBackend",
             "zproject.backends.EmailAuthBackend",
-            "zproject.backends.ZulipDummyBackend",
+            "zproject.backends.AlohaDummyBackend",
         )
     )
     def test_signup_with_ldap_and_email_enabled_using_email_with_ldap_append_domain(self) -> None:
@@ -5235,12 +5235,12 @@ class UserSignUpTest(InviteUserBase):
             self.assertEqual(
                 debug_log.output,
                 [
-                    "DEBUG:zulip.ldap:ZulipLDAPAuthBackend: No LDAP user matching django_to_ldap_username result: newuser. Input username: newuser@zulip.com"
+                    "DEBUG:zulip.ldap:AlohaLDAPAuthBackend: No LDAP user matching django_to_ldap_username result: newuser. Input username: newuser@zulip.com"
                 ],
             )
 
         # If the email is outside of LDAP_APPEND_DOMAIN, we successfully create a non-LDAP account,
-        # with the password managed in the Zulip database.
+        # with the password managed in the Aloha database.
         with self.settings(
             POPULATE_PROFILE_VIA_LDAP=True,
             LDAP_APPEND_DOMAIN="example.com",
@@ -5270,7 +5270,7 @@ class UserSignUpTest(InviteUserBase):
             self.assertEqual(
                 debug_log.output,
                 [
-                    "DEBUG:zulip.ldap:ZulipLDAPAuthBackend: Email newuser@zulip.com does not match LDAP domain example.com."
+                    "DEBUG:zulip.ldap:AlohaLDAPAuthBackend: Email newuser@zulip.com does not match LDAP domain example.com."
                 ],
             )
             self.assertEqual(result.status_code, 302)
@@ -5281,9 +5281,9 @@ class UserSignUpTest(InviteUserBase):
 
     @override_settings(
         AUTHENTICATION_BACKENDS=(
-            "zproject.backends.ZulipLDAPAuthBackend",
+            "zproject.backends.AlohaLDAPAuthBackend",
             "zproject.backends.EmailAuthBackend",
-            "zproject.backends.ZulipDummyBackend",
+            "zproject.backends.AlohaDummyBackend",
         )
     )
     def test_signup_with_ldap_and_email_enabled_using_email_with_ldap_email_search(self) -> None:
@@ -5331,7 +5331,7 @@ class UserSignUpTest(InviteUserBase):
             self.assertFalse(UserProfile.objects.filter(delivery_email=email).exists())
 
         # If the user's email is not in the LDAP directory , though, we
-        # successfully create an account with a password in the Zulip
+        # successfully create an account with a password in the Aloha
         # database.
         password = "nonldappassword"
         email = "nonexistent@zulip.com"
@@ -5376,7 +5376,7 @@ class UserSignUpTest(InviteUserBase):
             self.assertEqual(
                 debug_log.output,
                 [
-                    "DEBUG:zulip.ldap:ZulipLDAPAuthBackend: No LDAP user matching django_to_ldap_username result: nonexistent@zulip.com. Input username: nonexistent@zulip.com"
+                    "DEBUG:zulip.ldap:AlohaLDAPAuthBackend: No LDAP user matching django_to_ldap_username result: nonexistent@zulip.com. Input username: nonexistent@zulip.com"
                 ],
             )
             self.assertEqual(result.status_code, 302)
@@ -5406,7 +5406,7 @@ class UserSignUpTest(InviteUserBase):
             self.assertEqual(
                 debug_log.output,
                 [
-                    "DEBUG:zulip.ldap:ZulipLDAPAuthBackend: No LDAP user matching django_to_ldap_username result: iago. Input username: iago@zulip.com"
+                    "DEBUG:zulip.ldap:AlohaLDAPAuthBackend: No LDAP user matching django_to_ldap_username result: iago. Input username: iago@zulip.com"
                 ],
             )
             response = self.invite(
@@ -5436,7 +5436,7 @@ class UserSignUpTest(InviteUserBase):
 
     @override_settings(
         AUTHENTICATION_BACKENDS=(
-            "zproject.backends.ZulipLDAPAuthBackend",
+            "zproject.backends.AlohaLDAPAuthBackend",
             "zproject.backends.EmailAuthBackend",
         )
     )
@@ -5447,7 +5447,7 @@ class UserSignUpTest(InviteUserBase):
 
     @override_settings(
         AUTHENTICATION_BACKENDS=(
-            "zproject.backends.ZulipLDAPAuthBackend",
+            "zproject.backends.AlohaLDAPAuthBackend",
             "zproject.backends.EmailAuthBackend",
         )
     )
@@ -5458,7 +5458,7 @@ class UserSignUpTest(InviteUserBase):
 
     @override_settings(
         AUTHENTICATION_BACKENDS=(
-            "zproject.backends.ZulipLDAPAuthBackend",
+            "zproject.backends.AlohaLDAPAuthBackend",
             "zproject.backends.EmailAuthBackend",
         )
     )
@@ -5512,7 +5512,7 @@ class UserSignUpTest(InviteUserBase):
         password = self.ldap_password("newuser")
         email = "newuser@zulip.com"
         subdomain = "zulip"
-        realm_name = "Zulip"
+        realm_name = "Aloha"
 
         self.init_default_ldap_database()
         ldap_user_attr_map = {"full_name": "cn"}
@@ -5540,7 +5540,7 @@ class UserSignUpTest(InviteUserBase):
             POPULATE_PROFILE_VIA_LDAP=True,
             LDAP_APPEND_DOMAIN="zulip.com",
             AUTH_LDAP_USER_ATTR_MAP=ldap_user_attr_map,
-            AUTHENTICATION_BACKENDS=("zproject.backends.ZulipLDAPAuthBackend",),
+            AUTHENTICATION_BACKENDS=("zproject.backends.AlohaLDAPAuthBackend",),
             TERMS_OF_SERVICE_VERSION=1.0,
         ):
             result = self.client_get(confirmation_url)
@@ -5748,7 +5748,7 @@ class UserSignUpTest(InviteUserBase):
         self.assertEqual(get_default_language_for_new_user(req, realm), "hi")
 
 
-class DeactivateUserTest(ZulipTestCase):
+class DeactivateUserTest(AlohaTestCase):
     def test_deactivate_user(self) -> None:
         user = self.example_user("hamlet")
         email = user.email
@@ -5790,7 +5790,7 @@ class DeactivateUserTest(ZulipTestCase):
         self.assert_json_error(result, "Cannot deactivate the only user.")
 
 
-class TestLoginPage(ZulipTestCase):
+class TestLoginPage(AlohaTestCase):
     @patch("django.http.HttpRequest.get_host")
     def test_login_page_redirects_for_root_alias(self, mock_get_host: MagicMock) -> None:
         mock_get_host.return_value = "www.testserver"
@@ -5885,10 +5885,10 @@ class TestLoginPage(ZulipTestCase):
             self.assert_not_in_success_response(["invalid_email"], result)
 
 
-class TestFindMyTeam(ZulipTestCase):
+class TestFindMyTeam(AlohaTestCase):
     def test_template(self) -> None:
         result = self.client_get("/accounts/find/")
-        self.assertIn("Find your Zulip accounts", result.content.decode())
+        self.assertIn("Find your Aloha accounts", result.content.decode())
 
     def test_result(self) -> None:
         # We capitalize a letter in cordelia's email to test that the search is case-insensitive.
@@ -5909,9 +5909,9 @@ class TestFindMyTeam(ZulipTestCase):
         self.assert_length(outbox, 2)
         iago_message = outbox[1]
         cordelia_message = outbox[0]
-        self.assertIn("Zulip Dev", iago_message.body)
+        self.assertIn("Aloha Dev", iago_message.body)
         self.assertNotIn("Lear & Co", iago_message.body)
-        self.assertIn("Zulip Dev", cordelia_message.body)
+        self.assertIn("Aloha Dev", cordelia_message.body)
         self.assertIn("Lear & Co", cordelia_message.body)
 
     def test_find_team_ignore_invalid_email(self) -> None:
@@ -6001,7 +6001,7 @@ class TestFindMyTeam(ZulipTestCase):
         self.assert_length(outbox, 0)
 
 
-class ConfirmationKeyTest(ZulipTestCase):
+class ConfirmationKeyTest(AlohaTestCase):
     def test_confirmation_key(self) -> None:
         request = MagicMock()
         request.session = {
@@ -6012,7 +6012,7 @@ class ConfirmationKeyTest(ZulipTestCase):
         self.assert_in_response("xyzzy", result)
 
 
-class MobileAuthOTPTest(ZulipTestCase):
+class MobileAuthOTPTest(AlohaTestCase):
     def test_xor_hex_strings(self) -> None:
         self.assertEqual(xor_hex_strings("1237c81ab", "18989fd12"), "0aaf57cb9")
         with self.assertRaises(AssertionError):
@@ -6037,7 +6037,7 @@ class MobileAuthOTPTest(ZulipTestCase):
         self.assertEqual(decryped, api_key)
 
 
-class FollowupEmailTest(ZulipTestCase):
+class FollowupEmailTest(AlohaTestCase):
     def test_followup_day2_email(self) -> None:
         user_profile = self.example_user("hamlet")
         # Test date_joined == Sunday
@@ -6080,7 +6080,7 @@ class FollowupEmailTest(ZulipTestCase):
         )
 
 
-class NoReplyEmailTest(ZulipTestCase):
+class NoReplyEmailTest(AlohaTestCase):
     def test_noreply_email_address(self) -> None:
         self.assertTrue(
             re.search(self.TOKENIZED_NOREPLY_REGEX, FromAddress.tokenized_no_reply_address())
@@ -6090,7 +6090,7 @@ class NoReplyEmailTest(ZulipTestCase):
             self.assertEqual(FromAddress.tokenized_no_reply_address(), "noreply@testserver")
 
 
-class TwoFactorAuthTest(ZulipTestCase):
+class TwoFactorAuthTest(AlohaTestCase):
     @patch("two_factor.plugins.phonenumber.models.totp")
     def test_two_factor_login(self, mock_totp: MagicMock) -> None:
         token = 123456
@@ -6141,27 +6141,27 @@ class TwoFactorAuthTest(ZulipTestCase):
             self.assertEqual(result["Location"], "http://zulip.testserver")
 
 
-class NameRestrictionsTest(ZulipTestCase):
+class NameRestrictionsTest(AlohaTestCase):
     def test_whitelisted_disposable_domains(self) -> None:
         self.assertFalse(is_disposable_domain("OPayQ.com"))
 
 
-class RealmRedirectTest(ZulipTestCase):
+class RealmRedirectTest(AlohaTestCase):
     def test_realm_redirect_without_next_param(self) -> None:
         result = self.client_get("/accounts/go/")
-        self.assert_in_success_response(["Enter your organization's Zulip URL"], result)
+        self.assert_in_success_response(["Enter your organization's Aloha URL"], result)
 
         result = self.client_post("/accounts/go/", {"subdomain": "zephyr"})
         self.assertEqual(result.status_code, 302)
         self.assertEqual(result["Location"], "http://zephyr.testserver")
 
         result = self.client_post("/accounts/go/", {"subdomain": "invalid"})
-        self.assert_in_success_response(["We couldn&#39;t find that Zulip organization."], result)
+        self.assert_in_success_response(["We couldn&#39;t find that Aloha organization."], result)
 
     def test_realm_redirect_with_next_param(self) -> None:
         result = self.client_get("/accounts/go/", {"next": "billing"})
         self.assert_in_success_response(
-            ["Enter your organization's Zulip URL", 'action="/accounts/go/?next=billing"'], result
+            ["Enter your organization's Aloha URL", 'action="/accounts/go/?next=billing"'], result
         )
 
         result = self.client_post("/accounts/go/?next=billing", {"subdomain": "lear"})

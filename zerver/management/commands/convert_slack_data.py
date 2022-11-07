@@ -10,7 +10,7 @@ from zerver.data_import.slack import do_convert_data
 
 
 class Command(BaseCommand):
-    help = """Convert the Slack data into Zulip data format."""
+    help = """Convert the Slack data into Aloha data format."""
 
     def add_arguments(self, parser: CommandParser) -> None:
         parser.add_argument(

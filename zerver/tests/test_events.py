@@ -189,7 +189,7 @@ from zerver.lib.events import (
 )
 from zerver.lib.mention import MentionBackend, MentionData
 from zerver.lib.message import render_markdown
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.lib.test_helpers import (
     create_dummy_file,
     get_subscription,
@@ -234,7 +234,7 @@ from zerver.tornado.event_queue import (
 from zerver.views.realm_playgrounds import access_playground_by_id
 
 
-class BaseAction(ZulipTestCase):
+class BaseAction(AlohaTestCase):
     """Core class for verifying the apply_event race handling logic as
     well as the event formatting logic of any function using send_event.
 
@@ -306,7 +306,7 @@ class BaseAction(ZulipTestCase):
 
         # We want even those `send_event` calls which have been hooked to
         # `transaction.on_commit` to execute in tests.
-        # See the comment in `ZulipTestCase.tornado_redirected_to_list`.
+        # See the comment in `AlohaTestCase.tornado_redirected_to_list`.
         with self.captureOnCommitCallbacks(execute=True):
             action()
 
@@ -1066,7 +1066,7 @@ class NormalActionsTest(BaseAction):
             self.user_profile,
             "/api/v1/users/me/presence",
             {"status": "idle"},
-            HTTP_USER_AGENT="ZulipAndroid/1.0",
+            HTTP_USER_AGENT="AlohaAndroid/1.0",
         )
         self.verify_action(
             lambda: do_update_user_presence(
@@ -1075,7 +1075,7 @@ class NormalActionsTest(BaseAction):
         )
         events = self.verify_action(
             lambda: do_update_user_presence(
-                self.user_profile, get_client("ZulipAndroid/1.0"), timezone_now(), UserPresence.IDLE
+                self.user_profile, get_client("AlohaAndroid/1.0"), timezone_now(), UserPresence.IDLE
             )
         )
 
@@ -1083,7 +1083,7 @@ class NormalActionsTest(BaseAction):
             "events[0]",
             events[0],
             has_email=True,
-            presence_key="ZulipAndroid/1.0",
+            presence_key="AlohaAndroid/1.0",
             status="idle",
         )
 
@@ -1099,7 +1099,7 @@ class NormalActionsTest(BaseAction):
 
         check_message("events[2]", events[2])
         self.assertIn(
-            f'data-user-id="{new_user_profile.id}">test1_zulip.com</span> just signed up for Zulip',
+            f'data-user-id="{new_user_profile.id}">test1_zulip.com</span> just signed up for Aloha',
             events[2]["message"]["content"],
         )
 
@@ -1124,7 +1124,7 @@ class NormalActionsTest(BaseAction):
 
         check_message("events[2]", events[2])
         self.assertIn(
-            f'data-user-id="{new_user_profile.id}">test1_zulip.com</span> just signed up for Zulip',
+            f'data-user-id="{new_user_profile.id}">test1_zulip.com</span> just signed up for Aloha',
             events[2]["message"]["content"],
         )
 
@@ -1479,7 +1479,7 @@ class NormalActionsTest(BaseAction):
                 "zproject.backends.EmailAuthBackend",
                 "zproject.backends.GitHubAuthBackend",
                 "zproject.backends.GoogleAuthBackend",
-                "zproject.backends.ZulipLDAPAuthBackend",
+                "zproject.backends.AlohaLDAPAuthBackend",
             )
             return self.settings(AUTHENTICATION_BACKENDS=backends)
 
@@ -2506,7 +2506,7 @@ class RealmPropertyActionTest(BaseAction):
             description=["Realm description", "New description"],
             digest_weekday=[0, 1, 2],
             message_retention_days=[10, 20],
-            name=["Zulip", "New Name"],
+            name=["Aloha", "New Name"],
             waiting_period_threshold=[1000, 2000],
             create_public_stream_policy=Realm.COMMON_POLICY_TYPES,
             create_private_stream_policy=Realm.COMMON_POLICY_TYPES,

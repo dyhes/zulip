@@ -1,13 +1,13 @@
 from zerver.actions.create_user import do_create_user
 from zerver.actions.hotspots import do_mark_hotspot_as_read
 from zerver.lib.hotspots import ALL_HOTSPOTS, INTRO_HOTSPOTS, get_next_hotspots
-from zerver.lib.test_classes import ZulipTestCase
+from zerver.lib.test_classes import AlohaTestCase
 from zerver.models import UserHotspot, UserProfile, get_realm
 
 
 # Splitting this out, since I imagine this will eventually have most of the
 # complicated hotspots logic.
-class TestGetNextHotspots(ZulipTestCase):
+class TestGetNextHotspots(AlohaTestCase):
     def setUp(self) -> None:
         super().setUp()
         self.user = do_create_user(
@@ -43,7 +43,7 @@ class TestGetNextHotspots(ZulipTestCase):
             self.assertEqual(get_next_hotspots(self.user), [])
 
 
-class TestHotspots(ZulipTestCase):
+class TestHotspots(AlohaTestCase):
     def test_do_mark_hotspot_as_read(self) -> None:
         user = self.example_user("hamlet")
         do_mark_hotspot_as_read(user, "intro_compose")

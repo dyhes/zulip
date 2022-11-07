@@ -2,7 +2,7 @@
 # reason not to run it there, it should be there as a comment
 # explaining why.
 
-name: Zulip CI
+name: Aloha CI
 
 on:
   push:
